@@ -117,11 +117,13 @@ test('failed build steps preserve the exact previous dist and clean partial stag
 });
 
 test('a validation failure cannot replace the previous successful site', async t => {
-  const root = await temporary(t), dist = join(root, 'dist'); await write(dist, 'index.html', 'previous output');
-  await assert.rejects(buildRelease({ destination: dist, steps: async staging => {
-    await candidate(staging); await rm(join(staging, 'assets/shared.js'));
-  } }), /Missing local asset/);
-  assert.equal(await readFile(join(dist, 'index.html'), 'utf8'), 'previous output'); assert.deepEqual(await readdir(root), ['dist']);
+  for (const base of ['/', '/aipoch-network/']) {
+    const root = await temporary(t), dist = join(root, 'dist'); await write(dist, 'index.html', 'previous output');
+    await assert.rejects(buildRelease({ destination: dist, base, steps: async staging => {
+      await candidate(staging, base); await rm(join(staging, 'assets/shared.js'));
+    } }), /Missing local asset/);
+    assert.equal(await readFile(join(dist, 'index.html'), 'utf8'), 'previous output'); assert.deepEqual(await readdir(root), ['dist']);
+  }
 });
 
 test('successful release validates before switching and refuses a concurrent writer', async t => {
