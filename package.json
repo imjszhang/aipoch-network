@@ -1,0 +1,39 @@
+{
+  "name": "aipoch-network",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.18.1 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test spec/tests/*.test.ts pipeline/tests/*.test.ts consumer/tests/*.test.mjs",
+    "catalog:refresh": "tsx pipeline/cli.ts refresh",
+    "catalog:build": "tsx pipeline/cli.ts build",
+    "catalog:check": "tsx pipeline/cli.ts check",
+    "intake": "tsx pipeline/cli.ts intake",
+    "build": "tsx scripts/build.ts",
+    "preview": "tsx scripts/serve.ts",
+    "test:e2e": "playwright test",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "lucide-react": "1.45.0",
+    "minisearch": "7.2.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2",
+    "vite": "8.3.0"
+  }
+}

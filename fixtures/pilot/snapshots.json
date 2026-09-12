@@ -1,0 +1,234 @@
+{
+  "as_of": "2026-09-12T09:43:35.099Z",
+  "sources": [
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T09:43:25.933Z",
+      "observed_at": "2026-09-12T09:43:25.933Z",
+      "repository": {
+        "archived": false,
+        "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+        "default_branch": "main",
+        "description": "SciPy library main repository",
+        "fork": false,
+        "full_name": "scipy/scipy",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://scipy.org/",
+        "html_url": "https://github.com/scipy/scipy",
+        "id": 1460385,
+        "language": "Python",
+        "latest_release": {
+          "name": "SciPy 1.18.1",
+          "published_at": "2026-08-21T23:52:53Z",
+          "tag": "v1.18.1",
+          "url": "https://github.com/scipy/scipy/releases/tag/v1.18.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scipy/scipy"
+        },
+        "name": "scipy",
+        "owner": {
+          "html_url": "https://github.com/scipy",
+          "id": 288277,
+          "login": "scipy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T15:02:42Z",
+        "readme_url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/README.rst",
+        "topics": [
+          "algorithms",
+          "closember",
+          "python",
+          "scientific-computing",
+          "scipy"
+        ],
+        "updated_at": "2026-09-12T09:14:12Z"
+      },
+      "requested_url": "https://github.com/scipy/scipy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T09:43:28.146Z",
+      "observed_at": "2026-09-12T09:43:28.146Z",
+      "repository": {
+        "archived": false,
+        "commit": "91c6d0ed4270fc540ebbdf3173f95a3d7423656a",
+        "default_branch": "main",
+        "description": "scikit-learn: machine learning in Python",
+        "fork": false,
+        "full_name": "scikit-learn/scikit-learn",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://scikit-learn.org/",
+        "html_url": "https://github.com/scikit-learn/scikit-learn",
+        "id": 843222,
+        "language": "Python",
+        "latest_release": {
+          "name": "Scikit-learn 1.9.1",
+          "published_at": "2026-09-11T09:38:12Z",
+          "tag": "1.9.1",
+          "url": "https://github.com/scikit-learn/scikit-learn/releases/tag/1.9.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        },
+        "name": "scikit-learn",
+        "owner": {
+          "html_url": "https://github.com/scikit-learn",
+          "id": 365630,
+          "login": "scikit-learn",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T04:30:39Z",
+        "readme_url": "https://github.com/scikit-learn/scikit-learn/blob/91c6d0ed4270fc540ebbdf3173f95a3d7423656a/README.rst",
+        "topics": [
+          "data-analysis",
+          "data-science",
+          "machine-learning",
+          "python",
+          "statistics"
+        ],
+        "updated_at": "2026-09-12T09:30:25Z"
+      },
+      "requested_url": "https://github.com/scikit-learn/scikit-learn",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T09:43:30.647Z",
+      "observed_at": "2026-09-12T09:43:30.647Z",
+      "repository": {
+        "archived": false,
+        "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+        "default_branch": "main",
+        "description": "Jupyter Interactive Notebook",
+        "fork": false,
+        "full_name": "jupyter/notebook",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://jupyter-notebook.readthedocs.io/",
+        "html_url": "https://github.com/jupyter/notebook",
+        "id": 33653601,
+        "language": "Jupyter Notebook",
+        "latest_release": {
+          "name": "v7.6.2",
+          "published_at": "2026-08-11T13:21:22Z",
+          "tag": "v7.6.2",
+          "url": "https://github.com/jupyter/notebook/releases/tag/v7.6.2"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/jupyter/notebook"
+        },
+        "name": "notebook",
+        "owner": {
+          "html_url": "https://github.com/jupyter",
+          "id": 7388996,
+          "login": "jupyter",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-10T16:41:16Z",
+        "readme_url": "https://github.com/jupyter/notebook/blob/597c3cfc855f701a2b94858de67e10602ffabe7a/README.md",
+        "topics": [
+          "closember",
+          "jupyter",
+          "jupyter-notebook",
+          "notebook"
+        ],
+        "updated_at": "2026-09-12T04:36:11Z"
+      },
+      "requested_url": "https://github.com/jupyter/notebook",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T09:43:32.870Z",
+      "observed_at": "2026-09-12T09:43:32.870Z",
+      "repository": {
+        "archived": false,
+        "commit": "dc262b5c437e07a8cc1cfb8a734c0d84a4434b23",
+        "default_branch": "master",
+        "description": "Official git repository for Biopython (originally converted from CVS)",
+        "fork": false,
+        "full_name": "biopython/biopython",
+        "has_discussions": false,
+        "has_issues": true,
+        "html_url": "https://github.com/biopython/biopython",
+        "id": 151541,
+        "language": "Python",
+        "name": "biopython",
+        "owner": {
+          "html_url": "https://github.com/biopython",
+          "id": 54555,
+          "login": "biopython",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-04T00:07:06Z",
+        "readme_url": "https://github.com/biopython/biopython/blob/dc262b5c437e07a8cc1cfb8a734c0d84a4434b23/README.rst",
+        "topics": [
+          "bioinformatics",
+          "biopython",
+          "dna",
+          "genomics",
+          "phylogenetics",
+          "protein",
+          "protein-structure",
+          "python",
+          "sequence-alignment"
+        ],
+        "updated_at": "2026-09-11T13:04:38Z"
+      },
+      "requested_url": "https://github.com/biopython/biopython",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T09:43:35.099Z",
+      "observed_at": "2026-09-12T09:43:35.099Z",
+      "repository": {
+        "archived": false,
+        "default_branch": "main",
+        "description": "This is the development home of the workflow management system Snakemake. For general information, see",
+        "fork": false,
+        "full_name": "snakemake/snakemake",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://snakemake.github.io/",
+        "html_url": "https://github.com/snakemake/snakemake",
+        "id": 212840200,
+        "language": "Python",
+        "latest_release": {
+          "name": "v9.27.0",
+          "published_at": "2026-09-11T13:44:52Z",
+          "tag": "v9.27.0",
+          "url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0"
+        },
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/snakemake/snakemake"
+        },
+        "name": "snakemake",
+        "owner": {
+          "html_url": "https://github.com/snakemake",
+          "id": 33450111,
+          "login": "snakemake",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T15:33:18Z",
+        "readme_url": "https://github.com/snakemake/snakemake/blob/main/README.md",
+        "topics": [
+          "reproducibility",
+          "snakemake",
+          "workflow-management"
+        ],
+        "updated_at": "2026-09-12T09:16:37Z"
+      },
+      "requested_url": "https://github.com/snakemake/snakemake",
+      "suppressed": false
+    }
+  ]
+}

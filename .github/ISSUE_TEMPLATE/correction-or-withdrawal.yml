@@ -1,0 +1,44 @@
+name: 纠错、撤回或申诉 / Correction or withdrawal
+description: 报告目录错误、来源不可访问、撤回请求或有证据的争议。
+title: "[Catalog] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        任何人都可以报告可核实的问题；主动撤回和授权变更按请求范围核验。
+        当前私有仓库入口仅供已有权限的协作者使用。不要在 Issue 或附件中上传令牌、身份文件、非公开成员名单或私人联系方式。
+        敏感核验需先在已有受限协作渠道约定方式；未约定时仅说明需要受限核验，不上传材料。
+  - type: input
+    id: target
+    attributes:
+      label: 目录 ID 或来源 URL / Target
+      description: 提供足够定位条目的公开信息；若链接本身不适合披露，只填已知目录 ID。
+    validations:
+      required: true
+  - type: dropdown
+    id: request_kind
+    attributes:
+      label: 请求类型 / Request type
+      options:
+        - 描述、分类或链接纠错 / Correction
+        - 重复条目 / Duplicate
+        - 来源不可公开访问 / Source unavailable
+        - 撤回内容 / Withdrawal
+        - 认领或组织授权争议 / Claim dispute
+        - 对既有决定申诉或申请重新收录 / Appeal or re-inclusion
+    validations:
+      required: true
+  - type: textarea
+    id: requested_change
+    attributes:
+      label: 请求的修改及范围 / Requested change and scope
+      description: 说明问题、希望修正或移除的字段/资源/版本，必要时说明是否包含来源链接与历史快照。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 可公开的依据 / Optional public evidence
+      description: 可选，附原来源、版本、既有请求或授权说明链接；不要求提供非公开证据。
+    validations:
+      required: false

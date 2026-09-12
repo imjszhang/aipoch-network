@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sources": [
+    { "url": "https://github.com/scipy/scipy", "reviewed_at": "2026-09-12T08:00:00Z", "review_note": "Scientific computing pilot; community indexing only." },
+    { "url": "https://github.com/scikit-learn/scikit-learn", "reviewed_at": "2026-09-12T08:00:00Z", "review_note": "Machine learning research software pilot; community indexing only." },
+    { "url": "https://github.com/jupyter/notebook", "reviewed_at": "2026-09-12T08:00:00Z", "review_note": "Research computing pilot; community indexing only." },
+    { "url": "https://github.com/biopython/biopython", "reviewed_at": "2026-09-12T08:00:00Z", "review_note": "Bioinformatics software pilot; community indexing only." },
+    { "url": "https://github.com/snakemake/snakemake", "reviewed_at": "2026-09-12T08:00:00Z", "review_note": "Reproducible research workflows pilot; community indexing only." }
+  ],
+  "projects": [
+    { "key": "scipy", "title": "SciPy", "domains": ["Scientific computing"], "sources": ["https://github.com/scipy/scipy"], "resources": ["scipy-library"] },
+    { "key": "scikit-learn", "title": "scikit-learn", "domains": ["Machine learning"], "sources": ["https://github.com/scikit-learn/scikit-learn"], "resources": ["scikit-learn-library"] },
+    { "key": "jupyter-notebook", "title": "Jupyter Notebook", "domains": ["Research computing"], "sources": ["https://github.com/jupyter/notebook"], "resources": ["jupyter-notebook-app"] },
+    { "key": "biopython", "title": "Biopython", "domains": ["Bioinformatics"], "sources": ["https://github.com/biopython/biopython"], "resources": ["biopython-library"] },
+    { "key": "snakemake", "title": "Snakemake", "domains": ["Reproducibility"], "sources": ["https://github.com/snakemake/snakemake"], "resources": ["snakemake-workflows"] }
+  ],
+  "resources": [
+    { "key": "scipy-library", "title": "SciPy scientific computing library", "type": "tool", "domains": ["Scientific computing"], "sources": ["https://github.com/scipy/scipy"] },
+    { "key": "scikit-learn-library", "title": "scikit-learn machine learning library", "type": "tool", "domains": ["Machine learning"], "sources": ["https://github.com/scikit-learn/scikit-learn"] },
+    { "key": "jupyter-notebook-app", "title": "Jupyter Notebook", "type": "tool", "domains": ["Research computing"], "sources": ["https://github.com/jupyter/notebook"] },
+    { "key": "biopython-library", "title": "Biopython bioinformatics toolkit", "type": "tool", "domains": ["Bioinformatics"], "sources": ["https://github.com/biopython/biopython"] },
+    { "key": "snakemake-workflows", "title": "Snakemake workflow system", "type": "workflow", "domains": ["Reproducibility"], "sources": ["https://github.com/snakemake/snakemake"] }
+  ],
+  "collections": [
+    { "key": "research-foundations", "title": "Foundations for open research", "description": "Explore established tools for scientific computing, notebooks, bioinformatics, and reproducible workflows.", "selection_basis": "AIPOCH editorial selection of public research software across complementary research tasks. Inclusion does not imply participation or endorsement.", "item_ids": ["project:scipy", "project:scikit-learn", "project:jupyter-notebook", "project:biopython", "project:snakemake"] }
+  ],
+  "withdrawals": []
+}

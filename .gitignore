@@ -2,6 +2,11 @@
 node_modules/
 dist/
 generated/
+generated.previous/
+generated.staging-*/
+/.dist-staging-*/
+/.dist-previous-*/
+/.dist-build-lock/
 .cache/
 coverage/
 playwright-report/

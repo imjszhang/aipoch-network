@@ -1,0 +1,33 @@
+name: 推荐来源 / Source proposal
+description: 用一个公开 GitHub 仓库或组织 URL 推荐科研来源。
+title: "[Source] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        只需填写来源 URL，其他信息可选。无需原作者修改仓库、AIPOCH 清单、特定 Topics 或客户端。
+        本仓库当前私有，仅已有访问权限的协作者可使用此入口；这不是开放社区投稿入口。
+        组织链接先作为候选，不会默认收录其全部仓库，也不表示组织主动加入或背书。
+        请勿提交凭据、私人联系方式或非公开资料。若表单不可用，普通 Issue 正文只写 URL 也接受。
+  - type: input
+    id: source_url
+    attributes:
+      label: 来源 URL / Source URL
+      description: 公开 GitHub 仓库或组织地址；目录或文件链接也可保留具体定位。
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: textarea
+    id: research_context
+    attributes:
+      label: 科研用途或补充说明 / Optional context
+      description: 可选，为什么推荐此来源、建议分类或已有相关条目。
+    validations:
+      required: false
+  - type: textarea
+    id: curation_scope
+    attributes:
+      label: 组织的建议范围 / Optional organization scope
+      description: 可选，列出希望整理的仓库或资源；留空不代表全组织自动加入。正式组织策展需另行核验授权。
+    validations:
+      required: false

@@ -1,0 +1,707 @@
+{
+  "benchmark_version": 1,
+  "started_at": "2026-09-12T10:12:24.920Z",
+  "finished_at": "2026-09-12T10:12:27.222Z",
+  "machine": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "os_release": "25.6.0",
+    "cpu_model": "Apple M5 Max",
+    "logical_cpus": 18,
+    "installed_memory_bytes": 68719476736,
+    "node": "v24.18.1",
+    "minisearch": "7.2.0",
+    "react": "19.3.0"
+  },
+  "method": {
+    "corpus": "Deterministic synthetic research metadata; approximately one-third English, Chinese and mixed text. No remote repositories or real scientific findings.",
+    "process_isolation": "Each size runs in a fresh Node child process. No forced GC and no exclusive CPU reservation.",
+    "construction_samples_per_size": 1,
+    "query_timing": "Two warm-up rounds followed by 15 rounds over 12 rotated queries; nearest-rank percentiles include complete returned-result construction.",
+    "memory": "Instantaneous process.memoryUsage samples in Node, not browser measurements or peak memory. The original and deserialized indexes coexist after load; GC timing is uncontrolled.",
+    "compression": "The same stableJson serializer as pipeline/build.ts, measured with Node gzip level 6. The envelope includes snapshot_id and index. This is not an observed HTTP transfer or a Brotli result.",
+    "detail": "One synthetic project and its fixed related resource/source/actor, with 100/1000/10000 unrelated resources added. Five in-memory pageDataForRoute and React SSR samples after one warm-up; no full website generation."
+  },
+  "cases": [
+    {
+      "documents": 100,
+      "corpus_json_bytes": 42431,
+      "languages": {
+        "english_only": 34,
+        "chinese_only": 33,
+        "mixed": 33
+      },
+      "index": {
+        "build_ms": 5.519,
+        "serialize_ms": 2.441,
+        "load_ms": 0.88,
+        "json_bytes": 70878,
+        "network_envelope_bytes": 70933,
+        "network_gzip_bytes": 5374,
+        "gzip_level": 6,
+        "gzip_ms": 0.749,
+        "download_budget_bytes": 2000000,
+        "within_download_budget": true
+      },
+      "queries": {
+        "samples": 180,
+        "p50_ms": 0.02,
+        "p95_ms": 0.109,
+        "min_ms": 0.007,
+        "max_ms": 0.244,
+        "warmup_rounds": 2,
+        "measured_rounds": 15,
+        "by_query": [
+          {
+            "query": "cohort",
+            "result_count": 17,
+            "samples": 15,
+            "p50_ms": 0.008,
+            "p95_ms": 0.018,
+            "min_ms": 0.007,
+            "max_ms": 0.018
+          },
+          {
+            "query": "SURVIVAL analy",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.011,
+            "p95_ms": 0.02,
+            "min_ms": 0.009,
+            "max_ms": 0.02
+          },
+          {
+            "query": "队列风险",
+            "result_count": 66,
+            "samples": 15,
+            "p50_ms": 0.076,
+            "p95_ms": 0.115,
+            "min_ms": 0.07,
+            "max_ms": 0.115
+          },
+          {
+            "query": "敏感性分析",
+            "result_count": 66,
+            "samples": 15,
+            "p50_ms": 0.105,
+            "p95_ms": 0.146,
+            "min_ms": 0.094,
+            "max_ms": 0.146
+          },
+          {
+            "query": "model validation",
+            "result_count": 17,
+            "samples": 15,
+            "p50_ms": 0.014,
+            "p95_ms": 0.244,
+            "min_ms": 0.012,
+            "max_ms": 0.244
+          },
+          {
+            "query": "clinical reproduc",
+            "result_count": 16,
+            "samples": 15,
+            "p50_ms": 0.021,
+            "p95_ms": 0.036,
+            "min_ms": 0.019,
+            "max_ms": 0.036
+          },
+          {
+            "query": "DNA 治疗",
+            "result_count": 17,
+            "samples": 15,
+            "p50_ms": 0.043,
+            "p95_ms": 0.056,
+            "min_ms": 0.039,
+            "max_ms": 0.056
+          },
+          {
+            "query": "材料稳定性",
+            "result_count": 66,
+            "samples": 15,
+            "p50_ms": 0.103,
+            "p95_ms": 0.12,
+            "min_ms": 0.092,
+            "max_ms": 0.12
+          },
+          {
+            "query": "genomics benchmark",
+            "result_count": 17,
+            "samples": 15,
+            "p50_ms": 0.023,
+            "p95_ms": 0.04,
+            "min_ms": 0.022,
+            "max_ms": 0.04
+          },
+          {
+            "query": "workflow 00500",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.008,
+            "p95_ms": 0.01,
+            "min_ms": 0.007,
+            "max_ms": 0.01
+          },
+          {
+            "query": "method report",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.017,
+            "p95_ms": 0.019,
+            "min_ms": 0.016,
+            "max_ms": 0.019
+          },
+          {
+            "query": "absent-token-xqz",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.011,
+            "p95_ms": 0.012,
+            "min_ms": 0.009,
+            "max_ms": 0.012
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_documents": {
+          "rss_bytes": 173457408,
+          "heap_used_bytes": 54272576,
+          "heap_total_bytes": 75988992,
+          "external_bytes": 16431206,
+          "array_buffers_bytes": 11684184
+        },
+        "before_index": {
+          "rss_bytes": 173473792,
+          "heap_used_bytes": 54670856,
+          "heap_total_bytes": 75988992,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_build": {
+          "rss_bytes": 174833664,
+          "heap_used_bytes": 42929600,
+          "heap_total_bytes": 77561856,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_serialization": {
+          "rss_bytes": 175030272,
+          "heap_used_bytes": 53522056,
+          "heap_total_bytes": 77709312,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_load": {
+          "rss_bytes": 175620096,
+          "heap_used_bytes": 44771000,
+          "heap_total_bytes": 77856768,
+          "external_bytes": 16567723,
+          "array_buffers_bytes": 11749728
+        },
+        "after_queries": {
+          "rss_bytes": 176226304,
+          "heap_used_bytes": 52137648,
+          "heap_total_bytes": 78118912,
+          "external_bytes": 16496790,
+          "array_buffers_bytes": 11749728
+        }
+      },
+      "detail_sample": {
+        "unrelated_resources_added": 100,
+        "total_catalog_records": 106,
+        "full_catalog_payload_bytes": 92442,
+        "page_payload_bytes": 3442,
+        "selected_records": {
+          "sources": 1,
+          "actors": 1,
+          "organizations": 0,
+          "projects": 1,
+          "resources": 1,
+          "collections": 0,
+          "relations": 0,
+          "claims": 0,
+          "tombstones": 0
+        },
+        "ssr_markup_bytes": 10293,
+        "body_plus_data_gzip_bytes": 3081,
+        "selection": {
+          "samples": 5,
+          "p50_ms": 0.021,
+          "p95_ms": 0.037,
+          "min_ms": 0.017,
+          "max_ms": 0.037
+        },
+        "ssr_render": {
+          "samples": 5,
+          "p50_ms": 2.916,
+          "p95_ms": 3.233,
+          "min_ms": 1.618,
+          "max_ms": 3.233
+        }
+      }
+    },
+    {
+      "documents": 1000,
+      "corpus_json_bytes": 425229,
+      "languages": {
+        "english_only": 334,
+        "chinese_only": 333,
+        "mixed": 333
+      },
+      "index": {
+        "build_ms": 29.985,
+        "serialize_ms": 29.862,
+        "load_ms": 6.361,
+        "json_bytes": 754392,
+        "network_envelope_bytes": 754447,
+        "network_gzip_bytes": 55867,
+        "gzip_level": 6,
+        "gzip_ms": 5.848,
+        "download_budget_bytes": 2000000,
+        "within_download_budget": true
+      },
+      "queries": {
+        "samples": 180,
+        "p50_ms": 0.117,
+        "p95_ms": 0.795,
+        "min_ms": 0.008,
+        "max_ms": 1.543,
+        "warmup_rounds": 2,
+        "measured_rounds": 15,
+        "by_query": [
+          {
+            "query": "cohort",
+            "result_count": 167,
+            "samples": 15,
+            "p50_ms": 0.054,
+            "p95_ms": 0.076,
+            "min_ms": 0.05,
+            "max_ms": 0.076
+          },
+          {
+            "query": "SURVIVAL analy",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.033,
+            "p95_ms": 0.041,
+            "min_ms": 0.032,
+            "max_ms": 0.041
+          },
+          {
+            "query": "队列风险",
+            "result_count": 666,
+            "samples": 15,
+            "p50_ms": 0.587,
+            "p95_ms": 1.217,
+            "min_ms": 0.566,
+            "max_ms": 1.217
+          },
+          {
+            "query": "敏感性分析",
+            "result_count": 666,
+            "samples": 15,
+            "p50_ms": 0.77,
+            "p95_ms": 0.901,
+            "min_ms": 0.75,
+            "max_ms": 0.901
+          },
+          {
+            "query": "model validation",
+            "result_count": 167,
+            "samples": 15,
+            "p50_ms": 0.083,
+            "p95_ms": 0.103,
+            "min_ms": 0.078,
+            "max_ms": 0.103
+          },
+          {
+            "query": "clinical reproduc",
+            "result_count": 166,
+            "samples": 15,
+            "p50_ms": 0.137,
+            "p95_ms": 0.18,
+            "min_ms": 0.129,
+            "max_ms": 0.18
+          },
+          {
+            "query": "DNA 治疗",
+            "result_count": 167,
+            "samples": 15,
+            "p50_ms": 0.294,
+            "p95_ms": 0.355,
+            "min_ms": 0.28,
+            "max_ms": 0.355
+          },
+          {
+            "query": "材料稳定性",
+            "result_count": 666,
+            "samples": 15,
+            "p50_ms": 0.765,
+            "p95_ms": 1.543,
+            "min_ms": 0.737,
+            "max_ms": 1.543
+          },
+          {
+            "query": "genomics benchmark",
+            "result_count": 167,
+            "samples": 15,
+            "p50_ms": 0.166,
+            "p95_ms": 0.2,
+            "min_ms": 0.149,
+            "max_ms": 0.2
+          },
+          {
+            "query": "workflow 00500",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.034,
+            "p95_ms": 0.048,
+            "min_ms": 0.032,
+            "max_ms": 0.048
+          },
+          {
+            "query": "method report",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.1,
+            "p95_ms": 0.117,
+            "min_ms": 0.097,
+            "max_ms": 0.117
+          },
+          {
+            "query": "absent-token-xqz",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.011,
+            "p95_ms": 0.013,
+            "min_ms": 0.008,
+            "max_ms": 0.013
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_documents": {
+          "rss_bytes": 173621248,
+          "heap_used_bytes": 54305568,
+          "heap_total_bytes": 75726848,
+          "external_bytes": 16431206,
+          "array_buffers_bytes": 11684184
+        },
+        "before_index": {
+          "rss_bytes": 173637632,
+          "heap_used_bytes": 55218936,
+          "heap_total_bytes": 75726848,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_build": {
+          "rss_bytes": 178880512,
+          "heap_used_bytes": 54260288,
+          "heap_total_bytes": 111902720,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_serialization": {
+          "rss_bytes": 248627200,
+          "heap_used_bytes": 109968536,
+          "heap_total_bytes": 191512576,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 8538456
+        },
+        "after_load": {
+          "rss_bytes": 307822592,
+          "heap_used_bytes": 81743752,
+          "heap_total_bytes": 206110720,
+          "external_bytes": 14161376,
+          "array_buffers_bytes": 8659867
+        },
+        "after_queries": {
+          "rss_bytes": 311853056,
+          "heap_used_bytes": 101137064,
+          "heap_total_bytes": 210305024,
+          "external_bytes": 13406929,
+          "array_buffers_bytes": 8659867
+        }
+      },
+      "detail_sample": {
+        "unrelated_resources_added": 1000,
+        "total_catalog_records": 1006,
+        "full_catalog_payload_bytes": 885342,
+        "page_payload_bytes": 3443,
+        "selected_records": {
+          "sources": 1,
+          "actors": 1,
+          "organizations": 0,
+          "projects": 1,
+          "resources": 1,
+          "collections": 0,
+          "relations": 0,
+          "claims": 0,
+          "tombstones": 0
+        },
+        "ssr_markup_bytes": 10293,
+        "body_plus_data_gzip_bytes": 3082,
+        "selection": {
+          "samples": 5,
+          "p50_ms": 0.066,
+          "p95_ms": 0.076,
+          "min_ms": 0.051,
+          "max_ms": 0.076
+        },
+        "ssr_render": {
+          "samples": 5,
+          "p50_ms": 2.892,
+          "p95_ms": 3.199,
+          "min_ms": 1.585,
+          "max_ms": 3.199
+        }
+      }
+    },
+    {
+      "documents": 10000,
+      "corpus_json_bytes": 4253215,
+      "languages": {
+        "english_only": 3334,
+        "chinese_only": 3333,
+        "mixed": 3333
+      },
+      "index": {
+        "build_ms": 320.565,
+        "serialize_ms": 149.4,
+        "load_ms": 44.751,
+        "json_bytes": 8222334,
+        "network_envelope_bytes": 8222389,
+        "network_gzip_bytes": 1719766,
+        "gzip_level": 6,
+        "gzip_ms": 80.225,
+        "download_budget_bytes": 2000000,
+        "within_download_budget": true
+      },
+      "queries": {
+        "samples": 180,
+        "p50_ms": 1.068,
+        "p95_ms": 8.613,
+        "min_ms": 0.011,
+        "max_ms": 10.263,
+        "warmup_rounds": 2,
+        "measured_rounds": 15,
+        "by_query": [
+          {
+            "query": "cohort",
+            "result_count": 1667,
+            "samples": 15,
+            "p50_ms": 0.525,
+            "p95_ms": 0.551,
+            "min_ms": 0.477,
+            "max_ms": 0.551
+          },
+          {
+            "query": "SURVIVAL analy",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.257,
+            "p95_ms": 0.287,
+            "min_ms": 0.234,
+            "max_ms": 0.287
+          },
+          {
+            "query": "队列风险",
+            "result_count": 6666,
+            "samples": 15,
+            "p50_ms": 6.671,
+            "p95_ms": 7.912,
+            "min_ms": 6.186,
+            "max_ms": 7.912
+          },
+          {
+            "query": "敏感性分析",
+            "result_count": 6666,
+            "samples": 15,
+            "p50_ms": 8.35,
+            "p95_ms": 8.875,
+            "min_ms": 8.177,
+            "max_ms": 8.875
+          },
+          {
+            "query": "model validation",
+            "result_count": 1667,
+            "samples": 15,
+            "p50_ms": 0.794,
+            "p95_ms": 0.832,
+            "min_ms": 0.753,
+            "max_ms": 0.832
+          },
+          {
+            "query": "clinical reproduc",
+            "result_count": 1666,
+            "samples": 15,
+            "p50_ms": 1.346,
+            "p95_ms": 1.687,
+            "min_ms": 1.293,
+            "max_ms": 1.687
+          },
+          {
+            "query": "DNA 治疗",
+            "result_count": 1667,
+            "samples": 15,
+            "p50_ms": 3.234,
+            "p95_ms": 3.593,
+            "min_ms": 3.082,
+            "max_ms": 3.593
+          },
+          {
+            "query": "材料稳定性",
+            "result_count": 6666,
+            "samples": 15,
+            "p50_ms": 8.613,
+            "p95_ms": 10.263,
+            "min_ms": 8.223,
+            "max_ms": 10.263
+          },
+          {
+            "query": "genomics benchmark",
+            "result_count": 1667,
+            "samples": 15,
+            "p50_ms": 1.635,
+            "p95_ms": 4.86,
+            "min_ms": 1.521,
+            "max_ms": 4.86
+          },
+          {
+            "query": "workflow 00500",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.268,
+            "p95_ms": 0.285,
+            "min_ms": 0.248,
+            "max_ms": 0.285
+          },
+          {
+            "query": "method report",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 1.017,
+            "p95_ms": 1.068,
+            "min_ms": 0.992,
+            "max_ms": 1.068
+          },
+          {
+            "query": "absent-token-xqz",
+            "result_count": 0,
+            "samples": 15,
+            "p50_ms": 0.014,
+            "p95_ms": 0.032,
+            "min_ms": 0.011,
+            "max_ms": 0.032
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_documents": {
+          "rss_bytes": 173522944,
+          "heap_used_bytes": 54303768,
+          "heap_total_bytes": 75726848,
+          "external_bytes": 16431206,
+          "array_buffers_bytes": 11684184
+        },
+        "before_index": {
+          "rss_bytes": 174538752,
+          "heap_used_bytes": 49957528,
+          "heap_total_bytes": 77037568,
+          "external_bytes": 16431246,
+          "array_buffers_bytes": 11684184
+        },
+        "after_build": {
+          "rss_bytes": 260325376,
+          "heap_used_bytes": 112456360,
+          "heap_total_bytes": 160120832,
+          "external_bytes": 13285518,
+          "array_buffers_bytes": 8538456
+        },
+        "after_serialization": {
+          "rss_bytes": 471449600,
+          "heap_used_bytes": 272669008,
+          "heap_total_bytes": 348536832,
+          "external_bytes": 13285518,
+          "array_buffers_bytes": 8538456
+        },
+        "after_load": {
+          "rss_bytes": 526827520,
+          "heap_used_bytes": 292853560,
+          "heap_total_bytes": 369033216,
+          "external_bytes": 24997153,
+          "array_buffers_bytes": 10389302
+        },
+        "after_queries": {
+          "rss_bytes": 575094784,
+          "heap_used_bytes": 376108152,
+          "heap_total_bytes": 448167936,
+          "external_bytes": 15136364,
+          "array_buffers_bytes": 10389302
+        }
+      },
+      "detail_sample": {
+        "unrelated_resources_added": 10000,
+        "total_catalog_records": 10006,
+        "full_catalog_payload_bytes": 8841342,
+        "page_payload_bytes": 3444,
+        "selected_records": {
+          "sources": 1,
+          "actors": 1,
+          "organizations": 0,
+          "projects": 1,
+          "resources": 1,
+          "collections": 0,
+          "relations": 0,
+          "claims": 0,
+          "tombstones": 0
+        },
+        "ssr_markup_bytes": 10293,
+        "body_plus_data_gzip_bytes": 3081,
+        "selection": {
+          "samples": 5,
+          "p50_ms": 0.337,
+          "p95_ms": 0.392,
+          "min_ms": 0.3,
+          "max_ms": 0.392
+        },
+        "ssr_render": {
+          "samples": 5,
+          "p50_ms": 2.96,
+          "p95_ms": 3.514,
+          "min_ms": 1.963,
+          "max_ms": 3.514
+        }
+      }
+    }
+  ],
+  "budgets": {
+    "compressed_search_download": {
+      "limit_bytes": 2000000,
+      "interpretation": "2 MB decimal, gzip network envelope, synthetic corpus only",
+      "all_measured_sizes_pass": true
+    },
+    "detail_payload_growth": {
+      "added_unrelated_resources_from": 100,
+      "added_unrelated_resources_to": 10000,
+      "payload_growth_bytes": 2,
+      "ratio": 1.000581,
+      "tolerance_bytes": 256,
+      "within_tolerance": true,
+      "interpretation": "A small allowance for totals digit growth; checks payload independence from unrelated records, not production capacity."
+    }
+  },
+  "measured_scope": [
+    "Synthetic index build/serialization/load/query timings and byte counts",
+    "Node memory samples",
+    "One bounded detail subgraph and React SSR per corpus size"
+  ],
+  "estimates": [],
+  "unverified_scope": [
+    "Complete 10,000-entry website size and build duration",
+    "Browser peak memory, first contentful paint, hydration, and query latency",
+    "HTTP transfer compression and network latency",
+    "Production corpus with longer, less repetitive descriptions or more connected detail graphs",
+    "Listing pages, which may load or render larger portions of the catalog"
+  ]
+}
