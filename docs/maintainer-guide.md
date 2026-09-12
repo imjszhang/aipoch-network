@@ -15,6 +15,39 @@
 
 Issue Forms 位于 `.github/ISSUE_TEMPLATE/`，普通 Issue 后备入口保持可用；不依赖尚未创建的标签或机器人。模板仅收集请求，不自动认领、采集或发布。GitHub 会从默认分支读取模板；实际显示仍需仓库权限和在线演练核验。[配置 Issue 模板](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
 
+### 新增来源的离线输入交接
+
+普通推荐者只需提供 URL。维护者负责公开状态核验和配套观察数据，不能把编写 fixture 变成推荐来源的门槛。当前 CI 固定使用 `SOURCE_BATCH=fixtures/pilot/snapshots.json`：目录新增来源后，旧 fixture 缺少该来源时会报 `Refresh batch is incomplete; a missing source is not a withdrawal`。保留这道完整性检查；不要忽略新来源或把缺失观察解释成撤回来让构建通过。
+
+在本地隔离副本按以下顺序处理：
+
+1. 固定一个已审查的本项目代码提交，记录 SHA，使用其锁文件安装依赖。读取外部 PR 中的资料作为数据，不运行该 PR 修改的采集器、脚本、依赖安装配置或工作流。核验代码之前不给它采集凭据。
+2. 将已审核的新 URL、审核时间和理由加入提议的 registry 文件，保留现行撤回、稳定身份及已有资料。项目和资源仅在有相应研究描述时另行整理；一个来源 URL 不自动证明新的研究项目或可执行资源存在。
+3. 使用上述可信代码读取提议资料并采集。以下路径指隔离副本中的文件；所有新增来源仍需有实际公开观察。`catalog:check` 只检查格式和引用，不代替 live 核验。
+
+   ```sh
+   REGISTRY_FILE=.cache/intake/proposed-registry.json npm run catalog:check
+   REGISTRY_FILE=.cache/intake/proposed-registry.json npm run catalog:refresh
+   ```
+
+4. 审阅 `.cache/refresh-report.json` 和 `.cache/refresh-state.json`。新来源应为可访问、身份匹配且未受抑制；失败或待核实来源保持候选，不编造成功观察。`refresh-state.json` 由 `refreshState` 白名单输出，不含完整 README、HTTP 头或任意原始响应字段。仍须核对允许保存的描述、链接、许可和时间；文件名本身不构成公开许可。
+5. 在这个隔离副本里将提议 registry 和审查后的白名单状态放入对应路径，再运行与 CI 相同的固定输入构建：
+
+   ```sh
+   cp .cache/intake/proposed-registry.json registry/catalog.json
+   cp .cache/refresh-state.json fixtures/pilot/snapshots.json
+   npm run catalog:check
+   npm test
+   SOURCE_BATCH=fixtures/pilot/snapshots.json SITE_BASE=/ npm run build
+   ```
+
+6. 核对新增来源的静态详情、目录分片、身份和来源链接；已有固定 commit/path、编辑描述与撤回规则继续成立。需要新增项目、资源或页面行为时，再执行受影响的浏览器检查。同步更新 fixture 的来源数量、观察日期与范围说明。
+7. 只把审核过的 registry、匹配 fixture、说明和必要测试变更交给 PR。不要提交 `.cache/batch.json`、原始 README、请求头、令牌或整个缓存目录。PR 检查保持无采集/发布凭据；合入后由受信 main 刷新重新核验当前公开状态，离线 fixture 不作为正式发布的新鲜度证明。
+
+少量新来源也可以在可信副本中单独采集，再通过 `refreshState` 合并到当前已审核的离线 batch，并对**完整提议 registry** 调用 `validateBatch`。合并必须保留旧来源原有的 `observed_at` / `checked_at`，不能把新来源的采集时间写给全部来源；最终 `as_of` 使用输入中的最近批次时间。当前负面台账和人工撤回仍优先于旧观察。基线过期、身份有变化或需要发布时，重新核验完整来源范围，不用局部采集假装全量刷新。
+
+实际隔离演练见[新增来源交接验证](verification/source-intake-handoff.md)：仅新增 registry 被拒绝且旧完整输出不变；补入一个真实公开来源的白名单观察后完整构建通过。演练没有把该来源加入正式目录，也不替代外部账号投稿验收。
+
 ## 2. 每个目录 PR 的审核清单
 
 - 最小 URL 有效；来源 GitHub ID 与已有条目核对过，重命名/转移没有继承到新身份。

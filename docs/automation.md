@@ -4,6 +4,8 @@
 
 当前仓库保持私有。两条工作流均没有 Pages、部署、推送、创建 PR、修改仓库可见性或自动合并步骤。
 
+手动刷新可选择根路径 `/` 或 Pages 项目路径 `/aipoch-network/`，默认仍为根路径。选择基路径只改变私有候选的静态链接；不会打开 Pages 或改变访问权限。运行检出事件记录的确切 `github.sha`，避免 main 在排队期间前移后让产物与运行显示的提交不一致。
+
 2026-09-12 的最终实现和 main CI、连续两次受信来源刷新均已在 GitHub 成功运行；第二次实际恢复第一次的观察、负面台账及目录历史。完整提交、运行链接、候选文件清单及验证边界见 [私有集成验收](verification/private-integration.md)。
 
 ## 1. 两个独立入口
@@ -40,7 +42,7 @@ npm run preview -- --port 4173 --base /
 
 ## 3. 手动刷新与审查
 
-工作流只接受 `main` 分支上的手动触发，且仅在仓库仍为私有时运行。即使从其他分支点击运行，候选任务也会被跳过；checkout 另外显式指定 `ref: main`。该工作流不接受外部仓库、PR 编号、脚本路径或来源 URL 输入，来源范围来自已经合并到 `main` 的注册目录。
+工作流只接受 `main` 分支上的手动触发，且仅在仓库仍为私有时运行。即使从其他分支点击运行，候选任务也会被跳过；checkout 固定为该次 main 事件的 `github.sha`。输入仅允许选择预设静态基路径，不接受外部仓库、PR 编号、脚本路径或来源 URL，来源范围来自该 main 提交中的注册目录。
 
 配置已推送到默认分支后，可以在 GitHub Actions 中选择 **Review a source refresh → Run workflow → main**，或使用：
 
@@ -50,6 +52,8 @@ gh run list --repo imjszhang/aipoch-network --workflow refresh.yml --limit 5
 ```
 
 这两个命令分别触发和查看运行，不是部署命令。实际执行记录见 [实施记录](implementation-status.md)。
+
+生成供审阅的 Pages 子路径候选时，在触发命令追加 `-f site_base=/aipoch-network/`。它仍是私有 Actions artifact，不是公开站点。
 
 本地同等采集路径：
 
@@ -65,7 +69,9 @@ SOURCE_BATCH=.cache/batch.json SITE_BASE=/ npm run build
 
 候选 artifact 名为 `catalog-candidate-<run-id>-<attempt>`。下载后检查 `catalog/v1/manifest.json`、静态页面和 `build-report.json`；详情和公共分片应指向同一 snapshot。是否接纳数据修订、如何更新已经审查的输入以及何时发布，仍是独立决策。工作流不会把候选写回 Git，也不会自动创建 PR。
 
-**跨运行恢复边界：** `scripts/restore-refresh.ts` 只接受同一私有仓库、main 分支、`.github/workflows/refresh.yml`、手动事件且成功完成的运行。下载固定名 `trusted-refresh-state-<run>-<attempt>`，只允许单个 `refresh-state.json` 文件，检查尺寸、日期、身份与整个生成契约。不会恢复 PR、其他分支或未完成任务的产物。状态已筛掉 README、HTTP 头和额外响应字段，保留七天；公共布局启用前仍须重新审查该位置。成功候选中的公共历史也会恢复，只读取通过manifest/hash/字节/语义校验的分片和最小历史台账，不恢复旧HTML或缓存。`HISTORY_DIRECTORY=.cache/restored-history` 将其交给新构建，在当前来源及撤回规则下重新过滤。
+**跨运行恢复边界：** `scripts/restore-refresh.ts` 完整枚举同一私有仓库的 artifact（最多 1,000 项），分页遗漏、重复、总数变化或超限会停止恢复。按 artifact 实际 `created_at` 选择证据，并通过具体 run attempt 接口核验同仓库、main、`.github/workflows/refresh.yml`、手动事件及完成状态；不依赖 run ID 或列表第一页的顺序。旧 run 的新尝试可提供更新证据；同一 run 正在重跑时，已完成的先前尝试仍可使用。普通观察和历史只接受成功尝试，失败尝试只可提供负面台账。
+
+下载精确名 `trusted-refresh-state-<run>-<attempt>`，只允许单个 `refresh-state.json` 文件，检查尺寸、日期、身份与整个生成契约。不会恢复 PR、其他分支或未完成尝试的产物。状态已筛掉 README、HTTP 头和额外响应字段，保留七天；公共布局启用前仍须重新审查该位置。成功候选中的公共历史也会恢复，只读取通过 manifest/hash/字节/语义校验的分片和最小历史台账，不恢复旧 HTML 或缓存。`HISTORY_DIRECTORY=.cache/restored-history` 将其交给新构建，在当前来源及撤回规则下重新过滤。
 
 缺少恢复状态时，现有已审核 fixture 只能充当历史观察值，采集仍重新读取每个来源。`pipeline/refresh.ts` 验证完整批次：全部暂时失败不覆盖旧接受批次；缺少历史或历史超过七天的失败阻止正常候选。明确私有/不可公开来源先逐条原子保存到独立 `source-suppressions.json`，在之后其他来源失败、验证失败或构建失败时仍保留。工作流用always条件尝试上传对应 `trusted-source-suppressions-<run>-<attempt>`；恢复器只接受已完成的可信main运行，其中失败运行只能提供负面证据，不能提供普通公开快照。含撤下的非完整批次可以生成标为 `withdrawal_only` 的清理候选。普通失败中断不会用半份采集结果覆盖 `.cache/batch.json`，报告保存在 `.cache/refresh-report.json`。构建和恢复即使显式提供旧SOURCE_BATCH也会应用当前负面台账；缺少登记来源的批次直接拒绝，不能解释为大面积撤回。自动抑制仅由时间不早于负面证据、同一稳定ID的新鲜公开观察解除；人工撤回另外保留。本地批次保留有界 ETag/Last-Modified；跨运行状态不保留这些请求头，安全重取元数据。元数据 304 也会重新读取 branch commit、README 与 Release，避免将辅助内容误当成已重新核实。辅助请求不携带凭据；这会使用公开匿名配额，失败时该可选字段保持未知，不能借本地高权限令牌读取后来转私有的内容。完整README只供本地有界观察，不进入网站/公共分片。
 
@@ -97,3 +103,5 @@ GitHub 的权限配置和工作流事件语义以 [Workflow syntax](https://docs
 `refresh.yml` 当前没有 `schedule`。公开前再决定刷新频率、来源数量和失败处理；届时可以通过显式repository variable控制周期任务是否运行，并保留手动重跑入口。增加cron触发需要单独修改工作流并记录生效时间，本文中的未来方案不会自行开始定时运行。
 
 Pages发布、公开社区投稿、仓库转公开以及长期私有源仓库方案继续遵循[交付与运营](delivery-operations.md)。当前候选工作流既不替代这些决策，也不证明公开访问或公开投稿已经可用。
+
+P6-02 的具体发布输入、权限、完整文件核验、审批后复核和停止流程已整理为 [未启用的 Pages 发布材料](deployment/README.md)。模板位于 `docs/deployment/`，不会由 GitHub 执行；公开布局中的来源状态持久保存及撤回时效仍是激活前置条件。
