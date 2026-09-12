@@ -9,6 +9,7 @@
 - 阶段：**P0 已完成**，项目初始化与实施规划已核验；P1–P6 未开始。
 - GitHub：[imjszhang/aipoch-network](https://github.com/imjszhang/aipoch-network)，默认分支 `main`。
 - 仓库策略：**私有开发**；尚未实现业务功能，未启用 GitHub Pages 或部署工作流。
+- 前端设计：第一版以 [aipoch-network-concept-v6.html](design/references/aipoch-network-concept-v6.html) 为基线；后续通过新版 HTML 迭代设计意图，规则见 [设计交接](design/README.md)。
 - 后续实施：按阶段推进，本文档中的计划不表示功能已经交付。
 - 未来托管方向：GitHub Pages 静态网站，依托 GitHub 仓库、API 和 Actions；不维护自建常驻后端。
 - 独立性：Open-Science 及其他客户端的升级、重构或不可用，不应要求本项目修改、重新发布或停止服务。
@@ -31,15 +32,17 @@
 | [目录与公共契约](docs/catalog-contract.md) | 对象模型、来源分层、最小收录、身份、版本和客户端读取规范 |
 | [完整实施计划](docs/implementation-plan.md) | P0–P6 任务、依赖、交付物、验收、工作量与风险 |
 | [交付与运营](docs/delivery-operations.md) | 私有到公开的选择、GitHub 约束、采集、部署、回滚和运营 |
+| [前端设计与 HTML 交接](design/README.md) | 当前设计原件、版本记录、意图映射及后续升级流程 |
 | [代理协作约定](AGENTS.md) | 后续实现时必须保持的项目边界 |
 
 ## 拟定结构
 
-以下为后续实现布局；当前只创建规划文档，未建立空壳应用或依赖清单。
+以下为后续实现布局；当前已有规划文档及 `design/` 原型档案，未建立空壳应用或依赖清单。
 
 | 路径 | 责任 |
 | --- | --- |
 | `web/` | 独立网站与站内搜索 |
+| `design/` | 用户提供的 HTML 原件、设计版本与实施映射 |
 | `registry/` | 收录引用、人工补充、组织选集和专题集合 |
 | `spec/` | 通用模型、公开静态契约与样例 |
 | `pipeline/` | GitHub 采集、归一化、校验、快照和索引生成 |
@@ -55,4 +58,4 @@
 
 当前不提供开源许可证授权。公开前将分别决定本站代码与原创目录资料的许可方式，并保留上游项目各自的许可证。
 
-规划基线：2026-09-12。设计参考来自前期 AIPOCH Network 概念讨论；原始附件和 Open-Science 源码不是本仓库的运行或构建依赖。
+规划基线：2026-09-12。用户指定的 HTML 已原样归档为前端设计依据；参考文件与 Open-Science 源码均不是本仓库的运行或构建依赖。
