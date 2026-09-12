@@ -1,0 +1,499 @@
+{
+  "verified_at": "2026-09-12T12:08:17.872Z",
+  "repository": "imjszhang/aipoch-network",
+  "implementation_sha": "61f7067b31edb7a2226b701bf4b673dccf67c502",
+  "implementation_pr": "https://github.com/imjszhang/aipoch-network/pull/2",
+  "test_fix_sha": "1c16840ea158e3edfa77f2692c7917a0247decb8",
+  "test_fix_pr": "https://github.com/imjszhang/aipoch-network/pull/3",
+  "verified_main_sha": "6e13ce09ddab7152454cfc77ffc58161609cf51e",
+  "ci": [
+    {
+      "id": 34692250388,
+      "headSha": "61f7067b31edb7a2226b701bf4b673dccf67c502",
+      "event": "push",
+      "headBranch": "codex/finish-private-handoff",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692250388",
+      "createdAt": "2026-09-12T11:54:25Z",
+      "updatedAt": "2026-09-12T11:57:13Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "9046c7325485126242e780638aef57800d0db1e31431a687eeb76e496b6010d8",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "50.0s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "46.6s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    },
+    {
+      "id": 34692266307,
+      "headSha": "61f7067b31edb7a2226b701bf4b673dccf67c502",
+      "event": "pull_request",
+      "headBranch": "codex/finish-private-handoff",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692266307",
+      "createdAt": "2026-09-12T11:54:47Z",
+      "updatedAt": "2026-09-12T11:57:38Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "ddd47c92556c6ae41c6aacf9edfc2b97fead824b23e495d589f19096452a2652",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "48.8s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "46.8s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    },
+    {
+      "id": 34692400783,
+      "headSha": "f636d57e9bd78f9f9d4ef12f268e9a2a0c96a99b",
+      "event": "push",
+      "headBranch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692400783",
+      "createdAt": "2026-09-12T11:58:07Z",
+      "updatedAt": "2026-09-12T12:00:49Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "66e37fb314977d7f806f307194ce83ecd13659446befda90368d03ae1df505f3",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "47.3s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "47.2s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    },
+    {
+      "id": 34692518765,
+      "headSha": "1c16840ea158e3edfa77f2692c7917a0247decb8",
+      "event": "push",
+      "headBranch": "codex/fix-subpath-release-test",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692518765",
+      "createdAt": "2026-09-12T12:00:51Z",
+      "updatedAt": "2026-09-12T12:03:31Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "cf04d287ad16f1ac76ffe8c53b656c6c6ea5c1ebb633c7e273564db9cf954e7b",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "49.4s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "44.2s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    },
+    {
+      "id": 34692532302,
+      "headSha": "1c16840ea158e3edfa77f2692c7917a0247decb8",
+      "event": "pull_request",
+      "headBranch": "codex/fix-subpath-release-test",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692532302",
+      "createdAt": "2026-09-12T12:01:07Z",
+      "updatedAt": "2026-09-12T12:03:50Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "3f9b5d7e77174897b9016a761a9ce50da49121882416d3d867ad424a7c3fa465",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "47.4s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "45.2s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    },
+    {
+      "id": 34692675521,
+      "headSha": "6e13ce09ddab7152454cfc77ffc58161609cf51e",
+      "event": "push",
+      "headBranch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692675521",
+      "createdAt": "2026-09-12T12:04:18Z",
+      "updatedAt": "2026-09-12T12:06:42Z",
+      "all_jobs_and_steps_succeeded": true,
+      "log_sha256": "716b072c31868a233eec45383d6ddfc475b499990c2e185096d5be0b0e9dde6a",
+      "offline": {
+        "tests": 201,
+        "pass": 201,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "source_batch": "fixtures/pilot/snapshots.json",
+        "site_base": "/"
+      },
+      "browsers": [
+        {
+          "base": "/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "40.3s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        },
+        {
+          "base": "/aipoch-network/",
+          "announced": 40,
+          "passed": 40,
+          "duration": "38.1s",
+          "adverse_summary_lines": [],
+          "retry_markers": [],
+          "scope": "Playwright emitted logs: all 40 announced tests passed; no failed, flaky, skipped, interrupted or retry markers were emitted."
+        }
+      ]
+    }
+  ],
+  "failed_refresh": {
+    "conclusion": "failure",
+    "createdAt": "2026-09-12T11:58:25Z",
+    "headSha": "f636d57e9bd78f9f9d4ef12f268e9a2a0c96a99b",
+    "status": "completed",
+    "updatedAt": "2026-09-12T11:59:23Z",
+    "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692410749",
+    "artifacts": [
+      {
+        "id": 10296484985,
+        "name": "trusted-source-suppressions-34692410749-1",
+        "digest": "sha256:b16e0eaa8c112c42f6121243dd95e7ac702a912fad4908c66c895d83244d7eb0",
+        "size_in_bytes": 191,
+        "expired": false
+      }
+    ],
+    "tests": {
+      "total": 201,
+      "pass": 200,
+      "fail": 1
+    },
+    "reason": "Release preservation test inherited project SITE_BASE but created a root fixture; build completed, then test assertion failed. Existing test now explicitly checks both bases. No website or accepted observation artifact was uploaded."
+  },
+  "successful_refresh": {
+    "conclusion": "success",
+    "createdAt": "2026-09-12T12:04:33Z",
+    "headSha": "6e13ce09ddab7152454cfc77ffc58161609cf51e",
+    "status": "completed",
+    "updatedAt": "2026-09-12T12:05:37Z",
+    "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34692686489",
+    "attempt": 1,
+    "artifacts": [
+      {
+        "id": 10298175951,
+        "name": "trusted-refresh-state-34692686489-1",
+        "digest": "sha256:86836a24cc3c844a1486df92fe5f106401ecfa03a634507de6ef52bb80ac219f",
+        "size_in_bytes": 3552,
+        "expired": false
+      },
+      {
+        "id": 10298021154,
+        "name": "catalog-candidate-34692686489-1",
+        "digest": "sha256:c68e5272ebc6f9215fb95a1ec46cf331e8361e5d75b147d1fdfec95fd45b69a9",
+        "size_in_bytes": 519129,
+        "expired": false
+      },
+      {
+        "id": 10297382170,
+        "name": "trusted-source-suppressions-34692686489-1",
+        "digest": "sha256:a771f6c9864a662ed4dcf3fe4100cad7a56d17c2e3848a1e1910635906749723",
+        "size_in_bytes": 191,
+        "expired": false
+      }
+    ],
+    "verified_log_messages": [
+      "Restored current suppression evidence from completed trusted main run 34692410749, attempt 1.",
+      "Restored accepted public observations from successful private main run 34690368996, attempt 1.",
+      "Restored validated catalog history from successful private main run 34690368996, attempt 1.",
+      "Complete refresh candidate saved locally: 20 checked, 0 retained, 0 withheld. No deployment performed.",
+      "Validated 93 pages and 133 files (2637535 bytes); dist now contains snapshot bc96aa6bab0aa21b899841b3.",
+      "ℹ tests 201",
+      "ℹ pass 201",
+      "ℹ fail 0",
+      "ℹ skipped 0"
+    ],
+    "build_report": {
+      "candidate_kind": "refresh",
+      "counts": {
+        "actors": 19,
+        "claims": 0,
+        "collections": 2,
+        "organizations": 18,
+        "projects": 20,
+        "relations": 1,
+        "resources": 21,
+        "sources": 20,
+        "tombstones": 0
+      },
+      "diagnostics": [],
+      "generated_at": "2026-09-12T12:05:07.870Z",
+      "history": {
+        "available": 3,
+        "retired": 0
+      },
+      "history_sha256": "fd4161c38700694d89bebd7166436ba78cfadc70ab41e99af6794e72ccf072a2",
+      "inputs_sha256": "d4cafc6974794394912dff71fb430144b8136762c212a6a3c9fd4202c5d4ca97",
+      "snapshot_id": "bc96aa6bab0aa21b899841b3"
+    },
+    "history": {
+      "checked_at": "2026-09-12T12:05:07.870Z",
+      "current_snapshot_id": "bc96aa6bab0aa21b899841b3",
+      "snapshots": [
+        {
+          "checked_at": "2026-09-12T12:05:07.870Z",
+          "generated_at": "2026-09-12T11:11:34.463Z",
+          "snapshot_id": "35dd0c46df11b75e7963601f",
+          "status": "available"
+        },
+        {
+          "checked_at": "2026-09-12T12:05:07.870Z",
+          "generated_at": "2026-09-12T11:09:32.034Z",
+          "snapshot_id": "7fbd54bf12fbb0678367843b",
+          "status": "available"
+        },
+        {
+          "checked_at": "2026-09-12T12:05:07.870Z",
+          "generated_at": "2026-09-12T12:05:07.870Z",
+          "snapshot_id": "bc96aa6bab0aa21b899841b3",
+          "status": "available"
+        }
+      ],
+      "version": 1
+    }
+  },
+  "prior_history": {
+    "files": 20,
+    "bytes": 277044,
+    "all_bytes_unchanged": true,
+    "compared_to": "private-candidate-files.json",
+    "snapshot_ids": [
+      "35dd0c46df11b75e7963601f",
+      "7fbd54bf12fbb0678367843b"
+    ]
+  },
+  "candidate_inventory": {
+    "file": "private-subpath-files.json",
+    "file_tree_sha256": "sha256:b9407c1b3f7c4b3aa158ed13692e6eb284a393c0891c9b1d6d84867bd24fe2db",
+    "files": 133,
+    "bytes": 2637535,
+    "site_base": "/aipoch-network/"
+  },
+  "independent_archive_and_content_verification": {
+    "scope": "Read-only private candidate verification. No Pages configuration call, deployment, workflow dispatch or external mutation.",
+    "archive": {
+      "acceptance_policy": "reviewed-file-tree-v1",
+      "archive_digest_matches_metadata": true,
+      "bytes": 2637535,
+      "downloaded_archive_digest": "sha256:c68e5272ebc6f9215fb95a1ec46cf331e8361e5d75b147d1fdfec95fd45b69a9",
+      "file_tree_sha256": "sha256:b9407c1b3f7c4b3aa158ed13692e6eb284a393c0891c9b1d6d84867bd24fe2db",
+      "files": 133,
+      "github_artifact_digest": "sha256:c68e5272ebc6f9215fb95a1ec46cf331e8361e5d75b147d1fdfec95fd45b69a9"
+    },
+    "candidate": {
+      "pages": 93,
+      "files": 133,
+      "snapshot_id": "bc96aa6bab0aa21b899841b3",
+      "bytes": 2637535,
+      "generated_at": "2026-09-12T12:05:07.870Z",
+      "source_sha": "6e13ce09ddab7152454cfc77ffc58161609cf51e",
+      "run_id": 34692686489,
+      "artifact_sha256": "sha256:c68e5272ebc6f9215fb95a1ec46cf331e8361e5d75b147d1fdfec95fd45b69a9",
+      "file_tree_sha256": "sha256:b9407c1b3f7c4b3aa158ed13692e6eb284a393c0891c9b1d6d84867bd24fe2db",
+      "site_base": "/aipoch-network/",
+      "verified_at": "2026-09-12T12:08:17.872Z",
+      "valid_until": "2026-09-12T13:05:07.870Z"
+    },
+    "repository": {
+      "private": true,
+      "has_pages": false,
+      "current_main": "6e13ce09ddab7152454cfc77ffc58161609cf51e"
+    }
+  },
+  "consumer_http": {
+    "verified_at": "2026-09-12T12:07:42.960Z",
+    "base": "http://127.0.0.1:4185/aipoch-network/",
+    "snapshot_id": "bc96aa6bab0aa21b899841b3",
+    "fixed_snapshot_matches": true,
+    "history_snapshots": [
+      "35dd0c46df11b75e7963601f",
+      "7fbd54bf12fbb0678367843b",
+      "bc96aa6bab0aa21b899841b3"
+    ],
+    "counts": {
+      "sources": 20,
+      "actors": 19,
+      "organizations": 18,
+      "projects": 20,
+      "resources": 21,
+      "collections": 2,
+      "relations": 1,
+      "claims": 0,
+      "tombstones": 0
+    },
+    "located_resource": {
+      "id": "resource:scipy-tutorial",
+      "status": "listed",
+      "sources": [
+        {
+          "source_id": "source:github:1460385",
+          "canonical_url": "https://github.com/scipy/scipy",
+          "availability": "accessible",
+          "version": {
+            "status": "fixed",
+            "content_url": "https://github.com/scipy/scipy/tree/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+            "basis": "commit",
+            "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+            "path": "doc/source/tutorial/index.rst",
+            "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+          }
+        }
+      ]
+    },
+    "routes": {
+      "": 200,
+      "explore/": 200,
+      "capabilities/": 200,
+      "organizations/": 200,
+      "third-party-notices.txt": 200
+    },
+    "missing_status": 404,
+    "notices": {
+      "bytes": 124859,
+      "sha256": "e4e52e4fa4db6008a321ff045c840bccb3326fd3a1d4c9fd29a1089cd2285576"
+    }
+  },
+  "pinned_inputs": {
+    "package-lock.json": "795b33df9a91aec72888a93b583c92a4714cafdb0cff4863e538b5dcb024f02e",
+    "registry/catalog.json": "a43ef51e2d32eaf0cfafcaffa10ac60f3995567b90a9d0b48a62a24500c9c77a",
+    "fixtures/pilot/snapshots.json": "0151ed976736d107234779b70e9f57593f686dbd4007c8b2838de392b5760822",
+    "design/references/aipoch-network-concept-v6.html": "4adb13887c17306c798ef94ccc53d62d314c05fb01e359f214a8c0db259b552a"
+  },
+  "limits": [
+    "Private candidate, not a public Pages deployment. No repository visibility, Pages, environment or license settings were changed.",
+    "Release verification reflects the recorded time and exact main SHA. Later commits or expiry require a fresh candidate and review; this receipt is not standing release authorization.",
+    "The failed run had no deliberately induced source withdrawal. Nonempty negative-state failure persistence and old-run reruns are covered by synthetic tests, not deliberately modified production sources.",
+    "Original HTML execution and same-viewport comparison remain incomplete; Mac unlock is required for the pending GitHub form UI inspection.",
+    "Public layout, original-content license, public state persistence and external anonymous intake remain unresolved. A23 applies when a new user HTML is actually supplied.",
+    "Previous benchmark and screenshots remain evidence of their recorded code and input, not a new benchmark or original-reference comparison.",
+    "Actions artifacts are retained for seven days; this inventory preserves hashes, not permanent copies of their contents."
+  ]
+}
