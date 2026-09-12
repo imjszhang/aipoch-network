@@ -1,0 +1,943 @@
+{
+  "as_of": "2026-09-12T10:31:05.008Z",
+  "sources": [
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:13.733Z",
+      "observed_at": "2026-09-12T10:30:13.733Z",
+      "repository": {
+        "archived": false,
+        "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+        "default_branch": "main",
+        "description": "SciPy library main repository",
+        "fork": false,
+        "full_name": "scipy/scipy",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://scipy.org/",
+        "html_url": "https://github.com/scipy/scipy",
+        "id": 1460385,
+        "language": "Python",
+        "latest_release": {
+          "name": "SciPy 1.18.1",
+          "published_at": "2026-08-21T23:52:53Z",
+          "tag": "v1.18.1",
+          "url": "https://github.com/scipy/scipy/releases/tag/v1.18.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scipy/scipy"
+        },
+        "name": "scipy",
+        "owner": {
+          "html_url": "https://github.com/scipy",
+          "id": 288277,
+          "login": "scipy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T15:02:42Z",
+        "topics": [
+          "algorithms",
+          "closember",
+          "python",
+          "scientific-computing",
+          "scipy"
+        ],
+        "updated_at": "2026-09-12T10:05:56Z"
+      },
+      "requested_url": "https://github.com/scipy/scipy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:15.937Z",
+      "observed_at": "2026-09-12T10:30:15.937Z",
+      "repository": {
+        "archived": false,
+        "commit": "91c6d0ed4270fc540ebbdf3173f95a3d7423656a",
+        "default_branch": "main",
+        "description": "scikit-learn: machine learning in Python",
+        "fork": false,
+        "full_name": "scikit-learn/scikit-learn",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://scikit-learn.org/",
+        "html_url": "https://github.com/scikit-learn/scikit-learn",
+        "id": 843222,
+        "language": "Python",
+        "latest_release": {
+          "name": "Scikit-learn 1.9.1",
+          "published_at": "2026-09-11T09:38:12Z",
+          "tag": "1.9.1",
+          "url": "https://github.com/scikit-learn/scikit-learn/releases/tag/1.9.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        },
+        "name": "scikit-learn",
+        "owner": {
+          "html_url": "https://github.com/scikit-learn",
+          "id": 365630,
+          "login": "scikit-learn",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T04:30:39Z",
+        "topics": [
+          "data-analysis",
+          "data-science",
+          "machine-learning",
+          "python",
+          "statistics"
+        ],
+        "updated_at": "2026-09-12T09:30:25Z"
+      },
+      "requested_url": "https://github.com/scikit-learn/scikit-learn",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:17.973Z",
+      "observed_at": "2026-09-12T10:30:17.973Z",
+      "repository": {
+        "archived": false,
+        "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+        "default_branch": "main",
+        "description": "Jupyter Interactive Notebook",
+        "fork": false,
+        "full_name": "jupyter/notebook",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://jupyter-notebook.readthedocs.io/",
+        "html_url": "https://github.com/jupyter/notebook",
+        "id": 33653601,
+        "language": "Jupyter Notebook",
+        "latest_release": {
+          "name": "v7.6.2",
+          "published_at": "2026-08-11T13:21:22Z",
+          "tag": "v7.6.2",
+          "url": "https://github.com/jupyter/notebook/releases/tag/v7.6.2"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/jupyter/notebook"
+        },
+        "name": "notebook",
+        "owner": {
+          "html_url": "https://github.com/jupyter",
+          "id": 7388996,
+          "login": "jupyter",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-10T16:41:16Z",
+        "topics": [
+          "closember",
+          "jupyter",
+          "jupyter-notebook",
+          "notebook"
+        ],
+        "updated_at": "2026-09-12T10:00:46Z"
+      },
+      "requested_url": "https://github.com/jupyter/notebook",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:20.588Z",
+      "observed_at": "2026-09-12T10:30:20.588Z",
+      "repository": {
+        "archived": false,
+        "commit": "dc262b5c437e07a8cc1cfb8a734c0d84a4434b23",
+        "default_branch": "master",
+        "description": "Official git repository for Biopython (originally converted from CVS)",
+        "fork": false,
+        "full_name": "biopython/biopython",
+        "has_discussions": false,
+        "has_issues": true,
+        "html_url": "https://github.com/biopython/biopython",
+        "id": 151541,
+        "language": "Python",
+        "name": "biopython",
+        "owner": {
+          "html_url": "https://github.com/biopython",
+          "id": 54555,
+          "login": "biopython",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-04T00:07:06Z",
+        "topics": [
+          "bioinformatics",
+          "biopython",
+          "dna",
+          "genomics",
+          "phylogenetics",
+          "protein",
+          "protein-structure",
+          "python",
+          "sequence-alignment"
+        ],
+        "updated_at": "2026-09-11T13:04:38Z"
+      },
+      "requested_url": "https://github.com/biopython/biopython",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:23.057Z",
+      "observed_at": "2026-09-12T10:30:23.057Z",
+      "repository": {
+        "archived": false,
+        "default_branch": "main",
+        "description": "This is the development home of the workflow management system Snakemake. For general information, see",
+        "fork": false,
+        "full_name": "snakemake/snakemake",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://snakemake.github.io/",
+        "html_url": "https://github.com/snakemake/snakemake",
+        "id": 212840200,
+        "language": "Python",
+        "latest_release": {
+          "name": "v9.27.0",
+          "published_at": "2026-09-11T13:44:52Z",
+          "tag": "v9.27.0",
+          "url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0"
+        },
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/snakemake/snakemake"
+        },
+        "name": "snakemake",
+        "owner": {
+          "html_url": "https://github.com/snakemake",
+          "id": 33450111,
+          "login": "snakemake",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T15:33:18Z",
+        "topics": [
+          "reproducibility",
+          "snakemake",
+          "workflow-management"
+        ],
+        "updated_at": "2026-09-12T09:16:37Z"
+      },
+      "requested_url": "https://github.com/snakemake/snakemake",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:29.096Z",
+      "observed_at": "2026-09-12T10:30:29.096Z",
+      "repository": {
+        "archived": false,
+        "commit": "e80572f1407205a37182e3ec9a276f4ea698b163",
+        "default_branch": "main",
+        "description": "The fundamental package for scientific computing with Python.",
+        "fork": false,
+        "full_name": "numpy/numpy",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://numpy.org/",
+        "html_url": "https://github.com/numpy/numpy",
+        "id": 908607,
+        "language": "Python",
+        "latest_release": {
+          "name": "v2.5.3 (Sep 6, 2026)",
+          "published_at": "2026-09-06T16:37:15Z",
+          "tag": "v2.5.3",
+          "url": "https://github.com/numpy/numpy/releases/tag/v2.5.3"
+        },
+        "name": "numpy",
+        "owner": {
+          "html_url": "https://github.com/numpy",
+          "id": 288276,
+          "login": "numpy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T04:08:06Z",
+        "topics": [
+          "numpy",
+          "python"
+        ],
+        "updated_at": "2026-09-12T08:06:18Z"
+      },
+      "requested_url": "https://github.com/numpy/numpy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:31.105Z",
+      "observed_at": "2026-09-12T10:30:31.105Z",
+      "repository": {
+        "archived": false,
+        "commit": "27449ca07b66d95222b9f6d4b1463aa6b40ce9e5",
+        "default_branch": "main",
+        "description": "Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more",
+        "fork": false,
+        "full_name": "pandas-dev/pandas",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://pandas.pydata.org/",
+        "html_url": "https://github.com/pandas-dev/pandas",
+        "id": 858127,
+        "language": "Python",
+        "latest_release": {
+          "name": "pandas 3.0.5",
+          "published_at": "2026-07-22T21:47:08Z",
+          "tag": "v3.0.5",
+          "url": "https://github.com/pandas-dev/pandas/releases/tag/v3.0.5"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/pandas-dev/pandas"
+        },
+        "name": "pandas",
+        "owner": {
+          "html_url": "https://github.com/pandas-dev",
+          "id": 21206976,
+          "login": "pandas-dev",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T03:32:00Z",
+        "topics": [
+          "alignment",
+          "data-analysis",
+          "data-science",
+          "flexible",
+          "pandas",
+          "python"
+        ],
+        "updated_at": "2026-09-12T10:26:13Z"
+      },
+      "requested_url": "https://github.com/pandas-dev/pandas",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:33.147Z",
+      "observed_at": "2026-09-12T10:30:33.147Z",
+      "repository": {
+        "archived": false,
+        "commit": "1aee9671d03c8400a0b680253c89c427cabdb2f0",
+        "default_branch": "main",
+        "description": "matplotlib: plotting with Python",
+        "fork": false,
+        "full_name": "matplotlib/matplotlib",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://matplotlib.org/stable/",
+        "html_url": "https://github.com/matplotlib/matplotlib",
+        "id": 1385122,
+        "language": "Python",
+        "latest_release": {
+          "name": "REL: v3.11.2",
+          "published_at": "2026-09-11T03:48:24Z",
+          "tag": "v3.11.2",
+          "url": "https://github.com/matplotlib/matplotlib/releases/tag/v3.11.2"
+        },
+        "name": "matplotlib",
+        "owner": {
+          "html_url": "https://github.com/matplotlib",
+          "id": 215947,
+          "login": "matplotlib",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T01:07:51Z",
+        "topics": [
+          "data-science",
+          "data-visualization",
+          "gtk",
+          "matplotlib",
+          "plotting",
+          "python",
+          "qt",
+          "tk",
+          "wx"
+        ],
+        "updated_at": "2026-09-12T04:35:51Z"
+      },
+      "requested_url": "https://github.com/matplotlib/matplotlib",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:35.496Z",
+      "observed_at": "2026-09-12T10:30:35.496Z",
+      "repository": {
+        "archived": false,
+        "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+        "default_branch": "master",
+        "description": "Statistical data visualization in Python",
+        "fork": false,
+        "full_name": "mwaskom/seaborn",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://seaborn.pydata.org/",
+        "html_url": "https://github.com/mwaskom/seaborn",
+        "id": 4704710,
+        "language": "Python",
+        "latest_release": {
+          "name": "v0.13.2 (January 2024)",
+          "published_at": "2024-01-25T13:21:20Z",
+          "tag": "v0.13.2",
+          "url": "https://github.com/mwaskom/seaborn/releases/tag/v0.13.2"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/mwaskom/seaborn"
+        },
+        "name": "seaborn",
+        "owner": {
+          "html_url": "https://github.com/mwaskom",
+          "id": 315810,
+          "login": "mwaskom",
+          "type": "User"
+        },
+        "pushed_at": "2026-07-06T02:11:55Z",
+        "topics": [
+          "data-science",
+          "data-visualization",
+          "matplotlib",
+          "pandas",
+          "python"
+        ],
+        "updated_at": "2026-09-11T23:50:13Z"
+      },
+      "requested_url": "https://github.com/mwaskom/seaborn",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:37.744Z",
+      "observed_at": "2026-09-12T10:30:37.744Z",
+      "repository": {
+        "archived": false,
+        "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+        "default_branch": "main",
+        "description": "N-D labeled arrays and datasets in Python",
+        "fork": false,
+        "full_name": "pydata/xarray",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://xarray.dev/",
+        "html_url": "https://github.com/pydata/xarray",
+        "id": 13221727,
+        "language": "Python",
+        "latest_release": {
+          "name": "v2026.07.0",
+          "published_at": "2026-07-09T17:36:39Z",
+          "tag": "v2026.07.0",
+          "url": "https://github.com/pydata/xarray/releases/tag/v2026.07.0"
+        },
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/pydata/xarray"
+        },
+        "name": "xarray",
+        "owner": {
+          "html_url": "https://github.com/pydata",
+          "id": 1284191,
+          "login": "pydata",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T19:33:09Z",
+        "topics": [
+          "dask",
+          "netcdf",
+          "numpy",
+          "pandas",
+          "python",
+          "xarray"
+        ],
+        "updated_at": "2026-09-11T19:33:16Z"
+      },
+      "requested_url": "https://github.com/pydata/xarray",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:40.320Z",
+      "observed_at": "2026-09-12T10:30:40.320Z",
+      "repository": {
+        "archived": false,
+        "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+        "default_branch": "main",
+        "description": "Single-cell analysis in Python. Scales to >100M cells.",
+        "fork": false,
+        "full_name": "scverse/scanpy",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://scanpy.scverse.org/",
+        "html_url": "https://github.com/scverse/scanpy",
+        "id": 80342493,
+        "language": "Python",
+        "latest_release": {
+          "name": "1.12.4",
+          "published_at": "2026-08-27T11:54:49Z",
+          "tag": "1.12.4",
+          "url": "https://github.com/scverse/scanpy/releases/tag/1.12.4"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scverse/scanpy"
+        },
+        "name": "scanpy",
+        "owner": {
+          "html_url": "https://github.com/scverse",
+          "id": 95305807,
+          "login": "scverse",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T13:38:53Z",
+        "topics": [
+          "anndata",
+          "bioinformatics",
+          "data-science",
+          "machine-learning",
+          "python",
+          "scanpy",
+          "scverse",
+          "transcriptomics",
+          "visualize-data"
+        ],
+        "updated_at": "2026-09-11T06:42:56Z"
+      },
+      "requested_url": "https://github.com/scverse/scanpy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:42.852Z",
+      "observed_at": "2026-09-12T10:30:42.852Z",
+      "repository": {
+        "archived": false,
+        "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+        "default_branch": "main",
+        "description": "Annotated data.",
+        "fork": false,
+        "full_name": "scverse/anndata",
+        "has_discussions": false,
+        "has_issues": true,
+        "html_url": "https://github.com/scverse/anndata",
+        "id": 100038377,
+        "language": "Python",
+        "latest_release": {
+          "name": "0.13.3",
+          "published_at": "2026-08-27T09:39:59Z",
+          "tag": "0.13.3.post0",
+          "url": "https://github.com/scverse/anndata/releases/tag/0.13.3.post0"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scverse/anndata"
+        },
+        "name": "anndata",
+        "owner": {
+          "html_url": "https://github.com/scverse",
+          "id": 95305807,
+          "login": "scverse",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-10T13:13:17Z",
+        "topics": [
+          "anndata",
+          "bioinformatics",
+          "data-science",
+          "machine-learning",
+          "scanpy",
+          "scverse",
+          "transcriptomics"
+        ],
+        "updated_at": "2026-09-12T07:55:09Z"
+      },
+      "requested_url": "https://github.com/scverse/anndata",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:45.071Z",
+      "observed_at": "2026-09-12T10:30:45.071Z",
+      "repository": {
+        "archived": false,
+        "commit": "af4871261682044e129ceabb20fa15e696c028e7",
+        "default_branch": "main",
+        "description": "Astronomy and astrophysics core library",
+        "fork": false,
+        "full_name": "astropy/astropy",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://www.astropy.org/",
+        "html_url": "https://github.com/astropy/astropy",
+        "id": 2081289,
+        "language": "Python",
+        "latest_release": {
+          "name": "v8.0.1",
+          "published_at": "2026-07-08T13:01:37Z",
+          "tag": "v8.0.1",
+          "url": "https://github.com/astropy/astropy/releases/tag/v8.0.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/astropy/astropy"
+        },
+        "name": "astropy",
+        "owner": {
+          "html_url": "https://github.com/astropy",
+          "id": 847984,
+          "login": "astropy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T20:51:56Z",
+        "topics": [
+          "astronomy",
+          "astrophysics",
+          "astropy",
+          "python",
+          "science"
+        ],
+        "updated_at": "2026-09-12T04:31:02Z"
+      },
+      "requested_url": "https://github.com/astropy/astropy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:47.105Z",
+      "observed_at": "2026-09-12T10:30:47.105Z",
+      "repository": {
+        "archived": false,
+        "commit": "aee5750ead87eb4147f65c5d4239b4150e839ed1",
+        "default_branch": "main",
+        "description": "Machine learning for NeuroImaging in Python",
+        "fork": false,
+        "full_name": "nilearn/nilearn",
+        "has_discussions": true,
+        "has_issues": true,
+        "html_url": "https://github.com/nilearn/nilearn",
+        "id": 1235740,
+        "language": "Python",
+        "latest_release": {
+          "name": "0.14.1",
+          "published_at": "2026-09-04T08:12:50Z",
+          "tag": "0.14.1",
+          "url": "https://github.com/nilearn/nilearn/releases/tag/0.14.1"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/nilearn/nilearn"
+        },
+        "name": "nilearn",
+        "owner": {
+          "html_url": "https://github.com/nilearn",
+          "id": 4646912,
+          "login": "nilearn",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-11T14:48:11Z",
+        "topics": [
+          "brain-connectivity",
+          "brain-imaging",
+          "brain-mri",
+          "decoding",
+          "fmri",
+          "machine-learning",
+          "mvpa",
+          "neuroimaging",
+          "python"
+        ],
+        "updated_at": "2026-09-11T14:48:18Z"
+      },
+      "requested_url": "https://github.com/nilearn/nilearn",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:49.875Z",
+      "observed_at": "2026-09-12T10:30:49.875Z",
+      "repository": {
+        "archived": false,
+        "commit": "1d7baa6d0eba263156669f7f9e7b643a66b4a98c",
+        "default_branch": "master",
+        "description": "Python package to access a cacophony of neuro-imaging file formats",
+        "fork": false,
+        "full_name": "nipy/nibabel",
+        "has_discussions": true,
+        "has_issues": true,
+        "html_url": "https://github.com/nipy/nibabel",
+        "id": 791352,
+        "language": "Python",
+        "latest_release": {
+          "name": "5.4.1",
+          "published_at": "2026-03-10T20:55:11Z",
+          "tag": "5.4.1",
+          "url": "https://github.com/nipy/nibabel/releases/tag/5.4.1"
+        },
+        "name": "nibabel",
+        "owner": {
+          "html_url": "https://github.com/nipy",
+          "id": 233707,
+          "login": "nipy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-07T22:08:10Z",
+        "topics": [
+          "afni-brik-head",
+          "brain-imaging",
+          "cifti-2",
+          "data-formats",
+          "dicom",
+          "ecat",
+          "gifti",
+          "minc",
+          "neuroimaging",
+          "nifti",
+          "python",
+          "streamlines",
+          "tck",
+          "trk"
+        ],
+        "updated_at": "2026-09-11T08:26:03Z"
+      },
+      "requested_url": "https://github.com/nipy/nibabel",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:52.895Z",
+      "observed_at": "2026-09-12T10:30:52.895Z",
+      "repository": {
+        "archived": false,
+        "commit": "ae90522cc64e9ddccfa50f29a3699e0bd24bfdae",
+        "default_branch": "main",
+        "description": "MNE: Magnetoencephalography (MEG) and Electroencephalography (EEG) in Python",
+        "fork": false,
+        "full_name": "mne-tools/mne-python",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://mne.tools/",
+        "html_url": "https://github.com/mne-tools/mne-python",
+        "id": 1301584,
+        "language": "Python",
+        "latest_release": {
+          "name": "v1.13.2",
+          "published_at": "2026-09-11T16:34:07Z",
+          "tag": "v1.13.2",
+          "url": "https://github.com/mne-tools/mne-python/releases/tag/v1.13.2"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/mne-tools/mne-python"
+        },
+        "name": "mne-python",
+        "owner": {
+          "html_url": "https://github.com/mne-tools",
+          "id": 583875,
+          "login": "mne-tools",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T00:47:45Z",
+        "topics": [
+          "ecog",
+          "eeg",
+          "electrocorticography",
+          "electroencephalography",
+          "machine-learning",
+          "magnetoencephalography",
+          "meg",
+          "neuroimaging",
+          "neuroscience",
+          "python",
+          "statistics",
+          "visualization"
+        ],
+        "updated_at": "2026-09-12T03:53:54Z"
+      },
+      "requested_url": "https://github.com/mne-tools/mne-python",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:55.998Z",
+      "observed_at": "2026-09-12T10:30:55.998Z",
+      "repository": {
+        "archived": false,
+        "commit": "1d2307006379fd78ed4f921a92d7fe8c069565f7",
+        "default_branch": "main",
+        "description": "Statsmodels: statistical modeling and econometrics in Python",
+        "fork": false,
+        "full_name": "statsmodels/statsmodels",
+        "has_discussions": false,
+        "has_issues": true,
+        "html_url": "https://github.com/statsmodels/statsmodels",
+        "id": 1885237,
+        "language": "Python",
+        "latest_release": {
+          "name": "Release 0.15.0",
+          "published_at": "2026-08-27T06:44:51Z",
+          "tag": "v0.15.0",
+          "url": "https://github.com/statsmodels/statsmodels/releases/tag/v0.15.0"
+        },
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/statsmodels/statsmodels"
+        },
+        "name": "statsmodels",
+        "owner": {
+          "html_url": "https://github.com/statsmodels",
+          "id": 717666,
+          "login": "statsmodels",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-09T05:24:54Z",
+        "topics": [
+          "count-model",
+          "data-analysis",
+          "data-science",
+          "econometrics",
+          "forecasting",
+          "generalized-linear-models",
+          "hypothesis-testing",
+          "prediction",
+          "python",
+          "regression-models",
+          "robust-estimation",
+          "statistics",
+          "timeseries-analysis"
+        ],
+        "updated_at": "2026-09-12T07:44:53Z"
+      },
+      "requested_url": "https://github.com/statsmodels/statsmodels",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:30:58.111Z",
+      "observed_at": "2026-09-12T10:30:58.111Z",
+      "repository": {
+        "archived": false,
+        "commit": "a23073ee516bbf60863dc8b82a8446b15e6348f4",
+        "default_branch": "master",
+        "description": "A computer algebra system written in pure Python",
+        "fork": false,
+        "full_name": "sympy/sympy",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://sympy.org/",
+        "html_url": "https://github.com/sympy/sympy",
+        "id": 640534,
+        "language": "Python",
+        "latest_release": {
+          "name": "SymPy 1.14.0",
+          "published_at": "2025-04-27T18:05:25Z",
+          "tag": "1.14.0",
+          "url": "https://github.com/sympy/sympy/releases/tag/1.14.0"
+        },
+        "name": "sympy",
+        "owner": {
+          "html_url": "https://github.com/sympy",
+          "id": 260832,
+          "login": "sympy",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-10T08:30:52Z",
+        "topics": [
+          "computer-algebra",
+          "hacktoberfest",
+          "math",
+          "python",
+          "science"
+        ],
+        "updated_at": "2026-09-12T08:17:43Z"
+      },
+      "requested_url": "https://github.com/sympy/sympy",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:31:00.524Z",
+      "observed_at": "2026-09-12T10:31:00.524Z",
+      "repository": {
+        "archived": false,
+        "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
+        "default_branch": "main",
+        "description": "Network Analysis in Python",
+        "fork": false,
+        "full_name": "networkx/networkx",
+        "has_discussions": true,
+        "has_issues": true,
+        "homepage": "https://networkx.org/",
+        "html_url": "https://github.com/networkx/networkx",
+        "id": 890377,
+        "language": "Python",
+        "latest_release": {
+          "name": "NetworkX 3.6.1",
+          "published_at": "2025-12-08T17:03:31Z",
+          "tag": "networkx-3.6.1",
+          "url": "https://github.com/networkx/networkx/releases/tag/networkx-3.6.1"
+        },
+        "name": "networkx",
+        "owner": {
+          "html_url": "https://github.com/networkx",
+          "id": 388785,
+          "login": "networkx",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-12T01:50:33Z",
+        "topics": [
+          "complex-networks",
+          "graph-algorithms",
+          "graph-analysis",
+          "graph-generation",
+          "graph-theory",
+          "graph-visualization",
+          "python"
+        ],
+        "updated_at": "2026-09-12T01:50:55Z"
+      },
+      "requested_url": "https://github.com/networkx/networkx",
+      "suppressed": false
+    },
+    {
+      "availability": "accessible",
+      "checked_at": "2026-09-12T10:31:02.882Z",
+      "observed_at": "2026-09-12T10:31:02.882Z",
+      "repository": {
+        "archived": false,
+        "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+        "default_branch": "main",
+        "description": "Image processing in Python",
+        "fork": false,
+        "full_name": "scikit-image/scikit-image",
+        "has_discussions": false,
+        "has_issues": true,
+        "homepage": "https://scikit-image.org/",
+        "html_url": "https://github.com/scikit-image/scikit-image",
+        "id": 2014929,
+        "language": "Python",
+        "latest_release": {
+          "name": "v0.26.0",
+          "published_at": "2025-12-20T17:13:44Z",
+          "tag": "v0.26.0",
+          "url": "https://github.com/scikit-image/scikit-image/releases/tag/v0.26.0"
+        },
+        "name": "scikit-image",
+        "owner": {
+          "html_url": "https://github.com/scikit-image",
+          "id": 897180,
+          "login": "scikit-image",
+          "type": "Organization"
+        },
+        "pushed_at": "2026-09-09T12:25:56Z",
+        "topics": [
+          "computer-vision",
+          "image-processing",
+          "python"
+        ],
+        "updated_at": "2026-09-11T10:45:46Z"
+      },
+      "requested_url": "https://github.com/scikit-image/scikit-image",
+      "suppressed": false
+    }
+  ]
+}

@@ -1,0 +1,1308 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aipoch.network/spec/v1/shard.schema.json",
+  "title": "AIPOCH Network v1 snapshot shard",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+    },
+    "collection": {
+      "type": "string",
+      "enum": [
+        "sources",
+        "actors",
+        "organizations",
+        "projects",
+        "resources",
+        "collections",
+        "relations",
+        "claims",
+        "tombstones"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/source_repository"
+          },
+          {
+            "$ref": "#/$defs/actor"
+          },
+          {
+            "$ref": "#/$defs/organization"
+          },
+          {
+            "$ref": "#/$defs/project"
+          },
+          {
+            "$ref": "#/$defs/resource"
+          },
+          {
+            "$ref": "#/$defs/collection"
+          },
+          {
+            "$ref": "#/$defs/relation"
+          },
+          {
+            "$ref": "#/$defs/claim"
+          },
+          {
+            "$ref": "#/$defs/tombstone"
+          }
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 100000
+    }
+  },
+  "required": [
+    "contract_version",
+    "snapshot_id",
+    "collection",
+    "records"
+  ],
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "sources"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/source_repository"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "actors"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/actor"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "organizations"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/organization"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "projects"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/project"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "resources"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/resource"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "collections"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/collection"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "relations"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/relation"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "claims"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/claim"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "collection": {
+            "const": "tombstones"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/tombstone"
+            },
+            "minItems": 0,
+            "maxItems": 100000
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "github",
+            "community",
+            "maintainer",
+            "editor",
+            "automatic"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "review": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "reviewed",
+            "disputed",
+            "stale"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "path": {
+          "type": "string",
+          "format": "safe-repository-path"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "role",
+        "url",
+        "observed_at",
+        "review"
+      ],
+      "additionalProperties": true
+    },
+    "provenance_map": {
+      "type": "object",
+      "maxProperties": 1000,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/provenance"
+        },
+        "minItems": 1,
+        "maxItems": 100000
+      }
+    },
+    "source_ref": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "documentation",
+            "implementation",
+            "data",
+            "evidence",
+            "related"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "format": "safe-repository-path"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "resolved_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        }
+      },
+      "required": [
+        "source_id",
+        "role"
+      ],
+      "additionalProperties": true
+    },
+    "alias": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provider_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "url",
+        "verified_at",
+        "provider_id"
+      ],
+      "additionalProperties": true
+    },
+    "license": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "identified",
+            "conflicting"
+          ]
+        },
+        "spdx_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "path": {
+          "type": "string",
+          "format": "safe-repository-path"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "conditions": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": true
+    },
+    "source_repository": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "source_repository"
+        },
+        "provider": {
+          "const": "github"
+        },
+        "provider_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "canonical_url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "owner_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "default_branch": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "availability": {
+          "type": "string",
+          "enum": [
+            "accessible",
+            "temporarily_unavailable",
+            "unknown",
+            "private",
+            "deleted"
+          ]
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "license": {
+          "$ref": "#/$defs/license"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/alias"
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "stars": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "homepage": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "collaboration": {
+          "type": "object",
+          "properties": {
+            "issues_url": {
+              "type": "string",
+              "format": "safe-https-url",
+              "maxLength": 4096
+            },
+            "discussions_url": {
+              "type": "string",
+              "format": "safe-https-url",
+              "maxLength": 4096
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
+        "readme": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "latest_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "fork_of": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "provider",
+        "provider_id",
+        "canonical_url",
+        "owner_id",
+        "availability",
+        "archived",
+        "observed_at",
+        "stale",
+        "license",
+        "aliases"
+      ],
+      "additionalProperties": true
+    },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "actor"
+        },
+        "provider": {
+          "const": "github"
+        },
+        "provider_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "account_type": {
+          "type": "string",
+          "enum": [
+            "user",
+            "organization"
+          ]
+        },
+        "login": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "canonical_url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/alias"
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "provider",
+        "provider_id",
+        "account_type",
+        "login",
+        "canonical_url",
+        "aliases"
+      ],
+      "additionalProperties": true
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "organization"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "resource_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "participation": {
+          "type": "string",
+          "enum": [
+            "community_indexed",
+            "maintainer_acknowledged",
+            "actively_curated"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "actor_id",
+        "source_ids",
+        "resource_ids",
+        "participation"
+      ],
+      "additionalProperties": true
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "project"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          },
+          "minItems": 1,
+          "maxItems": 100000
+        },
+        "resource_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "domains",
+        "source_refs",
+        "resource_ids"
+      ],
+      "additionalProperties": true
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "resource"
+        },
+        "resource_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          },
+          "minItems": 1,
+          "maxItems": 100000
+        },
+        "project_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "license": {
+          "$ref": "#/$defs/license"
+        },
+        "documentation_url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "download_url": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "runtime": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_described",
+                "maintainer_described",
+                "community_described"
+              ]
+            },
+            "documentation_url": {
+              "type": "string",
+              "format": "safe-https-url",
+              "maxLength": 4096
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "resource_type",
+        "domains",
+        "source_refs",
+        "project_ids",
+        "license",
+        "runtime"
+      ],
+      "additionalProperties": true
+    },
+    "collection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "listed"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance_map"
+        },
+        "kind": {
+          "const": "collection"
+        },
+        "actor_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+          },
+          "minItems": 0,
+          "maxItems": 100000,
+          "uniqueItems": true
+        },
+        "selection_basis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "title",
+        "status",
+        "updated_at",
+        "provenance",
+        "actor_ids",
+        "item_ids",
+        "selection_basis"
+      ],
+      "additionalProperties": true
+    },
+    "relation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "relation"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "from_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "to_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "uses",
+            "produces",
+            "references",
+            "authored_by",
+            "maintained_by",
+            "curated_by",
+            "fork_of",
+            "derived_from",
+            "supersedes",
+            "split_from"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provenance"
+          },
+          "minItems": 1,
+          "maxItems": 100000
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "from_id",
+        "to_id",
+        "type",
+        "evidence",
+        "recorded_at"
+      ],
+      "additionalProperties": true
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "claim"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "subject_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "maintainership",
+            "organization_curation",
+            "capability",
+            "execution_evidence",
+            "scientific_validation"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "unverified",
+            "verified",
+            "disputed",
+            "revoked",
+            "expired"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provenance"
+          },
+          "minItems": 1,
+          "maxItems": 100000
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "authority": {
+          "type": "string",
+          "enum": [
+            "repository_maintainer",
+            "organization_owner",
+            "delegated_by_owner"
+          ]
+        },
+        "verified_by": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "recheck_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "transfer",
+              "rename",
+              "permission_change",
+              "evidence_expiry",
+              "dispute"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 100000,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "subject_id",
+        "actor_id",
+        "type",
+        "status",
+        "scope",
+        "evidence",
+        "recorded_at",
+        "recheck_on"
+      ],
+      "additionalProperties": true
+    },
+    "tombstone": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "tombstone"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "withdrawn",
+            "superseded"
+          ]
+        },
+        "withdrawn_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "replacement_id": {
+          "type": "string",
+          "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "withdrawn",
+            "unavailable",
+            "merged",
+            "policy"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "status",
+        "withdrawn_at"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,668 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "url": "https://github.com/scipy/scipy",
+      "reviewed_at": "2026-09-12T08:00:00Z",
+      "review_note": "Scientific computing pilot; community indexing only."
+    },
+    {
+      "url": "https://github.com/scikit-learn/scikit-learn",
+      "reviewed_at": "2026-09-12T08:00:00Z",
+      "review_note": "Machine learning research software pilot; community indexing only."
+    },
+    {
+      "url": "https://github.com/jupyter/notebook",
+      "reviewed_at": "2026-09-12T08:00:00Z",
+      "review_note": "Research computing pilot; community indexing only."
+    },
+    {
+      "url": "https://github.com/biopython/biopython",
+      "reviewed_at": "2026-09-12T08:00:00Z",
+      "review_note": "Bioinformatics software pilot; community indexing only."
+    },
+    {
+      "url": "https://github.com/snakemake/snakemake",
+      "reviewed_at": "2026-09-12T08:00:00Z",
+      "review_note": "Reproducible research workflows pilot; community indexing only."
+    },
+    {
+      "url": "https://github.com/numpy/numpy",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Scientific computing pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/pandas-dev/pandas",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Data analysis pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/matplotlib/matplotlib",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Data visualization pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/mwaskom/seaborn",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Data visualization pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/pydata/xarray",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Scientific computing pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/scverse/scanpy",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Single-cell analysis pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/scverse/anndata",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Single-cell analysis pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/astropy/astropy",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Astronomy pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/nilearn/nilearn",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Neuroimaging pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/nipy/nibabel",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Neuroimaging pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/mne-tools/mne-python",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Neuroscience pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/statsmodels/statsmodels",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Statistics pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/sympy/sympy",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Mathematics pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/networkx/networkx",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Network science pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/scikit-image/scikit-image",
+      "reviewed_at": "2026-09-12T10:30:13Z",
+      "review_note": "GitHub API confirmed public source and research-related repository description; Image analysis pilot. Community indexing only; no participation or endorsement claimed."
+    }
+  ],
+  "projects": [
+    {
+      "key": "scipy",
+      "title": "SciPy",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/scipy/scipy"
+      ],
+      "resources": [
+        "scipy-library",
+        "scipy-tutorial"
+      ]
+    },
+    {
+      "key": "scikit-learn",
+      "title": "scikit-learn",
+      "domains": [
+        "Machine learning"
+      ],
+      "sources": [
+        "https://github.com/scikit-learn/scikit-learn"
+      ],
+      "resources": [
+        "scikit-learn-library"
+      ]
+    },
+    {
+      "key": "jupyter-notebook",
+      "title": "Jupyter Notebook",
+      "domains": [
+        "Research computing"
+      ],
+      "sources": [
+        "https://github.com/jupyter/notebook"
+      ],
+      "resources": [
+        "jupyter-notebook-app"
+      ]
+    },
+    {
+      "key": "biopython",
+      "title": "Biopython",
+      "domains": [
+        "Bioinformatics"
+      ],
+      "sources": [
+        "https://github.com/biopython/biopython"
+      ],
+      "resources": [
+        "biopython-library"
+      ]
+    },
+    {
+      "key": "snakemake",
+      "title": "Snakemake",
+      "domains": [
+        "Reproducibility"
+      ],
+      "sources": [
+        "https://github.com/snakemake/snakemake"
+      ],
+      "resources": [
+        "snakemake-workflows"
+      ]
+    },
+    {
+      "key": "numpy",
+      "title": "NumPy",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/numpy/numpy"
+      ],
+      "resources": [
+        "numpy-library"
+      ]
+    },
+    {
+      "key": "pandas",
+      "title": "pandas",
+      "domains": [
+        "Data analysis"
+      ],
+      "sources": [
+        "https://github.com/pandas-dev/pandas"
+      ],
+      "resources": [
+        "pandas-library"
+      ]
+    },
+    {
+      "key": "matplotlib",
+      "title": "Matplotlib",
+      "domains": [
+        "Data visualization"
+      ],
+      "sources": [
+        "https://github.com/matplotlib/matplotlib"
+      ],
+      "resources": [
+        "matplotlib-library"
+      ]
+    },
+    {
+      "key": "seaborn",
+      "title": "seaborn",
+      "domains": [
+        "Data visualization"
+      ],
+      "sources": [
+        "https://github.com/mwaskom/seaborn"
+      ],
+      "resources": [
+        "seaborn-library"
+      ]
+    },
+    {
+      "key": "xarray",
+      "title": "Xarray",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/pydata/xarray"
+      ],
+      "resources": [
+        "xarray-library"
+      ]
+    },
+    {
+      "key": "scanpy",
+      "title": "Scanpy",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/scanpy",
+        "https://github.com/scverse/anndata"
+      ],
+      "resources": [
+        "scanpy-library",
+        "anndata-library"
+      ],
+      "description": "Single-cell analysis software. This catalog connects the Scanpy implementation with the AnnData data model that its README identifies as jointly developed infrastructure."
+    },
+    {
+      "key": "anndata",
+      "title": "AnnData",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/anndata"
+      ],
+      "resources": [
+        "anndata-library"
+      ]
+    },
+    {
+      "key": "astropy",
+      "title": "Astropy",
+      "domains": [
+        "Astronomy"
+      ],
+      "sources": [
+        "https://github.com/astropy/astropy"
+      ],
+      "resources": [
+        "astropy-library"
+      ]
+    },
+    {
+      "key": "nilearn",
+      "title": "Nilearn",
+      "domains": [
+        "Neuroimaging"
+      ],
+      "sources": [
+        "https://github.com/nilearn/nilearn"
+      ],
+      "resources": [
+        "nilearn-library"
+      ]
+    },
+    {
+      "key": "nibabel",
+      "title": "NiBabel",
+      "domains": [
+        "Neuroimaging"
+      ],
+      "sources": [
+        "https://github.com/nipy/nibabel"
+      ],
+      "resources": [
+        "nibabel-library"
+      ]
+    },
+    {
+      "key": "mne-python",
+      "title": "MNE-Python",
+      "domains": [
+        "Neuroscience"
+      ],
+      "sources": [
+        "https://github.com/mne-tools/mne-python"
+      ],
+      "resources": [
+        "mne-python-library"
+      ]
+    },
+    {
+      "key": "statsmodels",
+      "title": "Statsmodels",
+      "domains": [
+        "Statistics"
+      ],
+      "sources": [
+        "https://github.com/statsmodels/statsmodels"
+      ],
+      "resources": [
+        "statsmodels-library"
+      ]
+    },
+    {
+      "key": "sympy",
+      "title": "SymPy",
+      "domains": [
+        "Mathematics"
+      ],
+      "sources": [
+        "https://github.com/sympy/sympy"
+      ],
+      "resources": [
+        "sympy-library"
+      ]
+    },
+    {
+      "key": "networkx",
+      "title": "NetworkX",
+      "domains": [
+        "Network science"
+      ],
+      "sources": [
+        "https://github.com/networkx/networkx"
+      ],
+      "resources": [
+        "networkx-library"
+      ]
+    },
+    {
+      "key": "scikit-image",
+      "title": "scikit-image",
+      "domains": [
+        "Image analysis"
+      ],
+      "sources": [
+        "https://github.com/scikit-image/scikit-image"
+      ],
+      "resources": [
+        "scikit-image-library"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "key": "scipy-library",
+      "title": "SciPy scientific computing library",
+      "type": "tool",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/scipy/scipy"
+      ]
+    },
+    {
+      "key": "scikit-learn-library",
+      "title": "scikit-learn machine learning library",
+      "type": "tool",
+      "domains": [
+        "Machine learning"
+      ],
+      "sources": [
+        "https://github.com/scikit-learn/scikit-learn"
+      ]
+    },
+    {
+      "key": "jupyter-notebook-app",
+      "title": "Jupyter Notebook",
+      "type": "tool",
+      "domains": [
+        "Research computing"
+      ],
+      "sources": [
+        "https://github.com/jupyter/notebook"
+      ]
+    },
+    {
+      "key": "biopython-library",
+      "title": "Biopython bioinformatics toolkit",
+      "type": "tool",
+      "domains": [
+        "Bioinformatics"
+      ],
+      "sources": [
+        "https://github.com/biopython/biopython"
+      ]
+    },
+    {
+      "key": "snakemake-workflows",
+      "title": "Snakemake workflow system",
+      "type": "workflow",
+      "domains": [
+        "Reproducibility"
+      ],
+      "sources": [
+        "https://github.com/snakemake/snakemake"
+      ]
+    },
+    {
+      "key": "numpy-library",
+      "title": "NumPy research software",
+      "type": "tool",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/numpy/numpy"
+      ]
+    },
+    {
+      "key": "pandas-library",
+      "title": "pandas research software",
+      "type": "tool",
+      "domains": [
+        "Data analysis"
+      ],
+      "sources": [
+        "https://github.com/pandas-dev/pandas"
+      ]
+    },
+    {
+      "key": "matplotlib-library",
+      "title": "Matplotlib research software",
+      "type": "tool",
+      "domains": [
+        "Data visualization"
+      ],
+      "sources": [
+        "https://github.com/matplotlib/matplotlib"
+      ]
+    },
+    {
+      "key": "seaborn-library",
+      "title": "seaborn research software",
+      "type": "tool",
+      "domains": [
+        "Data visualization"
+      ],
+      "sources": [
+        "https://github.com/mwaskom/seaborn"
+      ]
+    },
+    {
+      "key": "xarray-library",
+      "title": "Xarray research software",
+      "type": "tool",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/pydata/xarray"
+      ]
+    },
+    {
+      "key": "scanpy-library",
+      "title": "Scanpy research software",
+      "type": "tool",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/scanpy"
+      ]
+    },
+    {
+      "key": "anndata-library",
+      "title": "AnnData research software",
+      "type": "tool",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/anndata"
+      ]
+    },
+    {
+      "key": "astropy-library",
+      "title": "Astropy research software",
+      "type": "tool",
+      "domains": [
+        "Astronomy"
+      ],
+      "sources": [
+        "https://github.com/astropy/astropy"
+      ]
+    },
+    {
+      "key": "nilearn-library",
+      "title": "Nilearn research software",
+      "type": "tool",
+      "domains": [
+        "Neuroimaging"
+      ],
+      "sources": [
+        "https://github.com/nilearn/nilearn"
+      ]
+    },
+    {
+      "key": "nibabel-library",
+      "title": "NiBabel research software",
+      "type": "tool",
+      "domains": [
+        "Neuroimaging"
+      ],
+      "sources": [
+        "https://github.com/nipy/nibabel"
+      ]
+    },
+    {
+      "key": "mne-python-library",
+      "title": "MNE-Python research software",
+      "type": "tool",
+      "domains": [
+        "Neuroscience"
+      ],
+      "sources": [
+        "https://github.com/mne-tools/mne-python"
+      ]
+    },
+    {
+      "key": "statsmodels-library",
+      "title": "Statsmodels research software",
+      "type": "tool",
+      "domains": [
+        "Statistics"
+      ],
+      "sources": [
+        "https://github.com/statsmodels/statsmodels"
+      ]
+    },
+    {
+      "key": "sympy-library",
+      "title": "SymPy research software",
+      "type": "tool",
+      "domains": [
+        "Mathematics"
+      ],
+      "sources": [
+        "https://github.com/sympy/sympy"
+      ]
+    },
+    {
+      "key": "networkx-library",
+      "title": "NetworkX research software",
+      "type": "tool",
+      "domains": [
+        "Network science"
+      ],
+      "sources": [
+        "https://github.com/networkx/networkx"
+      ]
+    },
+    {
+      "key": "scikit-image-library",
+      "title": "scikit-image research software",
+      "type": "tool",
+      "domains": [
+        "Image analysis"
+      ],
+      "sources": [
+        "https://github.com/scikit-image/scikit-image"
+      ]
+    },
+    {
+      "key": "scipy-tutorial",
+      "title": "SciPy tutorial at a reviewed revision",
+      "description": "Tutorial entry point from the SciPy documentation, pinned to the GitHub revision observed during the pilot. Follow upstream documentation for prerequisites and current guidance.",
+      "type": "documentation",
+      "domains": [
+        "Scientific computing"
+      ],
+      "sources": [
+        "https://github.com/scipy/scipy"
+      ],
+      "source_refs": [
+        {
+          "source_url": "https://github.com/scipy/scipy",
+          "source_id": "source:github:1460385",
+          "role": "documentation",
+          "path": "doc/source/tutorial/index.rst",
+          "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+          "resolved_at": "2026-09-12T10:30:13.733Z"
+        }
+      ],
+      "documentation_url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+    }
+  ],
+  "collections": [
+    {
+      "key": "research-foundations",
+      "title": "Foundations for open research",
+      "description": "Explore established tools for scientific computing, notebooks, bioinformatics, and reproducible workflows.",
+      "selection_basis": "AIPOCH editorial selection of public research software across complementary research tasks. Inclusion does not imply participation or endorsement.",
+      "item_ids": [
+        "project:scipy",
+        "project:scikit-learn",
+        "project:jupyter-notebook",
+        "project:biopython",
+        "project:snakemake"
+      ]
+    },
+    {
+      "key": "life-science-computing",
+      "title": "Computing for life sciences",
+      "description": "A curated starting point for bioinformatics, single-cell analysis and neuroimaging.",
+      "selection_basis": "AIPOCH editorial selection based on public project descriptions. Inclusion does not establish scientific validity or organization participation.",
+      "item_ids": [
+        "project:biopython",
+        "project:scanpy",
+        "project:anndata",
+        "project:nilearn",
+        "project:nibabel",
+        "project:mne-python"
+      ]
+    }
+  ],
+  "withdrawals": [],
+  "relations": [
+    {
+      "kind": "relation",
+      "id": "relation:scanpy-uses-anndata",
+      "from_id": "resource:scanpy-library",
+      "to_id": "resource:anndata-library",
+      "type": "uses",
+      "evidence": [
+        {
+          "role": "github",
+          "url": "https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md",
+          "source_id": "source:github:80342493",
+          "observed_at": "2026-09-12T10:30:40.320Z",
+          "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "review": "reviewed",
+          "scope": "Scanpy README states that the toolkit is built jointly with AnnData. This is a software relationship, not scientific validation."
+        }
+      ],
+      "recorded_at": "2026-09-12T10:30:40.320Z",
+      "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35"
+    }
+  ]
+}

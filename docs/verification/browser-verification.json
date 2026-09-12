@@ -1,0 +1,723 @@
+{
+  "verified_at": "2026-09-12T10:55:39.829Z",
+  "branch": "codex/implement-network",
+  "base_commit": "d4989751fab6db925535b9faf08d1011cbc929c3",
+  "implementation": "Uncommitted worktree source identified by SHA-256 below; base commit alone does not identify these verified changes.",
+  "source_sha256": {
+    "web/src/App.tsx": "95b916cdf2cb1322f1ee96e053e1605b8826e99b65052b8c6cfa94161f8d53e4",
+    "web/src/model.ts": "d982113090a50cdb350404df3cfd009dd8e1edf4417c964db6ab323c7241c1de",
+    "web/src/main.tsx": "18eef22c6dda43d064fbbfe66d6a13eca91abded15a0634b2caa9c918671cf7c",
+    "web/src/styles.css": "f753eb902b009ab6b879e07124158a87b4c970261ada175544090ddbf3544f9d",
+    "web/src/search.ts": "40b803152037c2f695c63ecdf8206908297f952c2625249c97de431c42318417",
+    "web/src/SourceRecords.tsx": "e1fc097771c811210f9733c740b0f3c31075296b90e77b78e4fb1b167ed3bd80",
+    "web/src/SourceCollaboration.tsx": "ab800e6d43850f7cb1582bf373d629d15b84005ceec6c9a52c12bc469f60236b",
+    "scripts/render-page.ts": "90bcfe8e7a7d94a140a14fb8ca3641ae837c4eed45b6738f4bf180e800bf302a",
+    "tests/e2e/site.test.ts": "c4a9cc6371368343021e9a5d4703ea80a8cf6e85c322cdeb5d299379183554e1",
+    "tests/e2e/catalog-states.test.ts": "317b9a57fe3b7c452dc594bc0b809612f76cf80770efa585df7368d1374b1b73",
+    "playwright.config.ts": "61adb9fdd6704ed99cd64bb82cd01ae498b8331c916ae264ce5b9d91cd563510"
+  },
+  "fixture": {
+    "snapshot_id": "1e5c724017c15008ee05708b",
+    "source_count": 20,
+    "project_count": 20,
+    "resource_count": 21,
+    "organization_count": 18,
+    "researcher_count": 1
+  },
+  "environment": {
+    "browser": "Google Chrome 152.0.7977.84 via Playwright 1.63.0 channel=chrome",
+    "desktop": {
+      "width": 1440,
+      "height": 1000
+    },
+    "mobile": "Playwright Pixel 7 emulation, Chromium; not physical mobile hardware",
+    "preview": "Production static scripts/serve.ts, isolated production Vite+renderPage outputs from the frozen actual pilot catalog; no dev-server SPA fallback. Synthetic state tests build their own independent contract-valid catalog with 100 entries."
+  },
+  "runs": [
+    {
+      "base": "/",
+      "stats": {
+        "startTime": "2026-09-12T10:52:36.246Z",
+        "duration": 14274.297,
+        "expected": 40,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "html_pages": 93,
+      "isolated_current_snapshot_files": 120,
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "title": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 493,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 308,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 366,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 424,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 391,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 866,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 560,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 866,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 523,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 530,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 328,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 386,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 425,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 386,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 832,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 516,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 2413,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 553,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 430,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 501,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 434,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 469,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 279,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 376,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 576,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 405,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 302,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 463,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 487,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 661,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 565,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 448,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 485,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 315,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 427,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 582,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 432,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 334,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 414,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 448,
+          "retries": 0
+        }
+      ]
+    },
+    {
+      "base": "/aipoch-network/",
+      "stats": {
+        "startTime": "2026-09-12T10:52:36.251Z",
+        "duration": 14379.134,
+        "expected": 40,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "html_pages": 93,
+      "isolated_current_snapshot_files": 120,
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "title": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 512,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 328,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 368,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 411,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 383,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 883,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 605,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 850,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 530,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 494,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 332,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 390,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 443,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 399,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 848,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 480,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 2402,
+          "retries": 0
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "title": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 542,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 448,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 515,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 459,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 476,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 248,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 424,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 588,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 431,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 316,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 459,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "passed",
+          "duration_ms": 511,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 643,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 578,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 436,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 489,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 332,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 440,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 559,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 546,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 358,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 399,
+          "retries": 0
+        },
+        {
+          "file": "site.test.ts",
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "passed",
+          "duration_ms": 499,
+          "retries": 0
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "screenshots/root-text-200-capabilities-desktop.png",
+    "screenshots/root-text-200-organizations-desktop.png",
+    "screenshots/root-text-200-capabilities-mobile.png",
+    "screenshots/root-text-200-organizations-mobile.png",
+    "screenshots/root-home-desktop.png",
+    "screenshots/root-home-mobile.png",
+    "screenshots/subpath-home-desktop.png",
+    "screenshots/subpath-home-mobile.png"
+  ],
+  "scope_limits": [
+    "Original reference HTML was not executed or rendered. No exact A22 reference-to-implementation screenshot comparison is claimed.",
+    "Tests do not submit GitHub issues, fetch scientific repositories in the browser, change visibility or deploy Pages.",
+    "Local preview has no HTTP compression; scale and compression-equivalent measurements are in full-site-benchmark reports."
+  ]
+}

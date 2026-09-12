@@ -1,0 +1,56 @@
+name: Offline checks
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: offline-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Contracts, pipeline, and static website
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      SOURCE_BATCH: fixtures/pilot/snapshots.json
+      SITE_BASE: /
+      TEST_BASE: /
+      GITHUB_TOKEN: ''
+      GH_TOKEN: ''
+      NODE_AUTH_TOKEN: ''
+    steps:
+      - name: Check out the change without persistent credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up the pinned Node.js runtime
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.1'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check types
+        run: npm run typecheck
+      - name: Verify contracts, source lifecycle, and independent consumers
+        run: npm test
+      - name: Build from the fixed offline observation batch
+        run: npm run build
+      - name: Install Chromium and its system dependencies
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Verify static routes and browser behavior
+        run: npm run test:e2e
+      - name: Build the GitHub Pages project subpath
+        env:
+          SITE_BASE: /aipoch-network/
+        run: npm run build
+      - name: Verify project subpath routes and browser behavior
+        env:
+          TEST_BASE: /aipoch-network/
+        run: npm run test:e2e
