@@ -1,0 +1,392 @@
+{
+  "verified_at": "2026-09-12T11:14:44.653Z",
+  "repository": "imjszhang/aipoch-network",
+  "implementation_sha": "214b7aadf2226be53c2c17c519708916d3095ba7",
+  "integrated_main_sha": "12bea89004d8a68ea96858d9abc4f1999084f021",
+  "pr": "https://github.com/imjszhang/aipoch-network/pull/1",
+  "ci": [
+    {
+      "id": 34689980610,
+      "conclusion": "success",
+      "headSha": "214b7aadf2226be53c2c17c519708916d3095ba7",
+      "status": "completed",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34689980610"
+    },
+    {
+      "id": 34690003192,
+      "conclusion": "success",
+      "headSha": "214b7aadf2226be53c2c17c519708916d3095ba7",
+      "status": "completed",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34690003192"
+    },
+    {
+      "id": 34690269444,
+      "conclusion": "success",
+      "headSha": "12bea89004d8a68ea96858d9abc4f1999084f021",
+      "status": "completed",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34690269444"
+    }
+  ],
+  "repository_state": {
+    "private": true,
+    "has_pages": false,
+    "has_issues": true,
+    "has_discussions": false,
+    "default_branch": "main"
+  },
+  "pinned_inputs": {
+    "package-lock.json": "795b33df9a91aec72888a93b583c92a4714cafdb0cff4863e538b5dcb024f02e",
+    "registry/catalog.json": "a43ef51e2d32eaf0cfafcaffa10ac60f3995567b90a9d0b48a62a24500c9c77a",
+    "fixtures/pilot/snapshots.json": "0151ed976736d107234779b70e9f57593f686dbd4007c8b2838de392b5760822",
+    "design/references/aipoch-network-concept-v6.html": "4adb13887c17306c798ef94ccc53d62d314c05fb01e359f214a8c0db259b552a"
+  },
+  "trusted_refresh_runs": [
+    {
+      "id": 34690282213,
+      "conclusion": "success",
+      "headSha": "12bea89004d8a68ea96858d9abc4f1999084f021",
+      "startedAt": "2026-09-12T11:08:56Z",
+      "status": "completed",
+      "updatedAt": "2026-09-12T11:09:54Z",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34690282213",
+      "artifacts": [
+        {
+          "id": 10297345828,
+          "name": "catalog-candidate-34690282213-1",
+          "size_in_bytes": 478590,
+          "digest": "sha256:1947c449b016d811708d198c59c21f58e73ebd8d68b4fe3f47ac9ca07792553e",
+          "expired": false
+        },
+        {
+          "id": 10297247098,
+          "name": "trusted-source-suppressions-34690282213-1",
+          "size_in_bytes": 191,
+          "digest": "sha256:6a2d4772586942ffe7ffd458c689709070a34fb203c26d485741edd5c80cd42e",
+          "expired": false
+        },
+        {
+          "id": 10296867659,
+          "name": "trusted-refresh-state-34690282213-1",
+          "size_in_bytes": 4475,
+          "digest": "sha256:b0930a7662dd5594aee3ddf907a052d8615bca29ce7787bdd36a817dc9dec60c",
+          "expired": false
+        }
+      ],
+      "output": {
+        "pages": 93,
+        "files": 112,
+        "snapshot_id": "7fbd54bf12fbb0678367843b",
+        "bytes": 2328546
+      },
+      "build_report": {
+        "candidate_kind": "refresh",
+        "counts": {
+          "actors": 19,
+          "claims": 0,
+          "collections": 2,
+          "organizations": 18,
+          "projects": 20,
+          "relations": 1,
+          "resources": 21,
+          "sources": 20,
+          "tombstones": 0
+        },
+        "diagnostics": [],
+        "generated_at": "2026-09-12T11:09:32.034Z",
+        "history": {
+          "available": 1,
+          "retired": 0
+        },
+        "history_sha256": "7d88459aa0194b08bd072224d7dd7aebaadd840b396110c90ef8dd92bddf0329",
+        "inputs_sha256": "b27cc92a2efa61964f051f2e4d34195707de4e40f5dfbcd1ae87db9ad81fe5ed",
+        "snapshot_id": "7fbd54bf12fbb0678367843b"
+      },
+      "history": {
+        "checked_at": "2026-09-12T11:09:32.034Z",
+        "current_snapshot_id": "7fbd54bf12fbb0678367843b",
+        "snapshots": [
+          {
+            "checked_at": "2026-09-12T11:09:32.034Z",
+            "generated_at": "2026-09-12T11:09:32.034Z",
+            "snapshot_id": "7fbd54bf12fbb0678367843b",
+            "status": "available"
+          }
+        ],
+        "version": 1
+      },
+      "verified_log_messages": [
+        "No retained successful refresh state exists. The live refresh must meet completeness gates using available reviewed inputs.",
+        "Complete refresh candidate saved locally: 20 checked, 0 retained, 0 withheld. No deployment performed.",
+        "Catalog 7fbd54bf12fbb0678367843b built from observations at 2026-09-12T11:09:32.034Z.",
+        "Validated 93 pages and 112 files (2328546 bytes); dist now contains snapshot 7fbd54bf12fbb0678367843b.",
+        "ℹ tests 179",
+        "ℹ pass 179",
+        "ℹ fail 0",
+        "ℹ skipped 0"
+      ]
+    },
+    {
+      "id": 34690368996,
+      "conclusion": "success",
+      "headSha": "12bea89004d8a68ea96858d9abc4f1999084f021",
+      "startedAt": "2026-09-12T11:10:51Z",
+      "status": "completed",
+      "updatedAt": "2026-09-12T11:11:58Z",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34690368996",
+      "artifacts": [
+        {
+          "id": 10296872955,
+          "name": "trusted-refresh-state-34690368996-1",
+          "size_in_bytes": 4505,
+          "digest": "sha256:01184f4da27b69a6c38a2aad851d6c0cf337ffbdf48941488569fe8cdfe61c88",
+          "expired": false
+        },
+        {
+          "id": 10296848093,
+          "name": "catalog-candidate-34690368996-1",
+          "size_in_bytes": 497216,
+          "digest": "sha256:40a9e21e82518ceae28ddd32589a2433e64eb4a47f8ae95e485040d47258fcc5",
+          "expired": false
+        },
+        {
+          "id": 10296848089,
+          "name": "trusted-source-suppressions-34690368996-1",
+          "size_in_bytes": 191,
+          "digest": "sha256:d6d87ff96f2efcd924008ce2bf794e3dd0ace5d889f7c284dd4ecb267463c86e",
+          "expired": false
+        }
+      ],
+      "output": {
+        "pages": 93,
+        "files": 122,
+        "snapshot_id": "35dd0c46df11b75e7963601f",
+        "bytes": 2467214
+      },
+      "build_report": {
+        "candidate_kind": "refresh",
+        "counts": {
+          "actors": 19,
+          "claims": 0,
+          "collections": 2,
+          "organizations": 18,
+          "projects": 20,
+          "relations": 1,
+          "resources": 21,
+          "sources": 20,
+          "tombstones": 0
+        },
+        "diagnostics": [],
+        "generated_at": "2026-09-12T11:11:34.463Z",
+        "history": {
+          "available": 2,
+          "retired": 0
+        },
+        "history_sha256": "305b757349b753c9996cf9291d9c0f8ce6500fa802ec121e2eb8ef5f053c8ce0",
+        "inputs_sha256": "8fce5cf013721398d5169db19dc5569df3b666b84ff9cdf4ac5748e713188f66",
+        "snapshot_id": "35dd0c46df11b75e7963601f"
+      },
+      "history": {
+        "checked_at": "2026-09-12T11:11:34.463Z",
+        "current_snapshot_id": "35dd0c46df11b75e7963601f",
+        "snapshots": [
+          {
+            "checked_at": "2026-09-12T11:11:34.463Z",
+            "generated_at": "2026-09-12T11:11:34.463Z",
+            "snapshot_id": "35dd0c46df11b75e7963601f",
+            "status": "available"
+          },
+          {
+            "checked_at": "2026-09-12T11:11:34.463Z",
+            "generated_at": "2026-09-12T11:09:32.034Z",
+            "snapshot_id": "7fbd54bf12fbb0678367843b",
+            "status": "available"
+          }
+        ],
+        "version": 1
+      },
+      "verified_log_messages": [
+        "Restored current suppression evidence from completed trusted main run 34690282213.",
+        "Restored accepted public observations from successful private main run 34690282213.",
+        "Restored validated catalog history from successful private main run 34690282213.",
+        "Complete refresh candidate saved locally: 20 checked, 0 retained, 0 withheld. No deployment performed.",
+        "Catalog 35dd0c46df11b75e7963601f built from observations at 2026-09-12T11:11:34.463Z.",
+        "Validated 93 pages and 122 files (2467214 bytes); dist now contains snapshot 35dd0c46df11b75e7963601f.",
+        "ℹ tests 179",
+        "ℹ pass 179",
+        "ℹ fail 0",
+        "ℹ skipped 0"
+      ]
+    }
+  ],
+  "retained_history": {
+    "snapshot_id": "7fbd54bf12fbb0678367843b",
+    "files": 10,
+    "bytes": 138522,
+    "all_bytes_unchanged": true
+  },
+  "consumer_http": {
+    "local_root_and_subpath": {
+      "verified_at": "2026-09-12T11:10:14.869Z",
+      "reports": [
+        {
+          "base": "http://127.0.0.1:4173/",
+          "snapshot_id": "26b7d31efa5dd84150f48a9c",
+          "fixed_snapshot_matches": true,
+          "counts": {
+            "sources": 20,
+            "actors": 19,
+            "organizations": 18,
+            "projects": 20,
+            "resources": 21,
+            "collections": 2,
+            "relations": 1,
+            "claims": 0,
+            "tombstones": 0
+          },
+          "located_resource": {
+            "id": "resource:scipy-tutorial",
+            "status": "listed",
+            "sources": [
+              {
+                "source_id": "source:github:1460385",
+                "canonical_url": "https://github.com/scipy/scipy",
+                "availability": "accessible",
+                "version": {
+                  "status": "fixed",
+                  "content_url": "https://github.com/scipy/scipy/tree/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+                  "basis": "commit",
+                  "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+                  "path": "doc/source/tutorial/index.rst",
+                  "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+                }
+              }
+            ]
+          },
+          "query_scanpy": [
+            "resource:scanpy-library"
+          ]
+        },
+        {
+          "base": "http://127.0.0.1:4174/aipoch-network/",
+          "snapshot_id": "26b7d31efa5dd84150f48a9c",
+          "fixed_snapshot_matches": true,
+          "counts": {
+            "sources": 20,
+            "actors": 19,
+            "organizations": 18,
+            "projects": 20,
+            "resources": 21,
+            "collections": 2,
+            "relations": 1,
+            "claims": 0,
+            "tombstones": 0
+          },
+          "located_resource": {
+            "id": "resource:scipy-tutorial",
+            "status": "listed",
+            "sources": [
+              {
+                "source_id": "source:github:1460385",
+                "canonical_url": "https://github.com/scipy/scipy",
+                "availability": "accessible",
+                "version": {
+                  "status": "fixed",
+                  "content_url": "https://github.com/scipy/scipy/tree/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+                  "basis": "commit",
+                  "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+                  "path": "doc/source/tutorial/index.rst",
+                  "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+                }
+              }
+            ]
+          },
+          "query_scanpy": [
+            "resource:scanpy-library"
+          ]
+        }
+      ]
+    },
+    "downloaded_candidate": {
+      "base": "http://127.0.0.1:4175/",
+      "current_snapshot_id": "35dd0c46df11b75e7963601f",
+      "historical_snapshot_id": "7fbd54bf12fbb0678367843b",
+      "located_resource": {
+        "id": "resource:scipy-tutorial",
+        "status": "listed",
+        "sources": [
+          {
+            "source_id": "source:github:1460385",
+            "canonical_url": "https://github.com/scipy/scipy",
+            "availability": "accessible",
+            "version": {
+              "status": "fixed",
+              "content_url": "https://github.com/scipy/scipy/tree/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+              "basis": "commit",
+              "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+              "path": "doc/source/tutorial/index.rst",
+              "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "candidate_inventory": {
+    "file": "private-candidate-files.json",
+    "sha256": "6ad3062367cec1e14857b369ff4aa8174697ccff7b194e6aea22f3ad005715b2",
+    "files": 122,
+    "bytes": 2467214,
+    "site_base": "/"
+  },
+  "issue_templates": {
+    "main_blob_matches": true,
+    "files": [
+      {
+        "name": "claim-or-curation.yml",
+        "sha": "ae22a65532ec07582a55b5bdbb6978f262214a88",
+        "html_url": "https://github.com/imjszhang/aipoch-network/blob/main/.github/ISSUE_TEMPLATE/claim-or-curation.yml"
+      },
+      {
+        "name": "config.yml",
+        "sha": "0086358db1eb971c0cfa8739c27518bbc18a5ff4",
+        "html_url": "https://github.com/imjszhang/aipoch-network/blob/main/.github/ISSUE_TEMPLATE/config.yml"
+      },
+      {
+        "name": "correction-or-withdrawal.yml",
+        "sha": "f10d8f4ada260046298bc091373df89466da6edb",
+        "html_url": "https://github.com/imjszhang/aipoch-network/blob/main/.github/ISSUE_TEMPLATE/correction-or-withdrawal.yml"
+      },
+      {
+        "name": "source-proposal.yml",
+        "sha": "e1101a158c2a4abbd8ea7bb45fe9c095887a848b",
+        "html_url": "https://github.com/imjszhang/aipoch-network/blob/main/.github/ISSUE_TEMPLATE/source-proposal.yml"
+      }
+    ],
+    "scope": "Read-only GitHub Contents API check; no external issue submission or GitHub form-interaction claim."
+  },
+  "publication_pattern_audit": {
+    "audited_revision": "214b7aadf2226be53c2c17c519708916d3095ba7",
+    "commits": 5,
+    "blobs": 167,
+    "tracked_files": 105,
+    "findings_by_classification": {
+      "deliberate_negative_url_test_input": 34,
+      "documentation_local_path": 5
+    },
+    "github_token_private_key_aws_key_id_matches": 0,
+    "scope": "All commit-reachable Git objects from the fixed implementation revision, plus read-only inspection of the current local dist tree. No original reference execution, remote publication, history rewriting, tracked-file edits, or external collaboration-record inspection.",
+    "limitations": [
+      "Regex pattern screening is not proof that all secrets are absent.",
+      "License choice and redistribution rights for original HTML and dependencies are not established by this audit.",
+      "Publicly accessible issues, PR discussions, Actions logs/artifacts, inaccessible Git objects, and remote branches beyond the audited commit ancestry were not reviewed.",
+      "The original reference HTML was read as bytes only and was not executed or rendered."
+    ]
+  },
+  "limits": [
+    "Repository remains private; Pages, schedules, public intake and licensing decisions are not enabled or resolved.",
+    "Actions artifacts expire after seven days and are not permanent backup.",
+    "The second remote run restored an empty negative ledger; failed-run negative persistence is covered by local regression tests, not a deliberately failed production workflow.",
+    "Original reference HTML was not executed. A22 same-viewport comparison and A23 future user-supplied upgrade are not claimed.",
+    "Downloaded candidate uses root base. Project-subpath behavior is proven by exact-code CI and local consumer HTTP checks; this report does not represent a public deployment."
+  ]
+}
