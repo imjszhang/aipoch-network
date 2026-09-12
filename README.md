@@ -6,7 +6,8 @@
 
 ## 当前状态
 
-- 阶段：P0，项目初始化与实施规划。
+- 阶段：**P0 已完成**，项目初始化与实施规划已核验；P1–P6 未开始。
+- GitHub：[imjszhang/aipoch-network](https://github.com/imjszhang/aipoch-network)，默认分支 `main`。
 - 仓库策略：**私有开发**；尚未实现业务功能，未启用 GitHub Pages 或部署工作流。
 - 后续实施：按阶段推进，本文档中的计划不表示功能已经交付。
 - 未来托管方向：GitHub Pages 静态网站，依托 GitHub 仓库、API 和 Actions；不维护自建常驻后端。
