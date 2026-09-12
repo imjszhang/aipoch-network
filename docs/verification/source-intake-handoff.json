@@ -1,0 +1,111 @@
+{
+  "verified_at": "2026-09-12T11:32:35.620Z",
+  "trusted_code_sha": "6b4359d3dde010b74ec0c589f5624582533be76e",
+  "node": "v24.18.1",
+  "lockfile_sha256": "795b33df9a91aec72888a93b583c92a4714cafdb0cff4863e538b5dcb024f02e",
+  "environment": {
+    "isolated_archive": true,
+    "clean_npm_ci": true,
+    "git_credentials_passed_to_ingestion": false,
+    "upstream_code_executed": false,
+    "formal_registry_or_pilot_changed": false,
+    "deployed": false
+  },
+  "source": {
+    "url": "https://github.com/scikit-hep/uproot5",
+    "provider_id": 262422450,
+    "availability": "accessible",
+    "checked_at": "2026-09-12T11:30:51.822Z",
+    "observed_at": "2026-09-12T11:30:51.822Z",
+    "latest_observed_commit": "c979803dd87c7a99c01464ade1cdfbc80441f601",
+    "review_basis": "GitHub public metadata describes ROOT I/O in pure Python and NumPy; this exercise does not claim maintainer participation or scientific validation."
+  },
+  "inputs": {
+    "baseline_sources": 20,
+    "new_live_sources": 1,
+    "combined_sources": 21,
+    "baseline_observations_unchanged": true,
+    "baseline_as_of": "2026-09-12T10:31:05.008Z",
+    "combined_as_of": "2026-09-12T11:30:54.339Z",
+    "registry_sha256": "8cc924589c350f56a92d48a13e738358976908150ee21960d96ee42b286c86b8",
+    "fixture_sha256": "6326890b0defcd0cef3f6716a03991c665c2f302878224feaab84a75b3aeb958",
+    "forbidden_observation_keys": [],
+    "credential_pattern_matches": 0
+  },
+  "registry_only": {
+    "registry_validation_errors": [],
+    "build_exit_code": 1,
+    "error": "Refresh batch is incomplete; a missing source is not a withdrawal",
+    "previous_complete_output_preserved": true,
+    "previous_snapshot_id": "26b7d31efa5dd84150f48a9c",
+    "previous_files": 112,
+    "previous_bytes": 2328546
+  },
+  "matched_inputs": {
+    "build_exit_code": 0,
+    "snapshot_id": "3dc86c1bffd659f82b14470b",
+    "contract_version": "1.0.0",
+    "counts": {
+      "actors": 20,
+      "claims": 0,
+      "collections": 2,
+      "organizations": 19,
+      "projects": 20,
+      "relations": 1,
+      "resources": 21,
+      "sources": 21,
+      "tombstones": 0
+    },
+    "html_pages": 95,
+    "files": 124,
+    "bytes": 2503704,
+    "source_pages": [
+      "sources/source~github~262422450/index.html"
+    ],
+    "source_detail_present": true,
+    "file_manifest_sha256": "bf15a7d2a5ffc8dc06d5b390dda874a5afddff0113d3abb7920c551c51c4ebb3"
+  },
+  "limits": [
+    "Only the new source was live refreshed. The 20 baseline source observations and their original timestamps were preserved.",
+    "The new source is an isolated exercise and was not added to the maintained registry or pilot fixture.",
+    "No public deployment, Issue submission, upstream write, maintainer claim or public-access acceptance is implied.",
+    "A finite key/pattern check is not an exhaustive credential or licensing audit."
+  ],
+  "http": {
+    "independent_consumer": "passed",
+    "source_count": 21,
+    "snapshot_id": "3dc86c1bffd659f82b14470b",
+    "source_provider_id": 262422450,
+    "source_detail_status": 200,
+    "local_static_files_only": true
+  },
+  "offline_tests": {
+    "passed": 179,
+    "failed": 0,
+    "skipped": 0
+  },
+  "protected_files": {
+    "registry/catalog.json": {
+      "unchanged": true,
+      "sha256": "a43ef51e2d32eaf0cfafcaffa10ac60f3995567b90a9d0b48a62a24500c9c77a"
+    },
+    "fixtures/pilot/snapshots.json": {
+      "unchanged": true,
+      "sha256": "0151ed976736d107234779b70e9f57593f686dbd4007c8b2838de392b5760822"
+    }
+  },
+  "commands": [
+    "gh api repos/scikit-hep/uproot5 --jq <public metadata fields>",
+    "git archive 6b4359d3dde010b74ec0c589f5624582533be76e into a new isolated temporary directory",
+    "npm ci",
+    "SOURCE_BATCH=fixtures/pilot/snapshots.json SITE_BASE=/ npm run build",
+    "REGISTRY_FILE=.cache/intake/new-sources.json GITHUB_TOKEN= GH_TOKEN= NODE_AUTH_TOKEN= npm run catalog:refresh",
+    "REGISTRY_FILE=.cache/intake/proposed-registry.json SOURCE_BATCH=fixtures/pilot/snapshots.json SITE_BASE=/ npm run build (expected failure)",
+    "refreshState with the 20 unchanged baseline observations plus the new observation; validateBatch against the complete proposed registry; copy reviewed inputs inside the isolated directory",
+    "REGISTRY_FILE=registry/catalog.json SOURCE_BATCH=fixtures/pilot/snapshots.json SITE_BASE=/ npm run build",
+    "npm test",
+    "consumer.loadCatalog and fetch against a temporary localhost HTTP server serving dist only"
+  ],
+  "completed_at": "2026-09-12T11:37:03.978Z",
+  "isolated_directory_removed": true
+}

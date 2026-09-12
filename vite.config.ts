@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { thirdPartyNoticesPlugin } from './scripts/third-party-notices.js';
 
 export default defineConfig({
+  plugins: [thirdPartyNoticesPlugin()],
   root: 'web',
   publicDir: '../generated',
   base: process.env.SITE_BASE ?? '/',
