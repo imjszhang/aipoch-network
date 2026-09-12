@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { renderPage } from '../../scripts/render-page.js';
 import { createFixtureCatalog, FIXTURE_TIME } from '../../spec/fixtures/catalog.js';
-import { allEntries, pageDataForRoute, routeFor, tombstoneRouteFor, type SiteData } from '../../web/src/model.js';
+import { allEntries, pageDataForRoute, relatedEntriesFor, routeFor, SHARED_CATALOG_ROUTES, tombstoneRouteFor, type SiteData } from '../../web/src/model.js';
+import { verificationData } from '../../scripts/verification-site.js';
 
 const template = '<!doctype html><html><head><title>Original title</title><meta name="description" content="Original description" /></head><body><div id="root"><!--app-html--></div><!--app-data--><script type="module" src="/assets/app.js"></script></body></html>';
 const siteData = (): SiteData => ({ snapshot_id: 'render-regression', generated_at: FIXTURE_TIME, catalog: createFixtureCatalog() });
@@ -107,6 +108,45 @@ test('all current fixture routes render and route-local detail payloads preserve
     const html = renderPage(template, data, path, '/');
     assert.ok(html.includes('Skip to content'), path);
     assert.match(html, /<h1(?:\s[^>]*)?>/, path);
-    checkRetainedSources(payload(html));
+    if (SHARED_CATALOG_ROUTES.includes(path)) assert.ok(html.includes(`window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__={"snapshot_id":"${data.snapshot_id}"}`));
+    else checkRetainedSources(payload(html));
   }
+});
+
+test('shared directories and submission retain actual SSR while embedding only a safe snapshot bootstrap', () => {
+  const data = verificationData(1000);
+  data.snapshot_id = 'literal $& </script> snapshot';
+  for (const path of SHARED_CATALOG_ROUTES) {
+    const html = renderPage(template, data, path, '/aipoch-network/');
+    const script = html.match(/<script>window\.__AIPOCH__=null;window\.__AIPOCH_BOOTSTRAP__=([\s\S]*?)<\/script>/)?.[1];
+    assert.ok(script);
+    assert.deepEqual(JSON.parse(script), { snapshot_id: data.snapshot_id });
+    assert.ok(Buffer.byteLength(script) < 256, 'Shared bootstrap does not duplicate the catalog');
+    assert.ok(!script.includes('<'));
+    assert.ok(html.includes('Skip to content'));
+    if (path === '/explore/' || path === '/capabilities/') {
+      assert.ok(html.includes(data.catalog.resources[0].title));
+      assert.ok(html.includes(`href="/aipoch-network${routeFor(data.catalog.resources[0])}"`));
+    }
+    if (path === '/submit/') assert.ok(html.includes('Public GitHub repository or organization URL'));
+  }
+});
+
+test('large organization and collection previews retain exactly twenty entries, full counts, and matching View all scopes', () => {
+  const data = verificationData(1000, { largeCollection: true }), before = structuredClone(data);
+  for (const entry of [data.catalog.organizations[0], data.catalog.collections[0]]) {
+    const complete = relatedEntriesFor(entry, data.catalog);
+    assert.ok(complete.length > 20);
+    const html = renderPage(template, data, routeFor(entry), '/aipoch-network/');
+    const selected = payload(html);
+    assert.equal(selected.related_totals?.[entry.id], complete.length);
+    const retained = [...selected.catalog.organizations, ...selected.catalog.collections].find(row => row.id === entry.id)!;
+    assert.equal(relatedEntriesFor(retained, selected.catalog).length, 20);
+    assert.deepEqual(relatedEntriesFor(retained, selected.catalog).map(row => row.id), complete.slice(0, 20).map(row => row.id));
+    checkRetainedSources(selected);
+    assert.ok(html.replace(/<!--[\s\S]*?-->/g, '').includes(`Showing 20 of ${complete.length} related entries.`));
+    assert.ok(html.includes(`/aipoch-network/explore/?${entry.kind === 'organization' ? 'organization' : 'collection'}=${encodeURIComponent(entry.id)}`));
+    assert.ok(Buffer.byteLength(JSON.stringify(selected)) < 40_000, 'Preview payload stays bounded for this fixture');
+  }
+  assert.deepEqual(data, before, 'Preview trimming never mutates the authoritative catalog');
 });

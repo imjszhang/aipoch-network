@@ -1,0 +1,2830 @@
+{
+  "benchmark_version": 1,
+  "started_at": "2026-09-12T10:38:08.575Z",
+  "finished_at": "2026-09-12T10:39:09.660Z",
+  "machine": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "os_release": "25.6.0",
+    "cpu_model": "Apple M5 Max",
+    "logical_cpus": 18,
+    "installed_memory_bytes": 68719476736,
+    "node": "v24.18.1"
+  },
+  "methodology": {
+    "fixture": "100/1000/10000 routable entries. All names and GitHub addresses are synthetic. Each corpus has 3 projects, 3 sources, 1 organization, 1 user, 1 collection, and N-9 resources. Roughly two thirds of resources belong to the single organization, deliberately testing a highly connected detail. Claims and tombstones add non-indexed records. All records pass the public contract validator.",
+    "build": "Each case is a fresh Node process: contract-valid synthetic shards/index -> production Vite assets -> production renderPage for EVERY entry and static/tombstone route -> production validateOutput for all files/links/anchors. No scale extrapolation. Synthetic emission replaces GitHub ingestion; no GitHub fetching or source normalizer throughput is measured.",
+    "browser": "Installed Chromium or explicit PW_CHANNEL; fixed-browser unavailable falls back to system Chrome. Each case launches a fresh browser. Each device uses a fresh context and each page a fresh tab; routing disables browser HTTP cache. Desktop 1440x1000 and Playwright Pixel 7 emulation run on the same desktop CPU, without CPU/network throttling; these are not physical mobile measurements.",
+    "timing": "Single cold navigation per page/device/scale; Navigation Timing reports load and FCP. observed_ready_ms additionally includes the standard 500 ms networkidle wait, two animation frames, and one interactive directory check, so it is NOT an isolated hydration measurement. Query times include Playwright transport, real input/React result rendering, a checked result count, and two animation frames; six warmups + eighteen measured samples per device.",
+    "memory": "Chrome CDP JSHeapUsedSize sampled at a target 25 ms during navigation until observed ready; reports maximum observed JS heap and final sample. Sampling can miss short peaks; this is NOT total renderer RSS, a guaranteed peak, GPU memory, or physical mobile peak. Node samples are separate instantaneous readings without forced GC.",
+    "size": "All output files read and measured. 100 MB budget interpreted as raw uncompressed static package bytes, not a tarball or HTTP transfer. Individual-file gzip level 6 sums measured separately. Local production preview sends uncompressed HTTP; browser transfer counts are observed local transfer, not deployed network performance. Search gzip budget is measured separately."
+  },
+  "cases": [
+    {
+      "routable_entries": 100,
+      "source_sha256": {
+        "web/src/App.tsx": "f73e38812aaa5281c5fb41609659f47864287dc6893b9314b0f114ffd803a206",
+        "web/src/model.ts": "9c0de1a8e7837dcaa1423943b057fbbf243d380b413e3a435ef8ac18b453eb4b",
+        "web/src/search.ts": "40b803152037c2f695c63ecdf8206908297f952c2625249c97de431c42318417",
+        "web/src/styles.css": "d434ed121d14e83c4db1d57c86da7642f766f814291e66bfab514c68b432e1b2",
+        "web/src/SourceRecords.tsx": "e1fc097771c811210f9733c740b0f3c31075296b90e77b78e4fb1b167ed3bd80",
+        "scripts/render-page.ts": "b6124192735b54779d6533e3b2a1e1120df996dc90797fe8ef160d44aec9af5d",
+        "scripts/build.ts": "7ea318152cfef53f1d15c10a055e828f9889e470b56afaa6596c2d3b7e835cb9",
+        "scripts/verification-site.ts": "7c24291b50f00faa63180b9f2a77960ecbec1c036302d98ca54fb5a5a7aa48ab",
+        "scripts/full-site-benchmark.ts": "d973fbf302b0a58df63b679090b1c60503d059430da19d3f905362bc460c942c"
+      },
+      "catalog_records": {
+        "sources": 3,
+        "actors": 2,
+        "organizations": 1,
+        "projects": 3,
+        "resources": 91,
+        "collections": 1,
+        "relations": 0,
+        "claims": 2,
+        "tombstones": 3
+      },
+      "static_build": {
+        "directory": "(temporary output removed after measurement)",
+        "pages": 115,
+        "files": 132,
+        "snapshot_id": "f46cd7925998325923454ce5",
+        "timings_ms": {
+          "emit_synthetic_contract": 19.438999999999965,
+          "vite_assets": 90.48374999999999,
+          "all_route_render": 166.82741699999997,
+          "full_output_validation": 61.87679200000002,
+          "total": 338.62695899999994
+        }
+      },
+      "output": {
+        "files": 132,
+        "bytes": 3172245,
+        "sum_individual_file_gzip_bytes": 519344,
+        "html_files": 115,
+        "html_bytes": 2588862,
+        "largest_html": {
+          "path": "organizations/actor~github~42/index.html",
+          "bytes": 164168
+        },
+        "composition": {
+          "groups": {
+            "assets_and_manifests": {
+              "files": 4,
+              "bytes": 313476,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "common_html": {
+              "files": 11,
+              "bytes": 1021169,
+              "embedded_data_script_bytes": 883955,
+              "inline_svg_bytes": 69810,
+              "other_html_bytes": 67404
+            },
+            "capabilities_detail_html": {
+              "files": 93,
+              "bytes": 1279495,
+              "embedded_data_script_bytes": 293363,
+              "inline_svg_bytes": 408393,
+              "other_html_bytes": 577739
+            },
+            "public_catalog": {
+              "files": 11,
+              "bytes": 112763,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "collections_detail_html": {
+              "files": 1,
+              "bytes": 16683,
+              "embedded_data_script_bytes": 8340,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729
+            },
+            "internal/catalog.json": {
+              "files": 1,
+              "bytes": 108924,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "internal/search.json": {
+              "files": 1,
+              "bytes": 48220,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "organizations_detail_html": {
+              "files": 2,
+              "bytes": 169024,
+              "embedded_data_script_bytes": 73406,
+              "inline_svg_bytes": 53814,
+              "other_html_bytes": 41804
+            },
+            "projects_detail_html": {
+              "files": 3,
+              "bytes": 51087,
+              "embedded_data_script_bytes": 15018,
+              "inline_svg_bytes": 17130,
+              "other_html_bytes": 18939
+            },
+            "researchers_detail_html": {
+              "files": 2,
+              "bytes": 16184,
+              "embedded_data_script_bytes": 2614,
+              "inline_svg_bytes": 6162,
+              "other_html_bytes": 7408
+            },
+            "sources_detail_html": {
+              "files": 3,
+              "bytes": 35220,
+              "embedded_data_script_bytes": 6160,
+              "inline_svg_bytes": 13185,
+              "other_html_bytes": 15875
+            }
+          },
+          "samples": {
+            "404.html": {
+              "path": "404.html",
+              "html_bytes": 4689,
+              "embedded_data_script_bytes": 400,
+              "inline_svg_bytes": 2121,
+              "other_html_bytes": 2168,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "capabilities/index.html": {
+              "path": "capabilities/index.html",
+              "html_bytes": 139959,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 17029,
+              "other_html_bytes": 13972,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "capabilities_detail_html": {
+              "path": "capabilities/resource~method-0/index.html",
+              "html_bytes": 19876,
+              "embedded_data_script_bytes": 6011,
+              "inline_svg_bytes": 6435,
+              "other_html_bytes": 7430,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections_detail_html": {
+              "path": "collections/collection~synthetic/index.html",
+              "html_bytes": 16683,
+              "embedded_data_script_bytes": 8340,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 643,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections/index.html": {
+              "path": "collections/index.html",
+              "html_bytes": 115239,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3553,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "community/index.html": {
+              "path": "community/index.html",
+              "html_bytes": 6831,
+              "embedded_data_script_bytes": 400,
+              "inline_svg_bytes": 2719,
+              "other_html_bytes": 3712,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "explore/index.html": {
+              "path": "explore/index.html",
+              "html_bytes": 141146,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 17005,
+              "other_html_bytes": 15183,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "index.html": {
+              "path": "index.html",
+              "html_bytes": 31906,
+              "embedded_data_script_bytes": 11491,
+              "inline_svg_bytes": 12072,
+              "other_html_bytes": 8343,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 2558,
+                "resources": 3675,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "organizations_detail_html": {
+              "path": "organizations/actor~github~42/index.html",
+              "html_bytes": 164168,
+              "embedded_data_script_bytes": 72878,
+              "inline_svg_bytes": 51693,
+              "other_html_bytes": 39597,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 1699,
+                "projects": 1749,
+                "resources": 65278,
+                "collections": 2,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 2
+              }
+            },
+            "organizations/index.html": {
+              "path": "organizations/index.html",
+              "html_bytes": 115511,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3825,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects/index.html": {
+              "path": "projects/index.html",
+              "html_bytes": 119481,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 4595,
+              "other_html_bytes": 5928,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects_detail_html": {
+              "path": "projects/project~independent/index.html",
+              "html_bytes": 15085,
+              "embedded_data_script_bytes": 4001,
+              "inline_svg_bytes": 5125,
+              "other_html_bytes": 5959,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 810,
+                "resources": 1109,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers_detail_html": {
+              "path": "researchers/actor~github~84/index.html",
+              "html_bytes": 11350,
+              "embedded_data_script_bytes": 2086,
+              "inline_svg_bytes": 4041,
+              "other_html_bytes": 5223,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers/index.html": {
+              "path": "researchers/index.html",
+              "html_bytes": 115220,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3534,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources/index.html": {
+              "path": "sources/index.html",
+              "html_bytes": 116271,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 3326,
+              "other_html_bytes": 3987,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources_detail_html": {
+              "path": "sources/source~github~1/index.html",
+              "html_bytes": 11712,
+              "embedded_data_script_bytes": 2037,
+              "inline_svg_bytes": 4395,
+              "other_html_bytes": 5280,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1064,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "submit/index.html": {
+              "path": "submit/index.html",
+              "html_bytes": 114916,
+              "embedded_data_script_bytes": 108958,
+              "inline_svg_bytes": 2759,
+              "other_html_bytes": 3199,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 1699,
+                "projects": 2558,
+                "resources": 97933,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            }
+          }
+        }
+      },
+      "search": {
+        "raw_bytes": 48220,
+        "gzip_bytes": 4527
+      },
+      "browser": {
+        "version": "152.0.7977.84",
+        "channel": "chrome",
+        "devices": [
+          {
+            "device": "desktop",
+            "emulated": false,
+            "viewport": {
+              "width": 1440,
+              "height": 1000
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 35.399999998509884,
+                "load_event_ms": 36.20000000298023,
+                "first_contentful_paint_ms": 60,
+                "document_encoded_body_bytes": 31906,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342396,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.800000004470348
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.3999999985098839
+                  }
+                ],
+                "page_payload_bytes": 11456,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 569.916,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 2857596,
+                  "final_bytes": 2857752
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 32.79999999701977,
+                "load_event_ms": 33.599999994039536,
+                "first_contentful_paint_ms": 44,
+                "document_encoded_body_bytes": 141146,
+                "resource_encoded_body_bytes": 357810,
+                "measured_transfer_bytes": 500156,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 5.200000002980232
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.899999998509884
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.7000000029802322
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 48220,
+                    "duration_ms": 37.900000005960464
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1.2000000029802322
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.5
+                  }
+                ],
+                "page_payload_bytes": 108923,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 658.176,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 24,
+                  "max_observed_bytes": 5222132,
+                  "final_bytes": 4634512
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 23.100000001490116,
+                "load_event_ms": 35.600000001490116,
+                "first_contentful_paint_ms": 56,
+                "document_encoded_body_bytes": 19876,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330366,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 6.200000002980232
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 6.399999998509884
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 37.5
+                  }
+                ],
+                "page_payload_bytes": 5976,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 543.651,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 19,
+                  "max_observed_bytes": 2279776,
+                  "final_bytes": 3177632
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 34.5,
+                "load_event_ms": 35.399999998509884,
+                "first_contentful_paint_ms": 40,
+                "document_encoded_body_bytes": 164168,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 474658,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.700000002980232
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.699999995529652
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 35.80000000447035
+                  }
+                ],
+                "page_payload_bytes": 72843,
+                "document_elements": 1229,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 571.961,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3417160,
+                  "final_bytes": 3417316
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.318,
+              "p95_ms": 33.405,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 33.33,
+                  "p95_ms": 33.372
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 31,
+                  "samples": 3,
+                  "p50_ms": 33.392,
+                  "p95_ms": 33.405
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 31,
+                  "samples": 3,
+                  "p50_ms": 33.303,
+                  "p95_ms": 33.379
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 30,
+                  "samples": 3,
+                  "p50_ms": 33.321,
+                  "p95_ms": 33.33
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 30,
+                  "samples": 3,
+                  "p50_ms": 33.299,
+                  "p95_ms": 33.318
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.318,
+                  "p95_ms": 33.33
+                }
+              ]
+            }
+          },
+          {
+            "device": "mobile",
+            "emulated": true,
+            "viewport": {
+              "width": 412,
+              "height": 839
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 29.299999997019768,
+                "load_event_ms": 30.19999999552965,
+                "first_contentful_paint_ms": 36,
+                "document_encoded_body_bytes": 31906,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342396,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 2.1999999955296516
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 2.100000001490116
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 35.79999999701977
+                  }
+                ],
+                "page_payload_bytes": 11456,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 565.657,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3040700,
+                  "final_bytes": 2879248
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 35.19999999552965,
+                "load_event_ms": 36,
+                "first_contentful_paint_ms": 36,
+                "document_encoded_body_bytes": 141146,
+                "resource_encoded_body_bytes": 357810,
+                "measured_transfer_bytes": 500156,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.9000000059604645
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.4000000059604645
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 48220,
+                    "duration_ms": 1.8999999985098839
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.7000000029802322
+                  }
+                ],
+                "page_payload_bytes": 108923,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 616.255,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 22,
+                  "max_observed_bytes": 5246936,
+                  "final_bytes": 4612928
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 32.5,
+                "load_event_ms": 32.900000005960464,
+                "first_contentful_paint_ms": 40,
+                "document_encoded_body_bytes": 19876,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330366,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 5.299999997019768
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.699999995529652
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 35.79999999701977
+                  }
+                ],
+                "page_payload_bytes": 5976,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 569.647,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3211892,
+                  "final_bytes": 3212048
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 19.399999998509884,
+                "load_event_ms": 35.19999999552965,
+                "first_contentful_paint_ms": 56,
+                "document_encoded_body_bytes": 164168,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 474658,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 3.100000001490116
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 2.3000000044703484
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 40.29999999701977
+                  }
+                ],
+                "page_payload_bytes": 72843,
+                "document_elements": 1229,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 544.54,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 19,
+                  "max_observed_bytes": 3135420,
+                  "final_bytes": 3452812
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.32,
+              "p95_ms": 33.513,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 33.314,
+                  "p95_ms": 33.34
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 31,
+                  "samples": 3,
+                  "p50_ms": 33.323,
+                  "p95_ms": 33.513
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 31,
+                  "samples": 3,
+                  "p50_ms": 33.342,
+                  "p95_ms": 33.358
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 30,
+                  "samples": 3,
+                  "p50_ms": 33.271,
+                  "p95_ms": 33.335
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 30,
+                  "samples": 3,
+                  "p50_ms": 33.313,
+                  "p95_ms": 33.367
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.352,
+                  "p95_ms": 33.38
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_fixture": {
+          "rss_bytes": 373981184,
+          "heap_used_bytes": 125628664,
+          "heap_total_bytes": 238551040
+        },
+        "after_build": {
+          "rss_bytes": 560922624,
+          "heap_used_bytes": 145266496,
+          "heap_total_bytes": 249053184
+        },
+        "after_browser": {
+          "rss_bytes": 567345152,
+          "heap_used_bytes": 117132168,
+          "heap_total_bytes": 252493824
+        }
+      },
+      "budgets": {
+        "raw_static_package_bytes": 100000000,
+        "raw_static_package_pass": true,
+        "compressed_search_bytes": 2000000,
+        "compressed_search_pass": true
+      }
+    },
+    {
+      "routable_entries": 1000,
+      "source_sha256": {
+        "web/src/App.tsx": "f73e38812aaa5281c5fb41609659f47864287dc6893b9314b0f114ffd803a206",
+        "web/src/model.ts": "9c0de1a8e7837dcaa1423943b057fbbf243d380b413e3a435ef8ac18b453eb4b",
+        "web/src/search.ts": "40b803152037c2f695c63ecdf8206908297f952c2625249c97de431c42318417",
+        "web/src/styles.css": "d434ed121d14e83c4db1d57c86da7642f766f814291e66bfab514c68b432e1b2",
+        "web/src/SourceRecords.tsx": "e1fc097771c811210f9733c740b0f3c31075296b90e77b78e4fb1b167ed3bd80",
+        "scripts/render-page.ts": "b6124192735b54779d6533e3b2a1e1120df996dc90797fe8ef160d44aec9af5d",
+        "scripts/build.ts": "7ea318152cfef53f1d15c10a055e828f9889e470b56afaa6596c2d3b7e835cb9",
+        "scripts/verification-site.ts": "7c24291b50f00faa63180b9f2a77960ecbec1c036302d98ca54fb5a5a7aa48ab",
+        "scripts/full-site-benchmark.ts": "d973fbf302b0a58df63b679090b1c60503d059430da19d3f905362bc460c942c"
+      },
+      "catalog_records": {
+        "sources": 3,
+        "actors": 2,
+        "organizations": 1,
+        "projects": 3,
+        "resources": 991,
+        "collections": 1,
+        "relations": 0,
+        "claims": 2,
+        "tombstones": 3
+      },
+      "static_build": {
+        "directory": "(temporary output removed after measurement)",
+        "pages": 1015,
+        "files": 1036,
+        "snapshot_id": "22aeb3d8cd7c4d1f066b76d2",
+        "timings_ms": {
+          "emit_synthetic_contract": 87.673584,
+          "vite_assets": 93.92212499999994,
+          "all_route_render": 895.3343750000001,
+          "full_output_validation": 491.70854099999997,
+          "total": 1568.638625
+        }
+      },
+      "output": {
+        "files": 1036,
+        "bytes": 27298023,
+        "sum_individual_file_gzip_bytes": 3855852,
+        "html_files": 1015,
+        "html_bytes": 24237890,
+        "largest_html": {
+          "path": "organizations/actor~github~42/index.html",
+          "bytes": 1568739
+        },
+        "composition": {
+          "groups": {
+            "assets_and_manifests": {
+              "files": 4,
+              "bytes": 346767,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "common_html": {
+              "files": 11,
+              "bytes": 8854586,
+              "embedded_data_script_bytes": 8717366,
+              "inline_svg_bytes": 69810,
+              "other_html_bytes": 67410
+            },
+            "capabilities_detail_html": {
+              "files": 993,
+              "bytes": 13690525,
+              "embedded_data_script_bytes": 3107438,
+              "inline_svg_bytes": 4363893,
+              "other_html_bytes": 6219194
+            },
+            "public_catalog": {
+              "files": 15,
+              "bytes": 1093561,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "collections_detail_html": {
+              "files": 1,
+              "bytes": 16684,
+              "embedded_data_script_bytes": 8341,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729
+            },
+            "internal/catalog.json": {
+              "files": 1,
+              "bytes": 1088100,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "internal/search.json": {
+              "files": 1,
+              "bytes": 531705,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "organizations_detail_html": {
+              "files": 2,
+              "bytes": 1573596,
+              "embedded_data_script_bytes": 725590,
+              "inline_svg_bytes": 491814,
+              "other_html_bytes": 356192
+            },
+            "projects_detail_html": {
+              "files": 3,
+              "bytes": 51090,
+              "embedded_data_script_bytes": 15021,
+              "inline_svg_bytes": 17130,
+              "other_html_bytes": 18939
+            },
+            "researchers_detail_html": {
+              "files": 2,
+              "bytes": 16186,
+              "embedded_data_script_bytes": 2616,
+              "inline_svg_bytes": 6162,
+              "other_html_bytes": 7408
+            },
+            "sources_detail_html": {
+              "files": 3,
+              "bytes": 35223,
+              "embedded_data_script_bytes": 6163,
+              "inline_svg_bytes": 13185,
+              "other_html_bytes": 15875
+            }
+          },
+          "samples": {
+            "404.html": {
+              "path": "404.html",
+              "html_bytes": 4690,
+              "embedded_data_script_bytes": 401,
+              "inline_svg_bytes": 2121,
+              "other_html_bytes": 2168,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "capabilities/index.html": {
+              "path": "capabilities/index.html",
+              "html_bytes": 1119137,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 17029,
+              "other_html_bytes": 13974,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "capabilities_detail_html": {
+              "path": "capabilities/resource~method-0/index.html",
+              "html_bytes": 19877,
+              "embedded_data_script_bytes": 6012,
+              "inline_svg_bytes": 6435,
+              "other_html_bytes": 7430,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections_detail_html": {
+              "path": "collections/collection~synthetic/index.html",
+              "html_bytes": 16684,
+              "embedded_data_script_bytes": 8341,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 643,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections/index.html": {
+              "path": "collections/index.html",
+              "html_bytes": 1094415,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3553,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "community/index.html": {
+              "path": "community/index.html",
+              "html_bytes": 6832,
+              "embedded_data_script_bytes": 401,
+              "inline_svg_bytes": 2719,
+              "other_html_bytes": 3712,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "explore/index.html": {
+              "path": "explore/index.html",
+              "html_bytes": 1120324,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 17005,
+              "other_html_bytes": 15185,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "index.html": {
+              "path": "index.html",
+              "html_bytes": 31908,
+              "embedded_data_script_bytes": 11492,
+              "inline_svg_bytes": 12072,
+              "other_html_bytes": 8344,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 2558,
+                "resources": 3675,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "organizations_detail_html": {
+              "path": "organizations/actor~github~42/index.html",
+              "html_bytes": 1568739,
+              "embedded_data_script_bytes": 725061,
+              "inline_svg_bytes": 489693,
+              "other_html_bytes": 353985,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 14893,
+                "projects": 1749,
+                "resources": 704266,
+                "collections": 2,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 2
+              }
+            },
+            "organizations/index.html": {
+              "path": "organizations/index.html",
+              "html_bytes": 1094688,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3826,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects/index.html": {
+              "path": "projects/index.html",
+              "html_bytes": 1098657,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 4595,
+              "other_html_bytes": 5928,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects_detail_html": {
+              "path": "projects/project~independent/index.html",
+              "html_bytes": 15086,
+              "embedded_data_script_bytes": 4002,
+              "inline_svg_bytes": 5125,
+              "other_html_bytes": 5959,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 810,
+                "resources": 1109,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers_detail_html": {
+              "path": "researchers/actor~github~84/index.html",
+              "html_bytes": 11351,
+              "embedded_data_script_bytes": 2087,
+              "inline_svg_bytes": 4041,
+              "other_html_bytes": 5223,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers/index.html": {
+              "path": "researchers/index.html",
+              "html_bytes": 1094396,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3534,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources/index.html": {
+              "path": "sources/index.html",
+              "html_bytes": 1095447,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 3326,
+              "other_html_bytes": 3987,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources_detail_html": {
+              "path": "sources/source~github~1/index.html",
+              "html_bytes": 11713,
+              "embedded_data_script_bytes": 2038,
+              "inline_svg_bytes": 4395,
+              "other_html_bytes": 5280,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1064,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "submit/index.html": {
+              "path": "submit/index.html",
+              "html_bytes": 1094092,
+              "embedded_data_script_bytes": 1088134,
+              "inline_svg_bytes": 2759,
+              "other_html_bytes": 3199,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 14893,
+                "projects": 2558,
+                "resources": 1063915,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            }
+          }
+        }
+      },
+      "search": {
+        "raw_bytes": 531705,
+        "gzip_bytes": 45430
+      },
+      "browser": {
+        "version": "152.0.7977.84",
+        "channel": "chrome",
+        "devices": [
+          {
+            "device": "desktop",
+            "emulated": false,
+            "viewport": {
+              "width": 1440,
+              "height": 1000
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 33.5,
+                "load_event_ms": 34.30000000447035,
+                "first_contentful_paint_ms": 44,
+                "document_encoded_body_bytes": 31908,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342398,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.5999999940395355
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.600000001490116
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.8999999985098839
+                  }
+                ],
+                "page_payload_bytes": 11457,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 569.499,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 2865360,
+                  "final_bytes": 2865516
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 37.69999999552965,
+                "load_event_ms": 38.69999999552965,
+                "first_contentful_paint_ms": 52,
+                "document_encoded_body_bytes": 1120324,
+                "resource_encoded_body_bytes": 841295,
+                "measured_transfer_bytes": 1962819,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 3.5
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3.1999999955296516
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 531705,
+                    "duration_ms": 33.5
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 31.900000005960464
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1.6000000014901161
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.6999999955296516
+                  }
+                ],
+                "page_payload_bytes": 1088099,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 658.412,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 24,
+                  "max_observed_bytes": 11031780,
+                  "final_bytes": 11047540
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 29.600000001490116,
+                "load_event_ms": 30.100000001490116,
+                "first_contentful_paint_ms": 32,
+                "document_encoded_body_bytes": 19877,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330367,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3.7999999970197678
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.29999999701976776
+                  }
+                ],
+                "page_payload_bytes": 5977,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 561.006,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 3177468,
+                  "final_bytes": 3177624
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 70,
+                "load_event_ms": 72.80000000447035,
+                "first_contentful_paint_ms": 72,
+                "document_encoded_body_bytes": 1568739,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 1879229,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.199999995529652
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3.7999999970197678
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 33.20000000298023
+                  }
+                ],
+                "page_payload_bytes": 725026,
+                "document_elements": 10829,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 555.659,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 18,
+                  "max_observed_bytes": 7781516,
+                  "final_bytes": 7835036
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.326,
+              "p95_ms": 35.286,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 33.326,
+                  "p95_ms": 33.426
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 331,
+                  "samples": 3,
+                  "p50_ms": 32.491,
+                  "p95_ms": 33.369
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 331,
+                  "samples": 3,
+                  "p50_ms": 33.806,
+                  "p95_ms": 34.174
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 330,
+                  "samples": 3,
+                  "p50_ms": 33.314,
+                  "p95_ms": 33.361
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 330,
+                  "samples": 3,
+                  "p50_ms": 33.329,
+                  "p95_ms": 33.781
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.345,
+                  "p95_ms": 35.286
+                }
+              ]
+            }
+          },
+          {
+            "device": "mobile",
+            "emulated": true,
+            "viewport": {
+              "width": 412,
+              "height": 839
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 32.69999999552965,
+                "load_event_ms": 33.69999999552965,
+                "first_contentful_paint_ms": 32,
+                "document_encoded_body_bytes": 31908,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342398,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3.899999998509884
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 3.6999999955296516
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.30000000447034836
+                  }
+                ],
+                "page_payload_bytes": 11457,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 565.791,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 2901672,
+                  "final_bytes": 2901828
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 37.5,
+                "load_event_ms": 38.399999998509884,
+                "first_contentful_paint_ms": 40,
+                "document_encoded_body_bytes": 1120324,
+                "resource_encoded_body_bytes": 841295,
+                "measured_transfer_bytes": 1962819,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 2.600000001490116
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 2.5
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 531705,
+                    "duration_ms": 34
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 32.69999999552965
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1.2999999970197678
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.5
+                  }
+                ],
+                "page_payload_bytes": 1088099,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 671.131,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 24,
+                  "max_observed_bytes": 11087516,
+                  "final_bytes": 11101688
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 31.80000000447035,
+                "load_event_ms": 32.30000000447035,
+                "first_contentful_paint_ms": 36,
+                "document_encoded_body_bytes": 19877,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330367,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.300000004470348
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.100000001490116
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1.5
+                  }
+                ],
+                "page_payload_bytes": 5977,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 564.322,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3212000,
+                  "final_bytes": 3212156
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 27.899999998509884,
+                "load_event_ms": 68,
+                "first_contentful_paint_ms": 96,
+                "document_encoded_body_bytes": 1568739,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 1879229,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 2.2999999970197678
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 2.3000000044703484
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 23.200000002980232
+                  }
+                ],
+                "page_payload_bytes": 725026,
+                "document_elements": 10829,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 551.063,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 7931440,
+                  "final_bytes": 7931440
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.326,
+              "p95_ms": 33.359,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 33.34,
+                  "p95_ms": 33.351
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 331,
+                  "samples": 3,
+                  "p50_ms": 33.336,
+                  "p95_ms": 33.359
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 331,
+                  "samples": 3,
+                  "p50_ms": 33.314,
+                  "p95_ms": 33.32
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 330,
+                  "samples": 3,
+                  "p50_ms": 33.319,
+                  "p95_ms": 33.333
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 330,
+                  "samples": 3,
+                  "p50_ms": 33.355,
+                  "p95_ms": 33.358
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.323,
+                  "p95_ms": 33.334
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_fixture": {
+          "rss_bytes": 374669312,
+          "heap_used_bytes": 125525856,
+          "heap_total_bytes": 238288896
+        },
+        "after_build": {
+          "rss_bytes": 656621568,
+          "heap_used_bytes": 197198648,
+          "heap_total_bytes": 333463552
+        },
+        "after_browser": {
+          "rss_bytes": 698023936,
+          "heap_used_bytes": 123613280,
+          "heap_total_bytes": 312786944
+        }
+      },
+      "budgets": {
+        "raw_static_package_bytes": 100000000,
+        "raw_static_package_pass": true,
+        "compressed_search_bytes": 2000000,
+        "compressed_search_pass": true
+      }
+    },
+    {
+      "routable_entries": 10000,
+      "source_sha256": {
+        "web/src/App.tsx": "f73e38812aaa5281c5fb41609659f47864287dc6893b9314b0f114ffd803a206",
+        "web/src/model.ts": "9c0de1a8e7837dcaa1423943b057fbbf243d380b413e3a435ef8ac18b453eb4b",
+        "web/src/search.ts": "40b803152037c2f695c63ecdf8206908297f952c2625249c97de431c42318417",
+        "web/src/styles.css": "d434ed121d14e83c4db1d57c86da7642f766f814291e66bfab514c68b432e1b2",
+        "web/src/SourceRecords.tsx": "e1fc097771c811210f9733c740b0f3c31075296b90e77b78e4fb1b167ed3bd80",
+        "scripts/render-page.ts": "b6124192735b54779d6533e3b2a1e1120df996dc90797fe8ef160d44aec9af5d",
+        "scripts/build.ts": "7ea318152cfef53f1d15c10a055e828f9889e470b56afaa6596c2d3b7e835cb9",
+        "scripts/verification-site.ts": "7c24291b50f00faa63180b9f2a77960ecbec1c036302d98ca54fb5a5a7aa48ab",
+        "scripts/full-site-benchmark.ts": "d973fbf302b0a58df63b679090b1c60503d059430da19d3f905362bc460c942c"
+      },
+      "catalog_records": {
+        "sources": 3,
+        "actors": 2,
+        "organizations": 1,
+        "projects": 3,
+        "resources": 9991,
+        "collections": 1,
+        "relations": 0,
+        "claims": 2,
+        "tombstones": 3
+      },
+      "static_build": {
+        "directory": "(temporary output removed after measurement)",
+        "pages": 10015,
+        "files": 10081,
+        "snapshot_id": "ae6960579943de41f52a456f",
+        "timings_ms": {
+          "emit_synthetic_contract": 653.8997919999999,
+          "vite_assets": 105.87187500000005,
+          "all_route_render": 24489.906875,
+          "full_output_validation": 4938.414666000001,
+          "total": 30188.093208
+        }
+      },
+      "output": {
+        "files": 10081,
+        "bytes": 269317828,
+        "sum_individual_file_gzip_bytes": 37693746,
+        "html_files": 10015,
+        "html_bytes": 241024618,
+        "largest_html": {
+          "path": "organizations/actor~github~42/index.html",
+          "bytes": 15644710
+        },
+        "composition": {
+          "groups": {
+            "assets_and_manifests": {
+              "files": 4,
+              "bytes": 688758,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "common_html": {
+              "files": 11,
+              "bytes": 87382403,
+              "embedded_data_script_bytes": 87245177,
+              "inline_svg_bytes": 69810,
+              "other_html_bytes": 67416
+            },
+            "capabilities_detail_html": {
+              "files": 9993,
+              "bytes": 137873455,
+              "embedded_data_script_bytes": 31275413,
+              "inline_svg_bytes": 43918893,
+              "other_html_bytes": 62679149
+            },
+            "public_catalog": {
+              "files": 60,
+              "bytes": 10927799,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "collections_detail_html": {
+              "files": 1,
+              "bytes": 16685,
+              "embedded_data_script_bytes": 8342,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729
+            },
+            "internal/catalog.json": {
+              "files": 1,
+              "bytes": 10904076,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "internal/search.json": {
+              "files": 1,
+              "bytes": 5772577,
+              "embedded_data_script_bytes": 0,
+              "inline_svg_bytes": 0,
+              "other_html_bytes": 0
+            },
+            "organizations_detail_html": {
+              "files": 2,
+              "bytes": 15649568,
+              "embedded_data_script_bytes": 7265574,
+              "inline_svg_bytes": 4871814,
+              "other_html_bytes": 3512180
+            },
+            "projects_detail_html": {
+              "files": 3,
+              "bytes": 51093,
+              "embedded_data_script_bytes": 15024,
+              "inline_svg_bytes": 17130,
+              "other_html_bytes": 18939
+            },
+            "researchers_detail_html": {
+              "files": 2,
+              "bytes": 16188,
+              "embedded_data_script_bytes": 2618,
+              "inline_svg_bytes": 6162,
+              "other_html_bytes": 7408
+            },
+            "sources_detail_html": {
+              "files": 3,
+              "bytes": 35226,
+              "embedded_data_script_bytes": 6166,
+              "inline_svg_bytes": 13185,
+              "other_html_bytes": 15875
+            }
+          },
+          "samples": {
+            "404.html": {
+              "path": "404.html",
+              "html_bytes": 4691,
+              "embedded_data_script_bytes": 402,
+              "inline_svg_bytes": 2121,
+              "other_html_bytes": 2168,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "capabilities/index.html": {
+              "path": "capabilities/index.html",
+              "html_bytes": 10935115,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 17029,
+              "other_html_bytes": 13976,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "capabilities_detail_html": {
+              "path": "capabilities/resource~method-0/index.html",
+              "html_bytes": 19878,
+              "embedded_data_script_bytes": 6013,
+              "inline_svg_bytes": 6435,
+              "other_html_bytes": 7430,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections_detail_html": {
+              "path": "collections/collection~synthetic/index.html",
+              "html_bytes": 16685,
+              "embedded_data_script_bytes": 8342,
+              "inline_svg_bytes": 3614,
+              "other_html_bytes": 4729,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 970,
+                "resources": 1471,
+                "collections": 643,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "collections/index.html": {
+              "path": "collections/index.html",
+              "html_bytes": 10910391,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3553,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "community/index.html": {
+              "path": "community/index.html",
+              "html_bytes": 6833,
+              "embedded_data_script_bytes": 402,
+              "inline_svg_bytes": 2719,
+              "other_html_bytes": 3712,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2,
+                "actors": 2,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "explore/index.html": {
+              "path": "explore/index.html",
+              "html_bytes": 10936302,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 17005,
+              "other_html_bytes": 15187,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "index.html": {
+              "path": "index.html",
+              "html_bytes": 31910,
+              "embedded_data_script_bytes": 11493,
+              "inline_svg_bytes": 12072,
+              "other_html_bytes": 8345,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 2,
+                "projects": 2558,
+                "resources": 3675,
+                "collections": 2,
+                "relations": 2,
+                "claims": 476,
+                "tombstones": 2
+              }
+            },
+            "organizations_detail_html": {
+              "path": "organizations/actor~github~42/index.html",
+              "html_bytes": 15644710,
+              "embedded_data_script_bytes": 7265044,
+              "inline_svg_bytes": 4869693,
+              "other_html_bytes": 3509973,
+              "embedded_catalog_collection_bytes": {
+                "sources": 2127,
+                "actors": 577,
+                "organizations": 152887,
+                "projects": 1749,
+                "resources": 7106254,
+                "collections": 2,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 2
+              }
+            },
+            "organizations/index.html": {
+              "path": "organizations/index.html",
+              "html_bytes": 10910665,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3827,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects/index.html": {
+              "path": "projects/index.html",
+              "html_bytes": 10914633,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 4595,
+              "other_html_bytes": 5928,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "projects_detail_html": {
+              "path": "projects/project~independent/index.html",
+              "html_bytes": 15087,
+              "embedded_data_script_bytes": 4003,
+              "inline_svg_bytes": 5125,
+              "other_html_bytes": 5959,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 810,
+                "resources": 1109,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers_detail_html": {
+              "path": "researchers/actor~github~84/index.html",
+              "html_bytes": 11352,
+              "embedded_data_script_bytes": 2088,
+              "inline_svg_bytes": 4041,
+              "other_html_bytes": 5223,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1092,
+                "actors": 598,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "researchers/index.html": {
+              "path": "researchers/index.html",
+              "html_bytes": 10910372,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 2728,
+              "other_html_bytes": 3534,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources/index.html": {
+              "path": "sources/index.html",
+              "html_bytes": 10911423,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 3326,
+              "other_html_bytes": 3987,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            },
+            "sources_detail_html": {
+              "path": "sources/source~github~1/index.html",
+              "html_bytes": 11714,
+              "embedded_data_script_bytes": 2039,
+              "inline_svg_bytes": 4395,
+              "other_html_bytes": 5280,
+              "embedded_catalog_collection_bytes": {
+                "sources": 1064,
+                "actors": 577,
+                "organizations": 2,
+                "projects": 2,
+                "resources": 2,
+                "collections": 2,
+                "relations": 2,
+                "claims": 2,
+                "tombstones": 2
+              }
+            },
+            "submit/index.html": {
+              "path": "submit/index.html",
+              "html_bytes": 10910068,
+              "embedded_data_script_bytes": 10904110,
+              "inline_svg_bytes": 2759,
+              "other_html_bytes": 3199,
+              "embedded_catalog_collection_bytes": {
+                "sources": 3218,
+                "actors": 1174,
+                "organizations": 152887,
+                "projects": 2558,
+                "resources": 10741897,
+                "collections": 643,
+                "relations": 2,
+                "claims": 1060,
+                "tombstones": 425
+              }
+            }
+          }
+        }
+      },
+      "search": {
+        "raw_bytes": 5772577,
+        "gzip_bytes": 1045755
+      },
+      "browser": {
+        "version": "152.0.7977.84",
+        "channel": "chrome",
+        "devices": [
+          {
+            "device": "desktop",
+            "emulated": false,
+            "viewport": {
+              "width": 1440,
+              "height": 1000
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 33.80000000447035,
+                "load_event_ms": 34.70000000298023,
+                "first_contentful_paint_ms": 60,
+                "document_encoded_body_bytes": 31910,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342400,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.5
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.600000001490116
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1.1000000014901161
+                  }
+                ],
+                "page_payload_bytes": 11458,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 565.279,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 2918392,
+                  "final_bytes": 2918536
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 103.79999999701977,
+                "load_event_ms": 105.79999999701977,
+                "first_contentful_paint_ms": 52,
+                "document_encoded_body_bytes": 10936302,
+                "resource_encoded_body_bytes": 6082167,
+                "measured_transfer_bytes": 17019669,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 3.899999998509884
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3.600000001490116
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 5772577,
+                    "duration_ms": 37.099999994039536
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 31.200000002980232
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 1
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.8999999985098839
+                  }
+                ],
+                "page_payload_bytes": 10904075,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 750.776,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 26,
+                  "max_observed_bytes": 85751544,
+                  "final_bytes": 44371824
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 33.099999994039536,
+                "load_event_ms": 33.5,
+                "first_contentful_paint_ms": 36,
+                "document_encoded_body_bytes": 19878,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330368,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 7.199999995529652
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 8.399999998509884
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.3999999985098839
+                  }
+                ],
+                "page_payload_bytes": 5978,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 564.549,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 20,
+                  "max_observed_bytes": 3177508,
+                  "final_bytes": 3177664
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 532.3999999985099,
+                "load_event_ms": 554.7999999970198,
+                "first_contentful_paint_ms": 172,
+                "document_encoded_body_bytes": 15644710,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 15955200,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 8.600000001490116
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 8.899999998509884
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.29999999701976776
+                  }
+                ],
+                "page_payload_bytes": 7265009,
+                "document_elements": 106829,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 1054.729,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 26,
+                  "max_observed_bytes": 56629536,
+                  "final_bytes": 48094052
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.333,
+              "p95_ms": 34.625,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 33.272,
+                  "p95_ms": 33.348
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 3331,
+                  "samples": 3,
+                  "p50_ms": 34.365,
+                  "p95_ms": 34.519
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 3331,
+                  "samples": 3,
+                  "p50_ms": 32.247,
+                  "p95_ms": 33.333
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 3330,
+                  "samples": 3,
+                  "p50_ms": 33.355,
+                  "p95_ms": 34.625
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 3330,
+                  "samples": 3,
+                  "p50_ms": 33.281,
+                  "p95_ms": 34.432
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.324,
+                  "p95_ms": 34.466
+                }
+              ]
+            }
+          },
+          {
+            "device": "mobile",
+            "emulated": true,
+            "viewport": {
+              "width": 412,
+              "height": 839
+            },
+            "pages": [
+              {
+                "name": "home",
+                "status": 200,
+                "dom_content_loaded_ms": 31.899999998509884,
+                "load_event_ms": 32.80000000447035,
+                "first_contentful_paint_ms": 32,
+                "document_encoded_body_bytes": 31910,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 342400,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 2.899999998509884
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 3
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 33.80000000447035
+                  }
+                ],
+                "page_payload_bytes": 11458,
+                "document_elements": 317,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 565.92,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3106260,
+                  "final_bytes": 2955468
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "explore",
+                "status": 200,
+                "dom_content_loaded_ms": 100.39999999850988,
+                "load_event_ms": 102.10000000149012,
+                "first_contentful_paint_ms": 44,
+                "document_encoded_body_bytes": 10936302,
+                "resource_encoded_body_bytes": 6082167,
+                "measured_transfer_bytes": 17019669,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 8.600000001490116
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 8.099999994039536
+                  },
+                  {
+                    "path": "/internal/search.json",
+                    "encoded_body_bytes": 5772577,
+                    "duration_ms": 43.899999998509884
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.8999999985098839
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.6000000014901161
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.7000000029802322
+                  }
+                ],
+                "page_payload_bytes": 10904075,
+                "document_elements": 466,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 740.899,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 25,
+                  "max_observed_bytes": 67557400,
+                  "final_bytes": 44161632
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "resource",
+                "status": 200,
+                "dom_content_loaded_ms": 33.600000001490116,
+                "load_event_ms": 34.100000001490116,
+                "first_contentful_paint_ms": 36,
+                "document_encoded_body_bytes": 19878,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 330368,
+                "resources": [
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 4.800000004470348
+                  },
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 4.9000000059604645
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 36.20000000298023
+                  }
+                ],
+                "page_payload_bytes": 5978,
+                "document_elements": 231,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 567.674,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 21,
+                  "max_observed_bytes": 3212000,
+                  "final_bytes": 3212156
+                },
+                "errors": [],
+                "failed_local_requests": []
+              },
+              {
+                "name": "organization",
+                "status": 200,
+                "dom_content_loaded_ms": 564.5,
+                "load_event_ms": 587.1000000014901,
+                "first_contentful_paint_ms": 172,
+                "document_encoded_body_bytes": 15644710,
+                "resource_encoded_body_bytes": 309590,
+                "measured_transfer_bytes": 15955200,
+                "resources": [
+                  {
+                    "path": "/assets/index-Cax9p-wy.js",
+                    "encoded_body_bytes": 285416,
+                    "duration_ms": 5.600000001490116
+                  },
+                  {
+                    "path": "/assets/index-B1JbWgsD.css",
+                    "encoded_body_bytes": 24174,
+                    "duration_ms": 5.5999999940395355
+                  },
+                  {
+                    "path": "/favicon.ico",
+                    "encoded_body_bytes": 0,
+                    "duration_ms": 0.6000000014901161
+                  }
+                ],
+                "page_payload_bytes": 7265009,
+                "document_elements": 106829,
+                "horizontal_overflow": false,
+                "observed_ready_ms": 1086.147,
+                "js_heap_samples": {
+                  "interval_target_ms": 25,
+                  "count": 26,
+                  "max_observed_bytes": 55586992,
+                  "final_bytes": 48051484
+                },
+                "errors": [],
+                "failed_local_requests": []
+              }
+            ],
+            "queries": {
+              "samples": 18,
+              "p50_ms": 33.304,
+              "p95_ms": 34.481,
+              "warmup_queries": 6,
+              "by_query": [
+                {
+                  "query": "00000",
+                  "result_count": 1,
+                  "samples": 3,
+                  "p50_ms": 34.334,
+                  "p95_ms": 34.374
+                },
+                {
+                  "query": "cohort risk",
+                  "result_count": 3331,
+                  "samples": 3,
+                  "p50_ms": 32.157,
+                  "p95_ms": 33.503
+                },
+                {
+                  "query": "合成队列风险",
+                  "result_count": 3331,
+                  "samples": 3,
+                  "p50_ms": 33.304,
+                  "p95_ms": 33.497
+                },
+                {
+                  "query": "genomics",
+                  "result_count": 3330,
+                  "samples": 3,
+                  "p50_ms": 33.248,
+                  "p95_ms": 34.461
+                },
+                {
+                  "query": "合成基因分析",
+                  "result_count": 3330,
+                  "samples": 3,
+                  "p50_ms": 33.36,
+                  "p95_ms": 34.481
+                },
+                {
+                  "query": "zzzz-absent",
+                  "result_count": 0,
+                  "samples": 3,
+                  "p50_ms": 33.33,
+                  "p95_ms": 33.527
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "node_memory_samples": {
+        "before_fixture": {
+          "rss_bytes": 374554624,
+          "heap_used_bytes": 125479576,
+          "heap_total_bytes": 237764608
+        },
+        "after_build": {
+          "rss_bytes": 1346600960,
+          "heap_used_bytes": 801496728,
+          "heap_total_bytes": 935591936
+        },
+        "after_browser": {
+          "rss_bytes": 1323565056,
+          "heap_used_bytes": 166769616,
+          "heap_total_bytes": 295272448
+        }
+      },
+      "budgets": {
+        "raw_static_package_bytes": 100000000,
+        "raw_static_package_pass": false,
+        "compressed_search_bytes": 2000000,
+        "compressed_search_pass": true
+      }
+    }
+  ],
+  "estimates": [],
+  "remaining_limits": [
+    "Production metadata diversity and larger descriptions are not represented by repetitive synthetic text.",
+    "Actual mobile hardware, slow networks, total browser process peak memory and isolated hydration CPU timing remain unmeasured.",
+    "No reference-HTML rendering or exact A22 visual comparison was performed.",
+    "No GitHub Pages deployment or upstream GitHub ingestion load test was performed."
+  ]
+}

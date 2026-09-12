@@ -71,6 +71,7 @@ export interface SourceRepository extends CatalogEntity {
   language?: string;
   stars?: number;
   homepage?: string;
+  collaboration?: { issues_url?: string; discussions_url?: string };
   readme?: string;
   latest_commit?: string;
   fork_of?: string;

@@ -9,11 +9,11 @@
 | 工作流 | 触发方式 | 运行内容 | 数据与输出 |
 | --- | --- | --- | --- |
 | [Offline checks](../.github/workflows/ci.yml) | `pull_request`、`push` | 安装锁定依赖，类型检查，契约/流水线/独立消费者测试，静态构建，桌面和移动端 Chromium 验证 | 固定使用 `fixtures/pilot/snapshots.json`；不发起 live 来源刷新，不上传产物 |
-| [Review a source refresh](../.github/workflows/refresh.yml) | 维护者手动 `workflow_dispatch` | 检查受信任 `main`，读取已登记的公开 GitHub 来源，生成并验证候选网站 | 只上传 `dist/` 候选 artifact，供有本仓库权限的人审查，保留 7 天 |
+| [Review a source refresh](../.github/workflows/refresh.yml) | 维护者手动 `workflow_dispatch` | 检查受信任 `main`，读取已登记的公开 GitHub 来源，生成并验证候选网站 | 上传 `dist/` 候选及独立的白名单刷新状态 artifact，供有本仓库权限的人审查和下次恢复，均保留 7 天 |
 
 CI 中“离线”指来源数据、契约和测试不依赖实时 GitHub 采集。安装 Node.js、npm 依赖和 Playwright Chromium 仍需访问对应软件分发服务。浏览器验证通过本机静态预览服务器进行，不连接任何研究工作台。
 
-CI 使用 Node.js **24.18.1** 和 `npm ci`，由 `package-lock.json` 固定依赖。当前浏览器矩阵是 `playwright.config.ts` 中的桌面和移动端 Chromium；工作流安装方式遵循 [Playwright 浏览器安装说明](https://playwright.dev/docs/browsers)。当前工作流验证根路径 `/`；未来添加 Pages 子路径检查时，构建的 `SITE_BASE` 和测试的 `TEST_BASE` 必须一致，不能把根路径检查视为子路径已通过。
+CI 使用 Node.js **24.18.1** 和 `npm ci`，由 `package-lock.json` 固定依赖。当前浏览器矩阵是 `playwright.config.ts` 中的桌面和移动端 Chromium；工作流安装方式遵循 [Playwright 浏览器安装说明](https://playwright.dev/docs/browsers)。工作流分别构建和检查根路径 `/` 与项目子路径 `/aipoch-network/`；两次构建的 `SITE_BASE` 与浏览器的 `TEST_BASE` 分别保持一致。
 
 ## 2. 本地复现 CI
 
@@ -47,7 +47,7 @@ gh workflow run refresh.yml --repo imjszhang/aipoch-network --ref main
 gh run list --repo imjszhang/aipoch-network --workflow refresh.yml --limit 5
 ```
 
-这两个命令分别触发和查看运行，不是部署命令。本文没有自动执行它们。
+这两个命令分别触发和查看运行，不是部署命令。实际执行记录见 [实施记录](implementation-status.md)。
 
 本地同等采集路径：
 
@@ -57,17 +57,19 @@ npm run catalog:refresh
 SOURCE_BATCH=.cache/batch.json SITE_BASE=/ npm run build
 ```
 
-公开 GitHub API 可以匿名读取，受匿名限额约束。`GITHUB_TOKEN` 在本地是可选的；不要在命令行字面文本、仓库文件、日志或文档中写令牌。GitHub 工作流仅向 `catalog:refresh` 一个步骤提供仓库作用域的只读 `github.token`；依赖安装、测试、构建没有这个环境变量中的凭据。来源状态只输出受控 URL 和状态，不启用请求头、原始 API 响应或环境变量转储。
+公开 GitHub API 可以匿名读取，受匿名限额约束。`GITHUB_TOKEN` 在本地是可选的；不要在命令行字面文本、仓库文件、日志或文档中写令牌。GitHub 工作流在来源刷新步骤提供 `GITHUB_TOKEN`，并在可信状态恢复步骤提供 `GH_TOKEN`，均为仓库作用域只读 `github.token`；依赖安装、测试、构建没有这个环境变量中的凭据。来源状态只输出受控 URL 和状态，不启用请求头、原始 API 响应或环境变量转储。
 
-采集结果先写入 runner 的 `.cache/`，构建再从这次 `.cache/batch.json` 生成候选。上传范围仅为 `dist/`，保留必要的 `.nojekyll` 等站点文件；不上传原始 `.cache/`、Git 数据或 HTML 设计原件。候选包含预定可展示的目录内容，因此仍须按来源撤回、来源时间、描述来源和许可证检查，不得把“构建通过”理解为科学验证或发布许可。
+采集结果先写入 runner 的 `.cache/`，构建再从这次 `.cache/batch.json` 生成候选。站点候选上传范围为 `dist/`，保留必要的 `.nojekyll` 等站点文件；另外只上传 `.cache/refresh-state.json` 这一份经白名单筛选的状态，便于新的私有 runner 恢复。原始响应、README、HTTP 头、其他 `.cache/` 文件、Git 数据或 HTML 设计原件均不上传。候选包含预定可展示的目录内容，因此仍须按来源撤回、来源时间、描述来源和许可证检查，不得把“构建通过”理解为科学验证或发布许可。
 
 候选 artifact 名为 `catalog-candidate-<run-id>-<attempt>`。下载后检查 `catalog/v1/manifest.json`、静态页面和 `build-report.json`；详情和公共分片应指向同一 snapshot。是否接纳数据修订、如何更新已经审查的输入以及何时发布，仍是独立决策。工作流不会把候选写回 Git，也不会自动创建 PR。
 
-**跨运行缓存边界：** 当前 hosted runner 每次从干净工作区开始，不保存或恢复原始来源缓存；本地连续刷新可复用 `.cache/sources` 中的上次观察，GitHub 手动任务不能保证拥有上次有效观察。首次请求失败可能使来源继续作为候选而不进入本次产物。审查者必须与上次已接受目录对照，不能自动晋级缺失来源的候选；该工作流没有自动发布步骤。未来无人值守刷新若需要跨运行保留，须先决定受控快照的保存、撤回、权限与完整性校验方式，不能直接上传原始缓存绕过此边界。
+**跨运行恢复边界：** `scripts/restore-refresh.ts` 只接受同一私有仓库、main 分支、`.github/workflows/refresh.yml`、手动事件且成功完成的运行。下载固定名 `trusted-refresh-state-<run>-<attempt>`，只允许单个 `refresh-state.json` 文件，检查尺寸、日期、身份与整个生成契约。不会恢复 PR、其他分支或未完成任务的产物。状态已筛掉 README、HTTP 头和额外响应字段，保留七天；公共布局启用前仍须重新审查该位置。成功候选中的公共历史也会恢复，只读取通过manifest/hash/字节/语义校验的分片和最小历史台账，不恢复旧HTML或缓存。`HISTORY_DIRECTORY=.cache/restored-history` 将其交给新构建，在当前来源及撤回规则下重新过滤。
+
+缺少恢复状态时，现有已审核 fixture 只能充当历史观察值，采集仍重新读取每个来源。`pipeline/refresh.ts` 验证完整批次：全部暂时失败不覆盖旧接受批次；缺少历史或历史超过七天的失败阻止正常候选。明确私有/不可公开来源先逐条原子保存到独立 `source-suppressions.json`，在之后其他来源失败、验证失败或构建失败时仍保留。工作流用always条件尝试上传对应 `trusted-source-suppressions-<run>-<attempt>`；恢复器只接受已完成的可信main运行，其中失败运行只能提供负面证据，不能提供普通公开快照。含撤下的非完整批次可以生成标为 `withdrawal_only` 的清理候选。普通失败中断不会用半份采集结果覆盖 `.cache/batch.json`，报告保存在 `.cache/refresh-report.json`。构建和恢复即使显式提供旧SOURCE_BATCH也会应用当前负面台账；缺少登记来源的批次直接拒绝，不能解释为大面积撤回。自动抑制仅由时间不早于负面证据、同一稳定ID的新鲜公开观察解除；人工撤回另外保留。本地批次保留有界 ETag/Last-Modified；跨运行状态不保留这些请求头，安全重取元数据。元数据 304 也会重新读取 branch commit、README 与 Release，避免将辅助内容误当成已重新核实。辅助请求不携带凭据；这会使用公开匿名配额，失败时该可选字段保持未知，不能借本地高权限令牌读取后来转私有的内容。完整README只供本地有界观察，不进入网站/公共分片。
 
 ## 4. 权限与不可信改动隔离
 
-- 两条工作流都显式设定 `permissions: contents: read`；没有 `contents: write`、`pull-requests: write`、`pages: write` 或 `id-token: write`。
+- 两条工作流均限制 `contents: read`；受信刷新另外使用 `actions: read` 读取历史产物，CI 不需要它；没有 `contents: write`、`pull-requests: write`、`pages: write` 或 `id-token: write`。
 - PR 使用 `pull_request`，不使用 `pull_request_target` 或把不可信 PR artifact 接到受信任 `workflow_run`。PR 的代码和测试可以运行，但没有本工作流提供的写入或发布凭据。GitHub 对这类边界的风险说明见 [安全使用 pull_request_target](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)。
 - Checkout 使用 `persist-credentials: false`。Setup Node 关闭自动包管理器缓存；受信刷新不从 PR 恢复缓存或输入产物。
 - 刷新步骤只执行 `main` 中的流水线代码，不执行被收录仓库的 README 指令、package hooks、研究代码或工作流。上游文本仍然是数据。

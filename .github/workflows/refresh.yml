@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: trusted-source-refresh
@@ -41,7 +42,12 @@ jobs:
         run: |
           npm run typecheck
           npm run catalog:check
+      - name: Restore bounded state from a successful trusted main refresh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run refresh:restore
       - name: Read only registered public GitHub sources
+        id: source_refresh
         # The repository-scoped, read-only token is available only to this step.
         # No PAT, deployment credential, or organization-wide credential is used.
         env:
@@ -50,9 +56,28 @@ jobs:
       - name: Build and validate the refreshed candidate
         env:
           SOURCE_BATCH: .cache/batch.json
+          HISTORY_DIRECTORY: .cache/restored-history
+          REFRESH_REPORT: .cache/refresh-report.json
         run: npm run build
       - name: Verify contracts and offline regression behavior
         run: npm test
+      - name: Keep bounded public observations for the next private refresh
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: trusted-refresh-state-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/refresh-state.json
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7
+      - name: Retain suppression evidence even after a failed candidate
+        if: always() && steps.source_refresh.outcome != 'skipped' && hashFiles('.cache/source-suppressions.json') != ''
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: trusted-source-suppressions-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/source-suppressions.json
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7
       - name: Upload only the generated website for private review
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:

@@ -1,12 +1,15 @@
 import Ajv from 'ajv';
 import type { ErrorObject } from 'ajv';
-import { normalizeGitHubUrl, entityId, actorId, ID_PATTERN, isSafeHttpsUrl, isSafeRepositoryPath } from '../spec/identity.js';
+import { normalizeGitHubUrl, entityId, actorId, ID_PATTERN, FULL_COMMIT_PATTERN, SHA256_PATTERN, isSafeHttpsUrl, isSafeRepositoryPath } from '../spec/identity.js';
 import { definitions } from '../spec/schema.js';
-import type { Actor, Claim, ResourceType } from '../spec/types.js';
+import { relationKindsAllowed } from '../spec/relations.js';
+import type { Actor, Claim, Relation, Resource, ResourceType, SourceRef } from '../spec/types.js';
 
 export interface RegistrySource { url: string; reviewed_at: string; review_note: string }
-export interface RegistryProject { key: string; title: string; description?: string; domains: string[]; sources: string[]; resources: string[] }
-export interface RegistryResource { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; inputs?: string[]; outputs?: string[] }
+export interface RegistrySourceRef extends Omit<SourceRef, 'source_id' | 'url'> { source_url: string; source_id?: string }
+export interface RegistryAttribution { role: 'editor' | 'community'; url: string; observed_at: string }
+export interface RegistryProject { key: string; title: string; description?: string; domains: string[]; sources: string[]; resources: string[]; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
+export interface RegistryResource { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; download_url?: string; inputs?: string[]; outputs?: string[]; conditions?: string[]; runtime?: Resource['runtime']; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
 export interface RegistryCollection { key: string; title: string; description?: string; selection_basis: string; item_ids: string[] }
 export interface Registry {
   version: 1;
@@ -19,6 +22,7 @@ export interface Registry {
   actors?: Actor[];
   /** Reviewed catalog records, never a direct promotion of an untrusted submission. */
   claims?: Claim[];
+  relations?: Relation[];
 }
 const text = (maxLength: number) => ({ type: 'string', minLength: 1, maxLength, pattern: '\\S' });
 const key = { type: 'string', pattern: '^[a-z0-9][a-z0-9._-]{0,127}$' };
@@ -29,10 +33,15 @@ const sourceUrl = { ...safeUrl, format: 'registry-repository-url' };
 const array = (items: unknown, minItems = 0, maxItems = 10000) => ({ type: 'array', items, minItems, maxItems, uniqueItems: true });
 const object = (properties: Record<string, unknown>, required = Object.keys(properties)) => ({ type: 'object', properties, required, additionalProperties: false });
 const metadata = { key, title: text(300), description: text(20000) };
+const declaredRef = object({ source_url: sourceUrl, source_id: { type: 'string', pattern: '^source:github:[1-9][0-9]*$' }, role: { enum: ['primary', 'documentation', 'implementation', 'data', 'evidence', 'related'] }, path: { type: 'string', format: 'safe-repository-path' }, commit: { type: 'string', pattern: FULL_COMMIT_PATTERN }, ref: text(500), sha256: { type: 'string', pattern: SHA256_PATTERN }, resolved_at: date }, ['source_url', 'role']);
+const attributed = { source_refs: array(declaredRef, 1, 100), attribution: object({ role: { enum: ['editor', 'community'] }, url: safeUrl, observed_at: date }) };
+const projectSchema = object({ ...metadata, ...attributed, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources']);
+const resourceSchema = object({ ...metadata, ...attributed, type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, download_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100), conditions: array(text(2000), 0, 100), runtime: object({ status: { enum: ['not_described', 'maintainer_described', 'community_described'] }, documentation_url: safeUrl }, ['status']) }, ['key', 'title', 'type', 'domains', 'sources']);
 const strictClaim = { ...structuredClone(definitions.claim), additionalProperties: false };
 const strictActor = { ...structuredClone(definitions.actor), additionalProperties: false };
 const strictProvenance = { ...structuredClone(definitions.provenance), additionalProperties: false };
 const strictAlias = { ...structuredClone(definitions.alias), additionalProperties: false };
+const strictRelation = { ...structuredClone(definitions.relation), additionalProperties: false };
 const publicActorFields = ['title', 'description', 'provider_id', 'canonical_url', 'login', 'account_type', 'aliases'];
 const actorProvenance = object(Object.fromEntries(publicActorFields.map(field => [field, array({ $ref: '#/$defs/provenance' }, 1, 100)])), ['title', 'provider_id']);
 
@@ -52,17 +61,31 @@ export const registrySchema = {
   ...object({
     version: { const: 1 },
     sources: array(object({ url: sourceUrl, reviewed_at: date, review_note: text(2000) })),
-    projects: array(object({ ...metadata, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources'])),
-    resources: array(object({
-      ...metadata, type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100),
-      sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100),
-    }, ['key', 'title', 'type', 'domains', 'sources'])),
+    projects: array(projectSchema),
+    resources: array(resourceSchema),
     collections: array(object({ ...metadata, selection_basis: text(5000), item_ids: array(id, 1, 10000) }, ['key', 'title', 'selection_basis', 'item_ids'])),
     withdrawals: array(object({ id, withdrawn_at: date, reason: { enum: ['withdrawn', 'unavailable', 'merged', 'policy'] }, replacement_id: id }, ['id', 'withdrawn_at', 'reason'])),
     actors: array(strictActor),
     claims: array(strictClaim),
+    relations: array(strictRelation),
   }, ['version', 'sources', 'projects', 'resources', 'collections', 'withdrawals']),
   $defs: { provenance: strictProvenance, provenance_map: actorProvenance, alias: strictAlias },
+};
+
+export interface RegistryEnhancement {
+  version: 1;
+  source_url: string;
+  reviewed_at: string;
+  review_note: string;
+  projects?: RegistryProject[];
+  resources?: RegistryResource[];
+  relations?: Relation[];
+}
+export const registryEnhancementSchema = {
+  $schema: 'http://json-schema.org/draft-07/schema#', title: 'Optional reviewed registry enhancement v1',
+  ...object({ version: { const: 1 }, source_url: sourceUrl, reviewed_at: date, review_note: text(2000), projects: array(projectSchema, 1), resources: array(resourceSchema, 1), relations: array(strictRelation, 1) }, ['version', 'source_url', 'reviewed_at', 'review_note']),
+  minProperties: 5,
+  $defs: { provenance: strictProvenance },
 };
 
 /** Review belongs to inclusion, not intake: an unauthenticated submission can contain one URL. */
@@ -97,6 +120,7 @@ ajv.addFormat('safe-https-url', isSafeHttpsUrl);
 ajv.addFormat('safe-repository-path', isSafeRepositoryPath);
 const checkRegistry = ajv.compile<Registry>(registrySchema);
 const checkCandidate = ajv.compile(sourceCandidateSchema);
+const checkEnhancement = ajv.compile<RegistryEnhancement>(registryEnhancementSchema);
 function describeErrors(errors: ErrorObject[] | null | undefined): string[] {
   // Deliberately exclude property values, source URLs and entire JSON payloads from diagnostics.
   return (errors ?? []).map(error => {
@@ -124,6 +148,7 @@ export function validateRegistry(input: unknown): string[] {
       const recordId = entityId(kind, record.key);
       if (ids.has(recordId)) errors.push(`Duplicate identity: ${recordId}`);
       ids.add(recordId);
+      if (kind === 'resource' && 'runtime' in record && record.runtime && record.runtime.status !== 'not_described' && !record.runtime.documentation_url) errors.push(`Described resource runtime requires a public documentation URL: ${recordId}`);
       if ('sources' in record) {
         const referenced = new Set<string>();
         for (const url of record.sources) {
@@ -131,6 +156,21 @@ export function validateRegistry(input: unknown): string[] {
           if (!urls.has(canonical)) errors.push(`Unregistered source for ${recordId}: ${canonical}`);
           if (referenced.has(canonical)) errors.push(`Duplicate source reference for ${recordId}: ${canonical}`);
           referenced.add(canonical);
+        }
+        if (record.source_refs) {
+          const declaredSources = new Set<string>();
+          const locations = new Set<string>();
+          for (const ref of record.source_refs) {
+            const canonical = normalizeGitHubUrl(ref.source_url).canonical_url;
+            declaredSources.add(canonical);
+            const location = JSON.stringify([canonical, ref.source_id, ref.role, ref.path, ref.commit, ref.ref, ref.sha256, ref.resolved_at]);
+            if (locations.has(location)) errors.push(`Duplicate declared source location: ${recordId}`);
+            locations.add(location);
+            if (!referenced.has(canonical)) errors.push(`Declared source reference must belong to sources: ${recordId}`);
+            if (ref.commit && !ref.source_id) errors.push(`Fixed commit requires a stable source_id: ${recordId}`);
+            if ((ref.sha256 || ref.resolved_at) && !ref.commit) errors.push(`Checksum/resolution time requires an explicit immutable commit: ${recordId}`);
+          }
+          if ([...referenced].some(url => !declaredSources.has(url))) errors.push(`Declared source references must cover every source: ${recordId}`);
         }
       }
     }
@@ -199,6 +239,23 @@ export function validateRegistry(input: unknown): string[] {
       }
     }
   }
+  const relationIds = new Set<string>();
+  for (const relation of registry.relations ?? []) {
+    if (!relation.id.startsWith('relation:')) errors.push(`Invalid relation identity: ${relation.id}`);
+    if (relationIds.has(relation.id)) errors.push(`Duplicate relation identity: ${relation.id}`);
+    relationIds.add(relation.id);
+    if (relation.from_id === relation.to_id) errors.push(`Relation endpoints must differ: ${relation.id}`);
+    const kind = (id: string) => id.startsWith('source:') ? 'source_repository' : id.split(':')[0];
+    if (!relationKindsAllowed(relation.type, kind(relation.from_id), kind(relation.to_id))) errors.push(`Relation type does not match its endpoint kinds: ${relation.id}`);
+    for (const endpoint of [relation.from_id, relation.to_id]) if (!/^(?:source|actor):github:/.test(endpoint) && !ids.has(endpoint) && !withdrawals.has(endpoint)) errors.push(`Unknown relation endpoint: ${relation.id}`);
+    if (!relation.evidence.some(item => item.review === 'reviewed')) errors.push(`Relation requires reviewed public evidence: ${relation.id}`);
+    for (const evidence of relation.evidence) {
+      if (evidence.source_id && !evidence.source_id.startsWith('source:github:')) errors.push(`Relation evidence source_id must identify a repository: ${relation.id}`);
+      if (evidence.actor_id && !evidence.actor_id.startsWith('actor:github:')) errors.push(`Relation evidence actor_id must identify an actor: ${relation.id}`);
+      if ((evidence.path || evidence.commit) && !evidence.source_id) errors.push(`Relation file evidence requires a source identity: ${relation.id}`);
+      if (evidence.review === 'reviewed' && Date.parse(evidence.observed_at) > Date.parse(relation.recorded_at)) errors.push(`Relation evidence cannot postdate its recorded review: ${relation.id}`);
+    }
+  }
   const knownEditorial = (target: string) => ids.has(target) || withdrawals.has(target);
   for (const project of registry.projects) for (const resourceKey of project.resources) {
     if (!knownEditorial(entityId('resource', resourceKey))) errors.push(`Unknown project resource: ${resourceKey}`);
@@ -243,4 +300,24 @@ export function validateRegistry(input: unknown): string[] {
     }
   }
   return errors;
+}
+
+/** A bad optional file never mutates or rejects an independently valid URL-only baseline. */
+export function applyRegistryEnhancement(registry: Registry, input: unknown): { registry: Registry; errors: string[]; applied: boolean } {
+  if (!checkEnhancement(input)) return { registry, errors: describeErrors(checkEnhancement.errors), applied: false };
+  const baselineErrors = validateRegistry(registry);
+  if (baselineErrors.length) return { registry, errors: baselineErrors, applied: false };
+  const canonical = normalizeGitHubUrl(input.source_url).canonical_url;
+  if (!registry.sources.some(source => normalizeGitHubUrl(source.url).canonical_url === canonical)) return { registry, errors: ['Enhancement source must already be a reviewed registry source'], applied: false };
+  const newRecords = [...(input.projects ?? []), ...(input.resources ?? [])];
+  if (newRecords.some(record => !record.sources.some(url => normalizeGitHubUrl(url).canonical_url === canonical))) return { registry, errors: ['Enhanced entries must reference the declared enhancement source'], applied: false };
+  const attribution: RegistryAttribution = { role: 'community', url: canonical, observed_at: input.reviewed_at };
+  const candidate: Registry = {
+    ...structuredClone(registry),
+    projects: [...registry.projects.map(record => structuredClone(record)), ...(input.projects ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution } }))],
+    resources: [...registry.resources.map(record => structuredClone(record)), ...(input.resources ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution }, ...(record.runtime ? { runtime: { ...structuredClone(record.runtime), status: record.runtime.status === 'not_described' ? 'not_described' as const : 'community_described' as const } } : {}) }))],
+    ...(input.relations ? { relations: [...(registry.relations ?? []).map(record => structuredClone(record)), ...input.relations.map(record => ({ ...structuredClone(record), evidence: record.evidence.map(item => ({ ...structuredClone(item), role: 'community' as const })) }))] } : {}),
+  };
+  const errors = validateRegistry(candidate);
+  return errors.length ? { registry, errors, applied: false } : { registry: candidate, errors: [], applied: true };
 }

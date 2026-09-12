@@ -210,6 +210,7 @@ async function main() {
   const mib = (bytes: number) => (bytes / 1024 / 1024).toFixed(2);
   const markdown = [
     '# 搜索与单详情性能测量', '',
+    '后续验证：本报告只覆盖独立索引与固定详情。完整静态构建、浏览器及全部首次搜索请求见 [完整站点测量](full-site-benchmark.md)；下文未测范围仅指本脚本的测量范围。', '',
     `测量时间：${report.started_at} 至 ${report.finished_at}。由 \`scripts/benchmark.ts\` 实际运行生成；完整原始数据见 [search-benchmark.json](search-benchmark.json)。`, '',
     `机器：${report.machine.cpu_model}，${report.machine.architecture}，${report.machine.platform} ${report.machine.os_release}，${report.machine.logical_cpus} 个逻辑 CPU，内存 ${mib(report.machine.installed_memory_bytes)} MiB。Node ${report.machine.node}；MiniSearch ${report.machine.minisearch}；React ${report.machine.react}。`, '',
     '## 样本与方法', '',

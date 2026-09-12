@@ -69,6 +69,8 @@ test('validates actual root and Pages-subpath pages, assets, imports, anchors an
     const output = join(root, name); await candidate(output, base);
     const checked = await validateOutput(output, base);
     assert.equal(checked.pages, 3); assert.equal(checked.snapshot_id, 'new-snapshot'); assert.ok(checked.files > checked.pages);
+    assert.ok(checked.bytes > 0);
+    await assert.rejects(validateOutput(output, base, 1), /byte budget/);
   }
 });
 

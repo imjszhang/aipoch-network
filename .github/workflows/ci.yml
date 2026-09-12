@@ -46,3 +46,11 @@ jobs:
         run: npx --no-install playwright install --with-deps chromium
       - name: Verify static routes and browser behavior
         run: npm run test:e2e
+      - name: Build the GitHub Pages project subpath
+        env:
+          SITE_BASE: /aipoch-network/
+        run: npm run build
+      - name: Verify project subpath routes and browser behavior
+        env:
+          TEST_BASE: /aipoch-network/
+        run: npm run test:e2e

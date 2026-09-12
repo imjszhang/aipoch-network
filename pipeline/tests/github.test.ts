@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { GitHubReader, apiPath, limitedText, publicWebUrl, type SourceSnapshot } from '../github.js';
+import { validateBatch } from '../refresh.js';
+import type { Registry } from '../registry.js';
 
 const NOW = '2026-09-12T08:00:00.000Z';
 const OLD = '2026-09-11T08:00:00.000Z';
@@ -72,7 +74,8 @@ test('a public repository is ingested through a field allowlist, without executi
   assert.equal(result.repository?.homepage, 'https://research.example.org/docs');
   assert.equal(fixture.calls.length, 4);
   assert.ok(fixture.calls.every(call => call.url.origin === 'https://api.github.com'));
-  assert.ok(fixture.calls.every(call => call.headers.get('authorization') === 'Bearer unit-test-only-token'));
+  assert.equal(fixture.calls[0].headers.get('authorization'), 'Bearer unit-test-only-token');
+  assert.ok(fixture.calls.slice(1).every(call => call.headers.get('authorization') === null));
   assert.doesNotMatch(JSON.stringify(result), /UPSTREAM_SECRET|COMMIT_SECRET|RELEASE_PRIVATE_FIELD|unit-test-only-token|permissions|custom_instructions/);
 });
 
@@ -95,7 +98,7 @@ test('a 304 revalidates the prior public snapshot and uses conditional headers',
   const fixture = transport(() => new Response(null, { status: 304 }));
   const result = await makeReader(fixture.fetcher).refresh('research', 'example', before);
   assert.equal(fixture.calls[0]?.headers.get('if-none-match'), before.etag);
-  assert.equal(fixture.calls.length, 1);
+  assert.equal(fixture.calls.length, 4);
   assert.deepEqual(result.repository, before.repository);
   assert.equal(result.checked_at, NOW);
   assert.equal(result.availability, 'accessible');
@@ -110,8 +113,8 @@ test('Last-Modified is a fallback validator, and suppressed data cannot be reviv
   assert.equal(fixture.calls[0]?.headers.get('if-modified-since'), date);
   const suppressed = previous({ suppressed: true, availability: 'private' });
   const result = await makeReader(fixture.fetcher).refresh('research', 'example', suppressed);
-  assert.equal(fixture.calls[1]?.headers.get('if-none-match'), null);
-  assert.equal(fixture.calls[1]?.headers.get('if-modified-since'), null);
+  assert.equal(fixture.calls.at(-1)?.headers.get('if-none-match'), null);
+  assert.equal(fixture.calls.at(-1)?.headers.get('if-modified-since'), null);
   assert.equal(result.suppressed, true);
   assert.notEqual(result.availability, 'accessible');
 });
@@ -306,6 +309,47 @@ test('oversized optional README and unsafe homepage/release links do not invalid
   assert.equal(result.repository?.latest_release, undefined);
 });
 
+test('auxiliary reads cannot use a private-capable token to fetch content after a public metadata observation', async () => {
+  for (const metadataStatus of [200, 304]) {
+    let privateReads = 0;
+    const fixture = transport(({ url, headers }) => {
+      if (url.pathname === REPO_PATH) return metadataStatus === 304 ? new Response(null, { status: 304 }) : json(rawRepository());
+      if (!headers.has('authorization')) return new Response(null, { status: 404 });
+      privateReads++;
+      if (url.pathname.includes('/commits/')) return json({ sha: SHA });
+      if (url.pathname.endsWith('/readme')) return json({ encoding: 'base64', content: Buffer.from('PRIVATE_AUXILIARY_README').toString('base64') });
+      return json({ tag_name: 'PRIVATE_RELEASE', published_at: NOW, html_url: 'https://github.com/research/example/releases/tag/private' });
+    });
+    const before = previous();
+    before.repository!.readme = 'OLD_README_MUST_NOT_BECOME_FRESH';
+    const result = await makeReader(fixture.fetcher, { token: 'synthetic-private-capable-token' }).refresh('research', 'example', before);
+    assert.equal(result.availability, 'accessible');
+    assert.equal(privateReads, 0);
+    assert.equal(fixture.calls[0].headers.get('authorization'), 'Bearer synthetic-private-capable-token');
+    assert.ok(fixture.calls.slice(1).every(call => !call.headers.has('authorization')));
+    assert.equal(result.repository?.readme, undefined);
+    assert.equal(result.repository?.commit, undefined);
+    assert.equal(result.repository?.latest_release, undefined);
+    assert.doesNotMatch(JSON.stringify(result), /PRIVATE_AUXILIARY|PRIVATE_RELEASE|OLD_README_MUST_NOT_BECOME_FRESH/);
+  }
+});
+
+test('unsafe credential-query homepages are discarded before they can reject a public catalog batch', async () => {
+  const url = 'https://github.com/research/example';
+  const registry: Registry = {
+    version: 1, sources: [{ url, reviewed_at: OLD, review_note: 'Synthetic public source.' }],
+    resources: [{ key: 'example', title: 'Example method', type: 'method', domains: ['science'], sources: [url] }],
+    projects: [], collections: [], withdrawals: [],
+  };
+  for (const homepage of ['https://research.example/docs?token=not-public', 'https://research.example/docs?api_key=not-public']) {
+    const fixture = transport(({ url }) => url.pathname === REPO_PATH ? json(rawRepository({ homepage })) : new Response(null, { status: 404 }));
+    const result = await makeReader(fixture.fetcher).refresh('research', 'example');
+    assert.equal(result.availability, 'accessible');
+    assert.equal(result.repository?.homepage, undefined);
+    assert.doesNotThrow(() => validateBatch(registry, { as_of: NOW, sources: [result] }, new Date(NOW)));
+  }
+});
+
 test('web URLs reject executable schemes, plaintext, credentials and unexpected ports; API URLs stay on GitHub', () => {
   for (const input of [undefined, null, {}, 'javascript:alert(1)', 'data:text/html,bad', 'file:///etc/passwd',
     'http://github.com/research/example', 'https://user:password@github.com/research/example', 'https://github.com:8443/research/example']) {
@@ -316,4 +360,25 @@ test('web URLs reject executable schemes, plaintext, credentials and unexpected 
   for (const input of ['https://github.com/repos/research/example', '//attacker.example', 'http://api.github.com/repos/research/example', 'https://secret@api.github.com/repos/research/example']) {
     assert.throws(() => apiPath(input), /Untrusted API location/);
   }
+});
+
+
+test('a 304 metadata response still refreshes the branch head and README at that exact commit', async () => {
+  const freshCommit = 'b'.repeat(40);
+  const fixture = transport(({ url }) => {
+    if (url.pathname === REPO_PATH) return new Response(null, { status: 304 });
+    if (url.pathname.endsWith('/commits/main')) return json({ sha: freshCommit });
+    if (url.pathname.endsWith('/readme')) {
+      assert.equal(url.searchParams.get('ref'), freshCommit);
+      return json({ encoding: 'base64', content: Buffer.from('Updated public README').toString('base64') });
+    }
+    return new Response(null, { status: 404 });
+  });
+  const before = previous();
+  before.repository!.commit = SHA;
+  before.repository!.readme = 'Old README';
+  const result = await makeReader(fixture.fetcher).refresh('research', 'example', before);
+  assert.equal(result.repository?.commit, freshCommit);
+  assert.equal(result.repository?.readme, 'Updated public README');
+  assert.equal(before.repository?.commit, SHA);
 });

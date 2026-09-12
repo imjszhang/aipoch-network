@@ -18,7 +18,9 @@
     "preview": "tsx scripts/serve.ts",
     "test:e2e": "playwright test",
     "benchmark": "tsx scripts/benchmark.ts",
-    "check": "npm run typecheck && npm test && npm run build"
+    "check": "npm run typecheck && npm test && npm run build",
+    "catalog:recover": "tsx pipeline/cli.ts recover",
+    "refresh:restore": "tsx scripts/restore-refresh.ts"
   },
   "dependencies": {
     "ajv": "8.20.0",

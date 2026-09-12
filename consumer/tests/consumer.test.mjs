@@ -171,6 +171,49 @@ test('rejects active private sources, credential URLs and private tombstone fiel
   }
 });
 
+test('rejects credential query keys throughout external links while preserving ordinary query parameters', async () => {
+  for (const key of ['access_token', 'TOKEN', 'secret', 'password', 'Authorization', 'api_key', 'client_secret', '%74oken']) {
+    for (const change of [
+      data => { data.resources[0].documentation_url = `https://example.org/readme?${key}=SYNTHETIC`; },
+      data => { data.resources[0].source_refs[0].url = `https://example.org/content?${key}=SYNTHETIC`; },
+      data => { data.relations[0].evidence[0].url = `https://example.org/evidence?${key}=SYNTHETIC`; },
+    ]) {
+      const data = structuredClone(fixture()); change(data); const origin = site({ data });
+      await assert.rejects(loadCatalog(origin.base, { fetch: origin.fetch }), /without credentials/);
+    }
+  }
+  const data = structuredClone(fixture()); data.resources[0].documentation_url = 'https://example.org/readme?version=v1&language=zh';
+  const origin = site({ data });
+  assert.equal((await loadCatalog(origin.base, { fetch: origin.fetch })).get('resource:alpha').documentation_url, data.resources[0].documentation_url);
+});
+
+test('enforces relation endpoint meaning independently of valid IDs, hashes and evidence', async () => {
+  for (const [type, from_id, to_id] of [
+    ['produces', 'resource:alpha', 'project:study'],
+    ['fork_of', 'project:study', 'source:github:2'],
+    ['authored_by', 'project:study', 'resource:alpha'],
+    ['maintained_by', 'source:github:2', 'resource:alpha'],
+    ['curated_by', 'collection:selected', 'project:study'],
+    ['uses', 'actor:github:1', 'resource:alpha'],
+    ['uses', 'resource:alpha', 'actor:github:1'],
+    ['supersedes', 'resource:alpha', 'project:study'],
+  ]) {
+    const data = fixture(); Object.assign(data.relations[0], { type, from_id, to_id }); const origin = site({ data });
+    await assert.rejects(loadCatalog(origin.base, { fetch: origin.fetch }), /relation endpoint kinds/);
+  }
+  for (const [type, from_id, to_id] of [
+    ['produces', 'project:study', 'resource:alpha'],
+    ['authored_by', 'project:study', 'actor:github:1'],
+    ['maintained_by', 'source:github:2', 'actor:github:1'],
+    ['curated_by', 'collection:selected', 'actor:github:1'],
+    ['uses', 'resource:alpha', 'source:github:2'],
+    ['supersedes', 'resource:alpha', 'resource:beta'],
+  ]) {
+    const data = fixture(); Object.assign(data.relations[0], { type, from_id, to_id }); const origin = site({ data });
+    assert.equal((await loadCatalog(origin.base, { fetch: origin.fetch })).collections.relations[0].type, type);
+  }
+});
+
 test('rejects circular replacement chains while resolving a valid superseded ID explicitly', async () => {
   const data = fixture(); data.tombstones = [{ kind: 'tombstone', id: 'resource:old', status: 'superseded', withdrawn_at: time, replacement_id: 'resource:alpha' }];
   let origin = site({ data }); let result = await loadCatalog(origin.base, { fetch: origin.fetch });
@@ -197,6 +240,21 @@ test('external content checksums and commit pinning remain distinct explicit loc
   const external = result.locateResource('resource:beta').sources[0].version;
   assert.equal(external.status, 'fixed'); assert.equal(external.basis, 'content_checksum'); assert.equal(external.commit, undefined);
   assert.ok(origin.calls.every(call => !call.url.includes('example.org')));
+});
+
+test('immutable content URLs preserve source identity and encode Git-relative paths independently', async () => {
+  const data = fixture(); data.resources[0].source_refs[0].path = '研究资料/my protocol.md';
+  const origin = site({ data }); const result = await loadCatalog(origin.base, { fetch: origin.fetch });
+  const pinned = result.locateResource('resource:alpha').sources[0];
+  assert.equal(pinned.canonical_url, sourceUrl);
+  assert.equal(pinned.version.path, '研究资料/my protocol.md');
+  assert.equal(pinned.version.content_url, `${sourceUrl}/tree/${commit}/${encodeURIComponent('研究资料')}/my%20protocol.md`);
+  assert.equal(result.locateResource('resource:beta').sources[0].version.content_url, undefined);
+  assert.ok(origin.calls.every(call => !call.url.includes('github.com')));
+  for (const path of ['../private', 'path/%2e%2e/private', '/absolute', 'path\\file', 'path?query']) {
+    const invalid = fixture(); invalid.resources[0].source_refs[0].path = path;
+    const bad = site({ data: invalid }); await assert.rejects(loadCatalog(bad.base, { fetch: bad.fetch }), /repository path/);
+  }
 });
 
 test('bounded downloads reject excessive manifests, shard sizes, aggregate bytes and records', async () => {

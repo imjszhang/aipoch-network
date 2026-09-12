@@ -59,9 +59,16 @@ function attributes(tag: string): Map<string, string> {
 }
 
 /** Verify actual files and generated references, not a Vite development-server fallback. */
-export async function validateOutput(directory: string, base = '/'): Promise<{ pages: number; files: number; snapshot_id: string }> {
+export async function validateOutput(directory: string, base = '/', budgetBytes = 250_000_000): Promise<{ pages: number; files: number; snapshot_id: string; bytes: number }> {
   validBase(base);
   const root = resolve(directory), files = await outputFiles(root), fileSet = new Set(files);
+  assert(Number.isSafeInteger(budgetBytes) && budgetBytes > 0 && budgetBytes <= 250_000_000, 'Invalid site byte budget');
+  let bytes = 0;
+  for (let i = 0; i < files.length; i += 100) {
+    const sizes = await Promise.all(files.slice(i, i + 100).map(async file => (await lstat(file)).size));
+    bytes += sizes.reduce((sum, size) => sum + size, 0);
+    assert(bytes <= budgetBytes, 'Static site exceeds its byte budget; review content and retained history before publishing');
+  }
   const readJson = async (path: string) => JSON.parse(await readFile(join(root, path), 'utf8')) as Record<string, unknown>;
   for (const expected of ['index.html', '404.html', '.nojekyll', 'routes.json', 'catalog/v1/manifest.json', 'internal/catalog.json', 'internal/search.json']) assert(fileSet.has(join(root, expected)), `Missing required output: ${expected}`);
   const routes = await readJson('routes.json');
@@ -128,7 +135,7 @@ export async function validateOutput(directory: string, base = '/'): Promise<{ p
       for (const match of code.matchAll(/\b(?:from\s*|import\s*\(\s*|import\s*)(?:"([./][^"]+)"|'([./][^']+)')/g)) checkReference(match[1] ?? match[2], file, 'asset');
     }
   }
-  return { pages: htmlFiles.length, files: files.length, snapshot_id: manifest.snapshot_id };
+  return { pages: htmlFiles.length, files: files.length, snapshot_id: manifest.snapshot_id, bytes };
 }
 
 function execute(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
@@ -138,13 +145,18 @@ function execute(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
     child.once('exit', (code, signal) => code === 0 ? resolveCommand() : reject(new Error(`Build step failed (${signal ?? code ?? 'unknown'}): ${args.at(-1)}`)));
   });
 }
-export async function runBuildSteps(staging: string, base = process.env.SITE_BASE ?? '/'): Promise<void> {
-  const env = { ...process.env, BUILD_OUTPUT: staging, SITE_BASE: base };
+export async function runBuildSteps(staging: string, base = process.env.SITE_BASE ?? '/', previousOutput = 'dist'): Promise<void> {
+  let historyDirectory = process.env.HISTORY_DIRECTORY;
+  if (!historyDirectory) {
+    try { await lstat(join(previousOutput, 'catalog/v1/manifest.json')); historyDirectory = previousOutput; }
+    catch (error) { if (!notFound(error)) throw error; historyDirectory = 'generated'; }
+  }
+  const env = { ...process.env, BUILD_OUTPUT: staging, SITE_BASE: base, HISTORY_DIRECTORY: historyDirectory };
   await execute(['--import', 'tsx', 'pipeline/cli.ts', 'build'], env);
   await execute(['node_modules/vite/bin/vite.js', 'build'], env);
   await execute(['--import', 'tsx', 'scripts/prerender.ts'], env);
 }
-export async function buildRelease(options: { destination?: string; base?: string; steps?: (staging: string) => Promise<void> } = {}): Promise<{ pages: number; files: number; snapshot_id: string }> {
+export async function buildRelease(options: { destination?: string; base?: string; steps?: (staging: string) => Promise<void> } = {}): Promise<{ pages: number; files: number; snapshot_id: string; bytes: number }> {
   const destination = resolve(options.destination ?? 'dist'), base = options.base ?? process.env.SITE_BASE ?? '/';
   validBase(base);
   assert(destination !== resolve('.') && dirname(destination) !== destination, 'Refusing to replace the project or filesystem root');
@@ -156,7 +168,7 @@ export async function buildRelease(options: { destination?: string; base?: strin
   try {
     await writeFile(join(lock, 'owner.json'), JSON.stringify({ pid: process.pid, started_at: new Date().toISOString(), destination }));
     staging = await mkdtemp(join(dirname(destination), `.${basename(destination)}-staging-`));
-    await (options.steps ?? (output => runBuildSteps(output, base)))(staging);
+    await (options.steps ?? (output => runBuildSteps(output, base, destination)))(staging);
     const result = await validateOutput(staging, base);
     const committed = await commitOutput(staging, destination);
     staging = undefined;
@@ -169,6 +181,6 @@ export async function buildRelease(options: { destination?: string; base?: strin
 }
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
-  buildRelease().then(result => console.log(`Validated ${result.pages} pages and ${result.files} files; dist now contains snapshot ${result.snapshot_id}.`))
+  buildRelease().then(result => console.log(`Validated ${result.pages} pages and ${result.files} files (${result.bytes} bytes); dist now contains snapshot ${result.snapshot_id}.`))
     .catch(error => { console.error(error instanceof Error ? error.message : 'Release build failed'); process.exitCode = 1; });
 }

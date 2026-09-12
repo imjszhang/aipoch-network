@@ -402,6 +402,23 @@
           "format": "safe-https-url",
           "maxLength": 4096
         },
+        "collaboration": {
+          "type": "object",
+          "properties": {
+            "issues_url": {
+              "type": "string",
+              "format": "safe-https-url",
+              "maxLength": 4096
+            },
+            "discussions_url": {
+              "type": "string",
+              "format": "safe-https-url",
+              "maxLength": 4096
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
         "readme": {
           "type": "string",
           "minLength": 1,

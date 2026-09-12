@@ -38,6 +38,7 @@ export const definitions = {
     default_branch: text(500), availability: enumOf('accessible', 'temporarily_unavailable', 'unknown', 'private', 'deleted'),
     archived: { type: 'boolean' }, observed_at: date, stale: { type: 'boolean' }, license: ref('license'), aliases: arrayOf(ref('alias')),
     topics: { ...arrayOf(text(100)), uniqueItems: true }, language: text(100), stars: count, homepage: url,
+    collaboration: object({ issues_url: url, discussions_url: url }, []),
     readme: text(100000), latest_commit: commit, fork_of: id,
   }, ['provider', 'provider_id', 'canonical_url', 'owner_id', 'availability', 'archived', 'observed_at', 'stale', 'license', 'aliases']),
   actor: entity('actor', {

@@ -1,7 +1,7 @@
 import { actorId, entityId, normalizeGitHubUrl, sourceId } from '../spec/identity.js';
 import { emptyCatalog, type CatalogData, type Claim, type SourceRef, type Provenance, type SourceRepository } from '../spec/types.js';
 import type { SourceSnapshot } from './github.js';
-import { type Registry, parseOrganizationCurationScope, validateRegistry } from './registry.js';
+import { type Registry, type RegistryAttribution, type RegistrySourceRef, parseOrganizationCurationScope, validateRegistry } from './registry.js';
 
 export interface SnapshotBatch { as_of: string; sources: SourceSnapshot[] }
 export interface NormalizedCatalog { catalog: CatalogData; diagnostics: { id: string; message: string }[]; generated_at: string }
@@ -37,6 +37,10 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     const age = Date.parse(at) - Date.parse(snapshot.observed_at);
     const expired = age > 7 * 24 * 60 * 60 * 1000;
     const evidence: Provenance = { role: 'github', url: repo.html_url, source_id: id, observed_at: snapshot.observed_at, review: 'reviewed', ...(repo.commit ? { commit: repo.commit } : {}) };
+    const collaboration = !expired && (repo.has_issues === true || repo.has_discussions === true) ? {
+      ...(repo.has_issues === true ? { issues_url: `${repo.html_url}/issues` } : {}),
+      ...(repo.has_discussions === true ? { discussions_url: `${repo.html_url}/discussions` } : {}),
+    } : undefined;
     const source: SourceRepository = {
       kind: 'source_repository', id, title: expired ? 'Source awaiting public check' : repo.full_name,
       ...(repo.description && !expired ? { description: repo.description } : {}), status: 'listed', updated_at: repo.updated_at,
@@ -45,7 +49,8 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
       archived: repo.archived, observed_at: snapshot.observed_at, stale: age > 48 * 60 * 60 * 1000 || snapshot.availability !== 'accessible',
       license: repo.license && !expired ? { status: 'identified', ...repo.license } : { status: 'unknown' },
       aliases: url.toLowerCase() !== repo.html_url.toLowerCase() ? [{ url, verified_at: snapshot.observed_at, provider_id: repo.id }] : [],
-      provenance: { title: [evidence], canonical_url: [evidence], ...(repo.description && !expired ? { description: [evidence] } : {}), license: [evidence] },
+      provenance: { title: [evidence], canonical_url: [evidence], ...(repo.description && !expired ? { description: [evidence] } : {}), license: [evidence], ...(collaboration ? { collaboration: [evidence] } : {}) },
+      ...(collaboration ? { collaboration } : {}),
       ...(!expired ? { topics: repo.topics, language: repo.language, homepage: repo.homepage, readme: repo.readme, latest_commit: repo.commit } : {}),
     };
     const existing = catalog.sources.find(row => row.id === id);
@@ -69,37 +74,59 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     }
     catalog.actors.push(structuredClone(actor));
   }
-  function refs(urls: string[]): SourceRef[] | undefined {
+  function refs(urls: string[], declared?: RegistrySourceRef[], recordId?: string): SourceRef[] | undefined {
     const sources = urls.map(url => sourceByUrl.get(normalizeGitHubUrl(url).canonical_url));
     if (sources.some(source => !source || blocked.has(source.id))) return undefined;
+    if (declared) {
+      const references: SourceRef[] = [];
+      for (const locator of declared) {
+        const source = sourceByUrl.get(normalizeGitHubUrl(locator.source_url).canonical_url)!;
+        if (locator.source_id && locator.source_id !== source.id) {
+          diagnostics.push({ id: recordId ?? source.id, message: 'Declared source identity no longer matches the observed repository; fixed reference withheld for review.' });
+          return undefined;
+        }
+        const { source_url: _sourceUrl, source_id: _expectedSourceId, ...location } = locator;
+        const version = locator.commit ?? locator.ref;
+        const href = version ? `${source.canonical_url}/${locator.path ? 'blob' : 'tree'}/${encodeURIComponent(version)}${locator.path ? `/${locator.path.split('/').map(encodeURIComponent).join('/')}` : ''}` : source.canonical_url;
+        references.push({ ...structuredClone(location), source_id: source.id, url: href });
+      }
+      return [...new Map(references.map(ref => [JSON.stringify([ref.source_id, ref.role, ref.path, ref.commit, ref.ref, ref.sha256, ref.resolved_at]), ref])).values()];
+    }
     return [...new Map(sources.map(source => [source!.id, source!])).values()].map((source) => ({ source_id: source.id, role: 'primary' as const, url: source.canonical_url,
       ...(source!.latest_commit ? { commit: source!.latest_commit, resolved_at: source!.observed_at } : {}) }));
   }
-  const editor = (source_refs: SourceRef[]): Provenance[] => source_refs.map(ref => ({ role: 'editor', url: ref.url!, source_id: ref.source_id, observed_at: at, review: 'reviewed', scope: 'Catalog classification and summary; not maintainer acknowledgement.' }));
+  const editor = (source_refs: SourceRef[], attribution?: RegistryAttribution): Provenance[] => source_refs.map(ref => ({ role: attribution?.role ?? 'editor', url: attribution?.url ?? ref.url!, source_id: ref.source_id, observed_at: attribution?.observed_at ?? at, review: 'reviewed', scope: 'Catalog classification and summary; not maintainer acknowledgement.' }));
+  const referenceProvenance = (source_refs: SourceRef[], declared?: RegistrySourceRef[], attribution?: RegistryAttribution): Provenance[] => declared
+    ? editor(source_refs, attribution).map((evidence, index) => ({ ...evidence, ...(source_refs[index].commit ? { commit: source_refs[index].commit } : {}), ...(source_refs[index].path ? { path: source_refs[index].path } : {}), scope: 'Catalog-declared content location; the declaration is reviewed, but file availability, checksum and execution are not verified by this pipeline.' }))
+    : source_refs.flatMap(ref => catalog.sources.find(source => source.id === ref.source_id)?.provenance.canonical_url ?? []);
   for (const entry of registry.resources) {
     const id = entityId('resource', entry.key);
-    const source_refs = refs(entry.sources);
+    const source_refs = refs(entry.sources, entry.source_refs, id);
     if (blocked.has(id) || !source_refs) { tombstone(id); continue; }
     const first = catalog.sources.find(source => source.id === source_refs[0].source_id)!;
-    const description = entry.description ?? first.description;
+    const fixed = Boolean(entry.source_refs?.some(ref => ref.commit));
+    const description = entry.description ?? (!fixed ? first.description : undefined);
     const licenses = source_refs.map(ref => catalog.sources.find(source => source.id === ref.source_id)!.license);
-    const license = licenses.every(row => row.status === 'identified' && row.spdx_id === licenses[0].spdx_id) ? licenses[0] : { status: licenses.every(row => row.status === 'unknown') ? 'unknown' as const : 'conflicting' as const };
+    const license = fixed ? { status: 'unknown' as const } : licenses.every(row => row.status === 'identified' && row.spdx_id === licenses[0].spdx_id) ? licenses[0] : { status: licenses.every(row => row.status === 'unknown') ? 'unknown' as const : 'conflicting' as const };
+    const documentation_url = entry.documentation_url ?? (!fixed ? first.homepage : undefined);
     catalog.resources.push({ kind: 'resource', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
       resource_type: entry.type, domains: entry.domains, source_refs, project_ids: [], license,
-      ...(entry.documentation_url ?? first.homepage ? { documentation_url: entry.documentation_url ?? first.homepage } : {}),
+      ...(documentation_url ? { documentation_url } : {}), ...(entry.download_url ? { download_url: entry.download_url } : {}),
       ...(entry.inputs ? { inputs: entry.inputs } : {}), ...(entry.outputs ? { outputs: entry.outputs } : {}),
-      runtime: { status: 'not_described' },
-      provenance: { title: editor(source_refs), description: entry.description ? editor(source_refs) : first.provenance.description ?? editor(source_refs), resource_type: editor(source_refs), license: first.provenance.license } });
+      ...(entry.conditions ? { conditions: entry.conditions } : {}), runtime: entry.runtime ? structuredClone(entry.runtime) : { status: 'not_described' },
+      provenance: { title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), resource_type: editor(source_refs, entry.attribution), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution),
+        ...(entry.inputs ? { inputs: editor(source_refs, entry.attribution) } : {}), ...(entry.outputs ? { outputs: editor(source_refs, entry.attribution) } : {}), ...(entry.conditions ? { conditions: editor(source_refs, entry.attribution) } : {}), ...(entry.runtime ? { runtime: editor(source_refs, entry.attribution) } : {}),
+        ...(entry.download_url ? { download_url: editor(source_refs, entry.attribution) } : {}), ...(entry.documentation_url ? { documentation_url: editor(source_refs, entry.attribution) } : {}), ...(!fixed ? { license: first.provenance.license } : {}) } });
   }
   for (const entry of registry.projects) {
     const id = entityId('project', entry.key);
-    const source_refs = refs(entry.sources);
+    const source_refs = refs(entry.sources, entry.source_refs, id);
     if (blocked.has(id) || !source_refs) { tombstone(id); continue; }
     const resource_ids = entry.resources.map(key => entityId('resource', key)).filter(id => catalog.resources.some(row => row.id === id));
     const first = catalog.sources.find(source => source.id === source_refs[0].source_id)!;
-    const description = entry.description ?? first.description;
+    const description = entry.description ?? (!entry.source_refs?.some(ref => ref.commit) ? first.description : undefined);
     catalog.projects.push({ kind: 'project', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
-      domains: entry.domains, source_refs, resource_ids, provenance: { title: editor(source_refs), description: entry.description ? editor(source_refs) : first.provenance.description ?? editor(source_refs), domains: editor(source_refs) } });
+      domains: entry.domains, source_refs, resource_ids, provenance: { title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution) } });
     for (const resource of catalog.resources) if (resource_ids.includes(resource.id)) resource.project_ids.push(id);
   }
   for (const actor of catalog.actors.filter(actor => actor.account_type === 'organization')) {
@@ -141,6 +168,19 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
   const sourceRecords = new Map(catalog.sources.map(source => [source.id, source]));
   const actorRecords = new Map(catalog.actors.map(actor => [actor.id, actor]));
   const resourceRecords = new Map(catalog.resources.map(resource => [resource.id, resource]));
+  for (const relation of registry.relations ?? []) {
+    const references = [relation.from_id, relation.to_id, ...relation.evidence.flatMap(item => [item.source_id, item.actor_id].filter((id): id is string => Boolean(id)))];
+    if (blocked.has(relation.id) || references.some(id => blocked.has(id) || !publicRecords.has(id))) {
+      tombstone(relation.id);
+      diagnostics.push({ id: relation.id, message: 'Relation withheld because an endpoint or public evidence is unavailable.' });
+      continue;
+    }
+    if ([relation.recorded_at, ...relation.evidence.map(item => item.observed_at)].some(value => Date.parse(value) > Date.parse(at))) {
+      diagnostics.push({ id: relation.id, message: 'Relation evidence is not effective at this snapshot time.' });
+      continue;
+    }
+    catalog.relations.push(structuredClone(relation));
+  }
   function evidenceRepositoryUrl(value: string): string | undefined {
     const url = new URL(value);
     const parts = url.pathname.split('/').filter(Boolean);

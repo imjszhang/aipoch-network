@@ -3,6 +3,7 @@ import type { ErrorObject, ValidateFunction } from 'ajv';
 import { actorId, isSafeHttpsUrl, isSafeRelativePath, isSafeRepositoryPath, normalizeGitHubUrl, sourceId } from './identity.js';
 import { catalogSchema, COLLECTION_KIND, enhancementSchema, manifestSchema, shardSchema } from './schema.js';
 import { COLLECTION_NAMES } from './types.js';
+import { relationKindsAllowed } from './relations.js';
 import type { CatalogData, CatalogManifest, CatalogRecord, CatalogShard, License, Provenance, SourceRef, ValidationResult } from './types.js';
 
 function isUtcDate(value: string): boolean {
@@ -124,6 +125,9 @@ export function validateCatalog(input: unknown): ValidationResult {
     requireRef(relation.from_id, ['source_repository', 'actor', 'project', 'resource', 'collection'], `${relation.id}.from_id`);
     requireRef(relation.to_id, ['source_repository', 'actor', 'project', 'resource', 'collection'], `${relation.id}.to_id`);
     if (relation.from_id === relation.to_id) errors.push(`${relation.id}: self-relation is not meaningful`);
+    const from = entities.get(relation.from_id);
+    const to = entities.get(relation.to_id);
+    if (from && to && !relationKindsAllowed(relation.type, from.kind, to.kind)) errors.push(`${relation.id}: relationship type does not match its endpoint kinds`);
     evidence(relation.evidence, relation.id);
   }
   for (const claim of data.claims) {

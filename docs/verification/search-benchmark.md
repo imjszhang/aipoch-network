@@ -1,5 +1,7 @@
 # 搜索与单详情性能测量
 
+后续验证：本文保留此前“纯索引与固定详情”的测量范围。完整100/1,000/10,000条静态构建、真实浏览器采样及首次搜索全部请求的压缩等价结果，已补充在[完整站点测量](full-site-benchmark.md)；本文后面的“未测范围”仅指本次独立索引测量。
+
 测量时间：2026-09-12T10:12:24.920Z 至 2026-09-12T10:12:27.222Z。由 `scripts/benchmark.ts` 实际运行生成；完整原始数据见 [search-benchmark.json](search-benchmark.json)。
 
 机器：Apple M5 Max，arm64，darwin 25.6.0，18 个逻辑 CPU，内存 65536.00 MiB。Node v24.18.1；MiniSearch 7.2.0；React 19.3.0。

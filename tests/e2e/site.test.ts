@@ -20,8 +20,9 @@ test('search, filters, sort, query links and reset select real records', async (
   await expect(page.locator('.results-list')).toContainText('SciPy');
   await expect(page.locator('.results-list')).not.toContainText('Biopython');
   await page.getByRole('button', { name: 'Capabilities', exact: true }).click();
-  await expect(page.locator('.results-list > *')).toHaveCount(1);
+  await expect(page.locator('.results-list > *')).toHaveCount(2);
   await expect(page.locator('.results-list')).toContainText('SciPy scientific computing library');
+  await expect(page.locator('.results-list')).toContainText('SciPy tutorial at a reviewed revision');
   await page.getByRole('searchbox', { name: 'Search directory' }).fill('no-such-research-zzzz');
   await expect(page.getByRole('heading', { name: 'No matching entries' })).toBeVisible();
   await page.getByRole('button', { name: 'Clear filters', exact: true }).click();
@@ -128,4 +129,43 @@ test('navigation and core text fit with enlarged text', async ({ page }, testInf
     await page.getByRole('button', { name: 'Open navigation', exact: true }).click();
     await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
   }
+});
+
+test('a reviewed source path and a cross-repository relation preserve their exact evidence', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto('./capabilities/resource~scipy-tutorial/');
+  await expect(page.locator('#sources')).toContainText('documentation');
+  await expect(page.locator('#sources').getByRole('link', { name: 'doc/source/tutorial/index.rst', exact: false })).toHaveAttribute('href',
+    'https://github.com/scipy/scipy/tree/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst');
+  await page.goto('./projects/project~scanpy/');
+  await expect(page.locator('#sources .source-record')).toHaveCount(2);
+  await expect(page.locator('#sources')).toContainText('scanpy');
+  await expect(page.locator('#sources')).toContainText('anndata');
+  await page.goto('./capabilities/resource~scanpy-library/');
+  const relation = page.locator('#outputs .source-record');
+  await expect(relation).toContainText('Relationship: uses');
+  await expect(relation).toContainText('software relationship, not scientific validation');
+  await expect(relation.getByRole('link', { name: 'github evidence', exact: false })).toHaveAttribute('href',
+    'https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md');
+  await relation.locator('a').first().click();
+  await expect(page).toHaveURL(/capabilities\/resource~anndata-library\/$/);
+  await expect(page.locator('#outputs .source-record')).toContainText('Incoming relationship: uses');
+  expect(errors).toEqual([]);
+});
+
+test('real individual and multi-source organization routes retain source identities and correction intent', async ({ page }) => {
+  await page.goto('./organizations/actor~github~95305807/');
+  await expect(page.getByRole('heading', { name: 'scverse', exact: true })).toBeVisible();
+  await expect(page.locator('#sources .source-record')).toHaveCount(2);
+  await expect(page.locator('.glance')).toContainText('Community indexed');
+  await expect(page.locator('#evidence')).toContainText('No maintainer acknowledgement or scientific validation');
+  await page.goto('./researchers/actor~github~315810/');
+  await expect(page.getByRole('heading', { name: 'mwaskom', exact: true })).toBeVisible();
+  await expect(page.locator('#sources')).toContainText('seaborn');
+  await page.getByRole('link', { name: 'Suggest a correction' }).click();
+  await expect(page.getByLabel('Public GitHub repository or organization URL')).toHaveValue('https://github.com/mwaskom');
+  await page.getByRole('button', { name: 'Continue', exact: false }).click();
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Continue', exact: false }).click();
+  await expect(page.locator('.draft')).toContainText('actor:github:315810');
 });

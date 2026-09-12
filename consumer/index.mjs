@@ -40,11 +40,17 @@ function safeRelative(value, at) {
   assert(decoded.split('/').every(part => part && part !== '.' && part !== '..'), `${at}: path traversal or empty segment`);
   return value;
 }
+function repositoryPath(value, at) {
+  text(value, at, 2048);
+  assert(!value.startsWith('/') && !/[?#:%\\\u0000-\u001f\u007f]/.test(value) && value.split('/').every(part => part && part !== '.' && part !== '..'), `${at}: unsafe repository path`);
+  return value;
+}
 function https(value, at) {
   text(value, at, 4096);
   let url;
   try { url = new URL(value); } catch { throw new CatalogError(`${at}: invalid URL`); }
-  assert(url.protocol === 'https:' && !url.username && !url.password && !url.port && !/[\u0000-\u0020\u007f\\]/.test(value), `${at}: expected HTTPS URL without credentials`);
+  const credentialQuery = [...url.searchParams.keys()].some(key => /^(?:access_token|token|secret|password|authorization|api_key|client_secret)$/i.test(key));
+  assert(url.protocol === 'https:' && !url.username && !url.password && !credentialQuery && !url.port && !/[\u0000-\u0020\u007f\\]/.test(value), `${at}: expected HTTPS URL without credentials`);
   return value;
 }
 function entryUrl(value) {
@@ -73,7 +79,7 @@ function provenance(value, at, reference) {
   https(value.url, `${at}.url`); date(value.observed_at, `${at}.observed_at`);
   if (value.source_id !== undefined) reference(value.source_id, ['source_repository'], `${at}.source_id`);
   if (value.actor_id !== undefined) reference(value.actor_id, ['actor'], `${at}.actor_id`);
-  optional(value, 'path', safeRelative, at);
+  optional(value, 'path', repositoryPath, at);
   optional(value, 'commit', (v, location) => pattern(v, commitPattern, location), at);
   assert(!(value.path || value.commit) || value.source_id, `${at}: path/commit evidence requires source_id`);
   optional(value, 'scope', text, at); optional(value, 'method', text, at);
@@ -81,7 +87,7 @@ function provenance(value, at, reference) {
 function evidence(value, at, reference) { const values = array(value, at); assert(values.length > 0, `${at}: missing evidence`); values.forEach((item, n) => provenance(item, `${at}[${n}]`, reference)); }
 function license(value, at) {
   obj(value, at); oneOf(value.status, ['unknown', 'identified', 'conflicting'], `${at}.status`);
-  optional(value, 'url', https, at); optional(value, 'path', safeRelative, at);
+  optional(value, 'url', https, at); optional(value, 'path', repositoryPath, at);
   optional(value, 'commit', (v, location) => pattern(v, commitPattern, location), at);
   for (const key of ['spdx_id', 'name', 'conditions']) optional(value, key, text, at);
   assert(value.status !== 'unknown' || (!value.spdx_id && !value.name), `${at}: unknown license cannot identify a license`);
@@ -93,13 +99,24 @@ function sourceRefs(value, at, reference) {
     const location = `${at}[${n}]`; obj(item, location);
     reference(item.source_id, ['source_repository'], location);
     oneOf(item.role, ['primary', 'documentation', 'implementation', 'data', 'evidence', 'related'], `${location}.role`);
-    optional(item, 'path', safeRelative, location); optional(item, 'url', https, location); optional(item, 'ref', text, location);
+    optional(item, 'path', repositoryPath, location); optional(item, 'url', https, location); optional(item, 'ref', text, location);
     optional(item, 'commit', (v, p) => pattern(v, commitPattern, p), location);
     optional(item, 'sha256', (v, p) => pattern(v, hashPattern, p), location);
     optional(item, 'resolved_at', date, location);
     assert(!item.resolved_at || item.commit, `${location}: resolved_at requires immutable commit`);
     assert(!item.sha256 || item.commit || item.url, `${location}: checksum has no content locator`);
   });
+}
+
+// Public relation semantics are implemented locally so this example stays portable.
+function relationKindsAllowed(type, from, to) {
+  if (from === 'tombstone' || to === 'tombstone') return true;
+  if (type === 'fork_of') return from === 'source_repository' && to === 'source_repository';
+  if (type === 'produces') return from === 'project' && to === 'resource';
+  if (['authored_by', 'maintained_by', 'curated_by'].includes(type)) return to === 'actor' && from !== 'actor';
+  if (type === 'uses') return ['project', 'resource'].includes(from) && ['source_repository', 'resource'].includes(to);
+  if (type === 'supersedes') return from === to;
+  return true;
 }
 
 function validateData(data, generatedAt) {
@@ -179,9 +196,10 @@ function validateData(data, generatedAt) {
       listRefs(item.actor_ids, ['actor'], `${at}.actor_ids`); listRefs(item.item_ids, entityKinds, `${at}.item_ids`); text(item.selection_basis, `${at}.selection_basis`, 5000);
     } else if (name === 'relations') {
       assert(item.id.startsWith('relation:'), `${at}: wrong identity prefix`);
-      reference(item.from_id, entityKinds, `${at}.from_id`); reference(item.to_id, entityKinds, `${at}.to_id`);
+      const from = reference(item.from_id, entityKinds, `${at}.from_id`), to = reference(item.to_id, entityKinds, `${at}.to_id`);
       assert(item.from_id !== item.to_id, `${at}: self relation`);
       oneOf(item.type, ['uses', 'produces', 'references', 'authored_by', 'maintained_by', 'curated_by', 'fork_of', 'derived_from', 'supersedes', 'split_from'], `${at}.type`);
+      assert(relationKindsAllowed(item.type, from.kind, to.kind), `${at}: relation endpoint kinds do not match its meaning`);
       evidence(item.evidence, `${at}.evidence`, reference); date(item.recorded_at, `${at}.recorded_at`);
       optional(item, 'commit', (v, p) => pattern(v, commitPattern, p), at);
     } else if (name === 'claims') {
@@ -296,8 +314,9 @@ export async function loadCatalog(manifestUrl, options = {}) {
       return { id: item.id, status: item.status, sources: item.source_refs.map(ref => {
         const source = records.get(ref.source_id);
         if (source.kind === 'tombstone') return { source_id: ref.source_id, availability: 'withdrawn', version: { status: 'unavailable' } };
+        const content_url = ref.commit ? `${source.canonical_url.replace(/\/+$/, '')}/tree/${ref.commit}${ref.path ? `/${ref.path.split('/').map(encodeURIComponent).join('/')}` : ''}` : ref.url && ref.sha256 ? ref.url : undefined;
         return { source_id: source.id, canonical_url: source.canonical_url, availability: source.availability,
-          version: { status: ref.commit || (ref.url && ref.sha256) ? 'fixed' : 'unfixed', ...(ref.commit ? { basis: 'commit', commit: ref.commit } : ref.url && ref.sha256 ? { basis: 'content_checksum' } : {}), ...(ref.path ? { path: ref.path } : {}), ...(ref.ref ? { ref: ref.ref } : {}), ...(ref.sha256 ? { sha256: ref.sha256 } : {}), ...(ref.url ? { url: ref.url } : {}) } };
+          version: { status: ref.commit || (ref.url && ref.sha256) ? 'fixed' : 'unfixed', ...(content_url ? { content_url } : {}), ...(ref.commit ? { basis: 'commit', commit: ref.commit } : ref.url && ref.sha256 ? { basis: 'content_checksum' } : {}), ...(ref.path ? { path: ref.path } : {}), ...(ref.ref ? { ref: ref.ref } : {}), ...(ref.sha256 ? { sha256: ref.sha256 } : {}), ...(ref.url ? { url: ref.url } : {}) } };
       }) };
     },
   };

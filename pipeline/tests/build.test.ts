@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, readdir, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { generate } from '../build.js';
+import { generate, MAX_SHARD_BYTES } from '../build.js';
 import type { Registry } from '../registry.js';
 import type { SnapshotBatch } from '../normalize.js';
 import { COLLECTION_NAMES, validateCatalog, validateManifest, validateShard, emptyCatalog, type CatalogData, type CatalogManifest, type CatalogRecord, type CatalogShard } from '../../spec/index.js';
@@ -59,6 +59,25 @@ test('fixed independent inputs produce byte-identical builds and snapshot identi
   assert.match(first.snapshot_id, /^[a-f0-9]{24}$/);
 });
 
+test('large valid records split by bytes before exceeding the independent consumer budget', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'aipoch-shard-bytes-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const { registry, batch } = fixture();
+  registry.projects = [];
+  registry.resources = Array.from({ length: 200 }, (_, i) => ({
+    key: `large-${i}`, title: `Large research description ${i}`, type: 'method', domains: ['Research'],
+    description: 'x'.repeat(20000), sources: [registry.sources[0].url],
+  }));
+  const manifest = await generate(registry, batch, root, 1000);
+  assert.ok(manifest.collections.resources.length > 1, 'the record count alone would have produced one oversized shard');
+  assert.equal(manifest.collections.resources.reduce((sum, part) => sum + (part.count ?? 0), 0), 200);
+  for (const part of manifest.collections.resources) {
+    const content = await readFile(join(root, 'catalog/v1', part.href));
+    assert.equal(content.length, part.bytes);
+    assert.ok(content.length <= MAX_SHARD_BYTES);
+  }
+});
+
 test('manifest shards have verifiable byte counts and hashes and reconstruct the complete public catalog', async t => {
   const root = await mkdtemp(join(tmpdir(), 'aipoch-shard-test-'));
   t.after(() => rm(root, { recursive: true, force: true }));
@@ -84,7 +103,7 @@ test('manifest shards have verifiable byte counts and hashes and reconstruct the
   const check = validateCatalog(catalog);
   assert.equal(check.ok, true, check.errors.join('\n'));
   assert.equal(catalog.resources.length, 3);
-  assert.equal(catalog.sources[0]?.readme, 'PUBLIC_README_MARKER');
+  assert.equal(catalog.sources[0]?.readme, undefined, 'full README stays in local observations, not public shards');
 
   const snapshotRoot = join(root, 'catalog/v1/snapshots', manifest.snapshot_id);
   const pinned = JSON.parse(await readFile(join(snapshotRoot, 'manifest.json'), 'utf8')) as CatalogManifest;

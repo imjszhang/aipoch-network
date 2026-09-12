@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { normalize, type SnapshotBatch } from '../normalize.js';
 import type { SourceSnapshot } from '../github.js';
 import type { Registry } from '../registry.js';
+import { applyRegistryEnhancement } from '../registry.js';
 import { validateCatalog } from '../../spec/index.js';
 import type { Actor, Claim } from '../../spec/types.js';
 
@@ -72,6 +73,40 @@ test('curated collections have field provenance and the entire normalized catalo
   assert.ok(collection.provenance.title?.every(item => item.role === 'editor' || item.role === 'community'));
 });
 
+test('public GitHub feature flags expose canonical collaboration entry points with observation provenance', () => {
+  const { registry, batch } = fixture();
+  const snapshot = batch.sources[0]!;
+  snapshot.repository!.has_discussions = true;
+  snapshot.repository!.html_url = 'https://github.com/lab/renamed-methods';
+  snapshot.repository!.full_name = 'lab/renamed-methods';
+  snapshot.repository!.name = 'renamed-methods';
+  const catalog = normalize(registry, batch).catalog;
+  const source = catalog.sources.find(row => row.id === 'source:github:101')!;
+  assert.deepEqual(source.collaboration, {
+    issues_url: 'https://github.com/lab/renamed-methods/issues',
+    discussions_url: 'https://github.com/lab/renamed-methods/discussions',
+  });
+  assert.equal(source.provenance.collaboration?.[0]?.role, 'github');
+  assert.equal(source.provenance.collaboration?.[0]?.source_id, source.id);
+  assert.equal(source.provenance.collaboration?.[0]?.observed_at, NOW);
+  assert.doesNotMatch(JSON.stringify(source.collaboration), /CONTRIBUTING|old-methods/);
+  const check = validateCatalog(catalog);
+  assert.equal(check.ok, true, check.errors.join('\n'));
+});
+
+test('closed or unreported GitHub features do not manufacture collaboration URLs', () => {
+  const { registry, batch } = fixture();
+  batch.sources[0]!.repository!.has_issues = false;
+  batch.sources[0]!.repository!.has_discussions = true;
+  Object.assign(batch.sources[1]!.repository!, { has_issues: undefined, has_discussions: 'true' });
+  let catalog = normalize(registry, batch).catalog;
+  assert.deepEqual(catalog.sources.find(row => row.id === 'source:github:101')?.collaboration, { discussions_url: `${A}/discussions` });
+  assert.equal(catalog.sources.find(row => row.id === 'source:github:102')?.collaboration, undefined);
+  batch.sources[0]!.repository!.has_discussions = false;
+  catalog = normalize(registry, batch).catalog;
+  assert.ok(catalog.sources.every(source => source.collaboration === undefined && source.provenance.collaboration === undefined));
+});
+
 test('editor descriptions survive source refresh and remain distinguished from upstream claims', () => {
   const { registry, batch } = fixture();
   const input = JSON.stringify({ registry, batch });
@@ -124,6 +159,7 @@ test('temporary failure is visibly stale even before the normal age threshold', 
 
 test('after seven days harvested content and dependent resources are withheld, preserving unrelated sources', () => {
   const { registry, batch } = fixture();
+  batch.sources[0]!.repository!.has_discussions = true;
   batch.sources[0]!.observed_at = new Date(Date.parse(NOW) - 8 * 24 * 60 * 60 * 1000).toISOString();
   const result = normalize(registry, batch);
   const old = result.catalog.sources.find(row => row.id === 'source:github:101')!;
@@ -132,6 +168,8 @@ test('after seven days harvested content and dependent resources are withheld, p
   assert.equal(old.readme, undefined);
   assert.equal(old.latest_commit, undefined);
   assert.equal(old.default_branch, undefined);
+  assert.equal(old.collaboration, undefined);
+  assert.equal(old.provenance.collaboration, undefined);
   assert.equal(old.license.status, 'unknown');
   assert.deepEqual(result.catalog.resources.map(row => row.id), ['resource:data']);
   assert.deepEqual(result.catalog.projects.map(row => row.id), ['project:data']);
@@ -142,6 +180,7 @@ test('after seven days harvested content and dependent resources are withheld, p
 test('private and suppressed sources are removed with dependent research metadata and minimal tombstones', () => {
   for (const mode of ['private', 'suppressed'] as const) {
     const { registry, batch } = fixture();
+    batch.sources[0]!.repository!.has_discussions = true;
     if (mode === 'private') batch.sources[0]!.availability = 'private';
     else batch.sources[0]!.suppressed = true;
     const catalog = normalize(registry, batch).catalog;
@@ -427,6 +466,131 @@ test('repository maintenance, capability and scientific claims remain separate f
   assert.equal(catalog.resources[0]?.runtime.status, 'not_described');
   const checked = validateCatalog(catalog);
   assert.equal(checked.ok, true, checked.errors.join('\n'));
+});
+
+test('declared immutable resource and project locations survive source refresh byte for byte', () => {
+  const { registry, batch } = fixture();
+  const pinned = { source_url: A, source_id: 'source:github:101', role: 'implementation' as const, path: '研究/run notes.md', commit: 'c'.repeat(40), sha256: 'd'.repeat(64), ref: 'v1.0', resolved_at: CLAIM_TIME };
+  registry.resources[0].source_refs = [pinned, { ...pinned, role: 'documentation', path: 'docs/reference.md' }];
+  registry.projects[0].source_refs = [pinned, { source_url: B, role: 'data', ref: 'main' }];
+  const original = JSON.stringify(registry);
+  const first = normalize(registry, batch).catalog;
+  const refreshed = structuredClone(batch);
+  refreshed.as_of = '2026-09-13T08:00:00Z';
+  refreshed.sources[0].observed_at = refreshed.as_of;
+  refreshed.sources[0].repository!.commit = 'e'.repeat(40);
+  refreshed.sources[0].repository!.description = 'A newer default branch description';
+  const second = normalize(registry, refreshed).catalog;
+  const firstResource = first.resources.find(row => row.id === 'resource:workflow')!;
+  const secondResource = second.resources.find(row => row.id === 'resource:workflow')!;
+  assert.deepEqual(secondResource.source_refs, firstResource.source_refs);
+  assert.equal(secondResource.source_refs[0].commit, pinned.commit);
+  assert.equal(secondResource.source_refs[0].resolved_at, CLAIM_TIME);
+  assert.equal(secondResource.source_refs[0].path, pinned.path);
+  assert.match(secondResource.source_refs[0].url!, /blob\/cccccccccccccccccccccccccccccccccccccccc\/%E7%A0%94%E7%A9%B6\/run%20notes.md$/);
+  assert.deepEqual(second.projects.find(row => row.id === 'project:joint')?.source_refs, first.projects.find(row => row.id === 'project:joint')?.source_refs);
+  assert.equal(second.projects.find(row => row.id === 'project:joint')?.source_refs[1].commit, undefined, 'an explicit moving ref never inherits the default-branch SHA');
+  assert.equal(second.sources.find(row => row.id === 'source:github:101')?.latest_commit, 'e'.repeat(40));
+  assert.match(secondResource.provenance.source_refs[0].scope!, /not verified by this pipeline/);
+  assert.equal(JSON.stringify(registry), original);
+  const validation = validateCatalog(second);
+  assert.equal(validation.ok, true, validation.errors.join('\n'));
+});
+
+test('fixed locations without a supplied resolution time are not falsely resolved during refresh', () => {
+  const { registry, batch } = fixture();
+  registry.resources[1].source_refs = [{ source_url: A, source_id: 'source:github:101', role: 'primary', path: 'method.py', commit: 'c'.repeat(40) }];
+  batch.sources[0].repository!.homepage = 'https://example.org/latest-documentation';
+  const resource = normalize(registry, batch).catalog.resources.find(row => row.id === 'resource:tool')!;
+  assert.equal(resource.source_refs[0].resolved_at, undefined);
+  assert.equal(resource.description, undefined, 'default-branch text is not evidence for older fixed content');
+  assert.equal(resource.documentation_url, undefined);
+  assert.equal(resource.license.status, 'unknown', 'current-branch license cannot be silently assigned to a historical file');
+});
+
+test('name reuse cannot attach a declared fixed version to a different GitHub repository ID', () => {
+  const { registry, batch } = fixture();
+  registry.resources[0].source_refs = [{ source_url: A, source_id: 'source:github:101', role: 'primary', path: 'workflow.yaml', commit: 'c'.repeat(40) }];
+  batch.sources[0].repository!.id = 999;
+  const result = normalize(registry, batch);
+  assert.ok(result.catalog.sources.some(row => row.id === 'source:github:999'));
+  assert.ok(!result.catalog.resources.some(row => row.id === 'resource:workflow'));
+  assert.ok(result.catalog.tombstones.some(row => row.id === 'resource:workflow'));
+  assert.ok(result.diagnostics.some(row => /identity no longer matches/.test(row.message)));
+  const check = validateCatalog(result.catalog);
+  assert.equal(check.ok, true, check.errors.join('\n'));
+});
+
+test('reviewed relations produce a real graph and disappear when an endpoint or evidence is withdrawn', () => {
+  const { registry, batch } = fixture();
+  registry.relations = [{ kind: 'relation', id: 'relation:joint-produces-workflow', from_id: 'project:joint', to_id: 'resource:workflow', type: 'produces', recorded_at: NOW, commit: SHA,
+    evidence: [{ role: 'editor', review: 'reviewed', observed_at: NOW, url: A, source_id: 'source:github:101', commit: SHA, scope: 'A documented study output.' }] }];
+  const catalog = normalize(registry, batch).catalog;
+  assert.deepEqual(catalog.relations, registry.relations);
+  assert.equal(catalog.claims.length, 0, 'an evidenced relation is not a maintainer verification');
+  const check = validateCatalog(catalog);
+  assert.equal(check.ok, true, check.errors.join('\n'));
+  for (const id of ['project:joint', 'resource:workflow', 'source:github:101', 'relation:joint-produces-workflow']) {
+    const copy = structuredClone(registry);
+    copy.withdrawals.push({ id, withdrawn_at: NOW, reason: 'withdrawn' });
+    const withdrawn = normalize(copy, batch).catalog;
+    assert.equal(withdrawn.relations.length, 0, id);
+    assert.ok(withdrawn.tombstones.some(row => row.id === 'relation:joint-produces-workflow'), id);
+    const validation = validateCatalog(withdrawn);
+    assert.equal(validation.ok, true, validation.errors.join('\n'));
+  }
+});
+
+test('optional community enhancement can enrich a URL-only baseline without changing upstream observations', () => {
+  const { registry, batch } = fixture();
+  registry.projects = []; registry.resources = []; registry.collections = [];
+  const baseline = normalize(registry, batch).catalog;
+  const enhanced = applyRegistryEnhancement(registry, { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed public optional description.',
+    resources: [{ key: 'enhanced-method', title: 'Community method', description: 'Community supplied summary', type: 'method', domains: ['Research'], sources: [A], source_refs: [{ source_url: A, source_id: 'source:github:101', role: 'documentation', commit: 'c'.repeat(40), path: 'docs/method.md' }] }],
+    projects: [{ key: 'enhanced-project', title: 'Community project', domains: ['Research'], sources: [A], resources: ['enhanced-method'] }],
+    relations: [{ kind: 'relation', id: 'relation:enhanced-output', from_id: 'project:enhanced-project', to_id: 'resource:enhanced-method', type: 'produces', recorded_at: NOW, evidence: [{ role: 'maintainer', review: 'reviewed', observed_at: NOW, url: A, source_id: 'source:github:101' }] }],
+  });
+  assert.equal(enhanced.applied, true, enhanced.errors.join('\n'));
+  const catalog = normalize(enhanced.registry, batch).catalog;
+  assert.deepEqual(catalog.sources, baseline.sources);
+  assert.equal(catalog.resources[0].provenance.title[0].role, 'community');
+  assert.equal(catalog.resources[0].provenance.description[0].role, 'community');
+  assert.equal(catalog.relations[0].evidence[0].role, 'community');
+  assert.equal(catalog.resources[0].source_refs[0].resolved_at, undefined);
+  assert.equal(catalog.organizations[0].participation, 'community_indexed');
+  const check = validateCatalog(catalog);
+  assert.equal(check.ok, true, check.errors.join('\n'));
+  const invalid = applyRegistryEnhancement(registry, { version: 1, source_url: A, resources: [{ execute: 'rm -rf /' }] });
+  assert.equal(invalid.applied, false);
+  assert.deepEqual(normalize(invalid.registry, batch).catalog, baseline);
+});
+
+test('declared downloads, conditions and runtime documentation reach the public resource without inventing execution', () => {
+  const { registry, batch } = fixture();
+  const resource = registry.resources[0];
+  resource.download_url = 'https://example.org/releases/workflow.zip';
+  resource.conditions = ['Python 3 is required.', 'Consult the source license before reuse.'];
+  resource.runtime = { status: 'maintainer_described', documentation_url: 'https://example.org/docs/run-workflow' };
+  const catalog = normalize(registry, batch).catalog;
+  const projected = catalog.resources.find(row => row.id === 'resource:workflow')!;
+  assert.equal(projected.download_url, resource.download_url);
+  assert.deepEqual(projected.conditions, resource.conditions);
+  assert.deepEqual(projected.runtime, resource.runtime);
+  assert.ok(projected.provenance.download_url?.length);
+  assert.ok(projected.provenance.conditions?.length);
+  assert.ok(projected.provenance.runtime?.length);
+  assert.equal(catalog.claims.length, 0);
+  const check = validateCatalog(catalog);
+  assert.equal(check.ok, true, check.errors.join('\n'));
+
+  registry.resources = []; registry.projects = []; registry.collections = [];
+  const applied = applyRegistryEnhancement(registry, { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed community runtime description.', resources: [resource] });
+  assert.equal(applied.applied, true, applied.errors.join('\n'));
+  const enhanced = normalize(applied.registry, batch).catalog.resources[0];
+  assert.equal(enhanced.runtime.status, 'community_described');
+  assert.equal(enhanced.runtime.documentation_url, resource.runtime.documentation_url);
+  assert.equal(enhanced.provenance.runtime[0].role, 'community');
+  assert.equal(resource.runtime.status, 'maintainer_described', 'external inputs are not mutated');
 });
 
 test('a candidate without a verified snapshot cannot create invented GitHub metadata', () => {

@@ -48,6 +48,20 @@ test('graph preserves many resources per repository and multiple source reposito
   assert.match(validateCatalog(data).errors.join('\n'), /missing reference source:github:999/);
 });
 
+test('relation kinds preserve project outputs, authorship, and repository fork meanings', () => {
+  const data = createFixtureCatalog();
+  data.relations[0].type = 'fork_of';
+  assert.match(validateCatalog(data).errors.join('\n'), /endpoint kinds/);
+  data.relations[0].type = 'authored_by';
+  assert.match(validateCatalog(data).errors.join('\n'), /endpoint kinds/);
+  data.relations[0].to_id = 'actor:github:102';
+  assertValidCatalog(data);
+  data.relations[0].type = 'fork_of';
+  data.relations[0].from_id = 'source:github:202';
+  data.relations[0].to_id = 'source:github:201';
+  assertValidCatalog(data);
+});
+
 test('field provenance preserves competing scopes; missing attribution is rejected', () => {
   const data = createFixtureCatalog();
   data.resources[0]!.provenance.description!.push({ ...fixtureEvidence('maintainer'), review: 'disputed', scope: 'Only commit ' + FIXTURE_COMMIT });
@@ -109,6 +123,21 @@ test('unknown optional fields and new resource classifications are compatible, u
   assert.equal(resourceTypeLabel('future-kind'), 'Other resource');
   Object.assign(data.sources[0]!, { availability: 'probably-safe' });
   assert.equal(validateCatalog(data).ok, false);
+});
+
+test('optional source collaboration fields preserve older records and validate public HTTPS URLs', () => {
+  const data = createFixtureCatalog();
+  assert.equal(data.sources[0]!.collaboration, undefined);
+  assertValidCatalog(data);
+  data.sources[0]!.collaboration = {
+    issues_url: `${data.sources[0]!.canonical_url}/issues`,
+    discussions_url: `${data.sources[0]!.canonical_url}/discussions`,
+  };
+  assertValidCatalog(data);
+  for (const unsafe of ['http://github.com/example-lab/research/issues', 'javascript:alert(1)', 'https://github.com/example-lab/research/issues?token=secret', 'https://user:secret@github.com/example-lab/research/discussions']) {
+    data.sources[0]!.collaboration.issues_url = unsafe;
+    assert.equal(validateCatalog(data).ok, false, unsafe);
+  }
 });
 
 test('temporary failure must be stale; private content cannot remain in a public record', () => {

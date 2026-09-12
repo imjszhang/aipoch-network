@@ -33,6 +33,7 @@
 | --- | --- |
 | 所有展示对象 | `id, kind, title, status, updated_at, provenance` 必填；`description` 可省略。`status` 是 `candidate` 或 `listed`，不代表认证。`title` 和已发布的 `description` 必须有字段溯源 |
 | `sources` / `source_repository` | 真实 GitHub 仓库。`provider='github'`、数字 `provider_id`、`canonical_url`、`owner_id`、`availability`、`archived`、`observed_at`、`stale`、`license`、`aliases` 必填。README、默认分支、语言、Stars、最新 commit 等未知时省略 |
+| `sources.collaboration` | 可选 `{issues_url?, discussions_url?}`，均为安全 HTTPS 地址。仅从公开观察中明确启用的 GitHub 功能生成规范仓库下的 `/issues`、`/discussions`，字段溯源记录观察时间；来源内容超过七天未核实或被撤下时不保留。缺失表示未提供入口，不推断贡献文件位置；旧消费者可忽略整个可选字段 |
 | `actors` / `actor` | GitHub 账号，`account_type='user'|'organization'`。维护 `login, canonical_url, provider_id, aliases`，不等同实名身份 |
 | `organizations` / `organization` | 组织 Actor 的展示扩展；`id` 必须等于 `actor_id`，Actor 必须为 organization。`source_ids, resource_ids` 是明确策展范围；普通收录使用 `participation='community_indexed'` |
 | `projects` / `project` | 有自身稳定 ID 的研究工作；`domains, source_refs, resource_ids` 必填，`question` 可选。项目可以跨多个来源，不能用一个仓库自动推断研究目标 |
@@ -72,7 +73,11 @@ Claim 的 verified 必须有 `verified_by, verified_at` 和 reviewed evidence。
 
 `validateCatalog, validateManifest, validateShard, validateEnhancement` 返回 `{ok, errors}`；`assertValidCatalog` 在失败时抛出可读错误。完整目录校验先执行 JSON Schema，再检查稳定身份、对象引用、类别、字段溯源、许可、认领及 tombstone 隐私约束。单个 shard 校验没有其他 shard 的上下文，消费者组装完成后仍需执行完整引用和状态检查。
 
-可选目录端增强文件为 `{contract_version, source_url, projects?, resources?}`，至少包含 projects/resources 之一，内容使用同一 Project/Resource 类型。此检查仅判断增强结构；与来源身份的匹配、编辑审核以及最终引用完整性在合并后的目录中检查。增强文件缺失、解析失败或校验失败，不影响另外一个已通过 URL 校验的基础投稿。文件不含可执行 hook，不调用上游安装或构建命令。
+可选的**公共记录增强包**为 `{contract_version, source_url, projects?, resources?}`，至少包含 projects/resources 之一，内容使用同一归一化 Project/Resource 类型。`validateEnhancement` 仅验证这些公共记录结构，不是 CLI 的目录编写文件入口。实际编写并应用补充项目/资源/关系使用 [registry 增强格式及 applyRegistryEnhancement](../registry/README.md)。来源身份、编辑审核与最终引用在同一归一化管线检查；增强缺失、解析失败或校验失败不影响已通过 URL 校验的基础投稿。两种格式均不含可执行 hook。
+
+目录已能通过显式 `source_refs` 保存完整 commit、路径、角色和可选摘要；后续来源刷新不会改写这些声明。未提供的解析时间不补写，当前分支的许可和描述不冒充历史内容的事实。请结合 `provenance.source_refs` 判断它是已经观察到的版本还是目录编者声明的位置；固定标识本身不证明文件可用或执行成功。
+
+关系的语义校验还要求：produces 为 Project → Resource，fork_of 为 SourceRepository → SourceRepository，作者/维护/策展关系指向 Actor，uses 的发起者为 Project/Resource 且目标为 SourceRepository/Resource，supersedes 两端为同类对象。端点 ID 与对象类型、证据引用分别验证，关系不会自动赋予维护权或科学有效性。
 
 可移植 Schema 使用四个自定义格式：`utc-date-time`（上述严格 UTC）、`safe-https-url`（无凭据 HTTPS）、`safe-relative-path`（发布范围内相对 URL 路径）、`safe-repository-path`（Git 相对路径，可含普通空格和非英文字符，禁止遍历、控制字符及 URL 歧义字符）。从 Git 路径构造外部 URL 时需逐段编码。独立实现必须按本文补齐这些格式及跨对象语义检查，不能在忽略未知 format 后宣称完成全部安全校验。
 
@@ -82,3 +87,5 @@ node --import tsx spec/export-schema.ts
 ```
 
 第二条仅在有意修改契约时重导出 JSON Schema 和固定 JSON 夹具；测试检查公开 schema 与实际实现一致。破坏性变更应创建新契约版本，不得通过重导出悄悄修改 v1 已发布语义。
+
+发布边界：当前生成器不输出来源完整 `readme`（该可选字段仅为兼容保留），只输出目录所需元数据与证据链接。分片默认最多 200 条且最多 4 MB，固定快照身份包含分片参数；改变分片不会覆写原固定地址。

@@ -79,6 +79,38 @@ Issue Forms 位于 `.github/ISSUE_TEMPLATE/`，普通 Issue 后备入口保持�
 6. 需要回滚时对旧输入应用最新抑制记录，重新构建并检查，再恢复允许发布的内容。旧包通过过历史检查也不能绕过当前撤回。
 7. 重新收录需核对当前公开状态与原撤回原因。人工撤回仍有效时不得仅因刷新成功恢复。恢复认领还需重新核验主体和权限。
 
+### 历史快照与恢复候选
+
+`npm run catalog:build` 默认从当前 `generated/` 中保留经过验证且仍安全的快照。完整 `npm run build` 优先使用上次完整 `dist/` 的历史；不存在完整站点产物时使用 `generated/`。清洁 runner 可通过 `HISTORY_DIRECTORY` 指定已取得的允许公开候选包根目录，其中应直接包含 `catalog/v1/`；输入包仍需经过每片校验和当前政策过滤，不能把 artifact 下载成功当作验证完成。
+
+查看 `catalog/v1/history.json` 中的 `available`、`withdrawn`、`invalid` 状态以及 `build-report.json` 的历史数量和摘要。`available` 表示本次候选仍包含验证通过的文件；在未实际发布前，它不表示公共网址已经可访问。退出的快照目录不会进入新构建。不要手动把旧目录复制回发布包来恢复旧链接。
+
+历史 shard 和 manifest 保持原始字节。构建输入除编辑注册资料、固定来源观察与构建版本外，还包括明确选定的历史产物集合；`history_sha256` 标记输出历史状态。相同输入和历史集合重建得到相同输出；同一快照不会因为重新分片而在原 ID 下更换文件。历史损坏时标为 `invalid` 并停止保留；退出记录本身损坏时停止构建，先核对可信备份，不能忽略记录绕过撤回。
+
+需要恢复旧编辑内容时，准备旧注册资料、对应的旧来源 batch，以及完成当前公开状态检查的最新 batch。下面的三个文件名是要替换为实际受限恢复材料路径的示例；项目不会替维护者从未知位置寻找或上传备份：
+
+```bash
+npm run catalog:recover -- historical-registry.json historical-batch.json current-batch.json
+```
+
+该命令以当前 `registry/catalog.json` 为政策基线（显式 `REGISTRY_FILE` 可指定已审核基线），把候选注册资料、当前来源 batch 和恢复报告写到 `.cache/recovery/`。检查报告的输入摘要、恢复数量与跳过数量，并审查候选差异。来源、成员范围、撤回和当前认领不回退；只有仍具相同稳定身份、来源和适用范围的项目/资源/集合能恢复旧编辑字段。身份变更、被压制来源和被移除范围对应的旧编辑保持跳过。
+
+随后使用候选输入重新走完整构建与静态校验：
+
+```bash
+REGISTRY_FILE=.cache/recovery/registry.json SOURCE_BATCH=.cache/recovery/batch.json npm run build
+```
+
+结果先写独立 staging，页面、静态链接、资源和版本一致性通过后才替换 `dist/`。构建或验证失败继续保留旧完整输出；目录切换异常会尝试恢复原目录。若进程恰在两次目录 rename 之间被强杀，按 build-lock 的 `owner.json` 核实进程已终止，再从保留的 previous 目录恢复；不要在仍运行时删除锁或拷贝中间产物。恢复前仍须重新应用最新撤回规则。
+
+可直接重复的非敏感恢复演练：
+
+```bash
+node --import tsx --test pipeline/tests/history-recovery.test.ts pipeline/tests/release-build.test.ts
+```
+
+这些测试使用真实临时文件夹，验证普通历史保留、受影响旧快照清理、旧撤回 ID 防复活、损坏分片拒绝、固定输入一致性、当前政策下的恢复和失败保留。它们不访问 GitHub，也不发布站点；正式发布后的历史 URL、撤回结果和外部缓存影响仍需按实际部署另行核查。
+
 ## 7. 私有演练与公共验收
 
 每项演练记录输入、实际账号权限、操作、时间、结果和证据。使用非敏感 fixture 或已确认公开来源；不联系他人、不替用户发帖，也不通过扩大权限制造通过结果。

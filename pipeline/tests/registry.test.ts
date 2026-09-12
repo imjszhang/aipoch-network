@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateRegistry, validateSourceCandidate, type Registry } from '../registry.js';
-import type { Actor, Claim } from '../../spec/types.js';
+import { applyRegistryEnhancement, validateRegistry, validateSourceCandidate, type Registry } from '../registry.js';
+import type { Actor, Claim, Relation } from '../../spec/types.js';
 
 const A = 'https://github.com/example-lab/methods';
 const B = 'https://github.com/example-lab/observations';
@@ -268,4 +268,102 @@ test('claim and nested evidence whitelists reject credential and private-permiss
   }
   const registry = fixture(); registry.claims = [reviewedClaim(), { ...reviewedClaim(), scope: 'catalog-curation:source:github:101' }];
   assert.match(validateRegistry(registry).join('\n'), /Duplicate claim/);
+});
+
+test('declared immutable locations require stable identity and cover each selected source', () => {
+  const registry = fixture();
+  registry.resources[0].source_refs = [
+    { source_url: A, source_id: 'source:github:101', role: 'implementation', path: '研究/run notes.md', commit: 'a'.repeat(40), sha256: 'c'.repeat(64), resolved_at: NOW },
+    { source_url: B, role: 'data', ref: 'main' },
+  ];
+  assert.deepEqual(validateRegistry(registry), []);
+  delete registry.resources[0].source_refs[0].source_id;
+  assert.match(validateRegistry(registry).join('\n'), /stable source_id/);
+  registry.resources[0].source_refs[0].source_id = 'source:github:101';
+  registry.resources[0].source_refs.pop();
+  assert.match(validateRegistry(registry).join('\n'), /cover every source/);
+  registry.resources[0].source_refs.push({ source_url: B, role: 'data', resolved_at: NOW });
+  assert.match(validateRegistry(registry).join('\n'), /requires an explicit immutable commit/);
+});
+
+test('declared location schemas reject traversal, short commits, credentials and unsupported fields', () => {
+  for (const update of [{ path: '../outside' }, { commit: 'main' }, { commit: 'abc123' }, { source_url: 'https://user:secret@github.com/example/repo' }, { token: 'secret' }, { role: 'execute' }]) {
+    const registry = fixture();
+    registry.resources[1].source_refs = [{ source_url: A, source_id: 'source:github:101', role: 'documentation', commit: 'a'.repeat(40), path: 'docs/method.md', ...update } as NonNullable<Registry['resources'][number]['source_refs']>[number]];
+    assert.ok(validateRegistry(registry).length > 0, JSON.stringify(update));
+  }
+  const registry = fixture();
+  registry.resources[1].source_refs = [{ source_url: A, role: 'primary', path: 'file.md' }, { path: 'file.md', role: 'primary', source_url: 'https://github.com/EXAMPLE-LAB/METHODS.git' }];
+  assert.match(validateRegistry(registry).join('\n'), /Duplicate declared source location/);
+});
+
+function reviewedRelation(): Relation {
+  return { kind: 'relation', id: 'relation:study-produces-workflow', from_id: 'project:study', to_id: 'resource:workflow', type: 'produces', recorded_at: NOW,
+    evidence: [{ role: 'editor', review: 'reviewed', url: A, source_id: 'source:github:101', observed_at: NOW, scope: 'Project output documented in the public repository.' }] };
+}
+test('reviewed relation input validates identities, endpoint meaning and public evidence', () => {
+  const registry = fixture(); registry.relations = [reviewedRelation()];
+  assert.deepEqual(validateRegistry(registry), []);
+  registry.relations[0].to_id = 'resource:missing';
+  assert.match(validateRegistry(registry).join('\n'), /Unknown relation endpoint/);
+  registry.relations[0].to_id = 'project:study';
+  assert.match(validateRegistry(registry).join('\n'), /endpoints must differ/);
+  registry.relations = [{ ...reviewedRelation(), type: 'fork_of' }];
+  assert.match(validateRegistry(registry).join('\n'), /endpoint kinds/);
+  registry.relations = [reviewedRelation()]; registry.relations[0].evidence[0].review = 'pending';
+  assert.match(validateRegistry(registry).join('\n'), /reviewed public evidence/);
+  registry.relations = [reviewedRelation()]; Object.assign(registry.relations[0].evidence[0], { private_audit: 'DO_NOT_PUBLISH' });
+  assert.ok(validateRegistry(registry).length > 0);
+});
+
+test('optional enhancements atomically supplement a reviewed URL baseline without acquiring authority', () => {
+  const registry: Registry = { version: 1, sources: fixture().sources, projects: [], resources: [], collections: [], withdrawals: [] };
+  const input = { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed optional community description.',
+    projects: fixture().projects, resources: fixture().resources.map(resource => ({ ...resource, sources: [A], attribution: { role: 'editor', url: A, observed_at: NOW } })), relations: [reviewedRelation()] };
+  const before = JSON.stringify({ registry, input });
+  const result = applyRegistryEnhancement(registry, input);
+  assert.equal(result.applied, true, result.errors.join('\n'));
+  assert.equal(result.registry.sources.length, 2);
+  assert.equal(result.registry.resources.length, 2);
+  assert.equal(result.registry.resources[0].attribution?.role, 'community');
+  assert.equal(result.registry.relations?.[0].evidence[0].role, 'community');
+  assert.equal(result.registry.claims, undefined);
+  assert.equal(JSON.stringify({ registry, input }), before);
+  assert.deepEqual(validateRegistry(result.registry), []);
+});
+
+test('invalid, colliding, unreviewed and source-mismatched enhancements leave baseline untouched', () => {
+  const registry = fixture();
+  for (const invalid of [null, '{ not JSON }', { version: 1, source_url: A },
+    { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed', resources: registry.resources },
+    { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed', resources: [{ ...registry.resources[0], key: 'new-resource', sources: [B] }] },
+    { version: 1, source_url: 'https://github.com/unreviewed/repo', reviewed_at: NOW, review_note: 'Reviewed', resources: [{ ...registry.resources[0], key: 'new-resource' }] },
+    { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed', resources: [{ ...registry.resources[0], key: 'new-resource' }], claims: [reviewedClaim()] },
+    { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Reviewed', scripts: { postinstall: 'throw new Error("executed")' } },
+  ]) {
+    const before = JSON.stringify(registry);
+    const result = applyRegistryEnhancement(registry, invalid);
+    assert.equal(result.applied, false);
+    assert.ok(result.errors.length > 0);
+    assert.equal(result.registry, registry);
+    assert.equal(JSON.stringify(registry), before);
+  }
+});
+
+test('resource access conditions and described runtimes require bounded public data', () => {
+  const registry = fixture();
+  registry.resources[0].download_url = 'https://example.org/releases/workflow.zip';
+  registry.resources[0].conditions = ['Research use described at the source.', 'Python 3 is required.'];
+  registry.resources[0].runtime = { status: 'maintainer_described', documentation_url: 'https://example.org/docs/run' };
+  assert.deepEqual(validateRegistry(registry), []);
+  delete registry.resources[0].runtime.documentation_url;
+  assert.match(validateRegistry(registry).join('\n'), /requires a public documentation URL/);
+  registry.resources[0].runtime = { status: 'community_described', documentation_url: 'javascript:alert(1)' };
+  assert.ok(validateRegistry(registry).length > 0);
+  registry.resources[0].runtime = { status: 'not_described' };
+  registry.resources[0].conditions = ['x'.repeat(2001)];
+  assert.ok(validateRegistry(registry).length > 0);
+  registry.resources[0].conditions = [];
+  registry.resources[0].download_url = 'https://example.org/file?token=secret';
+  assert.ok(validateRegistry(registry).length > 0);
 });
