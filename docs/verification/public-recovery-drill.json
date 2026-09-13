@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-09-13T03:30:50.883Z",
+  "scope": "Isolated CLI/build recovery using public run 34735383243 observations; no production mutation",
+  "withdrawn_resource": "resource:scikit-learn-library",
+  "restored_title": "SciPy scientific computing library",
+  "failed_build_preserved_tree": "sha256:1993cc78004d670f9604d4d1a775f668a43944b192d9031cf87b6a45c1065bee",
+  "built": {
+    "pages": 93,
+    "files": 113,
+    "snapshot_id": "44586393fc680644b7b0f7c8",
+    "bytes": 2429902
+  }
+}
