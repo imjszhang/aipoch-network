@@ -12,7 +12,7 @@
 - 前端设计：当前目标为已原样归档的 [v9-r2 HTML](design/references/aipoch-network-concept-v9-r2.html) 与 [配套实施说明](design/references/aipoch-network-concept-v9-r2.md)；v6 保留为历史基线。目标登记不等于实现完成，规则见 [设计交接](design/README.md)。
 - 验收：阶段进度与剩余工作见 [实施记录](docs/implementation-status.md)，首次公开部署已完成，其余验收项继续见实施记录。
 - 历史集成证据：既有实现已合入 `main`；此前 201 项离线测试、根/子路径各 40 项浏览器检查及连续两次真实刷新通过，见 [集成验收](docs/verification/private-integration.md)。这些结果不替代 v9-r2 的重新验收。
-- v9-r2 本地交付：公共页面、连接与个人首页已实现，232 项离线测试和 352 项浏览器检查通过；按用户指示停止旁白专项，实际覆盖见 [本版实施记录](docs/verification/v9-r2/implementation-status.md)。本版尚未提交或部署；真实 Connector 通信另行接入，演示成功不表示生产连接已实现。
+- v9-r2 本地交付：公共页面、连接与个人首页已实现，232 项离线测试和 352 项浏览器检查通过；按用户指示停止旁白专项，实际覆盖见 [本版实施记录](docs/verification/v9-r2/implementation-status.md)。本版已同步 main 并[正式发布](docs/deployment/v9-r2-release.md)；真实 Connector 通信另行接入，线上采用非 Demo 模式。
 - 托管：GitHub Pages 静态网站，依托 GitHub 仓库、API 和 Actions；不维护自建常驻后端。
 - 独立性：Open-Science 及其他客户端的升级、重构或不可用，不应要求本项目修改、重新发布或停止服务。
 

@@ -1,0 +1,48 @@
+{
+  "source_sha": "472403afed20aec5c3b0f89645688ecf81608009",
+  "url": "https://aipoch.network/",
+  "ci_run": 34753200094,
+  "refresh_run": 34753204328,
+  "deploy_run": 34753464918,
+  "ci_conclusion": "success",
+  "refresh_conclusion": "success",
+  "deploy_conclusion": "success",
+  "ci_tests": {
+    "offline_passed": 232,
+    "browser_passed": 352,
+    "mode_skipped": 56,
+    "failed": 0,
+    "flaky": 0
+  },
+  "archive": {
+    "acceptance_policy": "exact-archive-v1",
+    "archive_digest_matches_metadata": true,
+    "bytes": 3647114,
+    "downloaded_archive_digest": "sha256:8dae0a93ddc4c6ae893741ea3bd8618ad027d0620659f2d6b63a18fd7b5dea30",
+    "file_tree_sha256": "sha256:bc509578977fee1c643b2df4380b887ec5aa31adf071aad566b89c7200bbc408",
+    "files": 179,
+    "github_artifact_digest": "sha256:8dae0a93ddc4c6ae893741ea3bd8618ad027d0620659f2d6b63a18fd7b5dea30"
+  },
+  "candidate_verification": {
+    "pages": 96,
+    "files": 179,
+    "snapshot_id": "a9fe477dc576ca357c5524cd",
+    "bytes": 3647114,
+    "generated_at": "2026-09-13T10:58:46.438Z",
+    "source_sha": "472403afed20aec5c3b0f89645688ecf81608009",
+    "run_id": 34753204328,
+    "artifact_sha256": "sha256:8dae0a93ddc4c6ae893741ea3bd8618ad027d0620659f2d6b63a18fd7b5dea30",
+    "file_tree_sha256": "sha256:bc509578977fee1c643b2df4380b887ec5aa31adf071aad566b89c7200bbc408",
+    "site_base": "/",
+    "verified_at": "2026-09-13T11:01:00.073Z",
+    "valid_until": "2026-09-13T11:58:46.438Z"
+  },
+  "production_smoke": "production-smoke.json",
+  "consumer_verification": {
+    "contract_version": "1.0.0",
+    "snapshot_id": "a9fe477dc576ca357c5524cd",
+    "sources": 20,
+    "projects": 20,
+    "resources": 21
+  }
+}

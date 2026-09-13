@@ -41,3 +41,7 @@ Actions 保留 90 天的白名单来源观察、最小撤回记录、已校验�
 2026-09-13，实现提交 `3a54ab0ad51e1ae9c4107422168cf5391a7c13c7` 经 [CI](https://github.com/imjszhang/aipoch-network/actions/runs/34735368235)、[真实刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34735383243) 和 [部署](https://github.com/imjszhang/aipoch-network/actions/runs/34735500179) 全部通过。当前 snapshot 为 `053913d25bfa0e0b162ce7a9`，93 页、163 文件；独立下载完整文件树摘要为 `1993cc78004d670f9604d4d1a775f668a43944b192d9031cf87b6a45c1065bee`。
 
 发布前后通过正式 HTTPS 逐一读取原有 40 个快照文件，SHA256 全部与原产物一致。线上当前 manifest 已切换到新 snapshot，MIT 全文与仓库 LICENSE 字节相符，第三方声明继续保留。该结果证明本次正常发布的历史兼容，不替代故障注入或生产回滚演练。GitHub License API 已识别仓库许可证为 MIT。
+
+## v9-r2 设计更新
+
+2026-09-13，v9-r2 已经用户授权同步 main 并正式发布。实际源码 `472403afed20aec5c3b0f89645688ecf81608009`，snapshot `a9fe477dc576ca357c5524cd`。完整 CI、受信刷新、发布、独立产物核验及线上检查见 [v9-r2 正式发布记录](v9-r2-release.md)。线上为非 Demo 模式，不模拟真实 Open-Science 连接。

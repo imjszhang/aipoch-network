@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-09-13T11:06:12.199Z",
+  "url": "https://aipoch.network/",
+  "source_sha": "472403afed20aec5c3b0f89645688ecf81608009",
+  "build_info": {
+    "design": "v9-r2",
+    "workbench_mode": "unavailable",
+    "real_connector": false
+  },
+  "snapshot_id": "a9fe477dc576ca357c5524cd",
+  "routes": {
+    "": 200,
+    "explore/": 200,
+    "projects/": 200,
+    "capabilities/": 200,
+    "community/": 200,
+    "contribute/": 200,
+    "join/": 200,
+    "assets/open-science-product-notice.txt": 200
+  },
+  "not_found": 404,
+  "browser": "153.0.8010.12",
+  "viewports": [
+    {
+      "width": 1440,
+      "home": true,
+      "counts": true,
+      "disconnected_actions_hidden": true,
+      "connection_unavailable": true,
+      "search_and_detail_reload": true,
+      "detailURL": "https://aipoch.network/projects/project~scanpy/",
+      "page_errors": []
+    },
+    {
+      "width": 390,
+      "home": true,
+      "counts": true,
+      "disconnected_actions_hidden": true,
+      "connection_unavailable": true,
+      "search_and_detail_reload": true,
+      "detailURL": "https://aipoch.network/projects/project~scanpy/",
+      "page_errors": []
+    }
+  ]
+}
