@@ -8,9 +8,35 @@ import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import { build } from 'vite';
 import { designAssetsPlugin } from '../../scripts/design-assets.js';
+import { resolveWorkbenchMode } from '../src/build-mode.js';
 
 const run = promisify(execFile);
 const entry = resolve('web/src/build-mode.ts');
+
+test('real mode requires explicit build input and conflicting inputs fail closed', () => {
+  assert.equal(resolveWorkbenchMode({}), 'unavailable');
+  assert.equal(resolveWorkbenchMode({ VITE_WORKBENCH_MODE: 'real' }), 'real');
+  assert.equal(resolveWorkbenchMode({ VITE_WORKBENCH_MODE: 'demo' }), 'demo');
+  assert.throws(() => resolveWorkbenchMode({ VITE_WORKBENCH_MODE: 'unknown' }));
+  assert.throws(() => resolveWorkbenchMode({ VITE_WORKBENCH_MODE: 'real', VITE_WORKBENCH_DEMO: 'true' }));
+});
+
+test('explicit real mode is identical in browser, SSR and artifact metadata', async t => {
+  const previousMode = process.env.VITE_WORKBENCH_MODE, previousDemo = process.env.VITE_WORKBENCH_DEMO;
+  t.after(() => { if (previousMode === undefined) delete process.env.VITE_WORKBENCH_MODE; else process.env.VITE_WORKBENCH_MODE = previousMode; if (previousDemo === undefined) delete process.env.VITE_WORKBENCH_DEMO; else process.env.VITE_WORKBENCH_DEMO = previousDemo; });
+  process.env.VITE_WORKBENCH_MODE = 'real'; delete process.env.VITE_WORKBENCH_DEMO;
+  const server = await run(process.execPath, ['--import', 'tsx', '--input-type=module', '-e', `import { WORKBENCH_MODE } from ${JSON.stringify(pathToFileURL(entry).href)}; process.stdout.write(WORKBENCH_MODE);`], { cwd: resolve('.'), env: { ...process.env } });
+  assert.equal(server.stdout, 'real');
+  const result = await build({ configFile: false, root: resolve('.'), envDir: false, publicDir: false, logLevel: 'silent', plugins: [designAssetsPlugin()], build: { write: false, minify: false, target: 'esnext', lib: { entry, formats: ['es'], fileName: 'build-mode' } } });
+  const built = Array.isArray(result) ? result[0] : result; assert.ok('output' in built);
+  const asset = built.output.find(file => file.fileName === 'build-info.json'); assert.ok(asset?.type === 'asset');
+  const info = JSON.parse(typeof asset.source === 'string' ? asset.source : Buffer.from(asset.source).toString('utf8'));
+  assert.deepEqual(info, { design: 'v9-r2', workbench_mode: 'real', real_connector: true, connector_protocol: '1.0', connector_endpoint: 'http://127.0.0.1:47821' });
+  const browser = built.output.find(file => file.type === 'chunk' && file.isEntry); assert.ok(browser?.type === 'chunk');
+  delete process.env.VITE_WORKBENCH_MODE; process.env.VITE_WORKBENCH_DEMO = 'true';
+  const module = await import(`data:text/javascript;base64,${Buffer.from(browser.code).toString('base64')}`);
+  assert.equal(module.WORKBENCH_MODE, 'real'); assert.equal(module.DEMO_MODE, false);
+});
 
 test('browser mode, server rendering and build-info agree despite conflicting Vite env files', async t => {
   const originalMode = process.env.VITE_WORKBENCH_DEMO;

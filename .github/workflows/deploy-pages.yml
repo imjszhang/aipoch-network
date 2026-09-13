@@ -28,6 +28,12 @@ on:
         type: choice
         options: ['/', '/aipoch-network/']
         default: /
+      workbench_mode:
+        description: Must equal the independently reviewed artifact capability mode
+        type: choice
+        required: true
+        options: ['unavailable', 'real']
+        default: unavailable
 permissions: {}
 # Shares the refresh lock; deployment cannot overlap a new source refresh.
 concurrency:
@@ -57,6 +63,7 @@ jobs:
       REVIEW_TREE_DIGEST: ${{ inputs.file_tree_sha256 }}
       REVIEW_SHA: ${{ inputs.source_sha }}
       REVIEW_BASE: ${{ inputs.site_base }}
+      REVIEW_MODE: ${{ inputs.workbench_mode }}
       EXPECTED_URL: ${{ vars.AIPOCH_PAGES_URL }}
     steps:
       - name: Bind this workflow execution to the reviewed commit
@@ -100,7 +107,7 @@ jobs:
           if (pages.build_type !== 'workflow' || url.protocol !== 'https:' || url.href !== process.env.EXPECTED_URL || url.pathname !== process.env.REVIEW_BASE || url.username || url.password) throw new Error('Pages configuration differs from the reviewed URL or base');
           const matches = read('artifacts').artifacts.filter(a => a.name === `catalog-candidate-${run.id}-${run.run_attempt}`);
           if (matches.length !== 1) throw new Error('Missing or ambiguous candidate artifact');
-          const selection = {repository: process.env.GITHUB_REPOSITORY, run_id: Number(process.env.REVIEW_RUN), snapshot_id: process.env.REVIEW_SNAPSHOT, artifact_sha256: process.env.REVIEW_DIGEST, file_tree_sha256: process.env.REVIEW_TREE_DIGEST, source_sha: process.env.REVIEW_SHA, site_base: process.env.REVIEW_BASE};
+          const selection = {repository: process.env.GITHUB_REPOSITORY, run_id: Number(process.env.REVIEW_RUN), snapshot_id: process.env.REVIEW_SNAPSHOT, artifact_sha256: process.env.REVIEW_DIGEST, file_tree_sha256: process.env.REVIEW_TREE_DIGEST, source_sha: process.env.REVIEW_SHA, site_base: process.env.REVIEW_BASE, workbench_mode: process.env.REVIEW_MODE};
           writeFileSync(`${process.env.RUNNER_TEMP}/metadata.json`, JSON.stringify({selection, repository: read('repository'), main_sha: read('main').sha, run, artifact: matches[0], latest_runs: runs.workflow_runs, latest_runs_total_count: runs.total_count}));
           if (!Number.isSafeInteger(run.run_attempt) || run.run_attempt <= 0) throw new Error('Invalid run attempt');
           appendFileSync(process.env.GITHUB_OUTPUT, `run_attempt=${run.run_attempt}\n`);
@@ -199,6 +206,7 @@ jobs:
       PAGE_URL: ${{ needs.deploy.outputs.page_url }}
       EXPECTED_URL: ${{ vars.AIPOCH_PAGES_URL }}
       SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+      WORKBENCH_MODE: ${{ inputs.workbench_mode }}
     steps:
       - name: Confirm expected public URL, current/pinned snapshots and real 404
         run: |
@@ -207,6 +215,8 @@ jobs:
           if (url.protocol !== 'https:' || url.href !== process.env.EXPECTED_URL || url.username || url.password) throw new Error('Deployed URL differs from approved URL');
           const read = async path => { const r = await fetch(new URL(path, url), {signal:AbortSignal.timeout(20000), redirect:'error'}); if (!r.ok) throw new Error(`Public smoke failed: ${path}`); return r; };
           for (const path of ['', 'explore/', 'capabilities/', 'organizations/', 'third-party-notices.txt']) await read(path);
+          const build = await (await read('build-info.json')).json();
+          if (build.workbench_mode !== process.env.WORKBENCH_MODE || build.real_connector !== (process.env.WORKBENCH_MODE === 'real')) throw new Error('Public connection mode differs from the reviewed artifact');
           const manifest = await (await read('catalog/v1/manifest.json')).json();
           if (manifest.snapshot_id !== process.env.SNAPSHOT_ID) throw new Error('Public current snapshot differs');
           const fixed = await (await read(`catalog/v1/snapshots/${manifest.snapshot_id}/manifest.json`)).json();

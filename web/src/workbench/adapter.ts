@@ -2,9 +2,10 @@ export interface Session { id: string; expiresAt: number; demo: boolean }
 export interface Request { id: string; sessionId: string; objectId: string; content: string }
 export interface Receipt extends Request { outcome: 'received' | 'continue'; receivedAt: number }
 export type Cancel = () => void;
+export interface PairingProgress { verificationCode: string; expiresAt: number }
 export interface WorkbenchAdapter {
   readonly demo: boolean;
-  connect(attempt: string, receive: (attempt: string, session: Session | null, reason?: string) => void): Cancel;
+  connect(attempt: string, receive: (attempt: string, session: Session | null, reason?: string) => void, progress?: (attempt: string, pairing: PairingProgress) => void): Cancel;
   send(request: Request, receive: (receipt: Receipt) => void, fail: (message: string) => void): Cancel;
   valid(session: Session): boolean;
   disconnect(session: Session): void;

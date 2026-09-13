@@ -56,6 +56,8 @@ New reference intake does not automatically authorize every planned feature or p
 
 The v9-r2 fixed requirements R01–R12 and checks V01–V18 are tracked in `docs/verification/v9-r2/implementation-status.md`. Keep one Open-Science entry, distinguish public and connected home states, hide and guard personal operations while disconnected, and preserve the original selected object through connection and explicit reference review. Connected, received reference, and execution are separate facts. Default production must not simulate successful connection or receipts; an isolated, continuously labelled Demo can demonstrate the full flow. Do not infer ports, launch protocols, or client services from the prototype.
 
+The separately authorized Connector integration adds an explicit `real` adapter build; see `docs/connector-adapter.md` and ADR-023. Default builds remain unavailable until production activation is separately verified. The reviewed loopback protocol belongs to that integration, not the reference HTML. Preserve the public catalog, independent builds, opaque exact-reference review, and local-only credentials. A compiled real transport is not evidence of an active connection or completed end-to-end acceptance.
+
 ## Implementation and verification
 
 Implement in bounded phases from `docs/implementation-plan.md` and the active `docs/v9-r2-implementation-plan.md`. Keep checked-in statuses accurate. Record architecture changes in `docs/architecture.md` rather than silently changing the product boundary. Only mark in-scope R/V requirements complete when current implementation evidence proves them; missing or indirect evidence remains pending.

@@ -1,12 +1,13 @@
 import type { Entry, SiteData } from '../model.js';
 import { LibraryStore, type LocalLibrary } from '../library/storage.js';
-import type { WorkbenchAdapter, Session, Request, Receipt, Cancel } from './adapter.js';
+import type { WorkbenchAdapter, Session, Request, Receipt, Cancel, PairingProgress } from './adapter.js';
 import { resolveReference, type ReferenceResolution } from './reference.js';
 
 export type ConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'unconfirmed' | 'interrupted';
 export type ReferenceStatus = 'selected' | 'reviewing' | 'ready' | 'sending' | 'received' | 'needs-review' | 'cancelled' | 'unconfirmed' | 'continue';
 export interface WorkbenchState {
   connection: ConnectionStatus; reason: string; session: Session | null; attempt: string | null;
+  pairing: PairingProgress | null;
   selected: string | null; resolution: ReferenceResolution | null;
   referenceStatus: ReferenceStatus; approval: { sessionId: string; content: string } | null;
   request: Request | null; receipts: Array<Receipt & { title: string }>;
@@ -14,7 +15,7 @@ export interface WorkbenchState {
   library: LocalLibrary; storageWarning: string; notice: string;
 }
 let sequence = 0;
-const nextId = (type: string) => `${type}-${Date.now().toString(36)}-${++sequence}`;
+const nextId = (type: string) => `${type}-${globalThis.crypto?.randomUUID?.() ?? `${Date.now().toString(36)}-${++sequence}`}`;
 const stopped = 'Waiting stopped. This does not withdraw a reference the workbench may already have received. Retry only when you choose to.';
 export class WorkbenchEngine {
   private state: WorkbenchState;
@@ -25,8 +26,8 @@ export class WorkbenchEngine {
   private sendTimeout?: ReturnType<typeof setTimeout>;
   private replacementReturnTo: string | null = null;
   private disposed = false;
-  constructor(private data: SiteData, private catalogReady: boolean, readonly adapter: WorkbenchAdapter, private library: LibraryStore, private timeouts = { connect: 8000, send: 15000 }, private now = () => Date.now()) {
-    this.state = { connection: 'disconnected', reason: '', session: null, attempt: null, selected: null, resolution: null, referenceStatus: 'selected', approval: null, request: null, receipts: [], replacement: null, overlay: null, library: library.value, storageWarning: library.warning, notice: '' };
+  constructor(private data: SiteData, private catalogReady: boolean, readonly adapter: WorkbenchAdapter, private library: LibraryStore, private timeouts: { connect: number; send: number; pairing?: number } = { connect: 8000, send: 15000, pairing: 180000 }, private now = () => Date.now()) {
+    this.state = { connection: 'disconnected', reason: '', session: null, attempt: null, pairing: null, selected: null, resolution: null, referenceStatus: 'selected', approval: null, request: null, receipts: [], replacement: null, overlay: null, library: library.value, storageWarning: library.warning, notice: '' };
     if (library.value.selection) this.state = { ...this.state, selected: library.value.selection.id, resolution: resolveReference(data, library.value.selection.id, catalogReady) };
   }
   getSnapshot = () => this.state;
@@ -78,23 +79,30 @@ export class WorkbenchEngine {
     if (this.state.connection === 'connecting' || this.checkSession()) return;
     this.endConnect(); this.endSend();
     const attempt = nextId('connection');
-    this.set({ attempt, connection: 'connecting', reason: 'Waiting for Open-Science to confirm this connection.', session: null, approval: null, request: null, referenceStatus: 'needs-review', notice: '' });
+    this.set({ attempt, pairing: null, connection: 'connecting', reason: 'Waiting for Open-Science to confirm this connection.', session: null, approval: null, request: null, referenceStatus: 'needs-review', notice: '' });
     this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection('No response was confirmed. You can retry or continue browsing; this does not mean Open-Science is not installed.'); }, this.timeouts.connect);
     this.cancelConnect = this.adapter.connect(attempt, (returned, session, reason) => {
       if (this.disposed || this.state.connection !== 'connecting' || this.state.attempt !== attempt || returned !== attempt) return;
       this.endConnect();
       if (!session || session.demo !== this.adapter.demo || !this.adapter.valid(session)) {
-        this.set({ connection: 'unconfirmed', attempt: null, reason: reason ?? 'This connection could not be confirmed.', session: null }); return;
+        this.set({ connection: 'unconfirmed', attempt: null, pairing: null, reason: reason ?? 'This connection could not be confirmed.', session: null }); return;
       }
-      this.set({ connection: 'connected', attempt: null, session, reason: '', approval: null, referenceStatus: 'reviewing', overlay: this.state.selected ? 'review' : this.state.overlay });
+      this.set({ connection: 'connected', attempt: null, pairing: null, session, reason: '', approval: null, referenceStatus: 'reviewing', overlay: this.state.selected ? 'review' : this.state.overlay });
+    }, (returned, pairing) => {
+      if (this.disposed || this.state.connection !== 'connecting' || this.state.attempt !== attempt || returned !== attempt || this.state.pairing) return;
+      const remaining = Math.min(pairing.expiresAt - this.now(), this.timeouts.pairing ?? 180000);
+      if (!Number.isFinite(remaining) || remaining <= 0) return this.cancelConnection('Pairing expired. Retry when you are ready.');
+      clearTimeout(this.connectTimeout);
+      this.set({ pairing, reason: 'Check that this code matches AIPOCH Connector on this computer, then approve the connection there.' });
+      this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection('Pairing expired without a confirmed connection. You can retry or continue browsing.'); }, remaining);
     });
   };
-  cancelConnection = (reason = 'Connection waiting was cancelled. No connection was confirmed.') => { this.endConnect(); this.set({ connection: 'unconfirmed', attempt: null, session: null, approval: null, reason }); };
+  cancelConnection = (reason = 'Connection waiting was cancelled. No connection was confirmed.') => { this.endConnect(); this.set({ connection: 'unconfirmed', attempt: null, pairing: null, session: null, approval: null, reason }); };
   disconnect = (interrupted = false) => {
     const session = this.state.session;
     this.endConnect(); this.endSend();
     if (session) this.adapter.disconnect(session);
-    this.set({ connection: interrupted ? 'interrupted' : 'disconnected', session: null, attempt: null, approval: null, request: null, referenceStatus: 'needs-review', reason: interrupted ? 'This connection was interrupted. Reconnect before continuing; research already in the workbench is unaffected.' : '', notice: this.state.request ? stopped : '' });
+    this.set({ connection: interrupted ? 'interrupted' : 'disconnected', session: null, attempt: null, pairing: null, approval: null, request: null, referenceStatus: 'needs-review', reason: interrupted ? 'This connection was interrupted. Reconnect before continuing; research already in the workbench is unaffected.' : '', notice: this.state.request ? stopped : '' });
   };
   approve = (checked: boolean) => {
     const resolution = this.state.resolution;

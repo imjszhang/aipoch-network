@@ -74,3 +74,23 @@ jobs:
           TEST_OUTPUT: dist-demo-subpath
           TEST_PORT: '4186'
         run: npm run test:e2e
+      - name: Build the explicit real transport with offline catalog data
+        run: npm run build:real
+      - name: Verify the real browser adapter against protocol fixtures
+        env:
+          TEST_MODE: real
+          TEST_OUTPUT: dist-real
+          TEST_PORT: '4187'
+        run: npx --no-install playwright test real-connector.test.ts
+      - name: Build the real transport at the Pages project subpath
+        env:
+          SITE_BASE: /aipoch-network/
+          VITE_WORKBENCH_MODE: real
+        run: npm run build -- --output dist-real-subpath
+      - name: Verify the real adapter preserves project subpath navigation
+        env:
+          TEST_MODE: real
+          TEST_BASE: /aipoch-network/
+          TEST_OUTPUT: dist-real-subpath
+          TEST_PORT: '4188'
+        run: npx --no-install playwright test real-connector.test.ts

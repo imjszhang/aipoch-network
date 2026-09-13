@@ -2,14 +2,15 @@
 
 当前设计目标为 v9-r2，实施状态与验收证据见[本版记录](verification/v9-r2/implementation-status.md)。本项目在本仓库内构建静态网站，不需要 med-research-ai、Open-Science 源码、客户端服务、凭证或后端。
 
-## 两种构建
+## 三种构建
 
 | 模式 | 构建与预览 | 实际行为 |
 | --- | --- | --- |
 | 正式默认 | `npm run build`；`npm run preview` | `dist`；连接无法确认，保留公开浏览、获取工作台、完整手工引用 |
 | 显式 Demo | `npm run build:demo`；`npm run preview:demo` | `dist-demo`；本地 4185 端口，页面持续标明 Demo，演示连接和匹配回执 |
+| 显式真实适配 | `npm run build:real`；`npm run preview:real` | `dist-real`；真实本机配对与引用传输，协议/浏览器实际联调证据单独记录；默认发布未启用 |
 
-`VITE_WORKBENCH_DEMO=true` 必须在构建进程显式设置。URL 参数、本机存储和 `.env.production` 不能把正式产物变成 Demo。相同开关决定浏览器编译常量、预生成页面和 `build-info.json`，测试检查三者一致。构建命令支持 `--output`，可保留多个候选；`SITE_BASE=/aipoch-network/` 用于项目子路径。两种模式均无实际客户端通信。
+`VITE_WORKBENCH_DEMO=true` 或 `VITE_WORKBENCH_MODE=real` 必须在构建进程显式设置。URL 参数、本机存储和 `.env.production` 不能把默认产物变成 Demo 或真实模式。相同选择决定浏览器编译常量、预生成页面和 `build-info.json`，测试检查三者一致。构建命令支持 `--output`，可保留多个候选；`SITE_BASE=/aipoch-network/` 用于项目子路径。默认与 Demo 模式均无实际客户端通信；真实模式的边界见[真实适配说明](connector-adapter.md)。
 
 Pages 候选审阅器拒绝模式为 Demo 的新产物。演示构建不进入生产发布流程。没有实际生产发布记录之前，本地预览不能代表 aipoch.network 已更新。
 
@@ -42,9 +43,9 @@ Demo 的 `/review/` 提供显式进入的临时 Review 域，可控制无响应�
 
 内部引用格式 `aipoch-network-internal-review-1` 只用于网站准确审阅；它不是已经发布的 Connector 线协议，也不改变 `spec/` 的通用静态目录契约。引用保留全部来源和完整适用 SHA/路径，未知、未固定和撤回分别呈现。发送资格绑定当前会话和准确内容；任意变化都必须重新审阅。
 
-## 未来接入真实 Connector
+## 接入真实 Connector
 
-在独立任务中实现适配器的 `connect`、`send`、`valid`、`disconnect`、`dispose`，并重新运行已有状态契约与浏览器测试。需要另外确定可信握手、兼容协商、传输、权限和真实接收的依据；当前接口不预设端口、启动协议、内部客户端类型或认证方法。
+独立接入任务已增加 `real-adapter.ts`，实现 `connect`、`send`、`valid`、`disconnect`、`dispose`，并增加配对进度。它使用显式本机配对、协议版本和有效会话；具体端点与安全边界见[真实适配说明](connector-adapter.md)。这是独立实现决定，不是从原型猜测端口、启动协议或内部客户端类型。实际跨浏览器与真实客户端验收、生产启用仍需分别记录。
 
 接收回调必须核对 session、request、object 和完整 content。停止等待表示本页不再承认后续响应，不表示远端操作被撤回。Received 只代表接收引用。仓库权限、GitHub 授权、导入、同步和执行由未来 AIPOCH Connector 在工作台侧处理，不能把这些界面加入 Network。
 

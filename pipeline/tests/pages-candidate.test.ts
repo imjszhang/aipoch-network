@@ -49,6 +49,17 @@ test('Pages rejects an explicitly reviewed Demo build while accepting the unavai
   selection.file_tree_sha256 = (await candidateFileTree(root)).file_tree_sha256;
   await verifyPagesCandidate(root, selection, NOW);
 });
+test('real Connector publication requires an explicit matching reviewed mode and supported protocol', async t => {
+  const { root, selection } = await fixture(t);
+  const info = { design: 'v9-r2', workbench_mode: 'real', real_connector: true, connector_protocol: '1.0', connector_endpoint: 'http://127.0.0.1:47821' };
+  await writeFile(join(root, 'build-info.json'), JSON.stringify(info));
+  selection.file_tree_sha256 = (await candidateFileTree(root)).file_tree_sha256;
+  await assert.rejects(verifyPagesCandidate(root, selection, NOW), /unverified Connector/);
+  await verifyPagesCandidate(root, { ...selection, workbench_mode: 'real' }, NOW);
+  await writeFile(join(root, 'build-info.json'), JSON.stringify({ ...info, connector_protocol: '2.0' }));
+  selection.file_tree_sha256 = (await candidateFileTree(root)).file_tree_sha256;
+  await assert.rejects(verifyPagesCandidate(root, { ...selection, workbench_mode: 'real' }, NOW), /protocol/);
+});
 test('Pages selection cannot bypass a newer failed run, an older-ID rerun or a live refresh', () => {
   for (const newer of [{ id: 101, status: 'completed', conclusion: 'failure' }, { id: 10, status: 'completed', conclusion: 'failure' }, { id: 9, status: 'in_progress', conclusion: null }]) {
     const m = metadata(); m.latest_runs.push({ ...m.run, ...newer, run_attempt: 2, updated_at: '2026-09-12T12:00:30Z' }); m.latest_runs_total_count = 2;

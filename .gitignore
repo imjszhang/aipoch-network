@@ -2,6 +2,11 @@
 node_modules/
 dist/
 dist-demo/
+dist-real/
+dist-real-subpath/
+/.dist-real*-staging-*/
+/.dist-real*-previous-*/
+/.dist-real*-build-lock/
 dist-subpath/
 dist-demo-subpath/
 generated/

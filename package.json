@@ -24,7 +24,11 @@
     "dev:demo": "VITE_WORKBENCH_DEMO=true vite --host 127.0.0.1",
     "build:demo": "VITE_WORKBENCH_DEMO=true tsx scripts/build.ts --output dist-demo",
     "preview:demo": "tsx scripts/serve.ts --dir dist-demo --port 4185",
-    "test:e2e:demo": "TEST_MODE=demo TEST_OUTPUT=dist-demo TEST_PORT=4185 playwright test"
+    "test:e2e:demo": "TEST_MODE=demo TEST_OUTPUT=dist-demo TEST_PORT=4185 playwright test",
+    "dev:real": "VITE_WORKBENCH_MODE=real vite --host 127.0.0.1",
+    "build:real": "VITE_WORKBENCH_MODE=real tsx scripts/build.ts --output dist-real",
+    "preview:real": "tsx scripts/serve.ts --dir dist-real --port 4186",
+    "test:e2e:real": "TEST_MODE=real TEST_OUTPUT=dist-real TEST_PORT=4186 playwright test real-connector.test.ts"
   },
   "dependencies": {
     "ajv": "8.20.0",

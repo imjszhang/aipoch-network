@@ -12,6 +12,8 @@ import { COLLECTION_NAMES, type CatalogManifest } from '../spec/types.js';
 const HOUR = 60 * 60 * 1000;
 export interface PagesSelection {
   repository: string; run_id: number; snapshot_id: string; artifact_sha256: string; file_tree_sha256: string; source_sha: string; site_base: '/' | '/aipoch-network/';
+  /** Explicitly reviewed capability mode; omitted historical selections mean unavailable. */
+  workbench_mode?: 'unavailable' | 'real';
 }
 interface Run {
   id: number; run_attempt: number; status: string; conclusion: string | null; event: string; head_branch: string;
@@ -38,6 +40,7 @@ export function validateCandidateMetadata(metadata: PagesMetadata, now = Date.no
   assert(Number.isSafeInteger(s.run_id) && s.run_id > 0 && /^[a-f0-9]{24}$/.test(s.snapshot_id), 'Invalid reviewed run or snapshot');
   assert(/^sha256:[a-f0-9]{64}$/.test(s.artifact_sha256) && /^sha256:[a-f0-9]{64}$/.test(s.file_tree_sha256) && /^[a-f0-9]{40}$/.test(s.source_sha), 'Expected digests and source commit must be exact');
   assert(s.site_base === '/' || s.site_base === '/aipoch-network/', 'Unsupported reviewed site base');
+  assert(s.workbench_mode === undefined || s.workbench_mode === 'unavailable' || s.workbench_mode === 'real', 'Unsupported reviewed workbench mode');
   assert(metadata.repository.full_name.toLowerCase() === s.repository.toLowerCase() && metadata.repository.default_branch === 'main', 'Repository identity or default branch differs');
   assert(metadata.main_sha === s.source_sha && r.head_sha === s.source_sha, 'Candidate is not from the currently reviewed main commit');
   assert(r.id === s.run_id && Number.isSafeInteger(r.run_attempt) && r.run_attempt > 0, 'Run identity differs');
@@ -94,8 +97,13 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
   assert(output.snapshot_id === selection.snapshot_id, 'Reviewed snapshot differs from site');
   // Older reviewed releases predate build-info; new design previews must never become production candidates.
   if (tree.manifest.files.some(file => file.path === 'build-info.json')) {
-    const info = await json(directory, 'build-info.json') as { design?: string; workbench_mode?: string; real_connector?: boolean };
-    assert(info.design === 'v9-r2' && info.workbench_mode === 'unavailable' && info.real_connector === false, 'Demo or unverified Connector build cannot be published');
+    const info = await json(directory, 'build-info.json') as { design?: string; workbench_mode?: string; real_connector?: boolean; connector_protocol?: string; connector_endpoint?: string };
+    const mode = selection.workbench_mode ?? 'unavailable';
+    assert(mode === 'real' || mode === 'unavailable', 'Demo or unverified Connector build cannot be published');
+    assert(info.design === 'v9-r2' && info.workbench_mode === mode && info.real_connector === (mode === 'real'), 'Demo or unverified Connector build cannot be published');
+    if (mode === 'real') assert(info.connector_protocol === '1.0' && info.connector_endpoint === 'http://127.0.0.1:47821', 'Unsupported reviewed Connector protocol or endpoint');
+  } else {
+    assert(selection.workbench_mode !== 'real', 'Real Connector candidates must declare their build mode');
   }
   const notices = await lstat(join(directory, 'third-party-notices.txt'));
   assert(notices.isFile() && !notices.isSymbolicLink() && notices.size > 0 && notices.size <= 1_000_000, 'Bundled third-party notices are missing or invalid');

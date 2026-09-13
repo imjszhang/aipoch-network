@@ -4,9 +4,10 @@ import { allEntries, routeFor, type Entry, type SiteData } from '../model.js';
 import { Link, useNavigation } from '../navigation.js';
 import { LibraryStore } from '../library/storage.js';
 import { DemoAdapter, UnavailableAdapter, type DemoOutcome } from './adapter.js';
+import { RealAdapter } from './real-adapter.js';
 import { WorkbenchEngine, type WorkbenchState } from './engine.js';
 import type { ResearchReference } from './reference.js';
-import { DEMO_MODE } from '../build-mode.js';
+import { DEMO_MODE, WORKBENCH_MODE } from '../build-mode.js';
 export { DEMO_MODE };
 
 export const OPEN_SCIENCE_URL = 'https://aipoch.com/open-science';
@@ -19,7 +20,7 @@ type WorkbenchContextValue = {
 const WorkbenchContext = createContext<WorkbenchContextValue | null>(null);
 export function useWorkbench() { const value = useContext(WorkbenchContext); if (!value) throw new Error('WorkbenchProvider is required'); return value; }
 const libraryKey = () => `aipoch-network.browser-library.v1.${DEMO_MODE ? 'demo' : 'public'}`;
-const createEngine = (data: SiteData, catalogReady: boolean, review = false) => new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()));
+const createEngine = (data: SiteData, catalogReady: boolean, review = false) => new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : WORKBENCH_MODE === 'real' ? new RealAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()));
 
 export function WorkbenchProvider({ data, catalogReady, children }: { data: SiteData; catalogReady: boolean; children: ReactNode }) {
   const [ordinary] = useState(() => createEngine(data, catalogReady));
@@ -103,10 +104,10 @@ function Dialog({ title, compact = false, children, onClose }: { title: string; 
 }
 function ConnectButtons() {
   const { engine, state, connected } = useWorkbench();
-  return <div className="wb-actions">
+  return <>{state.pairing && <p className="wb-pairing-code" role="status">Connection code <strong>{state.pairing.verificationCode}</strong><small>Approve this matching code in AIPOCH Connector on this computer. This request expires in three minutes.</small></p>}<div className="wb-actions">
     {!connected && (state.connection === 'connecting' ? <Button onClick={() => engine.cancelConnection()}>Cancel connection</Button> : <Button className="wb-primary" onClick={engine.connect}>Connect Open-Science<ArrowUpRight size={16} aria-hidden="true" /></Button>)}
     {!connected && <a className="wb-button" href={OPEN_SCIENCE_URL} target="_blank" rel="noreferrer">Get Open-Science<ArrowUpRight size={16} aria-hidden="true" /></a>}
-  </div>;
+  </div></>;
 }
 function ConnectionPanel() {
   const { engine, state, connected } = useWorkbench();
@@ -211,7 +212,7 @@ export function JoinPage() {
     </section><aside>
       <div className="wb-panel wb-join-status"><div className="wb-join-status-heading"><span className={`wb-join-status-icon ${connected ? 'is-connected' : ''}`}>{connected ? <Check size={23} aria-hidden="true" /> : <Laptop size={23} aria-hidden="true" />}</span><div><p className="wb-eyebrow">Open-Science workbench</p><h2>{connectionLabels[state.connection]}</h2><p>{state.reason || (connected ? 'Projects and capabilities can now continue in your workbench.' : 'Connect to take research from this network into your own workbench.')}</p></div>{demo && <small>Demo</small>}</div>
         {connected ? <><ConnectionStatus /><div className="wb-actions"><Button onClick={engine.openConnection}>Connection details</Button></div></> : <Button onClick={engine.openConnection}>Connect Open-Science</Button>}
-        <p className="wb-muted">{demo ? 'This preview demonstrates the connection flow. No live client is connected.' : 'Real Connector communication is not available yet. You can continue browsing and use complete manual references.'}</p>
+        <p className="wb-muted">{demo ? 'This preview demonstrates the connection flow. No live client is connected.' : WORKBENCH_MODE === 'real' ? 'AIPOCH Connector connects to your running workbench on this computer. Public browsing remains available without connecting.' : 'Real Connector communication is not available yet. You can continue browsing and use complete manual references.'}</p>
       </div>
       <div className="wb-panel wb-join-existing"><GitBranch size={25} aria-hidden="true" /><h3>Already have a GitHub project?</h3><p>Share a public repository or organization directly. You do not need a workbench to suggest a source.</p><Link to="/submit/" className="wb-text-action">Share an existing project<ArrowRight size={16} aria-hidden="true" /></Link></div>
       <Link to="/explore/" className="wb-text-action">Keep exploring<ArrowRight size={16} aria-hidden="true" /></Link>

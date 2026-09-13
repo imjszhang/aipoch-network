@@ -6,7 +6,7 @@ import type { SiteData } from '../src/model.js';
 import { WorkbenchEngine } from '../src/workbench/engine.js';
 import { resolveReference } from '../src/workbench/reference.js';
 import { LibraryStore, parseLibrary, MAX_LIBRARY_BYTES } from '../src/library/storage.js';
-import { DemoAdapter, UnavailableAdapter, type WorkbenchAdapter, type Session, type Request, type Receipt } from '../src/workbench/adapter.js';
+import { DemoAdapter, UnavailableAdapter, type WorkbenchAdapter, type Session, type Request, type Receipt, type PairingProgress } from '../src/workbench/adapter.js';
 
 const date = '2026-09-13T00:00:00.000Z';
 const source: SourceRepository = { id: 'source:one', kind: 'source_repository', title: 'Public source', status: 'listed', updated_at: date, provenance: {}, provider: 'github', provider_id: 1, canonical_url: 'https://github.com/example/science', owner_id: 'actor:one', availability: 'accessible', archived: false, observed_at: date, stale: false, license: { status: 'identified', spdx_id: 'MIT', conditions: 'Keep the notice', path: 'LICENSE', commit: 'b'.repeat(40) }, aliases: [] };
@@ -15,10 +15,10 @@ const capability: Resource = { id: 'resource:one', kind: 'resource', title: 'A c
 const fixture = (): SiteData => ({ snapshot_id: 'snapshot-one', generated_at: date, catalog: { ...emptyCatalog(), sources: [structuredClone(source), { ...structuredClone(source), id: 'source:two', provider_id: 2, archived: true, stale: true, license: { status: 'unknown' } }], projects: [structuredClone(project)], resources: [structuredClone(capability)] } });
 class ControlledAdapter implements WorkbenchAdapter {
   demo = true;
-  connects: Array<{ attempt: string; callback: (attempt: string, session: Session | null, reason?: string) => void }> = [];
+  connects: Array<{ attempt: string; callback: (attempt: string, session: Session | null, reason?: string) => void; progress?: (attempt: string, pairing: PairingProgress) => void }> = [];
   requests: Array<{ request: Request; callback: (receipt: Receipt) => void; fail: (message: string) => void }> = [];
   sessions = new Set<string>();
-  connect(attempt: string, callback: (attempt: string, session: Session | null, reason?: string) => void) { this.connects.push({ attempt, callback }); return () => {}; }
+  connect(attempt: string, callback: (attempt: string, session: Session | null, reason?: string) => void, progress?: (attempt: string, pairing: PairingProgress) => void) { this.connects.push({ attempt, callback, progress }); return () => {}; }
   send(request: Request, callback: (receipt: Receipt) => void, fail: (message: string) => void) { this.requests.push({ request, callback, fail }); return () => {}; }
   confirm(index = this.connects.length - 1) { const connection = this.connects[index]; const session = { id: `session-${index}`, expiresAt: Date.now() + 10_000, demo: true }; this.sessions.add(session.id); connection.callback(connection.attempt, session); }
   receipt(change: Partial<Receipt> = {}, index = this.requests.length - 1) { const call = this.requests[index]; call.callback({ ...call.request, receivedAt: Date.now(), outcome: 'received', ...change }); }
@@ -29,6 +29,22 @@ class ControlledAdapter implements WorkbenchAdapter {
 const make = () => { const adapter = new ControlledAdapter(); const library = new LibraryStore('test'); const engine = new WorkbenchEngine(fixture(), true, adapter, library); return { adapter, library, engine }; };
 const connect = (engine: WorkbenchEngine, adapter: ControlledAdapter) => { engine.connect(); adapter.confirm(); };
 const prepare = (engine: WorkbenchEngine, adapter: ControlledAdapter) => { engine.select(project, '/projects/?q=method&page=2'); connect(engine, adapter); engine.approve(true); };
+
+test('pairing extends the initial network wait once, is cancellable and cannot restore an old attempt', async t => {
+  const adapter = new ControlledAdapter();
+  const engine = new WorkbenchEngine(fixture(), true, adapter, new LibraryStore('pairing'), { connect: 10, send: 15, pairing: 100 }); t.after(() => engine.dispose());
+  engine.select(project); engine.connect();
+  const first = adapter.connects[0];
+  first.progress!(first.attempt, { verificationCode: '123 456', expiresAt: Date.now() + 1000 });
+  await new Promise(resolve => setTimeout(resolve, 25));
+  assert.equal(engine.getSnapshot().connection, 'connecting');
+  assert.equal(engine.getSnapshot().pairing?.verificationCode, '123 456');
+  engine.cancelConnection(); assert.equal(engine.getSnapshot().pairing, null);
+  engine.connect(); first.progress!(first.attempt, { verificationCode: 'OLD CODE', expiresAt: Date.now() + 1000 });
+  assert.equal(engine.getSnapshot().pairing, null); adapter.confirm(0);
+  assert.equal(engine.getSnapshot().connection, 'connecting');
+  adapter.confirm(1); assert.equal(engine.getSnapshot().connection, 'connected'); assert.equal(engine.getSnapshot().selected, project.id); assert.equal(engine.getSnapshot().approval, null);
+});
 
 test('selection survives connection; consent is required and send is deduplicated', t => {
   const { engine, adapter } = make(); t.after(() => engine.dispose());
