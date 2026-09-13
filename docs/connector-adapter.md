@@ -1,6 +1,6 @@
 # 真实 Connector 网页适配
 
-状态：网页适配器、三种显式构建模式、协议夹具及真实本地 HTTP 浏览器连接链路已通过对应验证。真实生产 HTTPS、其他浏览器和正式启用分别验收；默认构建及工作流选择仍为 `unavailable`，截至本记录尚未启用线上连接。
+状态（2026-09-13）：真实模式产物已正式发布至 `https://aipoch.network/`，部署的 verify、deploy、smoke 及独立 HTTPS GET 检查通过；生产浏览器端到端验收仍待完成。网页适配器、三种显式构建模式、协议夹具及真实本地 HTTP 浏览器连接链路已通过对应验证。默认构建及工作流选择仍为 `unavailable`，本次发布显式选择了 `real`。详见 [Connector alpha 发布记录](deployment/connector-alpha-release.md)。
 
 最新本地记录（2026-09-13）：实施任务的类型检查、255 项离线测试及默认构建通过，Pages 定向 9 项检查通过（属于相关检查，不与全量用例累加）。本次独立复核使用不同产物和端口完成根路径、GitHub Pages 子路径各 96 页真实模式构建，以及各 6 项浏览器协议夹具检查。真实 `4193 → Connector → Open-Science` 联调另见下文，不能与夹具结果混为一项证明。
 
@@ -47,7 +47,7 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 真实模式的产物声明 `real_connector: true`、`connector_protocol: '1.0'`、固定本机端点，表示包含真实传输代码，不是当前已连接。发布选择必须显式记录 `workbench_mode: 'real'`，否则候选校验仍按 unavailable 拒绝真实产物；Demo 无论如何不能进入 Pages。
 
-`refresh.yml` 与 `deploy-pages.yml` 已加入显式 `workbench_mode` 选择，仅允许 `unavailable`、`real`，默认均保持 `unavailable`。刷新只在候选构建步骤传入 `VITE_WORKBENCH_MODE`，不污染普通离线回归测试。部署将该选择绑定到经过审阅的产物，线上 smoke 再核对 `build-info.json` 的模式与 `real_connector` 声明。这些工作流改动本身没有创建部署，也不证明生产 HTTPS 连接成功。
+`refresh.yml` 与 `deploy-pages.yml` 已加入显式 `workbench_mode` 选择，仅允许 `unavailable`、`real`，默认均保持 `unavailable`。刷新只在候选构建步骤传入 `VITE_WORKBENCH_MODE`，不污染普通离线回归测试。部署将该选择绑定到经过审阅的产物，线上 smoke 再核对 `build-info.json` 的模式与 `real_connector` 声明。本次正式发布已显式选择 `real` 并通过这些检查；这证明所选真实模式静态产物已上线，不能证明生产浏览器已成功访问本机 Connector。
 
 回滚使用经过审阅的 unavailable 完整产物，公共目录及来源不随连接功能回滚而被替换成过期数据。生产启用、实际连接验证和设计视觉验收分别记录，不将 fixture 成功视为客户端或浏览器兼容证明。
 
@@ -82,4 +82,12 @@ CI=true TEST_MODE=real TEST_OUTPUT=/tmp/aipoch-network-review-subpath-20260913 T
 - 目录快照：`26b7d31efa5dd84150f48a9c`。
 - 后续 Connector 本地测试还核对了实际宿主项目关联、创建项目、指定公开文件获取和宿主重启后的结果；这些属于 Connector 的独立实施证据，不成为 Network 的 CI 前置条件。
 
-上述真实链路是本地 HTTP、指定开发宿主与临时测试数据的验证。配对和动作批准用于合成实施测试，不代表真实研究用户已授权，也不代表 GitHub OAuth 已验证。生产 `https://aipoch.network`、其他浏览器、正式安装包和新版本兼容性仍须在各自支持声明前单独记录。没有将路由 fixture、工作流语法检查或本地成功结果写成“已上线并普遍兼容”。
+上述真实链路是本地 HTTP、指定开发宿主与临时测试数据的验证。配对和动作批准用于合成实施测试，不代表真实研究用户已授权，也不代表 GitHub OAuth 已验证。生产浏览器、其他浏览器、正式安装包和新版本兼容性仍须在各自支持声明前单独记录；路由 fixture 与本地成功结果不证明这些范围。
+
+## 正式发布与待完成验收
+
+2026-09-13，源码 `e3eb65895b1bebe64f3cefcf18996213bf525313` 经 [CI](https://github.com/imjszhang/aipoch-network/actions/runs/34757788508)、[受信刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34757888181) 和 [正式部署](https://github.com/imjszhang/aipoch-network/actions/runs/34758098215) 全部成功。线上当前目录快照为 `26ba825d9cdfbeeabbdb7b98`。独立 Node/curl HTTPS GET 返回 200，正式 `build-info.json` 声明 `real`、协议 `1.0` 和端点 `http://127.0.0.1:47821`，当前 manifest 与本次快照一致。
+
+生产浏览器端到端尚未完成：Codex 内置浏览器导航正式外部 URL 的两次 30 秒尝试及一次 60 秒尝试均超时，标签仍停留在本地页面或空白页；通过 Codex 打开正式页面的请求返回 `queued`，当前任务尚未显示该页面，已请用户切回任务使页面加载。这些现象没有取得生产页面内的配对、会话和接收证据，不能归因为 Connector 已拒绝连接，也不能写成浏览器验收通过。
+
+当前发布状态为真实模式初步上线、完整验收待完成。后续需要在实际加载的正式 HTTPS 页面完成连接、原对象审阅、匹配持久回执及断开状态验证，单独记录浏览器与宿主环境。完整产物摘要、范围和无需改源码的 `unavailable` 回退方法见 [发布记录](deployment/connector-alpha-release.md)；本次未实际回退。

@@ -2,6 +2,8 @@
 
 2026-09-13：用户明确授权公开仓库、启用 GitHub Pages，并通过 Cloudflare 配置 aipoch.network。本记录取代此前文档中“等待公开授权 / 仅私有开发”的当前状态描述；此前验收记录保留为历史事实。
 
+最新发布：2026-09-13 已发布 Connector `real` 模式 alpha 产物，源码 `e3eb65895b1bebe64f3cefcf18996213bf525313`，snapshot `26ba825d9cdfbeeabbdb7b98`。发布校验和线上 HTTPS GET 已通过，生产浏览器端到端验收仍待完成；详见 [Connector alpha 发布记录](connector-alpha-release.md)。下面的首次部署、MIT 与 v9-r2 记录均为相应历史发布，不代表当前产物模式。
+
 ## 部署配置
 
 - 托管：GitHub Pages，Actions 构建模式，仓库 imjszhang/aipoch-network。
@@ -45,3 +47,9 @@ Actions 保留 90 天的白名单来源观察、最小撤回记录、已校验�
 ## v9-r2 设计更新
 
 2026-09-13，v9-r2 已经用户授权同步 main 并正式发布。实际源码 `472403afed20aec5c3b0f89645688ecf81608009`，snapshot `a9fe477dc576ca357c5524cd`。完整 CI、受信刷新、发布、独立产物核验及线上检查见 [v9-r2 正式发布记录](v9-r2-release.md)。线上为非 Demo 模式，不模拟真实 Open-Science 连接。
+
+## Connector 真实模式初步发布
+
+2026-09-13，[CI 34757788508](https://github.com/imjszhang/aipoch-network/actions/runs/34757788508)、[刷新 34757888181](https://github.com/imjszhang/aipoch-network/actions/runs/34757888181) 与 [部署 34758098215](https://github.com/imjszhang/aipoch-network/actions/runs/34758098215) 成功，部署中的 verify、deploy、smoke 全部通过。产物为 96 页、189 文件、3,797,586 字节。默认工作流选项仍为 `unavailable`；本次刷新与部署显式选择 `real`。
+
+独立 HTTPS GET 确认正式站提供真实模式声明和当前快照。生产浏览器尚未完成加载后的连接及接收测试，不能由 HTTP 200 或部署成功推定。摘要、浏览器阻塞情况、验收范围及回退步骤见 [完整记录](connector-alpha-release.md)。
