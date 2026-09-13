@@ -1,6 +1,6 @@
 # 正式站回执恢复修复 — 2026-09-13
 
-状态：修复已正式部署，Chrome 实际完成配对、原对象审阅、匹配成功回执、断开及收件记录保留验证。本结论限于下述实际环境；GitHub App 授权仍由独立 Connector 任务继续验收。
+状态：修复已正式部署，Chrome 实际完成配对、原对象审阅、匹配成功回执、断开及收件记录保留验证。本结论限于下述实际环境；后续独立 Connector 的 GitHub App 授权也已通过另行验收，见文末链接。
 
 ## 问题与行为
 
@@ -62,3 +62,7 @@
 在同一个成功会话点击 Disconnect，网页显示 **Not connected**；关闭浮窗后恢复 **Science Open to All** 公开首页、Join with Open-Science、搜索及五项计数，个人视图和 Save 操作隐藏。即使地址仍含个人视图查询参数，也不能继续显示连接态。断开后于 `2026-09-13T14:37:52.435Z` 再次读取同一持久回执并独立复算原文摘要，结果仍一致。
 
 至此上述实际环境中的正式 HTTPS 引用接收链路通过。Received 仅表示 Connector 持久接收，不表示研究已导入、安装或执行。原始失败请求继续作为历史保留，没有被自动重发，也没有被改写为已成功恢复。本次不修改 Connector 生产代码或已发布安装包，不新增其他浏览器、正式宿主安装包或 GitHub App 授权的兼容结论。独立 Connector 的完整记录见 [production-browser.md](https://github.com/imjszhang/aipoch-connector/blob/main/docs/verification/production-browser.md)。
+
+## 后续独立 GitHub 授权验收
+
+2026-09-13，用户注册并亲自授权 [AIPOCH Connector GitHub App](https://github.com/apps/aipoch-connector)，权限为仓库 Contents 与 Metadata 只读。Connector 的真实 Device Flow、macOS 钥匙串保存、认证身份及指定公开仓库文件读取随后验证通过，记录于 [github-authorization.md](https://github.com/imjszhang/aipoch-connector/blob/main/docs/verification/github-authorization.md)。这项验证与上述 Chrome 接收引用的部署和证据分别记录，没有改变 Network 的网页或目录协议，也没有替换已发布 Connector 安装包。
