@@ -93,7 +93,9 @@ export function thirdPartyNoticesPlugin(): Plugin {
       const ids = new Set(Object.values(bundle).flatMap(output => output.type === 'chunk'
         ? Object.entries(output.modules).filter(([, module]) => module.renderedLength > 0).map(([id]) => id)
         : []));
-      this.emitFile({ type: 'asset', fileName: NOTICES_FILE, source: await thirdPartyNotices(ids, projectRoot) });
+      const ownLicense = await readFile(join(projectRoot, 'LICENSE'), 'utf8');
+      if (!ownLicense.startsWith('MIT License\n') || !ownLicense.includes('Permission is hereby granted')) throw new Error('Missing AIPOCH MIT license notice');
+      this.emitFile({ type: 'asset', fileName: NOTICES_FILE, source: `AIPOCH Network original software\n\n${ownLicense}\n${await thirdPartyNotices(ids, projectRoot)}` });
     },
   };
 }

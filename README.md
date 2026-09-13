@@ -85,3 +85,7 @@ node consumer/cli.mjs http://127.0.0.1:4173/catalog/v1/manifest.json --query sci
 浏览器测试针对构建后的静态站点；`npm run preview` 单独启动静态预览。子路径测试使用 `SITE_BASE=/aipoch-network/ npm run build` 和 `TEST_BASE=/aipoch-network/ TEST_PORT=4174 npm run test:e2e`。
 
 [投稿指南](CONTRIBUTING.md) · [字段规范](spec/README.md) · [消费者指南](docs/consumer-guide.md) · [自动检查与刷新](docs/automation.md)
+
+## 许可证
+
+原创代码及相应文档采用 [MIT](LICENSE)，由项目所有者于 2026-09-13 指定。原始设计参考、上游项目内容和第三方依赖不因此变更许可证；其权利与声明保持原有归属。目录中的来源许可证描述的是对应上游内容，不是本项目 MIT 许可的替代。
