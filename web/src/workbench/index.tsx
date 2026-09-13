@@ -4,7 +4,7 @@ import { allEntries, routeFor, type Entry, type SiteData } from '../model.js';
 import { Link, useNavigation } from '../navigation.js';
 import { LibraryStore } from '../library/storage.js';
 import { DemoAdapter, UnavailableAdapter, type DemoOutcome } from './adapter.js';
-import { RealAdapter } from './real-adapter.js';
+import { RealAdapter, REAL_REFERENCE_WAIT_MS } from './real-adapter.js';
 import { WorkbenchEngine, type WorkbenchState } from './engine.js';
 import type { ResearchReference } from './reference.js';
 import { DEMO_MODE, WORKBENCH_MODE } from '../build-mode.js';
@@ -20,7 +20,7 @@ type WorkbenchContextValue = {
 const WorkbenchContext = createContext<WorkbenchContextValue | null>(null);
 export function useWorkbench() { const value = useContext(WorkbenchContext); if (!value) throw new Error('WorkbenchProvider is required'); return value; }
 const libraryKey = () => `aipoch-network.browser-library.v1.${DEMO_MODE ? 'demo' : 'public'}`;
-const createEngine = (data: SiteData, catalogReady: boolean, review = false) => new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : WORKBENCH_MODE === 'real' ? new RealAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()));
+const createEngine = (data: SiteData, catalogReady: boolean, review = false) => new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : WORKBENCH_MODE === 'real' ? new RealAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()), { connect: 8000, pairing: 180000, send: WORKBENCH_MODE === 'real' ? REAL_REFERENCE_WAIT_MS : 15000 });
 
 export function WorkbenchProvider({ data, catalogReady, children }: { data: SiteData; catalogReady: boolean; children: ReactNode }) {
   const [ordinary] = useState(() => createEngine(data, catalogReady));
