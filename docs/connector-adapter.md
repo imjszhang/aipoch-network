@@ -1,6 +1,6 @@
 # 真实 Connector 网页适配
 
-状态（2026-09-13）：真实模式产物已正式发布至 `https://aipoch.network/`，部署的 verify、deploy、smoke 及独立 HTTPS GET 检查通过；生产浏览器端到端验收仍待完成。网页适配器、三种显式构建模式、协议夹具及真实本地 HTTP 浏览器连接链路已通过对应验证。默认构建及工作流选择仍为 `unavailable`，本次发布显式选择了 `real`。详见 [Connector alpha 发布记录](deployment/connector-alpha-release.md)。
+状态（2026-09-13）：真实模式产物与回执恢复修复已正式发布至 `https://aipoch.network/`。部署的 verify、deploy、smoke、独立 HTTPS 产物核对及实际 Chrome 的配对、审阅、匹配回执、断开与记录保留验证通过，环境限定为下述 Chrome/macOS 和隔离开发宿主。网页适配器、三种显式构建模式、协议夹具及真实本地 HTTP 链路也有各自验证。默认构建及工作流选择仍为 `unavailable`，本次发布显式选择了 `real`。最新部署及实际回执见 [恢复修复记录](deployment/connector-receipt-recovery.md)；[alpha 发布记录](deployment/connector-alpha-release.md) 保留初次部署历史。
 
 最新本地记录（2026-09-13）：回执恢复修复通过类型检查、283 项离线测试；根路径、GitHub Pages 子路径各 96 页真实模式构建及各 12 项浏览器协议夹具检查通过。新增用例覆盖 POST 响应丢失后查询原请求、暂时 404、停止等待后拒绝迟到回执，以及持续 16 秒才出现回执、跨过原有 15 秒页面等待期限的流程。两组构建使用独立临时产物及测试端口，不覆盖既有联调服务。此前的 255 项测试及 Pages 定向 9 项记录属于早期实施证据，不与本次结果累加。真实 `4193 → Connector → Open-Science` 联调及正式 Chrome 观察另见下文，不能与夹具结果混为一项证明。
 
@@ -53,9 +53,9 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 回滚使用经过审阅的 unavailable 完整产物，公共目录及来源不随连接功能回滚而被替换成过期数据。生产启用、实际连接验证和设计视觉验收分别记录，不将 fixture 成功视为客户端或浏览器兼容证明。
 
-## 当前验证证据与范围
+## 早期验证证据与范围
 
-此前根路径协议夹具 6 项已通过。本次在最新工作树上重新独立运行，未使用或覆盖实施任务正在使用的 `dist-real` 和 `4193` 服务：
+回执恢复修复之前，曾独立运行以下根路径与子路径检查，未使用或覆盖当时联调的 `dist-real` 和 `4193` 服务。修复后的最新结果见本文开头和恢复修复记录，以下为早期检查的准确范围：
 
 | 检查 | 本次结果 | 范围 |
 | --- | --- | --- |
@@ -67,7 +67,7 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 两次构建使用本仓库既有公开观察数据，目录快照均为 `26b7d31efa5dd84150f48a9c`；没有实时刷新来源。浏览器检查验证原对象保持、完整摘要与回执、连接后首页、断开后个人按钮和本地收藏边界、错误摘要不成功、不自动重发、取消及刷新不恢复会话。移动视口不是实体手机或 Safari 兼容证明。语法检查没有执行远程 GitHub Actions，也不替代正式候选产物验证。
 
-可重复运行本次独立检查的参数为：
+可重复运行这组独立检查的参数为：
 
 ```sh
 VITE_WORKBENCH_MODE=real SITE_BASE=/ npm run build -- --output /tmp/aipoch-network-review-root-20260913
@@ -84,14 +84,16 @@ CI=true TEST_MODE=real TEST_OUTPUT=/tmp/aipoch-network-review-subpath-20260913 T
 - 目录快照：`26b7d31efa5dd84150f48a9c`。
 - 后续 Connector 本地测试还核对了实际宿主项目关联、创建项目、指定公开文件获取和宿主重启后的结果；这些属于 Connector 的独立实施证据，不成为 Network 的 CI 前置条件。
 
-上述真实链路是本地 HTTP、指定开发宿主与临时测试数据的验证。配对和动作批准用于合成实施测试，不代表真实研究用户已授权，也不代表 GitHub OAuth 已验证。生产浏览器、其他浏览器、正式安装包和新版本兼容性仍须在各自支持声明前单独记录；路由 fixture 与本地成功结果不证明这些范围。
+上述真实链路是本地 HTTP、指定开发宿主与临时测试数据的验证。配对和动作批准用于合成实施测试，不代表真实研究用户已授权，也不代表 GitHub OAuth 已验证。后续生产 Chrome 证据在下文单独记录；其他浏览器、正式宿主安装包和新版本兼容性仍须在各自支持声明前单独验证，路由 fixture 与本地成功结果不证明这些范围。
 
-## 正式发布与待完成验收
+## 正式发布与浏览器验收
 
-2026-09-13，源码 `e3eb65895b1bebe64f3cefcf18996213bf525313` 经 [CI](https://github.com/imjszhang/aipoch-network/actions/runs/34757788508)、[受信刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34757888181) 和 [正式部署](https://github.com/imjszhang/aipoch-network/actions/runs/34758098215) 全部成功。线上当前目录快照为 `26ba825d9cdfbeeabbdb7b98`。独立 Node/curl HTTPS GET 返回 200，正式 `build-info.json` 声明 `real`、协议 `1.0` 和端点 `http://127.0.0.1:47821`，当前 manifest 与本次快照一致。
+2026-09-13，初次部署源码 `e3eb65895b1bebe64f3cefcf18996213bf525313` 经 [CI](https://github.com/imjszhang/aipoch-network/actions/runs/34757788508)、[受信刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34757888181) 和 [正式部署](https://github.com/imjszhang/aipoch-network/actions/runs/34758098215) 全部成功。当时目录快照为 `26ba825d9cdfbeeabbdb7b98`。独立 Node/curl HTTPS GET 返回 200，正式 `build-info.json` 声明 `real`、协议 `1.0` 和端点 `http://127.0.0.1:47821`，manifest 与该次快照一致。
 
 后续通过 Chrome 原生界面取得真实 HTTPS 证据：用户允许正式站访问本机服务后，网页与 Connector 的来源及配对码一致，本机确认成功，网页显示 Connected、切换个人首页并保留 AnnData；Disconnect 后恢复公开首页，个人区域隐藏。Chrome 的 `chrome://version` 实测版本为 152.0.7977.84（arm64），macOS 26.6.2（25G83）；宿主仍为隔离的 Open-Science 0.28.0 开发构建。
 
-首次正式发送暴露回执等待缺陷：请求 `reference-6b3225a4-5929-4a36-8aa1-0be073f203cf` 已在 Connector 持久接收，原文 SHA-256 为 `8212fb765256cb6f526f2b130421a92dd7e307c23a4b734cdcb3f198053b2de2`，但网页显示 Delivery is unconfirmed，没有误报成功或自动重发。独立新 CatalogClient 冷加载同一生产目录总耗时 32,353 毫秒，9 个 shard、101 条记录且全部 HTTP 200；这是独立计时，不是原请求精确时长。它证实完整校验可能超过原有适配器 8 秒及页面 15 秒等待。上文的原请求只读回执恢复用于修复这一缺陷；修复发布后仍须重新完成真实收件验收。
+首次正式发送暴露回执等待缺陷：请求 `reference-6b3225a4-5929-4a36-8aa1-0be073f203cf` 已在 Connector 持久接收，原文 SHA-256 为 `8212fb765256cb6f526f2b130421a92dd7e307c23a4b734cdcb3f198053b2de2`，但网页显示 Delivery is unconfirmed，没有误报成功或自动重发。独立新 CatalogClient 冷加载同一生产目录总耗时 32,353 毫秒，9 个 shard、101 条记录且全部 HTTP 200；这是独立计时，不是原请求精确时长。它证实完整校验可能超过原有适配器 8 秒及页面 15 秒等待。上文的原请求只读回执恢复用于修复这一缺陷。
 
-当前发布状态为真实模式初步上线、完整验收待完成。后续需要在实际加载的正式 HTTPS 页面完成连接、原对象审阅、匹配持久回执及断开状态验证，单独记录浏览器与宿主环境。完整产物摘要、范围和无需改源码的 `unavailable` 回退方法见 [发布记录](deployment/connector-alpha-release.md)；本次未实际回退。
+恢复修复源码 `bf4b365f1fff865e60bd76a6d0de20ccf5ec64db` 随后通过完整 CI、受信候选审阅和 [正式部署 34761579849](https://github.com/imjszhang/aipoch-network/actions/runs/34761579849)，公开产物核对一致，快照更新为 `32da27d09e6f0bff68dcf6d4`。同一实际环境的 Chrome 新会话成功配对；另行审阅 AnnData research software 后只点击一次 Send，网页显示 Reference received，首页计数为 1，回执列表请求和会话与持久记录匹配。请求 `reference-fcbbc1cd-1fe3-4d3a-953c-e6a468c56a23` 的原文 SHA-256 为 `82594b943b854174e57ccc0fd2cc28f36e7066e4b1cc630c0d8920ba0ecd305c`，从保存原文独立复算一致。Disconnect 后恢复公开首页并隐藏个人区域，随后读取仍保留同一回执。原始失败请求没有被重发或改写为恢复成功。
+
+该正式 HTTPS 引用接收流程在所记录环境中验收通过；真实 GitHub App 授权仍是 Connector 的独立待验项。完整环境、逐项观察与产物摘要见 [恢复修复记录](deployment/connector-receipt-recovery.md)。无需改源码的 `unavailable` 回退方法见 [初次发布记录](deployment/connector-alpha-release.md)；本次未实际回退。

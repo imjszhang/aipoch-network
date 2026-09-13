@@ -1,6 +1,6 @@
 # Connector 真实模式 alpha 发布记录
 
-日期：2026-09-13。状态：真实模式静态产物已初步上线，完整生产浏览器端到端验收仍待完成。本记录区分产物发布、HTTPS 可读取、本地联调与正式浏览器连接四类证据。
+日期：2026-09-13。本记录保留真实模式初次发布及首次生产浏览器收件失败的历史。后续回执修复已上线，实际 Chrome 完成配对、匹配收件、断开及记录保留验证，见 [恢复修复记录](connector-receipt-recovery.md)。下述初次发布身份及失败结果保持原样，区分产物发布、HTTPS 可读取、本地联调与正式浏览器连接证据。
 
 ## 发布身份与结果
 
@@ -13,7 +13,7 @@
 | 正式部署 | [34758098215](https://github.com/imjszhang/aipoch-network/actions/runs/34758098215)，verify、deploy、smoke 全部成功 |
 | 构建基路径 | `/` |
 | 显式模式 | `real` |
-| 当前 snapshot | `26ba825d9cdfbeeabbdb7b98` |
+| 初次部署 snapshot | `26ba825d9cdfbeeabbdb7b98` |
 | GitHub artifact SHA-256 | `d45fde203fb911639ea87fba3ff5841edad90d09c7705dae256bff697480dd5c` |
 | 完整文件树 SHA-256 | `2fbed774e9936d5f4ce6ea89c2fc0ddbf09c7240b1acb405bb5f1d9eb57a6aeb` |
 | 产物规模 | 96 页、189 文件、3,797,586 字节 |
@@ -22,11 +22,11 @@
 
 ## 已取得的正式站证据
 
-独立 Node/curl HTTPS GET 返回 200。正式 [build-info.json](https://aipoch.network/build-info.json) 声明真实模式、协议 `1.0` 与端点 `http://127.0.0.1:47821`；[当前目录 manifest](https://aipoch.network/catalog/v1/manifest.json) 的 snapshot 为 `26ba825d9cdfbeeabbdb7b98`。部署 smoke 通过，确认其检查范围内的正式静态内容、模式、当前／固定快照与 404 行为。
+初次部署后的独立 Node/curl HTTPS GET 返回 200。当时正式 [build-info.json](https://aipoch.network/build-info.json) 声明真实模式、协议 `1.0` 与端点 `http://127.0.0.1:47821`；[目录 manifest](https://aipoch.network/catalog/v1/manifest.json) 的 snapshot 为 `26ba825d9cdfbeeabbdb7b98`。部署 smoke 通过，确认其检查范围内的正式静态内容、模式、当前／固定快照与 404 行为；这些可变地址现已提供后续部署产物。
 
-这些证据说明正式站正在提供本次真实传输产物及目录；`real` 声明只表示包含真实传输代码，不表示某位用户当前已经连接。Node/curl 不经历网页访问本机服务的浏览器权限和兼容性约束，不能替代正式网页连接验收。
+这些证据说明正式站当时提供了本次真实传输产物及目录；`real` 声明只表示包含真实传输代码，不表示某位用户当前已经连接。Node/curl 不经历网页访问本机服务的浏览器权限和兼容性约束，不能替代正式网页连接验收。
 
-## 生产浏览器验收尚未完成
+## 初次部署的生产浏览器验收结果
 
 Codex 内置浏览器导航正式外部 URL 时，两次 30 秒尝试和一次 60 秒尝试均超时，标签仍为本地页面或空白页。随后通过 Codex 打开正式页面的请求返回 `queued`。后续标签清单出现正式站标题和地址，但选择页面读取内容仍超时。
 
@@ -36,7 +36,7 @@ Codex 内置浏览器导航正式外部 URL 时，两次 30 秒尝试和一次 6
 
 正式发送的请求 `reference-6b3225a4-5929-4a36-8aa1-0be073f203cf` 已于 `2026-09-13T13:36:14.442Z` 持久收到，原文摘要 `8212fb765256cb6f526f2b130421a92dd7e307c23a4b734cdcb3f198053b2de2` 从本地保存文本独立复算一致。但网页显示 **Delivery is unconfirmed**，没有匹配成功回执。独立新客户端对同一公开目录的冷加载耗时 32,353 毫秒，超过网页原有 8 秒请求及 15 秒等待期限。本次记录不将持久接收误写为网页成功验收；原请求只读回执恢复修复及其发布后验证见 [网页适配记录](../connector-adapter.md)。
 
-截至本记录，已取得正式 HTTPS 页面的配对、有效会话、审阅发送、首页切换及断开证据，尚未取得网页匹配成功回执。完成回执恢复修复、发布和真实复测前，生产浏览器完整验收仍为待完成。
+初次部署取得正式 HTTPS 页面的配对、有效会话、审阅发送、首页切换及断开证据，但未取得网页匹配成功回执。后续修复、发布和真实复测的成功结果单独见 [恢复修复记录](connector-receipt-recovery.md)，不将该次失败请求改写为成功。
 
 ## 已有测试的适用范围
 
