@@ -7,7 +7,7 @@
 - 托管：GitHub Pages，Actions 构建模式，仓库 imjszhang/aipoch-network。
 - 正式域名：https://aipoch.network/；构建基路径 `/`。
 - Cloudflare 仅管理 DNS，根域四条 DNS-only A 记录指向 GitHub 官方 Pages 地址 185.199.108–111.153，TTL 300 秒。TLS 由 GitHub Pages 签发和终止。
-- `.github/workflows/refresh.yml` 手动生成候选；`.github/workflows/deploy-pages.yml` 发布明确指定的候选。没有常驻后端，也未新增定时任务。
+- `.github/workflows/refresh.yml` 手动生成候选；`.github/workflows/deploy-pages.yml` 发布明确指定的候选。没有常驻后端。`schedule-refresh.yml` 每天 UTC 02:17（北京时间 10:17）触发同一 main 手动刷新流程，仅生成候选，不自动发布。GitHub 定时任务可能延迟；维护者应查看 Actions 失败通知。
 - 部署输入固定 main SHA、刷新 run、snapshot、GitHub artifact digest 和独立下载后的完整文件树 digest；校验当前来源、历史撤回、静态文件及 Pages URL 后，独立最小权限任务发布。
 - 仓库变量：AIPOCH_PAGES_URL=https://aipoch.network/；AIPOCH_PAGES_RELEASE_APPROVED=true；AIPOCH_PUBLIC_STATE_POLICY_REVIEWED=true。
 
