@@ -78,6 +78,7 @@ test.describe('independent synthetic catalog states', () => {
     expect((await page.goto(address('capabilities/resource~old-method/')))?.status()).toBe(200);
     await expect(page.getByRole('heading', { name: 'Entry superseded', exact: true })).toBeVisible();
     await expect(page.locator('main')).toContainText('resource:method-0');
+    await expect(page.locator('main').getByRole('link', { name: /resource:method-0/ })).toHaveAttribute('href', /capabilities\/resource~method-0\/$/);
   });
 
   test('a collection can link to an individual researcher without a blank or broken page', async ({ page }) => {
@@ -98,16 +99,16 @@ test.describe('independent synthetic catalog states', () => {
       const previewLinks = fixture.parameter === 'organization' ? page.locator('#outputs .capability-card, #outputs .project-row') : page.locator('#outputs > p a');
       await expect(previewLinks).toHaveCount(20);
       await page.getByRole('link', { name: `View all ${fixture.total} related entries` }).click();
-      await expect(page.locator('.results-heading h2')).toContainText(`(${fixture.total})`);
+      await expect(page.locator('.results-heading h2 b')).toHaveText(String(fixture.total));
       expect(new URL(page.url()).searchParams.get(fixture.parameter)).toBe(fixture.id);
-      await expect(page.locator('.results-list > *')).toHaveCount(20);
+      await expect(page.locator('.results-list > *')).toHaveCount(8);
       await page.getByRole('button', { name: 'Next', exact: false }).click();
       await expect(page.locator('.pagination')).toContainText('Page 2');
       await page.reload();
-      await expect(page.locator('.results-heading h2')).toContainText(`(${fixture.total})`);
-      await expect(page.locator('.scope-filter')).toContainText(fixture.parameter === 'organization' ? 'Synthetic research organization' : 'Synthetic methods collection');
-      await page.getByRole('button', { name: 'Clear scope', exact: true }).click();
-      await expect(page.locator('.results-heading h2')).toContainText('(100)');
+      await expect(page.locator('.results-heading h2 b')).toHaveText(String(fixture.total));
+      await expect(page.getByLabel('Active filters', { exact: true })).toContainText(fixture.parameter === 'organization' ? 'Synthetic research organization' : 'Synthetic methods collection');
+      await page.getByRole('button', { name: 'Clear all', exact: true }).click();
+      await expect(page.locator('.results-heading h2 b')).toHaveText('100');
       expect(new URL(page.url()).searchParams.has(fixture.parameter)).toBe(false);
     }
   });
@@ -122,12 +123,12 @@ test.describe('independent synthetic catalog states', () => {
       : route.fulfill({ json: valid }));
     await page.goto(address('explore/'));
     await expect(page.getByRole('heading', { name: 'Catalog controls unavailable', exact: true })).toBeVisible();
-    await expect(page.locator('.results-list > *')).toHaveCount(20);
+    await expect(page.locator('.results-list > *')).toHaveCount(8);
     for (const next of ['mismatched', 'oversized'] as const) {
       mode = next;
       await page.getByRole('button', { name: 'Retry catalog', exact: true }).click();
       await expect(page.getByRole('heading', { name: 'Catalog controls unavailable', exact: true })).toBeVisible();
-      await expect(page.locator('.results-list > *')).toHaveCount(20);
+      await expect(page.locator('.results-list > *')).toHaveCount(8);
     }
     mode = 'valid';
     await page.getByRole('button', { name: 'Retry catalog', exact: true }).click();
@@ -142,7 +143,8 @@ test.describe('independent synthetic catalog states', () => {
       await page.addStyleTag({ content: ':root { font-size: 200% !important; }' });
       expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('32px');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-      for (const card of await page.locator('.version-card').all()) {
+      await expect(page.locator('.glance')).toHaveCount(1);
+      for (const card of await page.locator('.glance').all()) {
         expect(await card.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
       }
       await page.getByRole('navigation', { name: 'Entry sections' }).getByRole('link', { name: 'Evidence', exact: true }).click();
@@ -160,7 +162,7 @@ test.describe('independent synthetic catalog states', () => {
       await page.goto(address('capabilities/resource~withdrawn/'));
       await expect(page.getByRole('heading', { name: 'Entry withdrawn', exact: true })).toBeVisible();
       await page.goto(address('explore/'));
-      await expect(page.locator('.results-list > *')).toHaveCount(20);
+      await expect(page.locator('.results-list > *')).toHaveCount(8);
       await page.locator('.results-list a').first().click();
       await expect(page.locator('h1')).toContainText('Synthetic');
     } finally { await context.close(); }

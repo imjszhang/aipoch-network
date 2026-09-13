@@ -1,6 +1,9 @@
 .DS_Store
 node_modules/
 dist/
+dist-demo/
+dist-subpath/
+dist-demo-subpath/
 generated/
 generated.previous/
 generated.previous-*/
@@ -12,7 +15,15 @@ generated.staging-*/
 .cache/
 coverage/
 playwright-report/
+playwright-report-*/
 test-results/
+test-results-*/
+/.dist-demo*-staging-*/
+/.dist-demo*-previous-*/
+/.dist-demo*-build-lock/
+/.dist-subpath-staging-*/
+/.dist-subpath-previous-*/
+/.dist-subpath-build-lock/
 *.log
 .env
 .env.*

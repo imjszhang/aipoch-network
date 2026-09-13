@@ -1,5 +1,5 @@
 import { emptyCatalog, type CatalogData, type CatalogEntity, type Project, type Resource, type SourceRepository, type Organization, type Collection, type Actor, type Tombstone } from '../../spec/types.js';
-export interface SiteData { snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number> }
+export interface SiteData { snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number>; researcher_total?: number }
 export type Entry = SourceRepository | Project | Resource | Organization | Collection | Actor;
 export function routeFor(entry: Entry): string {
   const section = { source_repository: 'sources', project: 'projects', resource: 'capabilities', organization: 'organizations', collection: 'collections', actor: 'researchers' }[entry.kind];
@@ -13,7 +13,7 @@ export function sourceFor(entry: Entry, catalog: CatalogData): SourceRepository 
 }
 export function allEntries(catalog: CatalogData): Entry[] { return [...catalog.projects, ...catalog.resources, ...catalog.organizations, ...catalog.collections, ...catalog.sources, ...catalog.actors.filter(actor => actor.account_type === 'user')]; }
 export const RELATED_PREVIEW_LIMIT = 20;
-export const SHARED_CATALOG_ROUTES = ['/explore/','/projects/','/capabilities/','/organizations/','/researchers/','/collections/','/sources/','/submit/'];
+export const SHARED_CATALOG_ROUTES = ['/explore/','/projects/','/capabilities/','/organizations/','/researchers/','/collections/','/sources/','/submit/','/join/','/me/','/review/','/contribute/','/community/'];
 /** The same membership rule drives a detail preview and its View all directory filter. */
 export function relatedEntriesFor(entry: Organization | Collection, catalog: CatalogData): Entry[] {
   if (entry.kind === 'collection') {
@@ -38,7 +38,11 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
   const selected = new Set<string>();
   let preview: Entry[] | undefined;
   const relatedTotals: Record<string, number> = {};
-  if (path === '/') { data.catalog.projects.slice(0,3).forEach(row => selected.add(row.id)); data.catalog.resources.slice(0,3).forEach(row => selected.add(row.id)); }
+  if (path === '/') {
+    data.catalog.projects.slice(0,3).forEach(row => selected.add(row.id));
+    data.catalog.resources.slice(0,4).forEach(row => selected.add(row.id));
+    data.catalog.organizations.slice(0,3).forEach(row => selected.add(row.id));
+  }
   if (focus) {
     selected.add(focus.id);
     if (focus.kind === 'project') focus.resource_ids.forEach(id => selected.add(id));
@@ -50,7 +54,7 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
       preview.forEach(row => selected.add(row.id));
     }
   }
-  const relations = focus ? data.catalog.relations.filter(row => row.from_id === focus.id || row.to_id === focus.id) : [];
+  const relations = focus ? data.catalog.relations.filter(row => row.from_id === focus.id || row.to_id === focus.id) : path === '/' ? data.catalog.relations.slice(0,2) : [];
   for (const relation of relations) { selected.add(relation.from_id); selected.add(relation.to_id); }
   const catalog = emptyCatalog();
   const sourceIds = new Set<string>();
@@ -79,7 +83,7 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
     }
   }
   const totals = Object.fromEntries(Object.entries(data.catalog).map(([key,rows]) => [key,rows.length])) as Record<keyof CatalogData,number>;
-  return { ...data, catalog, totals, ...(preview ? { related_totals: relatedTotals } : {}) };
+  return { ...data, catalog, totals, researcher_total: data.catalog.actors.filter(row => row.account_type === 'user').length, ...(preview ? { related_totals: relatedTotals } : {}) };
 }
 export function displayDate(value: string): string { return new Date(value).toISOString().slice(0, 10); }
 export function provenanceLabel(entry: CatalogEntity, field = 'description'): string {

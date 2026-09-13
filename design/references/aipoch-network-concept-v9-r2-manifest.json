@@ -1,0 +1,161 @@
+{
+  "artifact_id": "DEL-HTML-AIPOCH-NETWORK-CONCEPT-V9-R2",
+  "version": "v9-r2-html-only",
+  "release_version": "v9",
+  "revision": "r2",
+  "generated_at": "2026-09-13T08:05:19.008Z",
+  "source_ids": [
+    "S-DR-173",
+    "S-DR-174",
+    "S-DR-175",
+    "S-DR-176",
+    "S-DR-178",
+    "S-DR-179",
+    "S-DR-180",
+    "S-DR-181",
+    "S-DR-182",
+    "S-DR-183",
+    "S-DR-184",
+    "S-DR-185"
+  ],
+  "html": "deliverables/html/aipoch-network-concept-v9-r2.html",
+  "bytes": 887656,
+  "sha256": "804616ce98eb02add16f2e14ec9d72f473df679882951568def97c24e4f406e7",
+  "input_manifest_sha256": "6ebab2350ce2657488b0ba29ec1cf0dd90a15f8740f61e7ba01e439f3b946696",
+  "catalog_snapshot": "44586393fc680644b7b0f7c8",
+  "catalog_sha256": "d5773bcbe67af2ab65b1728f9468a99087e08bfb1806628ae6847b26ac02ed48",
+  "canonical_logo_path": "working/sites/aipoch-network-concept-v1/standalone-v9/logo.svg",
+  "canonical_logo_sha256": "166bdf4c7dc0b60328394a7aa52d69e5637de45986778321c0679d978ed3eb35",
+  "immutable_inputs_verified": 30,
+  "commands": [
+    {
+      "command": "npm run lint:v9-r2",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:v9-r2",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run build:standalone:v9-r2",
+      "exit_code": 0
+    }
+  ],
+  "checks": {
+    "immutable_inputs_unchanged": true,
+    "immutable_input_count": true,
+    "approved_catalog_copy": true,
+    "canonical_logo_reused": true,
+    "inline_app": true,
+    "inline_style": true,
+    "inline_product_image": true,
+    "inline_favicon": true,
+    "no_external_script": true,
+    "no_external_style": true,
+    "no_root_assets": true,
+    "no_videos_or_zip": true,
+    "no_machine_paths": true,
+    "source_evidence": true,
+    "browser_notices": true,
+    "no_legacy_personal_entry": true,
+    "explicit_demo_receipt": true
+  },
+  "dependencies": [
+    {
+      "name": "@base-ui/react",
+      "version": "1.7.0",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@base-ui/utils",
+      "version": "0.3.2",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@floating-ui/utils",
+      "version": "0.2.12",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "class-variance-authority",
+      "version": "0.7.1",
+      "license": "Apache-2.0",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "clsx",
+      "version": "2.1.1",
+      "license": "MIT",
+      "files": [
+        "license"
+      ]
+    },
+    {
+      "name": "lucide-react",
+      "version": "1.31.0",
+      "license": "ISC",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.6",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react",
+      "version": "19.2.6",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "tailwind-merge",
+      "version": "3.6.0",
+      "license": "MIT",
+      "files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "name": "use-sync-external-store",
+      "version": "1.6.0",
+      "license": "MIT",
+      "files": [
+        "LICENSE"
+      ]
+    }
+  ],
+  "third_party_notices": "deliverables/html/aipoch-network-concept-v9-r2-third-party-notices.txt",
+  "third_party_notices_sha256": "f53b1c3d4eea18a5df1701d28f67e6e00a457608a0d46b467c112e8a8f4eb775",
+  "deferred": [
+    "new walkthrough video",
+    "offline ZIP packaging"
+  ],
+  "real_connector_implemented": false,
+  "production_deployed": false
+}

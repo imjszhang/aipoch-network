@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test spec/tests/*.test.ts pipeline/tests/*.test.ts consumer/tests/*.test.mjs",
+    "test": "tsx --test spec/tests/*.test.ts pipeline/tests/*.test.ts consumer/tests/*.test.mjs web/tests/*.test.ts",
     "catalog:refresh": "tsx pipeline/cli.ts refresh",
     "catalog:build": "tsx pipeline/cli.ts build",
     "catalog:check": "tsx pipeline/cli.ts check",
@@ -20,7 +20,11 @@
     "benchmark": "tsx scripts/benchmark.ts",
     "check": "npm run typecheck && npm test && npm run build",
     "catalog:recover": "tsx pipeline/cli.ts recover",
-    "refresh:restore": "tsx scripts/restore-refresh.ts"
+    "refresh:restore": "tsx scripts/restore-refresh.ts",
+    "dev:demo": "VITE_WORKBENCH_DEMO=true vite --host 127.0.0.1",
+    "build:demo": "VITE_WORKBENCH_DEMO=true tsx scripts/build.ts --output dist-demo",
+    "preview:demo": "tsx scripts/serve.ts --dir dist-demo --port 4185",
+    "test:e2e:demo": "TEST_MODE=demo TEST_OUTPUT=dist-demo TEST_PORT=4185 playwright test"
   },
   "dependencies": {
     "ajv": "8.20.0",

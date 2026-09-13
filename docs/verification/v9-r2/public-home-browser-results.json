@@ -1,0 +1,113 @@
+{
+  "createdAt": "2026-09-13T09:07:58.957Z",
+  "origin": "http://127.0.0.1:4290",
+  "mode": "production-unavailable",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "mainCount": 1,
+      "headerHeight": 84,
+      "heroHeight": 619.453125,
+      "cardHeight": 491.453125,
+      "fiveGridHeight": 69.84375,
+      "counts": [
+        "Projects20",
+        "Capabilities21",
+        "Organizations18",
+        "Researchers1",
+        "Collections2"
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "scrollWidth": 1024,
+      "mainCount": 1,
+      "headerHeight": 84,
+      "heroHeight": 628.484375,
+      "cardHeight": 468.953125,
+      "fiveGridHeight": 100.84375,
+      "counts": [
+        "Projects20",
+        "Capabilities21",
+        "Organizations18",
+        "Researchers1",
+        "Collections2"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "scrollWidth": 390,
+      "mainCount": 1,
+      "headerHeight": 71,
+      "heroHeight": 1018.109375,
+      "cardHeight": 451.96875,
+      "fiveGridHeight": 183.53125,
+      "counts": [
+        "Projects20",
+        "Capabilities21",
+        "Organizations18",
+        "Researchers1",
+        "Collections2"
+      ]
+    },
+    {
+      "width": 360,
+      "height": 1000,
+      "scrollWidth": 360,
+      "mainCount": 1,
+      "headerHeight": 71,
+      "heroHeight": 1023.625,
+      "cardHeight": 457.484375,
+      "fiveGridHeight": 183.53125,
+      "counts": [
+        "Projects20",
+        "Capabilities21",
+        "Organizations18",
+        "Researchers1",
+        "Collections2"
+      ]
+    }
+  ],
+  "errors": [],
+  "rootText200": {
+    "width": 390,
+    "rootFont": "32px",
+    "scrollWidth": 390,
+    "scope": "Root text size 16px to32px; fixed-pixel sizes remainfixed. Not browser zoom."
+  },
+  "reducedMotion": {
+    "matches": true,
+    "overflow": false,
+    "transition": "0s"
+  },
+  "accessibilityTree": "- region \"Browse the network\":\n  - search:\n    - searchbox \"Search AIPOCH Network\"\n    - button \"Explore search results\": Explore results\n  - link \"Projects 20\":\n    - /url: /projects/\n  - link \"Capabilities 21\":\n    - /url: /capabilities/\n  - link \"Organizations 18\":\n    - /url: /organizations/\n  - link \"Researchers 1\":\n    - /url: /researchers/\n  - link \"Collections 2\":\n    - /url: /collections/",
+  "asset": {
+    "sha256": "4686db0b56aace68af5cfdf0fbab372580f883b2469e6717a8cf6d2df3b7fdae"
+  },
+  "sourceHashes": {
+    "web/src/pages/PublicHome.tsx": "059342ce46d4267b61ffd2c7f80683ef23a1c1647eddcb4fb862c050e3c1c899",
+    "web/src/pages/public-home.css": "654c2ea6b08adbcb95cbab0032dca7bfc91a401120208b8e2374e726b5b8f269"
+  },
+  "catalogSnapshot": "26b7d31efa5dd84150f48a9c",
+  "functionalChecks": {
+    "date": "2026-09-13T09:13:34.552Z",
+    "assertions": {
+      "oneMain": true,
+      "oneH1": true,
+      "noPersonalSave": true,
+      "noVideoPlay": true,
+      "noExternalLoad": true,
+      "screenshotLoaded": true,
+      "keyboardSearch": true,
+      "touchProjects": true,
+      "joinRoute": true,
+      "noScriptBodyAndImage": true,
+      "noScriptGETURL": true
+    },
+    "note": "Native GET preserves the query URL without JavaScript. Directory dynamic filtering still requires JavaScript; only readable static fallback is asserted for no-script browsing."
+  }
+}

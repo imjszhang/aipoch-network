@@ -39,6 +39,16 @@ test('Pages metadata binds one successful current main refresh and exact artifac
   for (const mutate of mutations) { const m = metadata(); mutate(m); assert.throws(() => validateCandidateMetadata(m, NOW)); }
   assert.throws(() => validateCandidateMetadata(metadata(), NOW + 60 * 60 * 1000), /expired/);
 });
+
+test('Pages rejects an explicitly reviewed Demo build while accepting the unavailable production adapter', async t => {
+  const { root, selection } = await fixture(t);
+  await writeFile(join(root, 'build-info.json'), JSON.stringify({ design: 'v9-r2', workbench_mode: 'demo', real_connector: false }));
+  selection.file_tree_sha256 = (await candidateFileTree(root)).file_tree_sha256;
+  await assert.rejects(verifyPagesCandidate(root, selection, NOW), /Demo or unverified Connector/);
+  await writeFile(join(root, 'build-info.json'), JSON.stringify({ design: 'v9-r2', workbench_mode: 'unavailable', real_connector: false }));
+  selection.file_tree_sha256 = (await candidateFileTree(root)).file_tree_sha256;
+  await verifyPagesCandidate(root, selection, NOW);
+});
 test('Pages selection cannot bypass a newer failed run, an older-ID rerun or a live refresh', () => {
   for (const newer of [{ id: 101, status: 'completed', conclusion: 'failure' }, { id: 10, status: 'completed', conclusion: 'failure' }, { id: 9, status: 'in_progress', conclusion: null }]) {
     const m = metadata(); m.latest_runs.push({ ...m.run, ...newer, run_attempt: 2, updated_at: '2026-09-12T12:00:30Z' }); m.latest_runs_total_count = 2;

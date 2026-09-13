@@ -1,16 +1,18 @@
 import { test, expect } from '@playwright/test';
 
 test('anonymous home is useful without GitHub API or a client', async ({ page }, testInfo) => {
-  const unexpected: string[] = [], errors: string[] = [];
-  page.on('request', request => { if (/api\.github\.com|open-science|localhost:.*client/i.test(request.url())) unexpected.push(request.url()); });
+  const unexpected: string[] = [], errors: string[] = [], catalogs: string[] = [];
+  page.on('request', request => { if (new URL(request.url()).origin !== new URL(testInfo.project.use.baseURL!).origin) unexpected.push(request.url()); if (request.url().endsWith('/internal/catalog.json')) catalogs.push(request.url()); });
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('./');
   await expect(page.getByRole('heading', { name: 'Science Open to All' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
-  await expect(page.locator('.project-row')).toHaveCount(3);
-  await expect(page.locator('.hero-board')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'A question. A project. A next step.' })).toBeVisible();
+  await expect(page.locator('.ph-project-row')).toHaveCount(3);
+  await expect(page.locator('.ph-workbench-card')).toBeVisible();
   expect(await page.evaluate(width => document.documentElement.scrollWidth <= width, page.viewportSize()!.width)).toBe(true);
   expect(unexpected).toEqual([]); expect(errors).toEqual([]);
+  // Public reading uses the small server-rendered subgraph, not the complete catalog.
+  expect(catalogs).toEqual([]);
   await page.screenshot({ path: testInfo.outputPath(`home-${testInfo.project.name}.png`), fullPage: true });
 });
 
@@ -26,12 +28,17 @@ test('search, filters, sort, query links and reset select real records', async (
   await page.getByRole('searchbox', { name: 'Search directory' }).fill('no-such-research-zzzz');
   await expect(page.getByRole('heading', { name: 'No matching entries' })).toBeVisible();
   await page.getByRole('button', { name: 'Clear filters', exact: true }).click();
-  await page.getByRole('radio', { name: 'Bioinformatics', exact: true }).check();
+  const filters = page.getByRole('button', { name: 'Filters', exact: true });
+  if (await filters.isVisible()) await filters.click();
+  await page.getByRole('combobox', { name: 'Research area', exact: true }).selectOption('Bioinformatics');
+  const apply = page.getByRole('button', { name: /^Show \d+ entries$/ });
+  if (await apply.isVisible()) await apply.click();
   await expect(page.locator('.results-list')).toContainText('Biopython');
   await expect(page.locator('.results-list')).not.toContainText('SciPy');
   await page.getByLabel('Sort results').selectOption('title');
   await page.reload();
-  await expect(page.getByRole('radio', { name: 'Bioinformatics', exact: true })).toBeChecked();
+  if (await filters.isVisible()) await filters.click();
+  await expect(page.getByRole('combobox', { name: 'Research area', exact: true })).toHaveValue('Bioinformatics');
 });
 
 test('project and capability have distinct static deep links, provenance and unknowns', async ({ page }) => {
@@ -58,11 +65,21 @@ test('GitHub proposal reviews exact content and only opens a draft', async ({ pa
   await page.getByLabel('Research context', { exact: false }).fill('Review numerical methods & research tools.');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.getByRole('button', { name: 'Continue', exact: false })).toBeDisabled();
+  await expect(page.getByLabel('Exact public draft for review')).toContainText('https://github.com/scipy/scipy');
+  await expect(page.getByLabel('Exact public draft for review')).toContainText('Review numerical methods & research tools.');
+  await expect(page.getByRole('link', { name: 'imjszhang/aipoch-network', exact: true })).toHaveAttribute('href', 'https://github.com/imjszhang/aipoch-network');
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.locator('.draft')).toContainText('Review numerical methods & research tools.');
   const draft = await page.getByRole('link', { name: 'Open GitHub draft' }).getAttribute('href');
   expect(new URL(draft!).searchParams.get('body')).toContain('https://github.com/scipy/scipy');
+  await page.context().route('https://github.com/imjszhang/aipoch-network/issues/new*', route => route.fulfill({ contentType: 'text/html', body: '<h1>Local test of an external draft</h1>' }));
+  const opened = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Open GitHub draft' }).click();
+  const draftPage = await opened;
+  await expect(draftPage).toHaveURL(draft!);
+  await draftPage.close();
+  await expect(page.locator('.draft')).toContainText('Review numerical methods & research tools.');
   await expect(page.getByText('Review and submit on GitHub', { exact: true })).toBeVisible();
   await expect(page.locator('body')).not.toContainText('Successfully published');
 });
@@ -82,10 +99,10 @@ test('keyboard navigation and search failure remain usable', async ({ page }) =>
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.route('**/internal/search.json', route => route.abort());
   await page.goto('./explore/');
-  await expect(page.getByRole('status')).toContainText('Search is unavailable');
+  await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toContainText('Search is unavailable');
   await expect(page.locator('.results-list > *').first()).toBeVisible();
   await page.getByRole('button', { name: 'Retry search' }).click();
-  await expect(page.getByRole('status')).toContainText('Search is unavailable');
+  await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toContainText('Search is unavailable');
 });
 
 test('corrections retain their target and edits invalidate prior content review', async ({ page }) => {
@@ -118,6 +135,10 @@ test('long Unicode drafts use an explicit copy-and-paste path without losing con
   const href = await page.getByRole('link', { name: 'Open GitHub draft' }).getAttribute('href');
   expect(href!.length).toBeLessThan(7500);
   expect(new URL(href!).searchParams.has('body')).toBe(false);
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Test: clipboard denied'); } } }));
+  await page.getByRole('button', { name: 'Copy draft', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Copy is unavailable' })).toBeVisible();
+  await expect(page.locator('.draft')).toContainText(note);
 });
 
 test('navigation and core text fit with enlarged text', async ({ page }, testInfo) => {

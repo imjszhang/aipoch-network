@@ -54,3 +54,23 @@ jobs:
         env:
           TEST_BASE: /aipoch-network/
         run: npm run test:e2e
+      - name: Build the separately labelled Demo candidate
+        run: npm run build:demo
+      - name: Verify normal and isolated Demo journeys
+        env:
+          TEST_MODE: demo
+          TEST_OUTPUT: dist-demo
+          TEST_PORT: '4185'
+        run: npm run test:e2e
+      - name: Build the Demo project subpath
+        env:
+          SITE_BASE: /aipoch-network/
+          VITE_WORKBENCH_DEMO: 'true'
+        run: npm run build -- --output dist-demo-subpath
+      - name: Verify Demo project subpath navigation and state
+        env:
+          TEST_MODE: demo
+          TEST_BASE: /aipoch-network/
+          TEST_OUTPUT: dist-demo-subpath
+          TEST_PORT: '4186'
+        run: npm run test:e2e

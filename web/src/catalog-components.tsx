@@ -1,0 +1,22 @@
+import React from 'react';
+import { ArrowUpRight, Box, FlaskConical } from 'lucide-react';
+import type { CatalogData, Project, Resource, Organization } from '../../spec/types.js';
+import { resourceTypeLabel } from '../../spec/identity.js';
+import { displayDate, routeFor, sourceFor } from './model.js';
+import { Link } from './navigation.js';
+import { EntryActions } from './workbench/index.js';
+
+export function Badge({ children, yellow = false }: { children: React.ReactNode; yellow?: boolean }) { return <span className={`badge ${yellow ? 'yellow' : ''}`}>{children}</span>; }
+export function ArrowLink({ to, children, primary = false }: { to: string; children: React.ReactNode; primary?: boolean }) { return <Link to={to} className={`button ${primary ? 'primary' : ''}`}>{children}<ArrowUpRight size={17}/></Link>; }
+export function PageHeader({ title, description, action }: { title: string; description: string; action?: React.ReactNode }) { return <section className="page-header grid-paper"><div className="wrap page-heading"><div><p className="eyebrow"><span className="dot"/> AIPOCH Network</p><h1>{title}</h1><p>{description}</p></div>{action}</div></section>; }
+export function SectionHeading({ title, to, label = 'View all' }: { title: string; to?: string; label?: string }) { return <div className="section-heading"><h2>{title}</h2>{to && <Link to={to}>{label}<ArrowUpRight size={15}/></Link>}</div>; }
+export function ProjectRows({ projects, catalog }: { projects: Project[]; catalog: CatalogData }) { return <div className="project-list">{projects.map(project => {
+  const source = sourceFor(project, catalog);
+  return <article className="project-row" key={project.id}><span className="square-icon"><FlaskConical size={19}/></span><div className="row-body"><div className="row-title"><Link to={routeFor(project)}>{project.title}</Link><Badge>Community indexed</Badge></div><p>{project.description ?? 'Research description not yet supplied.'}</p><div className="row-facts"><span><b>Research area</b> {project.domains.join(' · ') || 'Not classified'}</span><span><b>Reusable outputs</b> {project.resource_ids.length || 'Not described'}</span></div><div className="row-meta"><span><span className="dot"/>{project.domains[0] ?? 'Unclassified'}</span><span>{source && <Link to={routeFor(source)}>{source.title}</Link>}</span><span>Observed {source ? displayDate(source.observed_at) : 'unknown'}</span></div></div><div className="catalog-row-actions"><EntryActions entry={project} compact/></div></article>;
+  })}</div>; }
+export function CapabilityCard({ resource, compact = false }: { resource: Resource; compact?: boolean }) { return <article className={`capability-card panel ${compact ? 'compact' : ''}`}><div className="card-top"><span className="square-icon yellow"><Box size={20}/></span><Badge>{resource.license.status === 'identified' ? resource.license.spdx_id || resource.license.name || 'License identified' : resource.license.status === 'conflicting' ? 'License conflicting' : 'License unknown'}</Badge></div><p className="eyebrow">{resourceTypeLabel(resource.resource_type)}</p><h3><Link to={routeFor(resource)}>{resource.title}</Link></h3><p>{resource.description ?? 'Description not yet supplied.'}</p><div className="card-bottom"><span>{resource.domains[0] ?? 'Research capability'}</span><EntryActions entry={resource} compact/></div></article>; }
+export function participationLabel(organization: Organization): string { return organization.participation === 'actively_curated' ? 'Organization curation recorded' : organization.participation === 'maintainer_acknowledged' ? 'Maintainer acknowledgement' : 'Community indexed'; }
+export function OrganizationCard({ organization, catalog }: { organization: Organization; catalog: CatalogData }) {
+  const actor = catalog.actors.find(actor => actor.id === organization.actor_id);
+  return <Link to={routeFor(organization)} className="panel organization-card"><div className="card-top"><span className="avatar">{organization.title.slice(0, 2).toUpperCase()}</span><Badge>{participationLabel(organization)}</Badge></div><h3>{organization.title}</h3><p className="handle">@{actor?.login}</p><p>{organization.description ?? 'Public GitHub organization represented by selected research sources.'}</p><div className="card-bottom"><span>{organization.source_ids.length} source{organization.source_ids.length === 1 ? '' : 's'} · {organization.resource_ids.length} capabilities</span><ArrowUpRight size={16}/></div></Link>;
+}

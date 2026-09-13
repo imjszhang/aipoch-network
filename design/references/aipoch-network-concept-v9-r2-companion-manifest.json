@@ -1,0 +1,32 @@
+{
+  "schema_version": "design-companion.v1",
+  "design_version": "v9-r2",
+  "document_revision": 1,
+  "purpose": "Portable implementation guidance; complements the paired HTML without changing it.",
+  "html": {
+    "file": "aipoch-network-concept-v9-r2.html",
+    "bytes": 887656,
+    "sha256": "804616ce98eb02add16f2e14ec9d72f473df679882951568def97c24e4f406e7"
+  },
+  "markdown": {
+    "file": "aipoch-network-concept-v9-r2.md",
+    "bytes": 35672,
+    "sha256": "eb980f955d6183e453e0836202e265ba4a68d8cfbf2744de0567ea9ea702d30c"
+  },
+  "source_ids": [
+    "S-DR-173",
+    "S-DR-174",
+    "S-DR-175",
+    "S-DR-176",
+    "S-DR-177",
+    "S-DR-178",
+    "S-DR-179",
+    "S-DR-180",
+    "S-DR-181",
+    "S-DR-182",
+    "S-DR-183",
+    "S-DR-184",
+    "S-DR-185"
+  ],
+  "production_implemented_by_this_delivery": false
+}

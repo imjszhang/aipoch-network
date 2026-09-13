@@ -1,0 +1,58 @@
+{
+  "record_type": "pre-v9-r2-product-integration-baseline",
+  "recorded_on": "2026-09-13",
+  "baseline_source_commit": "bb15fd15398e32ca6ed912070f8f182c17c08f03",
+  "scope": "Initial implementation baseline; not a v9-r2 acceptance result.",
+  "offline_check": {
+    "command": "npm run check",
+    "status": "passed",
+    "reported_by": "root implementation agent, executed before App product integration",
+    "parts": [
+      "typecheck",
+      "201 unit/contract tests",
+      "root static build"
+    ],
+    "pages": 93,
+    "files": 113,
+    "bytes": 2455135,
+    "snapshot_id": "26b7d31efa5dd84150f48a9c",
+    "raw_command_log_not_archived_here": true
+  },
+  "browser_check": {
+    "command": "TEST_PORT=4273 TEST_REPORT_DIR=playwright-report-baseline TEST_RESULTS_DIR=test-results-baseline npm run test:e2e",
+    "mode": "existing production default",
+    "base": "/",
+    "report_file": "baseline-browser-report.json",
+    "report_sha256": "2d9d84ea0c595e416a4c5fa458ea0b178387cb2e59d53f9b07b0ed0a3f79db63",
+    "stats": {
+      "startTime": "2026-09-13T08:50:49.468Z",
+      "duration": 8713.114000000001,
+      "expected": 40,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "independently_read_report": true
+  },
+  "screenshots": [
+    {
+      "file": "baseline-home-desktop.png",
+      "sha256": "3af7a3de3dad78443c746e18a2e7ff6f7de1f2020fd31654b4a8555e197c366a",
+      "state": "initial unconnected public home",
+      "mode": "existing production default"
+    },
+    {
+      "file": "baseline-home-mobile.png",
+      "sha256": "11225e9d51303149683d1ec0d55d3eb6982411192041b6203ce389e2f3c1c9d4",
+      "state": "initial unconnected public home",
+      "mode": "existing production default"
+    }
+  ],
+  "limits": [
+    "No new v9-r2 acceptance inferred.",
+    "Current-turn subpath baseline was not run by this record.",
+    "Reference same-state comparison and baseline detail screenshots still pending.",
+    "Historical browser report attachment paths retain original runner paths; copied homepage screenshots are separately listed here."
+  ]
+}

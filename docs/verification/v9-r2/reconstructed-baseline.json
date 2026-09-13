@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-09-13T09:57:19.698Z",
+  "basisCommit": "bb15fd15398e32ca6ed912070f8f182c17c08f03",
+  "method": "Read-only git archive of the original base into an isolated temporary directory; same pinned installed dependencies; explicit offline SOURCE_BATCH; independent local static server. No current product file or candidate modified.",
+  "note": "These directory/detail baselines were reconstructed after implementation, not captured at task start. Initial homepage/check evidence remains in baseline-verification.json. Temporary build total 2454565 bytes; not substituted for the originally observed 2455135-byte baseline.",
+  "snapshot": "26b7d31efa5dd84150f48a9c",
+  "browser": "153.0.8010.12",
+  "records": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "path": "projects/",
+      "title": "Projects",
+      "screenshot": "screenshots/baseline-reconstructed-projects-1440.png",
+      "sha256": "1053215ab349f369da46f3dd879ba1a928fccaf0cd2746736d28b7dfb56d4154"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "path": "capabilities/",
+      "title": "Capabilities",
+      "screenshot": "screenshots/baseline-reconstructed-capabilities-1440.png",
+      "sha256": "780266b3d713b40ced579ad97391e408bfdd59a6fc40e550b61a29cafac6433a"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "path": "projects/project~scanpy/",
+      "title": "Scanpy",
+      "screenshot": "screenshots/baseline-reconstructed-project-1440.png",
+      "sha256": "131258807ed4ced7df14aa495f208216a0fb3fdaad7bc8b684594b27e019c607"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "path": "capabilities/resource~anndata-library/",
+      "title": "AnnData research software",
+      "screenshot": "screenshots/baseline-reconstructed-capability-1440.png",
+      "sha256": "050fd5cc3c2ea7107572dab47fa058bf62c64f5d48db4db77b1e4a73700100db"
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "path": "projects/",
+      "title": "Projects",
+      "screenshot": "screenshots/baseline-reconstructed-projects-390.png",
+      "sha256": "e32f73aa8eb813fca78131f162ab7709f442a7f8267e7e8bd5e1d46406d439d6"
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "path": "capabilities/",
+      "title": "Capabilities",
+      "screenshot": "screenshots/baseline-reconstructed-capabilities-390.png",
+      "sha256": "9b2e50652bc020869208b0b5131eda2fcfd4667f2a968ca964f054df54dfbc52"
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "path": "projects/project~scanpy/",
+      "title": "Scanpy",
+      "screenshot": "screenshots/baseline-reconstructed-project-390.png",
+      "sha256": "b6faaf1b1b2da11ab59e31c567350c3c6bf1287c9243b3cd9426a2aff7485e48"
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "path": "capabilities/resource~anndata-library/",
+      "title": "AnnData research software",
+      "screenshot": "screenshots/baseline-reconstructed-capability-390.png",
+      "sha256": "821ff95bbe277debe75f53cf5c44eeec069a8dc2e898568ee4f1120894388927"
+    }
+  ]
+}

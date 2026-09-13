@@ -181,6 +181,9 @@ export async function buildRelease(options: { destination?: string; base?: strin
 }
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
-  buildRelease().then(result => console.log(`Validated ${result.pages} pages and ${result.files} files (${result.bytes} bytes); dist now contains snapshot ${result.snapshot_id}.`))
+  const args = process.argv.slice(2);
+  if (args.length && (args.length !== 2 || args[0] !== '--output' || !args[1])) throw new Error('Usage: build.ts [--output directory]');
+  const destination = args[1] ?? 'dist';
+  buildRelease({ destination }).then(result => console.log(`Validated ${result.pages} pages and ${result.files} files (${result.bytes} bytes); ${destination} now contains snapshot ${result.snapshot_id}.`))
     .catch(error => { console.error(error instanceof Error ? error.message : 'Release build failed'); process.exitCode = 1; });
 }

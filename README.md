@@ -9,9 +9,10 @@
 - 阶段：**实施中**。已建立可运行的目录、静态网站与独立消费者；按完整计划继续验收与交付。
 - GitHub：[imjszhang/aipoch-network](https://github.com/imjszhang/aipoch-network)，默认分支 `main`。
 - 仓库策略：**公开项目**；GitHub Pages 自定义域名为 [aipoch.network](https://aipoch.network/)，部署记录见 [公开部署](docs/deployment/public-pages.md)。
-- 前端设计：第一版以 [aipoch-network-concept-v6.html](design/references/aipoch-network-concept-v6.html) 为基线；后续通过新版 HTML 迭代设计意图，规则见 [设计交接](design/README.md)。
+- 前端设计：当前目标为已原样归档的 [v9-r2 HTML](design/references/aipoch-network-concept-v9-r2.html) 与 [配套实施说明](design/references/aipoch-network-concept-v9-r2.md)；v6 保留为历史基线。目标登记不等于实现完成，规则见 [设计交接](design/README.md)。
 - 验收：阶段进度与剩余工作见 [实施记录](docs/implementation-status.md)，首次公开部署已完成，其余验收项继续见实施记录。
-- 私有集成：实现已合入 `main`；201 项离线测试、根/子路径各 40 项浏览器检查及连续两次真实刷新通过，见 [集成验收](docs/verification/private-integration.md)。
+- 历史集成证据：既有实现已合入 `main`；此前 201 项离线测试、根/子路径各 40 项浏览器检查及连续两次真实刷新通过，见 [集成验收](docs/verification/private-integration.md)。这些结果不替代 v9-r2 的重新验收。
+- v9-r2 本地交付：公共页面、连接与个人首页已实现，232 项离线测试和 352 项浏览器检查通过；按用户指示停止旁白专项，实际覆盖见 [本版实施记录](docs/verification/v9-r2/implementation-status.md)。本版尚未提交或部署；真实 Connector 通信另行接入，演示成功不表示生产连接已实现。
 - 托管：GitHub Pages 静态网站，依托 GitHub 仓库、API 和 Actions；不维护自建常驻后端。
 - 独立性：Open-Science 及其他客户端的升级、重构或不可用，不应要求本项目修改、重新发布或停止服务。
 
@@ -32,6 +33,9 @@
 | [架构与决策](docs/architecture.md) | 模块边界、实际技术方案、目录布局、独立性和非目标 |
 | [目录与公共契约](docs/catalog-contract.md) | 对象模型、来源分层、最小收录、身份、版本和客户端读取规范 |
 | [完整实施计划](docs/implementation-plan.md) | P0–P6 任务、依赖、交付物、验收、工作量与风险 |
+| [v9-r2 专项实施计划](docs/v9-r2-implementation-plan.md) | 最新设计接纳、独立适配边界与分阶段任务 |
+| [v9-r2 实施与验收记录](docs/verification/v9-r2/implementation-status.md) | N/R/V 状态、接收摘要、实际证据与待验收项 |
+| [工作台预览与适配边界](docs/workbench-preview.md) | 正式与 Demo 构建、试用步骤、本机数据、未来 Connector 接口 |
 | [交付与运营](docs/delivery-operations.md) | 私有到公开的选择、GitHub 约束、采集、部署、回滚和运营 |
 | [前端设计与 HTML 交接](design/README.md) | 当前设计原件、版本记录、意图映射及后续升级流程 |
 | [公开交付决策材料](docs/publication-decision.md) | 可审查的公开范围、许可与仓库布局选项 |
@@ -54,13 +58,13 @@
 
 首个端到端验收目标：一个未为 AIPOCH 做适配的公开 GitHub 项目，仅凭链接即可进入候选目录，准确展示来源、用途和信息缺失状态，并允许普通访客访问上游；任意独立消费者能够从通用目录定位同一资源。
 
-## 私有开发与未来公开
+## 公开状态与设计接纳
 
-当前私有状态不自动改变。网站公开范围、主仓库是否公开、公开投稿位置和许可证，需要在公开试点前形成明确决定。私有源仓库不等于私有 Pages，私有主仓库也不能直接接受所有外部用户的公开投稿。
+主仓库已公开，原创代码及相应文档采用 MIT，正式网站使用 GitHub Pages 与 aipoch.network。此前私有阶段的方案与验收记录保留为历史，现行发布配置和证据见 [公开部署](docs/deployment/public-pages.md)。
 
-当前不提供开源许可证授权。公开前将分别决定本站代码与原创目录资料的许可方式，并保留上游项目各自的许可证。
+设计接纳、实现验收和生产发布分别记录。v9-r2 的连接与引用流程通过独立适配接口组织；未实现真实通信时，默认网站准确说明无法确认连接，完整演示仅在明确的 Demo 模式中提供。Network 网页不处理 GitHub 授权，未来 AIPOCH Connector 在工作台侧处理仓库访问、导入、同步和需要权限的动作。
 
-规划与实施基线：2026-09-12。用户指定的 HTML 已原样归档为前端设计依据；参考文件与 Open-Science 源码均不是本仓库的运行或构建依赖。
+原始规划基线：2026-09-12；最新配对设计接收：2026-09-13。参考 HTML、配套 MD 与 Open-Science 源码均不是本仓库的运行或构建依赖；设计素材和上游内容保持各自的权利归属。
 
 ## 本地开发
 
@@ -83,6 +87,8 @@ node consumer/cli.mjs http://127.0.0.1:4173/catalog/v1/manifest.json --query sci
 ```
 
 浏览器测试针对构建后的静态站点；`npm run preview` 单独启动静态预览。子路径测试使用 `SITE_BASE=/aipoch-network/ npm run build` 和 `TEST_BASE=/aipoch-network/ TEST_PORT=4174 npm run test:e2e`。
+
+正常构建的连接适配器为 unavailable。要试用连接后的个人首页、保存和引用回执，使用单独产物 `npm run build:demo`，再运行 `npm run preview:demo`，访问本地 4185 端口。演示状态持续标注 Demo；真实连接尚未实现。具体操作和独立适配边界见[工作台预览](docs/workbench-preview.md)。
 
 [投稿指南](CONTRIBUTING.md) · [字段规范](spec/README.md) · [消费者指南](docs/consumer-guide.md) · [自动检查与刷新](docs/automation.md)
 

@@ -1,0 +1,3739 @@
+{
+  "recordedAt": "2026-09-13T09:48:24.867996+00:00",
+  "source_tree_sha256": "77f785796f09cd1d91ecb4351d2dd39bf4ce41e4566bec95abc88f4ca4663e2d",
+  "note": "Mode-inapplicable tests are intentionally skipped; no failure is counted as a skip. Synthetic fixture scenarios use the same current source, with their own explicit fixture data.",
+  "reports": [
+    {
+      "candidate": "root",
+      "original_report": "playwright-report-v9-release-root/results.json",
+      "report_sha256": "5a166aeac6b8d33d6d9ef3a325a60caef60dfc7bf80241a7fdf018ce65f79398",
+      "stats": {
+        "startTime": "2026-09-13T09:45:36.107Z",
+        "duration": 11147.464,
+        "expected": 78,
+        "skipped": 24,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "demo",
+      "original_report": "playwright-report-v9-release-demo/results.json",
+      "report_sha256": "09e2ae6114bae95baf8b2af180490bbfe6001002996774ac23be825d3426b956",
+      "stats": {
+        "startTime": "2026-09-13T09:46:07.166Z",
+        "duration": 13469.266,
+        "expected": 98,
+        "skipped": 4,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "subpath",
+      "original_report": "playwright-report-v9-release-subpath/results.json",
+      "report_sha256": "4a5c3009cc539a2ce7f0aa1026acd7452ec4549ecdea9586186a1940d8f5905c",
+      "stats": {
+        "startTime": "2026-09-13T09:46:38.517Z",
+        "duration": 10832.761999999999,
+        "expected": 78,
+        "skipped": 24,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "demo-subpath",
+      "original_report": "playwright-report-v9-release-demo-subpath/results.json",
+      "report_sha256": "41b912907a28837f5ce2372a7db1312da06da74375475070f6005b0634473dc3",
+      "stats": {
+        "startTime": "2026-09-13T09:47:11.386Z",
+        "duration": 13620.707999999999,
+        "expected": 98,
+        "skipped": 4,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "individual researcher has a real static route, profile identity and owned source",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "organization lists both reviewed sources and preserves the exact curation scope",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "a collection can link to an individual researcher without a blank or broken page",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "large organization and collection previews link to complete scoped, paginated directories",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "200% text keeps resource controls and organization content within the viewport",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "catalog-states.test.ts",
+          "name": "static profile and withdrawal content remain readable without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community shows snapshot evidence and collections, with shareable activity filters",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community does not infer validation or collaboration from catalog activity",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "contribute is a separate public flow with a scoped organization proposal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "community.test.ts",
+          "name": "community and contribution remain useful without JavaScript",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "every directory has a searchable first page, truthful counts and responsive refinement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "late search results clamp the shared page without stealing search focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "version and area refinements survive reload and clear unknown shared scopes",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "organization and collection selectors intersect real memberships and preserve shared links",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "search failure keeps browsable pages and retry applies the actual query",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "directory-navigation.test.ts",
+          "name": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "client navigation loads the full catalog on demand and updates title and main focus",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "fast scroll then Back and Forward restores the departing page position",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "navigation-state.test.ts",
+          "name": "a changed catalog snapshot leaves readable content and an explicit refresh recovery",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "anonymous home is useful without GitHub API or a client",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "search, filters, sort, query links and reset select real records",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "project and capability have distinct static deep links, provenance and unknowns",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "GitHub proposal reviews exact content and only opens a draft",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "static server returns actual 404 and the catalog is readable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "keyboard navigation and search failure remain usable",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "corrections retain their target and edits invalidate prior content review",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "navigation and core text fit with enlarged text",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "site.test.ts",
+          "name": "real individual and multi-source organization routes retain source identities and correction intent",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01: unconnected discovery has one workbench entry, actual counts and no personal operations",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V15: unconnected object controls preserve URL and support keyboard dismissal with focus return",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "desktop",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V02/V18: URL flags cannot enable Demo or claim a connection; browsing stays available",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V18: unavailable connection preserves the exact capability reference and manual-copy fallback",
+          "project": "mobile",
+          "status": "skipped",
+          "results": [
+            "skipped"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "desktop",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V01/V02: normal connection replaces the full homepage and exposes honest personal views",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V03/V05/V07: filtered project selection continues the same object and requires exact review before a receipt",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V04/V14: Use review keeps full fixed revision, path, source conditions and multi-source project evidence",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10/V11: saved items survive disconnection and refresh without restoring connection authority",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: denied browser storage uses memory and preserves the personal flow within the visit",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V11: damaged preferences are preserved while new saved state stays in memory",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V07: manual receipts reject every mismatched identity, preserve in-flight work and deduplicate success",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V06/V09: replacing an in-flight object needs a choice and old delivery cannot approve the replacement",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08: cancelled and timed-out connections ignore late confirmation and permit an explicit retry",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V09/V10: timeout and interruption invalidate send consent without falsely withdrawing remote work",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V08/V09/V18: explicit failures permit review and a workbench follow-up never becomes GitHub authorization or execution",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "file": "v9-workbench.test.ts",
+          "name": "V12: Review uses a temporary library and returns to the ordinary valid session without pollution",
+          "project": "mobile",
+          "status": "expected",
+          "results": [
+            "passed"
+          ]
+        }
+      ]
+    }
+  ]
+}

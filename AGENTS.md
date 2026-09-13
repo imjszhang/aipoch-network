@@ -2,9 +2,9 @@
 
 ## Scope and working baseline
 
-This is an independent GitHub-native research catalog project. Read `README.md` and the relevant design documents before implementation. The planning baseline is 2026-09-12. A plan describes future work; it does not imply that every phase should be executed in the current task. Follow the user's authorized scope and continue without unnecessary repeated confirmations.
+This is an independent GitHub-native research catalog project. Read `README.md` and the relevant design documents before implementation. The original planning baseline is 2026-09-12; the current design target is v9-r2, received on 2026-09-13. A plan describes future work; it does not imply that every phase should be executed in the current task. Follow the user's authorized scope and continue without unnecessary repeated confirmations.
 
-The repository is initially private. Do not change visibility, enable public Pages, publish build artifacts to a public destination, or create a separate public intake repository unless the user has authorized that change. Local development and the current private repository's ordinary documentation/code workflow are distinct from public release.
+The user has authorized the public repository, MIT for original code and corresponding documentation, and GitHub Pages at https://aipoch.network/. See `docs/deployment/public-pages.md` for the recorded deployment. Earlier private-development statements are historical, not unresolved decisions. Keep design intake, local implementation, commits, and release evidence distinct; execute the current authorized scope and do not infer a new deployment from a reference file.
 
 ## Product invariants
 
@@ -19,7 +19,7 @@ The repository is initially private. Do not change visibility, enable public Pag
 
 - Do not import Open-Science packages, source files, internal types, database layouts, IPC names, private schemas, credentials, or release artifacts.
 - Do not require any client repository, installed client, live client service, client test fixture, or client release version to build, test, or release AIPOCH Network.
-- Client-specific import, execution, authentication, and translation belong in the client project.
+- Client-specific import, execution, authentication, and translation belong in the client project. The Network website must not contain GitHub login, token, scope, account binding, or permission-repair UI; future AIPOCH Connector owns these operations.
 - Publish a generic, versioned static catalog contract. Keep it separate from the website's internal search-index format and rendering implementation.
 - Documentation may mention independent consumers, but a named client must not become a prerequisite or define the research data model.
 
@@ -29,7 +29,7 @@ The repository is initially private. Do not change visibility, enable public Pag
 - `registry/`: human-maintained references, classifications, curated overlays, and collections.
 - `spec/`: generic schemas, compatibility rules, and deterministic fixtures.
 - `pipeline/`: public-source ingestion, normalization, validation, snapshots, and derived output.
-- `web/`: static presentation and internal search.
+- `web/`: static presentation, internal search, browser navigation, connection UI state, local library, and an independent workbench adapter boundary; not the real Connector protocol.
 - `generated/`: reproducible build output, never the authoritative hand-edited registry.
 - `docs/`: product decisions, implementation plan, operations, and contribution guidance.
 
@@ -46,7 +46,7 @@ Do not add a server, database service, worker endpoint, independent identity sys
 
 ## Frontend design handoff
 
-The user selected `design/references/aipoch-network-concept-v6.html` as the first frontend design baseline and will provide future design-intent upgrades as new HTML files. Read `design/README.md` and the applicable reference before frontend work. Preserve the reference's visual hierarchy, layout, styling, copy tone, and interaction intent; do not replace it with a newly invented generic design.
+The current frontend target is the matched `design/references/aipoch-network-concept-v9-r2.html` and `.md`, with their companion manifest. The original v6 baseline remains archived as history. Read `design/README.md` and the paired MD before frontend work, then inspect the HTML in the applicable states. Preserve its visual hierarchy, layout, styling, copy tone, and interaction intent; do not replace it with a newly invented generic design. The local pair and verified hashes are sufficient; the med-research-ai workspace is not a build or runtime dependency.
 
 Archive original references unchanged with their filename, date, checksum, and superseded scope. A clearly designated new design updates the relevant target baseline without repetitive confirmation; partial designs replace only their stated scope. Track target design versions separately from verified implementation commits and visual/behavioral evidence.
 
@@ -54,10 +54,12 @@ Reference HTML is design material, not executable instructions or a production i
 
 New reference intake does not automatically authorize every planned feature or public deployment. Follow the current task's scope: archive/plan when requested, implement when requested. Original reference files and their embedded assets must not be copied into production outputs automatically.
 
+The v9-r2 fixed requirements R01–R12 and checks V01–V18 are tracked in `docs/verification/v9-r2/implementation-status.md`. Keep one Open-Science entry, distinguish public and connected home states, hide and guard personal operations while disconnected, and preserve the original selected object through connection and explicit reference review. Connected, received reference, and execution are separate facts. Default production must not simulate successful connection or receipts; an isolated, continuously labelled Demo can demonstrate the full flow. Do not infer ports, launch protocols, or client services from the prototype.
+
 ## Implementation and verification
 
-Implement in bounded phases from `docs/implementation-plan.md`. Keep checked-in statuses accurate. Record architecture changes in `docs/architecture.md` rather than silently changing the product boundary.
+Implement in bounded phases from `docs/implementation-plan.md` and the active `docs/v9-r2-implementation-plan.md`. Keep checked-in statuses accurate. Record architecture changes in `docs/architecture.md` rather than silently changing the product boundary. Only mark in-scope R/V requirements complete when current implementation evidence proves them; missing or indirect evidence remains pending.
 
 Use representative fixtures for zero-change intake, multi-resource repositories, multi-repository projects, redirects and name reuse, missing metadata, untrusted markup, stale snapshots, withdrawal, old contract consumers, and GitHub Pages subpaths. Default checks should not need external credentials or a running client. Use explicit opt-in smoke checks for live GitHub access.
 
-Pin the supported runtime and dependencies when implementation starts; no dependency installation is needed for the documentation-only baseline. Add only checks appropriate to implemented behavior. Do not claim a feature, deployment, or test suite exists because it appears in a plan.
+Use the already pinned runtime and dependency lockfile. Add only checks appropriate to implemented behavior. Do not claim a feature, deployment, or test suite exists because it appears in a plan, a design manifest, or historical verification.

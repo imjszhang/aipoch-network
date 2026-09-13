@@ -21,3 +21,27 @@ footer{background:#1a1a1a;color:var(--paper);padding:38px 0}footer>.wide{display
 .version-card strong{overflow-wrap:anywhere}.related-preview-summary{margin-bottom:20px}.scope-filter>span{overflow-wrap:anywhere}
 
 .upstream-collaboration{width:100%}.upstream-collaboration>div{margin-bottom:14px}
+
+/* v9-r2: shared navigation remains compact while Open-Science is always accessible. */
+.header-inner { gap:20px; }
+.header-inner>.nav { margin-inline:auto; }
+.header-inner>.wb-trigger { margin-left:auto; }
+#content:focus { outline:none; }
+.catalog-retry { padding-top:16px; }
+.capability-card h3 a:hover { text-decoration:underline; text-underline-offset:3px; }
+.project-row .wb-entry-actions { margin-top:12px; }
+@media(max-width:1024px) { .header-inner { gap:12px; } .header-inner>.nav { margin:0; } }
+@media(max-width:600px) { .header-inner { padding-inline:12px; gap:10px; } .logo .mono { display:none; } .logo strong { font-size:1rem; } .logo svg { width:26px; height:26px; } .mobile-menu { min-width:36px; padding:6px; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+
+/* Reference shell: quiet paper header and footer frame the research directory. */
+header { height:84px; }
+.header-inner { max-width:none; padding-inline:32px; }
+.logo .mono { text-transform:none; letter-spacing:.06em; border-left:1px solid var(--line); padding-left:8px; }
+.header-inner .nav.open { top:84px; }
+footer { background:var(--paper); color:#111; border-top:1px solid var(--line); padding:32px 0; }
+footer>.wide { align-items:center; }
+footer .mono { font-family:Arial,sans-serif; text-transform:none; letter-spacing:0; color:#666; margin-left:0; flex-basis:auto; }
+.footer-links { flex-wrap:wrap; margin-left:auto; gap:12px 18px; }
+.footer-note { color:#666; border-color:var(--line); }
+@media(max-width:600px) { header { height:71px; } .header-inner { padding-inline:16px; gap:8px; } .header-inner .nav.open { top:71px; } footer>.wide { gap:18px; } footer .mono { flex-basis:100%; } .footer-links { margin-left:0; } }

@@ -9,7 +9,7 @@ if (!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(base)) throw new Error('SITE_BASE must be
 const data = JSON.parse(await readFile('generated/internal/catalog.json', 'utf8')) as SiteData;
 const template = await readFile(join(output, 'index.html'), 'utf8');
 const entries = allEntries(data.catalog);
-const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/', ...entries.map(routeFor), ...data.catalog.tombstones.flatMap(tombstoneRoutesFor), '/404/'];
+const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/', '/join/', '/me/', '/contribute/', ...(process.env.VITE_WORKBENCH_DEMO === 'true' ? ['/review/'] : []), ...entries.map(routeFor), ...data.catalog.tombstones.flatMap(tombstoneRoutesFor), '/404/'];
 for (const path of paths) {
   const html = renderPage(template, data, path, base);
   const file = path === '/404/' ? join(output, '404.html') : join(output, path.slice(1), 'index.html');

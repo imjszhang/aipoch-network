@@ -1,0 +1,259 @@
+{
+  "recordedAt": "2026-09-13T09:46:58.570Z",
+  "mode": "unavailable",
+  "snapshot": "26b7d31efa5dd84150f48a9c",
+  "records": [
+    {
+      "width": 1440,
+      "label": "project",
+      "url": "http://127.0.0.1:4290/projects/project~scanpy/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "Scanpy",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "capability",
+      "url": "http://127.0.0.1:4290/capabilities/resource~anndata-library/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "AnnData research software",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "organization",
+      "url": "http://127.0.0.1:4290/organizations/actor~github~95305807/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "scverse",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "researcher",
+      "url": "http://127.0.0.1:4290/researchers/actor~github~315810/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "mwaskom",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "collection",
+      "url": "http://127.0.0.1:4290/collections/collection~research-foundations/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "Foundations for open research",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "submit",
+      "url": "http://127.0.0.1:4290/submit/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "Share research",
+      "mainCount": 1
+    },
+    {
+      "width": 1440,
+      "label": "source",
+      "url": "http://127.0.0.1:4290/sources/source~github~100038377/",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "title": "scverse/anndata",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "project",
+      "url": "http://127.0.0.1:4290/projects/project~scanpy/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "Scanpy",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "capability",
+      "url": "http://127.0.0.1:4290/capabilities/resource~anndata-library/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "AnnData research software",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "organization",
+      "url": "http://127.0.0.1:4290/organizations/actor~github~95305807/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "scverse",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "researcher",
+      "url": "http://127.0.0.1:4290/researchers/actor~github~315810/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "mwaskom",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "collection",
+      "url": "http://127.0.0.1:4290/collections/collection~research-foundations/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "Foundations for open research",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "submit",
+      "url": "http://127.0.0.1:4290/submit/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "Share research",
+      "mainCount": 1
+    },
+    {
+      "width": 1024,
+      "label": "source",
+      "url": "http://127.0.0.1:4290/sources/source~github~100038377/",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "title": "scverse/anndata",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "project",
+      "url": "http://127.0.0.1:4290/projects/project~scanpy/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "Scanpy",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "capability",
+      "url": "http://127.0.0.1:4290/capabilities/resource~anndata-library/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "AnnData research software",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "organization",
+      "url": "http://127.0.0.1:4290/organizations/actor~github~95305807/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "scverse",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "researcher",
+      "url": "http://127.0.0.1:4290/researchers/actor~github~315810/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "mwaskom",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "collection",
+      "url": "http://127.0.0.1:4290/collections/collection~research-foundations/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "Foundations for open research",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "submit",
+      "url": "http://127.0.0.1:4290/submit/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "Share research",
+      "mainCount": 1
+    },
+    {
+      "width": 390,
+      "label": "source",
+      "url": "http://127.0.0.1:4290/sources/source~github~100038377/",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "title": "scverse/anndata",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "project",
+      "url": "http://127.0.0.1:4290/projects/project~scanpy/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "Scanpy",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "capability",
+      "url": "http://127.0.0.1:4290/capabilities/resource~anndata-library/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "AnnData research software",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "organization",
+      "url": "http://127.0.0.1:4290/organizations/actor~github~95305807/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "scverse",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "researcher",
+      "url": "http://127.0.0.1:4290/researchers/actor~github~315810/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "mwaskom",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "collection",
+      "url": "http://127.0.0.1:4290/collections/collection~research-foundations/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "Foundations for open research",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "submit",
+      "url": "http://127.0.0.1:4290/submit/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "Share research",
+      "mainCount": 1
+    },
+    {
+      "width": 360,
+      "label": "source",
+      "url": "http://127.0.0.1:4290/sources/source~github~100038377/",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "title": "scverse/anndata",
+      "mainCount": 1
+    }
+  ]
+}

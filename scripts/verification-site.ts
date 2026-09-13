@@ -1,3 +1,4 @@
+import { designAssetsPlugin } from './design-assets.js';
 import { build as viteBuild } from 'vite';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -114,10 +115,10 @@ export async function buildVerificationSite(directory: string, data: SiteData, b
   const generated = join(directory, 'generated'), output = join(directory, 'site');
   await emitData(data, generated);
   const afterData = performance.now();
-  await viteBuild({ configFile: false, root: resolve('web'), publicDir: generated, base, logLevel: 'error', build: { outDir: output, emptyOutDir: true, sourcemap: false } });
+  await viteBuild({ configFile: false, plugins: [designAssetsPlugin()], root: resolve('web'), publicDir: generated, base, logLevel: 'error', build: { outDir: output, emptyOutDir: true, sourcemap: false } });
   const afterAssets = performance.now();
   const template = await readFile(join(output, 'index.html'), 'utf8');
-  const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/',
+  const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/', '/join/', '/me/', '/contribute/', ...(process.env.VITE_WORKBENCH_DEMO === 'true' ? ['/review/'] : []),
     ...allEntries(data.catalog).map(routeFor), ...data.catalog.tombstones.flatMap(tombstoneRoutesFor), '/404/'];
   let rendered = 0;
   for (const path of paths) {

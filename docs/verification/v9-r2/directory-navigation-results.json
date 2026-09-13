@@ -1,0 +1,202 @@
+{
+  "source_report": "playwright-report-v9-release-root/results.json",
+  "recorded_at": "2026-09-13T09:48:14.042Z",
+  "source_tests": "tests/e2e/directory-navigation.test.ts",
+  "mode": "default production",
+  "test_count": 16,
+  "passed": 16,
+  "tests": [
+    {
+      "title": "every directory has a searchable first page, truthful counts and responsive refinement",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 750,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 628,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 555,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "late search results clamp the shared page without stealing search focus",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 476,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "version and area refinements survive reload and clear unknown shared scopes",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 623,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "organization and collection selectors intersect real memberships and preserve shared links",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 355,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "search failure keeps browsable pages and retry applies the actual query",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 297,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+      "project": "desktop",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 677,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "every directory has a searchable first page, truthful counts and responsive refinement",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 691,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "pagination preserves sort and restores the same records after detail, back, forward and refresh",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 576,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "invalid and out-of-range shared pages clamp to real results and canonical URLs",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 554,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "late search results clamp the shared page without stealing search focus",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 384,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "version and area refinements survive reload and clear unknown shared scopes",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 774,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "organization and collection selectors intersect real memberships and preserve shared links",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 668,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "search failure keeps browsable pages and retry applies the actual query",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 330,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "mobile refinement traps keyboard focus, keeps query and returns focus on dismissal",
+      "project": "mobile",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 666,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

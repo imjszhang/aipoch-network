@@ -1,0 +1,1813 @@
+{
+  "config": {
+    "argv": [
+      "/Users/jszhang/homebrew/opt/node@24/bin/node",
+      "/Users/jszhang/github/my/aipoch-network/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/jszhang/github/my/aipoch-network/playwright.config.ts",
+    "rootDir": "/Users/jszhang/github/my/aipoch-network/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 9
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/jszhang/github/my/aipoch-network/test-results-baseline",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 9
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/jszhang/github/my/aipoch-network/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jszhang/github/my/aipoch-network/test-results-baseline",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 9
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/jszhang/github/my/aipoch-network/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report-baseline"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report-baseline/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 9,
+    "webServer": {
+      "command": "npm run preview -- --dir 'dist' --port 4273 --base '/'",
+      "url": "http://127.0.0.1:4273/",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "catalog-states.test.ts",
+      "file": "catalog-states.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "independent synthetic catalog states",
+          "file": "catalog-states.test.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "individual researcher has a real static route, profile identity and owned source",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 174,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:50.587Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-4b67622e2478090ee7cb",
+              "file": "catalog-states.test.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "organization lists both reviewed sources and preserves the exact curation scope",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 156,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:52.520Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-8478ef35dfab35f87471",
+              "file": "catalog-states.test.ts",
+              "line": 39,
+              "column": 3
+            },
+            {
+              "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 185,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:52.680Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-d89c2a4ae8a36a0aaedc",
+              "file": "catalog-states.test.ts",
+              "line": 53,
+              "column": 3
+            },
+            {
+              "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 210,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:52.869Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-fa7f688309aee98ed5cf",
+              "file": "catalog-states.test.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "a collection can link to an individual researcher without a blank or broken page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 188,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.082Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-0713cb220b94d750bef1",
+              "file": "catalog-states.test.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "large organization and collection previews link to complete scoped, paginated directories",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 625,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.275Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-8e0c88603d7d67f32a42",
+              "file": "catalog-states.test.ts",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 393,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.904Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-69b18f1c038805f7bde4",
+              "file": "catalog-states.test.ts",
+              "line": 115,
+              "column": 3
+            },
+            {
+              "title": "200% text keeps resource controls and organization content within the viewport",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 705,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:54.300Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-9ce06da5f0e8ce468b9b",
+              "file": "catalog-states.test.ts",
+              "line": 139,
+              "column": 3
+            },
+            {
+              "title": "static profile and withdrawal content remain readable without JavaScript",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 236,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:55.008Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-8385a5ba0cbabca5d87a",
+              "file": "catalog-states.test.ts",
+              "line": 154,
+              "column": 3
+            },
+            {
+              "title": "individual researcher has a real static route, profile identity and owned source",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 192,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:51.767Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-d44375e8a475858358bc",
+              "file": "catalog-states.test.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "organization lists both reviewed sources and preserves the exact curation scope",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 183,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.153Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-d621624916b313b86366",
+              "file": "catalog-states.test.ts",
+              "line": 39,
+              "column": 3
+            },
+            {
+              "title": "capability access, runtime documentation and upstream download are explicit without invented execution success",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 208,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.341Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-290f0dee396c0ae44754",
+              "file": "catalog-states.test.ts",
+              "line": 53,
+              "column": 3
+            },
+            {
+              "title": "withdrawn and superseded records retain explicit static states including both historical actor routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.555Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-1e69a63942fd5a1c809a",
+              "file": "catalog-states.test.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "a collection can link to an individual researcher without a blank or broken page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 207,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:53.799Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-27e537f6d2bbd54d3756",
+              "file": "catalog-states.test.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "large organization and collection previews link to complete scoped, paginated directories",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 622,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:54.010Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-150cbf268d79ae2eb6e6",
+              "file": "catalog-states.test.ts",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "shared catalog failures keep SSR readable and retry only a matching, bounded snapshot",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 354,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:54.635Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-e398bcec7b58bb960707",
+              "file": "catalog-states.test.ts",
+              "line": 115,
+              "column": 3
+            },
+            {
+              "title": "200% text keeps resource controls and organization content within the viewport",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 2857,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:54.992Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-edf4a8f0d93b1720c6fe",
+              "file": "catalog-states.test.ts",
+              "line": 139,
+              "column": 3
+            },
+            {
+              "title": "static profile and withdrawal content remain readable without JavaScript",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                        "line": 9,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 274,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-13T08:50:57.853Z",
+                      "annotations": [
+                        {
+                          "type": "serial",
+                          "location": {
+                            "file": "/Users/jszhang/github/my/aipoch-network/tests/e2e/catalog-states.test.ts",
+                            "line": 9,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b2052095bfdd49d39bc6-8ffc1073159fcf9bfc9a",
+              "file": "catalog-states.test.ts",
+              "line": 154,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "site.test.ts",
+      "file": "site.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "anonymous home is useful without GitHub API or a client",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.382Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-1a533671139e01bca4e0",
+          "file": "site.test.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "search, filters, sort, query links and reset select real records",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 633,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.385Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-93e32bf9b0e76f5c3c81",
+          "file": "site.test.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.381Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-05247f304c324ce37a4f",
+          "file": "site.test.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 590,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.376Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-8733ff65264a067e98fb",
+          "file": "site.test.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "static server returns actual 404 and the catalog is readable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 349,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.388Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-bbb855b3f4c1ea8f9e16",
+          "file": "site.test.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "keyboard navigation and search failure remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 487,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.382Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-cb88ef2fd527fdff8565",
+          "file": "site.test.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.383Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-40c763557797aab090f2",
+          "file": "site.test.ts",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 8,
+                  "status": "passed",
+                  "duration": 593,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:50.384Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-bc6acadeed3266d3407d",
+          "file": "site.test.ts",
+          "line": 108,
+          "column": 1
+        },
+        {
+          "title": "navigation and core text fit with enlarged text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 191,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.047Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-1e962fccfd0d8060503f",
+          "file": "site.test.ts",
+          "line": 123,
+          "column": 1
+        },
+        {
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 297,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.149Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-2f4bc0ecce6a1d189fe0",
+          "file": "site.test.ts",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.151Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-221bb247ff4696b011f2",
+          "file": "site.test.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "anonymous home is useful without GitHub API or a client",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 409,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.504Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-6884064f6cf782302dce",
+          "file": "site.test.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "search, filters, sort, query links and reset select real records",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 456,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.534Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-38598da082d601c8803f",
+          "file": "site.test.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "project and capability have distinct static deep links, provenance and unknowns",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 8,
+                  "status": "passed",
+                  "duration": 294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.528Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-c45a7d4bd413ac1a9c7a",
+          "file": "site.test.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "GitHub proposal reviews exact content and only opens a draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 427,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.566Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-3ee62e4a47b0f7351789",
+          "file": "site.test.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "static server returns actual 404 and the catalog is readable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 196,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.604Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-5beaf209cc12f4315b3d",
+          "file": "site.test.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "keyboard navigation and search failure remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 326,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.704Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-b30b917aa875f99a01a4",
+          "file": "site.test.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "corrections retain their target and edits invalidate prior content review",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.840Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-d38bf51281ce654d4cbf",
+          "file": "site.test.ts",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "long Unicode drafts use an explicit copy-and-paste path without losing content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 8,
+                  "status": "passed",
+                  "duration": 364,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.940Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-a85dd1c8e1bceb01b966",
+          "file": "site.test.ts",
+          "line": 108,
+          "column": 1
+        },
+        {
+          "title": "navigation and core text fit with enlarged text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 271,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:51.979Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-f0c2cc06722abb9eaa9d",
+          "file": "site.test.ts",
+          "line": 123,
+          "column": 1
+        },
+        {
+          "title": "a reviewed source path and a cross-repository relation preserve their exact evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:52.043Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-961d4760b24930319743",
+          "file": "site.test.ts",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "real individual and multi-source organization routes retain source identities and correction intent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-13T08:50:52.102Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cf5b745cb6314da3f7da-7c679a229315b4bef37f",
+          "file": "site.test.ts",
+          "line": 156,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-13T08:50:49.468Z",
+    "duration": 8713.114000000001,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,666 @@
+[
+  {
+    "step": "01-header-brand",
+    "utc": "2026-09-13T10:37:23.946943+00:00",
+    "action_applescript": "tell application \"Firefox\" to activate\ntell application \"VoiceOver\" to tell vo cursor to move to first item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 85,
+        "spoken_phrase": "链接 AIPOCH Network home",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "AIPOCH Network AIPOCH Network home 链接",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "02-main-navigation-landmark",
+    "utc": "2026-09-13T10:37:43.906552+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 86,
+        "spoken_phrase": "Main navigation 导航",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Main navigation 导航",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "03-navigation-explore",
+    "utc": "2026-09-13T10:37:46.797848+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move into item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 104,
+        "spoken_phrase": "链接 Explore",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Explore 链接",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "04-open-science-control",
+    "utc": "2026-09-13T10:37:58.616946+00:00",
+    "action_applescript": "tell application \"VoiceOver\"\n tell vo cursor to move out of item\n tell vo cursor to move right\nend tell",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 96,
+        "spoken_phrase": "Open-Science — Not connected · Demo 对话框弹出 已折叠 按钮",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Open-Science — Not connected · Demo 对话框弹出 已折叠 按钮",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "05-main-landmark",
+    "utc": "2026-09-13T10:38:01.541102+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 104,
+        "spoken_phrase": "的结尾 横幅",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "横幅",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "06-main-content-heading",
+    "utc": "2026-09-13T10:38:04.364955+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move into item\ntell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 91,
+        "spoken_phrase": "Main navigation 导航",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Main navigation 导航",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "07-main-landmark",
+    "utc": "2026-09-13T10:38:19.507029+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move out of item\ntell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 90,
+        "spoken_phrase": "主要",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "主要",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "08-main-entry",
+    "utc": "2026-09-13T10:38:22.349999+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move into item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 95,
+        "spoken_phrase": "A NETWORK FOR OPEN RESEARCH  可点按",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "A NETWORK FOR OPEN RESEARCH  可点按",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "09-home-h1",
+    "utc": "2026-09-13T10:38:35.506005+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 102,
+        "spoken_phrase": "标题级别1 Science  可点按  Open to All  可点按  2个项目",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Science Open to All 标题级别1",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "10-dialog-trigger-navigation",
+    "utc": "2026-09-13T10:38:38.421455+00:00",
+    "action_applescript": "tell application \"VoiceOver\"\n tell vo cursor to move out of item\n tell vo cursor to move left\n tell vo cursor to move into item\n tell vo cursor to move right\n tell vo cursor to move right\nend tell",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 103,
+        "spoken_phrase": "链接 Explore",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Explore 链接",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "11-open-named-dialog",
+    "utc": "2026-09-13T10:38:41.326587+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to perform action",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 95,
+        "spoken_phrase": "和其他1项 和其他3项 和其他1项 组",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "12-return-home-header-control",
+    "utc": "2026-09-13T10:39:02.916683+00:00",
+    "action_applescript": "tell application \"Firefox\" to activate\ntell application \"System Events\"\n keystroke \"l\" using {command down}\n keystroke \"http://127.0.0.1:4185/\"\n key code 36\n delay 0.6\n repeat 8 times\n  key code 48\n  delay 0.08\n end repeat\nend tell",
+    "action_exit": 1,
+    "action_stdout": "",
+    "action_stderr": "73:107: execution error: “System Events”遇到一个错误：“osascript”不允许发送按键。 (1002)",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 89,
+        "spoken_phrase": "和其他1项 和其他3项 和其他1项 组",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "13-open-dialog-via-native-click",
+    "utc": "2026-09-13T10:42:15.230502+00:00",
+    "input": "CUA Firefox.click(46), observed button Open-Science — Not connected · Demo, then getAXState",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 104,
+        "spoken_phrase": "A NETWORK FOR OPEN RESEARCH 标题级别1 2个项目 Explore AIPOCH Network. Research locally with Open-Science. About the Open-Science workbench 补充内容 其他3个项目 组",
+        "error": null
+      },
+      {
+        "elapsed_ms": 6784,
+        "spoken_phrase": "Firefox Explore | AIPOCH Network — 隐私浏览 窗口 标题级别2 Open-Science 有键盘焦点",
+        "error": null
+      },
+      {
+        "elapsed_ms": 7157,
+        "spoken_phrase": "系统 有新的 窗口",
+        "error": null,
+        "excluded_from_product_acceptance": true,
+        "exclusion_reason": "Codex notification or macOS window-sharing overlay, not AIPOCH product feedback."
+      },
+      {
+        "elapsed_ms": 58795,
+        "spoken_phrase": "回复已完成：朗读读取通道正常。系统仍限制另一类全局按键输入，我正用已可用的网页操作和  VoiceOver  导航完成测试，并分别记录输入方式与朗读结果。",
+        "error": null,
+        "excluded_from_product_acceptance": true,
+        "exclusion_reason": "Codex notification or macOS window-sharing overlay, not AIPOCH product feedback."
+      }
+    ],
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "14-dialog-context",
+    "utc": "2026-09-13T10:42:48.054332+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move out of item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 95,
+        "spoken_phrase": "移出 对话框 包含7个项目",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Open-Science 包含7个项目 对话框",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "15-dialog-enter",
+    "utc": "2026-09-13T10:42:51.044353+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move into item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 100,
+        "spoken_phrase": "向内 对话框 包含7个项目 标题级别2 Open-Science",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Open-Science 标题级别2",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "16-dialog-close-button",
+    "utc": "2026-09-13T10:42:53.993115+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move right",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 102,
+        "spoken_phrase": "Close Open-Science panel 按钮",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Close Open-Science panel 按钮",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "17-native-dialog-tab-loop-and-escape",
+    "utc": "2026-09-13T10:44:24.701788+00:00",
+    "input": "CUA Firefox: Tab x 7, Shift+Tab x 4, Escape; final AX state recorded separately.",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 106,
+        "spoken_phrase": "回复已完成：连接浮窗已取得有效证据： VoiceOver  实际读出了 “ Open-Science”  二级标题，并报告它获得了键盘焦点。接下来验证关闭返回和连接后的反馈。",
+        "error": null,
+        "excluded_from_product_acceptance": true,
+        "exclusion_reason": "Codex notification or macOS window-sharing overlay, not AIPOCH product feedback."
+      },
+      {
+        "elapsed_ms": 7617,
+        "spoken_phrase": "Connect Open-Science 按钮",
+        "error": null
+      },
+      {
+        "elapsed_ms": 7818,
+        "spoken_phrase": "Open-Science — Not connected · Demo 对话框弹出 已折叠 按钮 横幅",
+        "error": null
+      },
+      {
+        "elapsed_ms": 8563,
+        "spoken_phrase": "Window 对话框 WindowSharingSessionButton 按钮",
+        "error": null,
+        "excluded_from_product_acceptance": true,
+        "exclusion_reason": "Codex notification or macOS window-sharing overlay, not AIPOCH product feedback."
+      }
+    ],
+    "classification": "actual_screen_reader_evidence",
+    "scope_note": "Escape return is recorded. Rapid native Tab/Shift+Tab input did not capture every intermediate focus, so this is not standalone proof of the full focus loop."
+  },
+  {
+    "step": "18-reopen-dialog-voiceover-action",
+    "utc": "2026-09-13T10:44:42.346949+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to perform action",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 107,
+        "spoken_phrase": "",
+        "error": null
+      },
+      {
+        "elapsed_ms": 337,
+        "spoken_phrase": "菜单 （13个项目）",
+        "error": null
+      },
+      {
+        "elapsed_ms": 560,
+        "spoken_phrase": "ChatGPT ChatGPT 窗口 通知 alt+T 区域",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "通知 alt+T 区域",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "19-open-dialog-on-foreground-firefox",
+    "utc": "2026-09-13T10:45:07.554484+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"escape\"\ntell application \"Firefox\" to activate\ndelay 0.3\ntell application \"VoiceOver\" to tell vo cursor to perform action",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 113,
+        "spoken_phrase": "菜单 （13个项目）",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "WindowSharingSessionButton 按钮, 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "20-current-native-window",
+    "utc": "2026-09-13T10:45:39.710527+00:00",
+    "action_applescript": "tell application \"Firefox\" to activate\ndelay 0.3\ntell application \"VoiceOver\" to tell commander to perform command \"describe window\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 96,
+        "spoken_phrase": "Window 对话框 键盘焦点在 Explore | AIPOCH Network — 隐私浏览 窗口",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "WindowSharingSessionButton 按钮, 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "21-sync-reader-to-keyboard",
+    "utc": "2026-09-13T10:45:42.971551+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"move voiceover cursor to keyboard focus\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 102,
+        "spoken_phrase": "Window 对话框 键盘焦点在 Explore | AIPOCH Network — 隐私浏览 窗口",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "WindowSharingSessionButton 按钮, 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "22-native-tab-through-voiceover",
+    "utc": "2026-09-13T10:45:57.037377+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"tab key\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 97,
+        "spoken_phrase": "Window 对话框 键盘焦点在 Explore | AIPOCH Network — 隐私浏览 窗口",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "WindowSharingSessionButton 按钮, 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "23-choose-test-window",
+    "utc": "2026-09-13T10:45:59.987349+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to open windows menu",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 90,
+        "spoken_phrase": "Window 对话框 键盘焦点在 Explore | AIPOCH Network — 隐私浏览 窗口",
+        "error": null
+      },
+      {
+        "elapsed_ms": 1228,
+        "spoken_phrase": "窗口选取器菜单 6个项目",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "WindowSharingSessionButton 按钮, 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "24-leave-tool-overlay",
+    "utc": "2026-09-13T10:46:40.622977+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to close menu\ntell application \"VoiceOver\" to tell vo cursor to move out of item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 106,
+        "spoken_phrase": "WindowSharingSessionButton 按钮, 组 链接 Share research",
+        "error": null,
+        "excluded_from_product_acceptance": true,
+        "exclusion_reason": "Codex notification or macOS window-sharing overlay, not AIPOCH product feedback."
+      },
+      {
+        "elapsed_ms": 1009,
+        "spoken_phrase": "Public GitHub organization represented by selected research sources.",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Share research 链接",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "25-window-top-level",
+    "utc": "2026-09-13T10:46:44.080842+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"jump to top level\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 105,
+        "spoken_phrase": "AIPOCH NETWORK 标题级别1 Explore the network Discover research projects, reusable capabilities, and the people behind them. 链接 Share research Search directory 文本搜索栏 其他59个项目 组",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Explore | AIPOCH Network — 隐私浏览 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "26-window-first-item",
+    "utc": "2026-09-13T10:46:47.008592+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to move to first item",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 93,
+        "spoken_phrase": "Explore | AIPOCH Network — 隐私浏览 组",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Explore | AIPOCH Network — 隐私浏览 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "27-restore-page-keyboard-focus",
+    "utc": "2026-09-13T10:47:26.014417+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"tab key\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 98,
+        "spoken_phrase": "Explore | AIPOCH Network — 隐私浏览 组",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Explore | AIPOCH Network — 隐私浏览 组",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "28-locate-next-web-button",
+    "utc": "2026-09-13T10:47:28.930599+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next button\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 100,
+        "spoken_phrase": "侧栏 按钮",
+        "error": null
+      },
+      {
+        "elapsed_ms": 1912,
+        "spoken_phrase": "展开侧栏 (⌃Z)",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "侧栏 按钮",
+    "classification": "navigation_setup_or_unsuccessful_attempt_not_acceptance"
+  },
+  {
+    "step": "29-find-page-landmark",
+    "utc": "2026-09-13T10:47:42.195398+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next landmark\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 101,
+        "spoken_phrase": "横幅 链接 AIPOCH Network home",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "横幅",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "30-find-open-science-web-button",
+    "utc": "2026-09-13T10:47:45.128284+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next button\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 102,
+        "spoken_phrase": "Open-Science — Not connected · Demo 对话框弹出 已折叠 按钮",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Open-Science — Not connected · Demo 对话框弹出 已折叠 按钮",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "31-dialog-opens-under-reader",
+    "utc": "2026-09-13T10:47:57.947120+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to perform action",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 108,
+        "spoken_phrase": "对话框 包含7个项目 标题级别2 Open-Science",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Open-Science 标题级别2",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "32-dialog-first-button",
+    "utc": "2026-09-13T10:48:00.896870+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next button\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 123,
+        "spoken_phrase": "Close Open-Science panel 按钮",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Close Open-Science panel 按钮",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "33-dialog-connect-control",
+    "utc": "2026-09-13T10:48:03.874446+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next button\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 112,
+        "spoken_phrase": "Connect Open-Science 按钮",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Connect Open-Science 按钮",
+    "classification": "actual_screen_reader_evidence"
+  },
+  {
+    "step": "34-connect-opens-explicit-confirmation",
+    "utc": "2026-09-13T10:48:14.597658+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell vo cursor to perform action",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 112,
+        "spoken_phrase": "Cancel connection",
+        "error": null
+      },
+      {
+        "elapsed_ms": 342,
+        "spoken_phrase": "Open-Science:  Connecting .  Waiting for Open-Science to confirm this connection.",
+        "error": null
+      },
+      {
+        "elapsed_ms": 783,
+        "spoken_phrase": "Open-Science:  Connected .",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "无可用操作 按钮",
+    "classification": "actual_screen_reader_evidence",
+    "scope_note": "The label is an initial expectation, not the observed state. Activating Connect started connection directly; without moving the cursor, actual VoiceOver announced Connecting then Connected. No reference-send confirmation occurred."
+  },
+  {
+    "step": "35-connected-dialog-next-action",
+    "utc": "2026-09-13T10:48:34.505742+00:00",
+    "action_applescript": "tell application \"VoiceOver\" to tell commander to perform command \"find next link\"",
+    "action_exit": 0,
+    "action_stdout": "",
+    "action_stderr": "",
+    "actual_last_phrase_samples": [
+      {
+        "elapsed_ms": 104,
+        "spoken_phrase": "Your research home 链接",
+        "error": null
+      }
+    ],
+    "cursor_text_secondary": "Your research home 链接",
+    "classification": "actual_screen_reader_evidence"
+  }
+]

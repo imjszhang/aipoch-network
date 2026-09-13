@@ -1,0 +1,158 @@
+{
+  "date": "2026-09-13T09:12:18.940Z",
+  "method": "Chrome extension chrome.tabs.setZoom(tabId, 2); getZoom independently read back",
+  "captureMethod": "CDP Page.captureScreenshot({format:png, fromSurface:true, captureBeyondViewport:false}), no clip or viewport override; screenshots are the physical viewport.",
+  "browserVersion": "153.0.8010.12",
+  "viewport": null,
+  "windowSize": [
+    1440,
+    1000
+  ],
+  "checks": [
+    {
+      "name": "public-home-browser-zoom-200",
+      "url": "http://127.0.0.1:4290/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "production-join-browser-zoom-200",
+      "url": "http://127.0.0.1:4290/join/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "demo-join-browser-zoom-200",
+      "url": "http://127.0.0.1:4185/join/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "connected-home-browser-zoom-200",
+      "url": "http://127.0.0.1:4185/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "reference-review-browser-zoom-200-top",
+      "url": "http://127.0.0.1:4185/explore/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 696,
+          "height": 432.5,
+          "scrollWidth": 694,
+          "clientWidth": 694
+        }
+      ],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "reference-review-browser-zoom-200-consent",
+      "url": "http://127.0.0.1:4185/explore/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 696,
+          "height": 432.5,
+          "scrollWidth": 694,
+          "clientWidth": 694
+        }
+      ],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "reference-received-browser-zoom-200",
+      "url": "http://127.0.0.1:4185/explore/",
+      "zoom": 2,
+      "innerWidth": 720,
+      "innerHeight": 456,
+      "outerWidth": 1440,
+      "outerHeight": 1000,
+      "dpr": 2,
+      "scrollWidth": 720,
+      "dialog": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 696,
+          "height": 432.5,
+          "scrollWidth": 694,
+          "clientWidth": 694
+        }
+      ],
+      "imageSize": [
+        1440,
+        913
+      ]
+    },
+    {
+      "name": "zoomed-reference-flow",
+      "status": "pass",
+      "description": "Connected from Join, navigated to personal home then Explore, reviewed exact object, explicitly confirmed and sent; demo receipt visible, Return to research operable."
+    }
+  ],
+  "errors": []
+}

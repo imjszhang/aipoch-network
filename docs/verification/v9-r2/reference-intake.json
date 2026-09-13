@@ -1,0 +1,69 @@
+{
+  "record_type": "design-reference-intake",
+  "recorded_on": "2026-09-13",
+  "baseline_source_commit": "bb15fd15398e32ca6ed912070f8f182c17c08f03",
+  "design_version": "v9-r2",
+  "document_revision": 1,
+  "source_directory": "/Users/jszhang/github/projects/med-research-ai/deliverables/html",
+  "files": [
+    {
+      "file": "design/references/aipoch-network-concept-v9-r2.html",
+      "bytes": 887656,
+      "sha256": "804616ce98eb02add16f2e14ec9d72f473df679882951568def97c24e4f406e7",
+      "byte_equal_to_received_original": true
+    },
+    {
+      "file": "design/references/aipoch-network-concept-v9-r2.md",
+      "bytes": 35672,
+      "sha256": "eb980f955d6183e453e0836202e265ba4a68d8cfbf2744de0567ea9ea702d30c",
+      "byte_equal_to_received_original": true
+    },
+    {
+      "file": "design/references/aipoch-network-concept-v9-r2-companion-manifest.json",
+      "bytes": 819,
+      "sha256": "2eb8b0e64dda922570029e968ee5c43fdb095ab8658f6fa14684d8f42d421015",
+      "byte_equal_to_received_original": true
+    },
+    {
+      "file": "design/references/aipoch-network-concept-v9-r2-manifest.json",
+      "bytes": 3723,
+      "sha256": "2f1e77881452e69075d47fa6b0f1ec13aeaa8a723deaa20c7214ce58a35d548a",
+      "byte_equal_to_received_original": true
+    },
+    {
+      "file": "design/references/aipoch-network-concept-v9-r2-third-party-notices.txt",
+      "bytes": 24914,
+      "sha256": "f53b1c3d4eea18a5df1701d28f67e6e00a457608a0d46b467c112e8a8f4eb775",
+      "byte_equal_to_received_original": true
+    }
+  ],
+  "checks": {
+    "archive_matches_received_bytes": true,
+    "html_and_md_match_companion_manifest": true,
+    "html_matches_artifact_manifest": true,
+    "notices_match_artifact_manifest": true
+  },
+  "read_only_local_catalog_baseline": {
+    "file": "generated/internal/catalog.json",
+    "sha256": "3ba0ca146be8639004e912b5e095b60921d7fea719c7ca06a9d2334f85fe6a83",
+    "snapshot_id": "26b7d31efa5dd84150f48a9c",
+    "generated_at": "2026-09-12T10:31:05.008Z",
+    "counts": {
+      "sources": 20,
+      "projects": 20,
+      "resources": 21,
+      "organizations": 18,
+      "actors": 19,
+      "collections": 2
+    },
+    "actor_account_types": {
+      "organization": 18,
+      "user": 1
+    },
+    "not_a_live_production_measurement": true
+  },
+  "scope": "Reference archival and documentation only; not a browser, build, deployment, or Connector verification.",
+  "implementation_verified_by_this_record": false,
+  "production_deployed_by_this_record": false,
+  "real_connector_implemented_by_this_record": false
+}
