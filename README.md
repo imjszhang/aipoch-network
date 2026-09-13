@@ -10,7 +10,7 @@
 - GitHub：[imjszhang/aipoch-network](https://github.com/imjszhang/aipoch-network)，默认分支 `main`。
 - 仓库策略：**公开项目**；GitHub Pages 自定义域名为 [aipoch.network](https://aipoch.network/)，部署记录见 [公开部署](docs/deployment/public-pages.md)。
 - 前端设计：第一版以 [aipoch-network-concept-v6.html](design/references/aipoch-network-concept-v6.html) 为基线；后续通过新版 HTML 迭代设计意图，规则见 [设计交接](design/README.md)。
-- 验收：阶段进度与剩余工作见 [实施记录](docs/implementation-status.md)，计划中的公开发布尚未完成。
+- 验收：阶段进度与剩余工作见 [实施记录](docs/implementation-status.md)，首次公开部署已完成，其余验收项继续见实施记录。
 - 私有集成：实现已合入 `main`；201 项离线测试、根/子路径各 40 项浏览器检查及连续两次真实刷新通过，见 [集成验收](docs/verification/private-integration.md)。
 - 托管：GitHub Pages 静态网站，依托 GitHub 仓库、API 和 Actions；不维护自建常驻后端。
 - 独立性：Open-Science 及其他客户端的升级、重构或不可用，不应要求本项目修改、重新发布或停止服务。

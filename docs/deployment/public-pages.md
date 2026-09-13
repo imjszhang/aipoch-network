@@ -21,4 +21,15 @@ Actions 保留 90 天的白名单来源观察、最小撤回记录、已校验�
 
 ## 发布验证
 
-实际运行、HTTPS 状态与在线检查结果在首次部署后补充。
+2026-09-13 首次部署完成。生产实现提交 `305f28b7a7499a82fbcf75d8cf2319ed5f08a7c8`。
+
+- [离线 CI](https://github.com/imjszhang/aipoch-network/actions/runs/34734746836)：201 项单元/契约测试，根路径与子路径各 40 项浏览器测试通过。
+- [正式来源刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34734754321)：成功，保留受信任观察、撤回状态与历史。
+- [正式部署与线上检查](https://github.com/imjszhang/aipoch-network/actions/runs/34734973805)：verify、deploy、smoke 全部成功；93 个页面、143 个文件。
+- snapshot：`f3a057b882def28116fadf6d`；完整文件树 SHA256：`2a600c6f138893020df800854f888a6ed1ad948d6bf946e8745acd21f1c0e6e0`。
+- GitHub artifact SHA256：`3257a00691b72e4cac756563f8f06262c37ae7de6c1478875da4f6242ad4a3d4`，独立下载 ZIP 与元数据一致。
+- GitHub 证书 approved，域名 aipoch.network，强制 HTTPS 已开启。HTTP 和默认 github.io 地址均 301 到正式 HTTPS 地址。
+- 首页与投稿页返回 200，主要栏目/第三方声明/当前与固定快照通过发布 smoke，未知路径真实返回 404。
+- 独立 Node 消费者通过 HTTPS 读取并验证完整目录：20 来源、20 项目、21 资源。
+
+正式入口仅配置根域 `aipoch.network`。曾测试添加 www 别名，但 GitHub 本次证书未覆盖 www，因此已撤销该新增记录；未留下证书错误的备用入口。
