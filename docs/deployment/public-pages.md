@@ -35,3 +35,9 @@ Actions 保留 90 天的白名单来源观察、最小撤回记录、已校验�
 正式入口仅配置根域 `aipoch.network`。曾测试添加 www 别名，但 GitHub 本次证书未覆盖 www，因此已撤销该新增记录；未留下证书错误的备用入口。
 
 每日调度链路已实测：[调度运行](https://github.com/imjszhang/aipoch-network/actions/runs/34735287889)成功触发[受信刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34735291672)，候选构建成功。该测试验证相同调度工作流的手动触发路径，不声称未来 cron 已按时触发。
+
+## MIT 版本发布与历史兼容验证
+
+2026-09-13，实现提交 `3a54ab0ad51e1ae9c4107422168cf5391a7c13c7` 经 [CI](https://github.com/imjszhang/aipoch-network/actions/runs/34735368235)、[真实刷新](https://github.com/imjszhang/aipoch-network/actions/runs/34735383243) 和 [部署](https://github.com/imjszhang/aipoch-network/actions/runs/34735500179) 全部通过。当前 snapshot 为 `053913d25bfa0e0b162ce7a9`，93 页、163 文件；独立下载完整文件树摘要为 `1993cc78004d670f9604d4d1a775f668a43944b192d9031cf87b6a45c1065bee`。
+
+发布前后通过正式 HTTPS 逐一读取原有 40 个快照文件，SHA256 全部与原产物一致。线上当前 manifest 已切换到新 snapshot，MIT 全文与仓库 LICENSE 字节相符，第三方声明继续保留。该结果证明本次正常发布的历史兼容，不替代故障注入或生产回滚演练。GitHub License API 已识别仓库许可证为 MIT。
