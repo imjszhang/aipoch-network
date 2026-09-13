@@ -126,14 +126,17 @@ async function gh(args: string[]): Promise<string> {
   } catch { throw new Error('Trusted refresh artifact could not be read; check workflow read access and GitHub availability.'); }
 }
 
-/** Only the private repository's completed main refresh workflow can supply prior state. */
+/** Only the current repository's completed main refresh workflow can supply prior state. */
 export async function restoreRefresh(repository = process.env.GITHUB_REPOSITORY): Promise<boolean> {
   if (!repository || !/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(repository)) throw new Error('GITHUB_REPOSITORY must name the current repository');
   const metadata = JSON.parse(await gh(['api', `repos/${repository}`])) as { private: boolean; id: number };
-  if (metadata.private !== true) throw new Error('Cross-run state restore is currently restricted to private development; review publication policy first');
   const artifacts = await readArtifactInventory(async (page, pageSize) => JSON.parse(await gh(['api', `repos/${repository}/actions/artifacts?per_page=${pageSize}&page=${page}`])));
   const selected = await selectRestoreArtifacts(artifacts, repository, metadata.id,
     async (runId, attempt) => JSON.parse(await gh(['api', `repos/${repository}/actions/runs/${runId}/attempts/${attempt}?exclude_pull_requests=true`])) as Run);
+  // A public deployment must never silently bootstrap after withdrawal evidence expires.
+  if (!metadata.private && (!selected.accepted || !selected.negative || !selected.catalog)) {
+    throw new Error('Public refresh requires retained accepted state, suppression evidence, and catalog history; recover the reviewed baseline before retrying');
+  }
   let restoredState = false;
   await mkdir('.cache', { recursive: true });
   const temporary = await mkdtemp('.cache/restore-refresh-');
@@ -159,11 +162,11 @@ export async function restoreRefresh(repository = process.env.GITHUB_REPOSITORY)
       const destination = '.cache/restored-refresh/refresh-state.json';
       await writeFile(`${destination}.tmp`, stableJson(refreshState(state))); await rename(`${destination}.tmp`, destination);
       restoredState = true;
-      console.log(`Restored accepted public observations from successful private main run ${selected.accepted.runId}, attempt ${selected.accepted.attempt}.`);
+      console.log(`Restored accepted public observations from successful trusted main run ${selected.accepted.runId}, attempt ${selected.accepted.attempt}.`);
     }
     if (selected.catalog) {
       await restoreHistory(await download(selected.catalog, 'candidate'));
-      console.log(`Restored validated catalog history from successful private main run ${selected.catalog.runId}, attempt ${selected.catalog.attempt}.`);
+      console.log(`Restored validated catalog history from successful trusted main run ${selected.catalog.runId}, attempt ${selected.catalog.attempt}.`);
     }
   } finally { await rm(temporary, { recursive: true, force: true }); }
   if (!restoredState) console.log('No retained successful refresh state exists. The live refresh must meet completeness gates using available reviewed inputs.');

@@ -63,7 +63,7 @@ test('GitHub proposal reviews exact content and only opens a draft', async ({ pa
   await expect(page.locator('.draft')).toContainText('Review numerical methods & research tools.');
   const draft = await page.getByRole('link', { name: 'Open GitHub draft' }).getAttribute('href');
   expect(new URL(draft!).searchParams.get('body')).toContain('https://github.com/scipy/scipy');
-  await expect(page.getByText('Repository access required', { exact: true })).toBeVisible();
+  await expect(page.getByText('Review and submit on GitHub', { exact: true })).toBeVisible();
   await expect(page.locator('body')).not.toContainText('Successfully published');
 });
 

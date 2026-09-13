@@ -22,10 +22,10 @@ concurrency:
 
 jobs:
   candidate:
-    name: Build a private review candidate from trusted main
+    name: Build a review candidate from trusted main
     # A branch dispatch must not turn unreviewed code into a credentialed refresh.
-    # Public release requires a separate visibility and publishing decision.
-    if: github.ref == 'refs/heads/main' && github.event.repository.private == true
+    # Public release was authorized by the owner; retained state must remain complete.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -70,14 +70,14 @@ jobs:
         run: npm run build
       - name: Verify contracts and offline regression behavior
         run: npm test
-      - name: Keep bounded public observations for the next private refresh
+      - name: Keep bounded public observations for the next trusted refresh
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: trusted-refresh-state-${{ github.run_id }}-${{ github.run_attempt }}
           path: .cache/refresh-state.json
           if-no-files-found: error
           include-hidden-files: true
-          retention-days: 7
+          retention-days: 90
       - name: Retain suppression evidence even after a failed candidate
         if: always() && steps.source_refresh.outcome != 'skipped' && hashFiles('.cache/source-suppressions.json') != ''
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -86,8 +86,8 @@ jobs:
           path: .cache/source-suppressions.json
           if-no-files-found: error
           include-hidden-files: true
-          retention-days: 7
-      - name: Upload only the generated website for private review
+          retention-days: 90
+      - name: Upload only the generated website for review
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: catalog-candidate-${{ github.run_id }}-${{ github.run_attempt }}
@@ -98,4 +98,4 @@ jobs:
             !dist/**/design/**
           if-no-files-found: error
           include-hidden-files: true
-          retention-days: 7
+          retention-days: 90

@@ -4,9 +4,7 @@ AIPOCH Network 整理已有 GitHub 科研项目、资源和组织，内容与协
 
 ## 当前参与入口
 
-本仓库当前为私有研发仓库。只有已有仓库访问权限的协作者可以使用这里的 [Issues](https://github.com/imjszhang/aipoch-network/issues) 和 [Pull requests](https://github.com/imjszhang/aipoch-network/pulls)。这些链接目前不是开放社区入口，也不表示外部普通账号已经可以参与。
-
-在项目所有者选定并授权公共协作位置前，不存在无需邀请的公开投稿入口。已有协作者可以在私有仓库演练下面的流程；维护者记录演练范围，保留公共投稿验收为待执行。无需为演练修改原科研仓库或扩大本仓库权限。
+本仓库已公开。可以通过 [Issues](https://github.com/imjszhang/aipoch-network/issues) 推荐来源、提出更正，通过 [Pull requests](https://github.com/imjszhang/aipoch-network/pulls) 提交修改；提交需要 GitHub 账号。网站生成的草稿只有在 GitHub 上确认提交后才成为 Issue。
 
 ## 推荐一个仓库或组织
 

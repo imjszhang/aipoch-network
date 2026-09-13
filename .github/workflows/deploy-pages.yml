@@ -1,0 +1,216 @@
+# Public release authorized by the owner; see docs/deployment/public-pages.md.
+name: Deploy one reviewed Pages artifact
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_run_id:
+        description: Reviewed successful main refresh run ID
+        required: true
+        type: string
+      snapshot_id:
+        description: Exact reviewed 24-character catalog snapshot ID
+        required: true
+        type: string
+      artifact_sha256:
+        description: Exact GitHub artifact digest, including sha256 prefix
+        required: true
+        type: string
+      file_tree_sha256:
+        description: Explicit SHA256 of the independently reviewed canonical full published-file inventory
+        required: true
+        type: string
+      source_sha:
+        description: Exact 40-character commit; must equal current main and refresh head
+        required: true
+        type: string
+      site_base:
+        description: Must equal the reviewed artifact and configured Pages URL
+        type: choice
+        options: ['/', '/aipoch-network/']
+        default: /
+permissions: {}
+# Shares the refresh lock; deployment cannot overlap a new source refresh.
+concurrency:
+  group: trusted-source-refresh
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main' && vars.AIPOCH_PAGES_RELEASE_APPROVED == 'true' && vars.AIPOCH_PUBLIC_STATE_POLICY_REVIEWED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      pages: read
+    outputs:
+      verified_at: ${{ steps.verify.outputs.verified_at }}
+      valid_until: ${{ steps.verify.outputs.valid_until }}
+      artifact_name: ${{ steps.package.outputs.artifact_name }}
+      run_attempt: ${{ steps.metadata.outputs.run_attempt }}
+    env:
+      GH_TOKEN: ''
+      GITHUB_TOKEN: ''
+      NODE_AUTH_TOKEN: ''
+      REVIEW_RUN: ${{ inputs.refresh_run_id }}
+      REVIEW_SNAPSHOT: ${{ inputs.snapshot_id }}
+      REVIEW_DIGEST: ${{ inputs.artifact_sha256 }}
+      REVIEW_TREE_DIGEST: ${{ inputs.file_tree_sha256 }}
+      REVIEW_SHA: ${{ inputs.source_sha }}
+      REVIEW_BASE: ${{ inputs.site_base }}
+      EXPECTED_URL: ${{ vars.AIPOCH_PAGES_URL }}
+    steps:
+      - name: Bind this workflow execution to the reviewed commit
+        env:
+          WORKFLOW_SHA: ${{ github.sha }}
+        run: test "$REVIEW_SHA" = "$WORKFLOW_SHA"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.1'
+          package-manager-cache: false
+      - run: npm ci
+      - name: Fetch current GitHub metadata with read-only credentials
+        id: metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [[ "$REVIEW_RUN" =~ ^[1-9][0-9]*$ ]]
+          gh api "repos/$GITHUB_REPOSITORY" > "$RUNNER_TEMP/repository.json"
+          gh api "repos/$GITHUB_REPOSITORY/commits/main" > "$RUNNER_TEMP/main.json"
+          gh api "repos/$GITHUB_REPOSITORY/pages" > "$RUNNER_TEMP/pages.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$REVIEW_RUN" > "$RUNNER_TEMP/run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$REVIEW_RUN/artifacts?per_page=100" > "$RUNNER_TEMP/artifacts.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/refresh.yml/runs?branch=main&event=workflow_dispatch&per_page=100" > "$RUNNER_TEMP/runs.json"
+          node --input-type=module <<'JS'
+          import {readFileSync, writeFileSync, appendFileSync} from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const read = name => JSON.parse(readFileSync(`${process.env.RUNNER_TEMP}/${name}.json`, 'utf8'));
+          const run = read('run');
+          const runs = read('runs');
+          if (!Number.isSafeInteger(runs.total_count) || runs.total_count > 1000) throw new Error('Refresh history exceeds the reviewed inventory budget');
+          for (let page = 2; page <= Math.ceil(runs.total_count / 100); page++) {
+            const part = JSON.parse(execFileSync('gh', ['api', `repos/${process.env.GITHUB_REPOSITORY}/actions/workflows/refresh.yml/runs?branch=main&event=workflow_dispatch&per_page=100&page=${page}`], {encoding:'utf8', timeout:30000, maxBuffer:2000000}));
+            if (part.total_count !== runs.total_count) throw new Error('Refresh inventory changed while reading');
+            runs.workflow_runs.push(...part.workflow_runs);
+          }
+          const pages = read('pages'), url = new URL(pages.html_url);
+          if (pages.build_type !== 'workflow' || url.protocol !== 'https:' || url.href !== process.env.EXPECTED_URL || url.pathname !== process.env.REVIEW_BASE || url.username || url.password) throw new Error('Pages configuration differs from the reviewed URL or base');
+          const matches = read('artifacts').artifacts.filter(a => a.name === `catalog-candidate-${run.id}-${run.run_attempt}`);
+          if (matches.length !== 1) throw new Error('Missing or ambiguous candidate artifact');
+          const selection = {repository: process.env.GITHUB_REPOSITORY, run_id: Number(process.env.REVIEW_RUN), snapshot_id: process.env.REVIEW_SNAPSHOT, artifact_sha256: process.env.REVIEW_DIGEST, file_tree_sha256: process.env.REVIEW_TREE_DIGEST, source_sha: process.env.REVIEW_SHA, site_base: process.env.REVIEW_BASE};
+          writeFileSync(`${process.env.RUNNER_TEMP}/metadata.json`, JSON.stringify({selection, repository: read('repository'), main_sha: read('main').sha, run, artifact: matches[0], latest_runs: runs.workflow_runs, latest_runs_total_count: runs.total_count}));
+          if (!Number.isSafeInteger(run.run_attempt) || run.run_attempt <= 0) throw new Error('Invalid run attempt');
+          appendFileSync(process.env.GITHUB_OUTPUT, `run_attempt=${run.run_attempt}\n`);
+          JS
+      - name: Reject untrusted metadata before downloading any artifact
+        run: npx --no-install tsx scripts/prepare-pages-candidate.ts "$RUNNER_TEMP/metadata.json"
+      - name: Download only the reviewed candidate archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ARTIFACT_ID=$(jq -er '.artifact.id' "$RUNNER_TEMP/metadata.json")
+          [[ "$ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          ulimit -f 500000
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" > "$RUNNER_TEMP/candidate.zip"
+      - name: Require exact reviewed content and record archive digest separately
+        run: |
+          python3 docs/deployment/verify-artifact.py "$RUNNER_TEMP/candidate.zip" "$REVIEW_DIGEST" "$RUNNER_TEMP/reviewed-site" "$REVIEW_TREE_DIGEST" > "$RUNNER_TEMP/archive-verification.json"
+          cat "$RUNNER_TEMP/archive-verification.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify all static output, catalog data and withdrawal policy
+        id: verify
+        run: |
+          npx --no-install tsx scripts/prepare-pages-candidate.ts "$RUNNER_TEMP/metadata.json" "$RUNNER_TEMP/reviewed-site" > "$RUNNER_TEMP/verification.json"
+          jq -er '"verified_at=" + .verified_at' "$RUNNER_TEMP/verification.json" >> "$GITHUB_OUTPUT"
+          jq -er '"valid_until=" + .valid_until' "$RUNNER_TEMP/verification.json" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/verification.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Name this immutable Pages package
+        id: package
+        run: echo "artifact_name=reviewed-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          name: ${{ steps.package.outputs.artifact_name }}
+          path: ${{ runner.temp }}/reviewed-site
+          include-hidden-files: true
+          retention-days: 1
+  deploy:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Fixed metadata-only code, no checkout, repository scripts, dependency install,
+      # source build or execution of artifact contents in this privileged job.
+      - name: Recheck after environment approval; stale approvals must stop
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REVIEW_SHA: ${{ inputs.source_sha }}
+          REVIEW_RUN: ${{ inputs.refresh_run_id }}
+          REVIEW_ATTEMPT: ${{ needs.verify.outputs.run_attempt }}
+          VERIFIED_AT: ${{ needs.verify.outputs.verified_at }}
+          VALID_UNTIL: ${{ needs.verify.outputs.valid_until }}
+          EXPECTED_URL: ${{ vars.AIPOCH_PAGES_URL }}
+          REVIEW_BASE: ${{ inputs.site_base }}
+        run: |
+          node --input-type=module <<'JS'
+          import {execFileSync} from 'node:child_process';
+          const api = endpoint => JSON.parse(execFileSync('gh', ['api', endpoint], {encoding:'utf8', timeout:30000, maxBuffer:2000000}));
+          const age = Date.now() - Date.parse(process.env.VERIFIED_AT);
+          if (!(age >= 0 && age < 5 * 60 * 1000)) throw new Error('Approval expired: rerun read-only validation and review');
+          if (!(Date.parse(process.env.VALID_UNTIL) > Date.now())) throw new Error('Source or catalog evidence expired during approval');
+          const repo = process.env.GITHUB_REPOSITORY;
+          if (api(`repos/${repo}/commits/main`).sha !== process.env.REVIEW_SHA) throw new Error('Main changed since review');
+          const pages = api(`repos/${repo}/pages`), pageUrl = new URL(pages.html_url);
+          if (pages.build_type !== 'workflow' || pageUrl.protocol !== 'https:' || pageUrl.href !== process.env.EXPECTED_URL || pageUrl.pathname !== process.env.REVIEW_BASE || pageUrl.username || pageUrl.password) throw new Error('Pages URL or base changed after review');
+          const listing = api(`repos/${repo}/actions/workflows/refresh.yml/runs?branch=main&event=workflow_dispatch&per_page=100`);
+          if (!Number.isSafeInteger(listing.total_count) || listing.total_count > 1000) throw new Error('Refresh inventory exceeds its budget');
+          for (let page = 2; page <= Math.ceil(listing.total_count / 100); page++) {
+            const part = api(`repos/${repo}/actions/workflows/refresh.yml/runs?branch=main&event=workflow_dispatch&per_page=100&page=${page}`);
+            if (part.total_count !== listing.total_count) throw new Error('Refresh inventory changed during review');
+            listing.workflow_runs.push(...part.workflow_runs);
+          }
+          if (listing.total_count !== listing.workflow_runs.length || new Set(listing.workflow_runs.map(run => run.id)).size !== listing.total_count) throw new Error('Incomplete refresh inventory');
+          const selected = listing.workflow_runs.find(run => String(run.id) === process.env.REVIEW_RUN);
+          if (!selected || String(selected.run_attempt) !== process.env.REVIEW_ATTEMPT || selected.status !== 'completed' || selected.conclusion !== 'success') throw new Error('Selected refresh changed since review');
+          if (listing.workflow_runs.some(run => run.id !== selected.id && (run.status !== 'completed' || !(Date.parse(run.updated_at) < Date.parse(selected.updated_at))))) throw new Error('A newer or live refresh requires review, including old-ID reruns');
+          JS
+      - name: Deploy the already validated immutable Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        with:
+          artifact_name: ${{ needs.verify.outputs.artifact_name }}
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions: {}
+    env:
+      PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+      EXPECTED_URL: ${{ vars.AIPOCH_PAGES_URL }}
+      SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+    steps:
+      - name: Confirm expected public URL, current/pinned snapshots and real 404
+        run: |
+          node --input-type=module <<'JS'
+          const url = new URL(process.env.PAGE_URL);
+          if (url.protocol !== 'https:' || url.href !== process.env.EXPECTED_URL || url.username || url.password) throw new Error('Deployed URL differs from approved URL');
+          const read = async path => { const r = await fetch(new URL(path, url), {signal:AbortSignal.timeout(20000), redirect:'error'}); if (!r.ok) throw new Error(`Public smoke failed: ${path}`); return r; };
+          for (const path of ['', 'explore/', 'capabilities/', 'organizations/', 'third-party-notices.txt']) await read(path);
+          const manifest = await (await read('catalog/v1/manifest.json')).json();
+          if (manifest.snapshot_id !== process.env.SNAPSHOT_ID) throw new Error('Public current snapshot differs');
+          const fixed = await (await read(`catalog/v1/snapshots/${manifest.snapshot_id}/manifest.json`)).json();
+          if (fixed.snapshot_id !== manifest.snapshot_id) throw new Error('Public pinned snapshot differs');
+          const missing = await fetch(new URL('aipoch-required-404-check/', url), {signal:AbortSignal.timeout(20000), redirect:'error'});
+          if (missing.status !== 404) throw new Error('Missing path does not return HTTP 404');
+          JS
