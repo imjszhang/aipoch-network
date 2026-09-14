@@ -4,6 +4,8 @@
 
 最新本地记录（2026-09-13）：回执恢复修复通过类型检查、283 项离线测试；根路径、GitHub Pages 子路径各 96 页真实模式构建及各 12 项浏览器协议夹具检查通过。新增用例覆盖 POST 响应丢失后查询原请求、暂时 404、停止等待后拒绝迟到回执，以及持续 16 秒才出现回执、跨过原有 15 秒页面等待期限的流程。两组构建使用独立临时产物及测试端口，不覆盖既有联调服务。此前的 255 项测试及 Pages 定向 9 项记录属于早期实施证据，不与本次结果累加。真实 `4193 → Connector → Open-Science` 联调及正式 Chrome 观察另见下文，不能与夹具结果混为一项证明。
 
+2026-09-14 工作区增量：[Issue #5 局部修订](../design/changes/issue-5-connection-guidance.md)补充普通用户打开本机确认页的步骤、实际倒计时和连接后的明确对象接续。协议 1.0 与凭据边界不变；新候选的回归、视觉、真实用户四场景及发布状态见 [Issue #5 验收账本](verification/issue-5/README.md)。下文历史配对和发布证据不代表本次修订已验收或上线。
+
 ## 边界
 
 Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-connector 的源码、SDK、数据库、IPC、凭据或测试服务；默认检查可完全离线执行。公开目录仍使用 `catalog/v1/manifest.json`，没有为连接修改目录 schema。
@@ -18,6 +20,16 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 4. 批准响应提供协议版本和限时会话。适配器再请求 `/v1/session`，确认同一 session、有效期及 `hostReady: true` 后，才向现有状态机报告 Connected。
 5. 会话 token 只保存在适配器私有内存，不进入 React 状态、本机偏好、URL、引用、日志或公开产物。每 5 秒重新确认；失败或超过 15 秒未核验，当前会话失效。完整刷新/新标签重新确认；普通站内导航保持有效会话。
 6. Disconnect 立即撤销本页使用资格，并尽力发送会话删除请求。网络失败不会被描述为远端一定撤销；研究项目和已经收到的引用不受网页断开影响。
+
+### Issue #5 的普通用户确认步骤
+
+已核实的 [Connector 公开连接说明](https://github.com/imjszhang/aipoch-connector/blob/74c066904326d2d5a21e5c9d949d31e20238c20c/README.md#connect-a-running-workbench)支持用户在 Open-Science 聊天中请求查看准确的待确认连接：`list_connection_requests` 定位同一来源／比对码，`review_connection` 打开本机确认页。页面应提供可复制请求、代码用途、三步说明和找不到确认页的帮助；比对码无需输入 Network 网页。用户亲自在打开的页面核对来源／代码并批准，代理不能代按批准。
+
+该能力不提供网页直接打开确认链接的 API。[协议](https://github.com/imjszhang/aipoch-connector/blob/74c066904326d2d5a21e5c9d949d31e20238c20c/docs/protocol.md#pairing-and-sessions)的 private ticket 仅由 owner 侧生成，不能进入 Network、聊天、Network 网页 URL 参数或公开证据。复制请求只含当前网页 origin 和当前比对码；工具未发现时指导新建 Open-Science 会话及查看设置帮助。owner CLI `pair list`／`pair review ID` 是独立备用工具，测试人员临时补命令不满足普通用户验收。
+
+等待面板显示实际截止时间，恢复可见时重算剩余时间；关闭面板继续等待，取消只停止网站等待。成功只更新经过验证的连接状态，不自动打开原对象审阅或重新打开已关闭面板。原对象继续保留，用户明确选择 “Review reference for …” 后才进入完整审阅；明确审阅和发送守卫仍适用。手工读取／复制引用仍可达。
+
+本次真实支持证据仍需限定环境：公开说明记录 macOS 已实现打开、Linux 使用 xdg-open、Windows 自动打开尚未实现。普通用户四场景须针对实际候选重新测试，公开能力文档不代替实测结果。
 
 生产 Connector 仅接受明确允许的 `https://aipoch.network` 来源；开发站来源必须在本地 Connector 显式配置。HTTPS 网页访问回环 HTTP 的浏览器权限、私有网络访问与兼容性应在受支持的实际浏览器验证，不能用路由模拟测试代替这一证据。失败时保留公开浏览、Get Open-Science 和完整手工引用，不新增 Open Open-Science 按钮。
 
