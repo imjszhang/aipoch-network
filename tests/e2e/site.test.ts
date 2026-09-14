@@ -177,7 +177,8 @@ test('a reviewed source path and a cross-repository relation preserve their exac
 test('real individual and multi-source organization routes retain source identities and correction intent', async ({ page }) => {
   await page.goto('./organizations/actor~github~95305807/');
   await expect(page.getByRole('heading', { name: 'scverse', exact: true })).toBeVisible();
-  await expect(page.locator('#sources .source-record')).toHaveCount(2);
+  await expect(page.locator('#sources .source-record')).toHaveCount(3);
+  for (const name of ['scverse/anndata', 'scverse/scanpy', 'scverse/mudata']) await expect(page.locator('#sources')).toContainText(name);
   await expect(page.locator('.glance')).toContainText('Community indexed');
   await expect(page.locator('#evidence')).toContainText('No maintainer acknowledgement or scientific validation');
   await page.goto('./researchers/actor~github~315810/');
@@ -189,4 +190,17 @@ test('real individual and multi-source organization routes retain source identit
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.locator('.draft')).toContainText('actor:github:315810');
+});
+
+
+test('MuData project and resource retain their own source, license and community scope', async ({ page }) => {
+  await page.goto('./projects/project~mudata/');
+  await expect(page.getByRole('heading', { name: 'MuData', exact: true, level: 1 })).toBeVisible();
+  await expect(page.locator('main')).toContainText('multimodal annotated datasets');
+  await page.goto('./capabilities/resource~mudata-library/');
+  await expect(page.getByRole('heading', { name: 'MuData research software', exact: true, level: 1 })).toBeVisible();
+  await expect(page.locator('#sources')).toContainText('scverse/mudata');
+  await expect(page.locator('a[href="https://github.com/scverse/mudata"]').first()).toBeVisible();
+  await expect(page.locator('main')).toContainText('BSD-3-Clause');
+  await expect(page.locator('.glance')).toContainText('Community indexed');
 });

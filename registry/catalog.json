@@ -100,6 +100,11 @@
       "url": "https://github.com/scikit-image/scikit-image",
       "reviewed_at": "2026-09-12T10:30:13Z",
       "review_note": "GitHub API confirmed public source and research-related repository description; Image analysis pilot. Community indexing only; no participation or endorsement claimed."
+    },
+    {
+      "url": "https://github.com/scverse/mudata",
+      "reviewed_at": "2026-09-14T07:45:01.246Z",
+      "review_note": "Prepared for maintainer review: public GitHub ID 392836868; README and BSD-3-Clause license inspected at bb8bea5ac250361e549b070a9ba35ab4a396c029. Multimodal annotated data container. Community indexing proposal only; no maintainer acknowledgement or scientific validation."
     }
   ],
   "projects": [
@@ -366,6 +371,20 @@
       "resources": [
         "scikit-image-library"
       ]
+    },
+    {
+      "key": "mudata",
+      "title": "MuData",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/mudata"
+      ],
+      "resources": [
+        "mudata-library"
+      ],
+      "description": "Python data structures and .h5mu I/O for multimodal annotated datasets, organizing individual modalities as AnnData objects."
     }
   ],
   "resources": [
@@ -611,6 +630,17 @@
         }
       ],
       "documentation_url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+    },
+    {
+      "key": "mudata-library",
+      "title": "MuData research software",
+      "type": "tool",
+      "domains": [
+        "Single-cell analysis"
+      ],
+      "sources": [
+        "https://github.com/scverse/mudata"
+      ]
     }
   ],
   "collections": [
