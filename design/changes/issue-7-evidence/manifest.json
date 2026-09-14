@@ -1,32 +1,78 @@
 {
   "scope": "Synthetic protocol acceptance screenshots of the real build. Not a live Connector or user approval claim.",
   "date": "2026-09-14",
-  "bundle": "index-JDA7-IfB.js",
+  "bundle": "index-DBnSjEyO.js",
   "files": [
     {
       "name": "desktop-1440-remembered.png",
       "sha256": "187492ff7c1400bd9b7937833bd56b981dccf1a6129f89ac07282d1cc9e96359",
-      "bytes": 194985
+      "bytes": 194985,
+      "byteIdenticalToPreviousCapture": true
     },
     {
       "name": "narrow-360-paused.png",
       "sha256": "75df480f5c7d98a79668355614f9faab26136c663c40688aa764c8dcabe7aeb4",
-      "bytes": 191894
+      "bytes": 191894,
+      "byteIdenticalToPreviousCapture": true
     },
     {
       "name": "narrow-360-connector-unreachable.png",
       "sha256": "28906ce253d1569b6fc50839c7e7ad8e16b48e14bb8022435fcac7c1e496243f",
-      "bytes": 185563
+      "bytes": 185563,
+      "byteIdenticalToPreviousCapture": true
     },
     {
       "name": "narrow-360-forgotten.png",
       "sha256": "9b22f7f24cf6bc2f32030a4278273c80b1b259a742457d7f9dbc926d78fd3280",
-      "bytes": 192017
+      "bytes": 192017,
+      "byteIdenticalToPreviousCapture": true
     },
     {
       "name": "narrow-360-reauthorize.png",
-      "sha256": "32b6ff04c60bdf8914be769cb947b87220d69125a828de983cdfe018447e83b0",
-      "bytes": 180618
+      "sha256": "e0c5a69c9f45893dfc29e94ecf0ff8eb540378af856dcfbd70c5886dbfd355be",
+      "bytes": 180622,
+      "byteIdenticalToPreviousCapture": false
     }
-  ]
+  ],
+  "bundleSha256": "38f6b5adda79e180efd047ef9327d1e5465e76e6f1e387377a851895c4024d4c",
+  "recordedAt": "2026-09-14T15:10:56.858Z",
+  "sourceState": {
+    "repositoryHead": "160cad0b77cd5f18b4a5432b7f9c7ebaf4b5ca80",
+    "sourceDiffSha256": "c905d702bacc231a8bed4c6a4fa7a4c89d3fc816723b0ea9cd31f398df984576",
+    "implementationCommit": "160cad0b77cd5f18b4a5432b7f9c7ebaf4b5ca80",
+    "description": "Verified session-only grant retirement and neutral startup-copy repairs at the exact recorded implementation commit.",
+    "type": "committed",
+    "sourceDiffBaseCommit": "16b5d1ed493e4d01eb8fce121cc4313371116ba4"
+  },
+  "coverage": "Six stable panel states were recaptured at desktop 1440×1000 and narrow 360×740 viewports with synthetic protocol responses. This selection does not capture the initial local-storage checking transition, prove 200% browser zoom, or represent live Connector/IAB acceptance.",
+  "previousCapture": {
+    "bundle": "index-JDA7-IfB.js",
+    "files": [
+      {
+        "name": "desktop-1440-remembered.png",
+        "sha256": "187492ff7c1400bd9b7937833bd56b981dccf1a6129f89ac07282d1cc9e96359",
+        "bytes": 194985
+      },
+      {
+        "name": "narrow-360-paused.png",
+        "sha256": "75df480f5c7d98a79668355614f9faab26136c663c40688aa764c8dcabe7aeb4",
+        "bytes": 191894
+      },
+      {
+        "name": "narrow-360-connector-unreachable.png",
+        "sha256": "28906ce253d1569b6fc50839c7e7ad8e16b48e14bb8022435fcac7c1e496243f",
+        "bytes": 185563
+      },
+      {
+        "name": "narrow-360-forgotten.png",
+        "sha256": "9b22f7f24cf6bc2f32030a4278273c80b1b259a742457d7f9dbc926d78fd3280",
+        "bytes": 192017
+      },
+      {
+        "name": "narrow-360-reauthorize.png",
+        "sha256": "32b6ff04c60bdf8914be769cb947b87220d69125a828de983cdfe018447e83b0",
+        "bytes": 180618
+      }
+    ]
+  }
 }

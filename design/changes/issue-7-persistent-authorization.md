@@ -1,6 +1,6 @@
 # Issue #7：长期浏览器授权与连接恢复的局部设计修订
 
-记录日期：2026-09-14。关联 [Network #7](https://github.com/imjszhang/aipoch-network/issues/7) 与 [Connector #5](https://github.com/imjszhang/aipoch-connector/issues/5)。用户已授权完成这两个 issue 并验收，真实批准测试可按本轮授权在其 Firefox 中辅助操作；实际操作者与批准方式必须如实记录，不能套用 Issue #5 的独立用户验收结论。
+记录日期：2026-09-14。关联 [Network #7](https://github.com/imjszhang/aipoch-network/issues/7) 与 [Connector #5](https://github.com/imjszhang/aipoch-connector/issues/5)。用户已授权完成这两个 issue 并验收，先在其 Firefox 中按本轮授权辅助操作，随后按用户指示将剩余界面验收改为任务内浏览器；Chrome 本轮不再实测。实际操作者与批准方式如实记录，不能套用 Issue #5 的独立用户验收结论。
 
 本修订基于 [v9-r2 HTML](../references/aipoch-network-concept-v9-r2.html)、[配套 MD](../references/aipoch-network-concept-v9-r2.md) 及 [Issue #5 连接引导补充](issue-5-connection-guidance.md)。原件和历史验收不改写；原来的“刷新后没有连接资格”改为“刷新后没有有效短期会话，须先验证长期授权，再恢复连接资格”。未批准、验证失败和不支持持久授权的环境仍不可获得资格。
 
@@ -11,9 +11,9 @@
 | 场景 | 先前行为 | 本次目标与页面文案 |
 | --- | --- | --- |
 | 首次配对 | 本次访问的连接批准 | Connector 本机确认页在浏览器能持久保存身份时默认勾选“记住”；明确不记住时仍可只批准本次会话 |
-| 刷新／重开／浏览器重启 | 需要重新配对 | `Restoring connection`，先验证已有身份与授权；验证成功才显示 `Connected`，不自动创建配对 |
+| 刷新／重开／浏览器重启 | 需要重新配对 | 初始以 `Checking whether this browser has a saved connection` 中性检查本地身份；存在授权后才进入恢复验证，验证成功才显示 `Connected`，不自动创建配对 |
 | 已连接且长期授权存在 | 只显示当前连接 | `This browser is remembered`；说明刷新、重开会重新验证，连续 90 天未使用需再次批准 |
-| 只批准本次会话或无法保存 | 同一访问可连接 | `Only this visit is connected. A new visit will need approval again.`；能力或存储失败消息另外明确展示 |
+| 只批准本次会话或无法保存 | 同一访问可连接 | `Only this visit is connected. A new visit will need approval again.`；下次访问正常未连接，不继续使用旧失效授权；能力或存储失败消息另外明确展示 |
 | 已确认工作台未就绪 | 中断并需手动重连 | `Waiting for connection`，说明等待 Open-Science；保留授权，不让用户重复配对 |
 | Connector 不可达 | 无法确认 | `Waiting for connection`，明确尚无法验证，不据此推断工作台未启动或授权仍有效 |
 | 主动断开 | 只结束本访问连接 | `Connection paused`；该网站在此浏览器的所有标签页与重启后都暂停自动连接，直到任一标签页显式点击 Connect |
@@ -50,14 +50,14 @@
 - 页面状态与守卫：`web/src/workbench/engine.ts`；授权状态由适配器 snapshot 和观察接口提供，只有有效会话回调可完成连接。
 - 页面和样式：`web/src/workbench/index.tsx`、`styles.css`；Provider 启动恢复、有限焦点重试、状态文案、授权说明与忘记动作。
 - 独立身份、协议和持久化：由 Network 适配器、浏览器身份模块与 Connector 各自实现，不复制跨仓库内部类型或存储模型。
-- 本地状态验证：`web/tests/workbench-state.test.ts` 共 46 项通过，其中 12 项为本修订增加；覆盖启动恢复不配对、无授权回退、取消／暂停／忘记迟到结果、刷新暂停、跨标签页主动恢复、有限重试、绝对截止时间和审阅确认失效。这些测试不代表真实浏览器兼容性或本机批准已验收。
-- 联合类型检查、三模式根／子路径构建、浏览器与真实联调、截图对照：由本轮完整验收记录追加当前产物与观察证据；本页不预先标记通过。
+- 本地状态验证：`web/tests/workbench-state.test.ts` 早期增量曾有 46 项通过、其中 12 项为当轮修订增加；这一历史数量不代表当前完整套件。覆盖启动恢复不配对、无授权回退、取消／暂停／忘记迟到结果、刷新暂停、跨标签页主动恢复、有限重试、绝对截止时间和审阅确认失效。这些测试不代表真实浏览器兼容性或本机批准已验收。
+- 当前补修实现提交 `160cad0b77cd5f18b4a5432b7f9c7ebaf4b5ca80`：384 项单测及类型检查通过；六模式／base 产物全部重建并重跑浏览器，共 470 通过、282 明确跳过、0 失败／flaky。实际 IAB 对仅本次连接的刷新／重开、最终记住／跨页守卫、键盘与窄屏已直接复验，证据见 [实际记录](../../docs/verification/issue-7/live-acceptance.md)。提交、远端 CI 和生产发布分别核验。
 - 设计团队正式签认：待实际评审记录；本页为设计交接材料，不代替设计团队签认。
 - PR、Issue 关闭和生产发布：与本地实现、实际验收分别记录，不因已有设计变更或协议文档推断发布已完成。
 
 ## 最终候选的视觉交接
 
-以下为 **合成协议验收画面（真实 real 候选界面）**，对应 `index-JDA7-IfB.js`。截图使用隔离的协议夹具，不代表实际 Connector 或用户批准；实际 Firefox 观察单独记录在验收账本。画面不含真实连接码、凭据或私有确认地址。
+以下为 **合成协议验收画面（真实 real 候选界面）**，对应当前 `index-DBnSjEyO.js`（SHA-256 `38f6b5adda79e180efd047ef9327d1e5465e76e6f1e387377a851895c4024d4c`）；子路径为 `index-zNqdQ2lJ.js`。5 张代表图已在补修后重新采集，其中仅需重新批准画面的字节改变。截图使用隔离协议夹具，不代表真实批准；Firefox 历史与 IAB 新候选的实际观察分开保存在验收账本，也不将这些稳态截图当作全部启动瞬态覆盖。画面不含真实连接码、凭据或私有确认地址。
 
 | 状态 | 交接画面 |
 | --- | --- |
@@ -67,4 +67,6 @@
 | 已忘记并确认撤销，360px 窄屏 | [查看](issue-7-evidence/narrow-360-forgotten.png) |
 | 需重新批准，360px 窄屏 | [查看](issue-7-evidence/narrow-360-reauthorize.png) |
 
-桌面与 360×740 窄屏共核对 12 组状态；没有横向溢出、文本截断或被遮挡的主操作。此次窄屏自然排版可完整显示面板，没有把“无需滚动”写成滚动验证，也不据此宣称完成实际 200% 浏览器缩放。根任务另已目视复核最终已记住、暂停和忘记三张代表图。图片字节数与 SHA-256 见 [清单](issue-7-evidence/manifest.json)。设计团队正式签认仍待评审。
+此前 JDA 的状态检查保留为历史；DBn 候选的 24 张／12 组桌面与窄屏合成状态已全部重新采集核对，当前表中归档其中 5 张代表图，图片字节数与 SHA-256 见 [清单](issue-7-evidence/manifest.json)。新 DBn 实际 IAB 的第二标签另以 360×740 viewport 检查，页面 width／scrollWidth 均为 360，dialog x=12、width=336、height=716；目视无横向溢出且内容可滚动，Tab 聚焦 Review 会自动滚到可见区域并显示黄色焦点框。第一标签仍为 1094×919，不能当作窄屏样本；viewport override 已重置。
+
+实际键盘已覆盖连接面板焦点循环、Escape 关闭后返回入口、键盘打开／连接／审阅、明确勾选才启用 Send，以及另一页暂停后旧确认清除、显式恢复后不自动审阅。最后交付页为 Connected／remembered 的 AnnData 连接面板，仍需显式 Review，未发送引用。实际 200% 浏览器缩放无可取证的工具能力，记为未覆盖；不以窄 viewport 或 CSS zoom 替代，不阻塞 issue 主体功能交付但不宣称完整缩放认证。设计团队正式签认仍待评审，原始 refs 和本页的交接状态不等于发布。
