@@ -25,8 +25,9 @@ class MemoryBackend implements IdentityBackend {
 class MemoryStorage {
   values = new Map<string, string>();
   fail = false;
+  failWrite = false;
   getItem(key: string) { if (this.fail) throw new Error('Blocked'); return this.values.get(key) ?? null; }
-  setItem(key: string, value: string) { if (this.fail) throw new Error('Blocked'); this.values.set(key, value); }
+  setItem(key: string, value: string) { if (this.fail || this.failWrite) throw new Error('Blocked'); this.values.set(key, value); }
 }
 class SharedBus {
   listeners = new Set<(change: IdentityChange) => void>();
@@ -70,6 +71,55 @@ test('a saved nonextractable key reloads, signs P1363, and never enters public m
   const publicData = JSON.stringify({ identity, current, events, storage: [...environment.storage.values] });
   assert.doesNotMatch(publicData, /privateKey|"d"|token|CryptoKey/);
   assert.ok(events.every(event => Object.keys(event).every(key => ['kind', 'revision', 'credentialId', 'external'].includes(key))));
+});
+
+test('clearing a captured grant preserves its nonextractable key and never writes when no grant was captured', async t => {
+  const environment = fixture(), store = environment.create(); t.after(() => store.dispose());
+  const identity = await store.prepare(); assert.ok(identity);
+  const writes = environment.backend.updates;
+  assert.deepEqual(await store.clearGrant(identity), identity); assert.equal(environment.backend.updates, writes);
+  assert.equal(await store.remember(identity.credentialId, grant, identity.revision), true);
+  const remembered = await store.load(); assert.ok(remembered?.grant);
+  assert.equal(await store.clearGrant({ ...remembered, grant: { ...grant, grantId: 'other-grant' } }), null);
+  const cleared = await store.clearGrant(remembered); assert.ok(cleared); assert.equal(cleared.grant, undefined);
+  assert.equal(cleared.credentialId, identity.credentialId); assert.deepEqual(cleared.publicKeyJwk, identity.publicKeyJwk);
+  assert.notEqual(cleared.revision, remembered.revision); assert.equal('privateKey' in cleared, false);
+  const key = (environment.backend.value as { privateKey: CryptoKey }).privateKey;
+  assert.equal(key.extractable, false); await assert.rejects(crypto.subtle.exportKey('jwk', key));
+  const reloaded = environment.create(); t.after(() => reloaded.dispose());
+  assert.deepEqual(await reloaded.load(), cleared); assert.ok(await reloaded.sign(cleared.credentialId, bytes));
+});
+
+for (const action of ['pause', 'forget', 'replace grant'] as const) test(`a concurrent ${action} wins over clearing a captured grant`, async t => {
+  const environment = fixture(), first = environment.create(), second = environment.create(); t.after(() => { first.dispose(); second.dispose(); });
+  const identity = await first.prepare(); assert.ok(identity); await first.remember(identity.credentialId, grant, identity.revision);
+  const captured = await first.load(); assert.ok(captured?.grant);
+  const update = environment.backend.update.bind(environment.backend);
+  let started!: () => void, release!: () => void, hold = true;
+  const pending = new Promise<void>(resolve => { started = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
+  t.after(() => release());
+  environment.backend.update = async change => { if (hold) { hold = false; started(); await gate; } return update(change); };
+  const clearing = first.clearGrant(captured); await pending;
+  if (action === 'pause') assert.equal(await second.setPaused(true), true);
+  else if (action === 'forget') assert.equal(await second.forget(), true);
+  else assert.equal(await second.remember(captured.credentialId, { ...grant, grantId: 'replacement-grant' }, captured.revision), true);
+  release(); assert.equal(await clearing, null);
+  const current = await second.load();
+  if (action === 'forget') assert.equal(current, null);
+  else { assert.ok(current); assert.equal(current.paused, action === 'pause'); assert.equal(current.grant?.grantId, action === 'pause' ? grant.grantId : 'replacement-grant'); }
+});
+
+for (const failure of ['identity write', 'identity readback', 'control write'] as const) test(`grant clearing fails closed on ${failure} failure`, async t => {
+  const environment = fixture(), store = environment.create(); t.after(() => store.dispose());
+  const identity = await store.prepare(); assert.ok(identity); await store.remember(identity.credentialId, grant, identity.revision);
+  const captured = await store.load(); assert.ok(captured?.grant);
+  if (failure === 'identity write') environment.backend.failWrite = true;
+  else if (failure === 'identity readback') environment.backend.dropWrite = true;
+  else environment.storage.failWrite = true;
+  assert.equal(await store.clearGrant(captured), null);
+  const key = (environment.backend.value as { privateKey: CryptoKey }).privateKey; assert.equal(key.extractable, false);
+  if (failure === 'control write') assert.equal(await store.load(), null);
+  else assert.deepEqual((await store.load())?.grant, grant);
 });
 
 test('concurrent first connections atomically choose the same durable key', async t => {

@@ -5,7 +5,7 @@ const PROTOCOL = '1.0';
 export const CONNECTOR_ENDPOINT = 'http://127.0.0.1:47821';
 export const REAL_REFERENCE_WAIT_MS = 60_000;
 interface PrivateSession { session: Session; token: string; verifiedAt: number; credentialId?: string; grantId?: string; timer?: ReturnType<typeof setTimeout> }
-type IdentityAccess = Pick<BrowserIdentityStore, 'load' | 'prepare' | 'remember' | 'setPaused' | 'forget' | 'sign' | 'subscribe' | 'dispose' | 'takeForRevocation' | 'warning'>;
+type IdentityAccess = Pick<BrowserIdentityStore, 'load' | 'prepare' | 'remember' | 'clearGrant' | 'setPaused' | 'forget' | 'sign' | 'subscribe' | 'dispose' | 'takeForRevocation' | 'warning'>;
 interface Capabilities { connectorId: string }
 interface Authorization { id: string; connectorId: string; origin: string; expiresAt: number; createdAt: number; lastUsedAt: number }
 interface Options { identity?: IdentityAccess | null; origin?: string; browserName?: string; fetch?: typeof fetch; now?: () => number; endpoint?: string; requestTimeout?: number; receiptTimeout?: number; pollInterval?: number; heartbeatInterval?: number; freshness?: number }
@@ -169,6 +169,13 @@ export class RealAdapter implements WorkbenchAdapter {
         }
         const current = await this.identity!.load();
         if (!current || current.paused || current.credentialId !== identity.credentialId || current.grant?.grantId !== authorization.id || current.grant.connectorId !== authorization.connectorId) throw new Error('Browser identity changed');
+      } else if (!authorization && identity?.grant && remember) {
+        const cleared = await this.identity!.clearGrant(identity);
+        if (!cleared) {
+          if (!signal.aborted && epoch === this.epoch && this.identity!.warning) this.setMemory({ status: 'storage-unavailable', message: 'The previous saved authorization could not be cleared. Manage it in Open-Science and try again.', canForget: true });
+          throw new Error('Saved browser authorization was not cleared');
+        }
+        identity = cleared;
       }
       if (signal.aborted || this.disposed || epoch !== this.epoch) throw new Error('Connection stopped');
       const session: Session = { id: candidate.id, expiresAt: candidate.expiresAt, demo: false };
@@ -264,7 +271,7 @@ export class RealAdapter implements WorkbenchAdapter {
           if (result.status === 'approved') {
             const authorization = result.authorization && browserAuthorization && capability ? this.authorization(result.authorization, capability.connectorId) : undefined;
             const session = await this.acceptSession(result.session, operation.signal, epoch, browserAuthorization && identity ? identity : undefined, authorization, true);
-            if (!authorization && browserAuthorization) this.setMemory({ status: 'none', message: 'Connected for this visit only. This browser was not remembered.', canForget: !!identity?.grant });
+            if (!authorization && browserAuthorization) this.setMemory({ status: 'none', message: 'Connected for this visit only. This browser was not remembered.', canForget: false });
             completed = true; receive(attempt, session); return;
           }
           if (result.status !== 'pending') throw new Error('Pairing was not approved');

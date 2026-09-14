@@ -106,7 +106,10 @@ export class WorkbenchEngine {
       if (session) this.adapter.disconnect(session);
       return;
     }
-    if (waitingForConnection(this.state.connection) || this.state.connection === 'forgetting') return;
+    if (waitingForConnection(this.state.connection) || this.state.connection === 'forgetting') {
+      if (this.state.connection === 'restoring' && memory.status === 'checking') this.set({ reason: memory.message });
+      return;
+    }
     if (this.state.connection === 'connected') {
       if (!this.isConnected()) this.disconnect(true);
       return;
@@ -118,8 +121,8 @@ export class WorkbenchEngine {
     this.endConnect(); this.endSend();
     const attempt = nextId('restore'), budget = Math.max(30000, this.timeouts.connect);
     this.connectDeadline = this.now() + budget;
-    this.set({ connection: 'restoring', attempt, pairing: null, session: null, approval: null, request: null, referenceStatus: 'needs-review', reason: 'Verifying this browser’s remembered authorization. You can keep browsing.' });
-    this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.finishRestoreFailure('The remembered connection could not be verified. Try connecting again when the Connector is available.'); }, budget);
+    this.set({ connection: 'restoring', attempt, pairing: null, session: null, approval: null, request: null, referenceStatus: 'needs-review', reason: 'Checking whether this browser has a saved connection. You can keep browsing.' });
+    this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.finishRestoreFailure('The connection check could not finish. Try connecting again when the Connector is available.'); }, budget);
     const cancel = this.adapter.restore(attempt, (returned, session, reason) => {
       if (this.disposed || this.state.connection !== 'restoring' || this.state.attempt !== attempt || returned !== attempt) { this.discardConnectionSession(session); return; }
       if (this.expireConnectionWait()) { this.discardConnectionSession(session); return; }
@@ -137,7 +140,7 @@ export class WorkbenchEngine {
   }
   private expireConnectionWait(now = this.now()) {
     if (!waitingForConnection(this.state.connection) || this.connectDeadline === null || now < this.connectDeadline) return false;
-    if (this.state.connection === 'restoring') { this.finishRestoreFailure('The remembered connection could not be verified in time. You can retry or continue browsing.'); return true; }
+    if (this.state.connection === 'restoring') { this.finishRestoreFailure('The connection check could not finish in time. You can retry or continue browsing.'); return true; }
     this.cancelConnection(this.state.pairing ? pairingTimeoutReason : connectionTimeoutReason);
     return true;
   }

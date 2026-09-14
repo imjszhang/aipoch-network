@@ -360,6 +360,9 @@ test('startup restores only existing authorization without pairing, panel moveme
   engine.startRestoration(); engine.startRestoration();
   assert.equal(adapter.restores.length, 1); assert.equal(adapter.connects.length, 0);
   assert.equal(engine.getSnapshot().connection, 'restoring'); assert.equal(engine.getSnapshot().overlay, null);
+  assert.doesNotMatch(engine.getSnapshot().reason, /remembered authorization/);
+  adapter.memoryChange({ status: 'checking', message: 'Verifying the saved browser authorization…', canForget: true });
+  assert.equal(engine.getSnapshot().reason, 'Verifying the saved browser authorization…');
   engine.approve(true); engine.send(); engine.toggleSave(project.id);
   assert.equal(engine.getSnapshot().approval, null); assert.deepEqual(engine.getSnapshot().library.saved, []);
   adapter.memoryChange({ status: 'remembered', message: 'Remembered.', canForget: true });
@@ -375,7 +378,9 @@ test('startup restores only existing authorization without pairing, panel moveme
 
 test('startup without a grant falls back to public browsing and never silently pairs', t => {
   const { adapter, engine } = makePersistent({ status: 'none', message: '', canForget: false }); t.after(() => engine.dispose());
-  engine.startRestoration(); adapter.failRestore({ status: 'none', message: '', canForget: false });
+  engine.startRestoration(); assert.match(engine.getSnapshot().reason, /whether.*saved connection/);
+  assert.doesNotMatch(engine.getSnapshot().reason, /remembered/);
+  adapter.failRestore({ status: 'none', message: '', canForget: false });
   assert.equal(engine.getSnapshot().connection, 'disconnected');
   assert.equal(adapter.connects.length, 0); assert.equal(engine.getSnapshot().overlay, null);
   engine.focusSession(); engine.checkSession(); assert.equal(adapter.restores.length, 1);

@@ -240,6 +240,33 @@ export class BrowserIdentityStore {
       return !!await this.load();
     } catch { this.warning = warning; return false; }
   }
+  /** A session-only approval retires only the grant captured by that pairing, retaining its proof key. */
+  async clearGrant(identity: BrowserIdentity): Promise<BrowserIdentity | null> {
+    if (this.stopped) return null;
+    this.warning = '';
+    if (!identity.grant) return identity;
+    const expectedGrant = identity.grant;
+    const matches = (current: BrowserIdentity) => !current.paused && current.credentialId === identity.credentialId && current.revision === identity.revision &&
+      current.grant?.connectorId === expectedGrant.connectorId && current.grant.grantId === expectedGrant.grantId;
+    try {
+      const control = this.control();
+      const previous = await this.load();
+      if (!previous || !matches(previous) || this.control().raw !== control.raw) return null;
+      const revision = this.crypto.randomUUID();
+      const saved = await this.backend.update(current => {
+        if (!stored(current) || !matches(current) || this.control().raw !== control.raw) return current;
+        const { grant: _grant, ...retained } = current;
+        return { ...retained, revision };
+      });
+      if (!stored(saved) || saved.revision !== revision) return null;
+      const persisted = await this.verified(await this.backend.read());
+      if (!persisted || persisted.credentialId !== identity.credentialId || persisted.revision !== revision || persisted.grant || persisted.paused || this.control().raw !== control.raw) return null;
+      this.writeControl({ version: 1, mode: 'active', revision, credentialId: identity.credentialId });
+      this.notify('changed', revision, identity.credentialId);
+      const current = await this.load();
+      return current && !current.paused && !current.grant && current.credentialId === identity.credentialId && current.revision === revision ? current : null;
+    } catch { this.warning = warning; return null; }
+  }
   async setPaused(paused: boolean): Promise<boolean> {
     if (this.stopped) return false;
     const revision = this.crypto.randomUUID();

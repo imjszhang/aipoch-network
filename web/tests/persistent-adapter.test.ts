@@ -16,8 +16,7 @@ class MemoryBackend implements IdentityBackend {
   async read() { return structuredClone(this.value); }
   async update(change: (value: unknown) => unknown) { if (this.rejectUpdates) throw new Error('Identity storage is read-only'); this.value = structuredClone(change(this.value)); return structuredClone(this.value); }
 }
-function store(backend = new MemoryBackend()) {
-  const values = new Map<string, string>();
+function store(backend = new MemoryBackend(), values = new Map<string, string>()) {
   return new BrowserIdentityStore({ backend, crypto, origin, storage: { getItem: key => values.get(key) ?? null, setItem: (key, value) => { values.set(key, value); } } });
 }
 const response = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -29,7 +28,7 @@ function fixture(identity = store()) {
   let publicKey: CryptoKey | undefined, paired = 0, restored = 0, revoked = false, code: string | undefined, forgedChallenge = false;
   let releaseResume: (() => void) | undefined, holdResume = false;
   let releaseSession: (() => void) | undefined, holdSession = false, invalidVerification = false;
-  let extensionOverride: unknown, overrideCapabilities = false, pairingPersistent = false;
+  let extensionOverride: unknown, overrideCapabilities = false, pairingPersistent = false, sessionOnly = false;
   const deletedTokens: string[] = [];
   let afterVerification: (() => void) | undefined;
   const calls: string[] = [];
@@ -47,7 +46,7 @@ function fixture(identity = store()) {
       if (pairingPersistent) publicKey = await crypto.subtle.importKey('jwk', body.browserAuthorization.publicKey, { name: 'ECDSA', namedCurve: 'P-256' }, true, ['verify']);
       return response({ pairingId: 'pairing-test', pollToken: 'private-poll-token', verificationCode: '123456', expiresAt: now + 180_000 });
     }
-    if (path === '/v1/pairings/pairing-test') return response({ status: 'approved', session: session(paired === 1 ? 'paired' : `paired-${paired}`), ...(pairingPersistent ? { authorization } : {}) });
+    if (path === '/v1/pairings/pairing-test') return response({ status: 'approved', session: session(paired === 1 ? 'paired' : `paired-${paired}`), ...(pairingPersistent && !sessionOnly ? { authorization } : {}) });
     if (path === '/v1/session') {
       if (init.method === 'DELETE') { deletedTokens.push(new Headers(init.headers).get('Authorization') ?? ''); return response({ disconnected: true }); }
       if (holdSession) await new Promise<void>(resolve => { releaseSession = resolve; });
@@ -77,6 +76,7 @@ function fixture(identity = store()) {
   }) as typeof fetch;
   const adapter = new RealAdapter({ identity, origin, fetch: fetcher, now: () => now, heartbeatInterval: 60_000 });
   return { adapter, identity, calls, fetcher, now, deletedTokens,
+    sessionOnly: () => { sessionOnly = true; },
     capabilities: (value: unknown) => { extensionOverride = value; overrideCapabilities = true; },
     holdSession: () => { holdSession = true; }, sessionPending: () => !!releaseSession, releaseSession: () => releaseSession?.(),
     badVerification: () => { invalidVerification = true; }, afterVerification: (callback: () => void) => { afterVerification = callback; },
@@ -102,6 +102,50 @@ test('automatic restore never generates a key or initiates pairing when there is
   assert.equal(await restore(f.adapter), null); assert.deepEqual(f.calls, []); assert.equal(await f.identity.load(), null);
 });
 
+test('session-only approval clears a revoked grant so a reopened page does not try restoring it', async t => {
+  const backend = new MemoryBackend(), values = new Map<string, string>();
+  const f = fixture(store(backend, values)); t.after(() => f.adapter.dispose());
+  const first = await connect(f.adapter); assert.ok(first); f.adapter.disconnect(first);
+  const original = await f.identity.load(); assert.ok(original?.grant);
+  f.fail('authorization_revoked'); f.sessionOnly();
+  const session = await connect(f.adapter); assert.ok(session); assert.equal(f.adapter.valid(session), true);
+  const saved = await f.identity.load(); assert.ok(saved); assert.equal(saved.grant, undefined);
+  assert.equal(saved.credentialId, original.credentialId); assert.deepEqual(saved.publicKeyJwk, original.publicKeyJwk);
+  assert.equal(f.adapter.getMemory().status, 'none'); assert.equal(f.adapter.getMemory().canForget, false);
+  const next = new RealAdapter({ identity: store(backend, values), origin, fetch: f.fetcher, now: () => f.now }); t.after(() => next.dispose());
+  const requests = f.calls.length;
+  assert.equal(await restore(next), null); assert.equal(next.getMemory().status, 'none');
+  assert.equal(f.calls.length, requests, 'A page with no grant must not contact Connector during restoration');
+  assert.equal(f.pairCount(), 2);
+});
+
+test('session-only approval retires its candidate if the captured grant cannot be cleared', async t => {
+  const backend = new MemoryBackend(), f = fixture(store(backend)); t.after(() => f.adapter.dispose());
+  const first = await connect(f.adapter); assert.ok(first); f.adapter.disconnect(first);
+  f.fail('authorization_revoked'); f.sessionOnly(); f.afterVerification(() => { backend.rejectUpdates = true; });
+  assert.equal(await connect(f.adapter), null);
+  await until(() => f.deletedTokens.includes('Bearer private-bearer-paired-2'));
+  assert.equal(f.adapter.getMemory().status, 'storage-unavailable'); assert.match(f.adapter.getMemory().message, /could not be cleared/);
+  assert.equal((await f.identity.load())?.grant?.grantId, grantId);
+});
+
+for (const action of ['pause', 'replace grant'] as const) test(`a late session-only approval cannot defeat a concurrent ${action}`, async t => {
+  const f = fixture(); t.after(() => { f.releaseSession(); f.adapter.dispose(); });
+  const first = await connect(f.adapter); assert.ok(first); f.adapter.disconnect(first);
+  f.fail('authorization_revoked'); f.sessionOnly(); f.holdSession();
+  let callbacks = 0, result: Session | null = null;
+  f.adapter.connect('session-only-race', (_attempt, session) => { callbacks++; result = session; }); await until(f.sessionPending);
+  if (action === 'pause') await f.adapter.pause();
+  else {
+    const identity = await f.identity.load(); assert.ok(identity);
+    assert.equal(await f.identity.remember(identity.credentialId, { connectorId, grantId: 'replacement-grant' }, identity.revision), true);
+  }
+  f.releaseSession(); await until(() => f.deletedTokens.includes('Bearer private-bearer-paired-2')); await tick();
+  assert.equal(result, null); assert.equal(callbacks, action === 'pause' ? 0 : 1);
+  assert.equal((await f.identity.load())?.grant?.grantId, action === 'pause' ? grantId : 'replacement-grant');
+  assert.notEqual(f.adapter.getMemory().status, 'none');
+});
+
 test('pause invalidates current sessions, survives restore, and explicit connect resumes the remembered identity', async t => {
   const f = fixture(); t.after(() => f.adapter.dispose());
   const first = await connect(f.adapter); assert.ok(first);
@@ -121,6 +165,8 @@ for (const failure of ['identity writes', 'control writes'] as const) test(`expl
   const f = fixture(identity); t.after(() => f.adapter.dispose());
   assert.ok(await connect(f.adapter)); await f.adapter.pause();
   const saved = await identity.load(); assert.ok(saved?.grant); assert.equal(saved.paused, true);
+  let clearCalls = 0; const clearGrant = identity.clearGrant.bind(identity);
+  identity.clearGrant = async captured => { clearCalls++; return clearGrant(captured); };
   if (failure === 'identity writes') backend.rejectUpdates = true; else rejectControlWrites = true;
   let callbacks = 0, session: Session | null = null;
   f.adapter.connect('read-only-storage', (_attempt, value) => { callbacks++; session = value; });
@@ -133,6 +179,7 @@ for (const failure of ['identity writes', 'control writes'] as const) test(`expl
   const reopened = new BrowserIdentityStore({ backend, storage, crypto, origin }); t.after(() => reopened.dispose());
   assert.equal((await reopened.load())?.paused, true, 'A new page must still see the durable pause');
   assert.deepEqual((await reopened.load())?.grant, saved.grant);
+  assert.equal(clearCalls, 0, 'Storage fallback never retires the abandoned persistent identity');
   assert.equal(await restore(f.adapter), null); assert.equal(f.pairCount(), 2);
   let paused: Promise<boolean> | undefined, lateCallbacks = 0;
   const unsubscribe = f.adapter.observeMemory(memory => {
