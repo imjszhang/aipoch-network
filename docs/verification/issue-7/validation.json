@@ -1,6 +1,6 @@
 {
-  "recordedAt": "2026-09-14T10:21:56.775641+00:00",
-  "status": "automated-corrected-candidate-verified-real-acceptance-incomplete",
+  "recordedAt": "2026-09-14T10:40:12.523311+00:00",
+  "status": "automated-readonly-storage-fix-candidate-verified-real-acceptance-incomplete",
   "repositoryHead": "c9a45a5f59fce36d1e2384d74cada73834b1c069",
   "nodeVersion": "v24.18.1",
   "browserFixtureEngine": "Chromium 153.0.8010.12",
@@ -11,7 +11,7 @@
     "consumer/tests/consumer.test.mjs": "c571c0f12ff4f1adad537b7c0fb019512b12577612405d1f2de13ce066f6d27e",
     "fixtures/pilot/snapshots.json": "8de16863dd53fb0a91b73f2420140d9e3ad8cb9aa0c9d519bfb5edd3caa5f0b4",
     "package-lock.json": "3dea81a86e5037b114583ed58d0831df6446ed9091ca30952c6faba61b4a2192",
-    "package.json": "9ae450d7b6c055b8b47cb3d464932e62486d42158714d20001a43a80920a1659",
+    "package.json": "209904f5d4d69a9c59c9cc2c4ed54df3cbbcc1bbc6cdf56517ad27e02103d72f",
     "pipeline/build.ts": "415537cae6e0d6734b7570e1f111cb256a779c5031103b15d9334bb454cbb141",
     "pipeline/cli.ts": "28f1ee505dca0875fc7b82dd240b8731eb90b573751479ba0b59f30847de1133",
     "pipeline/github.ts": "523a6dbc141aa7c6f9062acd206e167078019d263693de852adf3dabd8e8b12d",
@@ -97,27 +97,28 @@
     "web/src/workbench/browser-identity.ts": "2f220ba112e0f527256d478fa21ca24305219550831066ee4702e6cb433d0b09",
     "web/src/workbench/engine.ts": "4bb5d2390877bf4e4abd1da2f9e4512cb1f90a3ba9a0f0add411b3c8fbe64d37",
     "web/src/workbench/index.tsx": "3d052ed65f4d0f3ad4a5ce3652c991dd3695a0dde78b47ac31622905da9c3bd2",
-    "web/src/workbench/real-adapter.ts": "385442bf1af330015095b137b3c68f356d9ee85d9d4d56323bc2b42f29de6e63",
+    "web/src/workbench/real-adapter.ts": "e824d968d0223af9d40cff97ad4d457ebf0f8611df2b39852e75593221c8e508",
     "web/src/workbench/reference.ts": "00a10670bb544b33b67cb5ae9e71c1e3f5a26502f5e37129ecce0fe078645fb3",
     "web/src/workbench/styles.css": "ad26b51025ea961284f44ad882ba18e3e58a1b0fa654942fcc0e212033c9271f",
     "web/tests/browser-identity.test.ts": "eb52757d6a0434ca6bb2db016cf4068b42021a84e56e7cb950b9bbca802e2163",
     "web/tests/build-mode.test.ts": "57dd683c9ce78149a1ef2af8fc648223eaa71e025bbc9dcb0829092b4bfb57e4",
     "web/tests/catalog-navigation.test.ts": "3e80f81ec54226cbdf8676dcd01f8c7c454ca18bca101948dfd4a36d9afdd7b7",
-    "web/tests/persistent-adapter.test.ts": "0fe311746646e27d885caa0563c398619a27b140a457c1a259bd317129b0a326",
+    "web/tests/persistent-adapter.test.ts": "1913c98d1c30db829b0f438c0bf842084873773939ee4a1590848da551c72957",
     "web/tests/real-adapter.test.ts": "06f02dd6a4bdd326cdd8c5642e3bc77bf9423b0d895626b812a0b1b7842cf237",
-    "web/tests/workbench-state.test.ts": "39c5fedf7707117fb016375240cf1a9095e0d4864422af7c830d3363668fe081"
+    "web/tests/workbench-state.test.ts": "39c5fedf7707117fb016375240cf1a9095e0d4864422af7c830d3363668fe081",
+    ".github/workflows/ci.yml": "9d8e72adb600612703fc72af54ca1dbc490371ab95571308643b3de5517a85eb"
   },
   "unit": {
     "command": "npm test",
-    "logSha256": "a146d5df66fac842f92b0cd7d7c295fd48ea6a25939bb2ab97a8d48ccb472a89",
-    "tests": 371,
-    "passed": 371,
+    "logSha256": "8c4d0f8cb222ef7fc34e592624d2b7c3677079e6e87a216f828862958b90719c",
+    "tests": 373,
+    "passed": 373,
     "failed": 0
   },
-  "unitLogFile": "aipoch-persistent-final-unit-after-heartbeat.log",
+  "unitLogFile": "aipoch-persistent-final-unit-after-readonly.log",
   "nonrealMatrix": {
     "file": "aipoch-persistent-final-nonreal-matrix.json",
-    "sha256": "ddb326988df246b1e0797b4dbe87a405fa94e3f816fb775b83d54dfb379aec9d",
+    "sha256": "c1c26bbcbe31080746282ed7174630c4bacd6e17a0c273173ea9a3deca9c24f4",
     "rebuildComparison": [
       {
         "name": "unavailable-root",
@@ -171,6 +172,54 @@
           "exitCode": 0,
           "artifactFilesIdentical": true,
           "changedFiles": []
+        }
+      ]
+    },
+    "finalRebuildAfterReadOnly": {
+      "file": "aipoch-persistent-final-rebuild-after-readonly.json",
+      "sha256": "d9fa8929d0421500b928264ddcdc0ef9640d49906c7c5e7c47e116e111464704",
+      "results": [
+        {
+          "name": "real-root",
+          "mode": "real",
+          "base": "/",
+          "exitCode": 0,
+          "artifactFilesIdentical": false
+        },
+        {
+          "name": "real-sub",
+          "mode": "real",
+          "base": "/aipoch-network/",
+          "exitCode": 0,
+          "artifactFilesIdentical": false
+        },
+        {
+          "name": "unavailable-root",
+          "mode": "unavailable",
+          "base": "/",
+          "exitCode": 0,
+          "artifactFilesIdentical": true
+        },
+        {
+          "name": "demo-root",
+          "mode": "demo",
+          "base": "/",
+          "exitCode": 0,
+          "artifactFilesIdentical": true
+        },
+        {
+          "name": "unavailable-sub",
+          "mode": "unavailable",
+          "base": "/aipoch-network/",
+          "exitCode": 0,
+          "artifactFilesIdentical": true
+        },
+        {
+          "name": "demo-sub",
+          "mode": "demo",
+          "base": "/aipoch-network/",
+          "exitCode": 0,
+          "artifactFilesIdentical": true
         }
       ]
     }
@@ -9106,11 +9155,11 @@
         "connector_protocol": "1.0",
         "connector_endpoint": "http://127.0.0.1:47821"
       },
-      "reportFile": "aipoch-persistent-heartbeat-root-report/results.json",
-      "reportSha256": "567a5b69cec5964816ba91b33d05161f78f12a7efc5914a2f87a1f4b37cc14f5",
+      "reportFile": "aipoch-persistent-readonly-final-root-report/results.json",
+      "reportSha256": "ca81c9295ede3f8a8d478d75a1eb53780e93da13d02b8fcd9729fff0f5820e88",
       "stats": {
-        "startTime": "2026-09-14T10:19:53.517Z",
-        "duration": 52715.59,
+        "startTime": "2026-09-14T10:36:30.022Z",
+        "duration": 52087.106999999996,
         "expected": 55,
         "skipped": 1,
         "unexpected": 0,
@@ -9524,17 +9573,17 @@
         {
           "path": "404.html",
           "bytes": 4854,
-          "sha256": "3e595f4293a9bf8388fa1a8d155db1b5cb17199f1aca78396363410b87c7d585"
-        },
-        {
-          "path": "assets/index-CEmWR4P3.js",
-          "bytes": 406498,
-          "sha256": "98414f3b2c106ffdc05fd2dadf8901ac0589479bb5e34ca97ddc9cc95452cefe"
+          "sha256": "2d21a0fab6949cbff6ae0b5345973fa6d1d6beb937b3e03b2963cddfb55fc0c9"
         },
         {
           "path": "assets/index-H3QY6u4R.css",
           "bytes": 67901,
           "sha256": "6529d295dba3f194c78f36785bab845f0bc7dd346050a23f220cce3fb61fea71"
+        },
+        {
+          "path": "assets/index-JDA7-IfB.js",
+          "bytes": 406782,
+          "sha256": "909229e2a8e4f5717e6b65060a41b80148790f3f2d8d966e53d79f738263c01a"
         },
         {
           "path": "assets/open-science-product-notice.txt",
@@ -9559,117 +9608,117 @@
         {
           "path": "capabilities/index.html",
           "bytes": 20199,
-          "sha256": "5e7736af5a386850df0c10da64b2cb2d914cdaae4b211e713272b320bab82cd0"
+          "sha256": "43eff9c5e1e956108638664cb4e4953eb3112307459c63ee8c1c1f173c034d9d"
         },
         {
           "path": "capabilities/resource~anndata-library/index.html",
           "bytes": 30249,
-          "sha256": "a89bf869fe3742eab7004edc605163565dbcc83b3a165b877dd1137942bdbb73"
+          "sha256": "aee5b63d2b67e56b73adedade084a3c21fc4bcd262fc6bddc328e95d3c173b1c"
         },
         {
           "path": "capabilities/resource~astropy-library/index.html",
           "bytes": 21199,
-          "sha256": "8db635981f3344dff878d2d7642780d6e97c6de6580ec97536a1c6b309d30b72"
+          "sha256": "47c4e9f330b9e6347d510a4676eb4848b8975cbfeaaa23f3295c018f146cc8e8"
         },
         {
           "path": "capabilities/resource~biopython-library/index.html",
           "bytes": 19700,
-          "sha256": "856915b2b994f1354c7845e8c42294e6b94636b294047203d75aefbd29425f32"
+          "sha256": "b1f73738b07bbeaf1e08eaba4aadd9c4434678fc45d7d14761081fcda081326e"
         },
         {
           "path": "capabilities/resource~jupyter-notebook-app/index.html",
           "bytes": 21792,
-          "sha256": "b8260e1e1f3d0b7212b87410494250b49ed3b9b494c0ae13191fb7884400a83a"
+          "sha256": "fb302943027aa3606d795d2711e3e6ca4238f4d8313c4382962e740fa28da381"
         },
         {
           "path": "capabilities/resource~matplotlib-library/index.html",
           "bytes": 20465,
-          "sha256": "8981fcfd794512955fa74da6cbdc314811a535da7e1d79aeeaeb2b5340fd6275"
+          "sha256": "ee33ff872b7af2136f1f9e7e7165cd70f850fd78c2349c9b83d448230a4f04f2"
         },
         {
           "path": "capabilities/resource~mne-python-library/index.html",
           "bytes": 21784,
-          "sha256": "b6333bf9e1bc2b72e70bf51f24cd4c761fa35866d244b8ebfaca25ecabe21736"
+          "sha256": "e5e89d5d5c5736f8f36d3fcf0014966adc5744c0227702c580a34f5bb10b1657"
         },
         {
           "path": "capabilities/resource~mudata-library/index.html",
           "bytes": 21602,
-          "sha256": "c62008b6e954b8856da88f306afa154d84a9ad58469eaca7dea6dbc39abf444b"
+          "sha256": "c2c6bdc38894d436bdc1702a3e894afaff66c6f212c920405938d020324a9dae"
         },
         {
           "path": "capabilities/resource~networkx-library/index.html",
           "bytes": 20702,
-          "sha256": "7be00e73bda93beb8a381249656e7b2b53dd33a6c56be63ff0913bb2f1ed78f1"
+          "sha256": "4f800032b6951f1444cc319768f7b0f400c58da485aa0ab555a73c8ca73f4946"
         },
         {
           "path": "capabilities/resource~nibabel-library/index.html",
           "bytes": 19891,
-          "sha256": "d2c76491ece5917eb2ac716797ed29458d0343a89d0305d93e06b9f86ce00d3b"
+          "sha256": "116c33e8255b058e2d3f7013c64a427f81bd53ee05a0c6ee7a3b9a91fcb4c475"
         },
         {
           "path": "capabilities/resource~nilearn-library/index.html",
           "bytes": 20832,
-          "sha256": "3731f708ebc2d6246605bb8cda27e62cdd545d2c77fce76b109fc5206f3b8071"
+          "sha256": "a0ccc00e288f6c0392ac818980c8251433550d8a34e5d9ac0fe84fc132d8c53c"
         },
         {
           "path": "capabilities/resource~numpy-library/index.html",
           "bytes": 20171,
-          "sha256": "9a8be90624d3d3d5e9354d97735bcb676b58bc5d424972864a7cf937e20fa6f8"
+          "sha256": "618e43cf15de3d548f514c5ca6484a6e936de2668bc86308f3c81c8299575ed1"
         },
         {
           "path": "capabilities/resource~pandas-library/index.html",
           "bytes": 22238,
-          "sha256": "433c1a47170c15b9a9828a80ea21c989e8bb40c94a05c809476b9c38800a128e"
+          "sha256": "662354234d4c4016a3338862afa9bb679e99d299585889057802b42bda6232d9"
         },
         {
           "path": "capabilities/resource~scanpy-library/index.html",
           "bytes": 28305,
-          "sha256": "f78e5f7a20cd8a2e05fd10a8e287ea2b99fe57c59c3b6b533bb3b7c0280700b1"
+          "sha256": "9e9361726aa7a085277fc1ab033e47fa62910ac5d93378c4afdf4af074c8db0a"
         },
         {
           "path": "capabilities/resource~scikit-image-library/index.html",
           "bytes": 20485,
-          "sha256": "ead6663b6cf60a50e1530b0892ebeb6a8bc3fc00485607b589ad92586c51c9a5"
+          "sha256": "65db97208911e65ebedacdd53cd8dbafe8ab3182ce038d1410f2494e89db0100"
         },
         {
           "path": "capabilities/resource~scikit-learn-library/index.html",
           "bytes": 22166,
-          "sha256": "417fbe243a171d1cbf1de44516bb0daaf3c01fb5ffe82376bcb66ae478dae286"
+          "sha256": "53925cd7e0781e22a8e1f2cba1703803002a68216192cf3c4088f2a36c6cca06"
         },
         {
           "path": "capabilities/resource~scipy-library/index.html",
           "bytes": 21073,
-          "sha256": "3bf70e52f5a19bd59551d35f1c279da1a82a859ae2aca8d491c7795fb5cbffb3"
+          "sha256": "a4eaae115aa8f5231ab170ad24b5a62eaed60ad078829ea68f910f35fbb4f1b5"
         },
         {
           "path": "capabilities/resource~scipy-tutorial/index.html",
           "bytes": 23026,
-          "sha256": "2d246a327e1c573902d377560aa2298050b0167251f347dceb1534f11355a0de"
+          "sha256": "7d6e9aa1b5f4ac0d043b0e3428b95fe5b8e1c350e84e1df09800f442a4c8612f"
         },
         {
           "path": "capabilities/resource~seaborn-library/index.html",
           "bytes": 21731,
-          "sha256": "fcc2efa9f15b5de8d28ee84d9bf86ddf262271d218d1f95a163133e5fb2b98f5"
+          "sha256": "a5ed651a9b63b22f3349bfd3d63b430470693cbab0964c7cf3f0a19def21394c"
         },
         {
           "path": "capabilities/resource~snakemake-workflows/index.html",
           "bytes": 20119,
-          "sha256": "b2d8957e9dcacfa7c4d4158221f445079250b153c13647563288ee6b42f33930"
+          "sha256": "066220ee9f1cfd0889f89b75c3394ca9bba027f238da017b3aaf3fbb3b45aeb9"
         },
         {
           "path": "capabilities/resource~statsmodels-library/index.html",
           "bytes": 20910,
-          "sha256": "e7ed814a3a76cc581263bb28c5ead88661bc0580f6006ae7e9d6f1333fe2bb01"
+          "sha256": "fb1f0795919a9a0f517d966e7543ff22d0763ae17fa3e1a018f1587ebc4851d0"
         },
         {
           "path": "capabilities/resource~sympy-library/index.html",
           "bytes": 20536,
-          "sha256": "6f06d3d9a0cd51fdbe47897e0a5103b54087a988004d8d401ab5187ae05d1647"
+          "sha256": "9bdf10a62e3eb29cfeb42365f2bb02cfd51b9f58e98d62c37b2ad1ecf91b280f"
         },
         {
           "path": "capabilities/resource~xarray-library/index.html",
           "bytes": 21635,
-          "sha256": "44eabfdb2b326dc086adf030087c4d223238c56809b9f0cadf9aedec1e000ae3"
+          "sha256": "1f62d5ee384ff647e8b9bbbc2c109c364ba08c608f334df07bf5c47a4e5d0aef"
         },
         {
           "path": "catalog/v1/history.json",
@@ -9784,37 +9833,37 @@
         {
           "path": "collections/collection~life-science-computing/index.html",
           "bytes": 36003,
-          "sha256": "7c5befc9a9acb333d6344be0b67caadbceb61be49fe37bf786a16f3ca47520ac"
+          "sha256": "f49a298101a4cb3002a3112e25d504fa355788753cd12d5e30be74493df17a6a"
         },
         {
           "path": "collections/collection~research-foundations/index.html",
           "bytes": 30569,
-          "sha256": "e0e0dfa85f1688a1d46709bf9234b483d08b68e0c6e4f88a842b293b1d98983a"
+          "sha256": "aaa8e83e3646559eada05775cff872b72d034ce59898498461379d024cab7d19"
         },
         {
           "path": "collections/index.html",
           "bytes": 10803,
-          "sha256": "df692352f5189083026c4ffd1c8c03bd2db0aa318198c66596b952ccbe88b6c9"
+          "sha256": "f9daf40c76bf22ae93c0d15cbd1231c2ba8e0668faeb8662be0e88923b850b92"
         },
         {
           "path": "community/index.html",
           "bytes": 10002,
-          "sha256": "27c498733080a3f1fc3a02a57a0933ba7f45b6bef7a254fe7246507e9527e145"
+          "sha256": "b5229afce7012430fa46b8af5524c0dcbb48c9f7b0a1fffce2683a723a9a1c83"
         },
         {
           "path": "contribute/index.html",
           "bytes": 7780,
-          "sha256": "b3b1ea30b25ba0c2d6272b7cd5d240a92aaf0911bbeb1d9ed887e313f21c4fe1"
+          "sha256": "7273c6980cecaed7238001d4d5197baa5fcc28b149d928075da899e876724e84"
         },
         {
           "path": "explore/index.html",
           "bytes": 19089,
-          "sha256": "cabdbeae5241c750824715e1cd0d1ce61de6967dbf9997097ef2fa9bc88cf1c7"
+          "sha256": "ad6a39cdafd996bb486441e792101ce8ef53f82fd92d891a93f863d18293749f"
         },
         {
           "path": "index.html",
           "bytes": 67247,
-          "sha256": "5a93e46299d19a084f8cc21cffbd0283515474f99b158cea6e6afd9b06cad79b"
+          "sha256": "b1b7ca809c5aa0406aab07df882a80ec0f7d79cfa6ce01927dcab059984873d9"
         },
         {
           "path": "internal/catalog.json",
@@ -9829,227 +9878,227 @@
         {
           "path": "join/index.html",
           "bytes": 8574,
-          "sha256": "68418ab2b4d39be38687359b89aa8f523bf1f39908dfed82b001b4e8ef25b754"
+          "sha256": "93ae4e2db67ee5f25f422bf2c9dad2cea6d4e3975df49c6b0d298509fd675181"
         },
         {
           "path": "me/index.html",
           "bytes": 4214,
-          "sha256": "d11dd8e34374fb6d118790d8e24c9bedcc85d8162136949d6be6c66775fdbfb5"
+          "sha256": "8c2976a10547baba7a78c36858ddd53600df8604520b19ddb8ac9031cdf23c75"
         },
         {
           "path": "organizations/actor~github~1284191/index.html",
           "bytes": 21242,
-          "sha256": "dfdc12a8da6afd7eaad39676341177770c06b51b2ecff9608bb951bee9e9a6e2"
+          "sha256": "833e9bd463575e6bbe995502ab805f6bd82dc07587b00fd7264d62e876e3f4d8"
         },
         {
           "path": "organizations/actor~github~21206976/index.html",
           "bytes": 21581,
-          "sha256": "ba9b028f09ca4db0b9a04faf20dd93f651472c31a42f754ad3df768f9cd1634d"
+          "sha256": "2d0003fdb2c6c31cc6db71af5162bb909756d93f7cc233cde8718e3b699d33dc"
         },
         {
           "path": "organizations/actor~github~215947/index.html",
           "bytes": 20461,
-          "sha256": "17caef3da4360c7b6fc07500e26d76b63d15b83efef593bde5334cca3ed230cd"
+          "sha256": "ce1131bfa39a5dabaf8daa5e00dfc83eaabd71b12f5fc9ee8f97f433b04b8b98"
         },
         {
           "path": "organizations/actor~github~233707/index.html",
           "bytes": 20657,
-          "sha256": "268e300d740c5161462c4205dc3f70c05efe8d552d28a2741f30c07f8675d9f4"
+          "sha256": "267a287b46e536b93c2513b946ccc92dc02b754345548ff0daf796bdda0e16d0"
         },
         {
           "path": "organizations/actor~github~260832/index.html",
           "bytes": 20507,
-          "sha256": "c769e97bf91b3607888ab8b12270e9ea9dc7c668797bfcbda419d45453fca12a"
+          "sha256": "f4d187701cb79220bc753e3f38bf6b615145797b88cb37e48aa7e64632c4da17"
         },
         {
           "path": "organizations/actor~github~288276/index.html",
           "bytes": 20116,
-          "sha256": "0d308e887da11336e592c90682cc3894f64281e73646ab71aba37cf12d13e8a1"
+          "sha256": "b0cd8bf75775911288e6e9de8eeea1c8269a2d0fd130f0b21fbc2f3a66541d96"
         },
         {
           "path": "organizations/actor~github~288277/index.html",
           "bytes": 25270,
-          "sha256": "60c4c9cab08f242b7dcf49df80c0dcc565c6f8f2a30726b33ec031f7afe35c7b"
+          "sha256": "2bb097642d33c73d1f7b7e596d3f7d9e70d155763c191648fb95fb932d752531"
         },
         {
           "path": "organizations/actor~github~33450111/index.html",
           "bytes": 19582,
-          "sha256": "1b7bc53b525d561bc7d8dc645007e40c495a30fc4aafa8e6768f0a0eb59ec2b5"
+          "sha256": "42693968e41e65fb51826bbd0f49935458e1f3e6324afe95b840c5e2ed8b7cfa"
         },
         {
           "path": "organizations/actor~github~365630/index.html",
           "bytes": 21754,
-          "sha256": "58e572d88ecdfa2b7a3129d0290930bf97c804bd1eb514ae1846ce7b8853041f"
+          "sha256": "e82cae1765825c2cdba405fade2ff985cd6e2720451915de4ee58c4d16835648"
         },
         {
           "path": "organizations/actor~github~388785/index.html",
           "bytes": 20720,
-          "sha256": "8515239fe6d73bcd2138e963bf61b6924e0e2d1def357467d06aed959a1e7e45"
+          "sha256": "7502a6b7597929f8c5429be8542922c80377c58bfbee6c66cedc7b85c731d3bc"
         },
         {
           "path": "organizations/actor~github~4646912/index.html",
           "bytes": 21276,
-          "sha256": "a5bb20e99f2c46da0db4a3f6260e03f37c67458538b4fb498d53eb75a604c620"
+          "sha256": "58332715563ff16eb4476d3b810a0edbf8c9cfbb8244a76dccc9a6aba11a9572"
         },
         {
           "path": "organizations/actor~github~54555/index.html",
           "bytes": 20472,
-          "sha256": "4fc65162c005e933a1df4abc5503dd323af95eb9d78700f69ac1e6d83a28e05e"
+          "sha256": "e32edde3d234582f5cd173d0f9e05790507c68aff910131d57f4129511b19b36"
         },
         {
           "path": "organizations/actor~github~583875/index.html",
           "bytes": 21317,
-          "sha256": "02dc1c9f372be862d5bcbc745981456ce434e3be7d0afef0e0499c2c2c24789e"
+          "sha256": "de21e3fc76d1a581e5033ed53bbe186e5879af337fdc80e53b594bc2e2a46cb2"
         },
         {
           "path": "organizations/actor~github~717666/index.html",
           "bytes": 21320,
-          "sha256": "aa737f48a605af424c888075c65778593f3d1b90c149a011385aa15337776b0e"
+          "sha256": "49b49f419d9b253bd0e9517f38305149663864481b0a8db2a7c0e766fdcecea9"
         },
         {
           "path": "organizations/actor~github~7388996/index.html",
           "bytes": 21395,
-          "sha256": "45612f3795455bb499bd308f4d1473ac2658d1f225dd17be6d1bbd411d65be39"
+          "sha256": "02ce9667d3e3ab4e7e4df1a6a881bdca85a22cf081c77bba4eb3645077118d02"
         },
         {
           "path": "organizations/actor~github~847984/index.html",
           "bytes": 20795,
-          "sha256": "fa1551f3c4b9502f11d014c3ee12167683ff637ba729e3585c271386f110eec4"
+          "sha256": "cd3b587a308d37c0cffcef9472830955e1171352413fe19198d30677f188d437"
         },
         {
           "path": "organizations/actor~github~897180/index.html",
           "bytes": 20509,
-          "sha256": "fae65d1e7bd851a6154c7f20701319a6f46a181d358e5e771eeeebcb5ec33ae2"
+          "sha256": "fe7e4faec76cbf8cbe18447b351aaac38a08800a3c97e19927472cfe7a24c4a4"
         },
         {
           "path": "organizations/actor~github~95305807/index.html",
           "bytes": 45276,
-          "sha256": "be432e13f1c1542109dfa418b38434fb8d6c08a6e0abdbd1b5696884b555275b"
+          "sha256": "b524b4df98d8e3d76a056fc9560e91065e9140dac8d0611bbed46e6532e9d0e1"
         },
         {
           "path": "organizations/index.html",
           "bytes": 15627,
-          "sha256": "18f00d5c3363d5c069eb0c8d96298bb05e95981e2a345e32124d415a7f965691"
+          "sha256": "afa2479107a457f16adcc653fa2c02e48d01ff8b36e3dd687c31ba5bc1f4a0c9"
         },
         {
           "path": "projects/index.html",
           "bytes": 22416,
-          "sha256": "ab40982eaaa8ad8edf443211f71f6e1f92762de9891df8ed8a205d2be0d03396"
+          "sha256": "80c113363acdba3fb1afb44b85d49683b6029a66701251d81172250d85c1bd66"
         },
         {
           "path": "projects/project~anndata/index.html",
           "bytes": 18859,
-          "sha256": "11c57a7b5c7bf847ac5ac8e21aacf2918e5e1e6f87d0b6d7cfc09422430a01ad"
+          "sha256": "008abe2ccf85d8926b0b9d9c91fbaef15cba9b57c922c903f05630b5ac4cf194"
         },
         {
           "path": "projects/project~astropy/index.html",
           "bytes": 18964,
-          "sha256": "435e75f0d41cd5824d60511b59ec7cacb77592b8955b7b84df2f04d8be0d69b9"
+          "sha256": "ba7229e7cdf5725c2fa978c7286a4fac153578be8053dba947b0e16a0db43462"
         },
         {
           "path": "projects/project~biopython/index.html",
           "bytes": 18693,
-          "sha256": "083833ac3414d978e3ed828e15836f7a91dfd4d2ba0765d4d0da83b4d9d64df8"
+          "sha256": "d504762e7c8c83de9de118cc1a63a887e452a1315e4457876705a3b77e063687"
         },
         {
           "path": "projects/project~jupyter-notebook/index.html",
           "bytes": 19531,
-          "sha256": "535b4d7d6911513b35311b903be94c65c504493f196456e83fe874dc343bcb69"
+          "sha256": "fc1257574121c26af5f58013ef6d3169864dac4d72a4d7ca90f9bf02c972d92d"
         },
         {
           "path": "projects/project~matplotlib/index.html",
           "bytes": 18592,
-          "sha256": "bb1f28549e0656247d52c7573b6c3e03df346f7adc989a9f96532f36c0b38640"
+          "sha256": "984581fc0524cb5890aa1be3928045de6532dc9a6151fa3362d2fe0770326209"
         },
         {
           "path": "projects/project~mne-python/index.html",
           "bytes": 19548,
-          "sha256": "4edfd7ba2a348c613a00c2ed967b7e355f7af25b904b436a6831f642cf24567d"
+          "sha256": "283d65cf42dc8c19e5597135cdbab7117cfdd6600c404e41c9f6813c75f040da"
         },
         {
           "path": "projects/project~mudata/index.html",
           "bytes": 19576,
-          "sha256": "35cfc5ddc1da6018f9ccccc1818609d6b3ceff8e1b31ba1a32310536ad0c0498"
+          "sha256": "e475f84d077a04a8d5f2922cb454512ac5d993888095d5a53c038a48b4441629"
         },
         {
           "path": "projects/project~networkx/index.html",
           "bytes": 18855,
-          "sha256": "044631c94ec22effc7047e1505f21d54b80264abff90d907bae031e1699b851d"
+          "sha256": "618b3f4cb74598a8b0521dbeb41f8731e37077ce1663d75d4d30ccb9b4cd73ec"
         },
         {
           "path": "projects/project~nibabel/index.html",
           "bytes": 18898,
-          "sha256": "dc728ab1502e20478b3e2531aa3828916332f2e39de01d973bd097721675ef0d"
+          "sha256": "91e283301d48cbc9fdf4a462c1e9ccd334f84517ae8211ffd590ea2f026e10b3"
         },
         {
           "path": "projects/project~nilearn/index.html",
           "bytes": 19446,
-          "sha256": "8384eb9fae28ce7f149afe55cc997662ca09557544b4d9b736dd1000219b33c8"
+          "sha256": "3a945ab5e0f988a71dd8eb96af6fe276210deaa4c7b1c7ed290b7e3bfffa85b6"
         },
         {
           "path": "projects/project~numpy/index.html",
           "bytes": 18331,
-          "sha256": "830f120682076c0510cb569487aef3fbcdd7ddc42953a4fcb2c2a4ebba8c9ed2"
+          "sha256": "12ffe530148057e63a13b43d1b80399ac8ec4c7a9b7fe878c4eff2e06f895547"
         },
         {
           "path": "projects/project~pandas/index.html",
           "bytes": 19992,
-          "sha256": "96bbf785ce4eb25e6e2ce2b69d84f1b0a356cde4700ea180d13fb94fffb05d3b"
+          "sha256": "7a4bfa9b35483a6c5709b38cf0065bbaffc2ebb1f02d1a0d102d4c91fdd77d64"
         },
         {
           "path": "projects/project~scanpy/index.html",
           "bytes": 29730,
-          "sha256": "e844dd63b3783bf4b021885b0fe18355322e2435669db20f744a7853977f8b9f"
+          "sha256": "d558ad78e544a544649242d12afabb899ddade4ee4aaf2a5a273e790bfbe5c84"
         },
         {
           "path": "projects/project~scikit-image/index.html",
           "bytes": 18622,
-          "sha256": "eb783090a9f94efa9301172859dbd3d02aa21e78f8271dfd4ccc28294d4197fc"
+          "sha256": "6d6949159c6d8975fec2bc73a42547e780d671422e74cb4e4061635befb47b7c"
         },
         {
           "path": "projects/project~scikit-learn/index.html",
           "bytes": 19896,
-          "sha256": "ca2891bbed36a4c8cc79c69f8351e5360e0afe6f4bfb16fd0e1cae4ef6c2e20b"
+          "sha256": "ca6b902e47ac6b3c77d0ba2ea67ad0683467eb8b84213a3f424ba22bbeae95dc"
         },
         {
           "path": "projects/project~scipy/index.html",
           "bytes": 23392,
-          "sha256": "6d895be0536faf592c8127a4b37ecbe851d83a62143aabd7db8e6582aa72f533"
+          "sha256": "7c04e370c83726d6cc66b62a0bec71a1ac69201c4d9d8ca4682fad9b465e5678"
         },
         {
           "path": "projects/project~seaborn/index.html",
           "bytes": 19481,
-          "sha256": "a58cd96205aa48632ed34d960c6568dc6aa4d0c0b2eeb40c9dc7f2d6d85eed47"
+          "sha256": "c88813ee133a3d8d62f395c172849c39ca724b156b4299e6ea0e64981c9b8c37"
         },
         {
           "path": "projects/project~snakemake/index.html",
           "bytes": 17852,
-          "sha256": "da572fddf17ce0527d9c0afc6bedb07772e3acb8b014e3b21d5930a3d2fe7e44"
+          "sha256": "508e6e8828b14451fe54d71b6753ab142c13bd2b9bf168d8665a67eaf25e165a"
         },
         {
           "path": "projects/project~statsmodels/index.html",
           "bytes": 19510,
-          "sha256": "260b5805e1118699f9df33bcda61367784a479c6cbbbba217f17c46e1a1f0248"
+          "sha256": "57898268ee42429249ed28c29eac69110a1aea2d5d7c6dedbbfbd5c86ba72d43"
         },
         {
           "path": "projects/project~sympy/index.html",
           "bytes": 18705,
-          "sha256": "512e09ae3713a128ef0c3fa797d8f642ad4653f94b8323ea9f785508c3b21aae"
+          "sha256": "bfa4ba94aa4841e1e1d27b6f0dbf0b976610916e8b03aa3775d1da93a22ddc8f"
         },
         {
           "path": "projects/project~xarray/index.html",
           "bytes": 19402,
-          "sha256": "53df022548dc893e0962a11ad06f02fc8d63c3665191f456cf3edf80af31ca62"
+          "sha256": "16b29e1b7a0e459b14e422d8e375c62c8b885bc9698c10a776be68b675fe7e54"
         },
         {
           "path": "researchers/actor~github~315810/index.html",
           "bytes": 14164,
-          "sha256": "478d654851034893cb0e55ef64c0701a4f99b57480a7e717929f51c98d1cf71d"
+          "sha256": "6a1cc4346e05a6e64bf27b399d60548f2b0bcbcb2c1ba121c9bd56db7ff04bc5"
         },
         {
           "path": "researchers/index.html",
           "bytes": 10177,
-          "sha256": "4e37efb3b2ea163aa0a67bc27b261e3db63b590a3404c7f497a9d6d56b696f5f"
+          "sha256": "ef0df082adc5c7246b5c76b1c5a32f0e01c073794850a41da1ab3510f8b4437e"
         },
         {
           "path": "routes.json",
@@ -10059,117 +10108,117 @@
         {
           "path": "sources/index.html",
           "bytes": 13765,
-          "sha256": "75c80fd8e35a6c2a81866e528c708e0dcde130ffa6f60347f8c4986a25fca0ac"
+          "sha256": "f702bb88e757f09cee0ced3500b19c8a1d2f2bf7fa15197729ae4b6702f7a7cf"
         },
         {
           "path": "sources/source~github~100038377/index.html",
           "bytes": 13554,
-          "sha256": "a633ef5a85e09f97d7588192023d348f3b0769d79200dbf24ff7ddcd8c38cf71"
+          "sha256": "1156fd6579804a578087105d5f7db27368fee60830fa98f0dc408021f22ff357"
         },
         {
           "path": "sources/source~github~1235740/index.html",
           "bytes": 14128,
-          "sha256": "8205e2a5ec2539de685824c3be8c58a726766f19080546a1a9d58e19b74cd752"
+          "sha256": "e74f84e7b091a6eeceffc9be582b2c22d0584113165ccb3996ed4bcb55fc346c"
         },
         {
           "path": "sources/source~github~1301584/index.html",
           "bytes": 13996,
-          "sha256": "b7a1b13d737dd018cda78e7beccd708e2e99314221821dc9dcf587413eae1d22"
+          "sha256": "dea68153aa02fd7796931f2cdd124750a1e50184a30015ce29d64cf8e9f5644c"
         },
         {
           "path": "sources/source~github~13221727/index.html",
           "bytes": 14044,
-          "sha256": "1f4829f2a31699551d32b6852ded01ce6b3c3b2a56549fead2bf48d47dce92f3"
+          "sha256": "fdce8a6e4825236558528b7893f1e40985e9776c159cfd87a04fcd63eac9ada4"
         },
         {
           "path": "sources/source~github~1385122/index.html",
           "bytes": 13199,
-          "sha256": "6e97d43c04389874a83361f9b97791f5b742f15995b8bad5dbc8b7195b9772a9"
+          "sha256": "c7aaf2e1cda784c269a24082d99e4d15ccd498b9037ebd0a018ef52fb94e3d27"
         },
         {
           "path": "sources/source~github~1460385/index.html",
           "bytes": 13498,
-          "sha256": "dcd336ff3d857f7fb87f6d6545b4aa1858c237bbedda7c0c58c488ec257fb9e4"
+          "sha256": "4976b30631946b352eaace9f1a28a540a637522e2ad608086a85227efd482811"
         },
         {
           "path": "sources/source~github~151541/index.html",
           "bytes": 13287,
-          "sha256": "d0294886c713ea84988427728152b18b451953d9c225212e43991627f33a8d54"
+          "sha256": "218d6819e6bda2170262104d7280ccaaf6269c38cc5c35342d4116fb73c66bca"
         },
         {
           "path": "sources/source~github~1885237/index.html",
           "bytes": 14009,
-          "sha256": "2636dd09e3dc430f32aa5bfe2ec82d324d9ff0c7fa781ebc3db818c5f8d38f27"
+          "sha256": "a50102db209baa0d286b806070a6b80a0d2211579bf4371a1a7968c7222ce8b1"
         },
         {
           "path": "sources/source~github~2014929/index.html",
           "bytes": 13202,
-          "sha256": "05bf342294027726761987a97f3399c4167bcba37981df45747911b86c31ff99"
+          "sha256": "3e85f1203b568a05e6ba5185008fb14e79dec9bc8dbd0c69c15172efb97dc209"
         },
         {
           "path": "sources/source~github~2081289/index.html",
           "bytes": 13623,
-          "sha256": "b72ca15e28f17e75fe5a2cad038386cbd5cab16e27a40972c2913a38902c8da1"
+          "sha256": "fd3665f8902d9130308c535dc3e6df47354de4d5cb69b8fd8ccc2c8095927f72"
         },
         {
           "path": "sources/source~github~212840200/index.html",
           "bytes": 12703,
-          "sha256": "ce83b9a781b5fb7a1ea8767d026b4e74bd4d2047a6513c2cd6cdf42d4f76caeb"
+          "sha256": "f69306a0599f595ccb890f36146acb8709e1293cd9fce2df94aca97e35d801ad"
         },
         {
           "path": "sources/source~github~33653601/index.html",
           "bytes": 14098,
-          "sha256": "452a607ea3427dc178ef1a0a048e4e6e6bd5aab8d93611a0df61a868d511eaff"
+          "sha256": "4341d9e6445a00581f519ee209b8fadec8294df67a72f36806f0cd619b9fef4e"
         },
         {
           "path": "sources/source~github~392836868/index.html",
           "bytes": 13728,
-          "sha256": "f4bcc922bd93950cef9b6b38b775ed0215fc988f12d1d5ca0b475f4ba8e92951"
+          "sha256": "6bc988e0bf6e7b5a7aad7dd2a8bb398bd24dfd8ed0fe371e8df4259d00db97bc"
         },
         {
           "path": "sources/source~github~4704710/index.html",
           "bytes": 14098,
-          "sha256": "d7421c959e70d2590d6c239caf158c0986987486237b6091fc33bc7f91e55178"
+          "sha256": "9ea72cc0b569c86a4c3ef88fd0566e52d19c7caa1c2db015dd4d9389fa729a17"
         },
         {
           "path": "sources/source~github~640534/index.html",
           "bytes": 13480,
-          "sha256": "7519db18c0a55f3693e380f597f4ab1d4816eb5e51b708200eb7d7ae886f6512"
+          "sha256": "b45b8e019af77470aeac3281fcdde7cfc7405417911d304df18fa484a689b3d7"
         },
         {
           "path": "sources/source~github~791352/index.html",
           "bytes": 13620,
-          "sha256": "9687443722766dd8977c1b0b0da232464891d50c140545f70e1da3f29474cdf4"
+          "sha256": "23d81624be7d667ef341416aa239605858e01ced1b325b6da72d8340bb68e752"
         },
         {
           "path": "sources/source~github~80342493/index.html",
           "bytes": 13758,
-          "sha256": "3c2721936a91c4780ba573c1d2c86d744edd83041f5c3ae68ef4f08aede56cd3"
+          "sha256": "edf1c937508ddce6ce66679490e4e4dd43683659833e442e326d6818f12c4332"
         },
         {
           "path": "sources/source~github~843222/index.html",
           "bytes": 14338,
-          "sha256": "6a172aa91a0c10fa35c77beb0d172b1da767896303a0bd9da7303db811ad6567"
+          "sha256": "2fb1ae407992244f745d6485a419376fe6521de2500f7ef8e64f9cc75c174bca"
         },
         {
           "path": "sources/source~github~858127/index.html",
           "bytes": 14230,
-          "sha256": "2b6c37ff38f06ee22da6941d9e42146bd0e5a8e28afb0cb25e2210fcb3acc97b"
+          "sha256": "f2c968ba32bb2dc97fb5ff8989c0bf04cd198db3c8b9333d83f22fcec4c147ec"
         },
         {
           "path": "sources/source~github~890377/index.html",
           "bytes": 13578,
-          "sha256": "0a38abac8ebdc84b2bae7dc690023a07974abd9a91440cf14cb525476bf722a0"
+          "sha256": "3f7da1f0acee7d470873ec4d0f57dad4e72a4c9be4af57c5ba2e40db3278f77f"
         },
         {
           "path": "sources/source~github~908607/index.html",
           "bytes": 13031,
-          "sha256": "0450a587b0699573d38a249808698c6e60f2179d0ecf5b4b1111101ef8fddd42"
+          "sha256": "b1566b1ef5d076e3b239c0e5d6df95f04d5f682e2d72001c9fd6b259eed76cf2"
         },
         {
           "path": "submit/index.html",
           "bytes": 6244,
-          "sha256": "8be64ddaaad34d4b3e6416713103d3eb563ac0b77485f88560da9f36e6496393"
+          "sha256": "11cbf6332c1b6aa3406a18168a2a9bd9f0549e601342bb123030ea9c3001939b"
         },
         {
           "path": "third-party-notices.txt",
@@ -10190,11 +10239,11 @@
         "connector_protocol": "1.0",
         "connector_endpoint": "http://127.0.0.1:47821"
       },
-      "reportFile": "aipoch-persistent-heartbeat-sub-report/results.json",
-      "reportSha256": "99c2e61dcea847261702c8e7e2f44e84a7deef4cf9061a6b015740b18df3d6d9",
+      "reportFile": "aipoch-persistent-readonly-final-sub-report/results.json",
+      "reportSha256": "a1f9ce4628570469e15f04067d75ecdd634dd477e0b784eba8b222010b57d55f",
       "stats": {
-        "startTime": "2026-09-14T10:19:53.502Z",
-        "duration": 51188.518,
+        "startTime": "2026-09-14T10:36:30.024Z",
+        "duration": 49903.781,
         "expected": 55,
         "skipped": 1,
         "unexpected": 0,
@@ -10608,12 +10657,12 @@
         {
           "path": "404.html",
           "bytes": 5049,
-          "sha256": "992b54c863aa2a89a9f59704381d31f381643102d2539b6dac22abbb828a36dd"
+          "sha256": "fa8a2259b737e8d65982a590c6622c750f1319853a7c69cdb8ee745cb85e8064"
         },
         {
-          "path": "assets/index-Dtwqf4Nw.js",
-          "bytes": 406529,
-          "sha256": "b61b079325a5a27dbf96b0421a18664b1db505336d27fbdaf794aef737f232fd"
+          "path": "assets/index-DxhIDIDI.js",
+          "bytes": 406813,
+          "sha256": "23f8a12712bad33269c5dcc89a5e4f10efa00d84e09a8cf08d815bdf921da04b"
         },
         {
           "path": "assets/index-H3QY6u4R.css",
@@ -10643,117 +10692,117 @@
         {
           "path": "capabilities/index.html",
           "bytes": 20529,
-          "sha256": "344386ef30d5548d12b777e2adc534febdc8fe2195afb97c03dc66680722c854"
+          "sha256": "b9296426f7977ac0ce6c17883db6c7de7adcb16ad621fcb461b07d188cfe8a21"
         },
         {
           "path": "capabilities/resource~anndata-library/index.html",
           "bytes": 30549,
-          "sha256": "78fa50d7c3f31ac7ea33e3c32ac080b856b7bd07c6ab553a6cbce1ff54ce54d4"
+          "sha256": "be84d99f9ef8b2f32402b014068302edfc5ffd3ada5e9728891abd1202328c2f"
         },
         {
           "path": "capabilities/resource~astropy-library/index.html",
           "bytes": 21454,
-          "sha256": "2b800907319beded0a144d94fb331693dcb25fc725fcd3d7ab9cdc4b91d1daae"
+          "sha256": "9c2495bbf9ff7070bcd28a6f8855a31b401eb9b4e4fc4ba1852a5da047700484"
         },
         {
           "path": "capabilities/resource~biopython-library/index.html",
           "bytes": 19955,
-          "sha256": "45e7b20b1e08124c0f4c43bc9086308f945885ad03065dc8454ca92aacc15e7a"
+          "sha256": "376f307445f6e911214870a62309ee481af6ad0352df4009c69d6551c103ab77"
         },
         {
           "path": "capabilities/resource~jupyter-notebook-app/index.html",
           "bytes": 22047,
-          "sha256": "4bbc3052c6795858df7eab286c57b24f01d33ab15800083ba2309fe87e63b24a"
+          "sha256": "38e95718d46c1058d4bd831d352f20ecbc61cf895221e817e99fcc15c1891174"
         },
         {
           "path": "capabilities/resource~matplotlib-library/index.html",
           "bytes": 20720,
-          "sha256": "23aa1f79b4af209c3f14f1bb7c26ded44b72f0bf07aa7460a7bad181d15b7c76"
+          "sha256": "eeb395d542b7030dd7d940f5cbbfe13080823d7de37d9ef2ecc7b729459a3aff"
         },
         {
           "path": "capabilities/resource~mne-python-library/index.html",
           "bytes": 22039,
-          "sha256": "d5e45809253fbded86db47a95ea30a248517426d20fc0dafbca435516b88348a"
+          "sha256": "fd8c9f90ab4009de97b13ad2fe265e5653dd6f62f796d38ba5ac6b514ba94aa1"
         },
         {
           "path": "capabilities/resource~mudata-library/index.html",
           "bytes": 21857,
-          "sha256": "9c646a09986cb61a20aa293718ad0df2ceeb270aff87b59cc08f9412e364ad5e"
+          "sha256": "a5fa15a8444ae799af30b0726b3bf88132375bafb35b50735cad06785d2a9e51"
         },
         {
           "path": "capabilities/resource~networkx-library/index.html",
           "bytes": 20957,
-          "sha256": "9a64c576715d63679ae0628b1d7759163e2a0ab63464e25f998a6d12db776fd4"
+          "sha256": "320c2b6029df85cc80d2bb4fbcfe179ab9a52724e8c119278cfd8bb551d82592"
         },
         {
           "path": "capabilities/resource~nibabel-library/index.html",
           "bytes": 20146,
-          "sha256": "d41a6c420f74d6a61e71747e26036160a44344fc932fa6ceb0b5d9a1a89a7a35"
+          "sha256": "d45c4390bf6e4975b912a74a4968684bee452e03b001b5bb5d62ecef05a72582"
         },
         {
           "path": "capabilities/resource~nilearn-library/index.html",
           "bytes": 21087,
-          "sha256": "0abe28862e55e96ed195b56e3b374085f6649d9694afdbec2624e594ba7332cc"
+          "sha256": "f0f411f05dce7fbc75e2f671434c2a2a4a01d7a341b7b45f7e9f275bcb8218fa"
         },
         {
           "path": "capabilities/resource~numpy-library/index.html",
           "bytes": 20426,
-          "sha256": "06a536a52bb125eaa52e9b009f894495aea984f999e5008ecf549d06cf72d013"
+          "sha256": "d0d3791f602758a36251ed128e8795d63ba7e699bb2546435841fc513926d44c"
         },
         {
           "path": "capabilities/resource~pandas-library/index.html",
           "bytes": 22493,
-          "sha256": "290dd7ebb9420f01ccf81723dd8f659307e2740c7e0285605f1db76935719c3d"
+          "sha256": "d9b72cd2ee3b5d5ac420e777139bfe08a935aec031510902bd381f9207d0fa44"
         },
         {
           "path": "capabilities/resource~scanpy-library/index.html",
           "bytes": 28575,
-          "sha256": "e66f05ad74fb18d6bd13b64ef65c179ea04846ab36d67c817323707f3b32bcef"
+          "sha256": "b54327d50c8ee937eaf1d046073dbd27fcd67f4ea4b39da9c3570381e8defc8d"
         },
         {
           "path": "capabilities/resource~scikit-image-library/index.html",
           "bytes": 20740,
-          "sha256": "e89085bab1f876c40d66a01196fcc0741b1afdf8891f010f8a08c2e325ab1d91"
+          "sha256": "cd32b53b82ec4b8ba372ca9bc78f165f6833535b1257d984257b982d0ba88633"
         },
         {
           "path": "capabilities/resource~scikit-learn-library/index.html",
           "bytes": 22421,
-          "sha256": "f2d75493b08e5589e6a4c1831166ae4490e37676f9f81673c1c1f3512981ad79"
+          "sha256": "5e1921bbb54dfe5cf72feebcdf8d37b2876ce9b3930347de1c5ad4d3e4d88462"
         },
         {
           "path": "capabilities/resource~scipy-library/index.html",
           "bytes": 21328,
-          "sha256": "0f64065597c0bd3505c19ad48899a9be08385d23618d538d03e4b55067b01f18"
+          "sha256": "f6134e8879c4b959a2e7f0d046439509cafc03f820cc9bf0658c909e55be9f40"
         },
         {
           "path": "capabilities/resource~scipy-tutorial/index.html",
           "bytes": 23281,
-          "sha256": "473a75859a1a1b3db951a238330a0d8623bfe720122b117388c91ae80a4c0b8f"
+          "sha256": "98c47d94707331480c3b3d37ed1f1bde37f601ab81e21031d4505d5c578566e3"
         },
         {
           "path": "capabilities/resource~seaborn-library/index.html",
           "bytes": 21986,
-          "sha256": "def35a030248bca2801792b662d41ae4bf7466a0ebcfead85bfe8255c4aad832"
+          "sha256": "5e9c6e9c3700dcb51c1dde2eb582f7713adcc3e3c883e02b117bd34f8a9d113b"
         },
         {
           "path": "capabilities/resource~snakemake-workflows/index.html",
           "bytes": 20374,
-          "sha256": "e0da5c215cdd86f3252536f7d1545e32b351482ee1c70c183eb480a514e963bd"
+          "sha256": "e9a743e5b0ec2e3f1e28bf713a0111b6c5ad65fa5b35a65db83927344d5ec24b"
         },
         {
           "path": "capabilities/resource~statsmodels-library/index.html",
           "bytes": 21165,
-          "sha256": "1e57798ef818464bbb7c33c7f897a5903067c974d2d1e380544febbf18dd6615"
+          "sha256": "63874484d02f4c9284a997b83be9fc20bf1fd00fac6bcc5ae6e19b14a9a70acd"
         },
         {
           "path": "capabilities/resource~sympy-library/index.html",
           "bytes": 20791,
-          "sha256": "8444e8ef94a2ee4186f24acb98417c8e5bbb68b52f9b866d1f6d5715d2b014ae"
+          "sha256": "8f1eea68575b89ce183df54071f3a87dd8b70e691cd0057afab8bbda921ea2aa"
         },
         {
           "path": "capabilities/resource~xarray-library/index.html",
           "bytes": 21890,
-          "sha256": "f9fd9a22b4f28b01116075d8e93ec672713cb1a7af33b01773a6eca6c2af6575"
+          "sha256": "8242c64708413f18e44822607b9d93258d7d0c1a93e4f5c4b9185ddb64113e81"
         },
         {
           "path": "catalog/v1/history.json",
@@ -10868,37 +10917,37 @@
         {
           "path": "collections/collection~life-science-computing/index.html",
           "bytes": 36318,
-          "sha256": "4a60b2e3d1588cd24954dec1b6b617a946b211490b93d68e11185d55aab2c9a3"
+          "sha256": "d5336134a28b47a37ef418babbcb0c03b30b9fbbb1bb4d02b66b4b6c6baaa74a"
         },
         {
           "path": "collections/collection~research-foundations/index.html",
           "bytes": 30869,
-          "sha256": "e775c3f40b5bd3d742ef94816749c55a6d857f4b6cd06f04de32d06feac6d4de"
+          "sha256": "c4d707181125b3c3afc2782ab83dd340cb4782ebabde6dc0c9c8a076baa9eae1"
         },
         {
           "path": "collections/index.html",
           "bytes": 11043,
-          "sha256": "d6471dcffe462e34b65accac4aad67cb5d331dd635d77e6f137de53a9ba9fc3c"
+          "sha256": "1a2977dfdbd0af7e8cb9e915567705939b2292b3c50fc5e752cceac5701b9b51"
         },
         {
           "path": "community/index.html",
           "bytes": 10287,
-          "sha256": "c80cbda3fa1953a3291f683a42d987eb7443363c8943db067cfafd54640c7ce0"
+          "sha256": "ceab8e9c4669a291241e9a15f9cc7540accf825a9840885704b222ba93ad0037"
         },
         {
           "path": "contribute/index.html",
           "bytes": 7990,
-          "sha256": "98cd55908be41ef1538d1d3478fdac09ad4fba44e7cc41e6bd4ca83777459ded"
+          "sha256": "72de9d8dae39671461d2e1f101c504b036e21cf37ada49525a8489848e320ed5"
         },
         {
           "path": "explore/index.html",
           "bytes": 19449,
-          "sha256": "943d0af23c6eb6a03754b55d6ad5e55c13e76b8e2211db8e25c93839d996d185"
+          "sha256": "5a07166b24cd22c0404e283ddd809919a77eaa84818ee98a5b812b8f91557beb"
         },
         {
           "path": "index.html",
           "bytes": 67922,
-          "sha256": "308210ed2c094457d1555812f9a29aab25c2d521dd74ddcadc4e08b4630f9270"
+          "sha256": "808df96c4f07108808a6a78b4173a3ff18be440b5724fcbe8861a40799cf593d"
         },
         {
           "path": "internal/catalog.json",
@@ -10913,227 +10962,227 @@
         {
           "path": "join/index.html",
           "bytes": 8784,
-          "sha256": "67ec5bc2d8fad9da4d1d1c02d9a70783db6a411017a77d658eaa9351297be697"
+          "sha256": "0e93cff6cc3b883557f84f0e7a0b763cd447f065d8d3a12066bf3657edcfbbf6"
         },
         {
           "path": "me/index.html",
           "bytes": 4394,
-          "sha256": "4a9193cee9613a652fd0a2984564385d2e3da23d8db56248b977f455ba48d000"
+          "sha256": "7b66fc3dfb31ddbba69945a6d264074716698cfc4359b9a3526652e7f36d5f45"
         },
         {
           "path": "organizations/actor~github~1284191/index.html",
           "bytes": 21512,
-          "sha256": "2c532dbd2d6eafdd840d81c0c3cbb0f3eb1581ee3b665845fec4a61e1dd7958b"
+          "sha256": "c02c32e90390a6e5ccf7b3b7b02dfe13a92c55cab686f02325533a66d83b0d59"
         },
         {
           "path": "organizations/actor~github~21206976/index.html",
           "bytes": 21851,
-          "sha256": "db8cedea6cecf73b54148e4bf96d3250ec67d9beafa0a71938c99c16c889cde5"
+          "sha256": "3b4d99ae38d6255fe364541c19c4a0add41c5fec40c0e4c12a7a3d7f4ed5c51b"
         },
         {
           "path": "organizations/actor~github~215947/index.html",
           "bytes": 20731,
-          "sha256": "f2225fb570fd14ffa11ef0c3730179f487fa209722efbbf21d2e8cdb80b382fc"
+          "sha256": "6d43f9bf8b3a460794f378f02c87d864de50871d81ab29d53f6828437b4269d4"
         },
         {
           "path": "organizations/actor~github~233707/index.html",
           "bytes": 20927,
-          "sha256": "b3e708a315842a4b28f3bac76f06976aebffdf12b3b1398f99ef39566aae6d34"
+          "sha256": "2a6af4f5f0b67fe8987f240c4098dad01c45276e80404eb66f3dfb6bd9cb5182"
         },
         {
           "path": "organizations/actor~github~260832/index.html",
           "bytes": 20777,
-          "sha256": "58642205b9293ecd6869be67d3ffc14a6122d43385b9c15cbdfda3f5f357f81d"
+          "sha256": "def57d1a7270c7344b7f1cfbddb60098a479b2a598359833a4bc2d89d358e977"
         },
         {
           "path": "organizations/actor~github~288276/index.html",
           "bytes": 20386,
-          "sha256": "3bfbda9a2126aaacf2f5f6f2056a09d36c21304848aa8438e210c9f394e7e50e"
+          "sha256": "36d89078d197d3e97f69898482ac54825164226f2a471190f5575fb4336fd142"
         },
         {
           "path": "organizations/actor~github~288277/index.html",
           "bytes": 25555,
-          "sha256": "453dcf1a789d90c32914b2a8857fa33ac6e7f9b977b3937fdfe126e9dc372024"
+          "sha256": "7c128042d082ac74c8a2621b8acf41b039048a74a7e8ef97a010adc86a5b78ba"
         },
         {
           "path": "organizations/actor~github~33450111/index.html",
           "bytes": 19852,
-          "sha256": "d7521416a7ebe8492308f296db5f1083c0f7964b58779ea43325905e735b83fe"
+          "sha256": "06ca48c4dea5f11fbe1410a03d51874060933c5bde70453fea362cb6bd96ef83"
         },
         {
           "path": "organizations/actor~github~365630/index.html",
           "bytes": 22024,
-          "sha256": "9e6ca2dea9ddfc3eba9303703682d92380867980f18159201e9931f2073706ca"
+          "sha256": "56e446a8859833848619ee262a8e78efba14ff04b825118b86b917f0760bb701"
         },
         {
           "path": "organizations/actor~github~388785/index.html",
           "bytes": 20990,
-          "sha256": "f6e89549c6059af28815a1c3332924c9954dca4505b07578ccb2a8a6b81cbe97"
+          "sha256": "0a84eeb38f9319cc37a90fd9f836a55f5424a5e79b08427382d30a5d900c2d6b"
         },
         {
           "path": "organizations/actor~github~4646912/index.html",
           "bytes": 21546,
-          "sha256": "b19aac7fca831cf063d9c8844a97a5ff431f96f0a83019b60d630aa89fc2ab6e"
+          "sha256": "9603ac92c4bbb60e2be6e59a7b562b962a45f182f20fe0af59f24a95fc6d6623"
         },
         {
           "path": "organizations/actor~github~54555/index.html",
           "bytes": 20742,
-          "sha256": "bb70759b4bf78208cc6dcd96ff7fe52e36a7824ad96461459a59e9c86b79942b"
+          "sha256": "ecbe3b5e0d11ebdf5d6f2de7294e86750f6a1af438a5a418e9a73b8d6bad3b14"
         },
         {
           "path": "organizations/actor~github~583875/index.html",
           "bytes": 21587,
-          "sha256": "530dabdd90e78361cf0c52fd42c921bec712b537661b1647dd41004ea5b8f544"
+          "sha256": "f1ea0487da60ee9a7ec35f98e84be952e165def6b8db4e7922399c46814acd4f"
         },
         {
           "path": "organizations/actor~github~717666/index.html",
           "bytes": 21590,
-          "sha256": "dba5d6baeba35beb41b50b854015121a226659cd95adc76726607866687d99b7"
+          "sha256": "9282da62e37da21b9336a4001b2c6ec61ca09b2af8c0d73eccca09e910f78175"
         },
         {
           "path": "organizations/actor~github~7388996/index.html",
           "bytes": 21665,
-          "sha256": "a7bb4d63b8d548c15527a5d5089919df6b185c7d33cd9c9db2e85bd435f59346"
+          "sha256": "444ba3a204dca3eaada20b08480b50d11fc7596861d1371eed53efd261b8410a"
         },
         {
           "path": "organizations/actor~github~847984/index.html",
           "bytes": 21065,
-          "sha256": "07a2f3d2c4e260b05d47a000307fd09a883734a25d1a46e2614d04b5f6e109a2"
+          "sha256": "247069340ba03ef871d3ce541bfb3f34201d37c2773ab18e5a1cd514988dc80b"
         },
         {
           "path": "organizations/actor~github~897180/index.html",
           "bytes": 20779,
-          "sha256": "24a5f3a133bdc3f20f059e50006bc172433fcef74fc6077d32a550ad765a69df"
+          "sha256": "b525abbe170119a6d356eb8f16d245831ecf55cbd6703777701f80cf5887fa53"
         },
         {
           "path": "organizations/actor~github~95305807/index.html",
           "bytes": 45636,
-          "sha256": "f8f5977297e79cafe8c6c36aebf7ff9ac60860740487054f0821f7d88d5840dc"
+          "sha256": "7b42c1d1d23b1b05b9ec52061bc2b32cb3bd46adac73bec01021fc93b045fcce"
         },
         {
           "path": "organizations/index.html",
           "bytes": 15957,
-          "sha256": "812c2aa236b9d2d33e814dfae0a5465c3491327959960f56bd0d6f6a4975154b"
+          "sha256": "378e4d4175f2027f7511858e7c4883caac0f5a01b5a87d60aab6c51d5f51127f"
         },
         {
           "path": "projects/index.html",
           "bytes": 22866,
-          "sha256": "3e54f155622b4df6e2a3544b0cd37ef6886f6484c176e380095208584c91da4a"
+          "sha256": "e51f26c95ff7af13cfe82de6adfe3a24af6c32ea37eb2dd7f715fc18ca7bfa1d"
         },
         {
           "path": "projects/project~anndata/index.html",
           "bytes": 19099,
-          "sha256": "61bc9d4eb94cc431ae3f163f93aa328be8ea64bb69a89e11db4f93f19c1255c0"
+          "sha256": "6581c1d51ae8417c13ea6899d0bcb32395f01b55adee4eef8b53662ab421eafc"
         },
         {
           "path": "projects/project~astropy/index.html",
           "bytes": 19204,
-          "sha256": "51e2da2c4808d53bc1717f9160212ca49dd3eafcf7a6f9b8023dc4345f800597"
+          "sha256": "f9060f1407d4aad619dc0aa1c788082099337e0e2fdf0e1de2abe60fdb515558"
         },
         {
           "path": "projects/project~biopython/index.html",
           "bytes": 18933,
-          "sha256": "48a4c4b5e8e07885ab89221f9800b3cc7d4419ca8dcc3f22cbd5cd4e731ed561"
+          "sha256": "9d4eb235ca82907e5ecf23875f4a7dd8a6049d684390f5b60cb7615e6399ef28"
         },
         {
           "path": "projects/project~jupyter-notebook/index.html",
           "bytes": 19771,
-          "sha256": "8af82d492fd91cfea555a1dde8dac7340285150f19ee320b489ca026d482c51c"
+          "sha256": "0460dd032cd049bdbfa9d0952296d6f1568d008a9b764edc27ae94149ea0f20e"
         },
         {
           "path": "projects/project~matplotlib/index.html",
           "bytes": 18832,
-          "sha256": "da59b2f385d47dcb35754d65344eb606207bcdc3b46f5b9c26ec2ec5ca067445"
+          "sha256": "49d7ca6bd22e1f757586ac52ff3c151521829e90e7436b6dfda64629d5f1c05e"
         },
         {
           "path": "projects/project~mne-python/index.html",
           "bytes": 19788,
-          "sha256": "e8c5af336c712415bcf658de5fe24315ac7d40597da369ceffdaf517593aa3a2"
+          "sha256": "90eeea9d8244c964148269cafbf66f25aa247aa835f7d14cdb2836f718c0e5d8"
         },
         {
           "path": "projects/project~mudata/index.html",
           "bytes": 19816,
-          "sha256": "58fb8c59dd9c617db0f631d88a60c28ccb7956a3e1ee07ffc30732c0b381fc1b"
+          "sha256": "0b7ad4bf2e0ea6a39641568165f367c1fa90add5a86af4a615ceda2f0f5cb3b5"
         },
         {
           "path": "projects/project~networkx/index.html",
           "bytes": 19095,
-          "sha256": "02e53d9b1a4c5c7b0254b8d74bce8794de80e46e363012c8d9154e3d79e97ca1"
+          "sha256": "c9e1514b8c9a9480734e35d4c30ed989a6fb7360c31eb2f248d9d76f8632f6f9"
         },
         {
           "path": "projects/project~nibabel/index.html",
           "bytes": 19138,
-          "sha256": "89fd450ee6cb3e952431802f37dbb13907774eb846dfbb2568a394c77ee10e1f"
+          "sha256": "1018e2a756daf474a8117b5267e8e3d4fbb1b5be46410e72944d51d3e4de510f"
         },
         {
           "path": "projects/project~nilearn/index.html",
           "bytes": 19686,
-          "sha256": "54b98fbcac3828d0e81e9af4eb8b245e7cb5c1068bc38f702a5b3183d0835666"
+          "sha256": "baadc7ff728a8693957ebf83756f24f304b080ce6e00a81f0a575adb3a74417e"
         },
         {
           "path": "projects/project~numpy/index.html",
           "bytes": 18571,
-          "sha256": "7350af25b4bb79c7f90f73fd40927a74f6a357b51f5aafbd5b0ec3210e0202be"
+          "sha256": "370ee18ba377eed65f122184e226e0cca616f682202cab588a705b03f097d5d2"
         },
         {
           "path": "projects/project~pandas/index.html",
           "bytes": 20232,
-          "sha256": "ee8f44723b94d904a0f3f52db073b158784834a258d73963a18d1e6e628767f1"
+          "sha256": "2ce3dc50b4148902b89cc3b129d17646b951a664936784ca2e013ab795686f10"
         },
         {
           "path": "projects/project~scanpy/index.html",
           "bytes": 29985,
-          "sha256": "c97ca7fa046e17fe71a723371af9ee4c3eccd2477a54f3f668e0dbf58b5e7dec"
+          "sha256": "9937ac7f55bbf7095e583d7fb3021d33f90c9f1f041c31b29118249d68f4a991"
         },
         {
           "path": "projects/project~scikit-image/index.html",
           "bytes": 18862,
-          "sha256": "8ca481f43a549b752ff6413fccd563299ec4158bd4e81d2c31a46b672db74c9d"
+          "sha256": "4fcfae79540cffc79d456b9bdfff93e128b84e5b3ce0b7459cb8b92a9f89cbe8"
         },
         {
           "path": "projects/project~scikit-learn/index.html",
           "bytes": 20136,
-          "sha256": "ac0b75ad5661d565263984c70e7c9e3fb0fb72124871cbd5de9972448328e050"
+          "sha256": "99fbe5f15c2a0842097c58fbf42816565a71b1fa3ed239628ab742d3e87c8188"
         },
         {
           "path": "projects/project~scipy/index.html",
           "bytes": 23647,
-          "sha256": "2b83ed7a6838bca07efc2353f815b026473cd1d9b0b859c9d344814c05976201"
+          "sha256": "030dd00247c13c96b61ee44d53ddb06d6fefd674419ee3401c6450d3d0bdc51b"
         },
         {
           "path": "projects/project~seaborn/index.html",
           "bytes": 19721,
-          "sha256": "76b4a1b3cf292313a5deb469841197c6fa95532fa3709c5dd3d43814ac5e93af"
+          "sha256": "3940fab1e3feed2dd015c399eadae337ed0c4c78e88f037bc1a6c9a01de0c72d"
         },
         {
           "path": "projects/project~snakemake/index.html",
           "bytes": 18092,
-          "sha256": "5d618d8180451362bdf3f95d21d6d49e414620d3ecce342a6b3c61218c5262f6"
+          "sha256": "cbddb655802252e11cc4d863138fed88638c22423944026ba8e9cd3ed0d08904"
         },
         {
           "path": "projects/project~statsmodels/index.html",
           "bytes": 19750,
-          "sha256": "e5d807603547dda00792f7fbda2f357603aa5afdd430c30884e636485a13321d"
+          "sha256": "622ec6774780e036d7e8562de196475308e48371bd5fd10ff9733a25e0a0b788"
         },
         {
           "path": "projects/project~sympy/index.html",
           "bytes": 18945,
-          "sha256": "345f3532643e36250ce95b6a48dd74d47340966a59c8323c438a5a8433497e3b"
+          "sha256": "b30bbe75af4d8eea2265b3d88e95515ce6d7ac25f9e3c169670b0c7c488fd5be"
         },
         {
           "path": "projects/project~xarray/index.html",
           "bytes": 19642,
-          "sha256": "b2b5cab427d7f5e12e90ee9f00c236a9d9801ed66ff4bbe1395794812d690e43"
+          "sha256": "d541f0232858686177a00b77c8bc405861a1938717bb51fc4435e2dcae48e14d"
         },
         {
           "path": "researchers/actor~github~315810/index.html",
           "bytes": 14389,
-          "sha256": "55ac3e164cc0b97ee82e726358c88b6558805a0e954dc9f049d3294da3a5088b"
+          "sha256": "6dff2e2dcf6270568d9ace84911c2ffba62e6c9370e4900d48f4c1dc0a9d4719"
         },
         {
           "path": "researchers/index.html",
           "bytes": 10402,
-          "sha256": "a27687b01d4bf7be9fd2a595846dbc665bfcf9d9abfff1636d699d8e5709cad7"
+          "sha256": "e28b162b4d87eb6b07c911a2027eed386a87562e134a7ef8c8fda4f1f5e50a2c"
         },
         {
           "path": "routes.json",
@@ -11143,117 +11192,117 @@
         {
           "path": "sources/index.html",
           "bytes": 14095,
-          "sha256": "229ab447cf90fe2ca346fc2c88bcd7a8263b25e265c121b5226fb55111571cd3"
+          "sha256": "7d8bbcae32adce8ca09acf1816f512f228e76bbb73592d883447b81c0a70542a"
         },
         {
           "path": "sources/source~github~100038377/index.html",
           "bytes": 13779,
-          "sha256": "ca304f05b07c59eb5f6555dd7f77476a73194acbde7dbc18fd01761baa9583a8"
+          "sha256": "81ada963d254bff5fd6620f8062ac86f135d7761c787f1adfcb8a3300cfd06f2"
         },
         {
           "path": "sources/source~github~1235740/index.html",
           "bytes": 14353,
-          "sha256": "babb636390a9a8d7170fb08a20d35013bd907e8b5d77c0b3e0ab449c40ebfb0d"
+          "sha256": "532a6973707471f0520b7567a00a30bb2a224086fcac6ccb858dfacc078feeb4"
         },
         {
           "path": "sources/source~github~1301584/index.html",
           "bytes": 14221,
-          "sha256": "5122564228169bcaf9f49d0581b82055d823cd92294ccac307cce1d4ff00cec7"
+          "sha256": "76e9065b707ecf369742f66172aade198130c13e4b767fec23b864d81b15bade"
         },
         {
           "path": "sources/source~github~13221727/index.html",
           "bytes": 14269,
-          "sha256": "5c3289fe091e61c3f3860a19dc5e5089e27aa6b499ee366ff36103818ce66574"
+          "sha256": "4498665169bb2f3868beb9a8630905aa8715fbd6922f6c837fd9ae037ac12fb4"
         },
         {
           "path": "sources/source~github~1385122/index.html",
           "bytes": 13424,
-          "sha256": "950cc9b812a641faae3dd45f1054a829993beb6cb2d2a2d8da702c14f9a97b88"
+          "sha256": "3b4d50623cf91dcdf8f80239d804607f22eb021c2f095b78b618d8d762f841c4"
         },
         {
           "path": "sources/source~github~1460385/index.html",
           "bytes": 13723,
-          "sha256": "b1751bfed527780badfb4b30a37559600b485a42e4445cbcbfdae49cb8715a51"
+          "sha256": "c87d9cc77d15d13c359a228518f02bc0bb03cbac1a649751c2163f1d972dd4e4"
         },
         {
           "path": "sources/source~github~151541/index.html",
           "bytes": 13512,
-          "sha256": "8f7ad5966ad553866a544ae0a2e296e8bfd636a224bdea78a9e365846a1f3df7"
+          "sha256": "a467eed8eaf11f799e3aff71404265690890e3ccc7add5e16e8b4687255f38ca"
         },
         {
           "path": "sources/source~github~1885237/index.html",
           "bytes": 14234,
-          "sha256": "7356b7e286e575a712e3ad8da0e08d1ef4a6acb7dc2bf283a140348c973c4125"
+          "sha256": "373f86a8a08d1dd5cc09026d6b56b432c6bf24713a65152ed48475b1c4756305"
         },
         {
           "path": "sources/source~github~2014929/index.html",
           "bytes": 13427,
-          "sha256": "ef8c2479c3bd20d342cc9700af184a024a84d96e2e12dd679e4b98294247b22d"
+          "sha256": "c8831778fa0c9c5dda9ad2d416bd271b151344855e1772764511707c34a7a48a"
         },
         {
           "path": "sources/source~github~2081289/index.html",
           "bytes": 13848,
-          "sha256": "343277d92077968b9723100bf996961e78e815c463f1a6e7ca2d36a94e68e7db"
+          "sha256": "de66728407cc26a6f9868204945b16a7b4054d6adcd7cf3fa3ee23bdd794c9d0"
         },
         {
           "path": "sources/source~github~212840200/index.html",
           "bytes": 12928,
-          "sha256": "4065543e6008a4f39f2fd99b8d5d7b4629f594ce7ea641444ef8418728691651"
+          "sha256": "f3cf536cc21d74e33fd276b6b33af1c4a7c0f44f0171e6c132edc49956e434b2"
         },
         {
           "path": "sources/source~github~33653601/index.html",
           "bytes": 14323,
-          "sha256": "6ce6b638027526a5c38a8a2e688185d27ddb9ddc3fe8cc34dd98207746d7697c"
+          "sha256": "91063064b4e125a8ca8bc3a313f1e5fb399813ca41a1b360b4b874a8d095d751"
         },
         {
           "path": "sources/source~github~392836868/index.html",
           "bytes": 13953,
-          "sha256": "64d3469f9a022d3ae3aee6136a02170e75eabf6670340b329b3a759c26681922"
+          "sha256": "f9d26a5748f2acbe8f267b280a410867960fb409bfb424aa514ed940052f5e57"
         },
         {
           "path": "sources/source~github~4704710/index.html",
           "bytes": 14323,
-          "sha256": "970e5895a9a0ed14ca997eb28415b174943a3bfe0abe4cd6eead410374ce52b4"
+          "sha256": "45f40045000a49d4f23c06851a0e24d3de66bfd0b9b237abb81cc4a363eebe97"
         },
         {
           "path": "sources/source~github~640534/index.html",
           "bytes": 13705,
-          "sha256": "4fcf065943a2bb8654314e7b78a90b67e4907b988821c31d12f9a13e31c80c3c"
+          "sha256": "3760dfeee69d19bb664d634f6a363ef137b68e2ff9feb47631e1f265d9f96d89"
         },
         {
           "path": "sources/source~github~791352/index.html",
           "bytes": 13845,
-          "sha256": "ab1413757867203274ddefac693c976937e9348c236ed776cd1abe249dbd93aa"
+          "sha256": "41a7844ec94213477de6cf61bee53d5f84692ccc61e4a0c391f9c6befce2e6e5"
         },
         {
           "path": "sources/source~github~80342493/index.html",
           "bytes": 13983,
-          "sha256": "5ebe1b2d7697cdeec89cf69dde6876b93ed06a5ee160d89f72a9a9b4dd199684"
+          "sha256": "cacf1545a4016acde8543add3cced272566756c6b4ac7cf06fbeca3fd50fefea"
         },
         {
           "path": "sources/source~github~843222/index.html",
           "bytes": 14563,
-          "sha256": "41f63a03b65cf00e0ace30a958487f6fbfb79326439df2d2992f2f6b4c326612"
+          "sha256": "00881fbbcf3eff58cb00dad5dcf2799ef953247a4ad5ef0d8cdda07c31485515"
         },
         {
           "path": "sources/source~github~858127/index.html",
           "bytes": 14455,
-          "sha256": "c075b04c1e54cbea673968ed317231d3d332863371150c9ccd7f9b636959b22d"
+          "sha256": "de66d5b181227ed28aeed5679f1cc7b74895184d487066dc3f3852df3b115984"
         },
         {
           "path": "sources/source~github~890377/index.html",
           "bytes": 13803,
-          "sha256": "5fcafba9fec2f35dfb1198d9e9fe588fff6c7acbe7c61612eb169d8696a6a3be"
+          "sha256": "7b3b13e09854bcce4b95942625278c6e599d7071ab811aa428b14d3482fc9e75"
         },
         {
           "path": "sources/source~github~908607/index.html",
           "bytes": 13256,
-          "sha256": "dd1f28a74fcda40280e25916de3eb72e87d22c60d398692684895b55ba99e220"
+          "sha256": "5da863cd616a7fae76b9d531e0fe0e5917f12cde599801b47dc28d9707fbf3d2"
         },
         {
           "path": "submit/index.html",
           "bytes": 6454,
-          "sha256": "7771266adf12b418bdce537445906901fbf7238913f608386b6b2b91032a7063"
+          "sha256": "2c7668f16298bcff2205369941fa80dde39da0fa988acb09defb5202aa84f394"
         },
         {
           "path": "third-party-notices.txt",
@@ -11355,8 +11404,8 @@
       "actual 200% browser zoom and any untested complete keyboard/focus flow"
     ],
     "interruption": "macOS screen locked during remaining UI acceptance; user asked to unlock. No authentication bypass attempted.",
-    "correctedNetworkRootBundle": "index-CEmWR4P3.js",
-    "correctedNetworkSubBundle": "index-Dtwqf4Nw.js",
+    "correctedNetworkRootBundle": "index-JDA7-IfB.js",
+    "correctedNetworkSubBundle": "index-DxhIDIDI.js",
     "correctedBundleRealBrowserVerified": false,
     "connectorRestart": {
       "reportFile": "aipoch-persistent-real-restart.json",
@@ -11379,7 +11428,7 @@
   "sourceHashesMatchedAtCollection": true,
   "laterFinding": {
     "summary": "Old failed-heartbeat UI race reproduced and fixed; final current-session guard regression and corrected candidate verification passed.",
-    "effect": "Corrected offline suite passed 371 tests; real root/sub matrices each passed55/skipped1. Non-real four rebuilds are byte-identical to the browser-tested outputs. Final real bundles CEmWR4P3/Dtwqf4Nw have not been observed in actual Firefox yet; earlier actual observation remains B7_fD4JJ."
+    "effect": "Old failed-heartbeat race was fixed and its371-test CEmWR4P3/Dtwqf4Nw candidate passed local browser checks. This intermediate candidate had no actual Firefox acceptance and is superseded by read-only storage fix candidate JDA7-IfB/DxhIDIDI. Original actual Firefox observation remains attached to B7_fD4JJ."
   },
   "previousVerifiedCandidate": {
     "unit": {
@@ -13665,20 +13714,732 @@
     "reasonSuperseded": "Old failed heartbeat could overwrite new restored memory status; corrected candidate must replace B7_fD4JJ/DegsCvS0 for final acceptance."
   },
   "connectorImplementationCommit": "97f090b6a9822deb82f7380dc48a47ea15345eb1",
-  "implementationCommit": "70584286ceef14e30e12d2e82d1c2a052351514d",
+  "implementationCommit": "b29fee4b3b843702b8666c2814500d8b72ae39ce",
   "visualEvidence": {
-    "manifestFile": "design/changes/issue-7-evidence/manifest.json",
-    "manifestSha256": "caab1f56389bf795943f910ca4a00f136273a8fe7500f87d2880a526e7dbbdce",
-    "networkBundle": "index-CEmWR4P3.js",
-    "protocol": "synthetic fixture using actual real candidate UI",
-    "statesReviewed": 12,
-    "viewports": [
-      "desktop",
-      "360x740"
+    "sourceManifestFile": "aipoch-persistent-readonly-final-visuals/manifest.json",
+    "sourceManifestSha256": "a6384631ad1528df2aad2462c66ca1cfa2a844a3ed28ccde4531197c34792b0b",
+    "networkBundle": "index-JDA7-IfB.js",
+    "protocol": "Synthetic protocol host only; actual real-adapter candidate, real browser WebCrypto/IndexedDB and rendered controls. User Firefox and live Connector were not used.",
+    "browser": "Chromium 153.0.8010.12",
+    "findings": {
+      "stateViewportPairs": 12,
+      "allControlsReachable": true,
+      "horizontalOverflow": false,
+      "narrowViewport": {
+        "width": 360,
+        "height": 740
+      },
+      "zoom200Tested": false,
+      "scrollingClaim": "Captured panels fit at these viewports without vertical scrolling. Controls passed trial click and scrollIntoView actionability checks; no 200% zoom or shorter-viewport claim."
+    },
+    "states": [
+      {
+        "path": "desktop-1440-connector-unreachable.json",
+        "bytes": 860,
+        "sha256": "9a08c5ebce45774fce816690f176831af81cdad5431049ceadff1861876ad304",
+        "state": "connector-unreachable",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Waiting for connection",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 248.046875,
+          "width": 520,
+          "height": 503.90625,
+          "scrollHeight": 502,
+          "clientHeight": 502,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "desktop-1440-forgotten.json",
+        "bytes": 790,
+        "sha256": "dcc58650458ffb1b11e36b64d9dc07ddd89f89a0bff491cc4079b65ffa2f83f4",
+        "state": "forgotten",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Not connected",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 344.8125,
+          "width": 520,
+          "height": 310.375,
+          "scrollHeight": 308,
+          "clientHeight": 308,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Manage authorized browsers in AIPOCH Connector",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "desktop-1440-host-unavailable.json",
+        "bytes": 853,
+        "sha256": "04c198ff0d491f0cc25fd9422eb72594fba0c30b77e643f089d1fcde630b2ba4",
+        "state": "host-unavailable",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Waiting for connection",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 259.09375,
+          "width": 520,
+          "height": 481.8125,
+          "scrollHeight": 480,
+          "clientHeight": 480,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "desktop-1440-paused.json",
+        "bytes": 838,
+        "sha256": "a49b54b2384755af40a17cfb461f5f85841356b48f9ca08aeb97b25bc66b68fd",
+        "state": "paused",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Connection paused",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 285.09375,
+          "width": 520,
+          "height": 429.8125,
+          "scrollHeight": 428,
+          "clientHeight": 428,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "desktop-1440-reauthorize.json",
+        "bytes": 942,
+        "sha256": "558be9e1031e748b64c34dc755d12e0639180ef6e364edd851c1e2529b5ec0cc",
+        "state": "reauthorize",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Not confirmed",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 237.328125,
+          "width": 520,
+          "height": 525.34375,
+          "scrollHeight": 523,
+          "clientHeight": 523,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Manage authorized browsers in AIPOCH Connector",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "desktop-1440-remembered.json",
+        "bytes": 756,
+        "sha256": "8033a0fccb71113662eede2a4135fdaf7e3b8abe3c594d41f7ddd4b1dee65287",
+        "state": "remembered",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Connected",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "panel": {
+          "left": 460,
+          "top": 232.453125,
+          "width": 520,
+          "height": 535.09375,
+          "scrollHeight": 533,
+          "clientHeight": 533,
+          "scrollWidth": 518,
+          "clientWidth": 518
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Your research home",
+            "reachable": true
+          },
+          {
+            "name": "Disconnect",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-connector-unreachable.json",
+        "bytes": 851,
+        "sha256": "7caa6ffe065791ba663fa9c4faa81343ed3d6cec92b47de00a6dc870705baf82",
+        "state": "connector-unreachable",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Waiting for connection",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 64.8125,
+          "width": 336,
+          "height": 610.375,
+          "scrollHeight": 608,
+          "clientHeight": 608,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-forgotten.json",
+        "bytes": 790,
+        "sha256": "be2470414da987eb20c4d9691ec4f7b0ff2f82072f6fa054dba127672d3815d4",
+        "state": "forgotten",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Not connected",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 172.296875,
+          "width": 336,
+          "height": 395.40625,
+          "scrollHeight": 393,
+          "clientHeight": 393,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Manage authorized browsers in AIPOCH Connector",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-host-unavailable.json",
+        "bytes": 850,
+        "sha256": "439390935471e07459226d64605e0a285756bbbe8a1c368b8cd0e64f6776c6b9",
+        "state": "host-unavailable",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Waiting for connection",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 75.859375,
+          "width": 336,
+          "height": 588.28125,
+          "scrollHeight": 586,
+          "clientHeight": 586,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-paused.json",
+        "bytes": 836,
+        "sha256": "914c5527776d3ac12b0e6d9b7eae8fa189ab8b589ea778a3c49a0a25340fbdf6",
+        "state": "paused",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Connection paused",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 101.859375,
+          "width": 336,
+          "height": 536.28125,
+          "scrollHeight": 534,
+          "clientHeight": 534,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-reauthorize.json",
+        "bytes": 931,
+        "sha256": "fa1a0217165c33a45f336fa3a34188fbb41d1d67c6f48a7cd5efad2856dc0b59",
+        "state": "reauthorize",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Not confirmed",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 43.375,
+          "width": 336,
+          "height": 653.25,
+          "scrollHeight": 651,
+          "clientHeight": 651,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Connect Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Get Open-Science",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          },
+          {
+            "name": "Manage authorized browsers in AIPOCH Connector",
+            "reachable": true
+          },
+          {
+            "name": "Continue browsing",
+            "reachable": true
+          }
+        ]
+      },
+      {
+        "path": "narrow-360-remembered.json",
+        "bytes": 751,
+        "sha256": "fbf3280fc0dbf48c0a567d0b34540e48206101f765305cbf0ff417e5d3fb0eab",
+        "state": "remembered",
+        "fixture": "synthetic only",
+        "browser": "Chromium",
+        "url": "http://127.0.0.1:4236/",
+        "label": "Open-Science — Connected",
+        "viewport": {
+          "width": 360,
+          "height": 740
+        },
+        "documentWidth": 360,
+        "panel": {
+          "left": 12,
+          "top": 38.828125,
+          "width": 336,
+          "height": 662.34375,
+          "scrollHeight": 660,
+          "clientHeight": 660,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        "reachability": [
+          {
+            "name": "Close Open-Science panel",
+            "reachable": true
+          },
+          {
+            "name": "Your research home",
+            "reachable": true
+          },
+          {
+            "name": "Disconnect",
+            "reachable": true
+          },
+          {
+            "name": "Forget this browser",
+            "reachable": true
+          }
+        ]
+      }
     ],
-    "noHorizontalOverflowOrObstructedPrimaryAction": true,
-    "actualBrowserZoom200Tested": false,
+    "processRestartEvidence": [
+      {
+        "browser": "Chromium",
+        "browserVersion": "153.0.8010.12",
+        "keyReloadedAfterBrowserProcessRestart": true,
+        "pausePersistedAfterBrowserProcessRestart": true,
+        "explicitConnectResumedSameGrant": true,
+        "privateKeyExtractable": false,
+        "privateExportRejected": true,
+        "newPairings": 1,
+        "verifiedResumeProofs": 2
+      },
+      {
+        "browser": "Chromium",
+        "browserVersion": "153.0.8010.12",
+        "keyReloadedAfterBrowserProcessRestart": true,
+        "pausePersistedAfterBrowserProcessRestart": true,
+        "explicitConnectResumedSameGrant": true,
+        "privateKeyExtractable": false,
+        "privateExportRejected": true,
+        "newPairings": 1,
+        "verifiedResumeProofs": 2
+      }
+    ],
     "screenshots": [
+      {
+        "file": "desktop-1440-connector-unreachable-actions.png",
+        "bytes": 225299,
+        "sha256": "36584496f778d0659cae5ef2e9f137f102dc48a4443d78957fa2956a0ee99cf0"
+      },
+      {
+        "file": "desktop-1440-connector-unreachable.png",
+        "bytes": 225300,
+        "sha256": "f54e23f87a4d0546c5f9757cd9bf39572e0ec7b596012ab0573c411decc20005"
+      },
+      {
+        "file": "desktop-1440-forgotten-actions.png",
+        "bytes": 215101,
+        "sha256": "7feb96b61094264ad196133b6e7f22d50ada34f64bfeafc89129cd1b2b0b960b"
+      },
+      {
+        "file": "desktop-1440-forgotten.png",
+        "bytes": 215082,
+        "sha256": "841d18826c1d58e1a9d00227f51185981783e646afb08b93396d900a17ef534d"
+      },
+      {
+        "file": "desktop-1440-host-unavailable-actions.png",
+        "bytes": 222884,
+        "sha256": "e810106d0c76a58d5fe7a86f4c9fbd52da4e7137ada5bdfcd7ec17e3e5d2d8ea"
+      },
+      {
+        "file": "desktop-1440-host-unavailable.png",
+        "bytes": 222882,
+        "sha256": "a0e324f0a01d4f3c02a9eb649382f20843c2de80f1ab31e8b29ba99b5986a5e4"
+      },
+      {
+        "file": "desktop-1440-paused-actions.png",
+        "bytes": 220273,
+        "sha256": "6dc9dd17505246ed1b3700f7720a70213c9ebe7a8632848cf1e6d2c656d8b94d"
+      },
+      {
+        "file": "desktop-1440-paused.png",
+        "bytes": 220272,
+        "sha256": "872dcfa435976fb683af4e82578205e31e7e6758c5c8f4ad53e0017f6dab602c"
+      },
+      {
+        "file": "desktop-1440-reauthorize-actions.png",
+        "bytes": 227729,
+        "sha256": "fff67b69f38af1c1bef5a05529567e3cee580777986910bc2718a2da4b33cb1b"
+      },
+      {
+        "file": "desktop-1440-reauthorize.png",
+        "bytes": 227731,
+        "sha256": "fcef5fcfb33831263ec8fc9752fefcb03f3984883d116dc24c2e3dc44a7b1917"
+      },
+      {
+        "file": "desktop-1440-remembered-actions.png",
+        "bytes": 194978,
+        "sha256": "028749148d7234ddd2eb815572b1887d2752bd2913192ea1fcbf2079f77c69dc"
+      },
+      {
+        "file": "desktop-1440-remembered.png",
+        "bytes": 194985,
+        "sha256": "187492ff7c1400bd9b7937833bd56b981dccf1a6129f89ac07282d1cc9e96359"
+      },
+      {
+        "file": "narrow-360-connector-unreachable-actions.png",
+        "bytes": 185589,
+        "sha256": "0eae33d5f4e6cda0dacbca8888b0e861ac91e7b775f0f458467e1a04e5c5f5d5"
+      },
+      {
+        "file": "narrow-360-connector-unreachable.png",
+        "bytes": 185563,
+        "sha256": "28906ce253d1569b6fc50839c7e7ad8e16b48e14bb8022435fcac7c1e496243f"
+      },
+      {
+        "file": "narrow-360-forgotten-actions.png",
+        "bytes": 191993,
+        "sha256": "83b8438fa9aec5481c32c8754a36bbf2d4fecd740ce4a0f21e3133bae59e4125"
+      },
+      {
+        "file": "narrow-360-forgotten.png",
+        "bytes": 192017,
+        "sha256": "9b22f7f24cf6bc2f32030a4278273c80b1b259a742457d7f9dbc926d78fd3280"
+      },
+      {
+        "file": "narrow-360-host-unavailable-actions.png",
+        "bytes": 187506,
+        "sha256": "307e6e809b71f2cb87394fc64a4651fa96e8386f16c9ba7fd2896ec00a0e66d7"
+      },
+      {
+        "file": "narrow-360-host-unavailable.png",
+        "bytes": 187477,
+        "sha256": "441fc428114fd2bc2d818e3a227f90f15ff4dc0a6527e4a0b04d6612af51148e"
+      },
+      {
+        "file": "narrow-360-paused-actions.png",
+        "bytes": 191896,
+        "sha256": "3c2cd7c3adef395137a269794e8d38b2d4faee9cdc99c82bc6fcf52e2a819df7"
+      },
+      {
+        "file": "narrow-360-paused.png",
+        "bytes": 191894,
+        "sha256": "75df480f5c7d98a79668355614f9faab26136c663c40688aa764c8dcabe7aeb4"
+      },
+      {
+        "file": "narrow-360-reauthorize-actions.png",
+        "bytes": 180679,
+        "sha256": "ee987dd2746e552050053704a69204d8e9e08f06aba19becd58e0b1865fa6aa8"
+      },
+      {
+        "file": "narrow-360-reauthorize.png",
+        "bytes": 180618,
+        "sha256": "32b6ff04c60bdf8914be769cb947b87220d69125a828de983cdfe018447e83b0"
+      },
+      {
+        "file": "narrow-360-remembered-actions.png",
+        "bytes": 217061,
+        "sha256": "8a5ddf652971fd414709bd7387fa86b088dc982b904e480b143f3118ff65718b"
+      },
+      {
+        "file": "narrow-360-remembered.png",
+        "bytes": 216993,
+        "sha256": "7d936803ae9193f975b45b564d9abef7c5ff90270e70a1e208e97492ce36539c"
+      }
+    ],
+    "publishedSelectionManifest": "design/changes/issue-7-evidence/manifest.json",
+    "actualBrowserZoom200Tested": false,
+    "publishedSelectionManifestSha256": "80fed8022069f3af9a2342dbb419d6dc699e7c4feffd740758a6f3433ca908dc",
+    "publishedScreenshots": [
       {
         "path": "design/changes/issue-7-evidence/desktop-1440-remembered.png",
         "bytes": 194985,
@@ -13686,8 +14447,8 @@
       },
       {
         "path": "design/changes/issue-7-evidence/narrow-360-connector-unreachable.png",
-        "bytes": 185576,
-        "sha256": "19906192c0be535ec5365fdeef3c8f25e58080c86fb4414502e6bb924eee10ba"
+        "bytes": 185563,
+        "sha256": "28906ce253d1569b6fc50839c7e7ad8e16b48e14bb8022435fcac7c1e496243f"
       },
       {
         "path": "design/changes/issue-7-evidence/narrow-360-forgotten.png",
@@ -13701,9 +14462,60 @@
       },
       {
         "path": "design/changes/issue-7-evidence/narrow-360-reauthorize.png",
-        "bytes": 180622,
-        "sha256": "e0c5a69c9f45893dfc29e94ecf0ff8eb540378af856dcfbd70c5886dbfd355be"
+        "bytes": 180618,
+        "sha256": "32b6ff04c60bdf8914be769cb947b87220d69125a828de983cdfe018447e83b0"
       }
     ]
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "logFile": "aipoch-persistent-final-typecheck-after-readonly.log",
+    "logSha256": "0a0a16236a58b8aa3298c51f4b175ac719ee9c5d629675cfde9d1e12be4365ca",
+    "passed": true
+  },
+  "readOnlyStorageFix": {
+    "commit": "b29fee4b3b843702b8666c2814500d8b72ae39ce",
+    "problem": "Explicit Connect from a remembered paused identity could stop without pairing when identity/control storage became read-only; a later successful read cleared the warning from the failed resume write.",
+    "resolution": "Capture the failed durable resume write before reading; fall back to an explicitly approved session-only pairing, keep existing durable pause/grant unchanged, and reject a concurrent pause/late callback.",
+    "tests": [
+      "explicit connect falls back to this visit when paused authorization cannot resume because identity writes fail",
+      "explicit connect falls back to this visit when paused authorization cannot resume because control writes fail"
+    ],
+    "previousUnitCount": 371,
+    "currentUnitCount": 373
+  },
+  "ciIntegration": {
+    "commit": "b29fee4b3b843702b8666c2814500d8b72ae39ce",
+    "sourceHashes": {
+      "package.json": "209904f5d4d69a9c59c9cc2c4ed54df3cbbcc1bbc6cdf56517ad27e02103d72f",
+      ".github/workflows/ci.yml": "9d8e72adb600612703fc72af54ca1dbc490371ab95571308643b3de5517a85eb"
+    },
+    "change": "test:e2e:real and both CI real root/subpath commands now include real-connector.test.ts and persistent-connection.test.ts.",
+    "newRemoteRunVerified": false,
+    "priorRemoteNetworkRun": {
+      "id": 34833313045,
+      "headSha": "00d50f73018fd30212a684cbb514c21633b4a019",
+      "conclusion": "success",
+      "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34833313045",
+      "scope": "Before this CI update, real commands ran only the existing 26 checks per base. This success does not prove the new combined55-check CI suites."
+    }
+  },
+  "connectorRemoteChecks": {
+    "pr": "https://github.com/imjszhang/aipoch-connector/pull/6",
+    "isDraft": true,
+    "headSha": "4020ac8237aaf868709b01e34645ffbadc57eed0",
+    "runs": [
+      {
+        "id": 34833360024,
+        "conclusion": "success",
+        "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34833360024"
+      },
+      {
+        "id": 34833357140,
+        "conclusion": "success",
+        "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34833357140"
+      }
+    ],
+    "implementationCommitUnchanged": "97f090b6a9822deb82f7380dc48a47ea15345eb1"
   }
 }
