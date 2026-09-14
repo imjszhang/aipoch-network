@@ -86,7 +86,7 @@ function Dialog({ title, compact = false, children, onClose }: { title: string; 
     const keydown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); closeRef.current(); }
       if (event.key !== 'Tab') return;
-      const targets = Array.from(ref.current?.querySelectorAll<HTMLElement>('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]') ?? []).filter(element => element.getClientRects().length > 0);
+      const targets = Array.from(ref.current?.querySelectorAll<HTMLElement>('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex="0"]') ?? []).filter(element => element.getClientRects().length > 0);
       if (!targets.length) { event.preventDefault(); ref.current?.focus(); return; }
       const first = targets[0], last = targets[targets.length - 1];
       if (event.shiftKey && (document.activeElement === first || document.activeElement === ref.current)) { event.preventDefault(); last.focus(); }
@@ -95,6 +95,10 @@ function Dialog({ title, compact = false, children, onClose }: { title: string; 
     document.addEventListener('keydown', keydown, true);
     return () => { document.body.style.overflow = oldOverflow; document.removeEventListener('keydown', keydown, true); if (previous?.isConnected) previous.focus({ preventScroll: true }); else document.querySelector<HTMLElement>('.wb-trigger')?.focus({ preventScroll: true }); };
   }, []);
+  // Capture the opening control above before recovering focus after a pairing control disappears.
+  useEffect(() => {
+    if (ref.current && !ref.current.contains(document.activeElement)) ref.current.focus({ preventScroll: true });
+  });
   return <div className={`wb-overlay ${compact ? 'wb-overlay-compact' : ''}`} onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}>
     <div className={`wb-dialog ${compact ? 'wb-dialog-compact' : ''}`} role="dialog" aria-modal="true" aria-labelledby={id} tabIndex={-1} ref={ref}>
       <div className="wb-dialog-heading"><h2 id={id}>{title}</h2><Button className="wb-icon-button" aria-label="Close Open-Science panel" onClick={onClose}><X size={20} aria-hidden="true" /></Button></div>
@@ -102,21 +106,61 @@ function Dialog({ title, compact = false, children, onClose }: { title: string; 
     </div>
   </div>;
 }
+function ConnectionHelp() {
+  return <details className="wb-connection-help"><summary>Can’t find the confirmation page?</summary>
+    <p>Start a new chat in Open-Science if AIPOCH Connector was just set up; an older chat may not have its tools. Ask it to open the matching pending connection using the request from this website.</p>
+    <p>If Connector tools are unavailable or the page still does not open, follow the <a href="https://github.com/imjszhang/aipoch-connector#connect-a-running-workbench" target="_blank" rel="noreferrer">connection setup help</a>. If the request expires, start a new connection here and use its new request.</p>
+    <p>Keep the private confirmation page address on this computer. You only need the website and comparison code in your request.</p>
+  </details>;
+}
+function PairingGuide() {
+  const { state } = useWorkbench();
+  const pairing = state.pairing!;
+  const [now, setNow] = useState(Date.now);
+  const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
+  const requestRef = useRef<HTMLTextAreaElement>(null);
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  const prompt = `In AIPOCH Connector, find the pending Network connection from ${origin} with code ${pairing.verificationCode} and open its local confirmation page. I will compare the website and code and approve it myself. Do not approve it for me.`;
+  useEffect(() => {
+    const update = () => setNow(Date.now());
+    update();
+    const timer = setInterval(update, 1000);
+    window.addEventListener('focus', update);
+    document.addEventListener('visibilitychange', update);
+    return () => { clearInterval(timer); window.removeEventListener('focus', update); document.removeEventListener('visibilitychange', update); };
+  }, [pairing.expiresAt]);
+  const remaining = Math.max(0, Math.ceil((pairing.expiresAt - now) / 1000));
+  return <section className="wb-pairing-guide" aria-label="Confirm this connection">
+    <p className="wb-eyebrow">Confirm on this computer</p>
+    <div className="wb-pairing-code"><span>Connection code</span><strong>{pairing.verificationCode}</strong><span role="timer" aria-live="off" aria-label="Time remaining">{Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')} remaining</span></div>
+    <p>Do not enter this code on this website. Compare it with the code on the local confirmation page.</p>
+    <ol className="wb-connection-steps">
+      <li>Switch to Open-Science on this computer. AIPOCH Connector is the tool that opens your connection confirmation page.</li>
+      <li>Paste the request below into your Open-Science chat and send it.</li>
+      <li>On the page it opens, check <strong className="wb-origin">{origin}</strong> and this code. Approve only if both match, then return here.</li>
+    </ol>
+    <label className="wb-pairing-request">Request for Open-Science<textarea ref={requestRef} readOnly rows={4} value={prompt} onFocus={event => event.currentTarget.select()} /></label>
+    <Button onClick={async () => { try { await navigator.clipboard.writeText(prompt); setCopied(true); setCopyFailed(false); } catch { setCopyFailed(true); requestRef.current?.focus(); requestRef.current?.select(); } }}>{copied ? 'Request copied' : 'Copy request'}</Button>
+    {copyFailed && <p role="status" className="wb-muted">Copy is unavailable. Select the request above and copy it manually.</p>}
+    <ConnectionHelp />
+  </section>;
+}
 function ConnectButtons() {
-  const { engine, state, connected } = useWorkbench();
-  return <>{state.pairing && <p className="wb-pairing-code" role="status">Connection code <strong>{state.pairing.verificationCode}</strong><small>Approve this matching code in AIPOCH Connector on this computer. This request expires in three minutes.</small></p>}<div className="wb-actions">
+  const { engine, state, connected, demo } = useWorkbench();
+  return <>{state.pairing && <PairingGuide key={state.attempt} />}<div className="wb-actions">
     {!connected && (state.connection === 'connecting' ? <Button onClick={() => engine.cancelConnection()}>Cancel connection</Button> : <Button className="wb-primary" onClick={engine.connect}>Connect Open-Science<ArrowUpRight size={16} aria-hidden="true" /></Button>)}
     {!connected && <a className="wb-button" href={OPEN_SCIENCE_URL} target="_blank" rel="noreferrer">Get Open-Science<ArrowUpRight size={16} aria-hidden="true" /></a>}
-  </div></>;
+  </div>{state.connection === 'connecting' && <p className="wb-muted">{demo ? 'Demo is simulating confirmation. ' : ''}Closing this panel keeps waiting. Cancel connection stops waiting on this website.</p>}{WORKBENCH_MODE === 'real' && ['unconfirmed', 'interrupted'].includes(state.connection) && <ConnectionHelp />}</>;
 }
 function ConnectionPanel() {
   const { engine, state, connected } = useWorkbench();
   const selected = state.resolution?.status === 'ready' ? state.resolution.reference.object.title : state.selected;
   return <>
     <ConnectionStatus />
-    <p className="wb-muted">{connected ? 'Continue with research in your connected workbench.' : state.reason || 'Connect your workbench to continue with projects and capabilities from the network.'}</p>
+    <p className="wb-muted">{connected ? 'Your workbench is connected. Connecting does not send a research reference.' : state.pairing ? 'Waiting for you to approve on the local confirmation page.' : state.reason || 'Start a connection, then confirm it on this computer. Your research selection stays here.'}</p>
     {connected ? <div className="wb-actions"><Link className="wb-button wb-primary" to="/" onClick={engine.close}>Your research home<ArrowRight size={16} aria-hidden="true" /></Link><Button onClick={() => engine.disconnect()}><Unplug size={15} aria-hidden="true" />Disconnect</Button></div> : <ConnectButtons />}
-    {selected && <div className="wb-pending-line"><span>{selected}</span><Button className="wb-text-action" onClick={connected ? engine.resume : engine.manualReview}>Continue<ArrowRight size={16} aria-hidden="true" /></Button></div>}
+    {selected && <section className="wb-pending-research" aria-label="Selected research"><p className="wb-eyebrow">{connected ? 'Ready when you are' : 'After connecting'}</p><h3>{selected}</h3><p className="wb-muted">{connected ? 'Continue to review this reference before choosing whether to send it.' : 'Your selection is kept. Connecting will not send it.'}</p>{connected ? <Button className="wb-text-action" onClick={engine.resume}>Review reference for {selected}<ArrowRight size={16} aria-hidden="true" /></Button> : state.connection !== 'connecting' && <Button className="wb-text-action" onClick={engine.manualReview}>Read or copy reference<ArrowRight size={16} aria-hidden="true" /></Button>}</section>}
     {!connected && ['unconfirmed', 'interrupted'].includes(state.connection) && <Button className="wb-text-action wb-browse" onClick={engine.close}>Continue browsing</Button>}
   </>;
 }

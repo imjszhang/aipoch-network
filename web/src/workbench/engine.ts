@@ -17,12 +17,15 @@ export interface WorkbenchState {
 let sequence = 0;
 const nextId = (type: string) => `${type}-${globalThis.crypto?.randomUUID?.() ?? `${Date.now().toString(36)}-${++sequence}`}`;
 const stopped = 'Waiting stopped. This does not withdraw a reference the workbench may already have received. Retry only when you choose to.';
+const connectionTimeoutReason = 'No response was confirmed. You can retry or continue browsing; this does not mean Open-Science is not installed.';
+const pairingTimeoutReason = 'Pairing expired without a confirmed connection. You can retry or continue browsing.';
 export class WorkbenchEngine {
   private state: WorkbenchState;
   private listeners = new Set<() => void>();
   private cancelConnect?: Cancel;
   private cancelSend?: Cancel;
   private connectTimeout?: ReturnType<typeof setTimeout>;
+  private connectDeadline: number | null = null;
   private sendTimeout?: ReturnType<typeof setTimeout>;
   private replacementReturnTo: string | null = null;
   private disposed = false;
@@ -50,7 +53,17 @@ export class WorkbenchEngine {
     this.set({ resolution, approval: null, request: null, referenceStatus: 'needs-review', notice: 'The current catalog reference changed. Review the updated content before sending.' });
   }
   isConnected() { return this.state.connection === 'connected' && !!this.state.session && this.adapter.valid(this.state.session); }
-  checkSession() { if (this.state.connection === 'connected' && !this.isConnected()) this.disconnect(true); return this.isConnected(); }
+  checkSession() { this.expireConnectionWait(); if (this.state.connection === 'connected' && !this.isConnected()) this.disconnect(true); return this.isConnected(); }
+  private expireConnectionWait(now = this.now()) {
+    if (this.state.connection !== 'connecting' || this.connectDeadline === null || now < this.connectDeadline) return false;
+    this.cancelConnection(this.state.pairing ? pairingTimeoutReason : connectionTimeoutReason);
+    return true;
+  }
+  private discardConnectionSession(session: Session | null) {
+    // An adapter may create its private session immediately before a deadline is rechecked here.
+    // Revoke that unused session, but do not revoke the current one for a duplicate callback.
+    if (session && session.id !== this.state.session?.id) this.adapter.disconnect(session);
+  }
   openConnection = () => { this.checkSession(); this.set({ overlay: 'connection' }); };
   close = () => this.set({ overlay: null });
   select(entry: Entry, returnTo = '/') { this.selectId(entry.id, returnTo); }
@@ -76,25 +89,33 @@ export class WorkbenchEngine {
   resume = () => { if (!this.state.selected) return this.openConnection(); this.checkSession(); this.set({ overlay: this.isConnected() ? 'review' : 'connection' }); };
   manualReview = () => { if (this.state.selected) this.set({ overlay: 'review' }); };
   connect = () => {
-    if (this.state.connection === 'connecting' || this.checkSession()) return;
+    this.checkSession();
+    if (this.state.connection === 'connecting' || this.isConnected()) return;
     this.endConnect(); this.endSend();
     const attempt = nextId('connection');
-    this.set({ attempt, pairing: null, connection: 'connecting', reason: 'Waiting for Open-Science to confirm this connection.', session: null, approval: null, request: null, referenceStatus: 'needs-review', notice: '' });
-    this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection('No response was confirmed. You can retry or continue browsing; this does not mean Open-Science is not installed.'); }, this.timeouts.connect);
+    this.connectDeadline = this.now() + this.timeouts.connect;
+    this.set({ attempt, pairing: null, connection: 'connecting', reason: 'Waiting for Open-Science to confirm this connection.', session: null, approval: null, request: null, referenceStatus: 'needs-review', overlay: this.state.overlay === 'review' ? 'connection' : this.state.overlay, notice: '' });
+    this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection(connectionTimeoutReason); }, this.timeouts.connect);
     this.cancelConnect = this.adapter.connect(attempt, (returned, session, reason) => {
-      if (this.disposed || this.state.connection !== 'connecting' || this.state.attempt !== attempt || returned !== attempt) return;
+      if (this.disposed || this.state.connection !== 'connecting' || this.state.attempt !== attempt || returned !== attempt) { this.discardConnectionSession(session); return; }
+      if (this.expireConnectionWait()) { this.discardConnectionSession(session); return; }
       this.endConnect();
       if (!session || session.demo !== this.adapter.demo || !this.adapter.valid(session)) {
+        this.discardConnectionSession(session);
         this.set({ connection: 'unconfirmed', attempt: null, pairing: null, reason: reason ?? 'This connection could not be confirmed.', session: null }); return;
       }
-      this.set({ connection: 'connected', attempt: null, pairing: null, session, reason: '', approval: null, referenceStatus: 'reviewing', overlay: this.state.selected ? 'review' : this.state.overlay });
+      // Connection confirmation grants no review consent and must not move or reopen the user's current panel.
+      this.set({ connection: 'connected', attempt: null, pairing: null, session, reason: '', approval: null, referenceStatus: this.state.selected ? 'needs-review' : 'selected' });
     }, (returned, pairing) => {
       if (this.disposed || this.state.connection !== 'connecting' || this.state.attempt !== attempt || returned !== attempt || this.state.pairing) return;
-      const remaining = Math.min(pairing.expiresAt - this.now(), this.timeouts.pairing ?? 180000);
+      const now = this.now();
+      if (this.expireConnectionWait(now)) return;
+      const remaining = Math.min(pairing.expiresAt - now, this.timeouts.pairing ?? 180000);
       if (!Number.isFinite(remaining) || remaining <= 0) return this.cancelConnection('Pairing expired. Retry when you are ready.');
       clearTimeout(this.connectTimeout);
-      this.set({ pairing, reason: 'Check that this code matches AIPOCH Connector on this computer, then approve the connection there.' });
-      this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection('Pairing expired without a confirmed connection. You can retry or continue browsing.'); }, remaining);
+      this.connectDeadline = now + remaining;
+      this.set({ pairing: { ...pairing, expiresAt: now + remaining }, reason: 'Check that this code matches AIPOCH Connector on this computer, then approve the connection there.' });
+      this.connectTimeout = setTimeout(() => { if (this.state.attempt === attempt) this.cancelConnection(pairingTimeoutReason); }, remaining);
     });
   };
   cancelConnection = (reason = 'Connection waiting was cancelled. No connection was confirmed.') => { this.endConnect(); this.set({ connection: 'unconfirmed', attempt: null, pairing: null, session: null, approval: null, reason }); };
@@ -139,7 +160,7 @@ export class WorkbenchEngine {
   setLanguage = (language: 'en' | 'zh') => { this.library.update({ language }); this.refreshLibrary(); };
   /** Leaving a domain invalidates work in flight and review consent, but may retain a valid session. */
   suspend = () => { if (this.state.connection === 'connecting') this.cancelConnection(); if (this.state.request) this.stopWaiting(); this.set({ approval: null, referenceStatus: 'needs-review', overlay: null }); };
-  private endConnect() { this.cancelConnect?.(); this.cancelConnect = undefined; clearTimeout(this.connectTimeout); }
+  private endConnect() { this.cancelConnect?.(); this.cancelConnect = undefined; clearTimeout(this.connectTimeout); this.connectDeadline = null; }
   private endSend() { this.cancelSend?.(); this.cancelSend = undefined; clearTimeout(this.sendTimeout); }
   dispose() { this.endConnect(); this.endSend(); this.adapter.dispose(); this.disposed = true; this.listeners.clear(); }
 }

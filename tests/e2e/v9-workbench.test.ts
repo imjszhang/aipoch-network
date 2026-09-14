@@ -17,6 +17,12 @@ async function closePanel(page: Page) {
 async function connectOpenPanel(page: Page) {
   await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
   await expect(header(page)).toHaveAccessibleName(/Open-Science — Connected · Demo/);
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await expect(reviewPanel(page)).toHaveCount(0);
+}
+async function reviewSelectedReference(page: Page, title = 'SciPy') {
+  await panel(page).getByRole('button', { name: `Review reference for ${title}`, exact: true }).click();
+  await expect(reviewPanel(page)).toBeVisible();
 }
 async function connectFromHeader(page: Page) {
   await header(page).click();
@@ -47,7 +53,7 @@ async function reviewProjectFromExplore(page: Page, title = 'SciPy') {
   await setSearch(page, title);
   await page.getByRole('button', { name: `Connect to open: ${title}`, exact: true }).click();
   await connectOpenPanel(page);
-  await expect(reviewPanel(page)).toBeVisible();
+  await reviewSelectedReference(page, title);
 }
 async function reviewManualText(page: Page) {
   const review = reviewPanel(page);
@@ -157,7 +163,7 @@ test.describe('default production adapter', () => {
     await page.getByRole('button', { name: 'Connect to use: SciPy tutorial at a reviewed revision', exact: true }).click();
     await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
     await expect(header(page)).toHaveAccessibleName('Open-Science — Not confirmed');
-    await panel(page).getByRole('button', { name: 'Continue', exact: true }).click();
+    await panel(page).getByRole('button', { name: 'Read or copy reference', exact: true }).click();
     const reference = await reviewManualText(page);
     expect(reference.object).toMatchObject({ id: 'resource:scipy-tutorial', kind: 'resource', title: 'SciPy tutorial at a reviewed revision' });
     expect(reference.action).toBe('Use');
@@ -213,7 +219,7 @@ test.describe('isolated Demo adapter', () => {
     const trigger = page.getByRole('button', { name: 'Connect to open: SciPy', exact: true });
     await trigger.click();
     await connectOpenPanel(page);
-    await expect(reviewPanel(page)).toBeVisible();
+    await reviewSelectedReference(page);
     await expect(page).toHaveURL(before);
     await expect(reviewPanel(page)).toContainText('SciPy');
     await expect(sendButton(page)).toBeDisabled();
@@ -247,6 +253,7 @@ test.describe('isolated Demo adapter', () => {
     await page.goto('./capabilities/resource~scipy-tutorial/');
     await page.getByRole('button', { name: 'Connect to use: SciPy tutorial at a reviewed revision', exact: true }).click();
     await connectOpenPanel(page);
+    await reviewSelectedReference(page, 'SciPy tutorial at a reviewed revision');
     const reference = await reviewManualText(page);
     expect(reference.action).toBe('Use');
     expect(reference.object.kind).toBe('resource');
@@ -469,7 +476,7 @@ test.describe('isolated Demo adapter', () => {
     await expect(header(page)).toHaveAccessibleName(/Open-Science — Interrupted/);
     await expectNoPersonalActions(page);
     await connectFromHeader(page);
-    await expect(reviewPanel(page)).toBeVisible();
+    await reviewSelectedReference(page);
     await expect(reviewPanel(page)).toContainText('SciPy');
     await expect(consent(page)).not.toBeChecked();
     await expect(sendButton(page)).toBeDisabled();
@@ -488,6 +495,7 @@ test.describe('isolated Demo adapter', () => {
     await closePanel(page);
     await controls(page).getByRole('combobox', { name: /^Connection response/ }).selectOption('automatic');
     await connectFromHeader(page);
+    await reviewSelectedReference(page);
     await expect(reviewPanel(page)).toContainText('SciPy');
     await consent(page).check();
     await sendButton(page).click();

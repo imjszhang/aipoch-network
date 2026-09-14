@@ -36,9 +36,10 @@
 .wb-icon-button { padding:5px; min-height:32px; min-width:32px; border:0; background:transparent; flex-shrink:0; margin:-6px -6px 0 0; }
 .wb-dialog p { line-height:1.7; font-size:14px; }
 .wb-dialog .wb-muted { font-size:13px; }
-.wb-pending-line { display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid #d6d6d0; padding-top:12px; margin-top:18px; font-size:13px; }
-.wb-pending-line > span { min-width:0; overflow-wrap:anywhere; }
-.wb-pending-line .wb-button { flex-shrink:0; }
+.wb-pending-research { border-top:1px solid #d6d6d0; padding-top:16px; margin-top:20px; overflow-wrap:anywhere; }
+.wb-pending-research h3 { margin:0; font-size:16px; font-weight:600; }
+.wb-pending-research .wb-eyebrow { font-size:11px; margin:0 0 6px; color:#656560; }
+.wb-pending-research .wb-muted { margin:6px 0; }
 .wb-browse { margin-top:10px; }
 .wb-review-topline { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:#62625c; font-size:12px; margin-bottom:14px; }
 .wb-reference-summary,.wb-reference-source dl { display:grid; grid-template-columns:145px minmax(0,1fr); gap:9px 18px; font-size:13px; line-height:1.6; }
@@ -138,6 +139,18 @@
 @media (max-width:1024px) { .wb-wrap { width:calc(100% - 40px); } .wb-home-layout { grid-template-columns:minmax(0,1fr) 270px; gap:22px; } .wb-join-layout { gap:30px; grid-template-columns:minmax(0,1fr) 300px; } .wb-home-heading { align-items:flex-start; } .wb-home-heading .wb-actions { max-width:220px; justify-content:flex-end; } }
 @media (max-width:767px) { .wb-wrap { width:calc(100% - 32px); } .wb-home-heading { flex-direction:column; } .wb-home-heading .wb-actions { max-width:none; justify-content:flex-start; } .wb-home-hero { padding-top:32px; } .wb-home-nav { gap:22px; margin-top:24px; } .wb-home-layout { grid-template-columns:1fr; padding-top:30px; } .wb-join-layout { grid-template-columns:1fr; gap:28px; padding-block:30px 50px; } .wb-join-intro { padding:25px; } .wb-join-intro h2 { font-size:33px; } .wb-join-hero { padding:32px 0; } .wb-join { padding-top:34px; } .wb-join-layout aside { margin:0; } .wb-overlay,.wb-overlay-compact { padding:12px; align-items:center; } .wb-dialog { padding:20px; max-height:calc(100dvh - 24px); } .wb-dialog-compact { max-width:520px; } .wb-dialog-heading h2 { font-size:21px; } .wb-reference-summary,.wb-reference-source dl { grid-template-columns:1fr; gap:5px; } .wb-reference-fields dt { margin-top:7px; font-size:11px; } .wb-reference-fields dd { font-size:12px; } .wb-connection-inline { font-size:11px; } .wb-panel,.wb-empty { padding:20px; } .wb-review-controls { width:calc(100% - 24px); } .wb-trigger { max-width:140px; padding:7px 9px; gap:6px; } .wb-trigger > svg { width:15px; } .wb-trigger strong { font-size:11px; } .wb-trigger small { font-size:9px; gap:3px; } }
 @media (prefers-reduced-motion:reduce) { .wb-dialog,.wb-button,.wb-trigger { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
-.wb-pairing-code { margin:1rem 0; color:#73736a; font-size:.875rem; }
-.wb-pairing-code strong { display:block; margin:.5rem 0; color:#111; font-family:monospace; font-size:1.6rem; letter-spacing:.15em; }
-.wb-pairing-code small { display:block; line-height:1.5; }
+.wb-pairing-guide { margin:20px 0; }
+.wb-pairing-guide .wb-eyebrow { font-size:11px; }
+.wb-pairing-code { margin:12px 0; padding:12px 16px; border-left:3px solid #ecd44c; background:#eeeeea; color:#656560; font-size:13px; }
+.wb-pairing-code strong { display:block; margin:5px 0; color:#111; font-family:monospace; font-size:24px; letter-spacing:.12em; overflow-wrap:anywhere; }
+.wb-pairing-code [role=timer] { font-variant-numeric:tabular-nums; }
+.wb-connection-steps { padding-left:21px; margin:14px 0; font-size:13px; line-height:1.65; }
+.wb-connection-steps li { padding-left:3px; margin:9px 0; }
+.wb-origin { overflow-wrap:anywhere; }
+.wb-pairing-request { display:block; font-size:12px; font-weight:600; margin:14px 0 10px; }
+.wb-pairing-request textarea { display:block; width:100%; box-sizing:border-box; margin-top:7px; padding:10px; border:1px solid #cecec8; background:#fff; color:#33332f; font:inherit; font-size:13px; font-weight:400; line-height:1.5; resize:vertical; }
+.wb-connection-help { margin:14px 0; font-size:13px; }
+.wb-connection-help summary { cursor:pointer; min-height:38px; display:list-item; align-content:center; }
+.wb-connection-help p { font-size:13px; color:#656560; }
+.wb-connection-help a { text-decoration:underline; text-underline-offset:3px; }
+.wb-connection-help summary:focus-visible { outline:3px solid #827118; outline-offset:3px; }

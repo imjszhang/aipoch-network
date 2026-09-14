@@ -28,7 +28,7 @@ class ControlledAdapter implements WorkbenchAdapter {
 }
 const make = () => { const adapter = new ControlledAdapter(); const library = new LibraryStore('test'); const engine = new WorkbenchEngine(fixture(), true, adapter, library); return { adapter, library, engine }; };
 const connect = (engine: WorkbenchEngine, adapter: ControlledAdapter) => { engine.connect(); adapter.confirm(); };
-const prepare = (engine: WorkbenchEngine, adapter: ControlledAdapter) => { engine.select(project, '/projects/?q=method&page=2'); connect(engine, adapter); engine.approve(true); };
+const prepare = (engine: WorkbenchEngine, adapter: ControlledAdapter) => { engine.select(project, '/projects/?q=method&page=2'); connect(engine, adapter); engine.resume(); engine.approve(true); };
 
 test('pairing extends the initial network wait once, is cancellable and cannot restore an old attempt', async t => {
   const adapter = new ControlledAdapter();
@@ -46,19 +46,142 @@ test('pairing extends the initial network wait once, is cancellable and cannot r
   adapter.confirm(1); assert.equal(engine.getSnapshot().connection, 'connected'); assert.equal(engine.getSnapshot().selected, project.id); assert.equal(engine.getSnapshot().approval, null);
 });
 
-test('selection survives connection; consent is required and send is deduplicated', t => {
+test('connection without a selection preserves the connection panel and sends nothing', t => {
+  const { engine, adapter } = make(); t.after(() => engine.dispose());
+  engine.openConnection(); connect(engine, adapter);
+  assert.equal(engine.getSnapshot().connection, 'connected');
+  assert.equal(engine.getSnapshot().overlay, 'connection');
+  assert.equal(engine.getSnapshot().selected, null);
+  assert.equal(engine.getSnapshot().resolution, null);
+  assert.equal(engine.getSnapshot().approval, null);
+  assert.equal(engine.getSnapshot().request, null);
+  assert.equal(engine.getSnapshot().referenceStatus, 'selected');
+  assert.equal(adapter.requests.length, 0);
+});
+
+test('connection success preserves a deliberately closed panel', t => {
+  const { engine, adapter } = make(); t.after(() => engine.dispose());
+  engine.select(project, '/projects/?q=method&page=2'); engine.connect();
+  engine.close();
+  adapter.confirm();
+  assert.equal(engine.getSnapshot().connection, 'connected');
+  assert.equal(engine.getSnapshot().overlay, null);
+  assert.equal(engine.getSnapshot().selected, project.id);
+  assert.equal(engine.getSnapshot().library.selection?.returnTo, '/projects/?q=method&page=2');
+  assert.equal(engine.getSnapshot().referenceStatus, 'needs-review');
+  assert.equal(engine.getSnapshot().approval, null);
+  assert.equal(engine.getSnapshot().request, null);
+  assert.equal(adapter.requests.length, 0);
+  engine.resume(); assert.equal(engine.getSnapshot().overlay, 'review');
+  assert.equal(engine.getSnapshot().selected, project.id);
+});
+
+test('connecting from manual reference review shows connection steps before explicit return to review', t => {
+  const { engine, adapter } = make(); t.after(() => engine.dispose());
+  engine.select(project, '/projects/?q=method&page=2'); engine.manualReview();
+  assert.equal(engine.getSnapshot().overlay, 'review');
+  engine.connect(); assert.equal(engine.getSnapshot().overlay, 'connection');
+  adapter.confirm();
+  assert.equal(engine.getSnapshot().connection, 'connected'); assert.equal(engine.getSnapshot().overlay, 'connection');
+  assert.equal(engine.getSnapshot().selected, project.id); assert.equal(engine.getSnapshot().approval, null);
+  assert.equal(engine.getSnapshot().referenceStatus, 'needs-review'); assert.equal(adapter.requests.length, 0);
+  assert.equal(engine.getSnapshot().library.selection?.returnTo, '/projects/?q=method&page=2');
+  engine.resume(); assert.equal(engine.getSnapshot().overlay, 'review'); assert.equal(engine.getSnapshot().selected, project.id);
+});
+
+test('selection survives connection and waits for explicit review; consent is required and send is deduplicated', t => {
   const { engine, adapter } = make(); t.after(() => engine.dispose());
   engine.select(project, '/projects/?q=method&page=2'); engine.send(); assert.equal(adapter.requests.length, 0);
   connect(engine, adapter);
-  assert.equal(engine.getSnapshot().overlay, 'review'); assert.equal(engine.getSnapshot().selected, project.id);
+  assert.equal(engine.getSnapshot().overlay, 'connection'); assert.equal(engine.getSnapshot().selected, project.id);
+  assert.equal(engine.getSnapshot().referenceStatus, 'needs-review'); assert.equal(engine.getSnapshot().approval, null);
   assert.equal(engine.getSnapshot().library.selection?.returnTo, '/projects/?q=method&page=2');
   engine.send(); assert.equal(adapter.requests.length, 0);
+  engine.resume(); assert.equal(engine.getSnapshot().overlay, 'review'); assert.equal(engine.getSnapshot().selected, project.id);
   engine.approve(true); engine.approve(false); engine.send(); assert.equal(adapter.requests.length, 0);
   engine.approve(true); engine.send(); engine.send(); assert.equal(adapter.requests.length, 1);
   engine.close(); assert.equal(engine.getSnapshot().referenceStatus, 'sending');
   engine.resume(); assert.equal(engine.getSnapshot().request?.id, adapter.requests[0].request.id);
   adapter.receipt(); adapter.receipt(); assert.equal(engine.getSnapshot().receipts.length, 1);
   assert.equal(engine.getSnapshot().referenceStatus, 'received');
+});
+
+test('selection changed during pairing is the object explicitly resumed after connection', t => {
+  const { engine, adapter } = make(); t.after(() => engine.dispose());
+  engine.select(project, '/projects/?q=first'); engine.connect();
+  engine.select(capability, '/capabilities/?q=second&page=3'); adapter.confirm();
+  assert.equal(engine.getSnapshot().overlay, 'connection');
+  assert.equal(engine.getSnapshot().selected, capability.id);
+  assert.equal(engine.getSnapshot().library.selection?.returnTo, '/capabilities/?q=second&page=3');
+  assert.equal(engine.getSnapshot().approval, null); assert.equal(adapter.requests.length, 0);
+  engine.resume(); engine.approve(true); engine.send();
+  assert.equal(engine.getSnapshot().overlay, 'review');
+  assert.equal(adapter.requests.length, 1); assert.equal(adapter.requests[0].request.objectId, capability.id);
+});
+
+test('catalog changes during pairing are included in the explicitly resumed reference', t => {
+  const { engine, adapter } = make(); t.after(() => engine.dispose());
+  engine.select(project); engine.connect();
+  const data = fixture(); data.snapshot_id = 'changed-during-pairing'; data.catalog.projects[0].source_refs[0].commit = 'd'.repeat(40);
+  engine.updateData(data, true); adapter.confirm();
+  assert.equal(engine.getSnapshot().overlay, 'connection'); assert.equal(engine.getSnapshot().approval, null);
+  engine.resume(); engine.approve(true); engine.send();
+  const current = resolveReference(data, project.id, true); assert.ok(current.status === 'ready');
+  assert.equal(adapter.requests[0].request.content, current.content);
+});
+
+for (const expiry of [70, 1000]) test(`pairing displays and enforces the same effective deadline for a ${expiry}ms offer`, t => {
+  t.mock.timers.enable({ apis: ['setTimeout', 'Date'], now: 1000 });
+  const adapter = new ControlledAdapter();
+  const engine = new WorkbenchEngine(fixture(), true, adapter, new LibraryStore('pairing-deadline'), { connect: 10, send: 15, pairing: 100 }); t.after(() => engine.dispose());
+  engine.select(project); engine.connect();
+  const first = adapter.connects[0]; const remaining = Math.min(expiry, 100);
+  first.progress!(first.attempt, { verificationCode: '123 456', expiresAt: Date.now() + expiry });
+  assert.equal(engine.getSnapshot().pairing?.expiresAt, Date.now() + remaining);
+  t.mock.timers.tick(remaining - 1); assert.equal(engine.getSnapshot().connection, 'connecting');
+  t.mock.timers.tick(1); assert.equal(engine.getSnapshot().connection, 'unconfirmed'); assert.equal(engine.getSnapshot().pairing, null);
+  adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'unconfirmed');
+  engine.connect(); adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'connecting');
+  adapter.confirm(1); assert.equal(engine.getSnapshot().connection, 'connected'); assert.equal(engine.getSnapshot().overlay, 'connection');
+  assert.equal(engine.getSnapshot().selected, project.id); assert.equal(engine.getSnapshot().approval, null); assert.equal(adapter.requests.length, 0);
+});
+
+for (const response of ['initial progress', 'initial completion', 'pairing completion'] as const) test(`late ${response} is rejected even before suspended timers run`, t => {
+  let now = 1000;
+  const adapter = new ControlledAdapter();
+  const engine = new WorkbenchEngine(fixture(), true, adapter, new LibraryStore('deadline-race'), { connect: 100, send: 15000, pairing: 1000 }, () => now); t.after(() => engine.dispose());
+  engine.select(project, '/projects/?q=method&page=2'); engine.connect();
+  const first = adapter.connects[0];
+  if (response === 'pairing completion') {
+    first.progress!(first.attempt, { verificationCode: '123 456', expiresAt: 2000 });
+    now = 2000;
+  } else now = 1100;
+  // Advance only wall time, leaving the timeout queue unserviced as after a suspended tab.
+  if (response === 'initial progress') first.progress!(first.attempt, { verificationCode: 'OLD CODE', expiresAt: 2100 });
+  else adapter.confirm(0);
+  assert.equal(engine.getSnapshot().connection, 'unconfirmed'); assert.equal(engine.getSnapshot().session, null);
+  assert.equal(engine.getSnapshot().pairing, null); assert.equal(engine.getSnapshot().overlay, 'connection');
+  assert.equal(engine.getSnapshot().selected, project.id); assert.equal(engine.getSnapshot().approval, null);
+  assert.equal(adapter.sessions.size, 0); assert.equal(adapter.requests.length, 0);
+  assert.match(engine.getSnapshot().reason, response === 'pairing completion' ? /Pairing expired/ : /No response was confirmed/);
+  engine.connect(); adapter.confirm(1);
+  assert.equal(engine.getSnapshot().connection, 'connected'); assert.equal(adapter.sessions.size, 1);
+  adapter.confirm(0); assert.equal(adapter.sessions.size, 1);
+  adapter.confirm(1); assert.equal(engine.checkSession(), true); assert.equal(adapter.sessions.size, 1);
+});
+
+test('the existing focus/session check expires pairing without waiting for suspended timers', t => {
+  let now = 1000;
+  const adapter = new ControlledAdapter();
+  const engine = new WorkbenchEngine(fixture(), true, adapter, new LibraryStore('deadline-focus'), { connect: 100, send: 15000, pairing: 1000 }, () => now); t.after(() => engine.dispose());
+  engine.openConnection(); engine.connect();
+  const first = adapter.connects[0];
+  first.progress!(first.attempt, { verificationCode: '123 456', expiresAt: 2000 });
+  engine.close(); now = 2000;
+  assert.equal(engine.checkSession(), false);
+  assert.equal(engine.getSnapshot().connection, 'unconfirmed'); assert.equal(engine.getSnapshot().pairing, null);
+  assert.equal(engine.getSnapshot().overlay, null); assert.match(engine.getSnapshot().reason, /Pairing expired/);
+  adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'unconfirmed'); assert.equal(adapter.sessions.size, 0);
 });
 test('all four receipt identities must match; wrong or duplicate receipts cannot succeed', t => {
   const { engine, adapter } = make(); t.after(() => engine.dispose()); prepare(engine, adapter); engine.send();
@@ -91,15 +214,20 @@ test('replacement keeps the second object’s return context even if the first r
 });
 test('cancel, retry and late connection callbacks never restore an old attempt', t => {
   const { engine, adapter } = make(); t.after(() => engine.dispose());
-  engine.connect(); engine.cancelConnection(); adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'unconfirmed');
+  engine.select(project, '/projects/?q=method&page=2');
+  engine.connect(); engine.cancelConnection(); engine.close(); adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'unconfirmed');
+  assert.equal(engine.getSnapshot().overlay, null);
   engine.connect(); adapter.confirm(0); assert.equal(engine.getSnapshot().connection, 'connecting');
   adapter.confirm(1); assert.equal(engine.getSnapshot().connection, 'connected');
+  assert.equal(engine.getSnapshot().overlay, null); assert.equal(engine.getSnapshot().selected, project.id);
+  assert.equal(engine.getSnapshot().library.selection?.returnTo, '/projects/?q=method&page=2');
+  assert.equal(engine.getSnapshot().approval, null); assert.equal(adapter.requests.length, 0);
 });
 test('stopped, disconnected and expired-session responses stay unconfirmed', t => {
   const { engine, adapter } = make(); t.after(() => engine.dispose()); prepare(engine, adapter); engine.send(); engine.stopWaiting();
   adapter.receipt(); assert.equal(engine.getSnapshot().receipts.length, 0); assert.match(engine.getSnapshot().notice, /does not withdraw/);
   engine.approve(true); engine.send(); engine.disconnect(); adapter.receipt(); assert.equal(engine.getSnapshot().receipts.length, 0);
-  connect(engine, adapter); engine.approve(true); engine.send(); adapter.sessions.clear(); adapter.receipt(); assert.equal(engine.getSnapshot().connection, 'interrupted'); assert.equal(engine.getSnapshot().receipts.length, 0);
+  connect(engine, adapter); engine.resume(); engine.approve(true); engine.send(); adapter.sessions.clear(); adapter.receipt(); assert.equal(engine.getSnapshot().connection, 'interrupted'); assert.equal(engine.getSnapshot().receipts.length, 0);
 });
 for (const [name, edit] of [
   ['snapshot', (data: SiteData) => { data.snapshot_id = 'snapshot-two'; }],
