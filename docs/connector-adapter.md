@@ -6,6 +6,8 @@
 
 2026-09-14 工作区增量：[Issue #5 局部修订](../design/changes/issue-5-connection-guidance.md)补充普通用户打开本机确认页的步骤、实际倒计时和连接后的明确对象接续。协议 1.0 与凭据边界不变；新候选的回归、视觉、真实用户四场景及发布状态见 [Issue #5 验收账本](verification/issue-5/README.md)。下文历史配对和发布证据不代表本次修订已验收或上线。
 
+2026-09-14 后续候选：[Issue #7 长期浏览器授权](../design/changes/issue-7-persistent-authorization.md)已获实施与验收授权，按 [ADR-025](architecture.md) 为真实适配器增加可选的持久身份与新会话恢复。下文当前连接流程据此更新；2026-09-13 发布与 Issue #5 验收段落保留原版本语义，均不能证明本候选已上线。当前验收状态集中于 [Issue #7 账本](verification/issue-7/README.md)。
+
 ## 边界
 
 Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-connector 的源码、SDK、数据库、IPC、凭据或测试服务；默认检查可完全离线执行。公开目录仍使用 `catalog/v1/manifest.json`，没有为连接修改目录 schema。
@@ -14,16 +16,28 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 ## 连接流程
 
-1. 用户明确点击 Connect Open-Science 后，向 `http://127.0.0.1:47821/v1/pairings` 发起配对。该端点仅指本机，不扫描网络或推断安装状态。
-2. 网页显示短校验码及在本地 Connector 核对、批准的说明。网页不能自行批准。授权主体、允许来源及本地批准由 Connector 实现并验证，CORS 不替代认证。
-3. 网页使用只可查询配对的 poll token 等待批准；首次网络请求限时 8 秒，人工配对最多 180 秒，可随时停止等待。
-4. 批准响应提供协议版本和限时会话。适配器再请求 `/v1/session`，确认同一 session、有效期及 `hostReady: true` 后，才向现有状态机报告 Connected。
-5. 会话 token 只保存在适配器私有内存，不进入 React 状态、本机偏好、URL、引用、日志或公开产物。每 5 秒重新确认；失败或超过 15 秒未核验，当前会话失效。完整刷新/新标签重新确认；普通站内导航保持有效会话。
-6. Disconnect 立即撤销本页使用资格，并尽力发送会话删除请求。网络失败不会被描述为远端一定撤销；研究项目和已经收到的引用不受网页断开影响。
+1. 页面加载后，显式 real 适配器只尝试恢复已保存的授权，不自动创建配对或生成新密钥。没有授权的访客继续公共浏览；用户明确点击 Connect Open-Science 才能发起新配对。
+2. 有保存身份时，先确认 `http://127.0.0.1:47821/v1/capabilities` 支持可选 `persistentAuthorization` 1.0，并匹配原 Connector 安装身份。浏览器验证一次性挑战的协议、目的、准确 origin、Connector 身份、授权 ID、挑战 ID、nonce 与截止时间后，使用 IndexedDB 中不可导出的 P-256 私钥签名；Connector 验证后签发新的短期会话。只持有本地元数据不能显示 Connected。
+3. 首次明确配对在能力和可靠存储可用时创建浏览器身份，`/v1/pairings` 携带公钥和显示名称。网页仍显示代码及三步确认说明，批准仍发生在独立本机页面。该页面默认“记住此浏览器”，用户可取消以仅批准本次会话；旧 Connector 或存储／加密不可用时回退原配对并明确不记住。
+4. 配对等待使用只能查询该请求的 poll token；人工配对最多 180 秒，可停止等待。支持恢复的初始阶段预算最多 30 秒，单次 HTTP 请求仍最多 8 秒；收到配对进度后切换到实际配对截止时间。恢复只验证既有资格，不隐式发起配对。
+5. 配对或恢复返回新会话后，再请求 `/v1/session`，确认同一 session、有效期、`hostReady: true`，以及适用时相同的授权 ID，然后才向状态机报告 Connected。授权持续有效与工作台当前可用是不同事实。
+6. 会话 token 只保存在适配器私有内存，不进入 React 状态、IndexedDB、localStorage/sessionStorage、URL、引用、日志或公开产物。正常站内导航保持当前会话；每 5 秒重新核验，失败或超过 15 秒未核验使当前会话失效。刷新、新标签和短会话自然到期可以重新证明持久身份恢复新会话，不能复活旧 token、审阅勾选或请求。
+7. Disconnect 立即取消本页资格、尽力删除本页会话，并把该 origin 在此浏览器中的自动恢复设为共同暂停；其他标签页、刷新和浏览器重启都应遵守，直到明确 Connect。只控制自动恢复，不删除长期授权和已收到的引用。跨标签通知不代替每页独立的会话验证。
+8. Forget this browser 先取消资格、清除持久恢复身份，再以短暂内存中保留的撤销证明请求 Connector 撤销该授权。Connector 撤销会使所有使用该授权的会话和挑战失效。远端不可达或结果不确定时，页面仅确认本地清除，并指向 Connector 的已授权浏览器管理；不虚称远端已撤销，不保留隐藏自动恢复凭证。不同浏览器和准确网站 origin 的授权分别处理。
+
+### 持久身份、权限与故障边界
+
+长期授权记录由 Connector 保存并绑定安装身份、准确 origin、浏览器公钥和稳定工作台身份，连续 90 天无有效使用失效。成功签发新会话或核验有效会话等实际使用可更新最后使用时间；失败、能力探测和挑战创建不能续期。正常 Connector/工作台重启保留授权，切换安装身份或稳定工作台不能沿用。Network 不读该数据库，凭版本化协议取得明确结果。
+
+浏览器本地持久化增加了一个经过用户批准的身份例外：IndexedDB 保存不可导出的 CryptoKey 与非 bearer 授权标识，localStorage 只保存暂停／忘记等控制记录；旧 Saved/Recent 库不迁移也不授予授权。密钥在生成及读取后会检查可用性，未知格式、损坏或存储受限不能假装“已记住”。Web Crypto 的不可导出限制直接取出私钥，但同源恶意脚本仍可能请求签名或窃取当前会话；它不是硬件绑定，也不能防止复制完整浏览器配置。私密浏览的数据保留由浏览器决定，无法保存时只连接当前访问。
+
+仅在有效身份和授权证明之后收到 `authorized_host_unavailable`，才可显示“已记住，等待 Open-Science”。Connector 不可达时显示未能核验，保留恢复信息但不声称客户端未安装。需要重新批准的撤销／90 天过期／未知授权／身份变化与暂时不可达分别处理。临时故障以 5、10、30、60 秒有限退避重试，回到页面触发的新周期也受间隔限制；暂停、取消和忘记会停止恢复。默认 unavailable 与独立 Demo 不参与该真实恢复机制。
+
+恢复后保持原对象与浏览位置，既有面板关闭时不重开；查看同一引用仍需显式继续，重新确认准确内容后才能发送。恢复、当前连接、引用接收与执行始终分别表达。Connector 候选契约位于其独立仓库 `docs/persistent-authorization.md`；本轮本地文件不是已发布协议提交，公开版本与联调候选身份在验收账本中补齐。
 
 ### Issue #5 的普通用户确认步骤
 
-已核实的 [Connector 公开连接说明](https://github.com/imjszhang/aipoch-connector/blob/74c066904326d2d5a21e5c9d949d31e20238c20c/README.md#connect-a-running-workbench)支持用户在 Open-Science 聊天中请求查看准确的待确认连接：`list_connection_requests` 定位同一来源／比对码，`review_connection` 打开本机确认页。页面应提供可复制请求、代码用途、三步说明和找不到确认页的帮助；比对码无需输入 Network 网页。用户亲自在打开的页面核对来源／代码并批准，代理不能代按批准。
+已核实的 [Connector 公开连接说明](https://github.com/imjszhang/aipoch-connector/blob/74c066904326d2d5a21e5c9d949d31e20238c20c/README.md#connect-a-running-workbench)支持用户在 Open-Science 聊天中请求查看准确的待确认连接：`list_connection_requests` 定位同一来源／比对码，`review_connection` 打开本机确认页。页面应提供可复制请求、代码用途、三步说明和找不到确认页的帮助；比对码无需输入 Network 网页。该历史普通用户流程要求用户亲自在打开的页面核对来源／代码并批准。Issue #7 本轮用户另行明确授权代理在 Firefox 中操作连接批准；验收必须按实际操作者记录，不能据此改写 Issue #5 的本人批准证据。
 
 该能力不提供网页直接打开确认链接的 API。[协议](https://github.com/imjszhang/aipoch-connector/blob/74c066904326d2d5a21e5c9d949d31e20238c20c/docs/protocol.md#pairing-and-sessions)的 private ticket 仅由 owner 侧生成，不能进入 Network、聊天、Network 网页 URL 参数或公开证据。复制请求只含当前网页 origin 和当前比对码；工具未发现时指导新建 Open-Science 会话及查看设置帮助。owner CLI `pair list`／`pair review ID` 是独立备用工具，测试人员临时补命令不满足普通用户验收。
 
@@ -31,7 +45,7 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 本次真实支持证据仍需限定环境：公开说明记录 macOS 已实现打开、Linux 使用 xdg-open、Windows 自动打开尚未实现。普通用户四场景须针对实际候选重新测试，公开能力文档不代替实测结果。
 
-生产 Connector 仅接受明确允许的 `https://aipoch.network` 来源；开发站来源必须在本地 Connector 显式配置。HTTPS 网页访问回环 HTTP 的浏览器权限、私有网络访问与兼容性应在受支持的实际浏览器验证，不能用路由模拟测试代替这一证据。失败时保留公开浏览、Get Open-Science 和完整手工引用，不新增 Open Open-Science 按钮。
+来源准入与配对授权分开。早期 Connector 只接受明确配置来源；其 alpha.4 已为准确的 `localhost`、`127.0.0.1`、`[::1]` HTTP origin 默认开放准入，允许本地配置关闭，其他来源仍按明确列表处理。任何获准 origin 仍需独立用户批准，来源准入不等于长期授权。HTTPS 网页访问回环 HTTP 的浏览器权限、私有网络访问与兼容性应在受支持的实际浏览器验证，不能用路由模拟测试代替这一证据。失败时保留公开浏览、Get Open-Science 和完整手工引用，不新增 Open Open-Science 按钮。
 
 ## 接收协议映射
 
@@ -52,7 +66,7 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 | 选择 | 命令 | 产物及用途 |
 | --- | --- | --- |
 | 默认 / 回退 | `npm run build` | `dist`，unavailable，不启动通信 |
-| 显式真实 | `npm run build:real` | `dist-real`，real，仅用户点击连接后访问本机端点 |
+| 显式真实 | `npm run build:real` | `dist-real`，real，明确连接或恢复此前已批准的浏览器身份时访问本机端点 |
 | 独立演示 | `npm run build:demo` | `dist-demo`，demo，持续标明模拟，不访问 Connector |
 
 模式仅由构建进程显式输入决定。`VITE_WORKBENCH_MODE=real` 用于真实模式，`unavailable` / `demo` 同样可显式选择；兼容既有 `VITE_WORKBENCH_DEMO=true`，冲突输入拒绝构建。Vite 环境文件、URL、本机存储不能切换已编译模式。浏览器、预生成页面和 `build-info.json` 必须一致。
