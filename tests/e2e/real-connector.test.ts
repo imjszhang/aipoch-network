@@ -132,7 +132,7 @@ test('pairing approval preserves the original object and exact review; disconnec
   await header(page).click(); await panel(page).getByRole('link', { name: 'Your research home', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Welcome back', exact: true })).toBeVisible();
   await header(page).click(); await panel(page).getByRole('button', { name: 'Disconnect', exact: true }).click();
-  await expect(header(page)).toHaveAccessibleName('Open-Science — Not connected');
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connection paused');
   await panel(page).getByRole('button', { name: 'Close Open-Science panel', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Science Open to All', exact: true })).toBeVisible();
   const storage = await page.evaluate(() => JSON.stringify({ ...localStorage }));
@@ -434,7 +434,7 @@ test('real receipt recovery continues beyond the former 15-second engine deadlin
   expect(state.references).toHaveLength(1);
 });
 
-test('refresh does not restore connection and a cancelled pairing cannot connect later', async ({ page }) => {
+test('a Connector without persistent authorization still requires pairing after refresh and ignores cancelled pairing', async ({ page }) => {
   const state = await bridge(page);
   await page.goto('./'); await header(page).click();
   await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();

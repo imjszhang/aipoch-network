@@ -3,12 +3,19 @@ export interface Request { id: string; sessionId: string; objectId: string; cont
 export interface Receipt extends Request { outcome: 'received' | 'continue'; receivedAt: number }
 export type Cancel = () => void;
 export interface PairingProgress { verificationCode: string; expiresAt: number }
+export type ConnectionMemoryStatus = 'none' | 'checking' | 'remembered' | 'paused' | 'host-unavailable' | 'unreachable' | 'reauthorize' | 'unsupported' | 'storage-unavailable' | 'forgetting' | 'forgotten';
+export interface ConnectionMemory { status: ConnectionMemoryStatus; message: string; canForget: boolean; retryable?: boolean }
 export interface WorkbenchAdapter {
   readonly demo: boolean;
   connect(attempt: string, receive: (attempt: string, session: Session | null, reason?: string) => void, progress?: (attempt: string, pairing: PairingProgress) => void): Cancel;
   send(request: Request, receive: (receipt: Receipt) => void, fail: (message: string) => void): Cancel;
   valid(session: Session): boolean;
   disconnect(session: Session): void;
+  getMemory?(): ConnectionMemory;
+  observeMemory?(receive: (state: ConnectionMemory) => void): Cancel;
+  restore?(attempt: string, receive: (attempt: string, session: Session | null, reason?: string) => void): Cancel;
+  pause?(): Promise<void>;
+  forget?(): Promise<void>;
   dispose(): void;
 }
 export class UnavailableAdapter implements WorkbenchAdapter {

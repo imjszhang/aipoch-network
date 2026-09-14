@@ -11,7 +11,7 @@ import { DEMO_MODE, WORKBENCH_MODE } from '../build-mode.js';
 export { DEMO_MODE };
 
 export const OPEN_SCIENCE_URL = 'https://aipoch.com/open-science';
-export const connectionLabels = { disconnected: 'Not connected', connecting: 'Connecting', connected: 'Connected', unconfirmed: 'Not confirmed', interrupted: 'Interrupted' };
+export const connectionLabels = { disconnected: 'Not connected', connecting: 'Connecting', restoring: 'Restoring connection', waiting: 'Waiting for connection', paused: 'Connection paused', forgetting: 'Forgetting browser', connected: 'Connected', unconfirmed: 'Not confirmed', interrupted: 'Interrupted' };
 type WorkbenchContextValue = {
   engine: WorkbenchEngine; state: WorkbenchState; data: SiteData; catalogReady: boolean;
   demo: boolean; review: boolean; connected: boolean;
@@ -32,11 +32,13 @@ export function WorkbenchProvider({ data, catalogReady, children }: { data: Site
     let library: LibraryStore;
     try { library = new LibraryStore(libraryKey(), window.localStorage); } catch { library = new LibraryStore(libraryKey(), { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } }); }
     ordinary.hydrateLibrary(library);
+    ordinary.startRestoration();
     const onStorage = (event: StorageEvent) => { if (event.key === libraryKey()) ordinary.storageEvent(event.newValue); };
-    const check = () => { ordinary.checkSession(); activeRef.current.checkSession(); };
-    window.addEventListener('storage', onStorage); window.addEventListener('focus', check);
+    const check = () => { ordinary.checkSession(); if (activeRef.current !== ordinary) activeRef.current.checkSession(); };
+    const onFocus = () => { ordinary.focusSession(); if (activeRef.current !== ordinary) activeRef.current.focusSession(); };
+    window.addEventListener('storage', onStorage); window.addEventListener('focus', onFocus);
     const interval = setInterval(check, 1000);
-    return () => { clearInterval(interval); window.removeEventListener('storage', onStorage); window.removeEventListener('focus', check); ordinary.dispose(); if (activeRef.current !== ordinary) activeRef.current.dispose(); };
+    return () => { clearInterval(interval); window.removeEventListener('storage', onStorage); window.removeEventListener('focus', onFocus); ordinary.dispose(); if (activeRef.current !== ordinary) activeRef.current.dispose(); };
   }, [ordinary]);
   useEffect(() => { ordinary.updateData(data, catalogReady); if (engine !== ordinary) engine.updateData(data, catalogReady); }, [data, catalogReady, ordinary, engine]);
   const enterReview = useCallback(() => { if (!DEMO_MODE || activeRef.current !== ordinary) return; ordinary.suspend(); setEngine(createEngine(data, catalogReady, true)); }, [ordinary, data, catalogReady]);
@@ -149,9 +151,23 @@ function PairingGuide() {
 function ConnectButtons() {
   const { engine, state, connected, demo } = useWorkbench();
   return <>{state.pairing && <PairingGuide key={state.attempt} />}<div className="wb-actions">
-    {!connected && (state.connection === 'connecting' ? <Button onClick={() => engine.cancelConnection()}>Cancel connection</Button> : <Button className="wb-primary" onClick={engine.connect}>Connect Open-Science<ArrowUpRight size={16} aria-hidden="true" /></Button>)}
+    {!connected && (['connecting', 'restoring'].includes(state.connection) ? <Button onClick={() => engine.cancelConnection()}>Cancel connection</Button> : <Button className="wb-primary" disabled={state.connection === 'forgetting'} onClick={engine.connect}>Connect Open-Science<ArrowUpRight size={16} aria-hidden="true" /></Button>)}
     {!connected && <a className="wb-button" href={OPEN_SCIENCE_URL} target="_blank" rel="noreferrer">Get Open-Science<ArrowUpRight size={16} aria-hidden="true" /></a>}
-  </div>{state.connection === 'connecting' && <p className="wb-muted">{demo ? 'Demo is simulating confirmation. ' : ''}Closing this panel keeps waiting. Cancel connection stops waiting on this website.</p>}{WORKBENCH_MODE === 'real' && ['unconfirmed', 'interrupted'].includes(state.connection) && <ConnectionHelp />}</>;
+  </div>{['connecting', 'restoring'].includes(state.connection) && <p className="wb-muted">{demo ? 'Demo is simulating confirmation. ' : ''}Closing this panel keeps waiting. Cancel connection stops waiting on this website.</p>}{WORKBENCH_MODE === 'real' && ['unconfirmed', 'interrupted', 'waiting'].includes(state.connection) && <ConnectionHelp />}</>;
+}
+function BrowserAuthorization() {
+  const { state, connected, engine } = useWorkbench();
+  const memory = state.memory;
+  if (WORKBENCH_MODE !== 'real' || (memory.status === 'none' && !connected)) return null;
+  const remembered = memory.status === 'remembered' && memory.canForget;
+  return <section className="wb-browser-authorization" aria-label="Browser authorization">
+    <p className="wb-eyebrow">{remembered ? 'This browser is remembered' : 'Browser authorization'}</p>
+    {memory.message && (connected || memory.message !== state.reason) && <p>{memory.message}</p>}
+    {remembered && <p>Refreshing, reopening this website or restarting the browser will verify the saved authorization before connecting. After 90 days without use, approve again on this computer.</p>}
+    {connected && !memory.canForget && <p>Only this visit is connected. A new visit will need approval again.</p>}
+    {memory.canForget && <>{memory.status !== 'storage-unavailable' && <p>Disconnect pauses automatic connection across this website’s tabs and browser restarts. Forgetting removes this browser’s authorization.</p>}<Button className="wb-text-action" disabled={state.connection === 'forgetting'} onClick={() => void engine.forget()}>Forget this browser</Button></>}
+    {['forgotten', 'storage-unavailable', 'reauthorize'].includes(memory.status) && <p><a href="https://github.com/imjszhang/aipoch-connector#manage-authorized-browsers" target="_blank" rel="noreferrer">Manage authorized browsers in AIPOCH Connector<ArrowUpRight size={13} aria-hidden="true" /></a></p>}
+  </section>;
 }
 function ConnectionPanel() {
   const { engine, state, connected } = useWorkbench();
@@ -160,8 +176,9 @@ function ConnectionPanel() {
     <ConnectionStatus />
     <p className="wb-muted">{connected ? 'Your workbench is connected. Connecting does not send a research reference.' : state.pairing ? 'Waiting for you to approve on the local confirmation page.' : state.reason || 'Start a connection, then confirm it on this computer. Your research selection stays here.'}</p>
     {connected ? <div className="wb-actions"><Link className="wb-button wb-primary" to="/" onClick={engine.close}>Your research home<ArrowRight size={16} aria-hidden="true" /></Link><Button onClick={() => engine.disconnect()}><Unplug size={15} aria-hidden="true" />Disconnect</Button></div> : <ConnectButtons />}
-    {selected && <section className="wb-pending-research" aria-label="Selected research"><p className="wb-eyebrow">{connected ? 'Ready when you are' : 'After connecting'}</p><h3>{selected}</h3><p className="wb-muted">{connected ? 'Continue to review this reference before choosing whether to send it.' : 'Your selection is kept. Connecting will not send it.'}</p>{connected ? <Button className="wb-text-action" onClick={engine.resume}>Review reference for {selected}<ArrowRight size={16} aria-hidden="true" /></Button> : state.connection !== 'connecting' && <Button className="wb-text-action" onClick={engine.manualReview}>Read or copy reference<ArrowRight size={16} aria-hidden="true" /></Button>}</section>}
-    {!connected && ['unconfirmed', 'interrupted'].includes(state.connection) && <Button className="wb-text-action wb-browse" onClick={engine.close}>Continue browsing</Button>}
+    <BrowserAuthorization />
+    {selected && <section className="wb-pending-research" aria-label="Selected research"><p className="wb-eyebrow">{connected ? 'Ready when you are' : 'After connecting'}</p><h3>{selected}</h3><p className="wb-muted">{connected ? 'Continue to review this reference before choosing whether to send it.' : 'Your selection is kept. Connecting will not send it.'}</p>{connected ? <Button className="wb-text-action" onClick={engine.resume}>Review reference for {selected}<ArrowRight size={16} aria-hidden="true" /></Button> : !['connecting', 'restoring', 'forgetting'].includes(state.connection) && <Button className="wb-text-action" onClick={engine.manualReview}>Read or copy reference<ArrowRight size={16} aria-hidden="true" /></Button>}</section>}
+    {!connected && ['unconfirmed', 'interrupted', 'waiting', 'paused', 'forgetting'].includes(state.connection) && <Button className="wb-text-action wb-browse" onClick={engine.close}>Continue browsing</Button>}
   </>;
 }
 function ReferenceFields({ reference }: { reference: ResearchReference }) {

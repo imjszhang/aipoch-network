@@ -154,3 +154,10 @@
 .wb-connection-help p { font-size:13px; color:#656560; }
 .wb-connection-help a { text-decoration:underline; text-underline-offset:3px; }
 .wb-connection-help summary:focus-visible { outline:3px solid #827118; outline-offset:3px; }
+
+.wb-browser-authorization { margin:20px 0; padding:16px; background:#f7f7f5; border:1px solid #d1d1cb; border-left:3px solid #ecd44c; }
+.wb-browser-authorization p { font-size:13px; line-height:1.65; color:#656560; margin:0 0 12px; overflow-wrap:anywhere; }
+.wb-browser-authorization .wb-eyebrow { color:#111; font-size:10px; }
+.wb-browser-authorization p:last-child { margin-bottom:0; }
+.wb-browser-authorization a { display:inline; text-underline-offset:3px; }
+.wb-browser-authorization a svg { display:inline; vertical-align:middle; margin-left:3px; }
