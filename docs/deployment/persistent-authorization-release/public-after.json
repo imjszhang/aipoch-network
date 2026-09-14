@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-09-14T16:08:08.985Z",
+  "sourceSha": "aa9db4065a0f269de83bdb5cbd1c155bab0d11e6",
+  "snapshotId": "ba987efd824c392f3b89d3f1",
+  "previousSnapshotId": "783da3beb22610ad5d9e3e2b",
+  "checks": [
+    {
+      "path": "",
+      "status": 200,
+      "bytes": 67247,
+      "sha256": "19cfd807bf49f806a4973db423b7d1669731e1783d76a3e65e68a48015cf5f52",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "build-info.json",
+      "status": 200,
+      "bytes": 158,
+      "sha256": "d3baf3bc8dd68db678897e655d7bd477f34a00d32b3a2079510c46a409f6c677",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "catalog/v1/manifest.json",
+      "status": 200,
+      "bytes": 1713,
+      "sha256": "8ed97e5afd69d6e55bd5b2548aa4a5394d5b5892a8f1f29e46aa9e8cdd7f7607",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "catalog/v1/snapshots/ba987efd824c392f3b89d3f1/manifest.json",
+      "status": 200,
+      "bytes": 1398,
+      "sha256": "6159bdc8027525b23920b348027388ee42a713c18117b13091300292d458ddc2",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "catalog/v1/snapshots/783da3beb22610ad5d9e3e2b/manifest.json",
+      "status": 200,
+      "bytes": 1398,
+      "sha256": "58d45e924a8a32a4b1713ff3f2f6c8d05615e8b18a4233e546b0381a20ee8afa",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "assets/index-DBnSjEyO.js",
+      "status": 200,
+      "bytes": 408171,
+      "sha256": "38f6b5adda79e180efd047ef9327d1e5465e76e6f1e387377a851895c4024d4c",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "explore/",
+      "status": 200,
+      "bytes": 19089,
+      "sha256": "2928c61a8048f573fdd00c86dcf5e0fda4ddd7a3a31bdfe2f4de0e3f52c43498",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "capabilities/",
+      "status": 200,
+      "bytes": 20199,
+      "sha256": "64aa1c42b55a74d48b99d8d155e4db8c1bfff597309d92a8f1c5e8b2b269cda4",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "organizations/",
+      "status": 200,
+      "bytes": 15627,
+      "sha256": "9774e1deee63513690044673cf7dd211c9a683db5e5ca6f5546bb57352bc97f0",
+      "matchesReviewedArtifact": true
+    },
+    {
+      "path": "third-party-notices.txt",
+      "status": 200,
+      "bytes": 125978,
+      "sha256": "a69195a3a1e443787b7c83ffbab8469d08061f7deff99988a875510f46c4a538",
+      "matchesReviewedArtifact": true
+    }
+  ],
+  "missingPathStatus": 404,
+  "scope": "Read-only public HTTPS checks and exact reviewed-byte comparisons; no browser pairing, reference sending or research execution."
+}

@@ -1,0 +1,9 @@
+{
+  "acceptance_policy": "exact-archive-v1",
+  "archive_digest_matches_metadata": true,
+  "bytes": 4467965,
+  "downloaded_archive_digest": "sha256:ee10048d2d4af4d48e95122a56b999a3d56a075a17a10528d424b2325c055dd0",
+  "file_tree_sha256": "sha256:cd88e963faf520b33f3ba7b17a57438d06ec2353b8d07ee98625c89deb704255",
+  "files": 232,
+  "github_artifact_digest": "sha256:ee10048d2d4af4d48e95122a56b999a3d56a075a17a10528d424b2325c055dd0"
+}

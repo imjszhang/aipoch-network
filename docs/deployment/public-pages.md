@@ -2,7 +2,7 @@
 
 2026-09-13：用户明确授权公开仓库、启用 GitHub Pages，并通过 Cloudflare 配置 aipoch.network。本记录取代此前文档中“等待公开授权 / 仅私有开发”的当前状态描述；此前验收记录保留为历史事实。
 
-最新发布：2026-09-13 已发布 Connector `real` 模式 alpha 产物，源码 `e3eb65895b1bebe64f3cefcf18996213bf525313`，snapshot `26ba825d9cdfbeeabbdb7b98`。发布校验和线上 HTTPS GET 已通过，生产浏览器端到端验收仍待完成；详见 [Connector alpha 发布记录](connector-alpha-release.md)。下面的首次部署、MIT 与 v9-r2 记录均为相应历史发布，不代表当前产物模式。
+最新发布：2026-09-15（北京时间）已发布长期授权支持的网站版本，源码 `aa9db4065a0f269de83bdb5cbd1c155bab0d11e6`，snapshot `ba987efd824c392f3b89d3f1`，沿用显式 `real` 模式。主分支 CI、候选校验、部署和线上检查通过；详见 [长期授权网站发布记录](persistent-authorization-release.md)。本次未发布 Connector 安装包，未重新执行正式域名配对验收。下面的记录保留为历史发布。
 
 ## 部署配置
 
