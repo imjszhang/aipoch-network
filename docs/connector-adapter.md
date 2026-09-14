@@ -33,7 +33,7 @@ Network 保持独立静态目录。适配器不导入 Open-Science 或 aipoch-co
 
 仅在有效身份和授权证明之后收到 `authorized_host_unavailable`，才可显示“已记住，等待 Open-Science”。Connector 不可达时显示未能核验，保留恢复信息但不声称客户端未安装。需要重新批准的撤销／90 天过期／未知授权／身份变化与暂时不可达分别处理。临时故障以 5、10、30、60 秒有限退避重试，回到页面触发的新周期也受间隔限制；暂停、取消和忘记会停止恢复。默认 unavailable 与独立 Demo 不参与该真实恢复机制。
 
-恢复后保持原对象与浏览位置，既有面板关闭时不重开；查看同一引用仍需显式继续，重新确认准确内容后才能发送。恢复、当前连接、引用接收与执行始终分别表达。Connector 候选契约位于其独立仓库 `docs/persistent-authorization.md`；本轮本地文件不是已发布协议提交，公开版本与联调候选身份在验收账本中补齐。
+恢复后保持原对象与浏览位置，既有面板关闭时不重开；查看同一引用仍需显式继续，重新确认准确内容后才能发送。恢复、当前连接、引用接收与执行始终分别表达。Connector [候选契约](https://github.com/imjszhang/aipoch-connector/blob/97f090b6a9822deb82f7380dc48a47ea15345eb1/docs/persistent-authorization.md)已固定到独立仓库的公开实现提交；公开源码、联调候选和正式发布状态在验收账本中分别记录。
 
 ### Issue #5 的普通用户确认步骤
 

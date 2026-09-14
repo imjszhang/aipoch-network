@@ -8,9 +8,9 @@
 
 | 项目 | 当前记录 |
 | --- | --- |
-| Network 起点与实现 | 起点 `c9a45a5`；持久授权和末次心跳修复已本地提交 `70584286ceef14e30e12d2e82d1c2a052351514d`，尚未推送；本次验收证据单独提交 |
-| Connector 起点与实现 | 起点 `28c25b9`；持久授权实现已本地提交 `97f090b6a9822deb82f7380dc48a47ea15345eb1`，尚未推送；本次验收证据单独提交 |
-| Connector 版本化契约 | Connector 实现提交 `97f090b6a9822deb82f7380dc48a47ea15345eb1` 的 `docs/persistent-authorization.md`；新增可选 persistent authorization 1.0，原浏览器／引用信封 1.0 和 catalog/v1 不变；待推送后公开固定提交链接才可访问 |
+| Network 起点与实现 | 起点 `c9a45a5`；持久授权和末次心跳修复已本地提交 `70584286ceef14e30e12d2e82d1c2a052351514d`，已推送；本次验收证据单独提交 |
+| Connector 起点与实现 | 起点 `28c25b9`；持久授权实现已本地提交 `97f090b6a9822deb82f7380dc48a47ea15345eb1`，已推送；本次验收证据单独提交 |
+| Connector 版本化契约 | Connector 实现提交 `97f090b6a9822deb82f7380dc48a47ea15345eb1` 的 `docs/persistent-authorization.md`；新增可选 persistent authorization 1.0，原浏览器／引用信封 1.0 和 catalog/v1 不变；[公开固定提交契约](https://github.com/imjszhang/aipoch-connector/blob/97f090b6a9822deb82f7380dc48a47ea15345eb1/docs/persistent-authorization.md)已通过 GitHub API 核对可访问 |
 | 真实构建 | 三模式 × 根／子路径六份产物已核验，目录快照 `2c239307f62698d0f5496274`；最新 real 根 bundle `index-CEmWR4P3.js`，子路径 `index-Dtwqf4Nw.js`；100 项源码摘要与 794 个产物文件摘要见 validation.json |
 | 本机候选运行时 | 已从本地 tarball 安装并通过正式 setup 启用；Connector `0.1.0-alpha.4` 候选 code SHA-256 `0ac1ed8682293b427ba6bb2b9acf892164120f951f9b6d88f9fc512eee1fe907`，Open-Science `0.29.0` 已就绪；未记录机器／安装实例标识 |
 | 浏览器持久内容 | IndexedDB 中非导出 P-256 CryptoKey、公钥、授权标识和版本；控制记录为暂停／忘记／修订等非 bearer 数据 |
@@ -92,3 +92,7 @@ Connector 候选完成 **133 项独立测试、类型检查、构建和最终独
 - 本地 implementation、真实验收、代码提交、远端 PR、Issue 关闭、公开发布分别记录。
 - 当前没有本次候选的公开部署证明。旧版本 real 已发布的事实，不代表此持久授权扩展已启用。
 - 最终完成审计必须逐项覆盖 P01–P13 与 H01–H10 的实际适用范围；缺失、间接或仅有规划的证据保持未通过。
+
+## 远端交接
+
+代码和证据已推送至 [Network 草稿 PR #8](https://github.com/imjszhang/aipoch-network/pull/8) 与 [Connector 草稿 PR #6](https://github.com/imjszhang/aipoch-connector/pull/6)。草稿保持关联两个 issue，等待剩余实际验收；未关闭 issue、合并或发布。远端 CI 结果由 PR 检查展示，不能从本地通过推断。
