@@ -2,6 +2,10 @@
 
 更新日期：2026-09-13。当前目标为 **aipoch-network-concept-v9-r2**。新版 HTML 表达视觉与交互，配套 MD 约束产品语义；原始 v6 与其已记录实施证据保留为历史。接收、实现和发布是三个独立状态。
 
+2026-09-14 局部修订：用户已授权实施 [Issue #5 连接引导与原对象接续计划](changes/issue-5-connection-guidance.md)。该记录补充真实本机确认步骤、等待／成功状态和显式对象接续；其余 v9-r2 范围不变。设计团队正式签认、实际实现、验收及发布分别记账，当前结果见 [Issue #5 验收记录](../docs/verification/issue-5/README.md)。原始参考五份文件不改写。
+
+2026-09-14 后续局部修订：用户进一步授权 [Issue #7 长期浏览器授权与恢复](changes/issue-7-persistent-authorization.md)。它在既有连接面板内增加记住／恢复／等待／暂停／忘记状态，允许先证明持久身份再恢复新的短期会话；不改原件、不直接信任本地 Connected 标记、不改变显式引用审阅。候选实施与真实浏览器证据见 [Issue #7 验收账本](../docs/verification/issue-7/README.md)，设计团队签认和公开发布继续分别记录。
+
 ## 当前目标与已核验原件
 
 | 文件 | 字节数 | SHA-256 |
@@ -34,6 +38,8 @@
 | 设计版本 | 适用范围 | 当前定位 | 实施证据 |
 | --- | --- | --- | --- |
 | v9-r2 / MD 修订 1 | 最新公共页面与连接体验整体 | 当前目标，按本页摘要固定 | [N/R/V 实施记录](../docs/verification/v9-r2/implementation-status.md)，未验证项保持待验收 |
+| v9-r2 + Issue #5 局部修订 | 真实配对引导、连接／保留对象分区、成功后明确继续 | 用户已授权实施；设计团队正式对齐待记录，不覆盖原件 | [设计变更与完整计划](changes/issue-5-connection-guidance.md)、[本次验收](../docs/verification/issue-5/README.md) |
+| v9-r2 + Issue #7 局部修订 | 长期浏览器身份、验证后恢复、跨标签暂停与忘记授权 | 用户已授权实施与验收；当前候选，不覆盖原件及历史通过记录 | [设计变更](changes/issue-7-persistent-authorization.md)、[本次验收](../docs/verification/issue-7/README.md) |
 | v6 | 首版公共目录前端 | 历史基线，原件保留 | 以下历史映射及原有验证报告，不代表 v9-r2 完成 |
 
 v6 原件 [aipoch-network-concept-v6.html](references/aipoch-network-concept-v6.html) 于 2026-09-12 接收，666,587 字节，SHA-256 `4adb13887c17306c798ef94ccc53d62d314c05fb01e359f214a8c0db259b552a`。以下保留当时的实现说明，里面的 GitHub 展示板和静态工作台适配已不再作为最新目标。

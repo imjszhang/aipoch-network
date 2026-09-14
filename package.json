@@ -28,7 +28,7 @@
     "dev:real": "VITE_WORKBENCH_MODE=real vite --host 127.0.0.1",
     "build:real": "VITE_WORKBENCH_MODE=real tsx scripts/build.ts --output dist-real",
     "preview:real": "tsx scripts/serve.ts --dir dist-real --port 4186",
-    "test:e2e:real": "TEST_MODE=real TEST_OUTPUT=dist-real TEST_PORT=4186 playwright test real-connector.test.ts"
+    "test:e2e:real": "TEST_MODE=real TEST_OUTPUT=dist-real TEST_PORT=4186 playwright test real-connector.test.ts persistent-connection.test.ts"
   },
   "dependencies": {
     "ajv": "8.20.0",

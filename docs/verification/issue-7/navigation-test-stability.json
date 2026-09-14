@@ -1,0 +1,116 @@
+{
+  "scope": "Test precondition stabilization only. Product source, immutable DBnSjEyO candidate and real acceptance are unchanged.",
+  "originalFailure": {
+    "head": "a928af29e2830a86f76bea84b90874908543a333",
+    "run": "https://github.com/imjszhang/aipoch-network/actions/runs/34861517237",
+    "step": "Verify project subpath routes and browser behavior",
+    "test": "desktop › navigation-state.test.ts › fast scroll then Back and Forward restores the departing page position",
+    "failure": "Before Back/Forward, initial scrollY was 0 instead of greater than 500.",
+    "groupResult": {
+      "passed": 79,
+      "skipped": 80,
+      "failed": 1
+    },
+    "remainingGroups": "Demo root/subpath and real root/subpath not executed in this PR run."
+  },
+  "causality": {
+    "probe": "Held only the existing navigation finish second animation-frame callback; no response, source, product or artifact changes.",
+    "results": [
+      {
+        "base": "/",
+        "waitForFinish": false,
+        "sourcesReady": {
+          "focused": "",
+          "y": 0
+        },
+        "scroll": {
+          "immediatelyAfterScroll": 700,
+          "afterTwoFrames": 0,
+          "focused": "content"
+        },
+        "backForwardRestored": false
+      },
+      {
+        "base": "/",
+        "waitForFinish": true,
+        "sourcesReady": {
+          "focused": "",
+          "y": 0
+        },
+        "scroll": {
+          "immediatelyAfterScroll": 700,
+          "afterTwoFrames": 700,
+          "focused": "content"
+        },
+        "backForwardRestored": true
+      },
+      {
+        "base": "/aipoch-network/",
+        "waitForFinish": false,
+        "sourcesReady": {
+          "focused": "",
+          "y": 0
+        },
+        "scroll": {
+          "immediatelyAfterScroll": 700,
+          "afterTwoFrames": 0,
+          "focused": "content"
+        },
+        "backForwardRestored": false
+      },
+      {
+        "base": "/aipoch-network/",
+        "waitForFinish": true,
+        "sourcesReady": {
+          "focused": "",
+          "y": 0
+        },
+        "scroll": {
+          "immediatelyAfterScroll": 700,
+          "afterTwoFrames": 700,
+          "focused": "content"
+        },
+        "backForwardRestored": true
+      }
+    ]
+  },
+  "verification": {
+    "checks": [
+      {
+        "base": "/",
+        "stats": {
+          "startTime": "2026-09-14T15:28:48.239Z",
+          "duration": 3747.733,
+          "expected": 10,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "report": "aipoch-issue7-nav-after-root-report/results.json",
+        "reportSha256": "065c4ba95ee54babf3caffa3bf44be1a42aac98119e9db31f677cfdef8f06dd2",
+        "artifactFiles": 132,
+        "allArtifactsUnchanged": true
+      },
+      {
+        "base": "/aipoch-network/",
+        "stats": {
+          "startTime": "2026-09-14T15:28:48.241Z",
+          "duration": 3732.7799999999997,
+          "expected": 10,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "report": "aipoch-issue7-nav-after-sub-report/results.json",
+        "reportSha256": "5e45f78a0d7b56838039c5b9e33c2b9edbb24bc133003f6437a029f6f5771933",
+        "artifactFiles": 132,
+        "allArtifactsUnchanged": true
+      }
+    ]
+  },
+  "change": {
+    "file": "tests/e2e/navigation-state.test.ts",
+    "newSha256": "82daf57f006237291ce2ba51245ea8dc1c6bb27c4d0e54c38e6573f94df30ced",
+    "behavior": "Wait for the existing #content focus handoff before setting the departing scroll position. Original initial-scroll and Back/Forward assertions retained. No sleep, retries or skip added."
+  }
+}

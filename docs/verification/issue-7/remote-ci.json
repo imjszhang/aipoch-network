@@ -1,0 +1,378 @@
+{
+  "verifiedAt": "2026-09-14T13:31:33.563010+00:00",
+  "purpose": "Exact pushed HEAD remote CI evidence. Read-only verification; no repository changes, merges, issue closures or local tests.",
+  "repositories": [
+    {
+      "repository": "imjszhang/aipoch-network",
+      "expectedHeadSha": "16b5d1ed493e4d01eb8fce121cc4313371116ba4",
+      "pullRequest": {
+        "headRefOid": "16b5d1ed493e4d01eb8fce121cc4313371116ba4",
+        "isDraft": true,
+        "number": 8,
+        "state": "OPEN",
+        "url": "https://github.com/imjszhang/aipoch-network/pull/8"
+      },
+      "issue": {
+        "number": 7,
+        "state": "OPEN",
+        "url": "https://github.com/imjszhang/aipoch-network/issues/7"
+      },
+      "runs": [
+        {
+          "databaseId": 34848713787,
+          "event": "pull_request",
+          "headSha": "16b5d1ed493e4d01eb8fce121cc4313371116ba4",
+          "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34848713787",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-09-14T13:21:11Z",
+          "updatedAt": "2026-09-14T13:30:12Z",
+          "jobs": [
+            {
+              "databaseId": 103990907550,
+              "name": "Contracts, pipeline, and static website",
+              "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34848713787/job/103990907550",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T13:21:13Z",
+              "completedAt": "2026-09-14T13:30:11Z"
+            }
+          ],
+          "logSha256": "9b88c735c23e5d5234ea57f820a32a9890c6d11e6463cf2c2c03a7e3d11c716a",
+          "unitCounts": {
+            "tests": 373,
+            "suites": 0,
+            "pass": 373,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "browserSteps": [
+            {
+              "mode": "unavailable",
+              "base": "/",
+              "step": "Verify static routes and browser behavior",
+              "passed": 80,
+              "skipped": 80,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "80 skipped",
+                "80 passed (47.8s)"
+              ]
+            },
+            {
+              "mode": "unavailable",
+              "base": "/aipoch-network/",
+              "step": "Verify project subpath routes and browser behavior",
+              "passed": 80,
+              "skipped": 80,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "80 skipped",
+                "80 passed (46.6s)"
+              ]
+            },
+            {
+              "mode": "demo",
+              "base": "/",
+              "step": "Verify normal and isolated Demo journeys",
+              "passed": 100,
+              "skipped": 60,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "60 skipped",
+                "100 passed (1.4m)"
+              ]
+            },
+            {
+              "mode": "demo",
+              "base": "/aipoch-network/",
+              "step": "Verify Demo project subpath navigation and state",
+              "passed": 100,
+              "skipped": 60,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "60 skipped",
+                "100 passed (1.4m)"
+              ]
+            },
+            {
+              "mode": "real",
+              "base": "/",
+              "step": "Verify the real browser adapter against protocol fixtures",
+              "passed": 55,
+              "skipped": 1,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "1 skipped",
+                "55 passed (1.7m)"
+              ],
+              "invokedBothSuites": true,
+              "invocationEvidence": [
+                "##[group]Run npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts",
+                "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+              ]
+            },
+            {
+              "mode": "real",
+              "base": "/aipoch-network/",
+              "step": "Verify the real adapter preserves project subpath navigation",
+              "passed": 55,
+              "skipped": 1,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "1 skipped",
+                "55 passed (1.7m)"
+              ],
+              "invokedBothSuites": true,
+              "invocationEvidence": [
+                "##[group]Run npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts",
+                "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+              ]
+            }
+          ],
+          "browserTotal": {
+            "passed": 470,
+            "skipped": 282,
+            "failed": 0,
+            "flaky": 0
+          }
+        },
+        {
+          "databaseId": 34848710983,
+          "event": "push",
+          "headSha": "16b5d1ed493e4d01eb8fce121cc4313371116ba4",
+          "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34848710983",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-09-14T13:21:09Z",
+          "updatedAt": "2026-09-14T13:30:07Z",
+          "jobs": [
+            {
+              "databaseId": 103990898932,
+              "name": "Contracts, pipeline, and static website",
+              "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34848710983/job/103990898932",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T13:21:13Z",
+              "completedAt": "2026-09-14T13:30:06Z"
+            }
+          ],
+          "logSha256": "954c7700a3c06ee131b975722529a0394378836a67c363ed238524ff3caf6c11",
+          "unitCounts": {
+            "tests": 373,
+            "suites": 0,
+            "pass": 373,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "browserSteps": [
+            {
+              "mode": "unavailable",
+              "base": "/",
+              "step": "Verify static routes and browser behavior",
+              "passed": 80,
+              "skipped": 80,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "80 skipped",
+                "80 passed (48.2s)"
+              ]
+            },
+            {
+              "mode": "unavailable",
+              "base": "/aipoch-network/",
+              "step": "Verify project subpath routes and browser behavior",
+              "passed": 80,
+              "skipped": 80,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "80 skipped",
+                "80 passed (45.7s)"
+              ]
+            },
+            {
+              "mode": "demo",
+              "base": "/",
+              "step": "Verify normal and isolated Demo journeys",
+              "passed": 100,
+              "skipped": 60,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "60 skipped",
+                "100 passed (1.4m)"
+              ]
+            },
+            {
+              "mode": "demo",
+              "base": "/aipoch-network/",
+              "step": "Verify Demo project subpath navigation and state",
+              "passed": 100,
+              "skipped": 60,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "60 skipped",
+                "100 passed (1.4m)"
+              ]
+            },
+            {
+              "mode": "real",
+              "base": "/",
+              "step": "Verify the real browser adapter against protocol fixtures",
+              "passed": 55,
+              "skipped": 1,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "1 skipped",
+                "55 passed (1.7m)"
+              ],
+              "invokedBothSuites": true,
+              "invocationEvidence": [
+                "##[group]Run npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts",
+                "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+              ]
+            },
+            {
+              "mode": "real",
+              "base": "/aipoch-network/",
+              "step": "Verify the real adapter preserves project subpath navigation",
+              "passed": 55,
+              "skipped": 1,
+              "failed": 0,
+              "flaky": 0,
+              "summary": [
+                "1 skipped",
+                "55 passed (1.7m)"
+              ],
+              "invokedBothSuites": true,
+              "invocationEvidence": [
+                "##[group]Run npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts",
+                "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+              ]
+            }
+          ],
+          "browserTotal": {
+            "passed": 470,
+            "skipped": 282,
+            "failed": 0,
+            "flaky": 0
+          }
+        }
+      ]
+    },
+    {
+      "repository": "imjszhang/aipoch-connector",
+      "expectedHeadSha": "46e22ed49b4bfc37cda89150190d8b1fd7ad0327",
+      "pullRequest": {
+        "headRefOid": "46e22ed49b4bfc37cda89150190d8b1fd7ad0327",
+        "isDraft": true,
+        "number": 6,
+        "state": "OPEN",
+        "url": "https://github.com/imjszhang/aipoch-connector/pull/6"
+      },
+      "issue": {
+        "number": 5,
+        "state": "OPEN",
+        "url": "https://github.com/imjszhang/aipoch-connector/issues/5"
+      },
+      "runs": [
+        {
+          "databaseId": 34848721968,
+          "event": "pull_request",
+          "headSha": "46e22ed49b4bfc37cda89150190d8b1fd7ad0327",
+          "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34848721968",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-09-14T13:21:15Z",
+          "updatedAt": "2026-09-14T13:22:23Z",
+          "jobs": [
+            {
+              "databaseId": 103990932701,
+              "name": "check",
+              "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34848721968/job/103990932701",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T13:21:17Z",
+              "completedAt": "2026-09-14T13:22:22Z"
+            }
+          ],
+          "logSha256": "d78ebefd605d3c591736fbe1b4351d1dd970dc824c4e3c8ed43ada666c8869ed",
+          "unitCounts": {
+            "tests": 133,
+            "suites": 0,
+            "pass": 133,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "packageSmoke": {
+            "conclusion": "success",
+            "step": "Pack and install in an independent directory",
+            "independentPackInstall": true,
+            "publicSdkCliMcpSessionIsolationAndDurableRestart": true,
+            "usesTemporaryRuntimeAndSyntheticSdk": true,
+            "realDesktopOrBrowserAcceptance": false
+          }
+        },
+        {
+          "databaseId": 34848716712,
+          "event": "push",
+          "headSha": "46e22ed49b4bfc37cda89150190d8b1fd7ad0327",
+          "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34848716712",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-09-14T13:21:12Z",
+          "updatedAt": "2026-09-14T13:22:36Z",
+          "jobs": [
+            {
+              "databaseId": 103990916775,
+              "name": "check",
+              "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34848716712/job/103990916775",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T13:21:15Z",
+              "completedAt": "2026-09-14T13:22:36Z"
+            }
+          ],
+          "logSha256": "2593b5343ea693bc87116ef441e11362accf340a4ae1696bd775f9bd89ec5767",
+          "unitCounts": {
+            "tests": 133,
+            "suites": 0,
+            "pass": 133,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "packageSmoke": {
+            "conclusion": "success",
+            "step": "Pack and install in an independent directory",
+            "independentPackInstall": true,
+            "publicSdkCliMcpSessionIsolationAndDurableRestart": true,
+            "usesTemporaryRuntimeAndSyntheticSdk": true,
+            "realDesktopOrBrowserAcceptance": false
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Network browser checks use protocol fixtures, not a real desktop Connector or Firefox approval.",
+    "Repeated push and pull_request runs validate the same candidate; do not add their counts as distinct test coverage."
+  ]
+}

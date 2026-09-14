@@ -81,7 +81,7 @@ jobs:
           TEST_MODE: real
           TEST_OUTPUT: dist-real
           TEST_PORT: '4187'
-        run: npx --no-install playwright test real-connector.test.ts
+        run: npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts
       - name: Build the real transport at the Pages project subpath
         env:
           SITE_BASE: /aipoch-network/
@@ -93,4 +93,4 @@ jobs:
           TEST_BASE: /aipoch-network/
           TEST_OUTPUT: dist-real-subpath
           TEST_PORT: '4188'
-        run: npx --no-install playwright test real-connector.test.ts
+        run: npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts

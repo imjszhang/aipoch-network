@@ -6,14 +6,18 @@ const header = (page: Page) => page.getByRole('button', { name: /^Open-Science �
 const panel = (page: Page) => page.getByRole('dialog');
 
 // HTTP protocol fixtures exercise the actual browser adapter. They are not a live Connector smoke test.
-async function bridge(page: Page, options: { loseReferenceResponse?: boolean; missingReceipts?: number; holdReceipt?: boolean; receiptReadyAfterMs?: number } = {}) {
+async function bridge(page: Page, options: { loseReferenceResponse?: boolean; missingReceipts?: number; holdReceipt?: boolean; receiptReadyAfterMs?: number; firstPairingLifetimeMs?: number; holdFirstPairing?: boolean; pairingFailureStatus?: number } = {}) {
   let releaseReceipt!: () => void;
   const receiptGate = new Promise<void>(resolve => { releaseReceipt = resolve; });
+  let releasePairing!: () => void;
+  const pairingGate = new Promise<void>(resolve => { releasePairing = resolve; });
   let missingReceipts = options.missingReceipts ?? 0;
   const state = {
     approved: false, ready: true, mismatch: false, references: [] as Array<Record<string, unknown>>, referencePostedAt: 0, deleted: false,
     receiptRequests: [] as string[], receiptResponses: [] as Array<{ status: number; body: Record<string, unknown> }>,
-    expectCancelledReceipt: false, releaseReceipt,
+    expectCancelledReceipt: false, releaseReceipt, releasePairing,
+    pairingRequests: [] as Array<{ attemptId: string; pairingId: string; pollToken: string; verificationCode: string; expiresAt: number }>,
+    pairingAttempts: [] as string[], pairingPolls: [] as string[], pairingResponses: [] as string[], sessionChecks: 0,
   };
   const receiptFor = (reference: Record<string, unknown>) => ({
     protocolVersion: '1.0', requestId: reference.requestId, sessionId: reference.sessionId, objectId: reference.objectId,
@@ -26,9 +30,30 @@ async function bridge(page: Page, options: { loseReferenceResponse?: boolean; mi
     const headers = { 'Access-Control-Allow-Origin': request.headers().origin ?? '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Access-Control-Allow-Private-Network': 'true', 'Content-Type': 'application/json' };
     if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers });
     let body: unknown;
-    if (path === '/v1/pairings') body = { pairingId: 'fixture-pairing', pollToken: 'fixture-poll-token', verificationCode: '456 123', expiresAt: Date.now() + 180000 };
-    else if (path === '/v1/pairings/fixture-pairing') body = state.approved ? { status: 'approved', session: { id: 'fixture-session', token: 'fixture-session-token', expiresAt, protocolVersion: '1.0' } } : { status: 'pending' };
-    else if (path === '/v1/session') { if (request.method() === 'DELETE') state.deleted = true; body = { id: 'fixture-session', expiresAt, hostReady: state.ready && !state.deleted }; }
+    if (path === '/v1/pairings') {
+      expect(request.method()).toBe('POST');
+      const { attemptId } = request.postDataJSON() as { attemptId: string };
+      state.pairingAttempts.push(attemptId);
+      if (options.pairingFailureStatus) return route.fulfill({ status: options.pairingFailureStatus, headers, body: JSON.stringify({ error: { code: 'origin_not_allowed', message: 'This website has not been allowed by the local owner.' } }) });
+      const number = state.pairingRequests.length + 1;
+      const pairing = { attemptId, pairingId: `fixture-pairing-${number}`, pollToken: `fixture-poll-token-${number}`, verificationCode: `456 ${122 + number}`, expiresAt: Date.now() + (number === 1 ? options.firstPairingLifetimeMs ?? 180000 : 180000) };
+      state.pairingRequests.push(pairing);
+      body = pairing;
+    } else if (path.startsWith('/v1/pairings/')) {
+      const pairingId = decodeURIComponent(path.slice('/v1/pairings/'.length));
+      const pairing = state.pairingRequests.find(value => value.pairingId === pairingId);
+      expect(pairing).toBeDefined();
+      expect(request.headers().authorization).toBe(`Bearer ${pairing!.pollToken}`);
+      state.pairingPolls.push(pairingId);
+      body = state.approved ? { status: 'approved', session: { id: 'fixture-session', token: 'fixture-session-token', expiresAt, protocolVersion: '1.0' } } : { status: 'pending' };
+      if (options.holdFirstPairing && pairingId === state.pairingRequests[0]!.pairingId) {
+        await pairingGate;
+        try { await route.fulfill({ status: 200, headers, body: JSON.stringify(body) }); }
+        catch (error) { if (!request.failure()) throw error; }
+        state.pairingResponses.push(pairingId);
+        return;
+      }
+    } else if (path === '/v1/session') { if (request.method() === 'DELETE') state.deleted = true; else state.sessionChecks++; body = { id: 'fixture-session', expiresAt, hostReady: state.ready && !state.deleted }; }
     else if (path === '/v1/references') {
       expect(request.method()).toBe('POST');
       if (!state.referencePostedAt) state.referencePostedAt = Date.now();
@@ -70,6 +95,9 @@ async function sendScipyReference(page: Page) {
   await page.goto('./projects/project~scipy/');
   await page.getByRole('button', { name: 'Connect to open: SciPy', exact: true }).click();
   await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await panel(page).getByRole('button', { name: 'Review reference for SciPy', exact: true }).click();
   await expect(panel(page)).toHaveAccessibleName('Review research reference');
   await panel(page).getByRole('checkbox', { name: /^I reviewed this exact object/ }).check();
   await panel(page).getByRole('button', { name: 'Send reference', exact: true }).click();
@@ -87,6 +115,10 @@ test('pairing approval preserves the original object and exact review; disconnec
   expect(state.references).toHaveLength(0);
   state.approved = true;
   await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await expect(panel(page).getByRole('button', { name: 'Send reference', exact: true })).toHaveCount(0);
+  expect(state.references).toHaveLength(0);
+  await panel(page).getByRole('button', { name: 'Review reference for SciPy', exact: true }).click();
   await expect(panel(page)).toHaveAccessibleName('Review research reference');
   await expect(panel(page)).toContainText('SciPy');
   await expect(page).toHaveURL(/projects\/project~scipy\/$/);
@@ -100,21 +132,221 @@ test('pairing approval preserves the original object and exact review; disconnec
   await header(page).click(); await panel(page).getByRole('link', { name: 'Your research home', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Welcome back', exact: true })).toBeVisible();
   await header(page).click(); await panel(page).getByRole('button', { name: 'Disconnect', exact: true }).click();
-  await expect(header(page)).toHaveAccessibleName('Open-Science — Not connected');
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connection paused');
   await panel(page).getByRole('button', { name: 'Close Open-Science panel', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Science Open to All', exact: true })).toBeVisible();
   const storage = await page.evaluate(() => JSON.stringify({ ...localStorage }));
   expect(storage).toContain('project:scipy'); expect(storage).not.toContain('fixture-session-token'); expect(storage).not.toContain('fixture-poll-token');
 });
 
+test('connection without a selection explains code comparison, keeps help available, and sends nothing', async ({ page }) => {
+  const state = await bridge(page);
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new DOMException('Denied', 'NotAllowedError'); } } });
+  });
+  await page.goto('./');
+  await header(page).click();
+  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(panel(page)).toContainText('456 123');
+  await expect(panel(page)).toContainText('Do not enter this code');
+  const timer = panel(page).getByRole('timer');
+  await expect(timer).toBeVisible();
+  await expect(timer).toHaveAttribute('aria-live', 'off');
+  const initialCountdown = await timer.textContent();
+  await expect(timer).not.toHaveText(initialCountdown!);
+  const requestText = panel(page).getByRole('textbox', { name: 'Request for Open-Science', exact: true });
+  const prompt = await requestText.inputValue();
+  expect(prompt).toContain(new URL(page.url()).origin);
+  expect(prompt).toContain('456 123');
+  expect(prompt).toContain('Do not approve it for me.');
+  expect(prompt).not.toMatch(/fixture-(?:pairing|poll-token|session-token)/);
+  await panel(page).getByRole('button', { name: 'Copy request', exact: true }).click();
+  await expect(panel(page)).toContainText('Copy is unavailable. Select the request above and copy it manually.');
+  await expect(requestText).toBeFocused();
+  expect(await requestText.evaluate(element => element instanceof HTMLTextAreaElement ? [element.selectionStart, element.selectionEnd] : null)).toEqual([0, prompt.length]);
+  const help = panel(page).locator('summary', { hasText: 'Can’t find the confirmation page?' });
+  await expect(help).toBeVisible();
+  await help.click();
+  await expect(help.locator('..')).toHaveAttribute('open', '');
+  await expect(help.locator('..')).toContainText('Connector');
+  await page.keyboard.press('Tab');
+  await expect(panel(page).getByRole('link', { name: 'connection setup help', exact: true })).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(help).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(help.locator('..')).not.toHaveAttribute('open', '');
+  await page.keyboard.press('Enter');
+  await expect(help.locator('..')).toHaveAttribute('open', '');
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connecting');
+  await expect(panel(page).getByRole('button', { name: 'Read or copy reference', exact: true })).toHaveCount(0);
+  expect(state.references).toHaveLength(0);
+
+  state.approved = true;
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await expect(panel(page).getByRole('timer')).toHaveCount(0);
+  await expect(panel(page).getByRole('button', { name: /^Review reference for / })).toHaveCount(0);
+  await expect(panel(page).getByRole('heading', { name: /^Reference received/ })).toHaveCount(0);
+  expect(state.references).toHaveLength(0);
+  await panel(page).getByRole('link', { name: 'Your research home', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Research activity', exact: true }).getByRole('link', { name: 'Reference receipts', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'No reference receipts yet', exact: true })).toBeVisible();
+});
+
+test('starting a connection from manual reference review returns to the connection steps and requires explicit continuation', async ({ page }) => {
+  const state = await bridge(page);
+  await page.goto('./capabilities/resource~scipy-tutorial/');
+  await page.getByRole('button', { name: 'Connect to use: SciPy tutorial at a reviewed revision', exact: true }).click();
+  await panel(page).getByRole('button', { name: 'Read or copy reference', exact: true }).click();
+  await expect(panel(page)).toHaveAccessibleName('Review research reference');
+  await expect(panel(page).getByRole('button', { name: 'Send reference', exact: true })).toHaveCount(0);
+  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await expect(panel(page)).toContainText('456 123');
+  state.approved = true;
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  expect(state.references).toHaveLength(0);
+  await panel(page).getByRole('button', { name: 'Review reference for SciPy tutorial at a reviewed revision', exact: true }).click();
+  await expect(panel(page)).toHaveAccessibleName('Review research reference');
+  await expect(panel(page)).toContainText('resource:scipy-tutorial');
+  await expect(panel(page)).toContainText('doc/source/tutorial/index.rst');
+  await expect(panel(page).getByRole('button', { name: 'Send reference', exact: true })).toBeDisabled();
+  expect(state.references).toHaveLength(0);
+});
+
+test('a rejected initial pairing keeps setup help and public browsing available without inventing a code', async ({ page }) => {
+  const state = await bridge(page, { pairingFailureStatus: 403 });
+  await page.goto('./');
+  await header(page).click();
+  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Not confirmed');
+  await expect(panel(page).getByRole('timer')).toHaveCount(0);
+  await expect(panel(page).getByRole('textbox', { name: 'Request for Open-Science', exact: true })).toHaveCount(0);
+  const help = panel(page).locator('summary', { hasText: 'Can’t find the confirmation page?' });
+  await expect(help).toBeVisible();
+  await help.click();
+  await expect(panel(page).getByRole('link', { name: 'connection setup help', exact: true })).toBeVisible();
+  await expect(panel(page).getByRole('link', { name: 'connection setup help', exact: true })).toHaveAttribute('href', 'https://github.com/imjszhang/aipoch-connector#connect-a-running-workbench');
+  await expect(panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true })).toBeVisible();
+  expect(state.pairingAttempts).toHaveLength(1);
+  expect(state.pairingRequests).toHaveLength(0);
+  expect(state.pairingPolls).toHaveLength(0);
+  expect(state.sessionChecks).toBe(0);
+  expect(state.references).toHaveLength(0);
+  await panel(page).getByRole('button', { name: 'Continue browsing', exact: true }).click();
+  await expect(panel(page)).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Science Open to All', exact: true })).toBeVisible();
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Not confirmed');
+  expect(state.pairingAttempts).toHaveLength(1);
+});
+
+for (const outcome of ['approval', 'expiry'] as const) {
+  test(`focus stays in the connection dialog when ${outcome} removes the focused guide control`, async ({ page }) => {
+    const state = await bridge(page, { firstPairingLifetimeMs: outcome === 'expiry' ? 2500 : 180000 });
+    await page.goto('./projects/project~scipy/');
+    await page.getByRole('button', { name: 'Connect to open: SciPy', exact: true }).click();
+    await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+    const prompt = panel(page).getByRole('textbox', { name: 'Request for Open-Science', exact: true });
+    await prompt.click();
+    await expect(prompt).toBeFocused();
+    if (outcome === 'approval') state.approved = true;
+    else {
+      await page.keyboard.press('Tab');
+      await expect(panel(page).getByRole('button', { name: 'Copy request', exact: true })).toBeFocused();
+    }
+    await expect(header(page)).toHaveAccessibleName(`Open-Science — ${outcome === 'approval' ? 'Connected' : 'Not confirmed'}`);
+    await expect(panel(page)).toHaveAccessibleName('Open-Science');
+    await expect(prompt).toHaveCount(0);
+    const focusInside = () => panel(page).evaluate(element => element.contains(document.activeElement));
+    await expect.poll(focusInside).toBe(true);
+    await page.keyboard.press('Tab');
+    expect(await focusInside()).toBe(true);
+    await page.keyboard.press('Shift+Tab');
+    expect(await focusInside()).toBe(true);
+    expect(state.references).toHaveLength(0);
+  });
+}
+
+test('closing a pending connection preserves its selected object without approval reopening a dialog', async ({ page }) => {
+  const state = await bridge(page);
+  await page.goto('./projects/project~scipy/?from=connection-check');
+  const before = page.url();
+  await page.getByRole('button', { name: 'Connect to open: SciPy', exact: true }).click();
+  await expect(panel(page).getByRole('button', { name: 'Read or copy reference', exact: true })).toBeVisible();
+  await expect(panel(page).getByRole('button', { name: 'Continue', exact: true })).toHaveCount(0);
+  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(panel(page)).toContainText('456 123');
+  await expect(panel(page).getByRole('button', { name: 'Read or copy reference', exact: true })).toHaveCount(0);
+  await expect(panel(page).getByRole('button', { name: /^Review reference for / })).toHaveCount(0);
+  await panel(page).getByRole('button', { name: 'Close Open-Science panel', exact: true }).click();
+  await expect(panel(page)).toHaveCount(0);
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connecting');
+  state.approved = true;
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await expect(panel(page)).toHaveCount(0);
+  await expect(page).toHaveURL(before);
+  expect(state.references).toHaveLength(0);
+  await header(page).click();
+  await expect(panel(page)).toHaveAccessibleName('Open-Science');
+  await panel(page).getByRole('button', { name: 'Review reference for SciPy', exact: true }).click();
+  await expect(panel(page)).toHaveAccessibleName('Review research reference');
+  await expect(panel(page)).toContainText('project:scipy');
+  await expect(panel(page).getByRole('button', { name: 'Send reference', exact: true })).toBeDisabled();
+  expect(state.references).toHaveLength(0);
+});
+
+test('pairing deadline aborts an old approval; retry creates a distinct request and only its approval connects', async ({ page }) => {
+  const state = await bridge(page, { firstPairingLifetimeMs: 1800, holdFirstPairing: true });
+  state.approved = true;
+  try {
+    await page.goto('./projects/project~scipy/');
+    await page.getByRole('button', { name: 'Connect to open: SciPy', exact: true }).click();
+    await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+    await expect.poll(() => state.pairingPolls.length).toBe(1);
+    await expect(panel(page).getByRole('timer')).toBeVisible();
+    const first = state.pairingRequests[0]!;
+    const cancelledFetch = page.waitForEvent('requestfailed', request => new URL(request.url()).pathname === `/v1/pairings/${first.pairingId}`);
+    await expect(header(page)).toHaveAccessibleName('Open-Science — Not confirmed');
+    expect((await cancelledFetch).failure()?.errorText).toMatch(/abort|cancel/i);
+    await expect(panel(page)).toContainText(/expired/i);
+    await expect(panel(page).getByRole('timer')).toHaveCount(0);
+    const help = panel(page).locator('summary', { hasText: 'Can’t find the confirmation page?' });
+    await expect(help).toBeVisible();
+    await help.click();
+    await expect(panel(page).getByRole('link', { name: 'connection setup help', exact: true })).toBeVisible();
+    await expect(panel(page).getByRole('button', { name: 'Read or copy reference', exact: true })).toBeVisible();
+    expect(state.pairingRequests).toHaveLength(1);
+    expect(state.sessionChecks).toBe(0);
+    expect(state.references).toHaveLength(0);
+
+    state.approved = false;
+    await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+    await expect(panel(page)).toContainText('456 124');
+    await expect.poll(() => state.pairingRequests.length).toBe(2);
+    const second = state.pairingRequests[1]!;
+    expect(second.attemptId).not.toBe(first.attemptId);
+    expect(second.pairingId).not.toBe(first.pairingId);
+    expect(second.pollToken).not.toBe(first.pollToken);
+    state.releasePairing();
+    await expect.poll(() => state.pairingResponses).toEqual([first.pairingId]);
+    await expect(header(page)).toHaveAccessibleName('Open-Science — Connecting');
+    await expect(panel(page)).toContainText('456 124');
+    expect(state.sessionChecks).toBe(0);
+
+    state.approved = true;
+    await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+    await expect(panel(page)).toHaveAccessibleName('Open-Science');
+    await expect(panel(page).getByRole('button', { name: 'Review reference for SciPy', exact: true })).toBeVisible();
+    expect(state.sessionChecks).toBe(1);
+    expect(state.pairingRequests).toHaveLength(2);
+    expect(state.references).toHaveLength(0);
+  } finally { state.releasePairing(); }
+});
+
 test('a mismatched receipt stays unconfirmed and never resends automatically', async ({ page }) => {
   const state = await bridge(page); state.approved = true; state.mismatch = true;
-  await page.goto('./projects/project~scipy/');
-  await page.getByRole('button', { name: 'Connect to open: SciPy', exact: true }).click();
-  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
-  await expect(panel(page)).toHaveAccessibleName('Review research reference');
-  await panel(page).getByRole('checkbox', { name: /^I reviewed this exact object/ }).check();
-  await panel(page).getByRole('button', { name: 'Send reference', exact: true }).click();
+  await sendScipyReference(page);
   await expect(panel(page)).toContainText('Delivery is unconfirmed.');
   await expect(panel(page).getByRole('heading', { name: 'Reference received', exact: true })).toHaveCount(0);
   expect(state.references).toHaveLength(1);
@@ -202,7 +434,7 @@ test('real receipt recovery continues beyond the former 15-second engine deadlin
   expect(state.references).toHaveLength(1);
 });
 
-test('refresh does not restore connection and a cancelled pairing cannot connect later', async ({ page }) => {
+test('a Connector without persistent authorization still requires pairing after refresh and ignores cancelled pairing', async ({ page }) => {
   const state = await bridge(page);
   await page.goto('./'); await header(page).click();
   await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
