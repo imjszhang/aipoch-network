@@ -14791,5 +14791,16 @@
     "browserScope": "Existing complete mode/base regression suites. Newly repaired old-grant/session-only and CAS races have targeted offline regressions; live IAB repair scenarios are recorded independently.",
     "newStartupCopy": "Checking whether this browser has a saved connection. You can keep browsing.",
     "sourceDiffBaseCommit": "16b5d1ed493e4d01eb8fce121cc4313371116ba4"
+  },
+  "postCandidateTestHarnessChange": {
+    "record": "navigation-test-stability.json",
+    "productSourceUnchanged": true,
+    "productImplementationCommit": "160cad0b77cd5f18b4a5432b7f9c7ebaf4b5ca80",
+    "sourceHashSnapshotScope": "The existing 101-input snapshot and full local browser matrix belong to the recorded product implementation commit. The subsequent navigation test precondition change and its targeted results are recorded separately; no product artifacts were rebuilt.",
+    "testFile": "tests/e2e/navigation-state.test.ts",
+    "newTestFileSha256": "82daf57f006237291ce2ba51245ea8dc1c6bb27c4d0e54c38e6573f94df30ced",
+    "targetedPassed": 20,
+    "targetedFailed": 0,
+    "countsNotAddedToFullMatrix": true
   }
 }

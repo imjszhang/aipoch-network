@@ -105,3 +105,11 @@ I05 缺陷已在 DBnSjEyO 通过实际 R01 回归，最终记住／跨标签、�
 先前代码和证据已推送至 [Network PR #8](https://github.com/imjszhang/aipoch-network/pull/8) 与 [Connector PR #6](https://github.com/imjszhang/aipoch-connector/pull/6)。两份 PR 已由主任务实际标为 ready for review，保持关联两个 OPEN issue；最新功能实测与推送后检查分别记录，尚未合并或发布。此前 b29fee4 补修及证据已随 Network HEAD `16b5d1ed493e4d01eb8fce121cc4313371116ba4` 推送；Connector 证据 HEAD 为 `46e22ed49b4bfc37cda89150190d8b1fd7ad0327`。这两个准确 HEAD 的四次远端运行均已核验成功，包含新增 real 各 55 项范围，见 [remote-ci.json](remote-ci.json)。两个 issue 仍为 OPEN、两个 PR 已为 OPEN 且 ready for review；这些旧远端结果不证明新 `160cad0b77cd5f18b4a5432b7f9c7ebaf4b5ca80`；补修与本页新增真实观察由主任务统一推送后核验，不填入未来证据提交的 HEAD。
 
 推送后的准确 HEAD 检查与最终交接以 [Network PR checks](https://github.com/imjszhang/aipoch-network/pull/8/checks)、[Connector PR checks](https://github.com/imjszhang/aipoch-connector/pull/6/checks) 及 [Network 验收评论](https://github.com/imjszhang/aipoch-network/issues/7#issuecomment-5662559424) 为准；remote-ci.json 保留其明确列出的历史 HEAD，不冒充后续提交的结果。
+
+## 远端滚动测试准备时序修正
+
+推送 `a928af29e2830a86f76bea84b90874908543a333` 后，[PR 检查 34861517237](https://github.com/imjszhang/aipoch-network/actions/runs/34861517237) 的 unavailable 子路径桌面滚动用例在 Back/Forward 前失败：初始 scrollY 为 0，预期大于 500。该组是 79 通过／80 跳过／1 失败，后续四组没有执行；失败保留，不计为完整矩阵通过。
+
+受控时序检查证实：内容已显示时，导航的既有双帧定位尚未结束，测试设置的滚动会被正常的页面定位覆盖。测试现在等待既有 `#content` 焦点交接，再开始滚动；没有删除原断言、加入等待时长、重试或跳过。根／子路径 × 桌面／移动各重复 5 次，共 20/20 通过，264 个固定产物文件摘要未变。记录见 [navigation-test-stability.json](navigation-test-stability.json)。这项测试准备修正未改变产品源码或 DBnSjEyO 构建，先前真实批准与界面验收仍属于同一产品候选；384／470 本地矩阵保持原快照归属，不与本项重复运行相加。后续提交的完整远端检查分别记录于上述 PR checks 和验收评论。
+
+同一 `a928af2` 的 push 检查 [34861502420](https://github.com/imjszhang/aipoch-network/actions/runs/34861502420) 完整通过（384 单测、470 浏览器通过／282 跳过／0 失败或 flaky），并未覆盖或抹去 PR 的失败。Connector `f2c69b2` 两次检查各 133 通过且独立打包安装通过。四次准确 HEAD／事件和各自结果归档在 [delivery-ci-a928af2.json](delivery-ci-a928af2.json)；测试准备修正后的新提交另看最新 PR checks。

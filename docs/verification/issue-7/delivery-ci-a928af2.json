@@ -1,0 +1,699 @@
+{
+  "recordedAt": "2026-09-14T15:30:34.531Z",
+  "scope": "Read-only verification of the four exact delivery runs; no rerun, source change or new tests. Repeated PR and push runs are recorded separately and not added together as increased coverage.",
+  "networkHead": "a928af29e2830a86f76bea84b90874908543a333",
+  "connectorHead": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+  "status": "completed-with-network-pr-failure",
+  "runs": [
+    {
+      "repository": "imjszhang/aipoch-network",
+      "expectedHeadSha": "a928af29e2830a86f76bea84b90874908543a333",
+      "headMatches": true,
+      "run": {
+        "id": 34861517237,
+        "event": "pull_request",
+        "headSha": "a928af29e2830a86f76bea84b90874908543a333",
+        "status": "completed",
+        "conclusion": "failure",
+        "createdAt": "2026-09-14T15:20:32Z",
+        "updatedAt": "2026-09-14T15:22:45Z",
+        "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34861517237",
+        "attempt": 1
+      },
+      "jobs": [
+        {
+          "id": 104034666132,
+          "name": "Contracts, pipeline, and static website",
+          "headSha": "a928af29e2830a86f76bea84b90874908543a333",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-14T15:20:36Z",
+          "completedAt": "2026-09-14T15:22:42Z",
+          "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34861517237/job/104034666132",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out the change without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Set up the pinned Node.js runtime",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check types",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify contracts, source lifecycle, and independent consumers",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build from the fixed offline observation batch",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install Chromium and its system dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify static routes and browser behavior",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build the GitHub Pages project subpath",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify project subpath routes and browser behavior",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Build the separately labelled Demo candidate",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify normal and isolated Demo journeys",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Build the Demo project subpath",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify Demo project subpath navigation and state",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Build the explicit real transport with offline catalog data",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify the real browser adapter against protocol fixtures",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Build the real transport at the Pages project subpath",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify the real adapter preserves project subpath navigation",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Set up the pinned Node.js runtime",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Check out the change without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logSha256": "73c90874a3b8ed0ce09e42023beb028e30056404ddb3a4cc28c4525eaee7396b",
+      "unit": {
+        "tests": 384,
+        "passed": 384,
+        "failed": 0
+      },
+      "browserGroups": [
+        {
+          "name": "unavailable-root",
+          "step": "Verify static routes and browser behavior",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 80,
+          "skipped": 80,
+          "failed": 0,
+          "flaky": 0
+        },
+        {
+          "name": "unavailable-sub",
+          "step": "Verify project subpath routes and browser behavior",
+          "status": "failure",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 79,
+          "skipped": 80,
+          "failed": 1,
+          "flaky": 0
+        },
+        {
+          "name": "demo-root",
+          "step": "Verify normal and isolated Demo journeys",
+          "status": "skipped",
+          "executed": false
+        },
+        {
+          "name": "demo-sub",
+          "step": "Verify Demo project subpath navigation and state",
+          "status": "skipped",
+          "executed": false
+        },
+        {
+          "name": "real-root",
+          "step": "Verify the real browser adapter against protocol fixtures",
+          "status": "skipped",
+          "executed": false
+        },
+        {
+          "name": "real-sub",
+          "step": "Verify the real adapter preserves project subpath navigation",
+          "status": "skipped",
+          "executed": false
+        }
+      ],
+      "executedBrowserTotals": {
+        "passed": 159,
+        "skipped": 160,
+        "failed": 1,
+        "flaky": 0
+      },
+      "allSixGroupsExecuted": false,
+      "failure": {
+        "group": "unavailable-sub",
+        "project": "desktop",
+        "testFile": "tests/e2e/navigation-state.test.ts",
+        "testLine": 22,
+        "title": "fast scroll then Back and Forward restores the departing page position",
+        "stack": "tests/e2e/navigation-state.test.ts:29:13",
+        "assertion": "expect(y).toBeGreaterThan(500)",
+        "expected": "> 500",
+        "received": 0,
+        "stage": "Initial scroll precondition before Back or Forward. scrollTo(0,700) followed by two requestAnimationFrame waits yielded scrollY 0.",
+        "partialGroupTotals": {
+          "passed": 79,
+          "skipped": 80,
+          "failed": 1
+        },
+        "laterGroupsNotExecuted": [
+          "demo-root",
+          "demo-sub",
+          "real-root",
+          "real-sub"
+        ],
+        "runnerArtifactPaths": [
+          "test-results/navigation-state-fast-scro-0a46a-the-departing-page-position-desktop/test-failed-1.png",
+          "test-results/navigation-state-fast-scro-0a46a-the-departing-page-position-desktop/error-context.md",
+          "test-results/navigation-state-fast-scro-0a46a-the-departing-page-position-desktop/trace.zip"
+        ],
+        "uploadedArtifactCount": 0,
+        "artifactAvailability": "GitHub artifacts API returned no uploaded artifacts. These paths are log references to runner files, not downloadable evidence.",
+        "rootCause": "Not established by the remote log alone. A separate task is investigating test precondition timing; this record does not retry or reclassify the failure."
+      }
+    },
+    {
+      "repository": "imjszhang/aipoch-network",
+      "expectedHeadSha": "a928af29e2830a86f76bea84b90874908543a333",
+      "headMatches": true,
+      "run": {
+        "id": 34861502420,
+        "event": "push",
+        "headSha": "a928af29e2830a86f76bea84b90874908543a333",
+        "status": "completed",
+        "conclusion": "success",
+        "createdAt": "2026-09-14T15:20:24Z",
+        "updatedAt": "2026-09-14T15:29:18Z",
+        "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34861502420",
+        "attempt": 1
+      },
+      "jobs": [
+        {
+          "id": 104034610620,
+          "name": "Contracts, pipeline, and static website",
+          "headSha": "a928af29e2830a86f76bea84b90874908543a333",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-14T15:20:27Z",
+          "completedAt": "2026-09-14T15:29:17Z",
+          "url": "https://github.com/imjszhang/aipoch-network/actions/runs/34861502420/job/104034610620",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:28Z",
+              "completedAt": "2026-09-14T15:20:29Z"
+            },
+            {
+              "name": "Check out the change without persistent credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:29Z",
+              "completedAt": "2026-09-14T15:20:32Z"
+            },
+            {
+              "name": "Set up the pinned Node.js runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:32Z",
+              "completedAt": "2026-09-14T15:20:39Z"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:39Z",
+              "completedAt": "2026-09-14T15:20:42Z"
+            },
+            {
+              "name": "Check types",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:42Z",
+              "completedAt": "2026-09-14T15:20:43Z"
+            },
+            {
+              "name": "Verify contracts, source lifecycle, and independent consumers",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:43Z",
+              "completedAt": "2026-09-14T15:20:54Z"
+            },
+            {
+              "name": "Build from the fixed offline observation batch",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:54Z",
+              "completedAt": "2026-09-14T15:20:56Z"
+            },
+            {
+              "name": "Install Chromium and its system dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:20:56Z",
+              "completedAt": "2026-09-14T15:21:16Z"
+            },
+            {
+              "name": "Verify static routes and browser behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:21:16Z",
+              "completedAt": "2026-09-14T15:22:04Z"
+            },
+            {
+              "name": "Build the GitHub Pages project subpath",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:22:04Z",
+              "completedAt": "2026-09-14T15:22:06Z"
+            },
+            {
+              "name": "Verify project subpath routes and browser behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:22:06Z",
+              "completedAt": "2026-09-14T15:22:52Z"
+            },
+            {
+              "name": "Build the separately labelled Demo candidate",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:22:52Z",
+              "completedAt": "2026-09-14T15:22:55Z"
+            },
+            {
+              "name": "Verify normal and isolated Demo journeys",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:22:55Z",
+              "completedAt": "2026-09-14T15:24:18Z"
+            },
+            {
+              "name": "Build the Demo project subpath",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:24:18Z",
+              "completedAt": "2026-09-14T15:24:20Z"
+            },
+            {
+              "name": "Verify Demo project subpath navigation and state",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:24:20Z",
+              "completedAt": "2026-09-14T15:25:44Z"
+            },
+            {
+              "name": "Build the explicit real transport with offline catalog data",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:25:44Z",
+              "completedAt": "2026-09-14T15:25:46Z"
+            },
+            {
+              "name": "Verify the real browser adapter against protocol fixtures",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:25:46Z",
+              "completedAt": "2026-09-14T15:27:29Z"
+            },
+            {
+              "name": "Build the real transport at the Pages project subpath",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:27:29Z",
+              "completedAt": "2026-09-14T15:27:31Z"
+            },
+            {
+              "name": "Verify the real adapter preserves project subpath navigation",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:27:31Z",
+              "completedAt": "2026-09-14T15:29:14Z"
+            },
+            {
+              "name": "Post Set up the pinned Node.js runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:29:14Z",
+              "completedAt": "2026-09-14T15:29:14Z"
+            },
+            {
+              "name": "Post Check out the change without persistent credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:29:14Z",
+              "completedAt": "2026-09-14T15:29:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "startedAt": "2026-09-14T15:29:14Z",
+              "completedAt": "2026-09-14T15:29:14Z"
+            }
+          ]
+        }
+      ],
+      "logSha256": "0b7e20cbb2c875d52b0bfd05d9aa466a4b8a052bab4db247f2f53501bef9b5fe",
+      "unit": {
+        "tests": 384,
+        "passed": 384,
+        "failed": 0
+      },
+      "browserGroups": [
+        {
+          "name": "unavailable-root",
+          "step": "Verify static routes and browser behavior",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 80,
+          "skipped": 80,
+          "failed": 0,
+          "flaky": 0
+        },
+        {
+          "name": "unavailable-sub",
+          "step": "Verify project subpath routes and browser behavior",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 80,
+          "skipped": 80,
+          "failed": 0,
+          "flaky": 0
+        },
+        {
+          "name": "demo-root",
+          "step": "Verify normal and isolated Demo journeys",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 100,
+          "skipped": 60,
+          "failed": 0,
+          "flaky": 0
+        },
+        {
+          "name": "demo-sub",
+          "step": "Verify Demo project subpath navigation and state",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npm run test:e2e"
+          ],
+          "passed": 100,
+          "skipped": 60,
+          "failed": 0,
+          "flaky": 0
+        },
+        {
+          "name": "real-root",
+          "step": "Verify the real browser adapter against protocol fixtures",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+          ],
+          "passed": 55,
+          "skipped": 1,
+          "failed": 0,
+          "flaky": 0,
+          "bothRealTestFilesInvoked": true
+        },
+        {
+          "name": "real-sub",
+          "step": "Verify the real adapter preserves project subpath navigation",
+          "status": "success",
+          "executed": true,
+          "commands": [
+            "npx --no-install playwright test real-connector.test.ts persistent-connection.test.ts"
+          ],
+          "passed": 55,
+          "skipped": 1,
+          "failed": 0,
+          "flaky": 0,
+          "bothRealTestFilesInvoked": true
+        }
+      ],
+      "executedBrowserTotals": {
+        "passed": 470,
+        "skipped": 282,
+        "failed": 0,
+        "flaky": 0
+      },
+      "allSixGroupsExecuted": true
+    },
+    {
+      "repository": "imjszhang/aipoch-connector",
+      "expectedHeadSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+      "headMatches": true,
+      "run": {
+        "id": 34861519366,
+        "event": "pull_request",
+        "headSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+        "status": "completed",
+        "conclusion": "success",
+        "createdAt": "2026-09-14T15:20:33Z",
+        "updatedAt": "2026-09-14T15:21:57Z",
+        "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34861519366",
+        "attempt": 1
+      },
+      "jobs": [
+        {
+          "id": 104034666996,
+          "name": "check",
+          "headSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-14T15:20:38Z",
+          "completedAt": "2026-09-14T15:21:57Z",
+          "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34861519366/job/104034666996",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out source without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Use the pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check contracts, isolated integrations and build",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Pack and install in an independent directory",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Use the pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out source without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logSha256": "cf231e83fa751fba3b165b7853e174cec3e1fbba420f06996c46e443d006a6f9",
+      "unit": {
+        "tests": 133,
+        "passed": 133,
+        "failed": 0
+      },
+      "packageSmoke": {
+        "status": "success",
+        "command": "node tests/package-smoke.mjs",
+        "result": "Packed and independently installed aipoch-connector 0.1.0-alpha.4; CLI help, public SDK integrity and local inbox import, isolated CLI recovery, stdio version/discovery, default/disabled local HTTP origins, CLI setup, session isolation and durable restart checks passed. Temporary Connector runtimes and a synthetic public SDK HTTP fixture were used; no desktop host was started and this is not browser evidence.",
+        "scope": "Independent package/install fixture and temporary runtimes; no real desktop host or browser acceptance."
+      }
+    },
+    {
+      "repository": "imjszhang/aipoch-connector",
+      "expectedHeadSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+      "headMatches": true,
+      "run": {
+        "id": 34861515251,
+        "event": "push",
+        "headSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+        "status": "completed",
+        "conclusion": "success",
+        "createdAt": "2026-09-14T15:20:31Z",
+        "updatedAt": "2026-09-14T15:21:53Z",
+        "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34861515251",
+        "attempt": 1
+      },
+      "jobs": [
+        {
+          "id": 104034652756,
+          "name": "check",
+          "headSha": "f2c69b2346f2c769989c9ab172530d7995a8c9de",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-14T15:20:34Z",
+          "completedAt": "2026-09-14T15:21:52Z",
+          "url": "https://github.com/imjszhang/aipoch-connector/actions/runs/34861515251/job/104034652756",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out source without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Use the pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check contracts, isolated integrations and build",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Pack and install in an independent directory",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Use the pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out source without persistent credentials",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logSha256": "dfc7164fe977a0be2dea1297571eca19bcb17312e17b11c4bba50f3d3e50b43b",
+      "unit": {
+        "tests": 133,
+        "passed": 133,
+        "failed": 0
+      },
+      "packageSmoke": {
+        "status": "success",
+        "command": "node tests/package-smoke.mjs",
+        "result": "Packed and independently installed aipoch-connector 0.1.0-alpha.4; CLI help, public SDK integrity and local inbox import, isolated CLI recovery, stdio version/discovery, default/disabled local HTTP origins, CLI setup, session isolation and durable restart checks passed. Temporary Connector runtimes and a synthetic public SDK HTTP fixture were used; no desktop host was started and this is not browser evidence.",
+        "scope": "Independent package/install fixture and temporary runtimes; no real desktop host or browser acceptance."
+      }
+    }
+  ],
+  "redaction": "Only repository/run/job IDs, public URLs, exact commit IDs, step names, test counts, test paths and log hashes are retained. Credentials, environment dumps and local identities are omitted."
+}

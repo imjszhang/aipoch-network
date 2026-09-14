@@ -23,6 +23,8 @@ test('fast scroll then Back and Forward restores the departing page position', a
   await page.goto('./projects/');
   await page.locator('.results-list .row-title a').first().click();
   await expect(page.locator('#sources')).toBeVisible();
+  // Content renders before navigation finishes its scroll reset and focus handoff.
+  await expect(page.locator('#content')).toBeFocused();
   const detailUrl = page.url();
   await page.evaluate(async () => { scrollTo(0, 700); await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); });
   const y = await page.evaluate(() => scrollY);
