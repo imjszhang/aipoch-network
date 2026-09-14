@@ -30,6 +30,7 @@
 
 | 文档 | 用途 |
 | --- | --- |
+| [研究资源指南](docs/guides/README.md) | 单细胞资料入口与可复查的分析记录建议 |
 | [架构与决策](docs/architecture.md) | 模块边界、实际技术方案、目录布局、独立性和非目标 |
 | [目录与公共契约](docs/catalog-contract.md) | 对象模型、来源分层、最小收录、身份、版本和客户端读取规范 |
 | [完整实施计划](docs/implementation-plan.md) | P0–P6 任务、依赖、交付物、验收、工作量与风险 |
