@@ -77,8 +77,10 @@ test('pagination preserves sort and restores the same records after detail, back
   await expect(page.locator('.pagination')).toContainText('Page 3 of 3');
 });
 
-test('invalid and out-of-range shared pages clamp to real results and canonical URLs', async ({ page }) => {
-  for (const [query, canonical, count] of [['999', '3', 4], ['0', null, 8], ['-2', null, 8], ['NaN', null, 8], ['2.7', '2', 8]] as const) {
+test('invalid and out-of-range shared pages clamp to real results and canonical URLs', async ({ page, request }) => {
+  const { catalog } = await (await request.get('./internal/catalog.json')).json();
+  const total = catalog.projects.length;
+  for (const [query, canonical, count] of [['999', String(Math.ceil(total / 8)), total % 8 || 8], ['0', null, 8], ['-2', null, 8], ['NaN', null, 8], ['2.7', '2', 8]] as const) {
     await page.goto(`./projects/?sort=title&page=${query}`);
     await expect(search(page)).toBeEnabled();
     await expect.poll(() => searchParams(page).get('page')).toBe(canonical);
@@ -176,13 +178,15 @@ test('organization and collection selectors intersect real memberships and prese
   await expect(page.locator('.results-list')).toContainText('Biopython');
 });
 
-test('search failure keeps browsable pages and retry applies the actual query', async ({ page }) => {
+test('search failure keeps browsable pages and retry applies the actual query', async ({ page, request }) => {
+  const { catalog } = await (await request.get('./internal/catalog.json')).json();
+  const total = catalog.projects.length;
   await page.route('**/internal/search.json', route => route.abort());
   await page.goto('./projects/?q=scipy&page=999');
   await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toBeVisible();
-  await expect(results(page)).toHaveCount(4);
-  await expect.poll(() => searchParams(page).get('page')).toBe('3');
-  await expect(page.locator('.results-heading h2')).toContainText('20 entries');
+  await expect(results(page)).toHaveCount(total % 8 || 8);
+  await expect.poll(() => searchParams(page).get('page')).toBe(String(Math.ceil(total / 8)));
+  await expect(page.locator('.results-heading h2')).toContainText(`${total} entries`);
   await page.unroute('**/internal/search.json');
   await page.getByRole('button', { name: 'Retry search', exact: true }).click();
   await expect(results(page)).toHaveCount(1);
@@ -192,7 +196,9 @@ test('search failure keeps browsable pages and retry applies the actual query', 
   await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toHaveCount(0);
 });
 
-test('mobile refinement traps keyboard focus, keeps query and returns focus on dismissal', async ({ page }) => {
+test('mobile refinement traps keyboard focus, keeps query and returns focus on dismissal', async ({ page, request }) => {
+  const { catalog } = await (await request.get('./internal/catalog.json')).json();
+  const total = catalog.projects.length;
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('./projects/?q=scipy&sort=title');
   await expect(page.locator('.results-list .row-title a')).toHaveText(['SciPy']);
@@ -215,7 +221,7 @@ test('mobile refinement traps keyboard focus, keeps query and returns focus on d
   expect(searchParams(page).get('sort')).toBe('title');
   await toggle.click();
   await dialog.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await dialog.getByRole('button', { name: 'Show 20 entries', exact: true }).click();
+  await dialog.getByRole('button', { name: `Show ${total} entries`, exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await expect(toggle).toBeFocused();
   await expect(results(page)).toHaveCount(8);
