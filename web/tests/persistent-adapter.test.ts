@@ -12,8 +12,9 @@ const ttl = 7_776_000_000;
 const crypto = webcrypto as unknown as Crypto;
 class MemoryBackend implements IdentityBackend {
   value: unknown;
+  rejectUpdates = false;
   async read() { return structuredClone(this.value); }
-  async update(change: (value: unknown) => unknown) { this.value = structuredClone(change(this.value)); return structuredClone(this.value); }
+  async update(change: (value: unknown) => unknown) { if (this.rejectUpdates) throw new Error('Identity storage is read-only'); this.value = structuredClone(change(this.value)); return structuredClone(this.value); }
 }
 function store(backend = new MemoryBackend()) {
   const values = new Map<string, string>();
@@ -107,6 +108,41 @@ test('pause invalidates current sessions, survives restore, and explicit connect
   await f.adapter.pause(); assert.equal(f.adapter.valid(first), false); assert.equal((await f.identity.load())?.paused, true);
   assert.equal(await restore(f.adapter), null); assert.equal(f.restoreCount(), 0); assert.equal(f.adapter.getMemory().status, 'paused');
   assert.ok(await connect(f.adapter)); assert.equal(f.pairCount(), 1); assert.equal(f.restoreCount(), 1);
+});
+
+for (const failure of ['identity writes', 'control writes'] as const) test(`explicit connect falls back to this visit when paused authorization cannot resume because ${failure} fail`, async t => {
+  const backend = new MemoryBackend(), values = new Map<string, string>();
+  let rejectControlWrites = false;
+  const storage = { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => {
+    if (rejectControlWrites) throw new Error('Control storage is read-only');
+    values.set(key, value);
+  } };
+  const identity = new BrowserIdentityStore({ backend, storage, crypto, origin });
+  const f = fixture(identity); t.after(() => f.adapter.dispose());
+  assert.ok(await connect(f.adapter)); await f.adapter.pause();
+  const saved = await identity.load(); assert.ok(saved?.grant); assert.equal(saved.paused, true);
+  if (failure === 'identity writes') backend.rejectUpdates = true; else rejectControlWrites = true;
+  let callbacks = 0, session: Session | null = null;
+  f.adapter.connect('read-only-storage', (_attempt, value) => { callbacks++; session = value; });
+  await until(() => callbacks === 1);
+  assert.ok(session); assert.equal(f.adapter.valid(session), true);
+  assert.equal(f.pairCount(), 2); assert.equal(f.restoreCount(), 0);
+  assert.equal(f.adapter.getMemory().status, 'storage-unavailable');
+  assert.equal(f.adapter.getMemory().canForget, true);
+  assert.match(f.adapter.getMemory().message, /for this visit/);
+  const reopened = new BrowserIdentityStore({ backend, storage, crypto, origin }); t.after(() => reopened.dispose());
+  assert.equal((await reopened.load())?.paused, true, 'A new page must still see the durable pause');
+  assert.deepEqual((await reopened.load())?.grant, saved.grant);
+  assert.equal(await restore(f.adapter), null); assert.equal(f.pairCount(), 2);
+  let paused: Promise<boolean> | undefined, lateCallbacks = 0;
+  const unsubscribe = f.adapter.observeMemory(memory => {
+    if (memory.status === 'storage-unavailable') { unsubscribe(); paused = identity.setPaused(true); }
+  });
+  t.after(unsubscribe);
+  f.adapter.connect('read-only-pause-race', () => { lateCallbacks++; });
+  await until(() => !!paused); await paused; await tick();
+  assert.equal(f.adapter.getMemory().status, 'paused', 'A concurrent pause must win over the session-only fallback');
+  assert.equal(lateCallbacks, 0); assert.equal(f.pairCount(), 2);
 });
 
 test('verified unavailable host preserves authorization; revoked authorization never silently pairs', async t => {

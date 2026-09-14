@@ -231,17 +231,26 @@ export class RealAdapter implements WorkbenchAdapter {
         let identity: BrowserIdentity | null | undefined;
         let capability: Capabilities | null = null;
         if (this.identity) {
-          await this.identity.setPaused(false);
+          const resumed = await this.identity.setPaused(false);
+          // A successful read can clear this warning even when the resume write failed.
+          const resumeStorageFailed = !resumed && !!this.identity.warning;
           identity = await this.identity.load();
-          if (identity?.grant) {
-            const restored = await this.restoreIdentity(identity, operation.signal, epoch);
-            if (restored) { completed = true; receive(attempt, restored); return; }
-            if (!['reauthorize', 'unsupported'].includes(this.memory.status)) { completed = true; receive(attempt, null, this.memory.message); return; }
+          if (operation.signal.aborted || epoch !== this.epoch) return;
+          if (resumeStorageFailed) {
+            this.setMemory({ status: 'storage-unavailable', message: 'This connection is for this visit. Your browser could not update its saved authorization.', canForget: !!identity?.grant || this.memory.canForget });
+            // Keep the durable pause intact; only this explicit pairing may continue.
+            identity = null;
+          } else {
+            if (identity?.grant) {
+              const restored = await this.restoreIdentity(identity, operation.signal, epoch);
+              if (restored) { completed = true; receive(attempt, restored); return; }
+              if (!['reauthorize', 'unsupported'].includes(this.memory.status)) { completed = true; receive(attempt, null, this.memory.message); return; }
+            }
+            try { capability = await this.capabilities(operation.signal); } catch { capability = null; }
+            if (capability) identity = await this.identity.prepare();
+            else this.setMemory({ status: 'unsupported', message: 'This connection is for this visit. Saved authorization is unavailable in this Connector.', canForget: !!identity?.grant });
+            if (capability && !identity) this.setMemory({ status: 'storage-unavailable', message: 'This connection is for this visit. Your browser could not save an identity.', canForget: false });
           }
-          try { capability = await this.capabilities(operation.signal); } catch { capability = null; }
-          if (capability) identity = await this.identity.prepare();
-          else this.setMemory({ status: 'unsupported', message: 'This connection is for this visit. Saved authorization is unavailable in this Connector.', canForget: !!identity?.grant });
-          if (capability && !identity) this.setMemory({ status: 'storage-unavailable', message: 'This connection is for this visit. Your browser could not save an identity.', canForget: false });
         }
         if (operation.signal.aborted || epoch !== this.epoch) return;
         const browserAuthorization = capability && identity ? { version: '1.0', publicKey: identity.publicKeyJwk, browserName: this.browserName } : undefined;
