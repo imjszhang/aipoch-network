@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-12T10:31:05.008Z",
+  "as_of": "2026-09-14T07:45:01.246Z",
   "sources": [
     {
       "availability": "accessible",
@@ -938,6 +938,50 @@
       },
       "requested_url": "https://github.com/scikit-image/scikit-image",
       "suppressed": false
+    },
+    {
+      "requested_url": "https://github.com/scverse/mudata",
+      "checked_at": "2026-09-14T07:45:01.246Z",
+      "observed_at": "2026-09-14T07:45:01.246Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "repository": {
+        "id": 392836868,
+        "name": "mudata",
+        "full_name": "scverse/mudata",
+        "html_url": "https://github.com/scverse/mudata",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 95305807,
+          "login": "scverse",
+          "type": "Organization",
+          "html_url": "https://github.com/scverse"
+        },
+        "topics": [
+          "anndata",
+          "data-analysis",
+          "genomics",
+          "mudata",
+          "multi-omics",
+          "multimodal-omics-analysis",
+          "muon",
+          "scverse"
+        ],
+        "updated_at": "2026-09-08T14:14:50Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Multimodal Data (.h5mu) implementation for Python",
+        "language": "Python",
+        "homepage": "https://mudata.readthedocs.io/stable/",
+        "pushed_at": "2026-09-08T13:31:58Z",
+        "commit": "bb8bea5ac250361e549b070a9ba35ab4a396c029",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/scverse/mudata"
+        }
+      }
     }
   ]
 }

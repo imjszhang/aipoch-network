@@ -19,10 +19,13 @@ function metadata(): PagesMetadata {
     artifact: { id: 200, name: 'catalog-candidate-100-1', expired: false, expires_at: '2026-09-19T12:00:00Z', size_in_bytes: 1000, digest: DIGEST, workflow_run: { id: 100, head_sha: SHA } }, latest_runs: [structuredClone(run)], latest_runs_total_count: 1 };
 }
 async function temporary(t: TestContext) { const root = await mkdtemp(join(tmpdir(), 'aipoch-pages-test-')); t.after(() => rm(root, { recursive: true, force: true })); return root; }
-async function fixture(t: TestContext, history = false): Promise<{ root: string; selection: PagesSelection }> {
+async function fixture(t: TestContext, history = false, sourceObservedAt = '2026-09-12T11:59:00Z'): Promise<{ root: string; selection: PagesSelection }> {
   const root = await temporary(t);
   const registry = JSON.parse(await readFile('registry/catalog.json', 'utf8')) as Registry;
   const batch = JSON.parse(await readFile('fixtures/pilot/snapshots.json', 'utf8')) as SnapshotBatch;
+  // This verifier fixture has a frozen synthetic clock; pilot observations may be newer.
+  // Only the in-memory test copy is rebased, never the actual source fixture evidence.
+  for (const source of batch.sources) { source.checked_at = sourceObservedAt; source.observed_at = sourceObservedAt; }
   if (history) { batch.as_of = '2026-09-12T11:59:00Z'; await generate(registry, batch, root, 200, { candidateKind: 'refresh' }); }
   batch.as_of = T;
   const manifest = await generate(registry, batch, root, 200, { candidateKind: 'refresh' });
@@ -32,6 +35,13 @@ async function fixture(t: TestContext, history = false): Promise<{ root: string;
   await writeFile(join(root, 'third-party-notices.txt'), 'Synthetic verifier fixture only; this file does not prove real license review.');
   return { root, selection: { ...metadata().selection, snapshot_id: manifest.snapshot_id, file_tree_sha256: (await candidateFileTree(root)).file_tree_sha256 } };
 }
+
+test('Pages verifier checks source observation age independently of a fresh batch timestamp', async t => {
+  for (const sourceObservedAt of ['2026-09-12T12:10:00Z', '2026-09-01T00:00:00Z']) {
+    const { root, selection } = await fixture(t, false, sourceObservedAt);
+    await assert.rejects(verifyPagesCandidate(root, selection, NOW), /expired or from the future/);
+  }
+});
 
 test('Pages metadata binds one successful current main refresh and exact artifact digest', () => {
   validateCandidateMetadata(metadata(), NOW);
