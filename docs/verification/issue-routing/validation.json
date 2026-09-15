@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-09-15T07:16:11.137254+00:00",
+  "base_commit": "c6f94edf166f1e3cf89839ae2c4ccf8578007355",
+  "scope": "Local offline validation and catalog submission UI; no external test Issue, client connection or production deployment.",
+  "offline": {
+    "command": "npm run check",
+    "tests": 390,
+    "passed": 390,
+    "failed": 0,
+    "node": "24.18.1"
+  },
+  "browser": {
+    "root": {
+      "expected": 38,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "files": [
+        "site.test.ts",
+        "community.test.ts",
+        "issue-routing.test.ts"
+      ]
+    },
+    "subpath": {
+      "expected": 38,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "files": [
+        "site.test.ts",
+        "community.test.ts",
+        "issue-routing.test.ts"
+      ]
+    }
+  },
+  "labels": {
+    "managed_count": 19,
+    "applied": true,
+    "readback_diff": []
+  },
+  "existing_issues": [
+    {
+      "number": 5,
+      "type": "product:bug",
+      "state": "closed"
+    },
+    {
+      "number": 7,
+      "type": "product:enhancement",
+      "state": "closed"
+    }
+  ]
+}

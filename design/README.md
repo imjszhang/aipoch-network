@@ -67,3 +67,5 @@ v6 原件 [aipoch-network-concept-v6.html](references/aipoch-network-concept-v6.
 6. 采用的产品素材与第三方声明保持原有归属；项目 MIT 不重新授权上游内容或全部参考资产。参考 intake 不自动触发生产部署，按当前任务的授权范围推进。
 
 相关文档：[架构与决策](../docs/architecture.md)、[专项实施计划](../docs/v9-r2-implementation-plan.md)、[整体实施计划](../docs/implementation-plan.md)、[公开部署记录](../docs/deployment/public-pages.md)。
+
+2026-09-15 局部分流更新：[目录申请与产品问题](changes/issue-routing.md)，原参考不变；实施与检查见 [分流验证](../docs/verification/issue-routing/README.md)。

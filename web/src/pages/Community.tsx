@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Activity, ArrowRight, ArrowUpRight, GitBranch, Info } from 'lucide-react';
 import { allEntries, displayDate, routeFor, type SiteData } from '../model.js';
+import { issueRoutes, issueTemplateUrl, type IssueType } from '../issue-routing.js';
 import { Link, useNavigation } from '../navigation.js';
 
 const REPO = 'https://github.com/imjszhang/aipoch-network';
@@ -60,6 +61,10 @@ export function Contribute() {
         ['03', 'Continue on GitHub', 'Submit the prepared issue on GitHub. The directory review happens there, with a traceable discussion.'],
       ].map(([number, title, description]) => <article className="cp-panel" key={number}><span className="cp-step-number">{number}</span><h2>{title}</h2><p>{description}</p></article>)}</div>
       <div className="cp-contribute-body"><section><p className="cp-eyebrow">A place for existing organizations</p><h2>Choose what represents your work.</h2><p>An organization link starts a candidate review. Select the repositories you want considered; the whole organization is not enrolled automatically.</p><p>Directory inclusion, a maintainer acknowledgement, and authority to curate an organization each have their own scope and evidence.</p><Link className="cp-link" to="/submit/?kind=organization">Propose an organization<ArrowRight size={16} aria-hidden="true"/></Link></section><aside className="cp-panel"><GitBranch size={25} aria-hidden="true"/><h3>Keep collaboration at the source.</h3><p>Discuss methods and code with the original project. Bring directory corrections, source suggestions and evidence records to AIPOCH.</p><a className="cp-link" href={`${REPO}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noreferrer">Read the contribution guide<ArrowUpRight size={15} aria-hidden="true"/></a></aside></div>
+      <div className="cp-contribute-body" aria-label="Choose a request type">
+        <section><p className="cp-eyebrow">Catalog requests</p><h2>Manage a directory entry.</h2><p>Recommend, correct, claim, withdraw or appeal. Each request has its own review; submission is not approval or publication.</p><ul>{(['submission','correction','claim','withdrawal','appeal'] as const).map(type => <li key={type}><a className="cp-link" href={issueTemplateUrl(type)}>{issueRoutes[type].name}<ArrowUpRight size={15} aria-hidden="true"/></a></li>)}</ul></section>
+        <section className="cp-panel"><p className="cp-eyebrow">Product help</p><h2>Report a problem or ask a question.</h2><p>Use these for the Network website and its behavior. Upstream research software questions belong with the original project.</p><ul>{(['bug','enhancement','question'] satisfies IssueType[]).map(type => <li key={type}><a className="cp-link" href={issueTemplateUrl(type)}>{issueRoutes[type].name}<ArrowUpRight size={15} aria-hidden="true"/></a></li>)}</ul><a className="cp-link" href={`${REPO}/blob/main/docs/issue-routing.md`}>Read request and review rules<ArrowUpRight size={15} aria-hidden="true"/></a></section>
+      </div>
       <div className="cp-notice"><Info size={18} aria-hidden="true"/><p>Open-Science is an optional way to continue research locally. You can browse and contribute public GitHub sources without installing it.</p></div>
     </div>
   </main>;
