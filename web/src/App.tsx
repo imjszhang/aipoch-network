@@ -38,7 +38,7 @@ function Pages({ data }: { data: SiteData }) {
     const labels: Record<string,string> = { '/':'Science Open to All', '/explore':'Explore', '/projects':'Research projects', '/capabilities':'Reusable capabilities', '/organizations':'Organizations', '/researchers':'Researchers', '/collections':'Collections', '/sources':'Sources', '/community':'Community', '/submit':'Share research', '/contribute':'Contribute', '/join':'Join with Open-Science', '/me':'Saved research', '/review':'Connection scenarios' };
     const directoryTitle = directory ? `${labels[`/${directory.section}`] ?? 'Explore'}${directory.page && directory.page > 1 ? `, page ${directory.page}` : ''}` : undefined;
     document.title = `${entry?.title ?? (route === '/' && connected ? 'Your research home' : directoryTitle ?? labels[route] ?? (tombstone ? 'Catalog record withdrawn' : 'Entry not found'))} | AIPOCH Network`;
-    const config = { origin: OFFICIAL_ORIGIN, base, indexing: OFFICIAL_ORIGIN === 'https://aipoch.network' && base === '/' };
+    const config = { origin: OFFICIAL_ORIGIN, base, indexing: import.meta.env.VITE_SITE_INDEXING ?? (base === '/') };
     applySeoToDocument(document, seoForPath(path, data, config), route === '/');
   }, [route, entry?.title, connected, tombstone, path, data, base, directory]);
   let content;

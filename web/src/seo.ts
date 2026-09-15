@@ -83,7 +83,7 @@ export function seoForPath(path: string, data: SiteData, config: SiteConfig): Se
   const requestedPage = directory?.page ?? (params.has('page') ? Number(params.get('page')) : 1);
   const pageNumber = Number.isFinite(requestedPage) && requestedPage > 0 ? Math.floor(requestedPage) : 1;
   const action = ['/submit/', '/join/', '/me/', '/review/'].includes(pathname);
-  const notFound = pathname === '/404/' || (!entry && !directory && !PAGE_TITLES[pathname] && !tombstone);
+  const notFound = Boolean(directory?.page && directory.page > directoryPageCount(data, directory.kind)) || pathname === '/404/' || (!entry && !directory && !PAGE_TITLES[pathname] && !tombstone);
   const searchOrFilter = Boolean(directory) && !defaultListing && [...cleaned.keys()].some(key => key !== 'page');
   const trackingOnly = Boolean(directory) && isDefaultDirectoryParams(params, true) && [...params.keys()].some(key => (TRACKING_PARAMS as readonly string[]).includes(key));
 
@@ -211,9 +211,9 @@ export function seoHeadMarkup(decision: SeoDecision): string {
 export function applySeoToDocument(doc: Document, decision: SeoDecision, preserveHomeMetadata = false): void {
   if (!preserveHomeMetadata) {
     doc.title = decision.title;
-    const description = doc.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', decision.description);
   }
+  const description = doc.querySelector('meta[name="description"]');
+  if (description) description.setAttribute('content', decision.description);
   let canonical = doc.querySelector('link[rel="canonical"]');
   if (!canonical) { canonical = doc.createElement('link'); canonical.setAttribute('rel', 'canonical'); doc.head.appendChild(canonical); }
   canonical.setAttribute('href', decision.canonicalUrl);

@@ -76,9 +76,9 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   function update(next: FilterChanges, push = false) {
     const changed = changeDiscovery(params, next, kind);
     setFilterNotice(changed.notice);
-    void navigate(`${path.split('?')[0]}${changed.params.size ? `?${changed.params}` : ''}`, { replace: !push, preserveScroll: true });
+    void navigate(directoryHref(sectionForKind(kind), Number(changed.params.get('page') ?? 1), changed.params), { replace: !push, preserveScroll: true });
   }
-  const reset = () => { setFilterNotice('All filters were cleared.'); void navigate(path.split('?')[0], { replace: true, preserveScroll: true }); };
+  const reset = () => { setFilterNotice('All filters were cleared.'); void navigate(`/${sectionForKind(kind)}/`, { replace: true, preserveScroll: true }); };
   const repair = () => update(Object.fromEntries(discovery.invalidKeys.map(key => [key, ''])));
   const matches = useMemo(() => query.trim() && index ? new Map(index.search(query).map((row, position) => [String(row.id), position])) : undefined, [query, index]);
   const results = useMemo(() => {

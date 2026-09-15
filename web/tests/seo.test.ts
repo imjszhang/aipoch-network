@@ -131,3 +131,9 @@ test('sitemap contains only rendered indexable canonical URLs and escapes XML', 
   assert.ok(!robotsText({ origin: OFFICIAL_ORIGIN, base: '/aipoch-network/', indexing: false }).includes('Sitemap:'));
   assert.ok(robotsText(official).includes('Sitemap: https://aipoch.network/sitemap.xml'));
 });
+
+test('unbuilt pagination paths do not become indexable after hydration', () => {
+  const decision = seoForPath('/projects/page/999/', fixture(), official);
+  assert.equal(decision.indexable, false);
+  assert.deepEqual(decision.jsonLd, []);
+});

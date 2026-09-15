@@ -230,3 +230,27 @@ test('mobile refinement traps keyboard focus, keeps query and returns focus on d
   await expect(results(page)).toHaveCount(8);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('changing sort from a static second page starts at the first result page', async ({ page }) => {
+  await page.goto('./projects/page/2/');
+  await expect(page.locator('.pagination')).toContainText('Page 2 of');
+  await page.getByRole('combobox', { name: 'Sort results' }).selectOption('title');
+  await expect(page.locator('.pagination')).toContainText('Page 1 of');
+  expect(new URL(page.url()).pathname).not.toContain('/page/2/');
+});
+
+test('returning home restores its original description', async ({ page }) => {
+  await page.goto('./projects/project~anndata/');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Annotated data.');
+  await page.getByRole('link', { name: 'AIPOCH Network home', exact: true }).click();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Discover research projects and reusable capabilities, connected to their original GitHub sources.');
+});
+
+test('hydration preserves the build indexing policy', async ({ page, request }) => {
+  const html = await (await request.get('./projects/')).text();
+  const robots = html.match(/<meta name="robots" content="([^"]+)"/)?.[1];
+  expect(robots).toBeTruthy();
+  await page.goto('./projects/');
+  await expect(search(page)).toBeEnabled();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', robots!);
+});
