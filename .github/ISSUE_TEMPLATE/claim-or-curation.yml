@@ -1,56 +1,61 @@
-name: 认领与组织策展 / Claim or curation
-description: 请求维护范围确认、限定范围的组织策展，或复核和撤销授权。
-title: "[Claim] "
-body:
-  - type: markdown
-    attributes:
-      value: |
-        推荐来源不需要认领。仓库维护权限与组织 owner / owner 委派权限分别核验。
-        组织成员、仓库写权限、提交记录或 PR 作者身份不能自动确认组织代表权；授权仅覆盖明确对象和范围。
-        当前入口仅供私有仓库已有协作者使用。请勿上传令牌、私人材料或非公开成员名单；无法提供充分证据时保持待核验。
-  - type: dropdown
-    id: request_kind
-    attributes:
-      label: 请求类型 / Request type
-      options:
-        - 仓库维护者确认 / Repository maintainer claim
-        - 组织范围策展 / Scoped organization curation
-        - 既有认领复核或范围变更 / Review or scope change
-        - 撤销授权 / Revoke claim
-    validations:
-      required: true
-  - type: input
-    id: target
-    attributes:
-      label: 对象 ID 或 GitHub URL / Target
-      description: 所认领仓库或组织的目录 ID 或公开 GitHub 地址。
-    validations:
-      required: true
-  - type: input
-    id: claimant
-    attributes:
-      label: 声明主体 GitHub 账号 / Claimant
-      description: 明确请求由哪个 GitHub 身份承担；提交此 Issue 本身不是权限证据。
-    validations:
-      required: true
-  - type: textarea
-    id: scope
-    attributes:
-      label: 授权或策展范围 / Scope
-      description: 列出对象、仓库或资源、可修改的目录内容及适用期限。新增和未来仓库不会自动加入。
-    validations:
-      required: true
-  - type: textarea
-    id: authority_evidence
-    attributes:
-      label: 授权依据 / Authority evidence
-      description: 提供可核验的公开声明或原请求链接。组织策展需组织 owner 的明确权限证据或已核验 owner 的委派；若需受限核验，仅说明这一需要，不粘贴私密材料。
-    validations:
-      required: true
-  - type: textarea
-    id: related_decision
-    attributes:
-      label: 既有决定或变化原因 / Optional related decision
-      description: 可选，复核、范围变更或撤销时关联原认领与当前变化。
-    validations:
-      required: false
+{
+  "name": "目录申请：认领与组织策展",
+  "description": "核验维护身份、组织策展或变更既有授权。",
+  "title": "[认领] ",
+  "labels": [
+    "catalog:claim",
+    "stage:triage"
+  ],
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "field_0",
+      "attributes": {
+        "label": "对象 ID 或公开来源 URL",
+        "description": "填写明确的目录对象；不必提供私人链接。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "field_1",
+      "attributes": {
+        "label": "GitHub 身份",
+        "description": "提交此申请本身不是权限证据。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "field_2",
+      "attributes": {
+        "label": "授权范围与请求类型",
+        "description": "仓库认领、组织策展、复核或撤销授权；列出对象和期限。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "field_3",
+      "attributes": {
+        "label": "授权依据",
+        "description": "组织 owner 或明确委派证据；不能仅凭组织成员或 PR 记录。受限核验只说明需要，不上传材料。"
+      },
+      "validations": {
+        "required": true
+      }
+    }
+  ]
+}

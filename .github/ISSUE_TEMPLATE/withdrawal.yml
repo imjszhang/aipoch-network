@@ -1,16 +1,16 @@
 {
-  "name": "目录申请：纠错",
-  "description": "修正描述、分类、重复条目或链接；撤回请选择专用表单。",
-  "title": "[纠错] ",
+  "name": "目录申请：撤回",
+  "description": "请求移除指定目录内容。",
+  "title": "[撤回] ",
   "labels": [
-    "catalog:correction",
+    "catalog:withdrawal",
     "stage:triage"
   ],
   "body": [
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。 撤回内容请使用独立 [撤回表单](https://github.com/imjszhang/aipoch-network/issues/new?template=withdrawal.yml)；选错表单由维护者分流，无需重提。"
+        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
       }
     },
     {
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "请求内容和范围",
-        "description": "描述希望发生的修改及其依据。"
+        "label": "撤回范围和依据",
+        "description": "明确字段、条目和历史产物；不要求公开私人证明。"
       },
       "validations": {
         "required": true

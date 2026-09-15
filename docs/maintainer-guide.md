@@ -2,18 +2,18 @@
 
 适用于 AIPOCH Network 目录维护者。依据[治理规则](governance.md)、[目录契约](catalog-contract.md)和[交付运行规则](delivery-operations.md)操作。命令、输入文件和产物格式以当前仓库实现为准；不要执行来源仓库提供的安装步骤来完成目录采集。
 
-当前私有仓库的 Issue/PR 仅对已有访问权限的协作者可用。本文提供可执行的审核流程和演练记录要求，不表示已开通公共入口、完成外部投稿或部署 Pages。
+当前仓库及 Issue/PR 入口公开。目录申请与产品问题按 [分流规则](issue-routing.md) 处理；公开入口不替代普通外部账号完整验收。
 
 ## 1. 接到推荐来源
 
 1. 打开请求，确定最小输入是一个公开 GitHub 仓库或组织 URL。普通 Issue 正文仅含 URL 也有效。不要要求 AIPOCH 清单、特定 topic、完整元数据或客户端安装。
-2. 运行当前实现的格式、模式、重复与引用检查，记录输入和结果。表单的必填标记不替代后续检查。GitHub 的表单文档对 `required` 的强制提交校验标注为仅公共仓库，因此私有阶段仍须显式校验 URL 非空与格式。[GitHub 表单语法](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema)
+2. 运行当前实现的格式、模式、重复与引用检查，记录输入和结果。表单的必填标记不替代后续检查。普通 URL-only Issue 仍须显式校验 URL 非空与格式，不能依赖表单阻止全部无效输入。[GitHub 表单语法](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema)
 3. 通过本项目受信采集入口核实公开状态和 GitHub 稳定 ID。未经审核的新 URL 只作为候选输入；不能让 PR 修改的脚本在有凭据的采集任务中执行。身份已存在时进入重复合并流程，账号名或 URL 不作为唯一身份依据。
 4. 核对科研相关性和已有描述。元数据不足时建立最小来源入口，不虚构研究目标、作者、资源或执行能力。组织候选先选择纳入的仓库/资源，不自动纳入全部组织仓库。
 5. 创建或审核人工注册资料的 PR，链接来源和原请求；在字段级区分原始观察、社区补充和维护者声明。保护现有稳定 ID，检查关系指向和未知状态。
 6. 在原请求留下可追踪结果：候选待补充、已收录、重复关联或退回原因。结果带目录 ID 与 PR；公共发布尚未发生时明确“已进入目录提交/候选”，不写“已上线”。
 
-Issue Forms 位于 `.github/ISSUE_TEMPLATE/`，普通 Issue 后备入口保持可用；不依赖尚未创建的标签或机器人。模板仅收集请求，不自动认领、采集或发布。GitHub 会从默认分支读取模板；实际显示仍需仓库权限和在线演练核验。[配置 Issue 模板](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
+Issue Forms 位于 `.github/ISSUE_TEMPLATE/`，普通 Issue 后备入口保持可用；专用标签由已审阅配置显式创建，普通 URL-only 后备入口不依赖机器人。模板仅收集请求，不自动认领、采集或发布。GitHub 会从默认分支读取模板；实际显示仍需仓库权限和在线演练核验。[配置 Issue 模板](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
 
 ### 新增来源的离线输入交接
 
@@ -77,7 +77,7 @@ Issue Forms 位于 `.github/ISSUE_TEMPLATE/`，普通 Issue 后备入口保持�
 后续：复核条件、清理范围、缺失证据或外部验收
 ```
 
-记录不包含令牌、私人联系方式或非公开成员明细。仓库当前私有也不意味着可以把这些信息写入将来可能公开的 Git 历史。需受限材料时，先确认现有受限协作位置；不存在时保留待核验，不擅自创建服务或要求在 Issue 上传。
+记录不包含令牌、私人联系方式或非公开成员明细。公开 Git 历史不得包含受限证据原件。需受限材料时，先确认现有受限协作位置；不存在时保留待核验，不擅自创建服务或要求在 Issue 上传。
 
 ## 4. 常见维护操作
 
@@ -165,3 +165,23 @@ node --import tsx --test pipeline/tests/history-recovery.test.ts pipeline/tests/
 交接至少包含当前负责各职责的人、仓库和站点实际可见性、当前目录版本、固定构建输入位置、最新撤回/抑制范围、最近恢复演练、未解决问题、权限与凭据持有人及后续到期动作。这里只记录必要引用，不把凭据本体交接在文档里。
 
 每次经授权的正式发布按[交付运行规则的发布门禁](delivery-operations.md#10-发布门禁)核对；公开源仓库、公开投稿入口和公开站点分别验证。维护者能够独立完成本手册的流程，不需要运行任何科研工作台或同步 Open-Science 版本。
+
+## Issue 分类配置
+
+规则见 [Issue 分流](issue-routing.md)。`.github/issue-labels.json` 保存19个受管理标签；八个 `.yml` 表单使用 JSON 表示法（YAML 1.2 子集），便于无第三方解析器的离线校验，不增加运行依赖。
+
+在已审阅的可信 checkout 中执行：
+
+```sh
+node scripts/issue-labels.mjs check
+node scripts/issue-labels.mjs plan
+node scripts/issue-labels.mjs apply
+```
+
+`check` 离线验证配置和表单。`plan` 通过已登录的 gh 只读列出差异；`apply` 显式同步配置内标签并回读确认，不删除其他标签，不给 Issue 加标签，不发评论。只对固定 imjszhang/aipoch-network 操作，不输出认证材料。普通 CI 仅调用离线校验；不建立带凭据的 PR 自动化。
+
+先预览标签差异，再应用标签，然后合并模板；网站更新另走既有发布流程。回读默认分支表单和公开选择页，确认渲染与标签，不用测试 Issue 制造外部投稿证据。旧 correction-or-withdrawal.yml 保留兼容文件名，但新撤回使用独立表单；旧链接误入由维护者调整类型，不要求重提。
+
+每次分流补恰好一个 catalog:/product:/support: 类型标签。目录申请再设置一个 stage；stage:closed 必须同时有一个 outcome。普通 blank Issue 也在待分流范围，可用 `is:issue is:open -label:catalog:submission -label:catalog:claim -label:catalog:correction -label:catalog:withdrawal -label:catalog:appeal -label:product:bug -label:product:enhancement -label:support:question` 查看。历史已关闭产品问题仅补类型，不追加目录阶段、认领或发布结论。
+
+回滚时先停用变更入口或恢复对应提交，不删除已有讨论，不批量删除已被使用的标签，不回退有效撤回和权限决定。

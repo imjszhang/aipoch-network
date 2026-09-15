@@ -1,0 +1,27 @@
+{
+  "name": "使用咨询",
+  "description": "询问网站、目录或参与流程。",
+  "title": "[咨询] ",
+  "labels": [
+    "support:question"
+  ],
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "field_0",
+      "attributes": {
+        "label": "问题与相关入口",
+        "description": "不提交私人材料或凭据。"
+      },
+      "validations": {
+        "required": true
+      }
+    }
+  ]
+}

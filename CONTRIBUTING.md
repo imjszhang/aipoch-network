@@ -2,13 +2,17 @@
 
 AIPOCH Network 整理已有 GitHub 科研项目、资源和组织，内容与协作尽量回到原项目。提交一个公开 GitHub URL 就可以推荐来源，不要求原作者修改仓库、添加清单、采用特定 Topics、安装应用或注册 AIPOCH 账号。
 
+## 请求分类
+
+目录申请分为 **[收录]、[认领]、[纠错]、[撤回]、[申诉]**；网站故障、功能建议及咨询分别使用 **[故障]、[建议]、[咨询]**。在 [Issue 类型选择页](https://github.com/imjszhang/aipoch-network/issues/new/choose) 选择对应表单。维护者会纠正误选类别，只有 URL 的普通 Issue 仍接受。完整阶段与结案门槛见 [Issue 分流规则](docs/issue-routing.md)。
+
 ## 当前参与入口
 
 本仓库已公开。可以通过 [Issues](https://github.com/imjszhang/aipoch-network/issues) 推荐来源、提出更正，通过 [Pull requests](https://github.com/imjszhang/aipoch-network/pulls) 提交修改；提交需要 GitHub 账号。网站生成的草稿只有在 GitHub 上确认提交后才成为 Issue。
 
 ## 推荐一个仓库或组织
 
-在 Issue 选择 **推荐来源 / Source proposal**，填入一个公开 GitHub 仓库或组织 URL。正文只写 URL 的普通 Issue 也接受，其他信息均可由目录维护者整理。例如：
+在 Issue 选择 **目录申请：推荐收录**，填入一个公开 GitHub 仓库或组织 URL。正文只写 URL 的普通 Issue 也接受，其他信息均可由目录维护者整理。例如：
 
 ```text
 https://github.com/example-lab/research-tool
@@ -22,7 +26,7 @@ https://github.com/example-lab/research-tool
 
 ## 修正、撤回或申诉
 
-选择 **纠错、撤回或申诉 / Correction or withdrawal**，提供目录条目 ID 或来源 URL，并说明希望改动的内容。链接错误、摘要失实、重复条目、过期版本、来源不再公开、错误认领和范围争议都可以提出。没有维护者身份也可以报告可核实的问题。
+选择 对应的 **目录申请：纠错、撤回或申诉** 表单，提供目录条目 ID 或来源 URL，并说明希望改动的内容。链接错误、摘要失实、重复条目、过期版本、来源不再公开、错误认领和范围争议都可以提出。没有维护者身份也可以报告可核实的问题。
 
 确认撤回后，维护者按范围撤下目录详情、搜索、静态数据及可访问旧产物中的相关内容，并设置防止自动重新收录的记录。回滚不能重新公开已撤回内容。来源重新公开也不会自动解除有效撤回；重新收录需要复核原撤回理由和请求范围。具体规则见[治理规则](docs/governance.md)。
 
@@ -30,7 +34,7 @@ https://github.com/example-lab/research-tool
 
 ## 维护者确认与组织策展
 
-选择 **认领与组织策展 / Claim or curation**，说明 GitHub 身份、对象、具体范围和可公开核验的证据。认领并不是推荐来源的前置条件。
+选择 **目录申请：认领与组织策展**，说明 GitHub 身份、对象、具体范围和可公开核验的证据。认领并不是推荐来源的前置条件。
 
 仓库维护者确认只覆盖该仓库及已核验的维护范围。组织策展认领另需组织 owner 的明确权限证据，或已核验 owner 对特定人员和策展范围的明确委派。普通组织成员身份、在组织仓库合并过 PR、可以修改一个仓库，以及个人自述均不足以确认组织代表权。
 

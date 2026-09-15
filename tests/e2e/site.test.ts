@@ -58,10 +58,10 @@ test('project and capability have distinct static deep links, provenance and unk
 
 test('GitHub proposal reviews exact content and only opens a draft', async ({ page }) => {
   await page.goto('./submit/');
-  await page.getByLabel('Public GitHub repository or organization URL').fill('https://example.com/not-github');
+  await page.getByLabel('Public GitHub repository or organization URL', { exact: false }).fill('https://example.com/not-github');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.getByRole('alert')).toContainText('github.com');
-  await page.getByLabel('Public GitHub repository or organization URL').fill('https://github.com/scipy/scipy');
+  await page.getByLabel('Public GitHub repository or organization URL', { exact: false }).fill('https://github.com/scipy/scipy');
   await page.getByLabel('Research context', { exact: false }).fill('Review numerical methods & research tools.');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.getByRole('button', { name: 'Continue', exact: false })).toBeDisabled();
@@ -73,6 +73,7 @@ test('GitHub proposal reviews exact content and only opens a draft', async ({ pa
   await expect(page.locator('.draft')).toContainText('Review numerical methods & research tools.');
   const draft = await page.getByRole('link', { name: 'Open GitHub draft' }).getAttribute('href');
   expect(new URL(draft!).searchParams.get('body')).toContain('https://github.com/scipy/scipy');
+  expect(new URL(draft!).searchParams.get('labels')).toBe('catalog:submission,stage:triage');
   await page.context().route('https://github.com/imjszhang/aipoch-network/issues/new*', route => route.fulfill({ contentType: 'text/html', body: '<h1>Local test of an external draft</h1>' }));
   const opened = page.waitForEvent('popup');
   await page.getByRole('link', { name: 'Open GitHub draft' }).click();
@@ -108,7 +109,7 @@ test('keyboard navigation and search failure remain usable', async ({ page }) =>
 test('corrections retain their target and edits invalidate prior content review', async ({ page }) => {
   await page.goto('./projects/project~scipy/');
   await page.getByRole('link', { name: 'Suggest a correction' }).click();
-  await expect(page.getByLabel('Public GitHub repository or organization URL')).toHaveValue('https://github.com/scipy/scipy');
+  await expect(page.getByLabel('Public GitHub repository or organization URL', { exact: false })).toHaveValue('https://github.com/scipy/scipy');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
@@ -116,7 +117,7 @@ test('corrections retain their target and edits invalidate prior content review'
   await expect(page.locator('.draft')).toContainText('project:scipy');
   await page.getByRole('button', { name: 'Back', exact: true }).click();
   await page.getByRole('button', { name: 'Back', exact: true }).click();
-  await page.getByLabel('Research context', { exact: false }).fill('Updated context');
+  await page.getByLabel('Requested correction', { exact: false }).fill('Updated context');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await expect(page.getByRole('checkbox')).not.toBeChecked();
   await expect(page.getByRole('button', { name: 'Continue', exact: false })).toBeDisabled();
@@ -125,7 +126,7 @@ test('corrections retain their target and edits invalidate prior content review'
 test('long Unicode drafts use an explicit copy-and-paste path without losing content', async ({ page }) => {
   await page.goto('./submit/');
   const note = '科研资料与公开数据'.repeat(180);
-  await page.getByLabel('Public GitHub repository or organization URL').fill('https://github.com/scipy/scipy');
+  await page.getByLabel('Public GitHub repository or organization URL', { exact: false }).fill('https://github.com/scipy/scipy');
   await page.getByLabel('Research context', { exact: false }).fill(note);
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await page.getByRole('checkbox').check();
@@ -185,7 +186,7 @@ test('real individual and multi-source organization routes retain source identit
   await expect(page.getByRole('heading', { name: 'mwaskom', exact: true })).toBeVisible();
   await expect(page.locator('#sources')).toContainText('seaborn');
   await page.getByRole('link', { name: 'Suggest a correction' }).click();
-  await expect(page.getByLabel('Public GitHub repository or organization URL')).toHaveValue('https://github.com/mwaskom');
+  await expect(page.getByLabel('Public GitHub repository or organization URL', { exact: false })).toHaveValue('https://github.com/mwaskom');
   await page.getByRole('button', { name: 'Continue', exact: false }).click();
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Continue', exact: false }).click();

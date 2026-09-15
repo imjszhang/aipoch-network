@@ -1,10 +1,9 @@
 {
-  "name": "目录申请：推荐收录",
-  "description": "推荐公开 GitHub 仓库或组织，仅 URL 必填。",
-  "title": "[收录] ",
+  "name": "产品问题：故障",
+  "description": "网站、搜索、连接交互或公共契约异常；目录内容错误请选择纠错。",
+  "title": "[故障] ",
   "labels": [
-    "catalog:submission",
-    "stage:triage"
+    "product:bug"
   ],
   "body": [
     {
@@ -17,8 +16,8 @@
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "公开 GitHub URL",
-        "description": "无需原作者修改仓库、专用清单、账号接入或客户端。"
+        "label": "页面或版本",
+        "description": "提供公开页面和浏览器/客户端版本。"
       },
       "validations": {
         "required": true
@@ -28,11 +27,11 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "科研用途与建议范围",
-        "description": "可选；组织未填写范围不代表所有仓库自动加入。"
+        "label": "复现步骤、预期与实际结果",
+        "description": "只提供必要且已脱敏的信息。"
       },
       "validations": {
-        "required": false
+        "required": true
       }
     }
   ]

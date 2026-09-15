@@ -45,3 +45,5 @@ footer .mono { font-family:Arial,sans-serif; text-transform:none; letter-spacing
 .footer-links { flex-wrap:wrap; margin-left:auto; gap:12px 18px; }
 .footer-note { color:#666; border-color:var(--line); }
 @media(max-width:600px) { header { height:71px; } .header-inner { padding-inline:16px; gap:8px; } .header-inner .nav.open { top:71px; } footer>.wide { gap:18px; } footer .mono { flex-basis:100%; } .footer-links { margin-left:0; } }
+/* Keep the focused review step clear of the sticky navigation. */
+.submission h2[tabindex] { scroll-margin-top: 7rem; }
