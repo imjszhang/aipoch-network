@@ -7,16 +7,16 @@ import { Link, useNavigation } from '../navigation.js';
 import { ArrowLink, PageHeader, ProjectRows, CapabilityCard, OrganizationCard } from '../catalog-components.js';
 import { EntryFacts, useObservationTime } from '../catalog-observations.js';
 import { changeDiscovery, compareDiscovery, discoveryKeys, isAccountKind, isRepositoryKind, matchesDiscovery, parseDiscovery, presetDates, sorts } from '../discovery.js';
+import { DIRECTORY_LABELS, PAGE_SIZE, directoryHref, parseDirectoryPath, sectionForKind } from '../directory-routes.js';
 
-const PAGE_SIZE = 8;
 const sections: Record<string, { title: string; description: string; tab: string }> = {
-  all: { title: 'Explore the network', description: 'Discover research projects, reusable capabilities, and the people behind them.', tab: 'All' },
-  project: { title: 'Research projects', description: 'Find a direction, understand the work, and discover what you can build on.', tab: 'Projects' },
-  resource: { title: 'Reusable capabilities', description: 'Tools, methods, and workflows to bring into your own research.', tab: 'Capabilities' },
-  organization: { title: 'Organizations', description: 'Explore the research and capabilities shared through existing GitHub organizations.', tab: 'Organizations' },
-  actor: { title: 'Researchers & maintainers', description: 'Public GitHub profiles connected to the sources in this directory.', tab: 'Researchers' },
-  collection: { title: 'Research collections', description: 'Curated starting points for a research question or field.', tab: 'Collections' },
-  source_repository: { title: 'Source repositories', description: 'Original repositories behind the projects and capabilities in this network.', tab: 'Source repositories' },
+  all: { title: DIRECTORY_LABELS.all.heading, description: DIRECTORY_LABELS.all.description, tab: 'All' },
+  project: { title: DIRECTORY_LABELS.project.heading, description: DIRECTORY_LABELS.project.description, tab: 'Projects' },
+  resource: { title: DIRECTORY_LABELS.resource.heading, description: DIRECTORY_LABELS.resource.description, tab: 'Capabilities' },
+  organization: { title: DIRECTORY_LABELS.organization.heading, description: DIRECTORY_LABELS.organization.description, tab: 'Organizations' },
+  actor: { title: DIRECTORY_LABELS.actor.heading, description: DIRECTORY_LABELS.actor.description, tab: 'Researchers' },
+  collection: { title: DIRECTORY_LABELS.collection.heading, description: DIRECTORY_LABELS.collection.description, tab: 'Collections' },
+  source_repository: { title: DIRECTORY_LABELS.source_repository.heading, description: DIRECTORY_LABELS.source_repository.description, tab: 'Source repositories' },
 };
 const accessOptions: Record<string, string> = {
   pinned: 'Pinned source version',
@@ -93,17 +93,26 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     return filtered.sort((a, b) => compareDiscovery(a,b,catalog,discovery,searchState === 'ready' ? matches : undefined));
   }, [entries, organizationMembers, collectionMembers, filter, domain, access, query, searchState, matches, catalog, discovery]);
   const pages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
-  const requestedPage = Number(params.get('page') ?? '1');
+  const directoryRoute = parseDirectoryPath(path.split('?')[0] ?? '');
+  const section = directoryRoute?.section ?? sectionForKind(kind);
+  const requestedPage = directoryRoute?.page ?? Number(params.get('page') ?? '1');
   const pageNumber = Math.min(pages, Math.max(1, Number.isFinite(requestedPage) ? Math.floor(requestedPage) : 1));
+  const pageHref = (page: number) => directoryHref(section, page, params);
   // Render the clamped page immediately, then repair shared URLs without a navigation/focus reset.
   useEffect(() => {
-    if (discovery.errors.length || !controlsReady || (query.trim() && searchState === 'loading') || !params.has('page')) return;
-    const canonicalPage = pageNumber === 1 ? null : String(pageNumber);
-    if (params.get('page') === canonicalPage) return;
-    const nextParams = new URLSearchParams(params);
-    if (canonicalPage) nextParams.set('page', canonicalPage); else nextParams.delete('page');
-    void navigate(`${path.split('?')[0]}${nextParams.size ? `?${nextParams}` : ''}`, { replace: true, preserveScroll: true });
-  }, [controlsReady, query, searchState, params, pageNumber, path, navigate, discovery.errors.length]);
+    if (discovery.errors.length || !controlsReady || (query.trim() && searchState === 'loading')) return;
+    const target = pageHref(pageNumber);
+    const current = `${path.split('?')[0]}${params.size ? `?${params}` : ''}`;
+    const same = (left: string, right: string) => {
+      const a = new URL(left, 'https://aipoch.invalid'), b = new URL(right, 'https://aipoch.invalid');
+      if (a.pathname !== b.pathname) return false;
+      const keys = new Set([...a.searchParams.keys(), ...b.searchParams.keys()]);
+      return [...keys].every(key => a.searchParams.get(key) === b.searchParams.get(key));
+    };
+    if (same(current, target)) return;
+    if (!directoryRoute?.page && !params.has('page') && pageNumber === 1) return;
+    void navigate(target, { replace: true, preserveScroll: true });
+  }, [controlsReady, query, searchState, params, pageNumber, path, navigate, discovery.errors.length, directoryRoute?.page, section]);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
   const filterDialog = useRef<HTMLDialogElement>(null);
@@ -204,7 +213,7 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
           <div className="results-list">
             {results.slice((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE).map(entry => entry.kind === 'project' ? <ProjectRows key={entry.id} projects={[entry]} catalog={catalog} filters={discovery}/> : entry.kind === 'resource' ? <CapabilityCard key={entry.id} resource={entry} catalog={catalog} filters={discovery}/> : entry.kind === 'organization' ? <OrganizationCard key={entry.id} organization={entry} catalog={catalog} filters={discovery}/> : <Link to={routeFor(entry)} className="panel simple-card" key={entry.id}><p className="eyebrow">{entry.kind === 'collection' ? 'Collection' : entry.kind === 'actor' ? 'GitHub profile' : 'GitHub source'}</p><h3>{entry.title}<ArrowUpRight size={17}/></h3><p>{entry.description ?? 'Description not supplied.'}</p><EntryFacts entry={entry} catalog={catalog} filters={discovery}/></Link>)}
           </div>
-          {pages > 1 && <nav className="pagination" aria-label="Results pages"><button disabled={!controlsReady || pageNumber === 1} onClick={() => update({ page: String(pageNumber - 1) }, true)}>Previous</button><span>Page {pageNumber} of {pages}</span><button disabled={!controlsReady || pageNumber === pages} onClick={() => update({ page: String(pageNumber + 1) }, true)}>Next</button></nav>}
+          {pages > 1 && <nav className="pagination" aria-label="Results pages">{pageNumber === 1 ? <button disabled>Previous</button> : <Link className="button" to={pageHref(pageNumber - 1)}>Previous</Link>}<span>Page {pageNumber} of {pages}</span>{pageNumber === pages ? <button disabled>Next</button> : <Link className="button" to={pageHref(pageNumber + 1)}>Next</Link>}</nav>}
           <p className="directory-observation">Catalog snapshot {displayDate(data.generated_at)}. Date ranges use UTC. Filters use the captured page time; results can change with a new catalog snapshot. Research stays at its original source.</p>
         </div>
       </div>
