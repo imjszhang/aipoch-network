@@ -12,7 +12,10 @@ import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { stableJson, sha256 } from '../pipeline/build.js';
 import { makeSearchIndex, searchDocuments } from '../web/src/search.js';
-import { allEntries, routeFor, tombstoneRoutesFor, type SiteData } from '../web/src/model.js';
+import { allEntries, type SiteData } from '../web/src/model.js';
+import { prerenderPaths } from '../web/src/directory-routes.js';
+import { robotsText, sitemapEntries, sitemapXml } from '../web/src/seo.js';
+import { siteConfigFromEnv } from '../web/src/site-url.js';
 import { assertValidCatalog, validateManifest, validateShard, emptyCatalog, COLLECTION_NAMES, CONTRACT_VERSION, type CatalogManifest, type CatalogShard, type Provenance } from '../spec/index.js';
 import { renderPage } from './render-page.js';
 import { validateOutput } from './build.js';
@@ -119,17 +122,20 @@ export async function buildVerificationSite(directory: string, data: SiteData, b
   await viteBuild({ configFile: false, plugins: [designAssetsPlugin()], root: resolve('web'), publicDir: generated, base, logLevel: 'error', build: { outDir: output, emptyOutDir: true, sourcemap: false } });
   const afterAssets = performance.now();
   const template = await readFile(join(output, 'index.html'), 'utf8');
-  const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/', '/join/', '/me/', '/contribute/', ...(DEMO_MODE ? ['/review/'] : []),
-    ...allEntries(data.catalog).map(routeFor), ...data.catalog.tombstones.flatMap(tombstoneRoutesFor), '/404/'];
+  const config = siteConfigFromEnv({ ...process.env, SITE_BASE: base });
+  const paths = prerenderPaths(data, DEMO_MODE);
   let rendered = 0;
   for (const path of paths) {
     const file = path === '/404/' ? join(output, '404.html') : join(output, path.slice(1), 'index.html');
     await mkdir(dirname(file), { recursive: true });
-    await writeFile(file, renderPage(template, data, path, base));
+    await writeFile(file, renderPage(template, data, path, base, config));
     if (++rendered % 1000 === 0) progress?.(`Rendered ${rendered}/${paths.length} actual HTML pages.`);
   }
+  const published = paths.filter(path => path !== '/404/');
+  await writeFile(join(output, 'sitemap.xml'), sitemapXml(sitemapEntries(data, config, published)));
+  await writeFile(join(output, 'robots.txt'), robotsText(config));
   await writeFile(join(output, '.nojekyll'), '');
-  await writeFile(join(output, 'routes.json'), stableJson({ base, paths: paths.filter(path => path !== '/404/'), snapshot_id: data.snapshot_id }));
+  await writeFile(join(output, 'routes.json'), stableJson({ base, paths: published, snapshot_id: data.snapshot_id }));
   const afterRender = performance.now();
   const validated = await validateOutput(output, base);
   const afterValidation = performance.now();

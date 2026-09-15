@@ -136,7 +136,7 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
     assert.deepEqual(currentPolicy.snapshots.map(row => [row.snapshot_id, row.status]), policy.snapshots.map(row => [row.snapshot_id, row.status]), 'Historical permissions or claims expired since candidate generation');
     const available = policy.snapshots.filter(row => row.status === 'available').map(row => row.snapshot_id).sort();
     const routes = await json(directory, 'routes.json') as { paths: string[] };
-    const expectedFiles = new Set(['index.html', '404.html', '.nojekyll', 'routes.json', 'build-report.json', 'build-info.json', 'third-party-notices.txt', 'assets/open-science-product-notice.txt', 'internal/catalog.json', 'internal/search.json', 'catalog/v1/manifest.json', 'catalog/v1/history.json', ...routes.paths.map(path => `${path.slice(1)}index.html`)]);
+    const expectedFiles = new Set(['index.html', '404.html', '.nojekyll', 'routes.json', 'robots.txt', 'sitemap.xml', 'build-report.json', 'build-info.json', 'third-party-notices.txt', 'assets/open-science-product-notice.txt', 'internal/catalog.json', 'internal/search.json', 'catalog/v1/manifest.json', 'catalog/v1/history.json', ...routes.paths.map(path => `${path.slice(1)}index.html`)]);
     assert.deepEqual((await readdir(join(directory, 'catalog/v1/snapshots'))).sort(), available, 'Unlisted or retired snapshots remain downloadable');
     for (const id of available) {
       const snapshot = await readHistoricalSnapshot(join(directory, 'catalog/v1/snapshots', id), id);

@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { allEntries, displayDate, routeFor, tombstoneRoutesFor, type SiteData } from './model.js';
+import { directoryPageCount, parseDirectoryPath } from './directory-routes.js';
+import { applySeoToDocument, seoForPath } from './seo.js';
+import { OFFICIAL_ORIGIN } from './site-url.js';
 import { Link, NavigationProvider, useNavigation } from './navigation.js';
 import { loadCatalog } from './catalog-loader.js';
 import { ArrowLink } from './catalog-components.js';
@@ -25,16 +28,22 @@ function Pages({ data }: { data: SiteData }) {
   const { path, base, href } = useNavigation();
   const { connected } = useWorkbench();
   const route = path.replace(/\?.*$/,'').replace(/\/$/,'') || '/';
+  const directory = parseDirectoryPath(path.split('?')[0] ?? '');
   const listKind: Record<string,string> = { '/explore':'all', '/projects':'project', '/capabilities':'resource', '/organizations':'organization', '/collections':'collection', '/sources':'source_repository', '/researchers':'actor' };
   const entry = allEntries(data.catalog).find(entry => routeFor(entry).replace(/\/$/,'') === route);
   const tombstone = data.catalog.tombstones.find(row => tombstoneRoutesFor(row).some(path => path.replace(/\/$/,'') === route));
   const replacement = tombstone?.replacement_id ? allEntries(data.catalog).find(row => row.id === tombstone.replacement_id) : undefined;
+  const pathPageMissing = Boolean(directory?.page && directory.page > directoryPageCount(data, directory.kind));
   useEffect(() => {
     const labels: Record<string,string> = { '/':'Science Open to All', '/explore':'Explore', '/projects':'Research projects', '/capabilities':'Reusable capabilities', '/organizations':'Organizations', '/researchers':'Researchers', '/collections':'Collections', '/sources':'Sources', '/community':'Community', '/submit':'Share research', '/contribute':'Contribute', '/join':'Join with Open-Science', '/me':'Saved research', '/review':'Connection scenarios' };
-    document.title = `${entry?.title ?? (route === '/' && connected ? 'Your research home' : labels[route] ?? (tombstone ? 'Catalog record withdrawn' : 'Entry not found'))} | AIPOCH Network`;
-  }, [route, entry?.title, connected, tombstone]);
+    const directoryTitle = directory ? `${labels[`/${directory.section}`] ?? 'Explore'}${directory.page && directory.page > 1 ? `, page ${directory.page}` : ''}` : undefined;
+    document.title = `${entry?.title ?? (route === '/' && connected ? 'Your research home' : directoryTitle ?? labels[route] ?? (tombstone ? 'Catalog record withdrawn' : 'Entry not found'))} | AIPOCH Network`;
+    const config = { origin: OFFICIAL_ORIGIN, base, indexing: import.meta.env.VITE_SITE_INDEXING ?? (base === '/') };
+    applySeoToDocument(document, seoForPath(path, data, config), route === '/');
+  }, [route, entry?.title, connected, tombstone, path, data, base, directory]);
   let content;
   if (route === '/') content = <>{connected ? <ResearchHome data={data}/> : <PublicHome data={data}/>}</>;
+  else if (directory && !pathPageMissing) content = <Directory key={directory.section} data={data} kind={directory.kind} base={base}/>;
   else if (listKind[route]) content = <Directory key={route} data={data} kind={listKind[route]} base={base}/>;
   else if (entry) content = <Detail key={entry.id} entry={entry} data={data}/>;
   else if (route === '/community') content = <Community data={data}/>;

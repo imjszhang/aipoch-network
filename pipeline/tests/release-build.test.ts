@@ -24,6 +24,9 @@ async function candidate(root: string, base = '/', snapshot = 'new-snapshot'): P
   await write(root, 'assets/app.css', '@import "./shared.css"; body{background:url("./background.svg")}');
   await write(root, 'assets/shared.css', 'body{margin:0}');
   await write(root, 'assets/background.svg', '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  await write(root, 'robots.txt', 'User-agent: *\nAllow: /\n');
+  const origin = 'https://aipoch.network';
+  await write(root, 'sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}${base}</loc></url><url><loc>${origin}${base}docs/</loc></url></urlset>`);
 }
 
 test('commits complete sibling output and removes old output only after replacement', async t => {
@@ -72,6 +75,16 @@ test('validates actual root and Pages-subpath pages, assets, imports, anchors an
     assert.ok(checked.bytes > 0);
     await assert.rejects(validateOutput(output, base, 1), /byte budget/);
   }
+});
+
+test('rejects sitemap pagination URLs and missing robots or sitemap files', async t => {
+  const root = await temporary(t);
+  const paged = join(root, 'paged'); await candidate(paged);
+  await write(paged, 'page/2/index.html', await readFile(join(paged, 'index.html'), 'utf8'));
+  await write(paged, 'sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://aipoch.network/</loc></url><url><loc>https://aipoch.network/page/2/</loc></url></urlset>');
+  await assert.rejects(validateOutput(paged), /Pagination URLs must not appear in sitemap/);
+  const missingRobots = join(root, 'norbots'); await candidate(missingRobots); await rm(join(missingRobots, 'robots.txt'));
+  await assert.rejects(validateOutput(missingRobots), /Missing required output: robots.txt/);
 });
 
 test('rejects missing page, asset, CSS import, JS import and fragment target', async t => {

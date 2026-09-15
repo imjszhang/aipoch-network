@@ -53,7 +53,7 @@ test('pagination preserves sort and restores the same records after detail, back
   await page.goto('./projects/?sort=title');
   await expect(search(page)).toBeEnabled();
   const firstPage = await page.locator('.results-list .row-title a').allTextContents();
-  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
   await expect.poll(() => searchParams(page).get('page')).toBe('2');
   await expect(results(page)).toHaveCount(8);
   const secondPage = await page.locator('.results-list .row-title a').allTextContents();
@@ -71,9 +71,9 @@ test('pagination preserves sort and restores the same records after detail, back
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
   await page.reload();
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
-  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
   await expect(results(page)).toHaveCount(total - 16);
-  await expect(page.getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
+  await expect(page.getByRole('navigation', { name: 'Results pages' }).getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
   await expect(page.locator('.pagination')).toContainText('Page 3 of 3');
 });
 
@@ -229,4 +229,28 @@ test('mobile refinement traps keyboard focus, keeps query and returns focus on d
   await expect(toggle).toBeFocused();
   await expect(results(page)).toHaveCount(8);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('changing sort from a static second page starts at the first result page', async ({ page }) => {
+  await page.goto('./projects/page/2/');
+  await expect(page.locator('.pagination')).toContainText('Page 2 of');
+  await page.getByRole('combobox', { name: 'Sort results' }).selectOption('title');
+  await expect(page.locator('.pagination')).toContainText('Page 1 of');
+  expect(new URL(page.url()).pathname).not.toContain('/page/2/');
+});
+
+test('returning home restores its original description', async ({ page }) => {
+  await page.goto('./projects/project~anndata/');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Annotated data.');
+  await page.getByRole('link', { name: 'AIPOCH Network home', exact: true }).click();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Discover research projects and reusable capabilities, connected to their original GitHub sources.');
+});
+
+test('hydration preserves the build indexing policy', async ({ page, request }) => {
+  const html = await (await request.get('./projects/')).text();
+  const robots = html.match(/<meta name="robots" content="([^"]+)"/)?.[1];
+  expect(robots).toBeTruthy();
+  await page.goto('./projects/');
+  await expect(search(page)).toBeEnabled();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', robots!);
 });

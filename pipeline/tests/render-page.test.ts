@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { renderPage } from '../../scripts/render-page.js';
 import { createFixtureCatalog, FIXTURE_TIME } from '../../spec/fixtures/catalog.js';
-import { allEntries, pageDataForRoute, relatedEntriesFor, routeFor, SHARED_CATALOG_ROUTES, tombstoneRouteFor, type SiteData } from '../../web/src/model.js';
+import { allEntries, isSharedCatalogRoute, pageDataForRoute, relatedEntriesFor, routeFor, SHARED_CATALOG_ROUTES, tombstoneRouteFor, type SiteData } from '../../web/src/model.js';
+import { HOME_DESCRIPTION, HOME_TITLE } from '../../web/src/seo.js';
 import { verificationData } from '../../scripts/verification-site.js';
 
 const template = '<!doctype html><html><head><title>Original title</title><meta name="description" content="Original description" /></head><body><div id="root"><!--app-html--></div><!--app-data--><script type="module" src="/assets/app.js"></script></body></html>';
@@ -108,7 +109,7 @@ test('all current fixture routes render and route-local detail payloads preserve
     const html = renderPage(template, data, path, '/');
     assert.ok(html.includes('Skip to content'), path);
     assert.match(html, /<h1(?:\s[^>]*)?>/, path);
-    if (SHARED_CATALOG_ROUTES.includes(path)) assert.ok(html.includes(`window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__={"snapshot_id":"${data.snapshot_id}"}`));
+    if (isSharedCatalogRoute(path)) assert.ok(html.includes(`window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__={"snapshot_id":"${data.snapshot_id}"}`));
     else checkRetainedSources(payload(html));
   }
 });
@@ -149,4 +150,36 @@ test('large organization and collection previews retain exactly twenty entries, 
     assert.ok(Buffer.byteLength(JSON.stringify(selected)) < 40_000, 'Preview payload stays bounded for this fixture');
   }
   assert.deepEqual(data, before, 'Preview trimming never mutates the authoritative catalog');
+});
+
+test('homepage visible metadata and CTAs stay the published baseline', () => {
+  const html = renderPage(template, siteData(), '/', '/');
+  assert.equal(decodeText(html.match(/<title>([\s\S]*?)<\/title>/)![1]), HOME_TITLE);
+  assert.equal(decodeText(html.match(/<meta name="description" content="([^"]*)"\s*\/>/)![1]), HOME_DESCRIPTION);
+  assert.match(html, /<h1[^>]*>[\s\S]*Science[\s\S]*Open to All/);
+  assert.ok(html.includes('Join with Open-Science'));
+  assert.ok(html.includes('Explore AIPOCH Network'));
+  assert.ok(html.includes('Connect an existing project'));
+  assert.ok(html.includes('src="/assets/open-science-product-v9-r2.jpg"'));
+  assert.ok(html.includes('rel="canonical"'));
+  assert.ok(!html.includes('SoftwareApplication'));
+});
+
+test('build-time directory pages expose distinct raw HTML and pagination hrefs', () => {
+  const data = verificationData(80);
+  const first = renderPage(template, data, '/capabilities/', '/');
+  const second = renderPage(template, data, '/capabilities/page/2/', '/');
+  const query = renderPage(template, data, '/capabilities/?page=2', '/');
+  assert.ok(isSharedCatalogRoute('/capabilities/page/2/'));
+  assert.ok(first.includes('window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__'));
+  assert.ok(second.includes('window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__'));
+  assert.ok(first.includes('href="/capabilities/page/2/"'));
+  assert.ok(second.includes('href="/capabilities/"') || second.includes('href="/capabilities/page/3/"'));
+  assert.notEqual(first, second);
+  assert.ok(query.includes('Reusable capabilities, page 2'));
+  assert.ok(query.includes('href="https://aipoch.network/capabilities/page/2/"'));
+  assert.match(first, /<title>Reusable capabilities \| AIPOCH Network<\/title>/);
+  assert.match(second, /<title>Reusable capabilities, page 2 \| AIPOCH Network<\/title>/);
+  assert.ok(first.includes('rel="canonical"'));
+  assert.ok(second.includes('href="https://aipoch.network/capabilities/page/2/"'));
 });

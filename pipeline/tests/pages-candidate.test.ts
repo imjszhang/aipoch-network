@@ -35,6 +35,8 @@ async function fixture(t: TestContext, history = false, sourceObservedAt = '2026
   for (const file of ['index.html', '404.html']) await writeFile(join(root, file), '<!doctype html><html><body>Skip to content<script>window.__AIPOCH__={}</script></body></html>');
   await writeFile(join(root, '.nojekyll'), '');
   await writeFile(join(root, 'routes.json'), stableJson({ base: '/', paths: ['/'], snapshot_id: manifest.snapshot_id }));
+  await writeFile(join(root, 'robots.txt'), 'User-agent: *\nAllow: /\n');
+  await writeFile(join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://aipoch.network/</loc></url></urlset>');
   await writeFile(join(root, 'third-party-notices.txt'), 'Synthetic verifier fixture only; this file does not prove real license review.');
   return { root, selection: { ...metadata().selection, snapshot_id: manifest.snapshot_id, file_tree_sha256: (await candidateFileTree(root)).file_tree_sha256 } };
 }
