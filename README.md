@@ -38,6 +38,7 @@
 | [v9-r2 实施与验收记录](docs/verification/v9-r2/implementation-status.md) | N/R/V 状态、接收摘要、实际证据与待验收项 |
 | [工作台预览与适配边界](docs/workbench-preview.md) | 默认与 Demo 构建、试用步骤和本机数据；真实模式见 [Connector 适配](docs/connector-adapter.md) |
 | [交付与运营](docs/delivery-operations.md) | 私有到公开的选择、GitHub 约束、采集、部署、回滚和运营 |
+| [Explore design synchronization](design/changes/explore-dates-metrics-handoff.md) | Dates, GitHub metrics, filter states and screenshots for updating the design draft |
 | [前端设计与 HTML 交接](design/README.md) | 当前设计原件、版本记录、意图映射及后续升级流程 |
 | [公开交付决策材料](docs/publication-decision.md) | 可审查的公开范围、许可与仓库布局选项 |
 | [代理协作约定](AGENTS.md) | 后续实现时必须保持的项目边界 |

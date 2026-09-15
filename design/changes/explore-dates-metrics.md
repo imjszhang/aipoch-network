@@ -25,3 +25,7 @@ The five primary categories, black/white/yellow palette, project rows, capabilit
 | Complete account membership counts in detail subgraphs | `web/src/model.ts` |
 
 Meaningful selector and rendering boundaries are covered in `web/tests/discovery.test.ts`; browser scenarios are in `tests/e2e/explore-dates-metrics.test.ts`. Actual verification results and screenshots belong to `docs/verification/explore-dates-metrics/`; this design mapping does not imply a deployment or replace the recorded v9-r2 regression evidence.
+
+## Design draft synchronization
+
+See the [design synchronization handoff](explore-dates-metrics-handoff.md) for affected frames, exact UI copy, component variants, filter behavior and screenshot references. It is the designer-facing checklist for preparing the next matched HTML/MD revision; the original v9-r2 files remain archived unchanged.

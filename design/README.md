@@ -6,6 +6,10 @@
 
 2026-09-14 后续局部修订：用户进一步授权 [Issue #7 长期浏览器授权与恢复](changes/issue-7-persistent-authorization.md)。它在既有连接面板内增加记住／恢复／等待／暂停／忘记状态，允许先证明持久身份再恢复新的短期会话；不改原件、不直接信任本地 Connected 标记、不改变显式引用审阅。候选实施与真实浏览器证据见 [Issue #7 验收账本](../docs/verification/issue-7/README.md)，设计团队签认和公开发布继续分别记录。
 
+## Explore design synchronization — 2026-09-15
+
+The v9-r2 baseline now has an implemented partial addition for catalog dates, public GitHub metrics and Explore filtering. Start with the English [design synchronization handoff](changes/explore-dates-metrics-handoff.md), then the [implementation mapping](changes/explore-dates-metrics.md). The handoff lists affected frames, exact labels, component states, responsive behavior and current screenshots for updating the design draft. The archived reference pair remains unchanged; a revised pair and designer sign-off are pending. Implementation evidence and production publication remain separate.
+
 ## 当前目标与已核验原件
 
 | 文件 | 字节数 | SHA-256 |

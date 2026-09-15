@@ -62,3 +62,7 @@ Deployment verification prepares an independent minimal publication index from t
 - [Public organization profiles](https://docs.github.com/en/rest/orgs/orgs#get-an-organization)
 
 Checked on 2026-09-15. Actual backfill coverage, public probes and validation results are recorded in [implementation evidence](verification/explore-dates-metrics/README.md).
+
+## Design handoff
+
+The [design synchronization handoff](../design/changes/explore-dates-metrics-handoff.md) maps this contract to cards, details, desktop/mobile filters, exact labels and visual states. Use it when updating the design draft; field meanings and URL behavior remain defined here.
