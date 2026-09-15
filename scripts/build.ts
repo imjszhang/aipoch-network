@@ -70,13 +70,32 @@ export async function validateOutput(directory: string, base = '/', budgetBytes 
     assert(bytes <= budgetBytes, 'Static site exceeds its byte budget; review content and retained history before publishing');
   }
   const readJson = async (path: string) => JSON.parse(await readFile(join(root, path), 'utf8')) as Record<string, unknown>;
-  for (const expected of ['index.html', '404.html', '.nojekyll', 'routes.json', 'catalog/v1/manifest.json', 'internal/catalog.json', 'internal/search.json']) assert(fileSet.has(join(root, expected)), `Missing required output: ${expected}`);
+  for (const expected of ['index.html', '404.html', '.nojekyll', 'routes.json', 'robots.txt', 'sitemap.xml', 'catalog/v1/manifest.json', 'internal/catalog.json', 'internal/search.json']) assert(fileSet.has(join(root, expected)), `Missing required output: ${expected}`);
   const routes = await readJson('routes.json');
   assert(routes.base === base && Array.isArray(routes.paths) && routes.paths.length > 0, 'Invalid route manifest or mismatched SITE_BASE');
   assert(new Set(routes.paths).size === routes.paths.length, 'Duplicate prerendered routes');
   for (const route of routes.paths) {
     assert(typeof route === 'string' && /^\/(?:[^/?#\\\u0000-\u0020]+\/)*$/.test(route) && !route.split('/').some(part => part === '.' || part === '..'), 'Invalid prerendered route');
     assert(fileSet.has(join(root, route.slice(1), 'index.html')), `Missing prerendered page: ${route}`);
+  }
+  const officialOrigin = process.env.SITE_ORIGIN ?? 'https://aipoch.network';
+  const sitemap = await readFile(join(root, 'sitemap.xml'), 'utf8');
+  const locs = [...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map(match => match[1]);
+  assert(new Set(locs).size === locs.length, 'Duplicate sitemap URL');
+  for (const loc of locs) {
+    assert(loc.length > 0, 'Sitemap loc must be non-empty');
+    const url = new URL(loc);
+    assert(url.origin === officialOrigin && !url.search && !url.hash && !url.username && !url.password, 'Sitemap URL must use SITE_ORIGIN and a canonical path');
+    assert(url.pathname.startsWith(base), 'Sitemap URL escapes SITE_BASE');
+    let decoded: string;
+    try { decoded = decodeURIComponent(url.pathname.slice(base.length)); } catch { throw new Error(`Invalid sitemap path: ${loc}`); }
+    let target = resolve(root, decoded);
+    if (url.pathname.endsWith('/')) target = join(target, 'index.html');
+    assert(fileSet.has(target), `Missing sitemap target: ${loc}`);
+    assert(!/\/page\/\d+\/$/.test(url.pathname), 'Pagination URLs must not appear in sitemap');
+  }
+  for (const lastmod of sitemap.matchAll(/<lastmod>([^<]*)<\/lastmod>/g)) {
+    assert(Number.isFinite(Date.parse(lastmod[1])) && Date.parse(lastmod[1]) <= Date.now() + 60_000, 'Sitemap lastmod is missing or in the future');
   }
   const manifest = await readJson('catalog/v1/manifest.json');
   assert(typeof manifest.snapshot_id === 'string' && manifest.snapshot_id === routes.snapshot_id, 'Routes and catalog snapshots differ');
