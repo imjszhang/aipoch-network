@@ -53,7 +53,7 @@ test('pagination preserves sort and restores the same records after detail, back
   await page.goto('./projects/?sort=title');
   await expect(search(page)).toBeEnabled();
   const firstPage = await page.locator('.results-list .row-title a').allTextContents();
-  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
   await expect.poll(() => searchParams(page).get('page')).toBe('2');
   await expect(results(page)).toHaveCount(8);
   const secondPage = await page.locator('.results-list .row-title a').allTextContents();
@@ -71,9 +71,9 @@ test('pagination preserves sort and restores the same records after detail, back
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
   await page.reload();
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
-  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
   await expect(results(page)).toHaveCount(total - 16);
-  await expect(page.getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
+  await expect(page.getByRole('navigation', { name: 'Results pages' }).getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
   await expect(page.locator('.pagination')).toContainText('Page 3 of 3');
 });
 

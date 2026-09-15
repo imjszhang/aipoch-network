@@ -102,7 +102,7 @@ test.describe('independent synthetic catalog states', () => {
       await expect(page.locator('.results-heading h2 b')).toHaveText(String(fixture.total));
       expect(new URL(page.url()).searchParams.get(fixture.parameter)).toBe(fixture.id);
       await expect(page.locator('.results-list > *')).toHaveCount(8);
-      await page.getByRole('button', { name: 'Next', exact: false }).click();
+      await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
       await expect(page.locator('.pagination')).toContainText('Page 2');
       await page.reload();
       await expect(page.locator('.results-heading h2 b')).toHaveText(String(fixture.total));
