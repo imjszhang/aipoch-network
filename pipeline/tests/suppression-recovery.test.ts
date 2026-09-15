@@ -58,6 +58,7 @@ function ledger(): SuppressionState {
 }
 async function directory(t: TestContext): Promise<string> {
   const path = await mkdtemp(join(tmpdir(), 'aipoch-suppression-test-'));
+  await writeFile(join(path, 'publication-ledger.json'), JSON.stringify({ version: 1, fingerprint_version: 1, repository: 'example/catalog', coverage: 'partial', releases: [] }));
   t.after(() => rm(path, { recursive: true, force: true }));
   return path;
 }
@@ -81,6 +82,7 @@ async function runCli(root: string, args: string[], overrides: NodeJS.ProcessEnv
     env: {
       ...process.env, GITHUB_TOKEN: '', GH_TOKEN: '', ENHANCEMENT_FILE: '', REFRESH_REPORT: '', HISTORY_DIRECTORY: '',
       REGISTRY_FILE: join(root, 'registry.json'), SOURCE_BATCH: join(root, 'batch.json'), SUPPRESSION_STATE: join(root, 'suppressions.json'),
+      PUBLICATION_LEDGER: join(root, 'publication-ledger.json'),
       ...overrides,
     },
     timeout: 30_000, maxBuffer: 1_000_000,

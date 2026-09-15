@@ -18,12 +18,30 @@ const ref = (name: string) => ({ $ref: `#/$defs/${name}` });
 const object = (properties: Record<string, unknown>, required: string[] = Object.keys(properties), additionalProperties = true) => ({ type: 'object', properties, required, additionalProperties });
 const entityProperties = {
   id, title: text(500), description: text(20000), status: enumOf('candidate', 'listed'),
-  updated_at: date, provenance: ref('provenance_map'),
+  updated_at: date, provenance: ref('provenance_map'), catalog_dates: ref('catalog_dates'),
 };
 const entityRequired = ['kind', 'id', 'title', 'status', 'updated_at', 'provenance'];
 const entity = (kind: string, properties: Record<string, unknown>, required: string[]) => object({ ...entityProperties, kind: { const: kind }, ...properties }, [...entityRequired, ...required]);
 
 export const definitions = {
+  catalog_date: {
+    ...object({ value: date, basis: enumOf('exact', 'observed_bound', 'unknown'), evidence: url }, ['basis']),
+    allOf: [{ if: { properties: { basis: { const: 'unknown' } } }, then: { not: { required: ['value'] } }, else: { required: ['value', 'evidence'] } }],
+  },
+  catalog_dates: object({ first_published: ref('catalog_date'), content_updated: ref('catalog_date') }),
+  observation: object({ last_attempt_at: date, last_success_at: date, result: enumOf('ok', 'unavailable', 'unsupported', 'invalid_response') }, ['last_attempt_at', 'result']),
+  metric_observation: {
+    ...object({ value: count, observed_at: date, last_attempt_at: date, result: enumOf('ok', 'unavailable', 'unsupported', 'invalid_response'), visibility: { const: 'public_api' } }, ['last_attempt_at', 'result', 'visibility']),
+    dependencies: { value: ['observed_at'], observed_at: ['value'] },
+    allOf: [{ if: { properties: { result: { const: 'ok' } } }, then: { required: ['value', 'observed_at'] } }],
+  },
+  source_activity: object({
+    default_branch_head: {
+      ...object({ sha: commit, committed_at: date, observed_at: date, date_status: enumOf('valid', 'unknown', 'invalid', 'future') }, ['sha', 'observed_at', 'date_status']),
+      allOf: [{ if: { properties: { date_status: { const: 'valid' } } }, then: { required: ['committed_at'] }, else: { not: { required: ['committed_at'] } } }],
+    },
+    observation: ref('observation'),
+  }, []),
   provenance: object({
     role: enumOf('github', 'community', 'maintainer', 'editor', 'automatic'), url,
     observed_at: date, review: enumOf('pending', 'reviewed', 'disputed', 'stale'),
@@ -40,10 +58,14 @@ export const definitions = {
     topics: { ...arrayOf(text(100)), uniqueItems: true }, language: text(100), stars: count, homepage: url,
     collaboration: object({ issues_url: url, discussions_url: url }, []),
     readme: text(100000), latest_commit: commit, fork_of: id,
+    github_metrics: object({ stars: ref('metric_observation'), forks: ref('metric_observation') }, []),
+    source_activity: ref('source_activity'), observation: ref('observation'),
   }, ['provider', 'provider_id', 'canonical_url', 'owner_id', 'availability', 'archived', 'observed_at', 'stale', 'license', 'aliases']),
   actor: entity('actor', {
     provider: { const: 'github' }, provider_id: providerId, account_type: enumOf('user', 'organization'),
     login: text(100), canonical_url: url, aliases: arrayOf(ref('alias')),
+    github_metrics: object({ followers: ref('metric_observation'), following: ref('metric_observation'), public_repositories: ref('metric_observation') }, []),
+    observation: ref('observation'),
   }, ['provider', 'provider_id', 'account_type', 'login', 'canonical_url', 'aliases']),
   organization: entity('organization', {
     actor_id: id, source_ids: ids, resource_ids: ids,

@@ -63,6 +63,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: npm run refresh:restore
+      - name: Restore verified publication receipts after the reviewed checkpoint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npx --no-install tsx scripts/restore-publications.ts
       - name: Read only registered public GitHub sources
         id: source_refresh
         # The repository-scoped, read-only token is available only to this step.
@@ -76,6 +80,7 @@ jobs:
           SOURCE_BATCH: .cache/batch.json
           HISTORY_DIRECTORY: .cache/restored-history
           REFRESH_REPORT: .cache/refresh-report.json
+          PUBLICATION_LEDGER: .cache/publication-ledger.json
         run: npm run build
       - name: Verify contracts and offline regression behavior
         run: npm test

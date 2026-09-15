@@ -81,6 +81,17 @@ test('optional descriptor count and empty collections remain consumable', async 
   assert.equal((await loadCatalog(origin.base, { fetch: origin.fetch })).collections.claims.length, 0);
 });
 
+test('the independent v1 consumer reads v1.1 discovery fields without needing them', async () => {
+  const data = fixture();
+  data.sources[0].github_metrics = { stars: { value: 0, observed_at: time, last_attempt_at: time, result: 'ok', visibility: 'public_api' } };
+  data.sources[0].catalog_dates = { first_published: { basis: 'exact', value: time, evidence: 'https://github.com/example/catalog/actions/runs/1' }, content_updated: { basis: 'unknown' } };
+  const origin = site({ data, version: '1.1.0' });
+  const catalog = await loadCatalog(origin.base, { fetch: origin.fetch });
+  assert.equal(catalog.get('source:github:2').github_metrics.stars.value, 0);
+  assert.equal(catalog.locateResource('resource:alpha').sources[0].version.commit, commit);
+  assert.equal(catalog.listResources().length, 2);
+});
+
 test('fixed source versions never use the latest commit or moving ref as a substitute', async () => {
   const origin = site(); const result = await loadCatalog(origin.base, { fetch: origin.fetch });
   assert.equal(result.locateResource('resource:alpha').sources[0].version.commit, commit);

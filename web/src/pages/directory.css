@@ -163,3 +163,14 @@
   .directory-v9 .directory-result-controls, .directory-v9 .pagination, .directory-filter-dialog { display: none; }
   .directory.directory-v9 .directory-columns { display: block; }
 }
+
+.directory-refinement-group { border-top:1px solid var(--line); margin-top:22px; padding-top:16px; }
+.directory-refinement-group > summary { cursor:pointer; font-size:13px; font-weight:600; line-height:1.7; }
+.directory-filters input:not([type="checkbox"]) { width:100%; min-width:0; max-width:100%; min-height:40px; padding:9px 10px; border:1px solid #bcbcb6; border-radius:2px; background:var(--paper); font-size:13px; }
+.directory-date-range label { margin-top:12px; font-weight:400; font-size:12px; }
+.directory-filters .directory-checkbox { display:flex; gap:8px; align-items:flex-start; font-weight:400; line-height:1.6; }
+.directory-checkbox input { flex:none; margin-top:4px; }
+.directory-filter-feedback,.directory-scope { font-size:13px; line-height:1.7; margin-bottom:16px; }
+.directory-scope { background:#f6efc8; padding:12px 14px; border-left:3px solid #111; }
+.directory-filter-errors { margin-bottom:18px; overflow-wrap:anywhere; }
+.directory-filter-errors ul { padding-left:20px; margin:12px 0; }

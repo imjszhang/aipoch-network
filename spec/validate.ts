@@ -4,7 +4,7 @@ import { actorId, isSafeHttpsUrl, isSafeRelativePath, isSafeRepositoryPath, norm
 import { catalogSchema, COLLECTION_KIND, enhancementSchema, manifestSchema, shardSchema } from './schema.js';
 import { COLLECTION_NAMES } from './types.js';
 import { relationKindsAllowed } from './relations.js';
-import type { CatalogData, CatalogManifest, CatalogRecord, CatalogShard, License, Provenance, SourceRef, ValidationResult } from './types.js';
+import type { CatalogData, CatalogManifest, CatalogRecord, CatalogShard, License, Provenance, SourceRef, ValidationResult, Observation, MetricObservation } from './types.js';
 
 function isUtcDate(value: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value)) return false;
@@ -72,6 +72,15 @@ export function validateCatalog(input: unknown): ValidationResult {
       if (item.resolved_at && !item.commit) errors.push(`${at}: resolved_at requires a resolved immutable commit`);
     }
   }
+  function observation(value: Observation | undefined, at: string): void {
+    if (value?.last_success_at && Date.parse(value.last_success_at) > Date.parse(value.last_attempt_at)) errors.push(`${at}: success cannot follow latest attempt`);
+    if (value?.result === 'ok' && !value.last_success_at) errors.push(`${at}: successful observation requires last_success_at`);
+  }
+  function metrics(values: Record<string, MetricObservation | undefined> | undefined, at: string): void {
+    for (const [field, value] of Object.entries(values ?? {})) {
+      if (value?.observed_at && Date.parse(value.observed_at) > Date.parse(value.last_attempt_at)) errors.push(`${at}.${field}: observation cannot follow latest attempt`);
+    }
+  }
   for (const collection of ['sources', 'actors', 'organizations', 'projects', 'resources', 'collections'] as const) {
     for (const item of data[collection]) {
       for (const [field, values] of Object.entries(item.provenance)) evidence(values, `${item.id}.provenance.${field}`);
@@ -80,6 +89,12 @@ export function validateCatalog(input: unknown): ValidationResult {
     }
   }
   for (const source of data.sources) {
+    observation(source.observation, `${source.id}.observation`);
+    observation(source.source_activity?.observation, `${source.id}.source_activity.observation`);
+    metrics(source.github_metrics, `${source.id}.github_metrics`);
+    const head = source.source_activity?.default_branch_head;
+    if (head?.date_status === 'valid' && head.committed_at && Date.parse(head.committed_at) > Date.parse(head.observed_at)) errors.push(`${source.id}: future source commit cannot have valid date status`);
+    if (source.github_metrics?.stars && source.stars !== undefined && source.stars !== source.github_metrics.stars.value) errors.push(`${source.id}: legacy stars must match the metric observation`);
     if (source.id !== sourceId(source.provider_id)) errors.push(`${source.id}: source id must derive only from provider_id`);
     requireRef(source.owner_id, ['actor'], `${source.id}.owner_id`);
     try { if (normalizeGitHubUrl(source.canonical_url).kind !== 'repository') errors.push(`${source.id}: canonical URL must identify a repository`); }
@@ -91,6 +106,8 @@ export function validateCatalog(input: unknown): ValidationResult {
     license(source.license, `${source.id}.license`);
   }
   for (const actor of data.actors) {
+    observation(actor.observation, `${actor.id}.observation`);
+    metrics(actor.github_metrics, `${actor.id}.github_metrics`);
     if (actor.id !== actorId(actor.provider_id)) errors.push(`${actor.id}: actor id must derive only from provider_id`);
     try { if (normalizeGitHubUrl(actor.canonical_url).kind !== 'organization') errors.push(`${actor.id}: canonical URL must identify a GitHub account`); }
     catch { errors.push(`${actor.id}: invalid GitHub account URL`); }

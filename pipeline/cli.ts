@@ -6,6 +6,7 @@ import { validateRegistry, type Registry } from './registry.js';
 import type { SnapshotBatch } from './normalize.js';
 import { readRefreshState, refreshRegistry, validateBatch } from './refresh.js';
 import { applySuppressions, readSuppressions } from './suppressions.js';
+import { readPublicationLedger } from './catalog-dates.js';
 
 async function loadRegistry(): Promise<Registry> {
   const registry = await readJson<Registry>(process.env.REGISTRY_FILE ?? 'registry/catalog.json');
@@ -55,7 +56,7 @@ async function main() {
     const { prepareRecoveryInputs } = await import('./recovery.js');
     const historicalRegistry = await readJson<Registry>(args[0]);
     const historicalBatch = await readJson<SnapshotBatch>(args[1]);
-    const currentBatch = applySuppressions(await readJson<SnapshotBatch>(args[2]), await readSuppressions(process.env.SUPPRESSION_STATE ?? '.cache/source-suppressions.json'));
+    const currentBatch = applySuppressions(await readJson<SnapshotBatch>(args[2]), await readSuppressions(process.env.SUPPRESSION_STATE ?? '.cache/source-suppressions.json'), registry);
     validateBatch(registry, currentBatch);
     const candidate = prepareRecoveryInputs(historicalRegistry, historicalBatch, registry, currentBatch);
     await mkdir('.cache/recovery', { recursive: true });
@@ -72,12 +73,15 @@ async function main() {
       try { batch = await readJson<SnapshotBatch>('.cache/batch.json'); }
       catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; batch = await readJson<SnapshotBatch>('fixtures/pilot/snapshots.json'); }
     }
-    batch = applySuppressions(batch, await readSuppressions(process.env.SUPPRESSION_STATE ?? '.cache/source-suppressions.json'));
+    batch = applySuppressions(batch, await readSuppressions(process.env.SUPPRESSION_STATE ?? '.cache/source-suppressions.json'), registry);
     validateBatch(registry, batch);
     const report = process.env.REFRESH_REPORT ? await readJson<{ candidate_kind: string }>(process.env.REFRESH_REPORT) : undefined;
     if (report && !['refresh', 'withdrawal_only'].includes(report.candidate_kind)) throw new Error('A rejected refresh cannot become a build candidate');
+    const publicationLedger = await readPublicationLedger(process.env.PUBLICATION_LEDGER ?? 'registry/publication-ledger.json');
+    if (!publicationLedger) throw new Error('A reviewed publication ledger is required; missing history must not reset catalog dates');
     const manifest = await generate(registry, batch, 'generated', 200, {
       historyDirectory: process.env.HISTORY_DIRECTORY,
+      publicationLedger,
       candidateKind: report?.candidate_kind as 'refresh' | 'withdrawal_only' | undefined,
     });
     console.log(`Catalog ${manifest.snapshot_id} built from observations at ${manifest.generated_at}.`);

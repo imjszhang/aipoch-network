@@ -262,6 +262,225 @@
     }
   ],
   "$defs": {
+    "catalog_date": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "observed_bound",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "format": "safe-https-url",
+          "maxLength": 4096
+        }
+      },
+      "required": [
+        "basis"
+      ],
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "basis": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "value",
+              "evidence"
+            ]
+          }
+        }
+      ]
+    },
+    "catalog_dates": {
+      "type": "object",
+      "properties": {
+        "first_published": {
+          "$ref": "#/$defs/catalog_date"
+        },
+        "content_updated": {
+          "$ref": "#/$defs/catalog_date"
+        }
+      },
+      "required": [
+        "first_published",
+        "content_updated"
+      ],
+      "additionalProperties": true
+    },
+    "observation": {
+      "type": "object",
+      "properties": {
+        "last_attempt_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "last_success_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "unavailable",
+            "unsupported",
+            "invalid_response"
+          ]
+        }
+      },
+      "required": [
+        "last_attempt_at",
+        "result"
+      ],
+      "additionalProperties": true
+    },
+    "metric_observation": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "last_attempt_at": {
+          "type": "string",
+          "format": "utc-date-time"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "unavailable",
+            "unsupported",
+            "invalid_response"
+          ]
+        },
+        "visibility": {
+          "const": "public_api"
+        }
+      },
+      "required": [
+        "last_attempt_at",
+        "result",
+        "visibility"
+      ],
+      "additionalProperties": true,
+      "dependencies": {
+        "value": [
+          "observed_at"
+        ],
+        "observed_at": [
+          "value"
+        ]
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "const": "ok"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "observed_at"
+            ]
+          }
+        }
+      ]
+    },
+    "source_activity": {
+      "type": "object",
+      "properties": {
+        "default_branch_head": {
+          "type": "object",
+          "properties": {
+            "sha": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            },
+            "committed_at": {
+              "type": "string",
+              "format": "utc-date-time"
+            },
+            "observed_at": {
+              "type": "string",
+              "format": "utc-date-time"
+            },
+            "date_status": {
+              "type": "string",
+              "enum": [
+                "valid",
+                "unknown",
+                "invalid",
+                "future"
+              ]
+            }
+          },
+          "required": [
+            "sha",
+            "observed_at",
+            "date_status"
+          ],
+          "additionalProperties": true,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "date_status": {
+                    "const": "valid"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "committed_at"
+                ]
+              },
+              "else": {
+                "not": {
+                  "required": [
+                    "committed_at"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "observation": {
+          "$ref": "#/$defs/observation"
+        }
+      },
+      "required": [],
+      "additionalProperties": true
+    },
     "provenance": {
       "type": "object",
       "properties": {
@@ -492,6 +711,9 @@
         "provenance": {
           "$ref": "#/$defs/provenance_map"
         },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
+        },
         "kind": {
           "const": "source_repository"
         },
@@ -603,6 +825,25 @@
         "fork_of": {
           "type": "string",
           "pattern": "^(?:(?:source|actor):github:[1-9][0-9]*|(?:project|resource|collection|relation|claim):[a-z0-9][a-z0-9._-]{0,127})$"
+        },
+        "github_metrics": {
+          "type": "object",
+          "properties": {
+            "stars": {
+              "$ref": "#/$defs/metric_observation"
+            },
+            "forks": {
+              "$ref": "#/$defs/metric_observation"
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
+        "source_activity": {
+          "$ref": "#/$defs/source_activity"
+        },
+        "observation": {
+          "$ref": "#/$defs/observation"
         }
       },
       "required": [
@@ -656,6 +897,9 @@
         "provenance": {
           "$ref": "#/$defs/provenance_map"
         },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
+        },
         "kind": {
           "const": "actor"
         },
@@ -691,6 +935,25 @@
           },
           "minItems": 0,
           "maxItems": 100000
+        },
+        "github_metrics": {
+          "type": "object",
+          "properties": {
+            "followers": {
+              "$ref": "#/$defs/metric_observation"
+            },
+            "following": {
+              "$ref": "#/$defs/metric_observation"
+            },
+            "public_repositories": {
+              "$ref": "#/$defs/metric_observation"
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
+        "observation": {
+          "$ref": "#/$defs/observation"
         }
       },
       "required": [
@@ -739,6 +1002,9 @@
         },
         "provenance": {
           "$ref": "#/$defs/provenance_map"
+        },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
         },
         "kind": {
           "const": "organization"
@@ -821,6 +1087,9 @@
         "provenance": {
           "$ref": "#/$defs/provenance_map"
         },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
+        },
         "kind": {
           "const": "project"
         },
@@ -901,6 +1170,9 @@
         },
         "provenance": {
           "$ref": "#/$defs/provenance_map"
+        },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
         },
         "kind": {
           "const": "resource"
@@ -1051,6 +1323,9 @@
         },
         "provenance": {
           "$ref": "#/$defs/provenance_map"
+        },
+        "catalog_dates": {
+          "$ref": "#/$defs/catalog_dates"
         },
         "kind": {
           "const": "collection"

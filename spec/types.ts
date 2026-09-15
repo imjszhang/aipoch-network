@@ -1,5 +1,5 @@
 /** AIPOCH's independent public catalog. Unknown optional fields may be ignored by v1 readers. */
-export const CONTRACT_VERSION = '1.0.0' as const;
+export const CONTRACT_VERSION = '1.1.0' as const;
 export const COLLECTION_NAMES = ['sources', 'actors', 'organizations', 'projects', 'resources', 'collections', 'relations', 'claims', 'tombstones'] as const;
 export type CollectionName = typeof COLLECTION_NAMES[number];
 export type CatalogStatus = 'candidate' | 'listed';
@@ -46,6 +46,39 @@ export interface License {
   commit?: string;
   conditions?: string;
 }
+/** A bound means “existed by”, never an exact first-publication assertion. */
+export interface CatalogDate {
+  value?: string;
+  basis: 'exact' | 'observed_bound' | 'unknown';
+  evidence?: string;
+}
+export interface CatalogDates {
+  first_published: CatalogDate;
+  content_updated: CatalogDate;
+}
+export type ObservationResult = 'ok' | 'unavailable' | 'unsupported' | 'invalid_response';
+export interface Observation {
+  last_attempt_at: string;
+  last_success_at?: string;
+  result: ObservationResult;
+}
+/** Counts are GitHub's publicly reported values, not guaranteed complete totals. */
+export interface MetricObservation {
+  value?: number;
+  observed_at?: string;
+  last_attempt_at: string;
+  result: ObservationResult;
+  visibility: 'public_api';
+}
+export interface SourceActivity {
+  default_branch_head?: {
+    sha: string;
+    committed_at?: string;
+    observed_at: string;
+    date_status: 'valid' | 'unknown' | 'invalid' | 'future';
+  };
+  observation?: Observation;
+}
 export interface CatalogEntity {
   id: string;
   title: string;
@@ -53,6 +86,7 @@ export interface CatalogEntity {
   status: CatalogStatus;
   updated_at: string;
   provenance: FieldProvenance;
+  catalog_dates?: CatalogDates;
 }
 export interface SourceRepository extends CatalogEntity {
   kind: 'source_repository';
@@ -75,6 +109,9 @@ export interface SourceRepository extends CatalogEntity {
   readme?: string;
   latest_commit?: string;
   fork_of?: string;
+  github_metrics?: { stars?: MetricObservation; forks?: MetricObservation };
+  source_activity?: SourceActivity;
+  observation?: Observation;
 }
 export interface Actor extends CatalogEntity {
   kind: 'actor';
@@ -84,6 +121,8 @@ export interface Actor extends CatalogEntity {
   login: string;
   canonical_url: string;
   aliases: Alias[];
+  github_metrics?: { followers?: MetricObservation; following?: MetricObservation; public_repositories?: MetricObservation };
+  observation?: Observation;
 }
 /** An extension of an organization Actor; id MUST equal actor_id. */
 export interface Organization extends CatalogEntity {

@@ -19,7 +19,7 @@ export interface Registry {
   collections: RegistryCollection[];
   withdrawals: { id: string; withdrawn_at: string; reason: 'withdrawn' | 'unavailable' | 'merged' | 'policy'; replacement_id?: string }[];
   /** Public GitHub identity observations for contributors who do not own indexed repositories. */
-  actors?: Actor[];
+  actors?: Omit<Actor, 'catalog_dates' | 'github_metrics' | 'observation'>[];
   /** Reviewed catalog records, never a direct promotion of an untrusted submission. */
   claims?: Claim[];
   relations?: Relation[];
@@ -38,7 +38,8 @@ const attributed = { source_refs: array(declaredRef, 1, 100), attribution: objec
 const projectSchema = object({ ...metadata, ...attributed, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources']);
 const resourceSchema = object({ ...metadata, ...attributed, type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, download_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100), conditions: array(text(2000), 0, 100), runtime: object({ status: { enum: ['not_described', 'maintainer_described', 'community_described'] }, documentation_url: safeUrl }, ['status']) }, ['key', 'title', 'type', 'domains', 'sources']);
 const strictClaim = { ...structuredClone(definitions.claim), additionalProperties: false };
-const strictActor = { ...structuredClone(definitions.actor), additionalProperties: false };
+// Generated publication dates and public API observations never come from curation input.
+const strictActor = { ...structuredClone(definitions.actor), properties: Object.fromEntries(Object.entries(definitions.actor.properties).filter(([key]) => !['catalog_dates', 'github_metrics', 'observation'].includes(key))), additionalProperties: false };
 const strictProvenance = { ...structuredClone(definitions.provenance), additionalProperties: false };
 const strictAlias = { ...structuredClone(definitions.alias), additionalProperties: false };
 const strictRelation = { ...structuredClone(definitions.relation), additionalProperties: false };

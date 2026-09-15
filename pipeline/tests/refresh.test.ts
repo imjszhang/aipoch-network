@@ -14,7 +14,12 @@ async function fixture() {
   const batch = JSON.parse(await readFile('fixtures/pilot/snapshots.json', 'utf8')) as SnapshotBatch;
   // Tests exercise lifecycle rules independently of the pilot's observation time.
   batch.as_of = '2026-09-12T10:00:00.000Z';
-  for (const source of batch.sources) source.checked_at = source.observed_at = batch.as_of;
+  delete batch.accounts;
+  for (const source of batch.sources) {
+    source.checked_at = source.observed_at = batch.as_of;
+    // These lifecycle tests use their own clock; optional discovery observations have separate coverage.
+    delete source.github_metrics; delete source.source_activity; delete source.observation;
+  }
   return { registry, batch };
 }
 async function temporary(t: TestContext) {

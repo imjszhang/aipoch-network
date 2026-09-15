@@ -4,6 +4,7 @@ import { allEntries, displayDate, routeFor, tombstoneRoutesFor, type SiteData } 
 import { Link, NavigationProvider, useNavigation } from './navigation.js';
 import { loadCatalog } from './catalog-loader.js';
 import { ArrowLink } from './catalog-components.js';
+import { ObservationClock } from './catalog-observations.js';
 import { PublicHome } from './pages/PublicHome.js';
 import { Directory } from './pages/Directory.js';
 import { Detail } from './pages/Detail.js';
@@ -62,13 +63,13 @@ export function App({ data: initialData, path, base = '/' }: { data: SiteData; p
       .finally(() => { pending.current = undefined; });
     return pending.current;
   }, [base, initialData.snapshot_id]);
-  return <NavigationProvider initialPath={path} base={base} prepare={prepare}>
+  return <ObservationClock generatedAt={initialData.generated_at}><NavigationProvider initialPath={path} base={base} prepare={prepare}>
     <WorkbenchProvider data={data} catalogReady={catalogReady}>
       <LoadWorkbenchCatalog prepare={prepare}/>
       {error && <div className="wrap catalog-retry"><p className="notice" role="status">{error} <button onClick={() => void prepare().catch(() => {})}>Retry catalog</button> <button onClick={() => location.reload()}>Refresh page</button></p></div>}
       <Pages data={data}/>
     </WorkbenchProvider>
-  </NavigationProvider>;
+  </NavigationProvider></ObservationClock>;
 }
 
 function LoadWorkbenchCatalog({ prepare }: { prepare(): Promise<void> }) {

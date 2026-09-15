@@ -1,9 +1,9 @@
 import { actorId, entityId, normalizeGitHubUrl, sourceId } from '../spec/identity.js';
-import { emptyCatalog, type CatalogData, type Claim, type SourceRef, type Provenance, type SourceRepository } from '../spec/types.js';
-import type { SourceSnapshot } from './github.js';
+import { emptyCatalog, type CatalogData, type Claim, type SourceRef, type Provenance, type SourceRepository, type MetricObservation } from '../spec/types.js';
+import type { SourceSnapshot, AccountSnapshot } from './github.js';
 import { type Registry, type RegistryAttribution, type RegistrySourceRef, parseOrganizationCurationScope, validateRegistry } from './registry.js';
 
-export interface SnapshotBatch { as_of: string; sources: SourceSnapshot[] }
+export interface SnapshotBatch { as_of: string; sources: SourceSnapshot[]; accounts?: AccountSnapshot[] }
 export interface NormalizedCatalog { catalog: CatalogData; diagnostics: { id: string; message: string }[]; generated_at: string }
 export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedCatalog {
   const errors = validateRegistry(registry);
@@ -20,6 +20,16 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
       && (blocked.has(actorId(observation.repository.owner.id)) || observation.suppressed || observation.availability === 'private' || observation.availability === 'deleted')) blocked.add(sourceId(observation.repository.id));
   }
   const at = batch.as_of;
+  // Recovery may retain an old count; the public projection has a bounded lifetime.
+  function publicMetrics<T extends Record<string, MetricObservation | undefined>>(metrics: T | undefined): T | undefined {
+    if (!metrics) return undefined;
+    return Object.fromEntries(Object.entries(metrics).filter(([, value]) => value !== undefined).map(([key, metric]) => {
+      const value = metric!;
+      const age = value.observed_at ? Date.parse(at) - Date.parse(value.observed_at) : Infinity;
+      return [key, age >= 0 && age <= 7 * 24 * 60 * 60 * 1000 ? structuredClone(value)
+        : { last_attempt_at: value.last_attempt_at, result: value.result === 'ok' ? 'unavailable' : value.result, visibility: value.visibility }];
+    })) as T;
+  }
   const tombstone = (id: string, reason: 'withdrawn' | 'unavailable' = 'unavailable') => {
     if (!catalog.tombstones.some(row => row.id === id)) catalog.tombstones.push({ kind: 'tombstone', id, status: 'withdrawn', withdrawn_at: at, reason });
   };
@@ -52,7 +62,11 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
       provenance: { title: [evidence], canonical_url: [evidence], ...(repo.description && !expired ? { description: [evidence] } : {}), license: [evidence], ...(collaboration ? { collaboration: [evidence] } : {}) },
       ...(collaboration ? { collaboration } : {}),
       ...(!expired ? { topics: repo.topics, language: repo.language, homepage: repo.homepage, readme: repo.readme, latest_commit: repo.commit } : {}),
+      ...(snapshot.observation ? { observation: structuredClone(snapshot.observation) } : {}),
+      ...(!expired && snapshot.source_activity ? { source_activity: structuredClone(snapshot.source_activity) } : {}),
+      ...(!expired && snapshot.github_metrics ? { github_metrics: publicMetrics(snapshot.github_metrics) } : {}),
     };
+    if (source.github_metrics?.stars?.value !== undefined) source.stars = source.github_metrics.stars.value;
     const existing = catalog.sources.find(row => row.id === id);
     if (!existing) catalog.sources.push(source);
     else { existing.aliases = [...new Map([...existing.aliases, ...source.aliases].map(alias => [alias.url, alias])).values()]; }
@@ -73,6 +87,13 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
       continue;
     }
     catalog.actors.push(structuredClone(actor));
+  }
+  for (const actor of catalog.actors) {
+    const account = batch.accounts?.find(item => item.provider_id === actor.provider_id && item.account_type === actor.account_type
+      && item.login.toLowerCase() === actor.login.toLowerCase() && item.canonical_url.toLowerCase() === actor.canonical_url.toLowerCase());
+    if (!account || blocked.has(actor.id)) continue;
+    actor.observation = structuredClone(account.observation);
+    actor.github_metrics = publicMetrics(account.github_metrics);
   }
   function refs(urls: string[], declared?: RegistrySourceRef[], recordId?: string): SourceRef[] | undefined {
     const sources = urls.map(url => sourceByUrl.get(normalizeGitHubUrl(url).canonical_url));

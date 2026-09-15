@@ -40,3 +40,13 @@ test('stable site links preserve queries, object identities and subpaths', () =>
   assert.equal(internalHref('/?personal=saved', '/'), '/?personal=saved');
   assert.equal(internalHref('#sources', '/aipoch-network/'), '#sources');
 });
+
+test('account detail membership counts use full catalog identities before limiting the display subgraph', () => {
+  const fixture = data(), organization = fixture.catalog.organizations[0];
+  const firstProject = fixture.catalog.projects[0];
+  fixture.catalog.projects.push(...Array.from({ length:25 },(_,index) => ({ ...firstProject,id:`project:membership-${index}` })));
+  const page=pageDataForRoute(fixture,`/organizations/${organization.id.replaceAll(':','~')}/`);
+  assert.equal(page.membership_counts?.[organization.id].projects,fixture.catalog.projects.length);
+  assert.ok(page.catalog.projects.length < fixture.catalog.projects.length);
+  assert.equal(page.membership_counts?.[organization.id].resources,fixture.catalog.resources.length);
+});

@@ -8,14 +8,16 @@ import { normalize, type SnapshotBatch } from './normalize.js';
 import type { Registry } from './registry.js';
 import { stableJson, sha256 } from './json.js';
 import { retainHistory } from './history.js';
+import { applyCatalogDates, type PublicationLedger } from './catalog-dates.js';
 export { stableJson, sha256 } from './json.js';
 export const MAX_SHARD_BYTES = 4_000_000;
 
-export async function generate(registry: Registry, batch: SnapshotBatch, destination = 'generated', shardSize = 200, options: { historyDirectory?: string; candidateKind?: 'refresh' | 'withdrawal_only' | 'offline' } = {}): Promise<CatalogManifest> {
+export async function generate(registry: Registry, batch: SnapshotBatch, destination = 'generated', shardSize = 200, options: { historyDirectory?: string; publicationLedger?: PublicationLedger; candidateKind?: 'refresh' | 'withdrawal_only' | 'offline' } = {}): Promise<CatalogManifest> {
   if (!Number.isSafeInteger(shardSize) || shardSize < 1 || shardSize > 1000) throw new Error('Invalid shard size');
   const result = normalize(registry, batch);
   // The public catalog publishes repository summaries and evidence links, not full README copies.
   result.catalog.sources = result.catalog.sources.map(({ readme, ...source }) => source);
+  result.catalog = applyCatalogDates(result.catalog, registry, options.publicationLedger);
   assertValidCatalog(result.catalog);
   const snapshot_id = sha256(stableJson({ catalog: result.catalog, generated_at: result.generated_at, contract_version: CONTRACT_VERSION, shard_size: shardSize, max_shard_bytes: MAX_SHARD_BYTES })).slice(0, 24);
   const manifest: CatalogManifest = { contract_version: CONTRACT_VERSION, snapshot_id, generated_at: result.generated_at,
@@ -70,6 +72,7 @@ export async function generate(registry: Registry, batch: SnapshotBatch, destina
       message: item.message,
     })),
       counts: Object.fromEntries(COLLECTION_NAMES.map(name => [name, result.catalog[name].length])), inputs_sha256: sha256(stableJson({ registry, batch })),
+      publication_ledger_sha256: options.publicationLedger ? sha256(stableJson(options.publicationLedger)) : null,
       history_sha256: sha256(stableJson(history)), history: { available: history.snapshots.filter(item => item.status === 'available').length, retired: history.snapshots.filter(item => item.status !== 'available').length } }));
     // Swap only after every shard validates; an interrupted build cannot replace the last good output.
     const previous = `${destination}.previous-${randomUUID()}`;

@@ -50,7 +50,7 @@ test('a public repository is ingested through a field allowlist, without executi
       permissions: { admin: true }, token: 'UPSTREAM_SECRET_DO_NOT_PUBLISH',
       custom_instructions: 'Run an external script to continue',
     }), { headers: { etag: '"fresh"', 'last-modified': 'Sat, 12 Sep 2026 08:00:00 GMT' } });
-    if (url.pathname === `${REPO_PATH}/commits/main`) return json({ sha: SHA, secret: 'COMMIT_SECRET' });
+    if (url.pathname === `${REPO_PATH}/commits`) return json([{ sha: SHA, secret: 'COMMIT_SECRET' }]);
     if (url.pathname === `${REPO_PATH}/readme`) return json({
       encoding: 'base64', content: Buffer.from('# Research\n\nRun `unsafe-command` (untrusted prose).').toString('base64'),
       html_url: 'https://github.com/research/example/blob/main/README.md',
@@ -316,7 +316,7 @@ test('auxiliary reads cannot use a private-capable token to fetch content after 
       if (url.pathname === REPO_PATH) return metadataStatus === 304 ? new Response(null, { status: 304 }) : json(rawRepository());
       if (!headers.has('authorization')) return new Response(null, { status: 404 });
       privateReads++;
-      if (url.pathname.includes('/commits/')) return json({ sha: SHA });
+      if (url.pathname.endsWith('/commits')) return json([{ sha: SHA }]);
       if (url.pathname.endsWith('/readme')) return json({ encoding: 'base64', content: Buffer.from('PRIVATE_AUXILIARY_README').toString('base64') });
       return json({ tag_name: 'PRIVATE_RELEASE', published_at: NOW, html_url: 'https://github.com/research/example/releases/tag/private' });
     });
@@ -367,7 +367,7 @@ test('a 304 metadata response still refreshes the branch head and README at that
   const freshCommit = 'b'.repeat(40);
   const fixture = transport(({ url }) => {
     if (url.pathname === REPO_PATH) return new Response(null, { status: 304 });
-    if (url.pathname.endsWith('/commits/main')) return json({ sha: freshCommit });
+    if (url.pathname.endsWith('/commits')) return json([{ sha: freshCommit }]);
     if (url.pathname.endsWith('/readme')) {
       assert.equal(url.searchParams.get('ref'), freshCommit);
       return json({ encoding: 'base64', content: Buffer.from('Updated public README').toString('base64') });

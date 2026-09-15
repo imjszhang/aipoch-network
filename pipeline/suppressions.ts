@@ -3,6 +3,7 @@ import { dirname } from 'node:path';
 import { normalizeGitHubUrl } from '../spec/index.js';
 import type { SourceSnapshot } from './github.js';
 import type { SnapshotBatch } from './normalize.js';
+import type { Registry } from './registry.js';
 import { stableJson } from './json.js';
 
 export interface SourceSuppression {
@@ -39,9 +40,17 @@ export function suppressSnapshot(snapshot: SourceSnapshot, state: SuppressionSta
   const rule = state.sources.find(row => key(row.requested_url) === key(snapshot.requested_url) || (row.provider_id && row.provider_id === snapshot.repository?.id));
   return rule ? { ...snapshot, checked_at: [snapshot.checked_at, rule.checked_at].sort().at(-1)!, suppressed: true, availability: 'unknown', error: rule.reason } : snapshot;
 }
-export function applySuppressions(batch: SnapshotBatch, state: SuppressionState): SnapshotBatch {
+export function applySuppressions(batch: SnapshotBatch, state: SuppressionState, registry?: Registry): SnapshotBatch {
   const sources = batch.sources.map(source => suppressSnapshot(source, state));
-  return { as_of: [batch.as_of, ...sources.map(source => source.checked_at)].sort().at(-1)!, sources };
+  const withdrawn = new Set(registry?.withdrawals.map(item => item.id));
+  const publicOwners = new Set(sources.flatMap(source => !source.suppressed && source.repository && !['private', 'deleted'].includes(source.availability)
+    && !withdrawn.has(`source:github:${source.repository.id}`) && !withdrawn.has(`actor:github:${source.repository.owner.id}`) ? [source.repository.owner.id] : []));
+  // A separately reviewed public account is eligible independently of repository
+  // visibility. Source-only owners still disappear after their last source is suppressed.
+  for (const actor of registry?.actors ?? []) if (!withdrawn.has(actor.id) && actor.status === 'listed'
+    && actor.id === `actor:github:${actor.provider_id}` && Object.values(actor.provenance).flat().every(item => Date.parse(item.observed_at) <= Date.parse(batch.as_of))) publicOwners.add(actor.provider_id);
+  return { as_of: [batch.as_of, ...sources.map(source => source.checked_at)].sort().at(-1)!, sources,
+    ...(batch.accounts ? { accounts: batch.accounts.filter(account => publicOwners.has(account.provider_id)) } : {}) };
 }
 /** Current successful public evidence may clear automatic suppression, never a registry withdrawal. */
 export function observeSuppression(state: SuppressionState, snapshot: SourceSnapshot): SuppressionState {

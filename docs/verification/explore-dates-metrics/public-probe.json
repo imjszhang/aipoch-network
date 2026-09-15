@@ -1,0 +1,74 @@
+{
+  "observed_through": "2026-09-15T09:05:51.614Z",
+  "scope": "Public GitHub API observations only; source code was not executed.",
+  "sources": 21,
+  "stars": 21,
+  "forks": 21,
+  "default_branch_heads": 21,
+  "unique_accounts": 19,
+  "public_followers": 19,
+  "organization_accounts": 18,
+  "personal_accounts": 1,
+  "request_budget": {
+    "standard_repository_reads": 21,
+    "standard_public_head_reads": 21,
+    "standard_public_profile_reads": 19
+  },
+  "retry_note": "Snakemake single-commit patch exceeded512000byte budget; endpoint changed to one-item commit list and its observation was individually refreshed. Other observation times preserved.",
+  "examples": [
+    {
+      "provider_id": 288277,
+      "login": "scipy",
+      "account_type": "organization",
+      "github_metrics": {
+        "followers": {
+          "value": 795,
+          "observed_at": "2026-09-15T09:01:48.582Z",
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 35,
+          "observed_at": "2026-09-15T09:01:48.582Z",
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 315810,
+      "login": "mwaskom",
+      "account_type": "user",
+      "github_metrics": {
+        "followers": {
+          "value": 3466,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 58,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    }
+  ]
+}
