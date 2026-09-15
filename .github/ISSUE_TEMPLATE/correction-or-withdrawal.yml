@@ -1,7 +1,7 @@
 {
-  "name": "目录申请：纠错",
-  "description": "修正描述、分类、重复条目或链接；撤回请选择专用表单。",
-  "title": "[纠错] ",
+  "name": "Catalog: Correct content",
+  "description": "Correct descriptions, classification, duplicates, or links. Use the separate withdrawal form for removal.",
+  "title": "[Correction] ",
   "labels": [
     "catalog:correction",
     "stage:triage"
@@ -10,15 +10,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。 撤回内容请使用独立 [撤回表单](https://github.com/imjszhang/aipoch-network/issues/new?template=withdrawal.yml)；选错表单由维护者分流，无需重提。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer. For removal, use the separate [withdrawal form](https://github.com/imjszhang/aipoch-network/issues/new?template=withdrawal.yml). Maintainers will reroute requests submitted through the wrong form; resubmission is unnecessary."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "对象 ID 或公开来源 URL",
-        "description": "填写明确的目录对象；不必提供私人链接。"
+        "label": "Catalog ID or public source URL",
+        "description": "Identify the catalog object. Do not provide private links."
       },
       "validations": {
         "required": true
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "请求内容和范围",
-        "description": "描述希望发生的修改及其依据。"
+        "label": "Requested change and scope",
+        "description": "Describe the correction and its basis."
       },
       "validations": {
         "required": true
@@ -39,8 +39,8 @@
       "type": "textarea",
       "id": "field_2",
       "attributes": {
-        "label": "公开证据",
-        "description": "提供公开链接或原决定；受限证据只说明核验需求。"
+        "label": "Public evidence",
+        "description": "Link public evidence or the original decision. Only describe the need for restricted verification."
       },
       "validations": {
         "required": false

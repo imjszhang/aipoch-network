@@ -24,7 +24,7 @@ test('source-less collection correction retains its target and has a separate dr
   await page.keyboard.press('Space');
   await page.getByRole('button', { name: 'Continue' }).click();
   const url = new URL((await page.getByRole('link', { name: 'Open GitHub draft' }).getAttribute('href'))!);
-  expect(url.searchParams.get('title')).toBe('[纠错] collection:research-foundations');
+  expect(url.searchParams.get('title')).toBe('[Correction] collection:research-foundations');
   expect(url.searchParams.get('labels')).toBe('catalog:correction,stage:triage');
   expect(url.searchParams.get('body')).toBe(await page.locator('.draft').textContent());
   expect(url.searchParams.get('body')).not.toContain('candidate for community indexing');

@@ -1,5 +1,9 @@
-# 目录申请与产品问题分流
+# Catalog request and product issue routing
 
-2026-09-15，用户要求明确规则、完成 Network PR 并合并同步。局部修改 Contribute/Submit：保留 v9-r2 黑白黄、三步审阅与原对象；贡献页增加目录申请/产品帮助两组入口；纠错明确对象 ID，允许没有仓库链接，审阅标题与正文后才打开 GitHub 草稿。认领与收录分开，不增加网页登录、自动提交或后台。
+2026-09-15: the user requested clear rules, implementation, a PR, merge, and synchronization, then specified English throughout this update.
 
-原始配套说明第6节与 V13/V14 为保留要求。原 HTML 三步布局和贡献入口保留，新链接沿用现有 cp-contribute-body/cp-panel/cp-link；不修改原参考文件。产品正文维持英文，GitHub 请求前缀/表单用中文并保留固定类别。根/子路径、桌面/移动与异常验证见本次实施记录，不继承历史通过结论。
+The Contribute and Submit changes preserve the v9-r2 black/white/yellow palette, three-step review, and original object. Contribute groups catalog requests separately from product help. Corrections identify the exact catalog ID and allow a missing repository link. Users review the title and body before opening GitHub. Claims and indexing remain separate.
+
+Section 6 of the paired design notes and V13/V14 remain applicable. The original three-step layout and contribution entry point are retained; new links use existing cp-contribute-body, cp-panel, and cp-link styles. Original reference files remain archived unchanged. User-facing copy, GitHub forms, title prefixes, and managed label descriptions use English. Stable label names and template filenames preserve existing links and queues.
+
+See the implementation record for current root/subpath, desktop/mobile, and failure-path checks. Historical test success is not evidence of current verification.

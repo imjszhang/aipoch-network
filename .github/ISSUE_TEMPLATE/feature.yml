@@ -1,7 +1,7 @@
 {
-  "name": "产品建议：改进",
-  "description": "建议新的产品功能或交互，不用于推荐收录。",
-  "title": "[建议] ",
+  "name": "Product: Suggest an improvement",
+  "description": "Suggest product features or interactions. Use catalog submission to recommend a source.",
+  "title": "[Feature] ",
   "labels": [
     "product:enhancement"
   ],
@@ -9,15 +9,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "需求与使用场景",
-        "description": "说明要解决的问题与期望行为。"
+        "label": "Need and use case",
+        "description": "Describe the problem and expected behavior."
       },
       "validations": {
         "required": true

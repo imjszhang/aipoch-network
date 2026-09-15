@@ -1,7 +1,7 @@
 {
-  "name": "目录申请：认领与组织策展",
-  "description": "核验维护身份、组织策展或变更既有授权。",
-  "title": "[认领] ",
+  "name": "Catalog: Claim maintenance or organization curation",
+  "description": "Verify maintenance authority, organization curation, or changes to existing authorization.",
+  "title": "[Claim] ",
   "labels": [
     "catalog:claim",
     "stage:triage"
@@ -10,15 +10,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "对象 ID 或公开来源 URL",
-        "description": "填写明确的目录对象；不必提供私人链接。"
+        "label": "Catalog ID or public source URL",
+        "description": "Identify the catalog object. Do not provide private links."
       },
       "validations": {
         "required": true
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "GitHub 身份",
-        "description": "提交此申请本身不是权限证据。"
+        "label": "GitHub identity",
+        "description": "Submitting this request is not evidence of authority."
       },
       "validations": {
         "required": true
@@ -39,8 +39,8 @@
       "type": "textarea",
       "id": "field_2",
       "attributes": {
-        "label": "授权范围与请求类型",
-        "description": "仓库认领、组织策展、复核或撤销授权；列出对象和期限。"
+        "label": "Authorization scope and request type",
+        "description": "Specify repository maintenance, organization curation, review, or revocation; list objects and duration."
       },
       "validations": {
         "required": true
@@ -50,8 +50,8 @@
       "type": "textarea",
       "id": "field_3",
       "attributes": {
-        "label": "授权依据",
-        "description": "组织 owner 或明确委派证据；不能仅凭组织成员或 PR 记录。受限核验只说明需要，不上传材料。"
+        "label": "Evidence of authority",
+        "description": "Provide organization owner authority or explicit delegation. Membership or PR history alone is insufficient. Describe any need for restricted verification without uploading private evidence."
       },
       "validations": {
         "required": true

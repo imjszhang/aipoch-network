@@ -1,7 +1,7 @@
 {
-  "name": "目录申请：撤回",
-  "description": "请求移除指定目录内容。",
-  "title": "[撤回] ",
+  "name": "Catalog: Request withdrawal",
+  "description": "Request removal of specified catalog content.",
+  "title": "[Withdrawal] ",
   "labels": [
     "catalog:withdrawal",
     "stage:triage"
@@ -10,15 +10,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "对象 ID 或公开来源 URL",
-        "description": "填写明确的目录对象；不必提供私人链接。"
+        "label": "Catalog ID or public source URL",
+        "description": "Identify the catalog object. Do not provide private links."
       },
       "validations": {
         "required": true
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "撤回范围和依据",
-        "description": "明确字段、条目和历史产物；不要求公开私人证明。"
+        "label": "Withdrawal scope and basis",
+        "description": "Specify fields, entries, and historical artifacts. Do not upload private proof."
       },
       "validations": {
         "required": true
@@ -39,8 +39,8 @@
       "type": "textarea",
       "id": "field_2",
       "attributes": {
-        "label": "公开证据",
-        "description": "提供公开链接或原决定；受限证据只说明核验需求。"
+        "label": "Public evidence",
+        "description": "Link public evidence or the original decision. Only describe the need for restricted verification."
       },
       "validations": {
         "required": false

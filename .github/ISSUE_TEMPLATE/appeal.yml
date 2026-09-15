@@ -1,7 +1,7 @@
 {
-  "name": "目录申请：申诉",
-  "description": "申请复核既有决定、授权争议或重新收录。",
-  "title": "[申诉] ",
+  "name": "Catalog: Appeal a decision",
+  "description": "Request review of a prior decision, authorization dispute, or relisting.",
+  "title": "[Appeal] ",
   "labels": [
     "catalog:appeal",
     "stage:triage"
@@ -10,15 +10,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "对象 ID 或公开来源 URL",
-        "description": "填写明确的目录对象；不必提供私人链接。"
+        "label": "Catalog ID or public source URL",
+        "description": "Identify the catalog object. Do not provide private links."
       },
       "validations": {
         "required": true
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "原决定和新依据",
-        "description": "关联原 Issue 或决定，说明需要复核的结论。"
+        "label": "Original decision and new evidence",
+        "description": "Link the original issue or decision and explain what should be reviewed."
       },
       "validations": {
         "required": true

@@ -1,7 +1,7 @@
 {
-  "name": "产品问题：故障",
-  "description": "网站、搜索、连接交互或公共契约异常；目录内容错误请选择纠错。",
-  "title": "[故障] ",
+  "name": "Product: Report a bug",
+  "description": "Report website, search, connection interaction, or public contract failures. Use catalog correction for content errors.",
+  "title": "[Bug] ",
   "labels": [
     "product:bug"
   ],
@@ -9,15 +9,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "页面或版本",
-        "description": "提供公开页面和浏览器/客户端版本。"
+        "label": "Page or version",
+        "description": "Provide the public page and browser or client version."
       },
       "validations": {
         "required": true
@@ -27,8 +27,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "复现步骤、预期与实际结果",
-        "description": "只提供必要且已脱敏的信息。"
+        "label": "Steps to reproduce, expected and actual results",
+        "description": "Include only necessary information with sensitive details removed."
       },
       "validations": {
         "required": true
