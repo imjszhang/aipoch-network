@@ -14,6 +14,13 @@ export function sourceFor(entry: Entry, catalog: CatalogData): SourceRepository 
 export function allEntries(catalog: CatalogData): Entry[] { return [...catalog.projects, ...catalog.resources, ...catalog.organizations, ...catalog.collections, ...catalog.sources, ...catalog.actors.filter(actor => actor.account_type === 'user')]; }
 export const RELATED_PREVIEW_LIMIT = 20;
 export const SHARED_CATALOG_ROUTES = ['/explore/','/projects/','/capabilities/','/organizations/','/researchers/','/collections/','/sources/','/submit/','/join/','/me/','/review/','/contribute/','/community/'];
+export function isSharedCatalogRoute(path: string): boolean {
+  const raw = path.split('?')[0] ?? '/';
+  const pathname = raw.endsWith('/') || raw === '/' ? raw : `${raw}/`;
+  if (SHARED_CATALOG_ROUTES.includes(pathname)) return true;
+  const paged = pathname.match(/^\/(?:explore|projects|capabilities|organizations|researchers|collections|sources)\/page\/([1-9]\d{0,6})\/$/);
+  return Boolean(paged && Number(paged[1]) > 1);
+}
 /** The same membership rule drives a detail preview and its View all directory filter. */
 export function relatedEntriesFor(entry: Organization | Collection, catalog: CatalogData): Entry[] {
   if (entry.kind === 'collection') {
@@ -32,7 +39,7 @@ export function tombstoneRoutesFor(record: Tombstone): string[] {
 }
 /** Detail HTML carries its display subgraph, never a duplicate of the complete directory. */
 export function pageDataForRoute(data: SiteData, path: string): SiteData {
-  if (SHARED_CATALOG_ROUTES.includes(path)) return data;
+  if (isSharedCatalogRoute(path)) return data;
   const all = allEntries(data.catalog);
   const focus = all.find(entry => routeFor(entry) === path);
   const selected = new Set<string>();
