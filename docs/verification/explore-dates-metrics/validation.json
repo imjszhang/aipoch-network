@@ -1,0 +1,91 @@
+{
+  "verified_at": "2026-09-15T09:21:53.215Z",
+  "base_commit": "96e26e549e6d5da91e3ac8d353927e88785ca191",
+  "catalog_snapshot": "4e6acaa6cb7d1cf6a8d62f86",
+  "node": "24.18.1",
+  "unit_contract_tests": {
+    "command": "SOURCE_BATCH=fixtures/pilot/snapshots.json npm run check",
+    "passed": 435,
+    "failed": 0
+  },
+  "browser_runs": [
+    {
+      "mode": "standard_root",
+      "startTime": "2026-09-15T09:16:33.261Z",
+      "duration": 12771.815,
+      "expected": 96,
+      "skipped": 80,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Full browser suite; mode-specific skips explicit"
+    },
+    {
+      "mode": "standard_subpath",
+      "startTime": "2026-09-15T09:15:51.560Z",
+      "duration": 17277.012,
+      "expected": 96,
+      "skipped": 80,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Full browser suite; mode-specific skips explicit"
+    },
+    {
+      "mode": "demo_root",
+      "startTime": "2026-09-15T09:17:04.599Z",
+      "duration": 17208.416,
+      "expected": 116,
+      "skipped": 60,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Full browser suite; mode-specific skips explicit"
+    },
+    {
+      "mode": "demo_subpath",
+      "startTime": "2026-09-15T09:17:27.543Z",
+      "duration": 16176.171999999999,
+      "expected": 116,
+      "skipped": 60,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Full browser suite; mode-specific skips explicit"
+    },
+    {
+      "mode": "real_root",
+      "startTime": "2026-09-15T09:16:50.803Z",
+      "duration": 32125.798,
+      "expected": 65,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Real adapter protocol fixtures, persistent connection and discovery browser tests"
+    },
+    {
+      "mode": "real_subpath",
+      "startTime": "2026-09-15T09:18:05.303Z",
+      "duration": 31360.633,
+      "expected": 65,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Real adapter protocol fixtures, persistent connection and discovery browser tests"
+    }
+  ],
+  "browser_passed": 554,
+  "browser_failed": 0,
+  "browser_flaky": 0,
+  "historical_compatibility": {
+    "retained_snapshots": 14,
+    "byte_identical_files": 140,
+    "source_package_snapshot": "5ee1901237e9fef920db1657"
+  },
+  "publication_restore": {
+    "mode": "read-only live GitHub metadata plus local ledger output",
+    "new_receipts_after_reviewed_checkpoint": 0,
+    "result": "passed"
+  },
+  "limitations": [
+    "Real-mode tests use independent protocol fixtures; no real client pairing was performed.",
+    "Responsive and200% text-size tests passed; native browser chrome zoom and screen-reader speech were not assessed.",
+    "Production remains on its previous artifact until a separately authorized release."
+  ]
+}

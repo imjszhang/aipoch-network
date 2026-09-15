@@ -7,7 +7,7 @@
 - TypeScript 入口：[index.ts](index.ts)，字段类型：[types.ts](types.ts)。
 - 可移植 JSON Schema：[catalog](schema/catalog.schema.json)、[manifest](schema/manifest.schema.json)、[shard](schema/shard.schema.json)、[enhancement](schema/enhancement.schema.json)。JSON Schema 的 `$id` 是逻辑标识，不需要通过该域名下载才能验证。
 - 独立合成目录：[fixtures/catalog.json](fixtures/catalog.json)。
-- 格式版本：`1.0.0`；v1 新增可选字段可忽略，资源分类可扩展。状态、权限、撤回和运行状态枚举不能自行推断未知值含义；未知值必须拒绝。
+- Format version: `1.1.0` (additive dates and metrics; see [field dictionary](../docs/catalog-dates-metrics.md)). v1 新增可选字段可忽略，资源分类可扩展。状态、权限、撤回和运行状态枚举不能自行推断未知值含义；未知值必须拒绝。
 
 公开入口为站点根下 `catalog/v1/manifest.json`，与网站搜索索引分开。manifest 形状为：
 

@@ -136,6 +136,15 @@ jobs:
       - name: Name this immutable Pages package
         id: package
         run: echo "artifact_name=reviewed-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+      - name: Prepare minimal publication membership outside the website artifact
+        run: npx --no-install tsx scripts/publication-ledger.ts prepare "$RUNNER_TEMP/metadata.json" "$RUNNER_TEMP/reviewed-site" registry/catalog.json "$RUNNER_TEMP/prepared-publication.json"
+      - name: Retain the exact verified publication membership for the recorder
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: verified-publication-index-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/prepared-publication.json
+          if-no-files-found: error
+          retention-days: 90
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           name: ${{ steps.package.outputs.artifact_name }}
@@ -224,3 +233,41 @@ jobs:
           const missing = await fetch(new URL('aipoch-required-404-check/', url), {signal:AbortSignal.timeout(20000), redirect:'error'});
           if (missing.status !== 404) throw new Error('Missing path does not return HTTP 404');
           JS
+  record-publication:
+    needs: [verify, deploy, smoke]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # This job can read evidence, but cannot deploy, push, or mutate the site artifact.
+    permissions:
+      contents: read
+      actions: read
+    env:
+      GH_TOKEN: ''
+      GITHUB_TOKEN: ''
+      NODE_AUTH_TOKEN: ''
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.1'
+          package-manager-cache: false
+      - run: npm ci
+      - name: Read only this exact deployment attempt and its verified membership
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "verified-publication-index-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --dir "$RUNNER_TEMP/publication" || { echo 'This attempt has no verified membership artifact. Recorder-only reruns must reconcile the original successful deployment attempt; do not redeploy to repair a receipt.'; exit 1; }
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/attempts/$GITHUB_RUN_ATTEMPT" > "$RUNNER_TEMP/publication-run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/attempts/$GITHUB_RUN_ATTEMPT/jobs?per_page=100" > "$RUNNER_TEMP/publication-jobs.json"
+      - name: Record successful deployment time after public smoke
+        run: npx --no-install tsx scripts/publication-ledger.ts record "$RUNNER_TEMP/publication/prepared-publication.json" "$RUNNER_TEMP/publication-run.json" "$RUNNER_TEMP/publication-jobs.json" "$RUNNER_TEMP/publication-receipt.json"
+      - name: Retain the receipt for the next normal refresh
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: catalog-publication-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/publication-receipt.json
+          if-no-files-found: error
+          retention-days: 90

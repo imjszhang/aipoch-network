@@ -48,3 +48,12 @@
   .info-grid { grid-template-columns:1fr; }
   .detail-heading>.actions { align-items:flex-start; }
 }
+
+.catalog-date-facts,.catalog-metric-facts { display:flex; flex-wrap:wrap; gap:5px 14px; font-size:11px; color:#65655e; margin:10px 0; line-height:1.8; overflow-wrap:anywhere; }
+.catalog-metric-facts .metric-attribution { flex-basis:100%; color:#454540; }
+.catalog-metric-facts b { color:#333; font-weight:600; }
+.catalog-date { display:inline-block; }
+.catalog-metric-details { display:grid; gap:12px; margin:20px 0; font-size:14px; }
+.catalog-member-count { font-size:12px; color:#65655e; }
+.glance .catalog-date-facts { display:grid; font-size:12px; margin:0; }
+.source-record .metric-fact { line-height:1.8; }

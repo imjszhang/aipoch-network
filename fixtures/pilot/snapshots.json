@@ -1,41 +1,60 @@
 {
-  "as_of": "2026-09-14T07:45:01.246Z",
+  "as_of": "2026-09-15T09:05:51.614Z",
   "sources": [
     {
+      "requested_url": "https://github.com/scipy/scipy",
+      "checked_at": "2026-09-15T09:01:07.279Z",
+      "observed_at": "2026-09-15T09:01:07.279Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:13.733Z",
-      "observed_at": "2026-09-12T10:30:13.733Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:07.279Z",
+        "last_success_at": "2026-09-15T09:01:07.279Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 15015,
+          "observed_at": "2026-09-15T09:01:07.279Z",
+          "last_attempt_at": "2026-09-15T09:01:07.279Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 5931,
+          "observed_at": "2026-09-15T09:01:07.279Z",
+          "last_attempt_at": "2026-09-15T09:01:07.279Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "884ac0b6fc53a70d023948287d34b76c7a559c62",
+          "committed_at": "2026-09-15T03:59:03.000Z",
+          "observed_at": "2026-09-15T09:01:07.279Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:07.279Z",
+          "last_success_at": "2026-09-15T09:01:07.279Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
-        "default_branch": "main",
-        "description": "SciPy library main repository",
-        "fork": false,
-        "full_name": "scipy/scipy",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://scipy.org/",
-        "html_url": "https://github.com/scipy/scipy",
         "id": 1460385,
-        "language": "Python",
-        "latest_release": {
-          "name": "SciPy 1.18.1",
-          "published_at": "2026-08-21T23:52:53Z",
-          "tag": "v1.18.1",
-          "url": "https://github.com/scipy/scipy/releases/tag/v1.18.1"
-        },
-        "license": {
-          "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/scipy/scipy"
-        },
         "name": "scipy",
+        "full_name": "scipy/scipy",
+        "html_url": "https://github.com/scipy/scipy",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/scipy",
           "id": 288277,
           "login": "scipy",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/scipy"
         },
-        "pushed_at": "2026-09-11T15:02:42Z",
         "topics": [
           "algorithms",
           "closember",
@@ -43,46 +62,74 @@
           "scientific-computing",
           "scipy"
         ],
-        "updated_at": "2026-09-12T10:05:56Z"
-      },
-      "requested_url": "https://github.com/scipy/scipy",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:15.937Z",
-      "observed_at": "2026-09-12T10:30:15.937Z",
-      "repository": {
-        "archived": false,
-        "commit": "91c6d0ed4270fc540ebbdf3173f95a3d7423656a",
-        "default_branch": "main",
-        "description": "scikit-learn: machine learning in Python",
-        "fork": false,
-        "full_name": "scikit-learn/scikit-learn",
-        "has_discussions": true,
+        "updated_at": "2026-09-15T07:49:56Z",
         "has_issues": true,
-        "homepage": "https://scikit-learn.org/",
-        "html_url": "https://github.com/scikit-learn/scikit-learn",
-        "id": 843222,
+        "has_discussions": false,
+        "description": "SciPy library main repository",
         "language": "Python",
-        "latest_release": {
-          "name": "Scikit-learn 1.9.1",
-          "published_at": "2026-09-11T09:38:12Z",
-          "tag": "1.9.1",
-          "url": "https://github.com/scikit-learn/scikit-learn/releases/tag/1.9.1"
-        },
+        "homepage": "https://scipy.org/",
+        "pushed_at": "2026-09-15T03:59:03Z",
+        "commit": "884ac0b6fc53a70d023948287d34b76c7a559c62",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/scikit-learn/scikit-learn"
+          "url": "https://github.com/scipy/scipy"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/scikit-learn/scikit-learn",
+      "checked_at": "2026-09-15T09:01:09.511Z",
+      "observed_at": "2026-09-15T09:01:09.511Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:09.511Z",
+        "last_success_at": "2026-09-15T09:01:09.511Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 67257,
+          "observed_at": "2026-09-15T09:01:09.511Z",
+          "last_attempt_at": "2026-09-15T09:01:09.511Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 27400,
+          "observed_at": "2026-09-15T09:01:09.511Z",
+          "last_attempt_at": "2026-09-15T09:01:09.511Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
+          "committed_at": "2026-09-14T23:49:53.000Z",
+          "observed_at": "2026-09-15T09:01:09.511Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:09.511Z",
+          "last_success_at": "2026-09-15T09:01:09.511Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 843222,
         "name": "scikit-learn",
+        "full_name": "scikit-learn/scikit-learn",
+        "html_url": "https://github.com/scikit-learn/scikit-learn",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/scikit-learn",
           "id": 365630,
           "login": "scikit-learn",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/scikit-learn"
         },
-        "pushed_at": "2026-09-12T04:30:39Z",
         "topics": [
           "data-analysis",
           "data-science",
@@ -90,81 +137,148 @@
           "python",
           "statistics"
         ],
-        "updated_at": "2026-09-12T09:30:25Z"
-      },
-      "requested_url": "https://github.com/scikit-learn/scikit-learn",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:17.973Z",
-      "observed_at": "2026-09-12T10:30:17.973Z",
-      "repository": {
-        "archived": false,
-        "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
-        "default_branch": "main",
-        "description": "Jupyter Interactive Notebook",
-        "fork": false,
-        "full_name": "jupyter/notebook",
-        "has_discussions": true,
+        "updated_at": "2026-09-15T08:44:04Z",
         "has_issues": true,
-        "homepage": "https://jupyter-notebook.readthedocs.io/",
-        "html_url": "https://github.com/jupyter/notebook",
-        "id": 33653601,
-        "language": "Jupyter Notebook",
-        "latest_release": {
-          "name": "v7.6.2",
-          "published_at": "2026-08-11T13:21:22Z",
-          "tag": "v7.6.2",
-          "url": "https://github.com/jupyter/notebook/releases/tag/v7.6.2"
-        },
+        "has_discussions": true,
+        "description": "scikit-learn: machine learning in Python",
+        "language": "Python",
+        "homepage": "https://scikit-learn.org/",
+        "pushed_at": "2026-09-14T23:49:53Z",
+        "commit": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/jupyter/notebook"
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/jupyter/notebook",
+      "checked_at": "2026-09-15T09:01:11.059Z",
+      "observed_at": "2026-09-15T09:01:11.059Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:11.059Z",
+        "last_success_at": "2026-09-15T09:01:11.059Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 13342,
+          "observed_at": "2026-09-15T09:01:11.059Z",
+          "last_attempt_at": "2026-09-15T09:01:11.059Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 5760,
+          "observed_at": "2026-09-15T09:01:11.059Z",
+          "last_attempt_at": "2026-09-15T09:01:11.059Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+          "committed_at": "2026-09-10T16:41:16.000Z",
+          "observed_at": "2026-09-15T09:01:11.059Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:11.059Z",
+          "last_success_at": "2026-09-15T09:01:11.059Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 33653601,
         "name": "notebook",
+        "full_name": "jupyter/notebook",
+        "html_url": "https://github.com/jupyter/notebook",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/jupyter",
           "id": 7388996,
           "login": "jupyter",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/jupyter"
         },
-        "pushed_at": "2026-09-10T16:41:16Z",
         "topics": [
           "closember",
           "jupyter",
           "jupyter-notebook",
           "notebook"
         ],
-        "updated_at": "2026-09-12T10:00:46Z"
-      },
-      "requested_url": "https://github.com/jupyter/notebook",
-      "suppressed": false
+        "updated_at": "2026-09-15T03:27:31Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Jupyter Interactive Notebook",
+        "language": "Jupyter Notebook",
+        "homepage": "https://jupyter-notebook.readthedocs.io/",
+        "pushed_at": "2026-09-10T16:41:16Z",
+        "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/jupyter/notebook"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/biopython/biopython",
+      "checked_at": "2026-09-15T09:01:13.053Z",
+      "observed_at": "2026-09-15T09:01:13.053Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:20.588Z",
-      "observed_at": "2026-09-12T10:30:20.588Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:13.053Z",
+        "last_success_at": "2026-09-15T09:01:13.053Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 5195,
+          "observed_at": "2026-09-15T09:01:13.053Z",
+          "last_attempt_at": "2026-09-15T09:01:13.053Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1949,
+          "observed_at": "2026-09-15T09:01:13.053Z",
+          "last_attempt_at": "2026-09-15T09:01:13.053Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "fd0d9b8c41752a5acf12cf7d7b03db380b5da726",
+          "committed_at": "2026-09-14T08:38:57.000Z",
+          "observed_at": "2026-09-15T09:01:13.053Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:13.053Z",
+          "last_success_at": "2026-09-15T09:01:13.053Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "dc262b5c437e07a8cc1cfb8a734c0d84a4434b23",
-        "default_branch": "master",
-        "description": "Official git repository for Biopython (originally converted from CVS)",
-        "fork": false,
-        "full_name": "biopython/biopython",
-        "has_discussions": false,
-        "has_issues": true,
-        "html_url": "https://github.com/biopython/biopython",
         "id": 151541,
-        "language": "Python",
         "name": "biopython",
+        "full_name": "biopython/biopython",
+        "html_url": "https://github.com/biopython/biopython",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/biopython",
           "id": 54555,
           "login": "biopython",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/biopython"
         },
-        "pushed_at": "2026-09-04T00:07:06Z",
         "topics": [
           "bioinformatics",
           "biopython",
@@ -176,130 +290,210 @@
           "python",
           "sequence-alignment"
         ],
-        "updated_at": "2026-09-11T13:04:38Z"
-      },
-      "requested_url": "https://github.com/biopython/biopython",
-      "suppressed": false
+        "updated_at": "2026-09-15T05:22:18Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Official git repository for Biopython (originally converted from CVS)",
+        "language": "Python",
+        "pushed_at": "2026-09-14T08:38:58Z",
+        "commit": "fd0d9b8c41752a5acf12cf7d7b03db380b5da726"
+      }
     },
     {
+      "requested_url": "https://github.com/snakemake/snakemake",
+      "checked_at": "2026-09-15T09:05:50.529Z",
+      "observed_at": "2026-09-15T09:05:50.529Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:23.057Z",
-      "observed_at": "2026-09-12T10:30:23.057Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:05:50.529Z",
+        "last_success_at": "2026-09-15T09:05:50.529Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2869,
+          "observed_at": "2026-09-15T09:05:50.529Z",
+          "last_attempt_at": "2026-09-15T09:05:50.529Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 654,
+          "observed_at": "2026-09-15T09:05:50.529Z",
+          "last_attempt_at": "2026-09-15T09:05:50.529Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+          "committed_at": "2026-09-11T14:03:03.000Z",
+          "observed_at": "2026-09-15T09:05:50.529Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:05:50.529Z",
+          "last_success_at": "2026-09-15T09:05:50.529Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "default_branch": "main",
-        "description": "This is the development home of the workflow management system Snakemake. For general information, see",
-        "fork": false,
-        "full_name": "snakemake/snakemake",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://snakemake.github.io/",
-        "html_url": "https://github.com/snakemake/snakemake",
         "id": 212840200,
-        "language": "Python",
-        "latest_release": {
-          "name": "v9.27.0",
-          "published_at": "2026-09-11T13:44:52Z",
-          "tag": "v9.27.0",
-          "url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0"
-        },
-        "license": {
-          "spdx_id": "MIT",
-          "url": "https://github.com/snakemake/snakemake"
-        },
         "name": "snakemake",
+        "full_name": "snakemake/snakemake",
+        "html_url": "https://github.com/snakemake/snakemake",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/snakemake",
           "id": 33450111,
           "login": "snakemake",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/snakemake"
         },
-        "pushed_at": "2026-09-11T15:33:18Z",
         "topics": [
           "reproducibility",
           "snakemake",
           "workflow-management"
         ],
-        "updated_at": "2026-09-12T09:16:37Z"
-      },
-      "requested_url": "https://github.com/snakemake/snakemake",
-      "suppressed": false
+        "updated_at": "2026-09-14T08:38:19Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "This is the development home of the workflow management system Snakemake. For general information, see",
+        "language": "Python",
+        "homepage": "https://snakemake.github.io/",
+        "pushed_at": "2026-09-11T15:33:18Z",
+        "commit": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/snakemake/snakemake"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/numpy/numpy",
+      "checked_at": "2026-09-15T09:01:17.390Z",
+      "observed_at": "2026-09-15T09:01:17.390Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:29.096Z",
-      "observed_at": "2026-09-12T10:30:29.096Z",
-      "repository": {
-        "archived": false,
-        "commit": "e80572f1407205a37182e3ec9a276f4ea698b163",
-        "default_branch": "main",
-        "description": "The fundamental package for scientific computing with Python.",
-        "fork": false,
-        "full_name": "numpy/numpy",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://numpy.org/",
-        "html_url": "https://github.com/numpy/numpy",
-        "id": 908607,
-        "language": "Python",
-        "latest_release": {
-          "name": "v2.5.3 (Sep 6, 2026)",
-          "published_at": "2026-09-06T16:37:15Z",
-          "tag": "v2.5.3",
-          "url": "https://github.com/numpy/numpy/releases/tag/v2.5.3"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:17.390Z",
+        "last_success_at": "2026-09-15T09:01:17.390Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 32744,
+          "observed_at": "2026-09-15T09:01:17.390Z",
+          "last_attempt_at": "2026-09-15T09:01:17.390Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 12785,
+          "observed_at": "2026-09-15T09:01:17.390Z",
+          "last_attempt_at": "2026-09-15T09:01:17.390Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "15a1636a6d68bbee2056494978f9867ee40b9d25",
+          "committed_at": "2026-09-15T06:16:17.000Z",
+          "observed_at": "2026-09-15T09:01:17.390Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:17.390Z",
+          "last_success_at": "2026-09-15T09:01:17.390Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 908607,
         "name": "numpy",
+        "full_name": "numpy/numpy",
+        "html_url": "https://github.com/numpy/numpy",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/numpy",
           "id": 288276,
           "login": "numpy",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/numpy"
         },
-        "pushed_at": "2026-09-11T04:08:06Z",
         "topics": [
           "numpy",
           "python"
         ],
-        "updated_at": "2026-09-12T08:06:18Z"
-      },
-      "requested_url": "https://github.com/numpy/numpy",
-      "suppressed": false
+        "updated_at": "2026-09-15T06:16:24Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "The fundamental package for scientific computing with Python.",
+        "language": "Python",
+        "homepage": "https://numpy.org/",
+        "pushed_at": "2026-09-15T06:16:17Z",
+        "commit": "15a1636a6d68bbee2056494978f9867ee40b9d25"
+      }
     },
     {
+      "requested_url": "https://github.com/pandas-dev/pandas",
+      "checked_at": "2026-09-15T09:01:19.078Z",
+      "observed_at": "2026-09-15T09:01:19.078Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:31.105Z",
-      "observed_at": "2026-09-12T10:30:31.105Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:19.078Z",
+        "last_success_at": "2026-09-15T09:01:19.078Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 49732,
+          "observed_at": "2026-09-15T09:01:19.078Z",
+          "last_attempt_at": "2026-09-15T09:01:19.078Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 20380,
+          "observed_at": "2026-09-15T09:01:19.078Z",
+          "last_attempt_at": "2026-09-15T09:01:19.078Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "41c136ddef35aa30f4df69b1c1eda47ca0ade649",
+          "committed_at": "2026-09-15T02:22:18.000Z",
+          "observed_at": "2026-09-15T09:01:19.078Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:19.078Z",
+          "last_success_at": "2026-09-15T09:01:19.078Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "27449ca07b66d95222b9f6d4b1463aa6b40ce9e5",
-        "default_branch": "main",
-        "description": "Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more",
-        "fork": false,
-        "full_name": "pandas-dev/pandas",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://pandas.pydata.org/",
-        "html_url": "https://github.com/pandas-dev/pandas",
         "id": 858127,
-        "language": "Python",
-        "latest_release": {
-          "name": "pandas 3.0.5",
-          "published_at": "2026-07-22T21:47:08Z",
-          "tag": "v3.0.5",
-          "url": "https://github.com/pandas-dev/pandas/releases/tag/v3.0.5"
-        },
-        "license": {
-          "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/pandas-dev/pandas"
-        },
         "name": "pandas",
+        "full_name": "pandas-dev/pandas",
+        "html_url": "https://github.com/pandas-dev/pandas",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/pandas-dev",
           "id": 21206976,
           "login": "pandas-dev",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/pandas-dev"
         },
-        "pushed_at": "2026-09-12T03:32:00Z",
         "topics": [
           "alignment",
           "data-analysis",
@@ -308,42 +502,74 @@
           "pandas",
           "python"
         ],
-        "updated_at": "2026-09-12T10:26:13Z"
-      },
-      "requested_url": "https://github.com/pandas-dev/pandas",
-      "suppressed": false
+        "updated_at": "2026-09-15T02:23:12Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more",
+        "language": "Python",
+        "homepage": "https://pandas.pydata.org/",
+        "pushed_at": "2026-09-15T02:22:19Z",
+        "commit": "41c136ddef35aa30f4df69b1c1eda47ca0ade649",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/pandas-dev/pandas"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/matplotlib/matplotlib",
+      "checked_at": "2026-09-15T09:01:20.693Z",
+      "observed_at": "2026-09-15T09:01:20.693Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:33.147Z",
-      "observed_at": "2026-09-12T10:30:33.147Z",
-      "repository": {
-        "archived": false,
-        "commit": "1aee9671d03c8400a0b680253c89c427cabdb2f0",
-        "default_branch": "main",
-        "description": "matplotlib: plotting with Python",
-        "fork": false,
-        "full_name": "matplotlib/matplotlib",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://matplotlib.org/stable/",
-        "html_url": "https://github.com/matplotlib/matplotlib",
-        "id": 1385122,
-        "language": "Python",
-        "latest_release": {
-          "name": "REL: v3.11.2",
-          "published_at": "2026-09-11T03:48:24Z",
-          "tag": "v3.11.2",
-          "url": "https://github.com/matplotlib/matplotlib/releases/tag/v3.11.2"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:20.693Z",
+        "last_success_at": "2026-09-15T09:01:20.693Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 23216,
+          "observed_at": "2026-09-15T09:01:20.693Z",
+          "last_attempt_at": "2026-09-15T09:01:20.693Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 8482,
+          "observed_at": "2026-09-15T09:01:20.693Z",
+          "last_attempt_at": "2026-09-15T09:01:20.693Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "a99bc61d82b76eab80509a57e39fa20a556d1985",
+          "committed_at": "2026-09-12T13:10:18.000Z",
+          "observed_at": "2026-09-15T09:01:20.693Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:20.693Z",
+          "last_success_at": "2026-09-15T09:01:20.693Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 1385122,
         "name": "matplotlib",
+        "full_name": "matplotlib/matplotlib",
+        "html_url": "https://github.com/matplotlib/matplotlib",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/matplotlib",
           "id": 215947,
           "login": "matplotlib",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/matplotlib"
         },
-        "pushed_at": "2026-09-12T01:07:51Z",
         "topics": [
           "data-science",
           "data-visualization",
@@ -355,46 +581,70 @@
           "tk",
           "wx"
         ],
-        "updated_at": "2026-09-12T04:35:51Z"
-      },
-      "requested_url": "https://github.com/matplotlib/matplotlib",
-      "suppressed": false
+        "updated_at": "2026-09-15T09:00:34Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "matplotlib: plotting with Python",
+        "language": "Python",
+        "homepage": "https://matplotlib.org/stable/",
+        "pushed_at": "2026-09-13T18:57:29Z",
+        "commit": "a99bc61d82b76eab80509a57e39fa20a556d1985"
+      }
     },
     {
+      "requested_url": "https://github.com/mwaskom/seaborn",
+      "checked_at": "2026-09-15T09:01:22.392Z",
+      "observed_at": "2026-09-15T09:01:22.392Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:35.496Z",
-      "observed_at": "2026-09-12T10:30:35.496Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:22.392Z",
+        "last_success_at": "2026-09-15T09:01:22.392Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 14020,
+          "observed_at": "2026-09-15T09:01:22.392Z",
+          "last_attempt_at": "2026-09-15T09:01:22.392Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 2134,
+          "observed_at": "2026-09-15T09:01:22.392Z",
+          "last_attempt_at": "2026-09-15T09:01:22.392Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+          "committed_at": "2026-07-06T02:11:53.000Z",
+          "observed_at": "2026-09-15T09:01:22.392Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:22.392Z",
+          "last_success_at": "2026-09-15T09:01:22.392Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
-        "default_branch": "master",
-        "description": "Statistical data visualization in Python",
-        "fork": false,
-        "full_name": "mwaskom/seaborn",
-        "has_discussions": true,
-        "has_issues": true,
-        "homepage": "https://seaborn.pydata.org/",
-        "html_url": "https://github.com/mwaskom/seaborn",
         "id": 4704710,
-        "language": "Python",
-        "latest_release": {
-          "name": "v0.13.2 (January 2024)",
-          "published_at": "2024-01-25T13:21:20Z",
-          "tag": "v0.13.2",
-          "url": "https://github.com/mwaskom/seaborn/releases/tag/v0.13.2"
-        },
-        "license": {
-          "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/mwaskom/seaborn"
-        },
         "name": "seaborn",
+        "full_name": "mwaskom/seaborn",
+        "html_url": "https://github.com/mwaskom/seaborn",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/mwaskom",
           "id": 315810,
           "login": "mwaskom",
-          "type": "User"
+          "type": "User",
+          "html_url": "https://github.com/mwaskom"
         },
-        "pushed_at": "2026-07-06T02:11:55Z",
         "topics": [
           "data-science",
           "data-visualization",
@@ -402,46 +652,74 @@
           "pandas",
           "python"
         ],
-        "updated_at": "2026-09-11T23:50:13Z"
-      },
-      "requested_url": "https://github.com/mwaskom/seaborn",
-      "suppressed": false
+        "updated_at": "2026-09-15T09:00:32Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Statistical data visualization in Python",
+        "language": "Python",
+        "homepage": "https://seaborn.pydata.org/",
+        "pushed_at": "2026-07-06T02:11:55Z",
+        "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/mwaskom/seaborn"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/pydata/xarray",
+      "checked_at": "2026-09-15T09:01:23.914Z",
+      "observed_at": "2026-09-15T09:01:23.914Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:37.744Z",
-      "observed_at": "2026-09-12T10:30:37.744Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:23.914Z",
+        "last_success_at": "2026-09-15T09:01:23.914Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 4198,
+          "observed_at": "2026-09-15T09:01:23.914Z",
+          "last_attempt_at": "2026-09-15T09:01:23.914Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1349,
+          "observed_at": "2026-09-15T09:01:23.914Z",
+          "last_attempt_at": "2026-09-15T09:01:23.914Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "8de862c29544c2fb1957ce20985745952bc81de7",
+          "committed_at": "2026-09-11T19:33:09.000Z",
+          "observed_at": "2026-09-15T09:01:23.914Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:23.914Z",
+          "last_success_at": "2026-09-15T09:01:23.914Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
-        "default_branch": "main",
-        "description": "N-D labeled arrays and datasets in Python",
-        "fork": false,
-        "full_name": "pydata/xarray",
-        "has_discussions": true,
-        "has_issues": true,
-        "homepage": "https://xarray.dev/",
-        "html_url": "https://github.com/pydata/xarray",
         "id": 13221727,
-        "language": "Python",
-        "latest_release": {
-          "name": "v2026.07.0",
-          "published_at": "2026-07-09T17:36:39Z",
-          "tag": "v2026.07.0",
-          "url": "https://github.com/pydata/xarray/releases/tag/v2026.07.0"
-        },
-        "license": {
-          "spdx_id": "Apache-2.0",
-          "url": "https://github.com/pydata/xarray"
-        },
         "name": "xarray",
+        "full_name": "pydata/xarray",
+        "html_url": "https://github.com/pydata/xarray",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/pydata",
           "id": 1284191,
           "login": "pydata",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/pydata"
         },
-        "pushed_at": "2026-09-11T19:33:09Z",
         "topics": [
           "dask",
           "netcdf",
@@ -450,46 +728,74 @@
           "python",
           "xarray"
         ],
-        "updated_at": "2026-09-11T19:33:16Z"
-      },
-      "requested_url": "https://github.com/pydata/xarray",
-      "suppressed": false
+        "updated_at": "2026-09-12T15:23:23Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "N-D labeled arrays and datasets in Python",
+        "language": "Python",
+        "homepage": "https://xarray.dev/",
+        "pushed_at": "2026-09-11T19:33:09Z",
+        "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/pydata/xarray"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/scverse/scanpy",
+      "checked_at": "2026-09-15T09:01:25.485Z",
+      "observed_at": "2026-09-15T09:01:25.485Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:40.320Z",
-      "observed_at": "2026-09-12T10:30:40.320Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:25.485Z",
+        "last_success_at": "2026-09-15T09:01:25.485Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2560,
+          "observed_at": "2026-09-15T09:01:25.485Z",
+          "last_attempt_at": "2026-09-15T09:01:25.485Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 777,
+          "observed_at": "2026-09-15T09:01:25.485Z",
+          "last_attempt_at": "2026-09-15T09:01:25.485Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "committed_at": "2026-09-11T06:42:51.000Z",
+          "observed_at": "2026-09-15T09:01:25.485Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:25.485Z",
+          "last_success_at": "2026-09-15T09:01:25.485Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
-        "default_branch": "main",
-        "description": "Single-cell analysis in Python. Scales to >100M cells.",
-        "fork": false,
-        "full_name": "scverse/scanpy",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://scanpy.scverse.org/",
-        "html_url": "https://github.com/scverse/scanpy",
         "id": 80342493,
-        "language": "Python",
-        "latest_release": {
-          "name": "1.12.4",
-          "published_at": "2026-08-27T11:54:49Z",
-          "tag": "1.12.4",
-          "url": "https://github.com/scverse/scanpy/releases/tag/1.12.4"
-        },
-        "license": {
-          "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/scverse/scanpy"
-        },
         "name": "scanpy",
+        "full_name": "scverse/scanpy",
+        "html_url": "https://github.com/scverse/scanpy",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/scverse",
           "id": 95305807,
           "login": "scverse",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/scverse"
         },
-        "pushed_at": "2026-09-11T13:38:53Z",
         "topics": [
           "anndata",
           "bioinformatics",
@@ -501,45 +807,74 @@
           "transcriptomics",
           "visualize-data"
         ],
-        "updated_at": "2026-09-11T06:42:56Z"
-      },
-      "requested_url": "https://github.com/scverse/scanpy",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:42.852Z",
-      "observed_at": "2026-09-12T10:30:42.852Z",
-      "repository": {
-        "archived": false,
-        "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
-        "default_branch": "main",
-        "description": "Annotated data.",
-        "fork": false,
-        "full_name": "scverse/anndata",
-        "has_discussions": false,
+        "updated_at": "2026-09-13T12:57:57Z",
         "has_issues": true,
-        "html_url": "https://github.com/scverse/anndata",
-        "id": 100038377,
+        "has_discussions": false,
+        "description": "Single-cell analysis in Python. Scales to >100M cells.",
         "language": "Python",
-        "latest_release": {
-          "name": "0.13.3",
-          "published_at": "2026-08-27T09:39:59Z",
-          "tag": "0.13.3.post0",
-          "url": "https://github.com/scverse/anndata/releases/tag/0.13.3.post0"
-        },
+        "homepage": "https://scanpy.scverse.org/",
+        "pushed_at": "2026-09-11T13:38:53Z",
+        "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/scverse/anndata"
+          "url": "https://github.com/scverse/scanpy"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/scverse/anndata",
+      "checked_at": "2026-09-15T09:01:28.050Z",
+      "observed_at": "2026-09-15T09:01:28.050Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:28.050Z",
+        "last_success_at": "2026-09-15T09:01:28.050Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 771,
+          "observed_at": "2026-09-15T09:01:28.050Z",
+          "last_attempt_at": "2026-09-15T09:01:28.050Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 208,
+          "observed_at": "2026-09-15T09:01:28.050Z",
+          "last_attempt_at": "2026-09-15T09:01:28.050Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "committed_at": "2026-09-10T08:11:57.000Z",
+          "observed_at": "2026-09-15T09:01:28.050Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:28.050Z",
+          "last_success_at": "2026-09-15T09:01:28.050Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 100038377,
         "name": "anndata",
+        "full_name": "scverse/anndata",
+        "html_url": "https://github.com/scverse/anndata",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/scverse",
           "id": 95305807,
           "login": "scverse",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/scverse"
         },
-        "pushed_at": "2026-09-10T13:13:17Z",
         "topics": [
           "anndata",
           "bioinformatics",
@@ -549,46 +884,73 @@
           "scverse",
           "transcriptomics"
         ],
-        "updated_at": "2026-09-12T07:55:09Z"
-      },
-      "requested_url": "https://github.com/scverse/anndata",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:45.071Z",
-      "observed_at": "2026-09-12T10:30:45.071Z",
-      "repository": {
-        "archived": false,
-        "commit": "af4871261682044e129ceabb20fa15e696c028e7",
-        "default_branch": "main",
-        "description": "Astronomy and astrophysics core library",
-        "fork": false,
-        "full_name": "astropy/astropy",
-        "has_discussions": false,
+        "updated_at": "2026-09-13T12:42:06Z",
         "has_issues": true,
-        "homepage": "https://www.astropy.org/",
-        "html_url": "https://github.com/astropy/astropy",
-        "id": 2081289,
+        "has_discussions": false,
+        "description": "Annotated data.",
         "language": "Python",
-        "latest_release": {
-          "name": "v8.0.1",
-          "published_at": "2026-07-08T13:01:37Z",
-          "tag": "v8.0.1",
-          "url": "https://github.com/astropy/astropy/releases/tag/v8.0.1"
-        },
+        "pushed_at": "2026-09-10T13:13:17Z",
+        "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/astropy/astropy"
+          "url": "https://github.com/scverse/anndata"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/astropy/astropy",
+      "checked_at": "2026-09-15T09:01:29.661Z",
+      "observed_at": "2026-09-15T09:01:29.661Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:29.661Z",
+        "last_success_at": "2026-09-15T09:01:29.661Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 5305,
+          "observed_at": "2026-09-15T09:01:29.661Z",
+          "last_attempt_at": "2026-09-15T09:01:29.661Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 2166,
+          "observed_at": "2026-09-15T09:01:29.661Z",
+          "last_attempt_at": "2026-09-15T09:01:29.661Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "05b3cbdabe6740850186aa3724a517ff0c04504e",
+          "committed_at": "2026-09-14T20:40:09.000Z",
+          "observed_at": "2026-09-15T09:01:29.661Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:29.661Z",
+          "last_success_at": "2026-09-15T09:01:29.661Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 2081289,
         "name": "astropy",
+        "full_name": "astropy/astropy",
+        "html_url": "https://github.com/astropy/astropy",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/astropy",
           "id": 847984,
           "login": "astropy",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/astropy"
         },
-        "pushed_at": "2026-09-11T20:51:56Z",
         "topics": [
           "astronomy",
           "astrophysics",
@@ -596,45 +958,74 @@
           "python",
           "science"
         ],
-        "updated_at": "2026-09-12T04:31:02Z"
-      },
-      "requested_url": "https://github.com/astropy/astropy",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:47.105Z",
-      "observed_at": "2026-09-12T10:30:47.105Z",
-      "repository": {
-        "archived": false,
-        "commit": "aee5750ead87eb4147f65c5d4239b4150e839ed1",
-        "default_branch": "main",
-        "description": "Machine learning for NeuroImaging in Python",
-        "fork": false,
-        "full_name": "nilearn/nilearn",
-        "has_discussions": true,
+        "updated_at": "2026-09-15T06:26:38Z",
         "has_issues": true,
-        "html_url": "https://github.com/nilearn/nilearn",
-        "id": 1235740,
+        "has_discussions": false,
+        "description": "Astronomy and astrophysics core library",
         "language": "Python",
-        "latest_release": {
-          "name": "0.14.1",
-          "published_at": "2026-09-04T08:12:50Z",
-          "tag": "0.14.1",
-          "url": "https://github.com/nilearn/nilearn/releases/tag/0.14.1"
-        },
+        "homepage": "https://www.astropy.org/",
+        "pushed_at": "2026-09-15T06:26:25Z",
+        "commit": "05b3cbdabe6740850186aa3724a517ff0c04504e",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/nilearn/nilearn"
+          "url": "https://github.com/astropy/astropy"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/nilearn/nilearn",
+      "checked_at": "2026-09-15T09:01:31.230Z",
+      "observed_at": "2026-09-15T09:01:31.230Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:31.230Z",
+        "last_success_at": "2026-09-15T09:01:31.230Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1431,
+          "observed_at": "2026-09-15T09:01:31.230Z",
+          "last_attempt_at": "2026-09-15T09:01:31.230Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 679,
+          "observed_at": "2026-09-15T09:01:31.230Z",
+          "last_attempt_at": "2026-09-15T09:01:31.230Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+          "committed_at": "2026-09-14T05:48:39.000Z",
+          "observed_at": "2026-09-15T09:01:31.230Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:31.230Z",
+          "last_success_at": "2026-09-15T09:01:31.230Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 1235740,
         "name": "nilearn",
+        "full_name": "nilearn/nilearn",
+        "html_url": "https://github.com/nilearn/nilearn",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/nilearn",
           "id": 4646912,
           "login": "nilearn",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/nilearn"
         },
-        "pushed_at": "2026-09-11T14:48:11Z",
         "topics": [
           "brain-connectivity",
           "brain-imaging",
@@ -646,41 +1037,73 @@
           "neuroimaging",
           "python"
         ],
-        "updated_at": "2026-09-11T14:48:18Z"
-      },
-      "requested_url": "https://github.com/nilearn/nilearn",
-      "suppressed": false
+        "updated_at": "2026-09-14T05:48:48Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Machine learning for NeuroImaging in Python",
+        "language": "Python",
+        "pushed_at": "2026-09-14T05:48:40Z",
+        "commit": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/nilearn/nilearn"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/nipy/nibabel",
+      "checked_at": "2026-09-15T09:01:32.993Z",
+      "observed_at": "2026-09-15T09:01:32.993Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:49.875Z",
-      "observed_at": "2026-09-12T10:30:49.875Z",
-      "repository": {
-        "archived": false,
-        "commit": "1d7baa6d0eba263156669f7f9e7b643a66b4a98c",
-        "default_branch": "master",
-        "description": "Python package to access a cacophony of neuro-imaging file formats",
-        "fork": false,
-        "full_name": "nipy/nibabel",
-        "has_discussions": true,
-        "has_issues": true,
-        "html_url": "https://github.com/nipy/nibabel",
-        "id": 791352,
-        "language": "Python",
-        "latest_release": {
-          "name": "5.4.1",
-          "published_at": "2026-03-10T20:55:11Z",
-          "tag": "5.4.1",
-          "url": "https://github.com/nipy/nibabel/releases/tag/5.4.1"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:32.993Z",
+        "last_success_at": "2026-09-15T09:01:32.993Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 792,
+          "observed_at": "2026-09-15T09:01:32.993Z",
+          "last_attempt_at": "2026-09-15T09:01:32.993Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 297,
+          "observed_at": "2026-09-15T09:01:32.993Z",
+          "last_attempt_at": "2026-09-15T09:01:32.993Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "699b9923e846b5a3eb2456048118a4dd1aa45814",
+          "committed_at": "2026-09-14T11:54:01.000Z",
+          "observed_at": "2026-09-15T09:01:32.993Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:32.993Z",
+          "last_success_at": "2026-09-15T09:01:32.993Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 791352,
         "name": "nibabel",
+        "full_name": "nipy/nibabel",
+        "html_url": "https://github.com/nipy/nibabel",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/nipy",
           "id": 233707,
           "login": "nipy",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/nipy"
         },
-        "pushed_at": "2026-09-07T22:08:10Z",
         "topics": [
           "afni-brik-head",
           "brain-imaging",
@@ -697,46 +1120,69 @@
           "tck",
           "trk"
         ],
-        "updated_at": "2026-09-11T08:26:03Z"
-      },
-      "requested_url": "https://github.com/nipy/nibabel",
-      "suppressed": false
+        "updated_at": "2026-09-14T14:46:23Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Python package to access a cacophony of neuro-imaging file formats",
+        "language": "Python",
+        "pushed_at": "2026-09-14T11:54:01Z",
+        "commit": "699b9923e846b5a3eb2456048118a4dd1aa45814"
+      }
     },
     {
+      "requested_url": "https://github.com/mne-tools/mne-python",
+      "checked_at": "2026-09-15T09:01:34.763Z",
+      "observed_at": "2026-09-15T09:01:34.763Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:52.895Z",
-      "observed_at": "2026-09-12T10:30:52.895Z",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:34.763Z",
+        "last_success_at": "2026-09-15T09:01:34.763Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 3516,
+          "observed_at": "2026-09-15T09:01:34.763Z",
+          "last_attempt_at": "2026-09-15T09:01:34.763Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1591,
+          "observed_at": "2026-09-15T09:01:34.763Z",
+          "last_attempt_at": "2026-09-15T09:01:34.763Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "96085253f768dcccb86b3f5c7280cd7f40c7ed72",
+          "committed_at": "2026-09-14T17:25:04.000Z",
+          "observed_at": "2026-09-15T09:01:34.763Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:34.763Z",
+          "last_success_at": "2026-09-15T09:01:34.763Z",
+          "result": "ok"
+        }
+      },
       "repository": {
-        "archived": false,
-        "commit": "ae90522cc64e9ddccfa50f29a3699e0bd24bfdae",
-        "default_branch": "main",
-        "description": "MNE: Magnetoencephalography (MEG) and Electroencephalography (EEG) in Python",
-        "fork": false,
-        "full_name": "mne-tools/mne-python",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://mne.tools/",
-        "html_url": "https://github.com/mne-tools/mne-python",
         "id": 1301584,
-        "language": "Python",
-        "latest_release": {
-          "name": "v1.13.2",
-          "published_at": "2026-09-11T16:34:07Z",
-          "tag": "v1.13.2",
-          "url": "https://github.com/mne-tools/mne-python/releases/tag/v1.13.2"
-        },
-        "license": {
-          "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/mne-tools/mne-python"
-        },
         "name": "mne-python",
+        "full_name": "mne-tools/mne-python",
+        "html_url": "https://github.com/mne-tools/mne-python",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/mne-tools",
           "id": 583875,
           "login": "mne-tools",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/mne-tools"
         },
-        "pushed_at": "2026-09-12T00:47:45Z",
         "topics": [
           "ecog",
           "eeg",
@@ -751,45 +1197,74 @@
           "statistics",
           "visualization"
         ],
-        "updated_at": "2026-09-12T03:53:54Z"
-      },
-      "requested_url": "https://github.com/mne-tools/mne-python",
-      "suppressed": false
-    },
-    {
-      "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:55.998Z",
-      "observed_at": "2026-09-12T10:30:55.998Z",
-      "repository": {
-        "archived": false,
-        "commit": "1d2307006379fd78ed4f921a92d7fe8c069565f7",
-        "default_branch": "main",
-        "description": "Statsmodels: statistical modeling and econometrics in Python",
-        "fork": false,
-        "full_name": "statsmodels/statsmodels",
-        "has_discussions": false,
+        "updated_at": "2026-09-15T05:40:01Z",
         "has_issues": true,
-        "html_url": "https://github.com/statsmodels/statsmodels",
-        "id": 1885237,
+        "has_discussions": false,
+        "description": "MNE: Magnetoencephalography (MEG) and Electroencephalography (EEG) in Python",
         "language": "Python",
-        "latest_release": {
-          "name": "Release 0.15.0",
-          "published_at": "2026-08-27T06:44:51Z",
-          "tag": "v0.15.0",
-          "url": "https://github.com/statsmodels/statsmodels/releases/tag/v0.15.0"
-        },
+        "homepage": "https://mne.tools/",
+        "pushed_at": "2026-09-14T17:25:06Z",
+        "commit": "96085253f768dcccb86b3f5c7280cd7f40c7ed72",
         "license": {
           "spdx_id": "BSD-3-Clause",
-          "url": "https://github.com/statsmodels/statsmodels"
+          "url": "https://github.com/mne-tools/mne-python"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/statsmodels/statsmodels",
+      "checked_at": "2026-09-15T09:01:36.690Z",
+      "observed_at": "2026-09-15T09:01:36.690Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:36.690Z",
+        "last_success_at": "2026-09-15T09:01:36.690Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 11623,
+          "observed_at": "2026-09-15T09:01:36.690Z",
+          "last_attempt_at": "2026-09-15T09:01:36.690Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 3592,
+          "observed_at": "2026-09-15T09:01:36.690Z",
+          "last_attempt_at": "2026-09-15T09:01:36.690Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "77ecdfa3e93ea16ec2179e696753af885759fb01",
+          "committed_at": "2026-09-12T23:44:02.000Z",
+          "observed_at": "2026-09-15T09:01:36.690Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:36.690Z",
+          "last_success_at": "2026-09-15T09:01:36.690Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 1885237,
         "name": "statsmodels",
+        "full_name": "statsmodels/statsmodels",
+        "html_url": "https://github.com/statsmodels/statsmodels",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/statsmodels",
           "id": 717666,
           "login": "statsmodels",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/statsmodels"
         },
-        "pushed_at": "2026-09-09T05:24:54Z",
         "topics": [
           "count-model",
           "data-analysis",
@@ -805,42 +1280,73 @@
           "statistics",
           "timeseries-analysis"
         ],
-        "updated_at": "2026-09-12T07:44:53Z"
-      },
-      "requested_url": "https://github.com/statsmodels/statsmodels",
-      "suppressed": false
+        "updated_at": "2026-09-15T08:46:20Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Statsmodels: statistical modeling and econometrics in Python",
+        "language": "Python",
+        "pushed_at": "2026-09-14T12:53:47Z",
+        "commit": "77ecdfa3e93ea16ec2179e696753af885759fb01",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      }
     },
     {
+      "requested_url": "https://github.com/sympy/sympy",
+      "checked_at": "2026-09-15T09:01:38.688Z",
+      "observed_at": "2026-09-15T09:01:38.688Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:30:58.111Z",
-      "observed_at": "2026-09-12T10:30:58.111Z",
-      "repository": {
-        "archived": false,
-        "commit": "a23073ee516bbf60863dc8b82a8446b15e6348f4",
-        "default_branch": "master",
-        "description": "A computer algebra system written in pure Python",
-        "fork": false,
-        "full_name": "sympy/sympy",
-        "has_discussions": true,
-        "has_issues": true,
-        "homepage": "https://sympy.org/",
-        "html_url": "https://github.com/sympy/sympy",
-        "id": 640534,
-        "language": "Python",
-        "latest_release": {
-          "name": "SymPy 1.14.0",
-          "published_at": "2025-04-27T18:05:25Z",
-          "tag": "1.14.0",
-          "url": "https://github.com/sympy/sympy/releases/tag/1.14.0"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:38.688Z",
+        "last_success_at": "2026-09-15T09:01:38.688Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 14940,
+          "observed_at": "2026-09-15T09:01:38.688Z",
+          "last_attempt_at": "2026-09-15T09:01:38.688Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 5499,
+          "observed_at": "2026-09-15T09:01:38.688Z",
+          "last_attempt_at": "2026-09-15T09:01:38.688Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "117eaf45237de39c9d4518a3b7c715f0484ccea9",
+          "committed_at": "2026-09-14T22:42:37.000Z",
+          "observed_at": "2026-09-15T09:01:38.688Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:38.688Z",
+          "last_success_at": "2026-09-15T09:01:38.688Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 640534,
         "name": "sympy",
+        "full_name": "sympy/sympy",
+        "html_url": "https://github.com/sympy/sympy",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/sympy",
           "id": 260832,
           "login": "sympy",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/sympy"
         },
-        "pushed_at": "2026-09-10T08:30:52Z",
         "topics": [
           "computer-algebra",
           "hacktoberfest",
@@ -848,42 +1354,70 @@
           "python",
           "science"
         ],
-        "updated_at": "2026-09-12T08:17:43Z"
-      },
-      "requested_url": "https://github.com/sympy/sympy",
-      "suppressed": false
+        "updated_at": "2026-09-15T08:47:20Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "A computer algebra system written in pure Python",
+        "language": "Python",
+        "homepage": "https://sympy.org/",
+        "pushed_at": "2026-09-14T22:42:38Z",
+        "commit": "117eaf45237de39c9d4518a3b7c715f0484ccea9"
+      }
     },
     {
+      "requested_url": "https://github.com/networkx/networkx",
+      "checked_at": "2026-09-15T09:01:40.258Z",
+      "observed_at": "2026-09-15T09:01:40.258Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:31:00.524Z",
-      "observed_at": "2026-09-12T10:31:00.524Z",
-      "repository": {
-        "archived": false,
-        "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
-        "default_branch": "main",
-        "description": "Network Analysis in Python",
-        "fork": false,
-        "full_name": "networkx/networkx",
-        "has_discussions": true,
-        "has_issues": true,
-        "homepage": "https://networkx.org/",
-        "html_url": "https://github.com/networkx/networkx",
-        "id": 890377,
-        "language": "Python",
-        "latest_release": {
-          "name": "NetworkX 3.6.1",
-          "published_at": "2025-12-08T17:03:31Z",
-          "tag": "networkx-3.6.1",
-          "url": "https://github.com/networkx/networkx/releases/tag/networkx-3.6.1"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:40.258Z",
+        "last_success_at": "2026-09-15T09:01:40.258Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 17258,
+          "observed_at": "2026-09-15T09:01:40.258Z",
+          "last_attempt_at": "2026-09-15T09:01:40.258Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 3600,
+          "observed_at": "2026-09-15T09:01:40.258Z",
+          "last_attempt_at": "2026-09-15T09:01:40.258Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "4e74880b0da01977da79915167c64e5c2af38b47",
+          "committed_at": "2026-09-12T01:50:33.000Z",
+          "observed_at": "2026-09-15T09:01:40.258Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:40.258Z",
+          "last_success_at": "2026-09-15T09:01:40.258Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 890377,
         "name": "networkx",
+        "full_name": "networkx/networkx",
+        "html_url": "https://github.com/networkx/networkx",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/networkx",
           "id": 388785,
           "login": "networkx",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/networkx"
         },
-        "pushed_at": "2026-09-12T01:50:33Z",
         "topics": [
           "complex-networks",
           "graph-algorithms",
@@ -893,58 +1427,125 @@
           "graph-visualization",
           "python"
         ],
-        "updated_at": "2026-09-12T01:50:55Z"
-      },
-      "requested_url": "https://github.com/networkx/networkx",
-      "suppressed": false
+        "updated_at": "2026-09-14T14:56:55Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Network Analysis in Python",
+        "language": "Python",
+        "homepage": "https://networkx.org/",
+        "pushed_at": "2026-09-12T01:50:33Z",
+        "commit": "4e74880b0da01977da79915167c64e5c2af38b47"
+      }
     },
     {
+      "requested_url": "https://github.com/scikit-image/scikit-image",
+      "checked_at": "2026-09-15T09:01:42.069Z",
+      "observed_at": "2026-09-15T09:01:42.069Z",
       "availability": "accessible",
-      "checked_at": "2026-09-12T10:31:02.882Z",
-      "observed_at": "2026-09-12T10:31:02.882Z",
-      "repository": {
-        "archived": false,
-        "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
-        "default_branch": "main",
-        "description": "Image processing in Python",
-        "fork": false,
-        "full_name": "scikit-image/scikit-image",
-        "has_discussions": false,
-        "has_issues": true,
-        "homepage": "https://scikit-image.org/",
-        "html_url": "https://github.com/scikit-image/scikit-image",
-        "id": 2014929,
-        "language": "Python",
-        "latest_release": {
-          "name": "v0.26.0",
-          "published_at": "2025-12-20T17:13:44Z",
-          "tag": "v0.26.0",
-          "url": "https://github.com/scikit-image/scikit-image/releases/tag/v0.26.0"
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:42.069Z",
+        "last_success_at": "2026-09-15T09:01:42.069Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 6588,
+          "observed_at": "2026-09-15T09:01:42.069Z",
+          "last_attempt_at": "2026-09-15T09:01:42.069Z",
+          "result": "ok",
+          "visibility": "public_api"
         },
+        "forks": {
+          "value": 2409,
+          "observed_at": "2026-09-15T09:01:42.069Z",
+          "last_attempt_at": "2026-09-15T09:01:42.069Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+          "committed_at": "2026-09-09T12:25:56.000Z",
+          "observed_at": "2026-09-15T09:01:42.069Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:42.069Z",
+          "last_success_at": "2026-09-15T09:01:42.069Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 2014929,
         "name": "scikit-image",
+        "full_name": "scikit-image/scikit-image",
+        "html_url": "https://github.com/scikit-image/scikit-image",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
         "owner": {
-          "html_url": "https://github.com/scikit-image",
           "id": 897180,
           "login": "scikit-image",
-          "type": "Organization"
+          "type": "Organization",
+          "html_url": "https://github.com/scikit-image"
         },
-        "pushed_at": "2026-09-09T12:25:56Z",
         "topics": [
           "computer-vision",
           "image-processing",
           "python"
         ],
-        "updated_at": "2026-09-11T10:45:46Z"
-      },
-      "requested_url": "https://github.com/scikit-image/scikit-image",
-      "suppressed": false
+        "updated_at": "2026-09-14T17:10:46Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Image processing in Python",
+        "language": "Python",
+        "homepage": "https://scikit-image.org/",
+        "pushed_at": "2026-09-09T12:25:56Z",
+        "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e"
+      }
     },
     {
       "requested_url": "https://github.com/scverse/mudata",
-      "checked_at": "2026-09-14T07:45:01.246Z",
-      "observed_at": "2026-09-14T07:45:01.246Z",
+      "checked_at": "2026-09-15T09:01:43.761Z",
+      "observed_at": "2026-09-15T09:01:43.761Z",
       "availability": "accessible",
       "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:43.761Z",
+        "last_success_at": "2026-09-15T09:01:43.761Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 134,
+          "observed_at": "2026-09-15T09:01:43.761Z",
+          "last_attempt_at": "2026-09-15T09:01:43.761Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 23,
+          "observed_at": "2026-09-15T09:01:43.761Z",
+          "last_attempt_at": "2026-09-15T09:01:43.761Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
+          "committed_at": "2026-09-14T18:13:15.000Z",
+          "observed_at": "2026-09-15T09:01:43.761Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-15T09:01:43.761Z",
+          "last_success_at": "2026-09-15T09:01:43.761Z",
+          "result": "ok"
+        }
+      },
       "repository": {
         "id": 392836868,
         "name": "mudata",
@@ -969,17 +1570,629 @@
           "muon",
           "scverse"
         ],
-        "updated_at": "2026-09-08T14:14:50Z",
+        "updated_at": "2026-09-14T18:13:23Z",
         "has_issues": true,
         "has_discussions": false,
         "description": "Multimodal Data (.h5mu) implementation for Python",
         "language": "Python",
         "homepage": "https://mudata.readthedocs.io/stable/",
-        "pushed_at": "2026-09-08T13:31:58Z",
-        "commit": "bb8bea5ac250361e549b070a9ba35ab4a396c029",
+        "pushed_at": "2026-09-14T18:13:19Z",
+        "commit": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
         "license": {
           "spdx_id": "BSD-3-Clause",
           "url": "https://github.com/scverse/mudata"
+        }
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "provider_id": 54555,
+      "login": "biopython",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/biopython",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:46.364Z",
+        "last_success_at": "2026-09-15T09:01:46.364Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 528,
+          "observed_at": "2026-09-15T09:01:46.364Z",
+          "last_attempt_at": "2026-09-15T09:01:46.364Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:46.364Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 8,
+          "observed_at": "2026-09-15T09:01:46.364Z",
+          "last_attempt_at": "2026-09-15T09:01:46.364Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 215947,
+      "login": "matplotlib",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/matplotlib",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:46.736Z",
+        "last_success_at": "2026-09-15T09:01:46.736Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 1637,
+          "observed_at": "2026-09-15T09:01:46.736Z",
+          "last_attempt_at": "2026-09-15T09:01:46.736Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:46.736Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 54,
+          "observed_at": "2026-09-15T09:01:46.736Z",
+          "last_attempt_at": "2026-09-15T09:01:46.736Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 233707,
+      "login": "nipy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/nipy",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:47.093Z",
+        "last_success_at": "2026-09-15T09:01:47.093Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 222,
+          "observed_at": "2026-09-15T09:01:47.093Z",
+          "last_attempt_at": "2026-09-15T09:01:47.093Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:47.093Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 38,
+          "observed_at": "2026-09-15T09:01:47.093Z",
+          "last_attempt_at": "2026-09-15T09:01:47.093Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 260832,
+      "login": "sympy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/sympy",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:47.457Z",
+        "last_success_at": "2026-09-15T09:01:47.457Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 519,
+          "observed_at": "2026-09-15T09:01:47.457Z",
+          "last_attempt_at": "2026-09-15T09:01:47.457Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:47.457Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 35,
+          "observed_at": "2026-09-15T09:01:47.457Z",
+          "last_attempt_at": "2026-09-15T09:01:47.457Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 288276,
+      "login": "numpy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/numpy",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:48.230Z",
+        "last_success_at": "2026-09-15T09:01:48.230Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 2228,
+          "observed_at": "2026-09-15T09:01:48.230Z",
+          "last_attempt_at": "2026-09-15T09:01:48.230Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:48.230Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 33,
+          "observed_at": "2026-09-15T09:01:48.230Z",
+          "last_attempt_at": "2026-09-15T09:01:48.230Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 288277,
+      "login": "scipy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/scipy",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:48.582Z",
+        "last_success_at": "2026-09-15T09:01:48.582Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 795,
+          "observed_at": "2026-09-15T09:01:48.582Z",
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 35,
+          "observed_at": "2026-09-15T09:01:48.582Z",
+          "last_attempt_at": "2026-09-15T09:01:48.582Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 315810,
+      "login": "mwaskom",
+      "account_type": "user",
+      "canonical_url": "https://github.com/mwaskom",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:48.934Z",
+        "last_success_at": "2026-09-15T09:01:48.934Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 3466,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 58,
+          "observed_at": "2026-09-15T09:01:48.934Z",
+          "last_attempt_at": "2026-09-15T09:01:48.934Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 365630,
+      "login": "scikit-learn",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/scikit-learn",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:49.318Z",
+        "last_success_at": "2026-09-15T09:01:49.318Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 5699,
+          "observed_at": "2026-09-15T09:01:49.318Z",
+          "last_attempt_at": "2026-09-15T09:01:49.318Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:49.318Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 17,
+          "observed_at": "2026-09-15T09:01:49.318Z",
+          "last_attempt_at": "2026-09-15T09:01:49.318Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 388785,
+      "login": "networkx",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/networkx",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:49.709Z",
+        "last_success_at": "2026-09-15T09:01:49.709Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 463,
+          "observed_at": "2026-09-15T09:01:49.709Z",
+          "last_attempt_at": "2026-09-15T09:01:49.709Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:49.709Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 17,
+          "observed_at": "2026-09-15T09:01:49.709Z",
+          "last_attempt_at": "2026-09-15T09:01:49.709Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 583875,
+      "login": "mne-tools",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/mne-tools",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:50.064Z",
+        "last_success_at": "2026-09-15T09:01:50.064Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 321,
+          "observed_at": "2026-09-15T09:01:50.064Z",
+          "last_attempt_at": "2026-09-15T09:01:50.064Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:50.064Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 50,
+          "observed_at": "2026-09-15T09:01:50.064Z",
+          "last_attempt_at": "2026-09-15T09:01:50.064Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 717666,
+      "login": "statsmodels",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/statsmodels",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:50.460Z",
+        "last_success_at": "2026-09-15T09:01:50.460Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 325,
+          "observed_at": "2026-09-15T09:01:50.460Z",
+          "last_attempt_at": "2026-09-15T09:01:50.460Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:50.460Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 11,
+          "observed_at": "2026-09-15T09:01:50.460Z",
+          "last_attempt_at": "2026-09-15T09:01:50.460Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 847984,
+      "login": "astropy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/astropy",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:50.842Z",
+        "last_success_at": "2026-09-15T09:01:50.842Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 489,
+          "observed_at": "2026-09-15T09:01:50.842Z",
+          "last_attempt_at": "2026-09-15T09:01:50.842Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:50.842Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 86,
+          "observed_at": "2026-09-15T09:01:50.842Z",
+          "last_attempt_at": "2026-09-15T09:01:50.842Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 897180,
+      "login": "scikit-image",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/scikit-image",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:51.263Z",
+        "last_success_at": "2026-09-15T09:01:51.263Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 205,
+          "observed_at": "2026-09-15T09:01:51.263Z",
+          "last_attempt_at": "2026-09-15T09:01:51.263Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:51.263Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 19,
+          "observed_at": "2026-09-15T09:01:51.263Z",
+          "last_attempt_at": "2026-09-15T09:01:51.263Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1284191,
+      "login": "pydata",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/pydata",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:51.670Z",
+        "last_success_at": "2026-09-15T09:01:51.670Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 752,
+          "observed_at": "2026-09-15T09:01:51.670Z",
+          "last_attempt_at": "2026-09-15T09:01:51.670Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:51.670Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 29,
+          "observed_at": "2026-09-15T09:01:51.670Z",
+          "last_attempt_at": "2026-09-15T09:01:51.670Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 4646912,
+      "login": "nilearn",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/nilearn",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:52.104Z",
+        "last_success_at": "2026-09-15T09:01:52.104Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 104,
+          "observed_at": "2026-09-15T09:01:52.104Z",
+          "last_attempt_at": "2026-09-15T09:01:52.104Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:52.104Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 11,
+          "observed_at": "2026-09-15T09:01:52.104Z",
+          "last_attempt_at": "2026-09-15T09:01:52.104Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 7388996,
+      "login": "jupyter",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/jupyter",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:52.463Z",
+        "last_success_at": "2026-09-15T09:01:52.463Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 3637,
+          "observed_at": "2026-09-15T09:01:52.463Z",
+          "last_attempt_at": "2026-09-15T09:01:52.463Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:52.463Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 135,
+          "observed_at": "2026-09-15T09:01:52.463Z",
+          "last_attempt_at": "2026-09-15T09:01:52.463Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 21206976,
+      "login": "pandas-dev",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/pandas-dev",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:52.841Z",
+        "last_success_at": "2026-09-15T09:01:52.841Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 5424,
+          "observed_at": "2026-09-15T09:01:52.841Z",
+          "last_attempt_at": "2026-09-15T09:01:52.841Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:52.841Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 16,
+          "observed_at": "2026-09-15T09:01:52.841Z",
+          "last_attempt_at": "2026-09-15T09:01:52.841Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 33450111,
+      "login": "snakemake",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/snakemake",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:53.202Z",
+        "last_success_at": "2026-09-15T09:01:53.202Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 296,
+          "observed_at": "2026-09-15T09:01:53.202Z",
+          "last_attempt_at": "2026-09-15T09:01:53.202Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:53.202Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 74,
+          "observed_at": "2026-09-15T09:01:53.202Z",
+          "last_attempt_at": "2026-09-15T09:01:53.202Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 95305807,
+      "login": "scverse",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/scverse",
+      "observation": {
+        "last_attempt_at": "2026-09-15T09:01:53.564Z",
+        "last_success_at": "2026-09-15T09:01:53.564Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 1558,
+          "observed_at": "2026-09-15T09:01:53.564Z",
+          "last_attempt_at": "2026-09-15T09:01:53.564Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-15T09:01:53.564Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 97,
+          "observed_at": "2026-09-15T09:01:53.564Z",
+          "last_attempt_at": "2026-09-15T09:01:53.564Z",
+          "result": "ok",
+          "visibility": "public_api"
         }
       }
     }

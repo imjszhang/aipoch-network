@@ -140,10 +140,13 @@ test('version and area refinements survive reload and clear unknown shared scope
   expect(searchParams(page).get('domain')).toBe('Bioinformatics');
   await expect(page.getByRole('combobox', { name: 'Sort results', exact: true })).toHaveValue('title');
   await page.goto('./explore/?organization=unknown-org&collection=unknown-collection&access=unknown-status&page=999');
+  await expect(page.getByRole('alert')).toContainText('Unknown source condition');
+  await expect(page.getByRole('heading', { name: 'No matching entries', exact: true })).toHaveCount(0);
+  await expect(page.locator('.directory-active-filters')).toContainText('Unknown status');
+  await page.getByRole('button', { name: 'Clear incompatible filters', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'No matching entries', exact: true })).toBeVisible();
   await expect(page.locator('.directory-active-filters')).toContainText('Unknown organization');
   await expect(page.locator('.directory-active-filters')).toContainText('Unknown collection');
-  await expect(page.locator('.directory-active-filters')).toContainText('Unknown status');
   await expect.poll(() => searchParams(page).get('page')).toBe(null);
   await page.getByRole('button', { name: 'Clear filters', exact: true }).click();
   await expect(results(page)).toHaveCount(8);

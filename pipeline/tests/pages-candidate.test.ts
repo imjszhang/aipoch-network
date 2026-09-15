@@ -25,7 +25,10 @@ async function fixture(t: TestContext, history = false, sourceObservedAt = '2026
   const batch = JSON.parse(await readFile('fixtures/pilot/snapshots.json', 'utf8')) as SnapshotBatch;
   // This verifier fixture has a frozen synthetic clock; pilot observations may be newer.
   // Only the in-memory test copy is rebased, never the actual source fixture evidence.
-  for (const source of batch.sources) { source.checked_at = sourceObservedAt; source.observed_at = sourceObservedAt; }
+  delete batch.accounts;
+  for (const source of batch.sources) { source.checked_at = sourceObservedAt; source.observed_at = sourceObservedAt;
+    delete source.observation; delete source.github_metrics; delete source.source_activity;
+  }
   if (history) { batch.as_of = '2026-09-12T11:59:00Z'; await generate(registry, batch, root, 200, { candidateKind: 'refresh' }); }
   batch.as_of = T;
   const manifest = await generate(registry, batch, root, 200, { candidateKind: 'refresh' });

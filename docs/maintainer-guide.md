@@ -185,3 +185,10 @@ Preview and apply label changes, then merge templates. Website changes use the s
 Assign exactly one catalog:/product:/support: type label. Catalog requests also have exactly one stage; stage:closed requires one outcome. Find unclassified blank issues with `is:issue is:open -label:catalog:submission -label:catalog:claim -label:catalog:correction -label:catalog:withdrawal -label:catalog:appeal -label:product:bug -label:product:enhancement -label:support:question`. Add only a type to previously closed product issues, without catalog stages or authority/publication conclusions.
 
 For rollback, disable the changed entry point or restore the relevant commit. Preserve discussions, used labels, valid withdrawals, and authority decisions.
+
+
+## Catalog dates and GitHub metrics
+
+Source/account metrics are generated observations, not manually supplied admission fields. Preserve field timestamps and missing values when refreshing the offline fixture. The 21-source/19-account baseline and publication backfill are documented in [implementation evidence](verification/explore-dates-metrics/README.md). Catalog date fields follow the independent reviewed publication ledger; never set them to a batch/build time.
+
+Trusted refresh restores release receipts before building with an explicit `PUBLICATION_LEDGER`. Offline CLI builds use `registry/publication-ledger.json`; missing explicit or baseline history stops the build. Pure normalization/build helpers can still represent unknown dates in synthetic fixtures. Before receipt expiry or the bounded ledger limit, follow [publication checkpoint and reconciliation maintenance](publication-history.md). Read [field and Explore rules](catalog-dates-metrics.md) before interpreting Stars/Followers, selecting filters or proposing new metrics. A successful refresh remains a candidate until separately reviewed and deployed.

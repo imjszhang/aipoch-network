@@ -5,6 +5,8 @@ import { searchOptions, type SearchDocument } from '../search.js';
 import { allEntries, displayDate, relatedEntriesFor, routeFor, type Entry, type SiteData } from '../model.js';
 import { Link, useNavigation } from '../navigation.js';
 import { ArrowLink, PageHeader, ProjectRows, CapabilityCard, OrganizationCard } from '../catalog-components.js';
+import { EntryFacts, useObservationTime } from '../catalog-observations.js';
+import { changeDiscovery, compareDiscovery, discoveryKeys, isAccountKind, isRepositoryKind, matchesDiscovery, parseDiscovery, presetDates, sorts } from '../discovery.js';
 
 const PAGE_SIZE = 8;
 const sections: Record<string, { title: string; description: string; tab: string }> = {
@@ -18,11 +20,12 @@ const sections: Record<string, { title: string; description: string; tab: string
 };
 const accessOptions: Record<string, string> = {
   pinned: 'Pinned source version',
-  unpinned: 'No pinned source version',
+  unpinned: 'Unpinned source reference',
   unknown: 'License unknown',
   stale: 'Stale source observation',
 };
-type FilterChanges = Partial<Record<'q' | 'domain' | 'type' | 'organization' | 'collection' | 'access' | 'sort' | 'page', string>>;
+const filterLabels: Record<string,string> = { added_after:'Added from', added_before:'Added through', added_date:'Added date', updated_after:'Catalog updated from', updated_before:'Catalog updated through', updated_date:'Catalog update date', source_after:'Source commit from', source_before:'Source commit through', source_date:'Source commit date', min_stars:'Minimum stars', min_forks:'Minimum forks', min_followers:'Minimum followers', observation:'Observation', include_stale_metrics:'Allow stale metrics' };
+type FilterChanges = Record<string, string>;
 
 export function Directory({ data, kind, base }: { data: SiteData; kind: string; base: string }) {
   const { path, navigate } = useNavigation();
@@ -37,9 +40,13 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   const collectionId = params.get('collection') ?? '';
   const access = params.get('access') ?? '';
   const filter = kind === 'all' ? params.get('type') || 'all' : kind;
-  const sort = ['title', 'updated'].includes(params.get('sort') ?? '') ? params.get('sort')! : 'relevance';
+  const referenceTime = useObservationTime();
+  const discovery = useMemo(() => parseDiscovery(params, kind, new Date(referenceTime).toISOString()), [params, kind, referenceTime]);
+  const sort = discovery.sort;
+  const [filterNotice, setFilterNotice] = useState('');
+  const repositoryControls = filter === 'all' || isRepositoryKind(filter);
+  const accountControls = filter === 'all' || isAccountKind(filter);
   const entries = useMemo(() => allEntries(catalog), [catalog]);
-  const sources = useMemo(() => new Map(catalog.sources.map(source => [source.id, source])), [catalog]);
   const domains = useMemo(() => [...new Set([...catalog.projects, ...catalog.resources].flatMap(row => row.domains))].sort(), [catalog]);
   const organization = catalog.organizations.find(row => row.id === organizationId);
   const collection = catalog.collections.find(row => row.id === collectionId);
@@ -67,61 +74,36 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   }, [base, data.snapshot_id, retry]);
 
   function update(next: FilterChanges, push = false) {
-    const nextParams = new URLSearchParams(params);
-    if (next.page === undefined) nextParams.delete('page');
-    for (const [key, value] of Object.entries(next)) {
-      if (value && !(key === 'type' && value === 'all') && !(key === 'sort' && value === 'relevance') && !(key === 'page' && value === '1')) nextParams.set(key, value);
-      else nextParams.delete(key);
-    }
-    void navigate(`${path.split('?')[0]}${nextParams.size ? `?${nextParams}` : ''}`, { replace: !push, preserveScroll: true });
+    const changed = changeDiscovery(params, next, kind);
+    setFilterNotice(changed.notice);
+    void navigate(`${path.split('?')[0]}${changed.params.size ? `?${changed.params}` : ''}`, { replace: !push, preserveScroll: true });
   }
-  const reset = () => update({ q: '', domain: '', type: '', organization: '', collection: '', access: '', sort: '' });
+  const reset = () => { setFilterNotice('All filters were cleared.'); void navigate(path.split('?')[0], { replace: true, preserveScroll: true }); };
+  const repair = () => update(Object.fromEntries(discovery.invalidKeys.map(key => [key, ''])));
   const matches = useMemo(() => query.trim() && index ? new Map(index.search(query).map((row, position) => [String(row.id), position])) : undefined, [query, index]);
   const results = useMemo(() => {
-    function matchesAccess(entry: Entry): boolean {
-      if (!access) return true;
-      // Pinning describes an explicit immutable reference, never a repository's observed HEAD.
-      if (access === 'pinned' || access === 'unpinned') {
-        if (entry.kind !== 'project' && entry.kind !== 'resource') return false;
-        const pinned = entry.source_refs.some(ref => Boolean(ref.commit));
-        return access === 'pinned' ? pinned : !pinned;
-      }
-      if (access === 'unknown') {
-        if (entry.kind === 'resource' || entry.kind === 'source_repository') return entry.license.status === 'unknown';
-        // Projects have no project-level license; expose unknown referenced source conditions.
-        return entry.kind === 'project' && (!entry.source_refs.length || entry.source_refs.some(ref => !sources.has(ref.source_id) || sources.get(ref.source_id)?.license.status === 'unknown'));
-      }
-      if (access === 'stale') {
-        if (entry.kind === 'source_repository') return entry.stale;
-        return (entry.kind === 'project' || entry.kind === 'resource') && entry.source_refs.some(ref => sources.get(ref.source_id)?.stale);
-      }
-      return false;
-    }
     const filtered = entries.filter(entry =>
       (!organizationMembers || organizationMembers.has(entry.id)) &&
       (!collectionMembers || collectionMembers.has(entry.id)) &&
       (filter === 'all' || entry.kind === filter) &&
       (!domain || ('domains' in entry && entry.domains.includes(domain))) &&
-      matchesAccess(entry) &&
+      matchesDiscovery(entry, catalog, discovery) &&
       (!query.trim() || searchState !== 'ready' || matches?.has(entry.id)),
     );
-    return filtered.sort((a, b) => {
-      const rank = sort === 'updated' ? b.updated_at.localeCompare(a.updated_at) : sort === 'relevance' && matches && searchState === 'ready' ? (matches.get(a.id) ?? Infinity) - (matches.get(b.id) ?? Infinity) : 0;
-      return rank || a.title.localeCompare(b.title) || a.id.localeCompare(b.id);
-    });
-  }, [entries, organizationMembers, collectionMembers, filter, domain, access, sources, query, searchState, matches, sort]);
+    return filtered.sort((a, b) => compareDiscovery(a,b,catalog,discovery,searchState === 'ready' ? matches : undefined));
+  }, [entries, organizationMembers, collectionMembers, filter, domain, access, query, searchState, matches, catalog, discovery]);
   const pages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
   const requestedPage = Number(params.get('page') ?? '1');
   const pageNumber = Math.min(pages, Math.max(1, Number.isFinite(requestedPage) ? Math.floor(requestedPage) : 1));
   // Render the clamped page immediately, then repair shared URLs without a navigation/focus reset.
   useEffect(() => {
-    if (!controlsReady || (query.trim() && searchState === 'loading') || !params.has('page')) return;
+    if (discovery.errors.length || !controlsReady || (query.trim() && searchState === 'loading') || !params.has('page')) return;
     const canonicalPage = pageNumber === 1 ? null : String(pageNumber);
     if (params.get('page') === canonicalPage) return;
     const nextParams = new URLSearchParams(params);
     if (canonicalPage) nextParams.set('page', canonicalPage); else nextParams.delete('page');
     void navigate(`${path.split('?')[0]}${nextParams.size ? `?${nextParams}` : ''}`, { replace: true, preserveScroll: true });
-  }, [controlsReady, query, searchState, params, pageNumber, path, navigate]);
+  }, [controlsReady, query, searchState, params, pageNumber, path, navigate, discovery.errors.length]);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
   const filterDialog = useRef<HTMLDialogElement>(null);
@@ -134,35 +116,58 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     return () => { if (dialog.open) dialog.close(); document.body.style.overflow = previousOverflow; };
   }, [filtersOpen]);
   const closeFilters = () => filterDialog.current?.close();
+  const dateControls = (prefix: string, field: 'added' | 'updated' | 'source', label: string, options: number[]) => <>
+    <label htmlFor={`${prefix}-${field}`}>{label}</label>
+    <select id={`${prefix}-${field}`} disabled={!controlsReady} value={params.get(`${field}_date`) === 'unknown' ? 'unknown' : params.has(`${field}_after`) || params.has(`${field}_before`) ? 'custom' : ''} onChange={event => {
+      const value = event.target.value;
+      update(value === 'unknown' ? { [`${field}_date`]: 'unknown', [`${field}_after`]: '', [`${field}_before`]: '' } : value === '' ? { [`${field}_date`]: '', [`${field}_after`]: '', [`${field}_before`]: '' } : presetDates(field,value === 'custom' ? 30 : Number(value),referenceTime));
+    }}><option value="">Any date</option>{options.map(days => <option value={days} key={days}>Last {days} days</option>)}<option value="custom">Custom UTC dates</option><option value="unknown">{field === 'source' ? 'Unknown date' : 'Unknown or bounded date'}</option></select>
+    {(params.has(`${field}_after`) || params.has(`${field}_before`)) && <div className="directory-date-range"><label htmlFor={`${prefix}-${field}-after`}>{label}: from (UTC)</label><input id={`${prefix}-${field}-after`} disabled={!controlsReady} type="date" value={params.get(`${field}_after`) ?? ''} onChange={event => update({ [`${field}_after`]: event.target.value })}/><label htmlFor={`${prefix}-${field}-before`}>{label}: through (UTC)</label><input id={`${prefix}-${field}-before`} disabled={!controlsReady} type="date" value={params.get(`${field}_before`) ?? ''} onChange={event => update({ [`${field}_before`]: event.target.value })}/></div>}
+  </>;
+  const minimumControl = (prefix: string, key: string, label: string) => <><label htmlFor={`${prefix}-${key}`}>{label}</label><input id={`${prefix}-${key}`} disabled={!controlsReady} inputMode="numeric" type="text" placeholder="Any count" value={params.get(key) ?? ''} aria-invalid={discovery.invalidKeys.includes(key)} onChange={event => update({ [key]: event.target.value })}/></>;
   const filterContent = (prefix: string) => <>
-    <label htmlFor={`${prefix}-domain`}>Research area</label>
+    {(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-domain`}>Research area</label>
     <select id={`${prefix}-domain`} disabled={!controlsReady} value={domain} onChange={event => update({ domain: event.target.value })}>
       <option value="">All areas</option>
       {domains.map(value => <option key={value}>{value}</option>)}
       {domain && !domains.includes(domain) && <option value={domain}>{domain} (unknown)</option>}
     </select>
-    <label htmlFor={`${prefix}-organization`}>Organization</label>
+    </>}{(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-organization`}>Organization</label>
     <select id={`${prefix}-organization`} disabled={!controlsReady} value={organizationId} onChange={event => update({ organization: event.target.value })}>
       <option value="">All organizations</option>
       {catalog.organizations.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
       {organizationId && !organization && <option value={organizationId}>Unknown organization</option>}
     </select>
-    <label htmlFor={`${prefix}-collection`}>Collection</label>
+    </>}<label htmlFor={`${prefix}-collection`}>Collection</label>
     <select id={`${prefix}-collection`} disabled={!controlsReady} value={collectionId} onChange={event => update({ collection: event.target.value })}>
       <option value="">All collections</option>
       {catalog.collections.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
       {collectionId && !collection && <option value={collectionId}>Unknown collection</option>}
     </select>
-    <label htmlFor={`${prefix}-access`}>Version &amp; conditions</label>
+    {repositoryControls && <><label htmlFor={`${prefix}-access`}>Version &amp; conditions</label>
     <select id={`${prefix}-access`} disabled={!controlsReady} value={access} onChange={event => update({ access: event.target.value })}>
       <option value="">Any status</option>
-      {Object.entries(accessOptions).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+      {Object.entries(accessOptions).filter(([value]) => filter !== 'source_repository' || !['pinned','unpinned'].includes(value)).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
       {access && !accessOptions[access] && <option value={access}>Unknown status</option>}
     </select>
+    </>}
+    <details className="directory-refinement-group"><summary>Catalog dates</summary>{dateControls(prefix,'added','Added to AIPOCH',[7,30,90])}{dateControls(prefix,'updated','Catalog updated',[7,30,90])}<p className="filter-note">Exact dates only match date ranges. Historical bounds appear as “Listed by” or “Change observed by”.</p></details>
+    {(repositoryControls || accountControls) && <details className="directory-refinement-group"><summary>GitHub metrics &amp; activity</summary>
+      {repositoryControls && <>{minimumControl(prefix,'min_stars','Minimum GitHub stars')}{minimumControl(prefix,'min_forks','Minimum GitHub forks')}{dateControls(prefix,'source','Latest source commit',[30,90,365])}</>}
+      {accountControls && minimumControl(prefix,'min_followers','Minimum GitHub followers')}
+      <label htmlFor={`${prefix}-observation`}>Observation status</label><select id={`${prefix}-observation`} disabled={!controlsReady} value={params.get('observation') ?? ''} onChange={event => update({ observation: event.target.value })}><option value="">Any observation</option><option value="fresh">Fresh (within 48 hours)</option><option value="stale">Stale (48 hours to 7 days)</option><option value="missing">Missing or older than 7 days</option></select>
+      <label className="directory-checkbox" htmlFor={`${prefix}-include-stale`}><input id={`${prefix}-include-stale`} type="checkbox" disabled={!controlsReady} checked={discovery.includeStale} onChange={event => update({ include_stale_metrics: event.target.checked ? '1' : '' })}/>Allow stale metric values</label>
+      <p className="filter-note">Publicly reported GitHub counts. Stale values rank or meet numeric thresholds only when allowed, for up to 7 days. GitHub metric and activity criteria must match one primary or implementation source.</p>
+    </details>}
     <button className="directory-reset" disabled={!controlsReady} onClick={reset}>Reset filters</button>
     <p className="filter-note">Inclusion in the directory is separate from maintainer acknowledgement and scientific validation.</p>
   </>;
-  const activeFilters = [domain, organizationId && (organization?.title ?? 'Unknown organization'), collectionId && (collection?.title ?? 'Unknown collection'), access && (accessOptions[access] ?? 'Unknown status')].filter(Boolean);
+  const discoveryFeedback = () => <>
+    {filterNotice && <p className="directory-filter-feedback" role="status">{filterNotice}</p>}
+    {discovery.scope !== 'all' && <p className="directory-scope" role="status">{discovery.scope === 'repository' ? 'Repository criteria: Projects, Capabilities and Sources. Each result uses one matching source.' : 'Account criteria: Researchers and Organizations. Counts belong to the GitHub profile.'}</p>}
+    {discovery.errors.length > 0 && <div className="notice directory-filter-errors" role="alert"><b>Check this filter link</b><ul>{discovery.errors.map((error,index) => <li key={index}>{error}</li>)}</ul><button disabled={!controlsReady} className="text-button" onClick={repair}>Clear incompatible filters</button></div>}
+  </>;
+  const activeFilters = [domain, organizationId && (organization?.title ?? 'Unknown organization'), collectionId && (collection?.title ?? 'Unknown collection'), access && (accessOptions[access] ?? 'Unknown status'), ...discoveryKeys.filter(key => key !== 'sort' && params.has(key)).map(key => `${filterLabels[key]}: ${key === 'include_stale_metrics' ? 'yes' : params.get(key)}`)].filter(Boolean);
   const hasSearchResults = Boolean(query.trim()) && searchState === 'ready';
   return <>
     <div className="directory-page-heading"><PageHeader title={config.title} description={config.description} action={<ArrowLink to="/submit/" primary>Share research</ArrowLink>}/></div>
@@ -182,24 +187,25 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
       <div className="directory-columns">
         <aside className="panel directory-filters desktop-filters" aria-label="Directory filters"><h3>Refine results</h3>{filterContent('desktop')}</aside>
         <div className="directory-results">
+          {discoveryFeedback()}
           <div className="results-heading">
             <h2 aria-label={`${hasSearchResults ? 'Search results' : config.title} (${results.length})`}><b>{results.length}</b> {hasSearchResults ? 'matching entries' : 'entries'} <span>· {filter === 'all' ? 'All types' : sections[filter]?.tab ?? 'Unknown type'}</span></h2>
             <div className="directory-result-controls">
               <button className="mobile-filter-toggle" disabled={!controlsReady} onClick={() => setFiltersOpen(true)}><SlidersHorizontal size={15}/>Filters</button>
               <select disabled={!controlsReady} aria-label="Sort results" value={sort} onChange={event => update({ sort: event.target.value })}>
-                <option value="relevance">Most relevant</option><option value="title">Name A–Z</option><option value="updated">Recently observed</option>
+                {Object.entries(sorts).filter(([value]) => value === sort || (!['stars','source_activity'].includes(value) || repositoryControls) && (value !== 'followers' || accountControls) && value !== 'updated').map(([value,label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </div>
           </div>
           {activeFilters.length > 0 && <div className="directory-active-filters" aria-label="Active filters">{activeFilters.map((label, i) => <span className="badge" key={`${i}-${label}`}>{label}</span>)}<button className="text-button" disabled={!controlsReady} onClick={reset}>Clear all</button></div>}
           {searchState === 'loading' && query.trim() && <p className="directory-search-status" role="status">Loading search index… You can browse the directory while it loads.</p>}
           {searchState === 'failed' && <div className="notice" role="status">Search is unavailable. You can still browse the directory.<button disabled={!controlsReady} className="text-button" onClick={() => setRetry(value => value + 1)}>Retry search</button></div>}
-          {!results.length && (searchState !== 'loading' || !query.trim()) && <div className="empty panel"><Search size={28}/><h3>No matching entries</h3><p>Try a different phrase or clear the filters.</p><button disabled={!controlsReady} onClick={reset}>Clear filters</button></div>}
+          {!discovery.errors.length && !results.length && (searchState !== 'loading' || !query.trim()) && <div className="empty panel"><Search size={28}/><h3>No matching entries</h3><p>Try a different phrase or clear the filters.</p><button disabled={!controlsReady} onClick={reset}>Clear filters</button></div>}
           <div className="results-list">
-            {results.slice((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE).map(entry => entry.kind === 'project' ? <ProjectRows key={entry.id} projects={[entry]} catalog={catalog}/> : entry.kind === 'resource' ? <CapabilityCard key={entry.id} resource={entry}/> : entry.kind === 'organization' ? <OrganizationCard key={entry.id} organization={entry} catalog={catalog}/> : <Link to={routeFor(entry)} className="panel simple-card" key={entry.id}><p className="eyebrow">{entry.kind === 'collection' ? 'Collection' : entry.kind === 'actor' ? 'GitHub profile' : 'GitHub source'}</p><h3>{entry.title}<ArrowUpRight size={17}/></h3><p>{entry.description ?? 'Description not supplied.'}</p></Link>)}
+            {results.slice((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE).map(entry => entry.kind === 'project' ? <ProjectRows key={entry.id} projects={[entry]} catalog={catalog} filters={discovery}/> : entry.kind === 'resource' ? <CapabilityCard key={entry.id} resource={entry} catalog={catalog} filters={discovery}/> : entry.kind === 'organization' ? <OrganizationCard key={entry.id} organization={entry} catalog={catalog} filters={discovery}/> : <Link to={routeFor(entry)} className="panel simple-card" key={entry.id}><p className="eyebrow">{entry.kind === 'collection' ? 'Collection' : entry.kind === 'actor' ? 'GitHub profile' : 'GitHub source'}</p><h3>{entry.title}<ArrowUpRight size={17}/></h3><p>{entry.description ?? 'Description not supplied.'}</p><EntryFacts entry={entry} catalog={catalog} filters={discovery}/></Link>)}
           </div>
           {pages > 1 && <nav className="pagination" aria-label="Results pages"><button disabled={!controlsReady || pageNumber === 1} onClick={() => update({ page: String(pageNumber - 1) }, true)}>Previous</button><span>Page {pageNumber} of {pages}</span><button disabled={!controlsReady || pageNumber === pages} onClick={() => update({ page: String(pageNumber + 1) }, true)}>Next</button></nav>}
-          <p className="directory-observation">Catalog observed {displayDate(data.generated_at)}. Research stays at its original source.</p>
+          <p className="directory-observation">Catalog snapshot {displayDate(data.generated_at)}. Date ranges use UTC. Filters use the captured page time; results can change with a new catalog snapshot. Research stays at its original source.</p>
         </div>
       </div>
     </main>
@@ -212,7 +218,8 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     }}>
       <div className="directory-filter-dialog-content">
         <div className="directory-filter-dialog-heading"><h2 id="directory-filter-title">Refine results</h2><button className="icon-button" aria-label="Close filters" onClick={closeFilters} autoFocus><X size={19}/></button></div>
-        <p id="directory-filter-description">Narrow the directory by research area, organization, collection, or source conditions.</p>
+        <p id="directory-filter-description">Narrow the directory by research area, catalog dates, GitHub metrics, or source conditions.</p>
+        {discoveryFeedback()}
         <div className="directory-filters mobile-filters">{filterContent('mobile')}</div>
         <button className="primary directory-show-results" onClick={closeFilters}>Show {results.length} entries</button>
       </div>

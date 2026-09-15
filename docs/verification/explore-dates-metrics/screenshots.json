@@ -1,0 +1,52 @@
+{
+  "observed_at": "2026-09-15T09:19:14.512241Z",
+  "snapshot_id": "4e6acaa6cb7d1cf6a8d62f86",
+  "build_mode": "unavailable",
+  "browser": "Chromium (Playwright)",
+  "records": [
+    {
+      "path": "/explore/",
+      "file": "desktop-explore.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "scroll_y": 430,
+      "horizontal_overflow": false
+    },
+    {
+      "path": "/researchers/actor~github~315810/",
+      "file": "desktop-researcher.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "scroll_y": 167,
+      "horizontal_overflow": false
+    },
+    {
+      "path": "/collections/",
+      "file": "desktop-collections.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "scroll_y": 0,
+      "horizontal_overflow": false
+    },
+    {
+      "path": "/explore/?type=project&sort=stars&min_stars=1000",
+      "file": "mobile-filters.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll_y": 0,
+      "horizontal_overflow": false,
+      "dialog_scroll_y": 642
+    }
+  ],
+  "page_errors": [],
+  "github_api_request_count": 0,
+  "capture_started_at": "2026-09-15T09:17:49.734Z"
+}

@@ -1,5 +1,5 @@
 import { emptyCatalog, type CatalogData, type CatalogEntity, type Project, type Resource, type SourceRepository, type Organization, type Collection, type Actor, type Tombstone } from '../../spec/types.js';
-export interface SiteData { snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number>; researcher_total?: number }
+export interface SiteData { snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number>; researcher_total?: number; membership_counts?: Record<string, { projects: number; resources: number }> }
 export type Entry = SourceRepository | Project | Resource | Organization | Collection | Actor;
 export function routeFor(entry: Entry): string {
   const section = { source_repository: 'sources', project: 'projects', resource: 'capabilities', organization: 'organizations', collection: 'collections', actor: 'researchers' }[entry.kind];
@@ -38,6 +38,12 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
   const selected = new Set<string>();
   let preview: Entry[] | undefined;
   const relatedTotals: Record<string, number> = {};
+  const membershipCounts: Record<string, {projects: number; resources: number}> = {};
+  if (focus?.kind === 'actor' || focus?.kind === 'organization') {
+    const actorId = focus.kind === 'actor' ? focus.id : focus.actor_id;
+    const sourceIds = new Set(data.catalog.sources.filter(source => source.owner_id === actorId).map(source => source.id));
+    membershipCounts[focus.id] = { projects: new Set(data.catalog.projects.filter(row => row.source_refs.some(ref => sourceIds.has(ref.source_id))).map(row => row.id)).size, resources: new Set(data.catalog.resources.filter(row => row.source_refs.some(ref => sourceIds.has(ref.source_id))).map(row => row.id)).size };
+  }
   if (path === '/') {
     data.catalog.projects.slice(0,3).forEach(row => selected.add(row.id));
     data.catalog.resources.slice(0,4).forEach(row => selected.add(row.id));
@@ -83,7 +89,7 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
     }
   }
   const totals = Object.fromEntries(Object.entries(data.catalog).map(([key,rows]) => [key,rows.length])) as Record<keyof CatalogData,number>;
-  return { ...data, catalog, totals, researcher_total: data.catalog.actors.filter(row => row.account_type === 'user').length, ...(preview ? { related_totals: relatedTotals } : {}) };
+  return { ...data, catalog, totals, membership_counts: membershipCounts, researcher_total: data.catalog.actors.filter(row => row.account_type === 'user').length, ...(preview ? { related_totals: relatedTotals } : {}) };
 }
 export function displayDate(value: string): string { return new Date(value).toISOString().slice(0, 10); }
 export function provenanceLabel(entry: CatalogEntity, field = 'description'): string {
