@@ -1,96 +1,107 @@
-# GitHub Issue 分类与处理规则
+# Issue routing policy
 
-制定日期：2026-09-15；负责人：jszhang。
+Policy version: 2026-09-15 (English).
 
-本规则是 Network 的目录申请和产品问题分流规范。生效证据分别核对默认分支表单、仓库标签与网站发布；状态见 [实施记录](verification/issue-routing/README.md)。
+This policy separates catalog requests from product issues. Verify activation separately for default-branch forms, repository labels, and website publication. See the [implementation record](verification/issue-routing/README.md).
 
-## 1. 两类入口
+## 1. Request types
 
-GitHub Issues 同时承载目录申请和产品问题，但两者必须分开命名、筛选和统计。用户不需要理解标签，选择对应表单即可；维护者负责补全和纠正分类。
+GitHub Issues hosts both catalog requests and product support. Give them distinct names, queues, and metrics. Users select a form; maintainers complete or correct classification.
 
-| 类别 | 标题前缀 | 唯一类型标签 | 用途 |
+| Request | Title prefix | Single type label | Purpose |
 | --- | --- | --- | --- |
-| 目录申请：推荐收录 | [收录] | catalog:submission | 推荐公开 GitHub 仓库或组织；仅 URL 为必填 |
-| 目录申请：维护者认领 / 组织策展 | [认领] | catalog:claim | 身份、权限、范围确认或既有授权变更 |
-| 目录申请：纠错 | [纠错] | catalog:correction | 条目描述、分类、版本、链接、重复或来源可访问性问题 |
-| 目录申请：撤回 | [撤回] | catalog:withdrawal | 请求移除明确范围的目录内容 |
-| 目录申请：申诉 | [申诉] | catalog:appeal | 对既有决定提出新证据；包括重新收录、授权争议 |
-| 产品问题：故障 | [故障] | product:bug | 网站、搜索、连接交互或公开契约不符合预期 |
-| 产品建议：改进 | [建议] | product:enhancement | 新功能、交互或产品行为改进 |
-| 使用咨询 | [咨询] | support:question | 使用和流程问题，尚不能判定为故障 |
+| Source submission | [Submission] | catalog:submission | Recommend a public GitHub repository or organization; only its URL is required |
+| Maintenance claim or organization curation | [Claim] | catalog:claim | Verify identity, authority, scope, or changes to existing authorization |
+| Catalog correction | [Correction] | catalog:correction | Correct descriptions, classification, versions, links, duplicates, or source accessibility |
+| Content withdrawal | [Withdrawal] | catalog:withdrawal | Remove catalog content within an explicit scope |
+| Appeal | [Appeal] | catalog:appeal | Review a decision using new evidence, including relisting and authorization disputes |
+| Product bug | [Bug] | product:bug | Report failures in the website, search, connection interaction, or public contract |
+| Product improvement | [Feature] | product:enhancement | Suggest features, interactions, or behavior changes |
+| Usage question | [Question] | support:question | Ask about usage or process before a defect is established |
 
-每个 Issue 只保留一个上表类型标签；标题只是辅助，类型标签是队列筛选依据。原有 bug/enhancement/documentation/accessibility 等标签可以作为辅助标签，但不得代替唯一类型标签。不使用笼统的 question 表示认领或收录。
+Each issue has exactly one type label from this table. Prefixes help readers; labels determine queues. Existing bug, enhancement, documentation, or accessibility labels may supplement, but never replace, the type label. Do not use a generic question label to represent submissions or claims.
 
-边界例子：“Scanpy 分类错了”是纠错；“选择分类后列表不更新”是故障；“希望增加任务筛选”是建议；“我是 Scanpy 维护者”是认领。上游科学软件自己的算法或运行问题指向原项目，不能当作 Network 已承担的修复。
+Examples: an incorrect Scanpy category is a correction; a list that fails to update after selecting a category is a bug; a new task filter is a feature; claiming to maintain Scanpy is a claim. Scientific software algorithm or runtime issues belong upstream unless Network itself is responsible.
 
-## 2. 简易投稿和混合请求
+## 2. Minimal and mixed requests
 
-- 保留 blank issue，以兼容仅填写公开 URL 的推荐。新建无标签 Issue 属于待分流，不能因此忽略或拒绝。
-- 目录来源审核不要求认领、原作者参与、AIPOCH 账号、客户端或专用清单。
-- 一个请求原则上处理一个来源或一个明确决定范围；组织可以提交有边界的仓库清单，不自动加入全部仓库。
-- 同时涉及收录与认领时分别跟踪：收录完成不能推定认领成功。先对原 Issue 分类，确有独立决定时才创建关联请求，避免要求用户重复填写。
-- 不因选错模板要求用户重新提交；维护者调整分类并保留原讨论。重复请求关联已有 Issue，以 duplicate 结案，不计为成功收录。
-- 网站提交器只生成准确草稿并转到 GitHub。应默认使用 [收录] 和 catalog:submission；必须由用户在 GitHub 确认才算提交。
+- Keep blank issues available for recommendations containing only a public URL. Unlabelled issues await triage and must not be ignored or rejected for lacking labels.
+- Intake does not require a claim, author participation, an AIPOCH account, a client, or a special manifest.
+- Handle one source or explicit decision scope per request. Organizations may provide a bounded repository list; do not include all repositories automatically.
+- Track submission and authority claims separately. Completed indexing does not establish authority. Classify the original issue first; create linked requests only for independent decisions, without asking users to repeat information.
+- Correct the classification when someone selects the wrong form. Preserve the discussion. Link duplicate requests to the original issue and close as duplicate, without counting them as successful submissions.
+- The website creates a reviewed draft and opens GitHub with [Submission] and catalog:submission by default. Only the user's confirmation on GitHub creates an issue. Corrections use [Correction] and catalog:correction.
 
-## 3. 目录申请的处理状态
+## 3. Catalog stages
 
-每个已分流目录申请恰有一个 stage 标签。stage 是 GitHub 队列视图；正式目录、认领和发布状态仍由所属记录维护，不改变既有 schema。
+Each classified catalog request has exactly one stage label. These labels describe the GitHub queue; authoritative catalog, claim, and publication states remain in their existing records and schemas.
 
-| 标签 | 含义 | 必要动作或证据 |
+| Label | Meaning | Required action or evidence |
 | --- | --- | --- |
-| stage:triage | 待初审 | 识别对象、查重、明确负责人 |
-| stage:review | 审核中 | 核对公开来源、描述、权限或请求范围 |
-| stage:needs-info | 待补充 | 写清缺少的事实、提供方式和下一步；不索取敏感材料 |
-| stage:accepted | 决定已批准，尚待实施 | 留下审核者、时间、范围、理由和关联 PR；不是已上线 |
-| stage:verification | 已实施，待结果核验 | 核验生产目录或授权状态；不能仅凭合并 PR 关闭 |
-| stage:closed | 已结案 | 同时设置一个 outcome 标签并填写结案记录 |
+| stage:triage | Awaiting initial triage | Identify the object, check duplicates, and assign responsibility |
+| stage:review | Under review | Verify public sources, descriptions, authority, or scope |
+| stage:needs-info | Awaiting information | Specify missing facts, how to provide them, and next steps without requesting sensitive uploads |
+| stage:accepted | Approved; awaiting implementation | Record reviewer, time, scope, reasons, and linked PR; this does not mean published |
+| stage:verification | Implemented; awaiting verification | Check the production catalog or authorization state; a merged PR alone is insufficient |
+| stage:closed | Closed | Add exactly one outcome label and a closure record |
 
-重新打开时移除 stage:closed 和旧 outcome，恢复真实阶段；旧决定保留在时间记录中。产品故障、建议、咨询不使用上述目录 stage 标签，以免把“功能计划接受”混为“目录已收录”。
+When reopening, remove stage:closed and the previous outcome, then restore the actual stage. Preserve prior decisions in the history. Product bugs, features, and questions do not use catalog stages: accepting a feature plan does not mean catalog inclusion.
 
-## 4. 结案规则
+## 4. Closure criteria
 
-目录请求关闭时恰有一个结案标签：outcome:completed / outcome:duplicate / outcome:declined / outcome:cancelled / outcome:incomplete。GitHub 的 Open/Closed 只表达是否还在处理，不能代替结论。
+A closed catalog request has exactly one outcome: outcome:completed, outcome:duplicate, outcome:declined, outcome:cancelled, or outcome:incomplete. GitHub Open/Closed indicates whether work continues, not its outcome.
 
-| 请求 | completed 的门槛 |
+| Request | Requirements for outcome:completed |
 | --- | --- |
-| 收录 | 审核决定、合入提交、实际发布和线上稳定 ID 已核对 |
-| 认领 / 组织策展 | 独立审核者完成身份及范围核验；正式记录和公开展示已核对。证据不足保持待补充，不能自行批准 |
-| 纠错 | 受影响字段或条目在实际发布后已核对 |
-| 撤回 | 核验指定条目、搜索、公开数据和约定历史产物范围；记录外部缓存等不可控限制 |
-| 申诉 | 对原决定和新证据给出明确复核结果；若改变目录，完成相应发布核验；维持原决定须解释理由 |
+| Submission | Verify the review decision, merged commit, actual publication, and live stable catalog ID |
+| Claim or organization curation | An independent reviewer verifies identity and scope; verify authoritative records and public presentation. Insufficient evidence remains needs-info; no self-approval |
+| Correction | Verify affected fields or entries after actual publication |
+| Withdrawal | Verify specified entries, search, public data, and agreed historical artifacts; record limits such as uncontrolled external caches |
+| Appeal | Give an explicit review decision addressing prior findings and new evidence. Verify publication for catalog changes; explain any decision to uphold the original outcome |
 
-撤销自己提交的申请是 cancelled；请求撤下已收录内容是 withdrawal，不能混用。因长期无回复结案为 incomplete，不算完成或拒绝；重新提供资料后可以恢复。拒绝或重复必须说明依据及重提/申诉入口。
+Cancelling one's own pending request is cancelled. Removing indexed content is withdrawal. Closure after prolonged missing information is incomplete, not completed or declined; new information may reopen the request. Explain declined or duplicate outcomes and how to resubmit or appeal.
 
-结案记录至少包含：请求对象及范围、决定、审核者与时间、证据、相关 PR/提交、适用时的发布与线上核验、剩余限制。不能用一个绿色标签表示维护者认可、组织背书或科学验证。
+The closure record includes object and scope, decision, reviewer and time, evidence, related PRs/commits, applicable publication and live verification, and remaining limits. A green label is not proof of maintainer acknowledgement, organization endorsement, or scientific validation.
 
-## 5. 队列与责任
+## 5. Responsibility and queues
 
-目录审核负责人暂为 jszhang；自己的认领必须由另一位有权限的审核者处理。没有独立审核者则保持待核验。
+The current catalog review owner is jszhang. Their own claims require another authorized reviewer; without one, the claim remains unverified.
 
-维护者每次巡检依次处理：无类型标签的待分流 → 撤回及授权争议 → 待核验上线结果 → 其余收录/纠错/认领 → 产品故障与建议。真实故障严重程度可优先于普通目录申请。
+Review unclassified requests, withdrawals and authorization disputes, pending publication verification, other catalog requests, then product issues. Actual bug severity may take priority over routine catalog work.
 
-工作日两日内完成首次分流是内部目标，不作为对外 SLA。等待超过七日进入周报，不自动拒绝或删除。代理对外回复与新建关联 Issue 仍遵守具体发送授权。
+Initial triage within two business days is an internal target, not a public SLA. Requests waiting over seven days enter the weekly report; do not automatically reject or delete them. Agents still need specific authorization to send replies or create linked issues.
 
-建议保存 GitHub 队列：
+Suggested saved queues:
 
-- 收录：is:issue is:open label:catalog:submission
-- 认领：is:issue is:open label:catalog:claim
-- 目录纠错：is:issue is:open label:catalog:correction
-- 撤回：is:issue is:open label:catalog:withdrawal
-- 申诉：is:issue is:open label:catalog:appeal
-- 产品故障：is:issue is:open label:product:bug
-- 产品建议：is:issue is:open label:product:enhancement
-- 使用咨询：is:issue is:open label:support:question
+- Submissions: `is:issue is:open label:catalog:submission`
+- Claims: `is:issue is:open label:catalog:claim`
+- Corrections: `is:issue is:open label:catalog:correction`
+- Withdrawals: `is:issue is:open label:catalog:withdrawal`
+- Appeals: `is:issue is:open label:catalog:appeal`
+- Bugs: `is:issue is:open label:product:bug`
+- Features: `is:issue is:open label:product:enhancement`
+- Questions: `is:issue is:open label:support:question`
 
-只统计实际分类、结案与发布结果；模板与模拟数据不进入运营指标。
+Count actual classification, closure, and publication results only. Templates and simulated data are not operational metrics.
 
-## 6. Network 落地与迁移
+## 6. Configuration and migration
 
-1. 创建标签后部署八个独立表单；目录表单默认 stage:triage，产品/咨询表单不加目录阶段。
-2. 更新 CONTRIBUTING 和治理文档，删除现存“仓库私有”的旧提示；明确公开 Issue 不接受私人权限材料。
-3. 更新网站投稿器的标题、预填标签及准确草稿说明；检查现有旧模板深链，保留兼容或重定向，不使旧链接失效。
-4. 审阅已有 Issue 内容后补类型标签，不凭旧前缀批量认定结果；已关闭 Issue 不能因迁移变成“已验收”。
-5. 验证表单选择页、自动标签、URL-only 普通 Issue 分流及各队列；外部普通账号完整验收仍按用户决定暂缓。
-6. 自动化只做分流和提示，不根据提交者、正文或 PR 合并自动批准认领、收录或结案。当前提案不引入自动回帖或自动审批。
+Create managed labels and merge all eight forms. Catalog forms start at stage:triage; product and support forms have no catalog stage. Keep contribution and governance guidance consistent with the public repository and prohibit private authority evidence in issues.
 
-标签配置及只读预览/显式应用方法见 [维护手册](maintainer-guide.md#issue-分类配置)。阶段标签变更需要人工判断；不自动回帖或批准认领。
+Preserve existing template filenames and deep links. The legacy correction-or-withdrawal.yml now handles corrections and links to the separate withdrawal form. Maintain the reviewed website draft, explicit user confirmation, and complete-copy fallback for oversized URLs.
+
+Review historical issue content before adding type labels. Old titles or closure alone do not prove acceptance. Previously closed product issues receive only their type label, without catalog outcomes. Existing Chinese prefixes remain historical text; labels continue to determine routing, and no bulk title rewrite is required.
+
+Verify the chooser, default labels, URL-only fallback, and queues. Full intake acceptance using an ordinary external account remains deferred at the user's direction. Automation must not approve claims, inclusion, or closure based on the submitter, body, or a PR merge. No automatic replies or approvals are introduced.
+
+The managed label configuration is `.github/issue-labels.json`. From a reviewed checkout:
+
+```sh
+node scripts/issue-labels.mjs check
+node scripts/issue-labels.mjs plan
+node scripts/issue-labels.mjs apply
+```
+
+`check` validates labels and forms offline. `plan` reads differences through authenticated gh. `apply` explicitly synchronizes managed labels and verifies the result; it preserves unrelated labels, does not classify issues, and sends no comments. The target is fixed to imjszhang/aipoch-network. Ordinary CI uses offline checks only.
+
+Website publication follows its separate release process. Roll back entry-point changes or their commit if necessary, without deleting discussions, bulk-removing used labels, or reversing valid withdrawal or authority decisions.

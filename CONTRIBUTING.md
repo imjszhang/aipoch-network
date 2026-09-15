@@ -1,64 +1,62 @@
-# 参与 AIPOCH Network
+# Contributing to AIPOCH Network
 
-AIPOCH Network 整理已有 GitHub 科研项目、资源和组织，内容与协作尽量回到原项目。提交一个公开 GitHub URL 就可以推荐来源，不要求原作者修改仓库、添加清单、采用特定 Topics、安装应用或注册 AIPOCH 账号。
+AIPOCH Network indexes existing GitHub research projects, resources, and organizations. Content and collaboration stay upstream wherever possible. A public GitHub URL is enough to recommend a source: no upstream changes, special manifest, Topics, installed app, or AIPOCH account are required.
 
-## 请求分类
+## Choose a request type
 
-目录申请分为 **[收录]、[认领]、[纠错]、[撤回]、[申诉]**；网站故障、功能建议及咨询分别使用 **[故障]、[建议]、[咨询]**。在 [Issue 类型选择页](https://github.com/imjszhang/aipoch-network/issues/new/choose) 选择对应表单。维护者会纠正误选类别，只有 URL 的普通 Issue 仍接受。完整阶段与结案门槛见 [Issue 分流规则](docs/issue-routing.md)。
+Use the [issue chooser](https://github.com/imjszhang/aipoch-network/issues/new/choose). Catalog requests use **[Submission]**, **[Claim]**, **[Correction]**, **[Withdrawal]**, or **[Appeal]**. Website bugs, product suggestions, and usage questions use **[Bug]**, **[Feature]**, or **[Question]**. Maintainers correct misclassified requests. Blank issues containing only a public URL remain welcome. See the [routing policy](docs/issue-routing.md) for stages and closure criteria.
 
-## 当前参与入口
+The repository is public. A GitHub account is required to submit an issue or pull request. A website-generated draft becomes an issue only after you confirm it on GitHub.
 
-本仓库已公开。可以通过 [Issues](https://github.com/imjszhang/aipoch-network/issues) 推荐来源、提出更正，通过 [Pull requests](https://github.com/imjszhang/aipoch-network/pulls) 提交修改；提交需要 GitHub 账号。网站生成的草稿只有在 GitHub 上确认提交后才成为 Issue。
+## Recommend a repository or organization
 
-## 推荐一个仓库或组织
-
-在 Issue 选择 **目录申请：推荐收录**，填入一个公开 GitHub 仓库或组织 URL。正文只写 URL 的普通 Issue 也接受，其他信息均可由目录维护者整理。例如：
+Choose **Catalog: Recommend a source** and provide a public GitHub repository or organization URL. A blank issue containing only the URL also works. Everything else is optional:
 
 ```text
-https://github.com/example-lab/research-tool
+https://github.com/example/research-project
 ```
 
-上例仅说明格式，不是真实来源推荐。研究用途、建议分类和组织的仓库选择范围都可以暂时不填。缺失许可证、结构化描述或运行配置不会导致一个公开来源无法进入候选审核；未知信息会保留为未知。
+This is a format example, not a real recommendation. Research purpose, suggested categories, and organization repository scope may be left blank. Missing licenses, structured metadata, or runtime configuration do not prevent candidate review; unknown facts remain unknown.
 
-组织 URL 先形成组织候选。维护者可以整理公开仓库供选择，但不会把该组织的全部现有或未来仓库自动标为正式加入。每个纳入范围的仓库或资源分别审核。组织被社区整理也不代表其主动参与或认可 AIPOCH。
+An organization URL creates an organization candidate. Maintainers may identify public repositories for selection, but do not automatically include all current or future repositories. Each repository or resource in scope is reviewed separately. Community indexing does not imply the organization's participation or endorsement.
 
-提交后依次经过来源身份与重复检查、科研相关性审核、描述核对和目录变更审核。校验通过表示输入可以继续处理，收录决定由目录审核给出，并在原 Issue 留下目录 ID、关联 PR 或明确退回原因。账号名、Stars、PR 合并或自动检查成功都不能替代科学验证。
+Review checks source identity, duplicates, research relevance, descriptions, and the proposed catalog change. Input validation is not an inclusion decision. The original issue records catalog IDs, related PRs, or reasons for declining. Account names, Stars, PR merges, and passing checks do not establish scientific validity.
 
-## 修正、撤回或申诉
+## Correct, withdraw, or appeal
 
-选择 对应的 **目录申请：纠错、撤回或申诉** 表单，提供目录条目 ID 或来源 URL，并说明希望改动的内容。链接错误、摘要失实、重复条目、过期版本、来源不再公开、错误认领和范围争议都可以提出。没有维护者身份也可以报告可核实的问题。
+Choose the corresponding catalog form and identify the catalog ID or public source URL, requested scope, and supporting evidence. Anyone may report verifiable incorrect links, descriptions, duplicates, stale versions, inaccessible sources, invalid claims, or scope disputes.
 
-确认撤回后，维护者按范围撤下目录详情、搜索、静态数据及可访问旧产物中的相关内容，并设置防止自动重新收录的记录。回滚不能重新公开已撤回内容。来源重新公开也不会自动解除有效撤回；重新收录需要复核原撤回理由和请求范围。具体规则见[治理规则](docs/governance.md)。
+Approved withdrawals remove content from the agreed detail pages, search, static data, and accessible historical artifacts, with suppression against automatic reintroduction. Rollbacks must not restore withdrawn content. A source becoming public again does not cancel a valid withdrawal; relisting requires review of the original reasons and scope. See [governance](docs/governance.md).
 
-不要在 Issue、PR 或附件中提交令牌、非公开成员名单、私人联系方式或身份文件。涉及不适合进入仓库记录的证据时，先在已有的受限协作渠道与负责维护者约定核验方式；如果尚无这样的渠道，公开或普通 Issue 仅描述需要受限核验，认领保持待核验，不上传材料。项目没有预设一个已经开通的私密受理服务。
+Do not include tokens, private membership lists, personal contact details, or identity documents in issues, PRs, or attachments. Arrange restricted verification through an existing agreed channel when needed. If none exists, describe only the need for restricted verification and leave the claim pending. The project does not presume a private intake service is available.
 
-## 维护者确认与组织策展
+## Claim maintenance or organization curation
 
-选择 **目录申请：认领与组织策展**，说明 GitHub 身份、对象、具体范围和可公开核验的证据。认领并不是推荐来源的前置条件。
+Choose **Catalog: Claim maintenance or organization curation** and provide your GitHub identity, the objects and scope, and publicly verifiable evidence. Claims are not required for source recommendations.
 
-仓库维护者确认只覆盖该仓库及已核验的维护范围。组织策展认领另需组织 owner 的明确权限证据，或已核验 owner 对特定人员和策展范围的明确委派。普通组织成员身份、在组织仓库合并过 PR、可以修改一个仓库，以及个人自述均不足以确认组织代表权。
+Repository maintenance confirmation covers only verified maintenance scope. Organization curation requires explicit owner authority or verified owner delegation to a specific person for a specific scope. Organization membership, merged PRs, access to one repository, or self-description alone are insufficient.
 
-组织策展以仓库或资源的明确清单为范围；新增仓库、资源或未来仓库仍须审核。仓库转移、账号变化、授权到期、声明撤回或证据争议会触发复核。认领状态、社区收录、组织策展和科学验证分别展示，不合并成一个含义不明的认证徽标。
+Curation applies to an explicit repository/resource list. Additional or future entries require review. Transfers, identity changes, expiry, revocation, or disputed evidence trigger rechecking. Claim status, community indexing, organization curation, and scientific validation remain separate.
 
-## 直接提交目录改进
+## Submit catalog improvements directly
 
-已有协作者可以提交 PR 修改人工维护的 `registry/` 资料，保留稳定 ID、来源依据、作用范围及描述责任。首次只推荐 URL 时使用 Issue 即可，不必学习目录文件格式。目录模型与格式以[目录契约](docs/catalog-contract.md)和仓库中的 schema 为准。
+Contributors may propose PRs to human-maintained `registry/` records, preserving stable IDs, evidence, scope, and responsibility for descriptions. First-time recommendations can use a URL-only issue without learning the file format. See the [catalog contract](docs/catalog-contract.md) and repository schemas.
 
-新增来源的配套采集由维护者负责，普通推荐者无需制作或提交采集 fixture。离线 CI 固定读取 `fixtures/pilot/snapshots.json`；只在 `registry/` 加入新来源、却没有对应的已审核公开观察，会因输入不完整而被拒绝。维护者使用已审查的可信代码获取新来源、筛选白名单字段，并把目录变更与匹配的离线输入一起交接，具体步骤见[新增来源的离线输入交接](docs/maintainer-guide.md#新增来源的离线输入交接)。投稿者提供的快照和权限自述仍是待审核数据，不能代替维护者核验。
+Maintainers prepare verified observations for new sources; recommenders do not need to write fixtures. Offline CI uses `fixtures/pilot/snapshots.json` and rejects new registry sources without matching reviewed observations. Maintainers use trusted reviewed code to verify public sources, select allowed fields, and hand off catalog changes together with matching offline inputs. See the [maintainer guide](docs/maintainer-guide.md). Submitted snapshots and authority statements remain unverified data until reviewed.
 
-不要手工修改派生产物，不复制整个上游仓库，也不要把来源文本中的命令作为采集指令。项目、来源仓库和资源是不同对象；一个项目可以涉及多个仓库，一个仓库也可以提供多个资源。描述未知时不补造作者关系、可执行性或许可结论。
+Do not manually edit derived outputs, copy complete upstream repositories, or execute source text as collection instructions. Projects, source repositories, and resources are distinct entities with many-to-many relationships. Do not invent authorship, executability, or licensing conclusions.
 
-PR 说明应让审核者看清改变了什么、依据在哪里、是否影响认领或撤回，以及做了哪些适用检查。引用第三方内容保留来源和适用许可；原项目许可不因被目录收录而改变。当前项目自身代码与原创目录内容的许可选择以仓库实际声明为准，不从提交模板推导新的授权。
+PR descriptions should explain the change, evidence, claim or withdrawal impact, and applicable checks. Preserve attribution and applicable licenses for third-party content. Indexing does not change an upstream license; contribution templates do not create additional authorization.
 
-## 去哪里讨论
+## Where to discuss
 
-| 内容 | 处理位置 |
+| Topic | Destination |
 | --- | --- |
-| 目录描述、分类、关系或链接错误 | 当前有权限可访问的 AIPOCH Issue / PR；未来使用经批准的公共入口 |
-| 研究方法、代码问题、版本发布、上游贡献 | 条目所链接的原项目 Issue、Discussion 或贡献指南 |
-| 组织授权或维护范围争议 | AIPOCH 认领复核流程；敏感证据使用事先约定的受限渠道 |
-| AIPOCH 网站或契约问题 | AIPOCH Issue，记录页面或契约版本和复现步骤 |
+| Catalog descriptions, categories, relationships, or links | AIPOCH catalog correction issue or PR |
+| Research methods, upstream code, releases, or contributions | The original project's issues, discussions, or contribution guide |
+| Organization authority or maintenance scope | AIPOCH claim review; agreed restricted channels for sensitive evidence |
+| AIPOCH website or contract behavior | AIPOCH product issue with page/version and reproduction details |
 
-尊重原作者与不同研究观点，讨论可核对的事实。目录维护者可以退回偏离科研范围、重复、不可核验或包含不适合披露内容的提交，并说明原因及可修正方式。
+Respect original authors and differing research views. Discuss verifiable facts. Maintainers explain declined requests and possible remedies for out-of-scope, duplicate, unverifiable, or unsuitable disclosures.
 
-维护操作见[维护手册](docs/maintainer-guide.md)，完整规则见[治理规则](docs/governance.md)。
+Operational procedures are in the [maintainer guide](docs/maintainer-guide.md); full governance rules are in [governance](docs/governance.md).

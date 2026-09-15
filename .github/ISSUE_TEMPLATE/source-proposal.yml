@@ -1,7 +1,7 @@
 {
-  "name": "目录申请：推荐收录",
-  "description": "推荐公开 GitHub 仓库或组织，仅 URL 必填。",
-  "title": "[收录] ",
+  "name": "Catalog: Recommend a source",
+  "description": "Recommend a public GitHub repository or organization. Only the URL is required.",
+  "title": "[Submission] ",
   "labels": [
     "catalog:submission",
     "stage:triage"
@@ -10,15 +10,15 @@
     {
       "type": "markdown",
       "attributes": {
-        "value": "此入口是公开 GitHub Issue。不要提交凭据或私人材料。提交不等于批准、收录或发布；认领由独立审核者核验。"
+        "value": "This is a public GitHub issue. Do not submit credentials or private material. Submission does not imply approval, indexing, or publication. Claims require an independent reviewer."
       }
     },
     {
       "type": "textarea",
       "id": "field_0",
       "attributes": {
-        "label": "公开 GitHub URL",
-        "description": "无需原作者修改仓库、专用清单、账号接入或客户端。"
+        "label": "Public GitHub URL",
+        "description": "No upstream changes, special manifest, AIPOCH account, or client required."
       },
       "validations": {
         "required": true
@@ -28,8 +28,8 @@
       "type": "textarea",
       "id": "field_1",
       "attributes": {
-        "label": "科研用途与建议范围",
-        "description": "可选；组织未填写范围不代表所有仓库自动加入。"
+        "label": "Research purpose and suggested scope",
+        "description": "Optional. An organization URL does not automatically include all its repositories."
       },
       "validations": {
         "required": false

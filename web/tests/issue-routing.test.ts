@@ -25,7 +25,7 @@ test('URL-only draft normalizes the source, preserves text and prelabels the bla
   assert.equal(url.searchParams.get('labels'), 'catalog:submission,stage:triage');
   assert.equal(url.searchParams.has('template'), false);
   assert.equal(draft.source, 'https://github.com/scipy/scipy');
-  assert.ok(draft.title.startsWith('[收录]'));
+  assert.ok(draft.title.startsWith('[Submission]'));
   assert.throws(() => buildIssueDraft({ type: 'submission', source: '', note: '' }));
   assert.throws(() => buildIssueDraft({ type: 'submission', source: 'https://example.com/x', note: '' }));
 });

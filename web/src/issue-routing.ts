@@ -1,14 +1,14 @@
 import { normalizeGitHubUrl } from '../../spec/identity.js';
 export const ISSUE_REPO = 'https://github.com/imjszhang/aipoch-network';
 export const issueRoutes = {
-  submission: { prefix: '[收录]', label: 'catalog:submission', template: 'source-proposal.yml', name: 'Recommend a source' },
-  claim: { prefix: '[认领]', label: 'catalog:claim', template: 'claim-or-curation.yml', name: 'Claim maintenance or organization curation' },
-  correction: { prefix: '[纠错]', label: 'catalog:correction', template: 'correction-or-withdrawal.yml', name: 'Correct catalog content' },
-  withdrawal: { prefix: '[撤回]', label: 'catalog:withdrawal', template: 'withdrawal.yml', name: 'Request content withdrawal' },
-  appeal: { prefix: '[申诉]', label: 'catalog:appeal', template: 'appeal.yml', name: 'Appeal a catalog decision' },
-  bug: { prefix: '[故障]', label: 'product:bug', template: 'bug.yml', name: 'Report a website bug' },
-  enhancement: { prefix: '[建议]', label: 'product:enhancement', template: 'feature.yml', name: 'Suggest a product improvement' },
-  question: { prefix: '[咨询]', label: 'support:question', template: 'question.yml', name: 'Ask a usage question' },
+  submission: { prefix: '[Submission]', label: 'catalog:submission', template: 'source-proposal.yml', name: 'Recommend a source' },
+  claim: { prefix: '[Claim]', label: 'catalog:claim', template: 'claim-or-curation.yml', name: 'Claim maintenance or organization curation' },
+  correction: { prefix: '[Correction]', label: 'catalog:correction', template: 'correction-or-withdrawal.yml', name: 'Correct catalog content' },
+  withdrawal: { prefix: '[Withdrawal]', label: 'catalog:withdrawal', template: 'withdrawal.yml', name: 'Request content withdrawal' },
+  appeal: { prefix: '[Appeal]', label: 'catalog:appeal', template: 'appeal.yml', name: 'Appeal a catalog decision' },
+  bug: { prefix: '[Bug]', label: 'product:bug', template: 'bug.yml', name: 'Report a website bug' },
+  enhancement: { prefix: '[Feature]', label: 'product:enhancement', template: 'feature.yml', name: 'Suggest a product improvement' },
+  question: { prefix: '[Question]', label: 'support:question', template: 'question.yml', name: 'Ask a usage question' },
 } as const;
 export type IssueType = keyof typeof issueRoutes;
 export function issueTemplateUrl(type: IssueType): string {

@@ -2,96 +2,96 @@
   {
     "name": "catalog:submission",
     "color": "1D76DB",
-    "description": "目录：推荐收录"
+    "description": "Catalog: source recommendation"
   },
   {
     "name": "catalog:claim",
     "color": "1D76DB",
-    "description": "目录：认领或限定组织策展"
+    "description": "Catalog: maintenance claim or scoped organization curation"
   },
   {
     "name": "catalog:correction",
     "color": "1D76DB",
-    "description": "目录：纠错"
+    "description": "Catalog: content correction"
   },
   {
     "name": "catalog:withdrawal",
     "color": "1D76DB",
-    "description": "目录：撤回内容"
+    "description": "Catalog: content withdrawal"
   },
   {
     "name": "catalog:appeal",
     "color": "1D76DB",
-    "description": "目录：申诉或重新收录"
+    "description": "Catalog: appeal or relisting"
   },
   {
     "name": "product:bug",
     "color": "5319E7",
-    "description": "产品：故障"
+    "description": "Product: bug report"
   },
   {
     "name": "product:enhancement",
     "color": "5319E7",
-    "description": "产品：改进建议"
+    "description": "Product: improvement request"
   },
   {
     "name": "support:question",
     "color": "5319E7",
-    "description": "使用与流程咨询"
+    "description": "Support: usage or process question"
   },
   {
     "name": "stage:triage",
     "color": "FBCA04",
-    "description": "待初审"
+    "description": "Awaiting initial triage"
   },
   {
     "name": "stage:review",
     "color": "FBCA04",
-    "description": "审核中"
+    "description": "Under review"
   },
   {
     "name": "stage:needs-info",
     "color": "FBCA04",
-    "description": "待补充"
+    "description": "Awaiting additional information"
   },
   {
     "name": "stage:accepted",
     "color": "FBCA04",
-    "description": "已批准待实施；非上线"
+    "description": "Approved for implementation; not yet published"
   },
   {
     "name": "stage:verification",
     "color": "FBCA04",
-    "description": "已实施待结果核验"
+    "description": "Implemented; awaiting result verification"
   },
   {
     "name": "stage:closed",
     "color": "FBCA04",
-    "description": "已结案；需 outcome"
+    "description": "Closed with an outcome label"
   },
   {
     "name": "outcome:completed",
     "color": "C5DEF5",
-    "description": "按该类请求门槛完成"
+    "description": "Completed against request-specific criteria"
   },
   {
     "name": "outcome:duplicate",
     "color": "C5DEF5",
-    "description": "重复；关联原请求"
+    "description": "Duplicate; linked to the original request"
   },
   {
     "name": "outcome:declined",
     "color": "C5DEF5",
-    "description": "退回；须说明理由"
+    "description": "Declined with reasons"
   },
   {
     "name": "outcome:cancelled",
     "color": "C5DEF5",
-    "description": "申请人取消申请"
+    "description": "Cancelled by the requester"
   },
   {
     "name": "outcome:incomplete",
     "color": "C5DEF5",
-    "description": "资料不足结案；非成功"
+    "description": "Closed for insufficient information; not completed"
   }
 ]

@@ -2,7 +2,7 @@
 
 本文规定来源收录、修改、撤回、维护者认领与组织策展的处理规则。它补充[目录契约](catalog-contract.md)与[交付运行规则](delivery-operations.md)，不设立新的账号、后台服务或独立协作平台。
 
-当前仓库公开，GitHub Issue 表单是公共入口。目录申请与产品问题按 [Issue 分流规则](issue-routing.md) 分开；公开入口存在不等于普通外部账号完整验收已完成。
+The repository is public and GitHub Issue Forms provide public intake. Follow the [issue routing policy](issue-routing.md) to separate catalog requests from product issues. Public availability does not establish full acceptance using an ordinary external account.
 
 ## 1. 决策与职责
 

@@ -1,21 +1,25 @@
-# Issue 分流实施与验证
+# Issue routing implementation and verification
 
-2026-09-15；基线 c6f94edf166f1e3cf89839ae2c4ccf8578007355。用户要求完成规则、主仓实现、PR、合并与同步。
+2026-09-15. Original baseline: c6f94edf166f1e3cf89839ae2c4ccf8578007355.
 
-## 已实现
+## Implemented behavior
 
-- 八类表单和19个专用标签；目录申请与产品故障/建议/咨询分开，保留 URL-only 空白入口及三个旧模板文件名。
-- 贡献页分组入口；网站收录与纠错的标题、标签及正文分离；无来源链接的合法对象仍可纠错；未知目标明确不可用。
-- 三步审阅、修改后重新确认、长链接完整复制、复制失败说明；不自动提交、批准、认领或发评论。
-- 规则和维护手册同步，修正现行私有仓库提示；原设计文件不变，局部差异见 [设计记录](../../../design/changes/issue-routing.md)。
-- 标签已通过显式 apply 创建并回读，第二次 plan 无差异。历史 #5、#7 仅补 product:bug/product:enhancement，保持 closed，不追加目录结案结论。
+Eight forms and 19 managed labels separate catalog requests from product bugs, features, and questions. URL-only blank issues and existing template filenames remain supported. Contribute has two entry groups. Submission and correction drafts use distinct titles, labels, and bodies; valid catalog objects without source links support corrections, while unknown targets show an explicit error.
 
-## 验证
+Three-step review, renewed confirmation after edits, complete copying for long drafts, and copy-failure feedback remain intact. No automatic submission, approval, claim, or comment is introduced.
 
-[结构化结果](validation.json)：Node 24.18.1，npm run check 的类型检查、390项测试及静态构建通过。定向浏览器覆盖 site/community/issue-routing，根和子路径各38通过、0失败、0 flaky；包含桌面和移动、键盘确认、焦点不被导航遮住、超长 Unicode 草稿及复制失败。外部跳转在测试中拦截，不发真实 Issue。
+[PR #9](https://github.com/imjszhang/aipoch-network/pull/9) merged as c046cbfb2336e38fa8f181da40e5922225108246. Labels were applied and read back with no remaining differences. Historical issues #5 and #7 received product:bug and product:enhancement respectively; both remained closed without catalog outcomes. The authenticated GitHub chooser displayed all eight forms and the blank issue entry. The source form showed its required URL field and default catalog:submission/stage:triage labels; no issue was submitted.
 
-已读取 v9-r2 配套说明，并在本地浏览器打开原 HTML 的 Contribute 状态做视觉对照。现有主视觉与三步结构保留；贡献页新增两组链接，纠错显示准确对象和标题。桌面/移动截图分别见本目录。截图是本地候选，不是线上部署证明；未扩展成完整读屏或所有浏览器验收。
+## Original validation evidence
 
-## 生效与交接
+[Structured results](validation.json) records Node 24.18.1, type checking, 390 passing tests, and a static build. Targeted site/community/issue-routing browser checks passed 38 tests at each of the root and subpath configurations with no failures or flaky tests. Coverage includes desktop/mobile, keyboard confirmation, focus visibility, oversized Unicode drafts, and copy failure. Tests intercept external navigation and create no real issues.
 
-代码提交、PR、托管 CI 和合并证据在后续交接记录补充。标签已生效；GitHub 表单需要合入默认分支后检查；生产网站需另行部署，不能把本次合并说成网页已经更新。普通外部账号完整投稿验收仍按用户要求暂缓。
+The local v9-r2 reference was visually compared. Screenshots in this directory were refreshed from the English subpath candidate. They show desktop and mobile contribution/correction states, not production deployment evidence.
+
+## English follow-up
+
+The user requested English for the entire issue-routing update. Forms, title prefixes, managed label descriptions, contribution guidance, and this policy and implementation documentation now use English. Template filenames and label identifiers remain stable. Unicode test inputs intentionally exercise international user content; they are not interface copy.
+
+Default-branch forms and repository labels take effect independently of website deployment. Production website publication is a separate step. Full submission acceptance using an ordinary external account remains deferred.
+
+English follow-up validation passed: 390 unit tests, type checking, static builds, and 38 browser tests each at root and /aipoch-network/. The 19 English label descriptions were applied; readback showed no differences. See [English validation](english-validation.json).

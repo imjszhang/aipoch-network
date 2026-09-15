@@ -68,4 +68,4 @@ v6 原件 [aipoch-network-concept-v6.html](references/aipoch-network-concept-v6.
 
 相关文档：[架构与决策](../docs/architecture.md)、[专项实施计划](../docs/v9-r2-implementation-plan.md)、[整体实施计划](../docs/implementation-plan.md)、[公开部署记录](../docs/deployment/public-pages.md)。
 
-2026-09-15 局部分流更新：[目录申请与产品问题](changes/issue-routing.md)，原参考不变；实施与检查见 [分流验证](../docs/verification/issue-routing/README.md)。
+2026-09-15 routing update: [Catalog requests and product issues](changes/issue-routing.md). Original references remain unchanged; see [implementation verification](../docs/verification/issue-routing/README.md).

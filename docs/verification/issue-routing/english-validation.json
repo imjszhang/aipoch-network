@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-09-15T07:40:14.144446+00:00",
+  "base_commit": "c046cbfb2336e38fa8f181da40e5922225108246",
+  "scope": "English issue routing forms, prefixes, label descriptions and documentation; no production deployment",
+  "offline": {
+    "command": "npm run check",
+    "passed": 390,
+    "failed": 0
+  },
+  "browser": {
+    "root_passed": 38,
+    "subpath_passed": 38,
+    "subpath": "/aipoch-network/",
+    "failed": 0
+  },
+  "labels": {
+    "updated": 19,
+    "readback_diff": []
+  },
+  "notes": [
+    "An initial subpath check used a root build and was interrupted after configuration failures; the rerun used a dedicated SITE_BASE subpath build and passed.",
+    "Unicode test input remains to verify international user content."
+  ]
+}
