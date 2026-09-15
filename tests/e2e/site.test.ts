@@ -5,7 +5,11 @@ test('anonymous home is useful without GitHub API or a client', async ({ page },
   page.on('request', request => { if (new URL(request.url()).origin !== new URL(testInfo.project.use.baseURL!).origin) unexpected.push(request.url()); if (request.url().endsWith('/internal/catalog.json')) catalogs.push(request.url()); });
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('./');
+  await expect(page).toHaveTitle('Science Open to All | AIPOCH Network');
   await expect(page.getByRole('heading', { name: 'Science Open to All' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Join with Open-Science' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Explore AIPOCH Network' })).toBeVisible();
+  await expect(page.locator('img[alt="Open-Science product screenshot showing research files and generated scientific artifacts"]')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'A question. A project. A next step.' })).toBeVisible();
   await expect(page.locator('.ph-project-row')).toHaveCount(3);
   await expect(page.locator('.ph-workbench-card')).toBeVisible();
@@ -204,4 +208,45 @@ test('MuData project and resource retain their own source, license and community
   await expect(page.locator('a[href="https://github.com/scverse/mudata"]').first()).toBeVisible();
   await expect(page.locator('main')).toContainText('BSD-3-Clause');
   await expect(page.locator('.glance')).toContainText('Community indexed');
+});
+
+test('robots and sitemap are official-origin artifacts and omit pagination', async ({ request }, testInfo) => {
+  const robots = await request.get('./robots.txt');
+  const sitemap = await request.get('./sitemap.xml');
+  expect(robots.ok()).toBe(true);
+  expect(sitemap.ok()).toBe(true);
+  const robotsBody = await robots.text();
+  const sitemapBody = await sitemap.text();
+  expect(robotsBody).toContain('User-agent: *');
+  expect(robotsBody).toContain('Allow: /');
+  expect(sitemapBody).toContain('<urlset');
+  expect(sitemapBody).not.toContain('/page/');
+  expect(sitemapBody).not.toContain('?q=');
+  const root = new URL(testInfo.project.use.baseURL!).pathname === '/';
+  if (root) {
+    expect(robotsBody).toContain('Sitemap: https://aipoch.network/sitemap.xml');
+    expect(sitemapBody).toContain('https://aipoch.network/</loc>');
+    expect(sitemapBody).toContain('https://aipoch.network/projects/');
+  } else {
+    expect(robotsBody).not.toContain('Sitemap:');
+  }
+});
+
+test('raw HTML pagination paths expose later directory members', async ({ request, page }) => {
+  const first = await request.get('./projects/');
+  const second = await request.get('./projects/page/2/');
+  const query = await request.get('./projects/?page=2');
+  expect(first.ok()).toBe(true);
+  expect(second.ok()).toBe(true);
+  const firstHtml = await first.text();
+  const secondHtml = await second.text();
+  expect(await query.text()).toBe(firstHtml);
+  expect(firstHtml).toContain('/projects/page/2/');
+  expect(secondHtml).not.toBe(firstHtml);
+  expect(firstHtml).toContain('AnnData');
+  expect(secondHtml).not.toContain('>AnnData<');
+  await page.goto('./projects/page/2/');
+  await expect(page.getByRole('navigation', { name: 'Results pages' })).toContainText('Page 2 of');
+  await page.goto('./projects/?page=2');
+  await expect(page.getByRole('navigation', { name: 'Results pages' })).toContainText('Page 2 of');
 });
