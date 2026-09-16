@@ -48,6 +48,12 @@ Do not manually edit derived outputs, copy complete upstream repositories, or ex
 
 PR descriptions should explain the change, evidence, claim or withdrawal impact, and applicable checks. Preserve attribution and applicable licenses for third-party content. Indexing does not change an upstream license; contribution templates do not create additional authorization.
 
+## Suggest an entry for the README
+
+The README is a curated entry point, not a copy of the entire catalog. A catalog candidate can be proposed with only a public URL; selection for the README additionally requires a clear research use, documentation, source and license review, and a concise explanation of the resource's role. See the [selection criteria](README.md#selection-criteria).
+
+For list changes, propose one primary category and a short factual description. Link the project name directly to its upstream repository or official documentation. Include an AIPOCH detail link only for an existing, verified catalog page. Avoid duplicate entries, promotional claims, and using star counts as a quality threshold. Maintainers recheck affected entries when catalog identities, licenses, maintenance status, or withdrawal decisions change.
+
 ## Where to discuss
 
 | Topic | Destination |
