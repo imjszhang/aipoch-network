@@ -1,62 +1,91 @@
-# AIPOCH Network
+# AIPOCH Network — Curated Open-Source Research Tools
 
-An open research network connecting research projects, reusable capabilities, and their original GitHub sources.
+Discover scientific computing libraries, analysis tools, and research workflows, organized by research task and linked to their original sources. This selection currently focuses on the Python research ecosystem.
 
-[Explore AIPOCH Network](https://aipoch.network/) · [Research guides](docs/guides/README.md) · [Contribute](CONTRIBUTING.md)
+[Browse the website](https://aipoch.network/) · [Suggest a resource](https://github.com/imjszhang/aipoch-network/issues/new/choose) · [Selection criteria](#selection-criteria)
 
-AIPOCH Network helps researchers discover scientific software and research resources, understand their purpose and provenance, and continue to the original project or an independent research client. Code, documentation, authorship, and collaboration stay with their upstream projects.
+## Contents
 
-## What you can do today
+- [Scientific Computing & Data Analysis](#scientific-computing--data-analysis)
+- [Statistics & Machine Learning](#statistics--machine-learning)
+- [Data Visualization & Image Analysis](#data-visualization--image-analysis)
+- [Bioinformatics & Single-Cell Analysis](#bioinformatics--single-cell-analysis)
+- [Neuroscience & Neuroimaging](#neuroscience--neuroimaging)
+- [Astronomy](#astronomy)
+- [Mathematics & Network Analysis](#mathematics--network-analysis)
+- [Research Workflows & Notebooks](#research-workflows--notebooks)
+- [Research Guides](#research-guides)
 
-- **Discover research projects and capabilities.** Browse and search the [public network](https://aipoch.network/explore/) without signing in or installing a desktop client.
-- **Follow the sources.** Explore project and resource relationships, then visit the original repositories and documentation to check versions, licenses, and usage requirements.
-- **Contribute a public source or correction.** An existing GitHub project can be proposed with a public URL. No special manifest, Topics, AIPOCH account, or project modification is required for basic consideration.
-- **Build an independent consumer.** Read the [versioned public catalog](docs/catalog-contract.md) using the [consumer guide](docs/consumer-guide.md).
+## Scientific Computing & Data Analysis
 
-Community inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Authentication, local research execution, and client-specific integrations belong to independent clients and the Connector; browsing this website does not require them.
+- [NumPy](https://github.com/numpy/numpy) — Work with multidimensional arrays and numerical operations, providing a shared foundation for scientific Python libraries. [Details](https://aipoch.network/projects/project~numpy/)
+- [pandas](https://github.com/pandas-dev/pandas) — Clean, combine, reshape, and analyze tabular data using labeled DataFrame and Series structures in Python. [Details](https://aipoch.network/projects/project~pandas/)
+- [SciPy](https://github.com/scipy/scipy) — Apply numerical methods for optimization, integration, statistics, signal processing, and linear algebra on top of NumPy. [Details](https://aipoch.network/projects/project~scipy/)
+- [Xarray](https://github.com/pydata/xarray) — Analyze multidimensional datasets with named dimensions and coordinates, making array operations easier to relate to scientific measurements. [Details](https://aipoch.network/projects/project~xarray/)
 
-## Research guides
+## Statistics & Machine Learning
 
-These guides organize sources, selection considerations, and research-record suggestions. They are not validated end-to-end analysis tutorials.
+- [scikit-learn](https://github.com/scikit-learn/scikit-learn) — Build machine-learning workflows for classification, regression, and clustering, with preprocessing, model selection, and evaluation tools. [Details](https://aipoch.network/projects/project~scikit-learn/)
+- [Statsmodels](https://github.com/statsmodels/statsmodels) — Fit statistical models, run hypothesis tests, and explore relationships in data, including regression and time-series analysis. [Details](https://aipoch.network/projects/project~statsmodels/)
 
-| Guide | Purpose |
-| --- | --- |
-| [Getting started](docs/guides/getting-started.md) | Navigate from the public network to original research resources |
-| [Python single-cell analysis resources](docs/guides/python-single-cell.md) | Understand AnnData, Scanpy, and related resource roles, and keep reviewable research records |
+## Data Visualization & Image Analysis
 
-See the [guide index](docs/guides/README.md) for scope and source-review dates. Candidate resources and resources already in the catalog are explicitly distinguished in each guide.
+- [Matplotlib](https://github.com/matplotlib/matplotlib) — Create and customize scientific plots in Python, with control over axes, annotations, and publication-oriented figure layouts. [Details](https://aipoch.network/projects/project~matplotlib/)
+- [scikit-image](https://github.com/scikit-image/scikit-image) — Process images with Python algorithms for filtering, segmentation, feature extraction, and measurement in scientific analysis workflows. [Details](https://aipoch.network/projects/project~scikit-image/)
+- [seaborn](https://github.com/mwaskom/seaborn) — Explore statistical relationships through high-level plots built on Matplotlib, with support for grouping variables and comparing distributions. [Details](https://aipoch.network/projects/project~seaborn/)
+
+## Bioinformatics & Single-Cell Analysis
+
+- [AnnData](https://github.com/scverse/anndata) — Organize annotated data matrices with observation and variable metadata, separating single-cell data representation from downstream analysis methods. [Details](https://aipoch.network/projects/project~anndata/)
+- [Biopython](https://github.com/biopython/biopython) — Work with biological sequences, common bioinformatics file formats, and biological databases through reusable Python modules and interfaces. [Details](https://aipoch.network/projects/project~biopython/)
+- [MuData](https://github.com/scverse/mudata) — Organize multimodal datasets as collections of AnnData objects, with data structures and file I/O for linked modalities. [Details](https://aipoch.network/projects/project~mudata/)
+- [Scanpy](https://github.com/scverse/scanpy) — Analyze single-cell gene expression data with preprocessing, dimensionality reduction, clustering, and visualization tools built around AnnData. [Details](https://aipoch.network/projects/project~scanpy/)
+
+## Neuroscience & Neuroimaging
+
+- [MNE-Python](https://github.com/mne-tools/mne-python) — Analyze electrophysiology recordings such as EEG and MEG, with tools for preprocessing, visualization, and source estimation. [Details](https://aipoch.network/projects/project~mne-python/)
+- [NiBabel](https://github.com/nipy/nibabel) — Read and write neuroimaging file formats, accessing image arrays and metadata for use in downstream analysis tools. [Details](https://aipoch.network/projects/project~nibabel/)
+- [Nilearn](https://github.com/nilearn/nilearn) — Analyze neuroimaging data with statistical learning, including tools for extracting signals, fitting models, and visualizing results. [Details](https://aipoch.network/projects/project~nilearn/)
+
+## Astronomy
+
+- [Astropy](https://github.com/astropy/astropy) — Work with astronomical coordinates, physical units, time representations, and common data formats through a shared Python core library. [Details](https://aipoch.network/projects/project~astropy/)
+
+## Mathematics & Network Analysis
+
+- [NetworkX](https://github.com/networkx/networkx) — Create and analyze graphs, using network algorithms to study connectivity, paths, and structural properties of linked data. [Details](https://aipoch.network/projects/project~networkx/)
+- [SymPy](https://github.com/sympy/sympy) — Manipulate symbolic expressions and perform algebra, calculus, and equation solving when exact symbolic relationships matter alongside numerical results. [Details](https://aipoch.network/projects/project~sympy/)
+
+## Research Workflows & Notebooks
+
+- [Jupyter Notebook](https://github.com/jupyter/notebook) — Explore research interactively in a browser-based notebook that combines executable code, explanatory text, visualizations, and computational output. [Details](https://aipoch.network/projects/project~jupyter-notebook/)
+- [Snakemake](https://github.com/snakemake/snakemake) — Define analysis workflows as rules with file dependencies, helping organize execution from local machines to larger computing environments. [Details](https://aipoch.network/projects/project~snakemake/)
+
+## Research Guides
+
+- [Getting started](docs/guides/getting-started.md) — Find resources through AIPOCH Network and follow their original documentation.
+- [Python single-cell analysis resources](docs/guides/python-single-cell.md) — Understand tool roles, data structures, and research records before choosing an analysis path.
+
+These are resource guides, not tested end-to-end analysis tutorials. See the [guide index](docs/guides/README.md) for their review scope and dates.
+
+## Selection Criteria
+
+We select resources for a clear research use, identifiable upstream sources, accessible documentation, and an open-source license reviewed at the source. Each entry should explain a distinct use or role; stars alone do not determine inclusion. Maintenance status and source changes inform subsequent reviews.
+
+This is an editorial selection, not a benchmark or a validated software environment. Inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Check each project's current documentation, license, and requirements before use. Source and license review: September 16, 2026.
 
 ## Contribute
 
-Use the [contribution guide](CONTRIBUTING.md) and [issue forms](https://github.com/imjszhang/aipoch-network/issues/new/choose) to suggest a project, correct information, report a problem, or propose an improvement. Keep private data and credentials out of public issues and pull requests.
+[Suggest a resource or correction](https://github.com/imjszhang/aipoch-network/issues/new/choose) with a public GitHub URL. A sentence explaining its research use is helpful but optional. No special manifest, Topics, installed client, or AIPOCH account is required to propose a candidate.
 
-## For developers
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for review and contribution guidance. Candidate submission, catalog inclusion, and selection for this README are separate decisions. Report broken links or stale descriptions; discuss upstream software and methods with their original projects.
 
-The website, catalog pipeline, public contracts, and reference consumer are maintained in this repository. The website is hosted on GitHub Pages at [aipoch.network](https://aipoch.network/); it does not require a self-hosted backend or any particular client to operate.
+## About AIPOCH
 
-Use Node **24.18.1**, as pinned in `.node-version`:
+AIPOCH Network connects research projects, reusable capabilities, and their sources. This list is one entry point into that broader network. Use the [website](https://aipoch.network/) to search and browse related projects and capabilities without signing in or installing a client. Code, documentation, authorship, and collaboration remain upstream.
 
-```sh
-npm ci
-npm run catalog:build
-npm run dev
-```
-
-The initial offline catalog uses reviewed pilot fixtures, not live upstream state. Run `npm run check` for types, tests, and the static build; install Chromium with `npx playwright install chromium` before `npm run test:e2e`. The read-only `npm run catalog:refresh` fetches public GitHub data into a local cache for a subsequent build.
-
-Default builds use an unavailable client adapter. The separate `npm run build:demo` output simulates interactions and is labelled Demo. `npm run build:real` builds the Connector transport, but pairing still requires a running Connector and local approval. See [Connector integration](docs/connector-adapter.md) for supported environments and [workbench preview](docs/workbench-preview.md) for preview commands.
-
-| Documentation | Purpose |
-| --- | --- |
-| [Architecture and decisions](docs/architecture.md) | Module boundaries and design decisions |
-| [Public catalog contract](docs/catalog-contract.md) · [Field specifications](spec/README.md) | Data model, provenance, versions, and public interfaces |
-| [Consumer guide](docs/consumer-guide.md) | Read the catalog from an independent client |
-| [Automation](docs/automation.md) | Checks, trusted refreshes, and publication workflows |
-| [Connector integration](docs/connector-adapter.md) | Integration scope, environments, and verified limitations |
-| [Implementation status](docs/implementation-status.md) · [v9-r2 verification](docs/verification/v9-r2/implementation-status.md) | Delivery evidence and remaining work |
-| [Deployment](docs/deployment/public-pages.md) · [Operations](docs/delivery-operations.md) | Hosting and operational procedures |
-| [Design handoff](design/README.md) · [Explore design synchronization](design/changes/explore-dates-metrics-handoff.md) | Design references and implementation guidance |
+For the website's source code and public interfaces, see [Development](docs/development.md), the [Catalog Contract](docs/catalog-contract.md), and the [Consumer Guide](docs/consumer-guide.md).
 
 ## License
 
-Original code and corresponding documentation are licensed under [MIT](LICENSE). Upstream project content, original design references, and third-party dependencies retain their own licenses and rights. A catalog entry's license information describes its upstream source.
+Original code and corresponding documentation are licensed under [MIT](LICENSE). Listed projects, third-party content, and design references retain their own licenses and rights.
