@@ -2,7 +2,7 @@
 
 An open research network connecting research projects, reusable capabilities, and their original GitHub sources.
 
-[Explore AIPOCH Network](https://aipoch.network/) · [Research guides](docs/guides/README.md) · [Contribute](CONTRIBUTING.md) · [简体中文](README.zh-CN.md)
+[Explore AIPOCH Network](https://aipoch.network/) · [Research guides](docs/guides/README.md) · [Contribute](CONTRIBUTING.md)
 
 AIPOCH Network helps researchers discover scientific software and research resources, understand their purpose and provenance, and continue to the original project or an independent research client. Code, documentation, authorship, and collaboration stay with their upstream projects.
 
@@ -19,10 +19,10 @@ Community inclusion does not imply maintainer approval, organizational endorseme
 
 These guides organize sources, selection considerations, and research-record suggestions. They are not validated end-to-end analysis tutorials.
 
-| Guide | Language | Purpose |
-| --- | --- | --- |
-| [Getting started](docs/guides/getting-started.zh-CN.md) | 简体中文 | Navigate from the public network to original research resources |
-| [Python single-cell analysis resources](docs/guides/python-single-cell.zh-CN.md) | 简体中文 | Understand AnnData, Scanpy, and related resource roles, and keep reviewable research records |
+| Guide | Purpose |
+| --- | --- |
+| [Getting started](docs/guides/getting-started.md) | Navigate from the public network to original research resources |
+| [Python single-cell analysis resources](docs/guides/python-single-cell.md) | Understand AnnData, Scanpy, and related resource roles, and keep reviewable research records |
 
 See the [guide index](docs/guides/README.md) for scope and source-review dates. Candidate resources and resources already in the catalog are explicitly distinguished in each guide.
 
@@ -42,7 +42,9 @@ npm run catalog:build
 npm run dev
 ```
 
-The initial offline catalog uses reviewed pilot fixtures, not live upstream state. See [local development and verification](README.zh-CN.md#本地开发) for checks, refresh commands, and separate default, demo, and real Connector modes.
+The initial offline catalog uses reviewed pilot fixtures, not live upstream state. Run `npm run check` for types, tests, and the static build; install Chromium with `npx playwright install chromium` before `npm run test:e2e`. The read-only `npm run catalog:refresh` fetches public GitHub data into a local cache for a subsequent build.
+
+Default builds use an unavailable client adapter. The separate `npm run build:demo` output simulates interactions and is labelled Demo. `npm run build:real` builds the Connector transport, but pairing still requires a running Connector and local approval. See [Connector integration](docs/connector-adapter.md) for supported environments and [workbench preview](docs/workbench-preview.md) for preview commands.
 
 | Documentation | Purpose |
 | --- | --- |
@@ -54,7 +56,6 @@ The initial offline catalog uses reviewed pilot fixtures, not live upstream stat
 | [Implementation status](docs/implementation-status.md) · [v9-r2 verification](docs/verification/v9-r2/implementation-status.md) | Delivery evidence and remaining work |
 | [Deployment](docs/deployment/public-pages.md) · [Operations](docs/delivery-operations.md) | Hosting and operational procedures |
 | [Design handoff](design/README.md) · [Explore design synchronization](design/changes/explore-dates-metrics-handoff.md) | Design references and implementation guidance |
-| [中文项目说明](README.zh-CN.md) | Product principles, repository structure, and detailed historical context |
 
 ## License
 
