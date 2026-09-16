@@ -120,6 +120,9 @@ export function validateCatalog(input: unknown): ValidationResult {
     for (const id of org.resource_ids) requireRef(id, ['resource'], `${org.id}.resource_ids`);
     if (org.participation !== 'community_indexed' && !data.claims.some(claim => claim.subject_id === org.id && claim.type === 'organization_curation' && claim.status === 'verified')) errors.push(`${org.id}: active organization participation requires a separately verified curation claim`);
   }
+  for (const row of [...data.projects, ...data.resources]) for (const field of ['classification', 'research_tags'] as const) {
+    if (row[field] && !row.provenance[field]?.length) errors.push(`${row.id}: ${field} must have provenance`);
+  }
   for (const project of data.projects) {
     if (!project.id.startsWith('project:')) errors.push(`${project.id}: invalid project identity`);
     refs(project.source_refs, `${project.id}.source_refs`);
@@ -190,6 +193,13 @@ export function validateManifest(input: unknown): ValidationResult {
   for (const name of COLLECTION_NAMES) for (const shard of manifest.collections[name]) {
     if (seen.has(shard.href)) errors.push(`duplicate shard href: ${shard.href}`);
     seen.add(shard.href);
+  }
+  const vocabularies = new Set<string>();
+  for (const dictionary of manifest.taxonomies ?? []) {
+    const key = JSON.stringify([dictionary.scheme,dictionary.version]);
+    if (vocabularies.has(key) || seen.has(dictionary.href)) errors.push('duplicate taxonomy descriptor');
+    if (dictionary.href !== `taxonomies/${dictionary.sha256}.json`) errors.push('taxonomy path must be content-addressed');
+    vocabularies.add(key); seen.add(dictionary.href);
   }
   return result(errors);
 }

@@ -1,10 +1,11 @@
+import { ford, researchTags, fieldMatches, knownTags } from '../../spec/classification.js';
 import type { Actor, CatalogData, CatalogDate, MetricObservation, Observation, SourceRepository } from '../../spec/types.js';
 import type { Entry } from './model.js';
 
 export const DAY = 86_400_000;
 export const FRESH_WINDOW = 2 * DAY;
 export const DISPLAY_WINDOW = 7 * DAY;
-export const discoveryKeys = ['added_after','added_before','added_date','updated_after','updated_before','updated_date','source_after','source_before','source_date','min_stars','min_forks','min_followers','observation','include_stale_metrics','sort'] as const;
+export const discoveryKeys = ['field','tag','resource_type','added_after','added_before','added_date','updated_after','updated_before','updated_date','source_after','source_before','source_date','min_stars','min_forks','min_followers','observation','include_stale_metrics','sort'] as const;
 const repositoryKeys = ['source_after','source_before','source_date','min_stars','min_forks'];
 export const sorts = { relevance: 'Most relevant', title: 'Name A–Z', added: 'Recently added', catalog_updated: 'Recently updated', source_activity: 'Latest source activity', stars: 'Most starred', followers: 'Most followed', updated: 'Legacy updated order' } as const;
 export type DiscoverySort = keyof typeof sorts;
@@ -39,16 +40,21 @@ export function parseDiscovery(params: URLSearchParams, kind: string, referenceT
   if (params.has('type') && !['all','project','resource','organization','actor','collection','source_repository'].includes(params.get('type')!)) invalid(['type'], 'Unknown entry type. Choose a supported category.');
   if (params.has('observation') && !['fresh','stale','missing'].includes(params.get('observation')!)) invalid(['observation'], 'Unknown observation status.');
   if (params.has('include_stale_metrics') && params.get('include_stale_metrics') !== '1') invalid(['include_stale_metrics'], 'Allow stale metrics must be explicitly set to 1.');
+  for (const key of ['field','tag','resource_type']) if (params.has(key)) {
+    const values = params.get(key)!.split(',');
+    if (values.length > 100 || new Set(values).size !== values.length || values.some(value => key === 'field' ? !ford.fields.some(field => field.code === value) && !['unclassified','unrecorded'].includes(value) : key === 'tag' ? !researchTags.tags.some(tag => tag.id === value) : !/^[a-z][a-z0-9_-]{0,99}$/.test(value))) invalid([key], `Unknown or repeated ${key.replaceAll('_',' ')} option.`);
+  }
   const sort = (Object.hasOwn(sorts, params.get('sort')!) ? params.get('sort') : 'relevance') as DiscoverySort;
-  const legacyRepositoryKeys = ['domain','access','organization'];
+  const legacyRepositoryKeys = ['domain','access','organization','field','tag','resource_type'];
   const repo = repositoryKeys.some(key => params.has(key)) || sort === 'stars' || sort === 'source_activity';
   const account = params.has('min_followers') || sort === 'followers';
   if (account && legacyRepositoryKeys.some(key => params.has(key))) invalid([...legacyRepositoryKeys,'min_followers','sort'], 'Research area, organization membership and source conditions apply to project or source records, not account metrics.');
   if (repo && account) invalid([...repositoryKeys,'min_followers','sort'], 'Repository and account criteria cannot be combined. Choose one scope to repair this link.');
   const selectedKind = kind === 'all' ? params.get('type') || 'all' : kind;
   if (selectedKind !== 'all' && !['project','resource'].includes(selectedKind)) {
-    for (const key of ['domain','organization']) if (params.has(key)) invalid([key], `${key === 'domain' ? 'Research area' : 'Organization membership'} applies to Projects and Capabilities.`);
+    for (const key of ['domain','organization','field','tag','resource_type']) if (params.has(key)) invalid([key], `${key === 'domain' ? 'Research area' : 'Organization membership'} applies to Projects and Capabilities.`);
   }
+  if (params.has('resource_type') && !['all','resource'].includes(selectedKind)) invalid(['resource_type'], 'Resource type applies to Capabilities.');
   if (params.has('access') && selectedKind !== 'all' && (!isRepositoryKind(selectedKind) || selectedKind === 'source_repository' && ['pinned','unpinned'].includes(params.get('access')!))) invalid(['access'], 'These source conditions do not apply to the selected category.');
   if (repo && selectedKind !== 'all' && !isRepositoryKind(selectedKind)) invalid([...repositoryKeys,'sort'], 'Repository criteria apply to Projects, Capabilities and Sources.');
   if (account && selectedKind !== 'all' && !isAccountKind(selectedKind)) invalid(['min_followers','sort'], 'Follower criteria apply to Researchers and Organizations.');
@@ -62,14 +68,15 @@ export function changeDiscovery(params: URLSearchParams, changes: Record<string,
   next.delete('page');
   for (const [key,value] of Object.entries(changes)) { if (value && !(key === 'type' && value === 'all') && !(key === 'sort' && value === 'relevance') && !(key === 'page' && value === '1')) next.set(key,value); else next.delete(key); }
   const selectedKind = kind === 'all' ? next.get('type') || 'all' : kind;
-  const toRepo = [...repositoryKeys,'domain','access','organization'].some(key => Boolean(changes[key])) || ['stars','source_activity'].includes(changes.sort);
+  const toRepo = [...repositoryKeys,'domain','access','organization','field','tag','resource_type'].some(key => Boolean(changes[key])) || ['stars','source_activity'].includes(changes.sort);
   const toAccount = Boolean(changes.min_followers) || changes.sort === 'followers';
   if (toRepo) { clear(['min_followers']); if (next.get('sort') === 'followers') clear(['sort']); }
-  if (toAccount) { clear([...repositoryKeys,'domain','access','organization']); if (['stars','source_activity'].includes(next.get('sort')!)) clear(['sort']); }
+  if (toAccount) { clear([...repositoryKeys,'domain','access','organization','field','tag','resource_type']); if (['stars','source_activity'].includes(next.get('sort')!)) clear(['sort']); }
   if (changes.type !== undefined) {
     if (selectedKind !== 'all' && !isRepositoryKind(selectedKind)) { clear([...repositoryKeys,'access','domain']); if (['stars','source_activity'].includes(next.get('sort')!)) clear(['sort']); }
     if (selectedKind !== 'all' && !isAccountKind(selectedKind)) { clear(['min_followers']); if (next.get('sort') === 'followers') clear(['sort']); }
-    if (selectedKind !== 'all' && !['project','resource'].includes(selectedKind)) clear(['domain','organization']);
+    if (selectedKind !== 'all' && !['project','resource'].includes(selectedKind)) clear(['domain','organization','field','tag','resource_type']);
+    if (!['all','resource'].includes(selectedKind)) clear(['resource_type']);
     if (selectedKind === 'source_repository' && ['pinned','unpinned'].includes(next.get('access')!)) clear(['access']);
     if (selectedKind === 'collection') clear(['observation','include_stale_metrics']);
   }
@@ -134,6 +141,12 @@ export function matchingSources(entry: Entry, catalog: CatalogData, filters: Dis
 export function matchesDiscovery(entry: Entry, catalog: CatalogData, filters: DiscoveryFilters): boolean {
   if (filters.errors.length) return false;
   const { params, referenceTime, includeStale, scope } = filters;
+  if (params.has('field') || params.has('tag')) {
+    if (entry.kind !== 'project' && entry.kind !== 'resource') return false;
+    if (params.has('field') && !params.get('field')!.split(',').some(code => fieldMatches(entry,code))) return false;
+    if (params.has('tag') && !params.get('tag')!.split(',').some(id => knownTags(entry).includes(id))) return false;
+  }
+  if (params.has('resource_type') && (entry.kind !== 'resource' || !params.get('resource_type')!.split(',').includes(entry.resource_type))) return false;
   if (!catalogDateMatches(entry.catalog_dates?.first_published,params,'added') || !catalogDateMatches(entry.catalog_dates?.content_updated,params,'updated')) return false;
   if (scope === 'repository' && !isRepositoryKind(entry.kind) || scope === 'account' && !isAccountKind(entry.kind)) return false;
   const repoCriteria = repositoryKeys.some(key => params.has(key));

@@ -1,3 +1,4 @@
+import { ford, researchTags, fieldMatches } from '../../../spec/classification.js';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, Search, SlidersHorizontal, X } from 'lucide-react';
 import MiniSearch from 'minisearch';
@@ -24,7 +25,7 @@ const accessOptions: Record<string, string> = {
   unknown: 'License unknown',
   stale: 'Stale source observation',
 };
-const filterLabels: Record<string,string> = { added_after:'Added from', added_before:'Added through', added_date:'Added date', updated_after:'Catalog updated from', updated_before:'Catalog updated through', updated_date:'Catalog update date', source_after:'Source commit from', source_before:'Source commit through', source_date:'Source commit date', min_stars:'Minimum stars', min_forks:'Minimum forks', min_followers:'Minimum followers', observation:'Observation', include_stale_metrics:'Allow stale metrics' };
+const filterLabels: Record<string,string> = { field: 'Research discipline', tag: 'Research tags', resource_type: 'Resource type', added_after:'Added from', added_before:'Added through', added_date:'Added date', updated_after:'Catalog updated from', updated_before:'Catalog updated through', updated_date:'Catalog update date', source_after:'Source commit from', source_before:'Source commit through', source_date:'Source commit date', min_stars:'Minimum stars', min_forks:'Minimum forks', min_followers:'Minimum followers', observation:'Observation', include_stale_metrics:'Allow stale metrics' };
 type FilterChanges = Record<string, string>;
 
 export function Directory({ data, kind, base }: { data: SiteData; kind: string; base: string }) {
@@ -134,8 +135,28 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     {(params.has(`${field}_after`) || params.has(`${field}_before`)) && <div className="directory-date-range"><label htmlFor={`${prefix}-${field}-after`}>{label}: from (UTC)</label><input id={`${prefix}-${field}-after`} disabled={!controlsReady} type="date" value={params.get(`${field}_after`) ?? ''} onChange={event => update({ [`${field}_after`]: event.target.value })}/><label htmlFor={`${prefix}-${field}-before`}>{label}: through (UTC)</label><input id={`${prefix}-${field}-before`} disabled={!controlsReady} type="date" value={params.get(`${field}_before`) ?? ''} onChange={event => update({ [`${field}_before`]: event.target.value })}/></div>}
   </>;
   const minimumControl = (prefix: string, key: string, label: string) => <><label htmlFor={`${prefix}-${key}`}>{label}</label><input id={`${prefix}-${key}`} disabled={!controlsReady} inputMode="numeric" type="text" placeholder="Any count" value={params.get(key) ?? ''} aria-invalid={discovery.invalidKeys.includes(key)} onChange={event => update({ [key]: event.target.value })}/></>;
+  const classificationRows = [...catalog.projects, ...catalog.resources].filter(row => filter === 'all' || row.kind === filter);
+  const fieldCount = (code: string) => new Set(classificationRows.filter(row => fieldMatches(row,code)).map(row => row.id)).size;
+  const selectedValues = (key: string) => params.get(key)?.split(',') ?? [];
+  const toggleValue = (key: string, value: string) => { const values = new Set(selectedValues(key)); values.has(value) ? values.delete(value) : values.add(value); update({ [key]: [...values].sort().join(',') }); };
+  const taxonomyLabel = (key: string) => selectedValues(key).map(value => key === 'field' ? ford.fields.find(field => field.code === value)?.label_en ?? (value === 'unclassified' ? 'Awaiting classification' : value === 'unrecorded' ? 'Classification not recorded' : value) : key === 'tag' ? researchTags.tags.find(tag => tag.id === value)?.label_en ?? value : value).join(', ');
   const filterContent = (prefix: string) => <>
-    {(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-domain`}>Research area</label>
+    {(filter === 'all' || filter === 'project' || filter === 'resource') && <>
+      <label htmlFor={`${prefix}-field`}>Research discipline</label>
+      <select id={`${prefix}-field`} disabled={!controlsReady} value="" onChange={event => { if (event.target.value) toggleValue('field',event.target.value); }}>
+        <option value="">Add a discipline…</option>
+        {ford.fields.filter(field => field.level === 1).map(parent => <optgroup key={parent.code} label={`${parent.code} ${parent.label_en}`}><option value={parent.code}>{parent.label_en} — all ({fieldCount(parent.code)})</option>{ford.fields.filter(field => field.parent_code === parent.code).map(field => <option key={field.code} value={field.code}>{field.code} {field.label_en} ({fieldCount(field.code)})</option>)}</optgroup>)}
+        <option value="unclassified">Awaiting classification ({fieldCount('unclassified')})</option><option value="unrecorded">Classification not recorded ({fieldCount('unrecorded')})</option>
+      </select>
+      <div className="classification-chips">{selectedValues('field').map(code => <button type="button" key={code} onClick={() => toggleValue('field',code)} aria-label={`Remove discipline ${code}`}>{ford.fields.find(field => field.code === code)?.label_en ?? code} ×</button>)}</div>
+      <label htmlFor={`${prefix}-tag`}>Methods, tasks & topics</label>
+      <select id={`${prefix}-tag`} disabled={!controlsReady} value="" onChange={event => { if (event.target.value) toggleValue('tag',event.target.value); }}><option value="">Add a research tag…</option>{['method','task','topic'].map(category => <optgroup label={category} key={category}>{researchTags.tags.filter(tag => tag.category === category).map(tag => <option key={tag.id} value={tag.id}>{tag.label_en}</option>)}</optgroup>)}</select>
+      <div className="classification-chips">{selectedValues('tag').map(id => <button type="button" key={id} onClick={() => toggleValue('tag',id)} aria-label={`Remove tag ${id}`}>{researchTags.tags.find(tag => tag.id === id)?.label_en ?? id} ×</button>)}</div>
+      <p className="filter-help">Choose one or more. Matches any selection within each group and all groups together. Discipline counts cover this directory before other filters.</p>
+    </>}
+    {(filter === 'all' || filter === 'resource') && <><label htmlFor={`${prefix}-resource-type`}>Resource type</label><select id={`${prefix}-resource-type`} disabled={!controlsReady} value={params.get('resource_type') ?? ''} onChange={event => update({ resource_type: event.target.value })}><option value="">All resource types</option>{selectedValues('resource_type').length > 1 && <option value={params.get('resource_type')!}>{selectedValues('resource_type').join(', ')}</option>}{[...new Set(['tool','method','workflow','skill','dataset','model','reproduction','documentation','unknown',...catalog.resources.map(row => row.resource_type),...selectedValues('resource_type')])].sort().map(value => <option key={value} value={value}>{value}</option>)}</select></>}
+
+    {(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-domain`}>Legacy research area</label>
     <select id={`${prefix}-domain`} disabled={!controlsReady} value={domain} onChange={event => update({ domain: event.target.value })}>
       <option value="">All areas</option>
       {domains.map(value => <option key={value}>{value}</option>)}
@@ -176,7 +197,7 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     {discovery.scope !== 'all' && <p className="directory-scope" role="status">{discovery.scope === 'repository' ? 'Repository criteria: Projects, Capabilities and Sources. Each result uses one matching source.' : 'Account criteria: Researchers and Organizations. Counts belong to the GitHub profile.'}</p>}
     {discovery.errors.length > 0 && <div className="notice directory-filter-errors" role="alert"><b>Check this filter link</b><ul>{discovery.errors.map((error,index) => <li key={index}>{error}</li>)}</ul><button disabled={!controlsReady} className="text-button" onClick={repair}>Clear incompatible filters</button></div>}
   </>;
-  const activeFilters = [domain, organizationId && (organization?.title ?? 'Unknown organization'), collectionId && (collection?.title ?? 'Unknown collection'), access && (accessOptions[access] ?? 'Unknown status'), ...discoveryKeys.filter(key => key !== 'sort' && params.has(key)).map(key => `${filterLabels[key]}: ${key === 'include_stale_metrics' ? 'yes' : params.get(key)}`)].filter(Boolean);
+  const activeFilters = [domain, organizationId && (organization?.title ?? 'Unknown organization'), collectionId && (collection?.title ?? 'Unknown collection'), access && (accessOptions[access] ?? 'Unknown status'), ...discoveryKeys.filter(key => key !== 'sort' && params.has(key)).map(key => `${filterLabels[key]}: ${key === 'include_stale_metrics' ? 'yes' : ['field','tag','resource_type'].includes(key) ? taxonomyLabel(key) : params.get(key)}`)].filter(Boolean);
   const hasSearchResults = Boolean(query.trim()) && searchState === 'ready';
   return <>
     <div className="directory-page-heading"><PageHeader title={config.title} description={config.description} action={<ArrowLink to="/submit/" primary>Share research</ArrowLink>}/></div>

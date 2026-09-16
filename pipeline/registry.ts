@@ -1,15 +1,19 @@
 import Ajv from 'ajv';
+import { validateClassificationDraft } from '../spec/taxonomy.js';
+import { ford, researchTags } from '../spec/classification.js';
+import type { ResearchClassification, Provenance } from '../spec/types.js';
 import type { ErrorObject } from 'ajv';
 import { normalizeGitHubUrl, entityId, actorId, ID_PATTERN, FULL_COMMIT_PATTERN, SHA256_PATTERN, isSafeHttpsUrl, isSafeRepositoryPath } from '../spec/identity.js';
-import { definitions } from '../spec/schema.js';
+import { classificationProperties, definitions } from '../spec/schema.js';
 import { relationKindsAllowed } from '../spec/relations.js';
 import type { Actor, Claim, Relation, Resource, ResourceType, SourceRef } from '../spec/types.js';
 
 export interface RegistrySource { url: string; reviewed_at: string; review_note: string }
 export interface RegistrySourceRef extends Omit<SourceRef, 'source_id' | 'url'> { source_url: string; source_id?: string }
 export interface RegistryAttribution { role: 'editor' | 'community'; url: string; observed_at: string }
-export interface RegistryProject { key: string; title: string; description?: string; domains: string[]; sources: string[]; resources: string[]; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
-export interface RegistryResource { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; download_url?: string; inputs?: string[]; outputs?: string[]; conditions?: string[]; runtime?: Resource['runtime']; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
+export interface RegistryClassification extends ResearchClassification { classification_provenance?: Provenance[]; research_tags_provenance?: Provenance[] }
+export interface RegistryProject extends RegistryClassification { key: string; title: string; description?: string; domains: string[]; sources: string[]; resources: string[]; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
+export interface RegistryResource extends RegistryClassification { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; download_url?: string; inputs?: string[]; outputs?: string[]; conditions?: string[]; runtime?: Resource['runtime']; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
 export interface RegistryCollection { key: string; title: string; description?: string; selection_basis: string; item_ids: string[] }
 export interface Registry {
   version: 1;
@@ -34,7 +38,7 @@ const array = (items: unknown, minItems = 0, maxItems = 10000) => ({ type: 'arra
 const object = (properties: Record<string, unknown>, required = Object.keys(properties)) => ({ type: 'object', properties, required, additionalProperties: false });
 const metadata = { key, title: text(300), description: text(20000) };
 const declaredRef = object({ source_url: sourceUrl, source_id: { type: 'string', pattern: '^source:github:[1-9][0-9]*$' }, role: { enum: ['primary', 'documentation', 'implementation', 'data', 'evidence', 'related'] }, path: { type: 'string', format: 'safe-repository-path' }, commit: { type: 'string', pattern: FULL_COMMIT_PATTERN }, ref: text(500), sha256: { type: 'string', pattern: SHA256_PATTERN }, resolved_at: date }, ['source_url', 'role']);
-const attributed = { source_refs: array(declaredRef, 1, 100), attribution: object({ role: { enum: ['editor', 'community'] }, url: safeUrl, observed_at: date }) };
+const attributed = { ...classificationProperties, classification_provenance: array({ $ref: '#/$defs/provenance' }, 1, 100), research_tags_provenance: array({ $ref: '#/$defs/provenance' }, 1, 100), source_refs: array(declaredRef, 1, 100), attribution: object({ role: { enum: ['editor', 'community'] }, url: safeUrl, observed_at: date }) };
 const projectSchema = object({ ...metadata, ...attributed, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources']);
 const resourceSchema = object({ ...metadata, ...attributed, type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, download_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100), conditions: array(text(2000), 0, 100), runtime: object({ status: { enum: ['not_described', 'maintainer_described', 'community_described'] }, documentation_url: safeUrl }, ['status']) }, ['key', 'title', 'type', 'domains', 'sources']);
 const strictClaim = { ...structuredClone(definitions.claim), additionalProperties: false };
@@ -151,6 +155,16 @@ export function validateRegistry(input: unknown): string[] {
       ids.add(recordId);
       if (kind === 'resource' && 'runtime' in record && record.runtime && record.runtime.status !== 'not_described' && !record.runtime.documentation_url) errors.push(`Described resource runtime requires a public documentation URL: ${recordId}`);
       if ('sources' in record) {
+        const draft = { ...(record.classification ? { classification: record.classification } : {}), ...(record.research_tags ? { research_tags: record.research_tags } : {}) };
+        errors.push(...validateClassificationDraft(draft, ford, researchTags).errors.map(error => `${recordId}: ${error}`));
+        for (const field of ['classification', 'research_tags'] as const) {
+          const evidence = record[`${field}_provenance`];
+          if (Boolean(record[field]) !== Boolean(evidence?.length)) errors.push(`${recordId}: ${field} requires separate evidence`);
+          for (const item of evidence ?? []) {
+            if (item.review !== 'reviewed' || !['editor','community'].includes(item.role) || !item.scope || !item.source_id || !item.commit || !item.path) errors.push(`${recordId}: ${field} requires reviewed editorial file evidence`);
+            if (!record.sources.some(url => item.url.startsWith(`${url}/blob/${item.commit}/`))) errors.push(`${recordId}: ${field} evidence must belong to its source`);
+          }
+        }
         const referenced = new Set<string>();
         for (const url of record.sources) {
           const canonical = normalizeGitHubUrl(url).canonical_url;

@@ -59,7 +59,7 @@ export function prepareRecoveryInputs(historicalRegistry: Registry, historicalBa
         allowed = same(a.resource_ids, b.resource_ids);
       }
       if (allowed) {
-        restore(row, old!, name === 'resources' ? ['title', 'description', 'type', 'domains', 'inputs', 'outputs'] : ['title', 'description', 'domains']);
+        restore(row, old!, name === 'resources' ? ['title', 'description', 'type', 'classification', 'research_tags', 'classification_provenance', 'research_tags_provenance', 'domains', 'inputs', 'outputs'] : ['title', 'description', 'classification', 'research_tags', 'classification_provenance', 'research_tags_provenance', 'domains']);
         report.restored[name]++;
       } else report.skipped[name]++;
     }

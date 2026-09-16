@@ -23,6 +23,10 @@ const entityProperties = {
 const entityRequired = ['kind', 'id', 'title', 'status', 'updated_at', 'provenance'];
 const entity = (kind: string, properties: Record<string, unknown>, required: string[]) => object({ ...entityProperties, kind: { const: kind }, ...properties }, [...entityRequired, ...required]);
 
+export const classificationProperties = {
+  classification: object({ scheme: text(100), version: text(100), codes: { ...arrayOf(text(100)), maxItems: 100, uniqueItems: true }, unclassified_reason: text(2000) }, ['scheme', 'version', 'codes']),
+  research_tags: object({ scheme: text(100), version: text(100), ids: { ...arrayOf(text(100)), maxItems: 100, uniqueItems: true } }),
+};
 export const definitions = {
   catalog_date: {
     ...object({ value: date, basis: enumOf('exact', 'observed_bound', 'unknown'), evidence: url }, ['basis']),
@@ -72,9 +76,11 @@ export const definitions = {
     participation: enumOf('community_indexed', 'maintainer_acknowledged', 'actively_curated'),
   }, ['actor_id', 'source_ids', 'resource_ids', 'participation']),
   project: entity('project', {
+    ...classificationProperties,
     question: text(5000), domains: arrayOf(text(100)), source_refs: arrayOf(ref('source_ref'), 1), resource_ids: ids,
   }, ['domains', 'source_refs', 'resource_ids']),
   resource: entity('resource', {
+    ...classificationProperties,
     resource_type: { type: 'string', minLength: 1, maxLength: 100, pattern: '^[a-z][a-z0-9_-]*$' },
     domains: arrayOf(text(100)), source_refs: arrayOf(ref('source_ref'), 1), project_ids: ids, license: ref('license'),
     documentation_url: url, download_url: url, inputs: arrayOf(text(2000)), outputs: arrayOf(text(2000)), conditions: arrayOf(text(2000)),
@@ -115,8 +121,9 @@ export const manifestSchema = {
     contract_version: { type: 'string', pattern: '^1\\.[0-9]+\\.[0-9]+$' },
     snapshot_id: { type: 'string', pattern: '^[a-z0-9][a-z0-9._-]{0,127}$' },
     generated_at: date,
+    taxonomies: { ...arrayOf(object({ scheme: text(100), version: text(100), revision: text(100), href: path, sha256: hash, bytes: { type: 'integer', minimum: 1, maximum: 1048576 } }, ['scheme', 'version', 'href', 'sha256', 'bytes'])), maxItems: 16 },
     collections: object(Object.fromEntries(COLLECTION_NAMES.map(name => [name, arrayOf(object({ href: path, sha256: hash, bytes: count, count }, ['href', 'sha256', 'bytes']))]))),
-  }),
+  }, ['contract_version', 'snapshot_id', 'generated_at', 'collections']),
 };
 export const shardSchema = {
   $schema: 'http://json-schema.org/draft-07/schema#',

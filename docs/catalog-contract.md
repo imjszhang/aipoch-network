@@ -291,3 +291,7 @@ v1 的状态字段在发布前固定语义。未知字段与未知分类允许�
 | P5 | 网站更换搜索产物或内部路由 | 公共消费者无需同步修改 |
 
 字段字典、关系约束、状态规则、模式与合成样例现已在 `spec/` 实现。`pipeline/` 生成目录，`consumer/` 仅用 Node 内置模块通过静态 HTTP 消费。实现与验证结果仍需逐项符合本文件；任何阶段均不以 Open-Science 集成成功作为发布前提。
+
+## Standard discipline extension (1.2.0)
+
+The [FORD classification design](research-classification.md) defines the new discipline/tag separation and legacy compatibility. The local writer, public schemas, independent reader and website support the optional 1.2.0 fields and manifest-bound dictionaries. Original `domains` remain required and unchanged. Public deployment is separate from this local implementation.

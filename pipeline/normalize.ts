@@ -131,11 +131,11 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     const license = fixed ? { status: 'unknown' as const } : licenses.every(row => row.status === 'identified' && row.spdx_id === licenses[0].spdx_id) ? licenses[0] : { status: licenses.every(row => row.status === 'unknown') ? 'unknown' as const : 'conflicting' as const };
     const documentation_url = entry.documentation_url ?? (!fixed ? first.homepage : undefined);
     catalog.resources.push({ kind: 'resource', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
-      resource_type: entry.type, domains: entry.domains, source_refs, project_ids: [], license,
+      ...classificationValues(entry), resource_type: entry.type, domains: entry.domains, source_refs, project_ids: [], license,
       ...(documentation_url ? { documentation_url } : {}), ...(entry.download_url ? { download_url: entry.download_url } : {}),
       ...(entry.inputs ? { inputs: entry.inputs } : {}), ...(entry.outputs ? { outputs: entry.outputs } : {}),
       ...(entry.conditions ? { conditions: entry.conditions } : {}), runtime: entry.runtime ? structuredClone(entry.runtime) : { status: 'not_described' },
-      provenance: { title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), resource_type: editor(source_refs, entry.attribution), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution),
+      provenance: { ...classificationEvidence(entry), title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), resource_type: editor(source_refs, entry.attribution), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution),
         ...(entry.inputs ? { inputs: editor(source_refs, entry.attribution) } : {}), ...(entry.outputs ? { outputs: editor(source_refs, entry.attribution) } : {}), ...(entry.conditions ? { conditions: editor(source_refs, entry.attribution) } : {}), ...(entry.runtime ? { runtime: editor(source_refs, entry.attribution) } : {}),
         ...(entry.download_url ? { download_url: editor(source_refs, entry.attribution) } : {}), ...(entry.documentation_url ? { documentation_url: editor(source_refs, entry.attribution) } : {}), ...(!fixed ? { license: first.provenance.license } : {}) } });
   }
@@ -147,7 +147,7 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     const first = catalog.sources.find(source => source.id === source_refs[0].source_id)!;
     const description = entry.description ?? (!entry.source_refs?.some(ref => ref.commit) ? first.description : undefined);
     catalog.projects.push({ kind: 'project', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
-      domains: entry.domains, source_refs, resource_ids, provenance: { title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution) } });
+      ...classificationValues(entry), domains: entry.domains, source_refs, resource_ids, provenance: { ...classificationEvidence(entry), title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution) } });
     for (const resource of catalog.resources) if (resource_ids.includes(resource.id)) resource.project_ids.push(id);
   }
   for (const actor of catalog.actors.filter(actor => actor.account_type === 'organization')) {
@@ -301,4 +301,11 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
   }
   for (const rows of Object.values(catalog) as { id: string }[][]) rows.sort((a, b) => a.id.localeCompare(b.id, 'en'));
   return { catalog, diagnostics, generated_at: at };
+}
+
+function classificationValues(entry: import('./registry.js').RegistryClassification) {
+  return { ...(entry.classification ? { classification: structuredClone(entry.classification) } : {}), ...(entry.research_tags ? { research_tags: structuredClone(entry.research_tags) } : {}) };
+}
+function classificationEvidence(entry: import('./registry.js').RegistryClassification) {
+  return { ...(entry.classification_provenance ? { classification: structuredClone(entry.classification_provenance) } : {}), ...(entry.research_tags_provenance ? { research_tags: structuredClone(entry.research_tags_provenance) } : {}) };
 }

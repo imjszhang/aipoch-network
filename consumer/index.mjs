@@ -285,6 +285,24 @@ export async function loadCatalog(manifestUrl, options = {}) {
     assert(part.bytes <= limits.shardBytes && declaredTotal <= limits.totalBytes && descriptors.length < limits.shards, 'Catalog manifest exceeds download budget');
     descriptors.push({ name, part, url });
   }
+  const taxonomyParts = manifest.taxonomies === undefined ? [] : array(manifest.taxonomies,'manifest.taxonomies');
+  assert(taxonomyParts.length <= 16,'Too many taxonomies');
+  const taxonomyKeys = new Set();
+  for (const part of taxonomyParts) {
+    obj(part,'taxonomy descriptor'); text(part.scheme,'taxonomy.scheme',100); text(part.version,'taxonomy.version',100);
+    if (part.revision !== undefined) text(part.revision,'taxonomy.revision',100);
+    integer(part.bytes,'taxonomy.bytes',1); pattern(part.sha256,hashPattern,'taxonomy.sha256');
+    assert(part.href === `taxonomies/${part.sha256}.json`,'Invalid taxonomy path');
+    const key = JSON.stringify([part.scheme,part.version]), url = resolveShardUrl(entry,part.href);
+    assert(!taxonomyKeys.has(key) && !hrefs.has(url),'Duplicate taxonomy descriptor'); taxonomyKeys.add(key); hrefs.add(url);
+    declaredTotal += part.bytes; assert(part.bytes <= 1048576 && declaredTotal <= limits.totalBytes,'Taxonomy download budget exceeded');
+  }
+  const taxonomies = [];
+  for (const part of taxonomyParts) {
+    const bytes = await fetchBytes(resolveShardUrl(entry,part.href),part.bytes,fetcher,limits.timeoutMs);
+    assert(bytes.length === part.bytes && createHash('sha256').update(bytes).digest('hex') === part.sha256,'Taxonomy bytes or hash mismatch');
+    const value = parse(bytes,'taxonomy'); validateTaxonomy(value,part); taxonomies.push(value);
+  }
   let totalRecords = 0;
   for (const { name, part, url } of descriptors) {
     const bytes = await fetchBytes(url, Math.min(part.bytes, limits.shardBytes), fetcher, limits.timeoutMs);
@@ -298,12 +316,13 @@ export async function loadCatalog(manifestUrl, options = {}) {
     data[name].push(...records);
   }
   const records = validateData(data, manifest.generated_at);
+  validateClassification(data,taxonomies);
   const listResources = (query = '') => {
     assert(typeof query === 'string', 'Resource query must be text'); const term = query.normalize('NFKC').toLowerCase();
-    return data.resources.filter(item => item.status === 'listed' && (!term || `${item.title} ${item.description ?? ''} ${item.domains.join(' ')}`.normalize('NFKC').toLowerCase().includes(term)));
+    return data.resources.filter(item => item.status === 'listed' && (!term || `${item.title} ${item.description ?? ''} ${item.domains.join(' ')} ${taxonomySearch(item,taxonomies)}`.normalize('NFKC').toLowerCase().includes(term)));
   };
   return {
-    manifest, collections: data,
+    manifest, taxonomies, collections: data,
     get: value => records.get(value),
     listResources,
     locateResource(value) {
@@ -320,4 +339,61 @@ export async function loadCatalog(manifestUrl, options = {}) {
       }) };
     },
   };
+}
+
+// v1.2 optional dictionaries. Integrity and total budgets are checked before interpretation.
+function validateTaxonomy(value, part) {
+  obj(value, 'taxonomy');
+  assert(value.scheme === part.scheme && value.version === part.version && (part.revision === undefined || value.revision === part.revision), 'Taxonomy identity mismatch');
+  if (part.scheme === 'oecd-ford' && part.version === '2015') {
+    const expected = new Set(); [7,11,5,5,9,5].forEach((n,i) => { expected.add(String(i+1)); for (let j=1;j<=n;j++) expected.add(`${i+1}.${j}`); });
+    const seen = new Set();
+    for (const field of array(value.fields,'taxonomy.fields')) {
+      obj(field,'field'); assert(expected.has(field.code) && !seen.has(field.code), 'Invalid or duplicate FORD code'); seen.add(field.code);
+      const parent = field.code.includes('.') ? field.code.split('.')[0] : null;
+      assert(field.parent_code === parent && field.level === (parent ? 2 : 1), 'Invalid FORD hierarchy');
+      text(field.label_en,'field.label_en',2000); text(field.label_zh,'field.label_zh',2000);
+    }
+    assert(seen.size === expected.size, 'Incomplete FORD dictionary');
+  }
+  if (part.scheme === 'aipoch-research-tags' && part.version === '1') {
+    const seen = new Set(), names = new Map();
+    for (const tag of array(value.tags,'taxonomy.tags')) {
+      obj(tag,'tag'); pattern(tag.id,/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/,'tag.id');
+      assert(!seen.has(tag.id),'Duplicate research tag'); seen.add(tag.id);
+      oneOf(tag.category,['method','task','topic'],'tag.category'); text(tag.description,'tag.description',2000);
+      text(tag.label_en,'tag.label_en',2000); text(tag.label_zh,'tag.label_zh',2000); texts(tag.aliases,'tag.aliases');
+      for (const name of [tag.id,tag.label_en,tag.label_zh,...tag.aliases]) {
+        const key = name.normalize('NFKC').trim().toLowerCase(); assert(!names.has(key) || names.get(key) === tag.id,'Ambiguous research tag alias'); names.set(key,tag.id);
+      }
+    }
+    assert(seen.size > 0,'Empty research tag dictionary');
+  }
+}
+function validateClassification(data, dictionaries) {
+  for (const row of [...data.projects,...data.resources]) for (const field of ['classification','research_tags']) {
+    if (row[field] === undefined) continue;
+    const value = obj(row[field],field); text(value.scheme,`${field}.scheme`,100); text(value.version,`${field}.version`,100);
+    const values = array(value[field === 'classification' ? 'codes' : 'ids'],field); texts(values,field,100);
+    assert(values.length <= 100 && new Set(values).size === values.length,'Duplicate or excessive classification values');
+    assert(row.provenance[field]?.length,'Classification requires field provenance');
+    assert(row.provenance[field].every(evidence => !evidence.source_id || row.source_refs.some(ref => ref.source_id === evidence.source_id)), 'Classification evidence is not an entry source');
+    const dictionary = dictionaries.find(item => item.scheme === value.scheme && item.version === value.version);
+    assert(dictionary,'Missing snapshot taxonomy');
+    if (field === 'classification' && value.scheme === 'oecd-ford' && value.version === '2015') {
+      assert(values.every(code => dictionary.fields.some(item => item.code === code && item.level === 2)),'Unknown FORD leaf code');
+      if (!values.length) text(value.unclassified_reason,'unclassified_reason',2000);
+      else assert(value.unclassified_reason === undefined,'Classified entry cannot have unclassified reason');
+    }
+    if (field === 'research_tags' && value.scheme === 'aipoch-research-tags' && value.version === '1') assert(values.every(id => dictionary.tags.some(tag => tag.id === id)),'Unknown research tag');
+  }
+}
+function taxonomySearch(row, dictionaries) {
+  const terms = [];
+  const field = row.classification, tags = row.research_tags;
+  for (const dictionary of dictionaries) {
+    if (field?.scheme === 'oecd-ford' && field.version === '2015' && dictionary.scheme === field.scheme && dictionary.version === field.version) for (const item of dictionary.fields) if (field.codes.some(code => code === item.code || code.split('.')[0] === item.code)) terms.push(item.code,item.label_en,item.label_zh);
+    if (tags?.scheme === 'aipoch-research-tags' && tags.version === '1' && dictionary.scheme === tags.scheme && dictionary.version === tags.version) for (const item of dictionary.tags) if (tags.ids.includes(item.id)) terms.push(item.id,item.label_en,item.label_zh,...item.aliases);
+  }
+  return terms.join(' ');
 }

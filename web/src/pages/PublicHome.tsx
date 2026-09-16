@@ -1,3 +1,4 @@
+import { disciplineLabels } from '../../../spec/classification.js';
 import React, { useState } from 'react';
 import { Activity, ArrowRight, ArrowUpRight, BookOpen, Boxes, Building2, Compass, FlaskConical, GitBranch, Search, Video } from 'lucide-react';
 import type { Organization, Project, Resource } from '../../../spec/types.js';
@@ -20,11 +21,11 @@ function ProjectRow({ entry, data }: { entry: Project; data: SiteData }) {
       <h3><Link to={routeFor(entry)}>{entry.title}</Link></h3>
       <p>{entry.description || 'Explore the source documentation for this research project and its methods.'}</p>
       <div className="ph-row-facts">
-        <span><b>Research area</b> {entry.domains.join(' · ') || 'Not classified'}</span>
+        <span><b>Research discipline</b> {disciplineLabels(entry).join(' · ') || 'Not classified'}</span>
         <span><b>Reusable outputs</b> {entry.resource_ids.length}</span>
       </div>
       <div className="ph-row-meta">
-        <span className="ph-domain">{entry.domains[0] || 'Open research'}</span>
+        <span className="ph-domain">{disciplineLabels(entry)[0] || 'Open research'}</span>
         {source && <Link to={routeFor(source)}>{source.title}</Link>}
         <span>Updated {displayDate(entry.updated_at)}</span>
       </div>
@@ -41,7 +42,7 @@ function CapabilityCard({ entry }: { entry: Resource }) {
     <p className="ph-eyebrow">{entry.resource_type}</p>
     <h3><Link to={routeFor(entry)}>{entry.title}</Link></h3>
     <p className="ph-card-description">{entry.description || 'Explore the original source and its connected research.'}</p>
-    <div className="ph-card-bottom"><span>{entry.domains[0] || 'Open research'}</span><EntryActions entry={entry} compact /></div>
+    <div className="ph-card-bottom"><span>{disciplineLabels(entry)[0] || 'Open research'}</span><EntryActions entry={entry} compact /></div>
   </article>;
 }
 

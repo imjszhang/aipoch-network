@@ -137,11 +137,22 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
     const available = policy.snapshots.filter(row => row.status === 'available').map(row => row.snapshot_id).sort();
     const routes = await json(directory, 'routes.json') as { paths: string[] };
     const expectedFiles = new Set(['index.html', '404.html', '.nojekyll', 'routes.json', 'robots.txt', 'sitemap.xml', 'build-report.json', 'build-info.json', 'third-party-notices.txt', 'assets/open-science-product-notice.txt', 'internal/catalog.json', 'internal/search.json', 'catalog/v1/manifest.json', 'catalog/v1/history.json', ...routes.paths.map(path => `${path.slice(1)}index.html`)]);
+    for (const part of manifest.taxonomies ?? []) {
+      const path = `catalog/v1/${part.href}`, file = tree.manifest.files.find(file => file.path === path);
+      assert(file && file.bytes === part.bytes && file.sha256 === part.sha256, 'Current taxonomy bytes differ from manifest');
+      expectedFiles.add(path);
+    }
     assert.deepEqual((await readdir(join(directory, 'catalog/v1/snapshots'))).sort(), available, 'Unlisted or retired snapshots remain downloadable');
     for (const id of available) {
       const snapshot = await readHistoricalSnapshot(join(directory, 'catalog/v1/snapshots', id), id);
       for (const claim of snapshot.catalog.claims) if (claim.status === 'verified' && claim.expires_at) validUntil = Math.min(validUntil, time(claim.expires_at));
-      assert.deepEqual((await readdir(join(directory, 'catalog/v1/snapshots', id))).sort(), [...snapshot.files.keys()].sort(), 'Unmanifested historical files remain downloadable');
+      const prefix = `catalog/v1/snapshots/${id}/`;
+      assert.deepEqual(tree.manifest.files.filter(file => file.path.startsWith(prefix)).map(file => file.path.slice(prefix.length)).sort(), [...snapshot.files.keys()].sort(), 'Unmanifested historical files remain downloadable');
+      for (const part of snapshot.manifest.taxonomies ?? []) {
+        const path = `catalog/v1/${part.href}`, file = tree.manifest.files.find(file => file.path === path);
+        assert(file && file.bytes === part.bytes && file.sha256 === part.sha256, 'Retained taxonomy bytes differ from manifest');
+        expectedFiles.add(path);
+      }
       for (const file of snapshot.files.keys()) expectedFiles.add(`catalog/v1/snapshots/${id}/${file}`);
     }
     async function visit(path = ''): Promise<void> {

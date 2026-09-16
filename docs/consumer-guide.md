@@ -75,3 +75,9 @@ v1 新增可选字段和新资源分类可以继续读取，未知可选集合�
 生成器在普通更新中保留经过重新验证且仍允许公开的历史快照，旧 manifest 与分片字节保持不变。受当前撤回、来源失效、长期未核实或权限声明变化影响的旧快照整份退出发布，避免改写同一个不可变 URL 后造成摘要失配。可选辅助文件 `catalog/v1/history.json` 记录快照是否仍可用及通用退出原因；它不替代当前核心 manifest，也不授权从本地缓存复活退出的快照。消费者仍以实际 manifest 下载、校验和当前治理规则为准。
 
 目录快照版本、来源内容版本和契约版本是三件不同的事。使用者应保存所需的来源 ID、commit、路径和可选内容摘要；目录更新不表示研究资源刚发布新版本。完整语义见[目录契约](catalog-contract.md)，处理撤回与恢复见[治理规则](governance.md)。
+
+## Optional v1.2 classification
+
+`loadCatalog` returns verified `taxonomies` alongside existing collections. At most 16 dictionaries of at most 1 MiB each fit within the total download budget. Assignments bind to a dictionary in the same manifest, with exact bytes/hash, identity and a safe content-addressed relative path. Known FORD codes must be leaves; empty assignments require reasons. Field evidence remains distinct from maintainer approval. Missing or tampered dictionaries reject the load.
+
+Older v1 catalogs need no dictionaries. Future optional schemes/versions are retained without applying current FORD semantics. `listResources` searches verified known English/Chinese discipline names, parent names, tags and aliases as well as legacy text. It never requests a latest external vocabulary. See [classification](research-classification.md) for pending-state and filter semantics.

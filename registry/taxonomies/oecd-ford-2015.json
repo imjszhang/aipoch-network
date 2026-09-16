@@ -1,0 +1,352 @@
+{
+  "scheme": "oecd-ford",
+  "version": "2015",
+  "revision": "1",
+  "source": {
+    "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2015/10/frascati-manual-2015_g1g57dcb/9789264239012-en.pdf",
+    "doi": "https://doi.org/10.1787/9789264239012-en",
+    "table": "2.2",
+    "printed_page": 59,
+    "verified_on": "2026-09-16"
+  },
+  "translation_notice": "Chinese labels are AIPOCH editorial translations, not official OECD translations.",
+  "rights_notice": "OECD classification codes and labels are attributed factual reference data; the source publication retains its rights. No blanket MIT relicensing of the OECD publication is claimed.",
+  "fields": [
+    {
+      "code": "1",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Natural sciences",
+      "label_zh": "自然科学"
+    },
+    {
+      "code": "1.1",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Mathematics",
+      "label_zh": "数学"
+    },
+    {
+      "code": "1.2",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Computer and information sciences",
+      "label_zh": "计算机与信息科学"
+    },
+    {
+      "code": "1.3",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Physical sciences",
+      "label_zh": "物理科学"
+    },
+    {
+      "code": "1.4",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Chemical sciences",
+      "label_zh": "化学科学"
+    },
+    {
+      "code": "1.5",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Earth and related environmental sciences",
+      "label_zh": "地球与相关环境科学"
+    },
+    {
+      "code": "1.6",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Biological sciences",
+      "label_zh": "生物科学"
+    },
+    {
+      "code": "1.7",
+      "parent_code": "1",
+      "level": 2,
+      "label_en": "Other natural sciences",
+      "label_zh": "其他自然科学"
+    },
+    {
+      "code": "2",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Engineering and technology",
+      "label_zh": "工程与技术"
+    },
+    {
+      "code": "2.1",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Civil engineering",
+      "label_zh": "土木工程"
+    },
+    {
+      "code": "2.2",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Electrical engineering, electronic engineering, information engineering",
+      "label_zh": "电气工程、电子工程与信息工程"
+    },
+    {
+      "code": "2.3",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Mechanical engineering",
+      "label_zh": "机械工程"
+    },
+    {
+      "code": "2.4",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Chemical engineering",
+      "label_zh": "化学工程"
+    },
+    {
+      "code": "2.5",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Materials engineering",
+      "label_zh": "材料工程"
+    },
+    {
+      "code": "2.6",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Medical engineering",
+      "label_zh": "医学工程"
+    },
+    {
+      "code": "2.7",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Environmental engineering",
+      "label_zh": "环境工程"
+    },
+    {
+      "code": "2.8",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Environmental biotechnology",
+      "label_zh": "环境生物技术"
+    },
+    {
+      "code": "2.9",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Industrial biotechnology",
+      "label_zh": "工业生物技术"
+    },
+    {
+      "code": "2.10",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Nano-technology",
+      "label_zh": "纳米技术"
+    },
+    {
+      "code": "2.11",
+      "parent_code": "2",
+      "level": 2,
+      "label_en": "Other engineering and technologies",
+      "label_zh": "其他工程与技术"
+    },
+    {
+      "code": "3",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Medical and health sciences",
+      "label_zh": "医学与健康科学"
+    },
+    {
+      "code": "3.1",
+      "parent_code": "3",
+      "level": 2,
+      "label_en": "Basic medicine",
+      "label_zh": "基础医学"
+    },
+    {
+      "code": "3.2",
+      "parent_code": "3",
+      "level": 2,
+      "label_en": "Clinical medicine",
+      "label_zh": "临床医学"
+    },
+    {
+      "code": "3.3",
+      "parent_code": "3",
+      "level": 2,
+      "label_en": "Health sciences",
+      "label_zh": "健康科学"
+    },
+    {
+      "code": "3.4",
+      "parent_code": "3",
+      "level": 2,
+      "label_en": "Medical biotechnology",
+      "label_zh": "医学生物技术"
+    },
+    {
+      "code": "3.5",
+      "parent_code": "3",
+      "level": 2,
+      "label_en": "Other medical science",
+      "label_zh": "其他医学科学"
+    },
+    {
+      "code": "4",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Agricultural and veterinary sciences",
+      "label_zh": "农业与兽医科学"
+    },
+    {
+      "code": "4.1",
+      "parent_code": "4",
+      "level": 2,
+      "label_en": "Agriculture, forestry, and fisheries",
+      "label_zh": "农业、林业与渔业"
+    },
+    {
+      "code": "4.2",
+      "parent_code": "4",
+      "level": 2,
+      "label_en": "Animal and dairy science",
+      "label_zh": "动物与乳品科学"
+    },
+    {
+      "code": "4.3",
+      "parent_code": "4",
+      "level": 2,
+      "label_en": "Veterinary science",
+      "label_zh": "兽医学"
+    },
+    {
+      "code": "4.4",
+      "parent_code": "4",
+      "level": 2,
+      "label_en": "Agricultural biotechnology",
+      "label_zh": "农业生物技术"
+    },
+    {
+      "code": "4.5",
+      "parent_code": "4",
+      "level": 2,
+      "label_en": "Other agricultural sciences",
+      "label_zh": "其他农业科学"
+    },
+    {
+      "code": "5",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Social sciences",
+      "label_zh": "社会科学"
+    },
+    {
+      "code": "5.1",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Psychology and cognitive sciences",
+      "label_zh": "心理学与认知科学"
+    },
+    {
+      "code": "5.2",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Economics and business",
+      "label_zh": "经济学与商业"
+    },
+    {
+      "code": "5.3",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Education",
+      "label_zh": "教育学"
+    },
+    {
+      "code": "5.4",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Sociology",
+      "label_zh": "社会学"
+    },
+    {
+      "code": "5.5",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Law",
+      "label_zh": "法学"
+    },
+    {
+      "code": "5.6",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Political science",
+      "label_zh": "政治学"
+    },
+    {
+      "code": "5.7",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Social and economic geography",
+      "label_zh": "社会与经济地理学"
+    },
+    {
+      "code": "5.8",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Media and communications",
+      "label_zh": "媒体与传播"
+    },
+    {
+      "code": "5.9",
+      "parent_code": "5",
+      "level": 2,
+      "label_en": "Other social sciences",
+      "label_zh": "其他社会科学"
+    },
+    {
+      "code": "6",
+      "parent_code": null,
+      "level": 1,
+      "label_en": "Humanities and the arts",
+      "label_zh": "人文与艺术"
+    },
+    {
+      "code": "6.1",
+      "parent_code": "6",
+      "level": 2,
+      "label_en": "History and archaeology",
+      "label_zh": "历史学与考古学"
+    },
+    {
+      "code": "6.2",
+      "parent_code": "6",
+      "level": 2,
+      "label_en": "Languages and literature",
+      "label_zh": "语言与文学"
+    },
+    {
+      "code": "6.3",
+      "parent_code": "6",
+      "level": 2,
+      "label_en": "Philosophy, ethics and religion",
+      "label_zh": "哲学、伦理学与宗教学"
+    },
+    {
+      "code": "6.4",
+      "parent_code": "6",
+      "level": 2,
+      "label_en": "Arts (arts, history of arts, performing arts, music)",
+      "label_zh": "艺术（艺术、艺术史、表演艺术与音乐）"
+    },
+    {
+      "code": "6.5",
+      "parent_code": "6",
+      "level": 2,
+      "label_en": "Other humanities",
+      "label_zh": "其他人文学科"
+    }
+  ]
+}

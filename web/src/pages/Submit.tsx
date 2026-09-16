@@ -44,7 +44,7 @@ export function Submit({ data }: { data: SiteData }) {
       <p>{correction ? 'The catalog ID identifies the entry. A source URL is optional.' : 'AIPOCH does not require a special manifest or changes to the original repository.'}</p>
       {error && <p className="form-error" role="alert">{error}</p>}
       <label htmlFor="source-note">{correction ? 'Requested correction' : 'Research context'} <span className="muted">(optional)</span></label>
-      <textarea disabled={!ready || unknownTarget} id="source-note" rows={4} maxLength={2000} value={note} onChange={event => { setNote(event.target.value); setReviewed(false); setCopied(false); }} placeholder={correction ? 'What should change, and what supports the correction?' : 'What does this project help researchers do?'}/>
+      <textarea disabled={!ready || unknownTarget} id="source-note" rows={4} maxLength={2000} value={note} onChange={event => { setNote(event.target.value); setReviewed(false); setCopied(false); }} placeholder={correction ? 'What should change, and what supports the correction?' : 'What does this project help researchers do? You may suggest a discipline, research tags, or resource type if known.'}/>
     </div> : step === 2 ? <div className="form-fields">
       <h3>What will be shared</h3><p>Public destination: <a href={ISSUE_REPO}>imjszhang/aipoch-network</a></p>
       <p><b>Issue title:</b> {draft?.title}</p><pre className="draft" aria-label="Exact public draft for review">{draft?.body}</pre>

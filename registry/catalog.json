@@ -120,6 +120,48 @@
       "resources": [
         "scipy-library",
         "scipy-tutorial"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "mathematics",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/aaf67effe289831880b6ba487654190248c6ba2e/README.rst",
+          "observed_at": "2026-09-16T16:07:08.554Z",
+          "source_id": "source:github:1460385",
+          "path": "README.rst",
+          "commit": "aaf67effe289831880b6ba487654190248c6ba2e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "核心产出是通用数学算法，归入 1.1；不据科学和工程用户群添加所有应用学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/aaf67effe289831880b6ba487654190248c6ba2e/README.rst",
+          "observed_at": "2026-09-16T16:07:08.554Z",
+          "source_id": "source:github:1460385",
+          "path": "README.rst",
+          "commit": "aaf67effe289831880b6ba487654190248c6ba2e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -133,6 +175,46 @@
       ],
       "resources": [
         "scikit-learn-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "machine-learning"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn/blob/0f1488a12daacc54893bcb43d1fc2738ca0ad222/README.rst",
+          "observed_at": "2026-09-16T16:07:11.995Z",
+          "source_id": "source:github:843222",
+          "path": "README.rst",
+          "commit": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "以机器学习计算方法为主要用途，归入 1.2；不自动继承下游研究学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn/blob/0f1488a12daacc54893bcb43d1fc2738ca0ad222/README.rst",
+          "observed_at": "2026-09-16T16:07:11.995Z",
+          "source_id": "source:github:843222",
+          "path": "README.rst",
+          "commit": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -146,6 +228,45 @@
       ],
       "resources": [
         "jupyter-notebook-app"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "现有用途材料说明通用研究环境，未充分界定自身 FORD 学科；先记录待分类，不因实现为软件便自动归计算机科学。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "research-computing"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/jupyter/notebook/blob/597c3cfc855f701a2b94858de67e10602ffabe7a/README.md",
+          "observed_at": "2026-09-16T16:07:10.430Z",
+          "source_id": "source:github:33653601",
+          "path": "README.md",
+          "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "现有用途材料说明通用研究环境，未充分界定自身 FORD 学科；先记录待分类，不因实现为软件便自动归计算机科学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/jupyter/notebook/blob/597c3cfc855f701a2b94858de67e10602ffabe7a/README.md",
+          "observed_at": "2026-09-16T16:07:10.430Z",
+          "source_id": "source:github:33653601",
+          "path": "README.md",
+          "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -159,6 +280,47 @@
       ],
       "resources": [
         "biopython-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2",
+          "1.6"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "bioinformatics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/biopython/biopython/blob/bbc55712db23d048cdc2cebc643453418f66593c/README.rst",
+          "observed_at": "2026-09-16T16:07:08.834Z",
+          "source_id": "source:github:151541",
+          "path": "README.rst",
+          "commit": "bbc55712db23d048cdc2cebc643453418f66593c",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "计算生物信息方法支持 1.2，明确的分子生物研究对象支持 1.6；双重归属是本次编辑判断，非维护者分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/biopython/biopython/blob/bbc55712db23d048cdc2cebc643453418f66593c/README.rst",
+          "observed_at": "2026-09-16T16:07:08.834Z",
+          "source_id": "source:github:151541",
+          "path": "README.rst",
+          "commit": "bbc55712db23d048cdc2cebc643453418f66593c",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -172,6 +334,46 @@
       ],
       "resources": [
         "snakemake-workflows"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "通用工作流管理服务多学科，当前用途不足以选定具体 FORD 学科；保留待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "reproducibility",
+          "research-computing"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/snakemake/snakemake/blob/91763d644db0a6051c40014fa8ffad340f7d39a0/README.md",
+          "observed_at": "2026-09-16T16:07:09.858Z",
+          "source_id": "source:github:212840200",
+          "path": "README.md",
+          "commit": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "通用工作流管理服务多学科，当前用途不足以选定具体 FORD 学科；保留待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/snakemake/snakemake/blob/91763d644db0a6051c40014fa8ffad340f7d39a0/README.md",
+          "observed_at": "2026-09-16T16:07:09.858Z",
+          "source_id": "source:github:212840200",
+          "path": "README.md",
+          "commit": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -185,6 +387,47 @@
       ],
       "resources": [
         "numpy-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/numpy/numpy/blob/1ff65f12e75dab0ab8241e7149c4dbb100f64286/README.md",
+          "observed_at": "2026-09-16T16:07:12.201Z",
+          "source_id": "source:github:908607",
+          "path": "README.md",
+          "commit": "1ff65f12e75dab0ab8241e7149c4dbb100f64286",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按明确的数学计算功能归 1.1，而非按全部可能应用领域归类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/numpy/numpy/blob/1ff65f12e75dab0ab8241e7149c4dbb100f64286/README.md",
+          "observed_at": "2026-09-16T16:07:12.201Z",
+          "source_id": "source:github:908607",
+          "path": "README.md",
+          "commit": "1ff65f12e75dab0ab8241e7149c4dbb100f64286",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -198,6 +441,45 @@
       ],
       "resources": [
         "pandas-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "通用数据处理功能并不单独确定研究学科；当前保留任务标签和待分类原因。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/pandas-dev/pandas/blob/5533915fc6066bd2aa53b1810e52daba7e06b812/README.md",
+          "observed_at": "2026-09-16T16:07:11.654Z",
+          "source_id": "source:github:858127",
+          "path": "README.md",
+          "commit": "5533915fc6066bd2aa53b1810e52daba7e06b812",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "通用数据处理功能并不单独确定研究学科；当前保留任务标签和待分类原因。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/pandas-dev/pandas/blob/5533915fc6066bd2aa53b1810e52daba7e06b812/README.md",
+          "observed_at": "2026-09-16T16:07:11.654Z",
+          "source_id": "source:github:858127",
+          "path": "README.md",
+          "commit": "5533915fc6066bd2aa53b1810e52daba7e06b812",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -211,6 +493,45 @@
       ],
       "resources": [
         "matplotlib-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "跨学科通用绘图用途不能唯一确定 FORD 学科，保留方法标签和待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-visualization"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/matplotlib/matplotlib/blob/a99bc61d82b76eab80509a57e39fa20a556d1985/README.md",
+          "observed_at": "2026-09-16T16:07:07.671Z",
+          "source_id": "source:github:1385122",
+          "path": "README.md",
+          "commit": "a99bc61d82b76eab80509a57e39fa20a556d1985",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "跨学科通用绘图用途不能唯一确定 FORD 学科，保留方法标签和待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/matplotlib/matplotlib/blob/a99bc61d82b76eab80509a57e39fa20a556d1985/README.md",
+          "observed_at": "2026-09-16T16:07:07.671Z",
+          "source_id": "source:github:1385122",
+          "path": "README.md",
+          "commit": "a99bc61d82b76eab80509a57e39fa20a556d1985",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -224,6 +545,47 @@
       ],
       "resources": [
         "seaborn-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-visualization",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/mwaskom/seaborn/blob/f04b6cd5484267a0885d1fed068e99dff3a1b226/README.md",
+          "observed_at": "2026-09-16T16:07:10.613Z",
+          "source_id": "source:github:4704710",
+          "path": "README.md",
+          "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "根据明确的统计图形方法用途归 1.1；与没有该方法限定的通用绘图分开处理。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/mwaskom/seaborn/blob/f04b6cd5484267a0885d1fed068e99dff3a1b226/README.md",
+          "observed_at": "2026-09-16T16:07:10.613Z",
+          "source_id": "source:github:4704710",
+          "path": "README.md",
+          "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -237,6 +599,46 @@
       ],
       "resources": [
         "xarray-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "来源明确称其操作跨领域；netCDF 关联和示例不足以直接归地球科学或其他应用学科，保留待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+          "observed_at": "2026-09-16T16:07:07.739Z",
+          "source_id": "source:github:13221727",
+          "path": "README.md",
+          "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "来源明确称其操作跨领域；netCDF 关联和示例不足以直接归地球科学或其他应用学科，保留待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+          "observed_at": "2026-09-16T16:07:07.739Z",
+          "source_id": "source:github:13221727",
+          "path": "README.md",
+          "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -253,7 +655,72 @@
         "scanpy-library",
         "anndata-library"
       ],
-      "description": "Single-cell analysis software. This catalog connects the Scanpy implementation with the AnnData data model that its README identifies as jointly developed infrastructure."
+      "description": "Single-cell analysis software. This catalog connects the Scanpy implementation with the AnnData data model that its README identifies as jointly developed infrastructure.",
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2",
+          "1.6"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "single-cell-analysis",
+          "bioinformatics",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md",
+          "observed_at": "2026-09-16T16:07:11.407Z",
+          "source_id": "source:github:80342493",
+          "path": "README.md",
+          "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "计算生物信息方法与细胞/基因表达研究对象分别支持 1.2、1.6；未据生物数据推断临床医学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        },
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "计算生物信息方法与细胞/基因表达研究对象分别支持 1.2、1.6；未据生物数据推断临床医学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md",
+          "observed_at": "2026-09-16T16:07:11.407Z",
+          "source_id": "source:github:80342493",
+          "path": "README.md",
+          "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        },
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ]
     },
     {
       "key": "anndata",
@@ -266,6 +733,48 @@
       ],
       "resources": [
         "anndata-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "single-cell-analysis",
+          "bioinformatics",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按生物信息数据表示及管理用途归 1.2；当前通用容器描述不充分支持将其自身当作细胞生物学研究，暂不加 1.6。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -279,6 +788,46 @@
       ],
       "resources": [
         "astropy-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.3"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "astronomy"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/astropy/astropy/blob/65a4b4da1aa0e46961a2a96451b7c68cd17d57c1/README.rst",
+          "observed_at": "2026-09-16T16:07:09.964Z",
+          "source_id": "source:github:2081289",
+          "path": "README.rst",
+          "commit": "65a4b4da1aa0e46961a2a96451b7c68cd17d57c1",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "天文学在标准说明中属于 1.3，保留 astronomy 细分主题。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/astropy/astropy/blob/65a4b4da1aa0e46961a2a96451b7c68cd17d57c1/README.rst",
+          "observed_at": "2026-09-16T16:07:09.964Z",
+          "source_id": "source:github:2081289",
+          "path": "README.rst",
+          "commit": "65a4b4da1aa0e46961a2a96451b7c68cd17d57c1",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -292,6 +841,49 @@
       ],
       "resources": [
         "nilearn-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroimaging",
+          "neuroscience",
+          "machine-learning",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/nilearn/nilearn/blob/bc19044243f0071d9cd695ae0f61c579c6ec8586/README.rst",
+          "observed_at": "2026-09-16T16:07:07.227Z",
+          "source_id": "source:github:1235740",
+          "path": "README.rst",
+          "commit": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "神经科学研究用途支持 3.1；现有综述未给出具体临床研究目标，不自动归 3.2 或 5.1。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/nilearn/nilearn/blob/bc19044243f0071d9cd695ae0f61c579c6ec8586/README.rst",
+          "observed_at": "2026-09-16T16:07:07.227Z",
+          "source_id": "source:github:1235740",
+          "path": "README.rst",
+          "commit": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -305,6 +897,47 @@
       ],
       "resources": [
         "nibabel-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroimaging",
+          "neuroscience"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/nipy/nibabel/blob/699b9923e846b5a3eb2456048118a4dd1aa45814/README.rst",
+          "observed_at": "2026-09-16T16:07:11.085Z",
+          "source_id": "source:github:791352",
+          "path": "README.rst",
+          "commit": "699b9923e846b5a3eb2456048118a4dd1aa45814",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按明确的神经影像研究支持用途归 3.1；可读医学格式不等于临床诊断研究或临床可用性，未添加 3.2。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/nipy/nibabel/blob/699b9923e846b5a3eb2456048118a4dd1aa45814/README.rst",
+          "observed_at": "2026-09-16T16:07:11.085Z",
+          "source_id": "source:github:791352",
+          "path": "README.rst",
+          "commit": "699b9923e846b5a3eb2456048118a4dd1aa45814",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -318,6 +951,48 @@
       ],
       "resources": [
         "mne-python-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroscience",
+          "data-analysis",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/mne-tools/mne-python/blob/d07ed22e231350945ee6488612f0b4a2f50948a4/README.rst",
+          "observed_at": "2026-09-16T16:07:07.230Z",
+          "source_id": "source:github:1301584",
+          "path": "README.rst",
+          "commit": "d07ed22e231350945ee6488612f0b4a2f50948a4",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "神经生理学/神经科学用途支持 3.1；不凭人类数据或设备名称推断临床医学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/mne-tools/mne-python/blob/d07ed22e231350945ee6488612f0b4a2f50948a4/README.rst",
+          "observed_at": "2026-09-16T16:07:07.230Z",
+          "source_id": "source:github:1301584",
+          "path": "README.rst",
+          "commit": "d07ed22e231350945ee6488612f0b4a2f50948a4",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -331,6 +1006,46 @@
       ],
       "resources": [
         "statsmodels-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/statsmodels/statsmodels/blob/e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99/README.md",
+          "observed_at": "2026-09-16T16:07:08.956Z",
+          "source_id": "source:github:1885237",
+          "path": "README.md",
+          "commit": "e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "统计方法本身支持 1.1；具备生存分析不自动代表临床项目。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/statsmodels/statsmodels/blob/e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99/README.md",
+          "observed_at": "2026-09-16T16:07:08.956Z",
+          "source_id": "source:github:1885237",
+          "path": "README.md",
+          "commit": "e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -344,6 +1059,46 @@
       ],
       "resources": [
         "sympy-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/sympy/sympy/blob/117eaf45237de39c9d4518a3b7c715f0484ccea9/README.md",
+          "observed_at": "2026-09-16T16:07:11.028Z",
+          "source_id": "source:github:640534",
+          "path": "README.md",
+          "commit": "117eaf45237de39c9d4518a3b7c715f0484ccea9",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "所审阅的符号数学操作直接支持 1.1；未执行示例。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/sympy/sympy/blob/117eaf45237de39c9d4518a3b7c715f0484ccea9/README.md",
+          "observed_at": "2026-09-16T16:07:11.028Z",
+          "source_id": "source:github:640534",
+          "path": "README.md",
+          "commit": "117eaf45237de39c9d4518a3b7c715f0484ccea9",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -357,6 +1112,48 @@
       ],
       "resources": [
         "networkx-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "network-science",
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/networkx/networkx/blob/4e74880b0da01977da79915167c64e5c2af38b47/README.rst",
+          "observed_at": "2026-09-16T16:07:11.784Z",
+          "source_id": "source:github:890377",
+          "path": "README.rst",
+          "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "图的数学结构与计算算法分别支持 1.1、1.2；不等同通信网络工程，也不扩展至所有网络应用领域。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/networkx/networkx/blob/4e74880b0da01977da79915167c64e5c2af38b47/README.rst",
+          "observed_at": "2026-09-16T16:07:11.784Z",
+          "source_id": "source:github:890377",
+          "path": "README.rst",
+          "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -370,6 +1167,46 @@
       ],
       "resources": [
         "scikit-image-library"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "image-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scikit-image/scikit-image/blob/b6e9c5ce5a720e139b7e1f247531d069af78db7e/README.md",
+          "observed_at": "2026-09-16T16:07:09.434Z",
+          "source_id": "source:github:2014929",
+          "path": "README.md",
+          "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按图像计算处理方法归 1.2；用途综述未限定医学、生物或遥感对象，不附加应用学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scikit-image/scikit-image/blob/b6e9c5ce5a720e139b7e1f247531d069af78db7e/README.md",
+          "observed_at": "2026-09-16T16:07:09.434Z",
+          "source_id": "source:github:2014929",
+          "path": "README.md",
+          "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -384,7 +1221,49 @@
       "resources": [
         "mudata-library"
       ],
-      "description": "Python data structures and .h5mu I/O for multimodal annotated datasets, organizing individual modalities as AnnData objects."
+      "description": "Python data structures and .h5mu I/O for multimodal annotated datasets, organizing individual modalities as AnnData objects.",
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "bioinformatics",
+          "single-cell-analysis",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/mudata/blob/d88429706f76d0c8cce504f73e67cf3ecc4ac525/README.md",
+          "observed_at": "2026-09-16T16:07:10.475Z",
+          "source_id": "source:github:392836868",
+          "path": "README.md",
+          "commit": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "归入生物信息数据表示与管理的 1.2；不把容器当作生物实验数据集或已验证研究流程。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/mudata/blob/d88429706f76d0c8cce504f73e67cf3ecc4ac525/README.md",
+          "observed_at": "2026-09-16T16:07:10.475Z",
+          "source_id": "source:github:392836868",
+          "path": "README.md",
+          "commit": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ]
     }
   ],
   "resources": [
@@ -397,6 +1276,48 @@
       ],
       "sources": [
         "https://github.com/scipy/scipy"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "mathematics",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/aaf67effe289831880b6ba487654190248c6ba2e/README.rst",
+          "observed_at": "2026-09-16T16:07:08.554Z",
+          "source_id": "source:github:1460385",
+          "path": "README.rst",
+          "commit": "aaf67effe289831880b6ba487654190248c6ba2e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "核心产出是通用数学算法，归入 1.1；不据科学和工程用户群添加所有应用学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/aaf67effe289831880b6ba487654190248c6ba2e/README.rst",
+          "observed_at": "2026-09-16T16:07:08.554Z",
+          "source_id": "source:github:1460385",
+          "path": "README.rst",
+          "commit": "aaf67effe289831880b6ba487654190248c6ba2e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -408,6 +1329,46 @@
       ],
       "sources": [
         "https://github.com/scikit-learn/scikit-learn"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "machine-learning"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn/blob/0f1488a12daacc54893bcb43d1fc2738ca0ad222/README.rst",
+          "observed_at": "2026-09-16T16:07:11.995Z",
+          "source_id": "source:github:843222",
+          "path": "README.rst",
+          "commit": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "以机器学习计算方法为主要用途，归入 1.2；不自动继承下游研究学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn/blob/0f1488a12daacc54893bcb43d1fc2738ca0ad222/README.rst",
+          "observed_at": "2026-09-16T16:07:11.995Z",
+          "source_id": "source:github:843222",
+          "path": "README.rst",
+          "commit": "0f1488a12daacc54893bcb43d1fc2738ca0ad222",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -419,6 +1380,45 @@
       ],
       "sources": [
         "https://github.com/jupyter/notebook"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "现有用途材料说明通用研究环境，未充分界定自身 FORD 学科；先记录待分类，不因实现为软件便自动归计算机科学。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "research-computing"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/jupyter/notebook/blob/597c3cfc855f701a2b94858de67e10602ffabe7a/README.md",
+          "observed_at": "2026-09-16T16:07:10.430Z",
+          "source_id": "source:github:33653601",
+          "path": "README.md",
+          "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "现有用途材料说明通用研究环境，未充分界定自身 FORD 学科；先记录待分类，不因实现为软件便自动归计算机科学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/jupyter/notebook/blob/597c3cfc855f701a2b94858de67e10602ffabe7a/README.md",
+          "observed_at": "2026-09-16T16:07:10.430Z",
+          "source_id": "source:github:33653601",
+          "path": "README.md",
+          "commit": "597c3cfc855f701a2b94858de67e10602ffabe7a",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -430,6 +1430,47 @@
       ],
       "sources": [
         "https://github.com/biopython/biopython"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2",
+          "1.6"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "bioinformatics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/biopython/biopython/blob/bbc55712db23d048cdc2cebc643453418f66593c/README.rst",
+          "observed_at": "2026-09-16T16:07:08.834Z",
+          "source_id": "source:github:151541",
+          "path": "README.rst",
+          "commit": "bbc55712db23d048cdc2cebc643453418f66593c",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "计算生物信息方法支持 1.2，明确的分子生物研究对象支持 1.6；双重归属是本次编辑判断，非维护者分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/biopython/biopython/blob/bbc55712db23d048cdc2cebc643453418f66593c/README.rst",
+          "observed_at": "2026-09-16T16:07:08.834Z",
+          "source_id": "source:github:151541",
+          "path": "README.rst",
+          "commit": "bbc55712db23d048cdc2cebc643453418f66593c",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -441,6 +1482,46 @@
       ],
       "sources": [
         "https://github.com/snakemake/snakemake"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "通用工作流管理服务多学科，当前用途不足以选定具体 FORD 学科；保留待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "reproducibility",
+          "research-computing"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/snakemake/snakemake/blob/91763d644db0a6051c40014fa8ffad340f7d39a0/README.md",
+          "observed_at": "2026-09-16T16:07:09.858Z",
+          "source_id": "source:github:212840200",
+          "path": "README.md",
+          "commit": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "通用工作流管理服务多学科，当前用途不足以选定具体 FORD 学科；保留待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/snakemake/snakemake/blob/91763d644db0a6051c40014fa8ffad340f7d39a0/README.md",
+          "observed_at": "2026-09-16T16:07:09.858Z",
+          "source_id": "source:github:212840200",
+          "path": "README.md",
+          "commit": "91763d644db0a6051c40014fa8ffad340f7d39a0",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -452,6 +1533,47 @@
       ],
       "sources": [
         "https://github.com/numpy/numpy"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/numpy/numpy/blob/1ff65f12e75dab0ab8241e7149c4dbb100f64286/README.md",
+          "observed_at": "2026-09-16T16:07:12.201Z",
+          "source_id": "source:github:908607",
+          "path": "README.md",
+          "commit": "1ff65f12e75dab0ab8241e7149c4dbb100f64286",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按明确的数学计算功能归 1.1，而非按全部可能应用领域归类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/numpy/numpy/blob/1ff65f12e75dab0ab8241e7149c4dbb100f64286/README.md",
+          "observed_at": "2026-09-16T16:07:12.201Z",
+          "source_id": "source:github:908607",
+          "path": "README.md",
+          "commit": "1ff65f12e75dab0ab8241e7149c4dbb100f64286",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -463,6 +1585,45 @@
       ],
       "sources": [
         "https://github.com/pandas-dev/pandas"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "通用数据处理功能并不单独确定研究学科；当前保留任务标签和待分类原因。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/pandas-dev/pandas/blob/5533915fc6066bd2aa53b1810e52daba7e06b812/README.md",
+          "observed_at": "2026-09-16T16:07:11.654Z",
+          "source_id": "source:github:858127",
+          "path": "README.md",
+          "commit": "5533915fc6066bd2aa53b1810e52daba7e06b812",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "通用数据处理功能并不单独确定研究学科；当前保留任务标签和待分类原因。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/pandas-dev/pandas/blob/5533915fc6066bd2aa53b1810e52daba7e06b812/README.md",
+          "observed_at": "2026-09-16T16:07:11.654Z",
+          "source_id": "source:github:858127",
+          "path": "README.md",
+          "commit": "5533915fc6066bd2aa53b1810e52daba7e06b812",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -474,6 +1635,45 @@
       ],
       "sources": [
         "https://github.com/matplotlib/matplotlib"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "跨学科通用绘图用途不能唯一确定 FORD 学科，保留方法标签和待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-visualization"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/matplotlib/matplotlib/blob/a99bc61d82b76eab80509a57e39fa20a556d1985/README.md",
+          "observed_at": "2026-09-16T16:07:07.671Z",
+          "source_id": "source:github:1385122",
+          "path": "README.md",
+          "commit": "a99bc61d82b76eab80509a57e39fa20a556d1985",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "跨学科通用绘图用途不能唯一确定 FORD 学科，保留方法标签和待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/matplotlib/matplotlib/blob/a99bc61d82b76eab80509a57e39fa20a556d1985/README.md",
+          "observed_at": "2026-09-16T16:07:07.671Z",
+          "source_id": "source:github:1385122",
+          "path": "README.md",
+          "commit": "a99bc61d82b76eab80509a57e39fa20a556d1985",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -485,6 +1685,47 @@
       ],
       "sources": [
         "https://github.com/mwaskom/seaborn"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "data-visualization",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/mwaskom/seaborn/blob/f04b6cd5484267a0885d1fed068e99dff3a1b226/README.md",
+          "observed_at": "2026-09-16T16:07:10.613Z",
+          "source_id": "source:github:4704710",
+          "path": "README.md",
+          "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "根据明确的统计图形方法用途归 1.1；与没有该方法限定的通用绘图分开处理。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/mwaskom/seaborn/blob/f04b6cd5484267a0885d1fed068e99dff3a1b226/README.md",
+          "observed_at": "2026-09-16T16:07:10.613Z",
+          "source_id": "source:github:4704710",
+          "path": "README.md",
+          "commit": "f04b6cd5484267a0885d1fed068e99dff3a1b226",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -496,6 +1737,46 @@
       ],
       "sources": [
         "https://github.com/pydata/xarray"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [],
+        "unclassified_reason": "来源明确称其操作跨领域；netCDF 关联和示例不足以直接归地球科学或其他应用学科，保留待分类。"
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+          "observed_at": "2026-09-16T16:07:07.739Z",
+          "source_id": "source:github:13221727",
+          "path": "README.md",
+          "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "来源明确称其操作跨领域；netCDF 关联和示例不足以直接归地球科学或其他应用学科，保留待分类。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+          "observed_at": "2026-09-16T16:07:07.739Z",
+          "source_id": "source:github:13221727",
+          "path": "README.md",
+          "commit": "8de862c29544c2fb1957ce20985745952bc81de7",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -507,6 +1788,49 @@
       ],
       "sources": [
         "https://github.com/scverse/scanpy"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2",
+          "1.6"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "single-cell-analysis",
+          "bioinformatics",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md",
+          "observed_at": "2026-09-16T16:07:11.407Z",
+          "source_id": "source:github:80342493",
+          "path": "README.md",
+          "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "计算生物信息方法与细胞/基因表达研究对象分别支持 1.2、1.6；未据生物数据推断临床医学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/scanpy/blob/5f2accbe77cb0559401798c6d05f5a706779dc35/README.md",
+          "observed_at": "2026-09-16T16:07:11.407Z",
+          "source_id": "source:github:80342493",
+          "path": "README.md",
+          "commit": "5f2accbe77cb0559401798c6d05f5a706779dc35",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -518,6 +1842,48 @@
       ],
       "sources": [
         "https://github.com/scverse/anndata"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "single-cell-analysis",
+          "bioinformatics",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按生物信息数据表示及管理用途归 1.2；当前通用容器描述不充分支持将其自身当作细胞生物学研究，暂不加 1.6。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/anndata/blob/4ded337f96f2b3331c9cfaede4e32cbc3078fcc2/README.md",
+          "observed_at": "2026-09-16T16:07:10.151Z",
+          "source_id": "source:github:100038377",
+          "path": "README.md",
+          "commit": "4ded337f96f2b3331c9cfaede4e32cbc3078fcc2",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -529,6 +1895,46 @@
       ],
       "sources": [
         "https://github.com/astropy/astropy"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.3"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "astronomy"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/astropy/astropy/blob/65a4b4da1aa0e46961a2a96451b7c68cd17d57c1/README.rst",
+          "observed_at": "2026-09-16T16:07:09.964Z",
+          "source_id": "source:github:2081289",
+          "path": "README.rst",
+          "commit": "65a4b4da1aa0e46961a2a96451b7c68cd17d57c1",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "天文学在标准说明中属于 1.3，保留 astronomy 细分主题。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/astropy/astropy/blob/65a4b4da1aa0e46961a2a96451b7c68cd17d57c1/README.rst",
+          "observed_at": "2026-09-16T16:07:09.964Z",
+          "source_id": "source:github:2081289",
+          "path": "README.rst",
+          "commit": "65a4b4da1aa0e46961a2a96451b7c68cd17d57c1",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -540,6 +1946,49 @@
       ],
       "sources": [
         "https://github.com/nilearn/nilearn"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroimaging",
+          "neuroscience",
+          "machine-learning",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/nilearn/nilearn/blob/bc19044243f0071d9cd695ae0f61c579c6ec8586/README.rst",
+          "observed_at": "2026-09-16T16:07:07.227Z",
+          "source_id": "source:github:1235740",
+          "path": "README.rst",
+          "commit": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "神经科学研究用途支持 3.1；现有综述未给出具体临床研究目标，不自动归 3.2 或 5.1。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/nilearn/nilearn/blob/bc19044243f0071d9cd695ae0f61c579c6ec8586/README.rst",
+          "observed_at": "2026-09-16T16:07:07.227Z",
+          "source_id": "source:github:1235740",
+          "path": "README.rst",
+          "commit": "bc19044243f0071d9cd695ae0f61c579c6ec8586",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -551,6 +2000,47 @@
       ],
       "sources": [
         "https://github.com/nipy/nibabel"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroimaging",
+          "neuroscience"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/nipy/nibabel/blob/699b9923e846b5a3eb2456048118a4dd1aa45814/README.rst",
+          "observed_at": "2026-09-16T16:07:11.085Z",
+          "source_id": "source:github:791352",
+          "path": "README.rst",
+          "commit": "699b9923e846b5a3eb2456048118a4dd1aa45814",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按明确的神经影像研究支持用途归 3.1；可读医学格式不等于临床诊断研究或临床可用性，未添加 3.2。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/nipy/nibabel/blob/699b9923e846b5a3eb2456048118a4dd1aa45814/README.rst",
+          "observed_at": "2026-09-16T16:07:11.085Z",
+          "source_id": "source:github:791352",
+          "path": "README.rst",
+          "commit": "699b9923e846b5a3eb2456048118a4dd1aa45814",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -562,6 +2052,48 @@
       ],
       "sources": [
         "https://github.com/mne-tools/mne-python"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "neuroscience",
+          "data-analysis",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/mne-tools/mne-python/blob/d07ed22e231350945ee6488612f0b4a2f50948a4/README.rst",
+          "observed_at": "2026-09-16T16:07:07.230Z",
+          "source_id": "source:github:1301584",
+          "path": "README.rst",
+          "commit": "d07ed22e231350945ee6488612f0b4a2f50948a4",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "神经生理学/神经科学用途支持 3.1；不凭人类数据或设备名称推断临床医学。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/mne-tools/mne-python/blob/d07ed22e231350945ee6488612f0b4a2f50948a4/README.rst",
+          "observed_at": "2026-09-16T16:07:07.230Z",
+          "source_id": "source:github:1301584",
+          "path": "README.rst",
+          "commit": "d07ed22e231350945ee6488612f0b4a2f50948a4",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -573,6 +2105,46 @@
       ],
       "sources": [
         "https://github.com/statsmodels/statsmodels"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/statsmodels/statsmodels/blob/e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99/README.md",
+          "observed_at": "2026-09-16T16:07:08.956Z",
+          "source_id": "source:github:1885237",
+          "path": "README.md",
+          "commit": "e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "统计方法本身支持 1.1；具备生存分析不自动代表临床项目。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/statsmodels/statsmodels/blob/e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99/README.md",
+          "observed_at": "2026-09-16T16:07:08.956Z",
+          "source_id": "source:github:1885237",
+          "path": "README.md",
+          "commit": "e7ae15f6e4ea8ddd2157aa991e18439ddefa3b99",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -584,6 +2156,46 @@
       ],
       "sources": [
         "https://github.com/sympy/sympy"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/sympy/sympy/blob/117eaf45237de39c9d4518a3b7c715f0484ccea9/README.md",
+          "observed_at": "2026-09-16T16:07:11.028Z",
+          "source_id": "source:github:640534",
+          "path": "README.md",
+          "commit": "117eaf45237de39c9d4518a3b7c715f0484ccea9",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "所审阅的符号数学操作直接支持 1.1；未执行示例。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/sympy/sympy/blob/117eaf45237de39c9d4518a3b7c715f0484ccea9/README.md",
+          "observed_at": "2026-09-16T16:07:11.028Z",
+          "source_id": "source:github:640534",
+          "path": "README.md",
+          "commit": "117eaf45237de39c9d4518a3b7c715f0484ccea9",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -595,6 +2207,48 @@
       ],
       "sources": [
         "https://github.com/networkx/networkx"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "network-science",
+          "mathematics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/networkx/networkx/blob/4e74880b0da01977da79915167c64e5c2af38b47/README.rst",
+          "observed_at": "2026-09-16T16:07:11.784Z",
+          "source_id": "source:github:890377",
+          "path": "README.rst",
+          "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "图的数学结构与计算算法分别支持 1.1、1.2；不等同通信网络工程，也不扩展至所有网络应用领域。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/networkx/networkx/blob/4e74880b0da01977da79915167c64e5c2af38b47/README.rst",
+          "observed_at": "2026-09-16T16:07:11.784Z",
+          "source_id": "source:github:890377",
+          "path": "README.rst",
+          "commit": "4e74880b0da01977da79915167c64e5c2af38b47",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -606,6 +2260,46 @@
       ],
       "sources": [
         "https://github.com/scikit-image/scikit-image"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "image-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scikit-image/scikit-image/blob/b6e9c5ce5a720e139b7e1f247531d069af78db7e/README.md",
+          "observed_at": "2026-09-16T16:07:09.434Z",
+          "source_id": "source:github:2014929",
+          "path": "README.md",
+          "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "按图像计算处理方法归 1.2；用途综述未限定医学、生物或遥感对象，不附加应用学科。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scikit-image/scikit-image/blob/b6e9c5ce5a720e139b7e1f247531d069af78db7e/README.md",
+          "observed_at": "2026-09-16T16:07:09.434Z",
+          "source_id": "source:github:2014929",
+          "path": "README.md",
+          "commit": "b6e9c5ce5a720e139b7e1f247531d069af78db7e",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     },
     {
@@ -629,7 +2323,49 @@
           "resolved_at": "2026-09-12T10:30:13.733Z"
         }
       ],
-      "documentation_url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst"
+      "documentation_url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.1"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "scientific-computing",
+          "mathematics",
+          "statistics"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+          "observed_at": "2026-09-16T16:07:56.079Z",
+          "source_id": "source:github:1460385",
+          "path": "doc/source/tutorial/index.rst",
+          "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "单独读取教程自身固定版本索引，其数学算法和统计章节支持 1.1；资源保持 documentation，不从项目归属自动继承。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/0b94e98b820b255de843dba3c411fc4dd2604206/doc/source/tutorial/index.rst",
+          "observed_at": "2026-09-16T16:07:56.079Z",
+          "source_id": "source:github:1460385",
+          "path": "doc/source/tutorial/index.rst",
+          "commit": "0b94e98b820b255de843dba3c411fc4dd2604206",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ]
     },
     {
       "key": "mudata-library",
@@ -640,6 +2376,48 @@
       ],
       "sources": [
         "https://github.com/scverse/mudata"
+      ],
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "1.2"
+        ]
+      },
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "bioinformatics",
+          "single-cell-analysis",
+          "data-analysis"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/scverse/mudata/blob/d88429706f76d0c8cce504f73e67cf3ecc4ac525/README.md",
+          "observed_at": "2026-09-16T16:07:10.475Z",
+          "source_id": "source:github:392836868",
+          "path": "README.md",
+          "commit": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "归入生物信息数据表示与管理的 1.2；不把容器当作生物实验数据集或已验证研究流程。",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
+      ],
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/scverse/mudata/blob/d88429706f76d0c8cce504f73e67cf3ecc4ac525/README.md",
+          "observed_at": "2026-09-16T16:07:10.475Z",
+          "source_id": "source:github:392836868",
+          "path": "README.md",
+          "commit": "d88429706f76d0c8cce504f73e67cf3ecc4ac525",
+          "role": "editor",
+          "review": "reviewed",
+          "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
+          "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
+        }
       ]
     }
   ],
