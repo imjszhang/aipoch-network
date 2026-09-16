@@ -1,13 +1,14 @@
-# 研究资源指南
+# Research resource guides
 
-这些指南围绕具体研究问题整理资料入口、选择依据和记录建议。上游用途说明与编辑建议分别标注，目录收录不表示科学验证或维护者背书。
+These guides organize source links, selection considerations, and record-keeping suggestions around research questions. Maintainer descriptions and our editorial suggestions are distinguished. Inclusion does not imply scientific validation or maintainer endorsement.
 
-## 从表达矩阵建立可复查的分析记录
+## Python single-cell analysis
 
-拿到单细胞表达矩阵之后，可以先回答三个问题：矩阵与注释代表什么？当前最需要解决哪个分析问题？别人将来如何找到你使用的版本、参数和依据？
+Start with three questions: what do the matrix and annotations represent, which analysis question matters next, and how will someone later find the versions, parameters, and sources you used?
 
-[主指南](python-single-cell.zh-CN.md) 从 AnnData 的数据组织与 Scanpy 的基础分析入口出发，再按问题引出模型、评估和扩展分支。[简短入门](getting-started.zh-CN.md) 说明如何从公开目录回到上游资料。
+- [Getting started](getting-started.md): navigate from AIPOCH Network to upstream resources.
+- [Python single-cell analysis: tools, data structures, and research records](python-single-cell.md): begin with AnnData and Scanpy, then explore additional resources as the research question requires.
 
-截至 2026-09-14 本次核对，AnnData、Scanpy 和 MuData 已在目录中；主稿另列的九项工具仍为调研候选。本次未运行这些工具或比较性能，资源池也不是必装清单。
+The original source review was conducted on September 14, 2026. At that review, AnnData, Scanpy, and MuData were included in the catalog; nine other tools were research candidates. This English adaptation preserves that dated scope and does not constitute a new software run, compatibility test, or performance comparison.
 
-如果你希望补充输入数据、方法选择或结果与来源的对应说明，可在 [Network Issues](https://github.com/imjszhang/aipoch-network/issues) 提供具体问题。实际反馈会用于后续修订。
+Report a specific question, correction, or missing source through [Network Issues](https://github.com/imjszhang/aipoch-network/issues).
