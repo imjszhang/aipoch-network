@@ -1,6 +1,6 @@
 /** Pure presentation helpers use the same dictionaries pinned by this build's manifest. */
-import fordData from '../registry/taxonomies/oecd-ford-2015.json';
-import tagData from '../registry/taxonomies/research-tags-v1.json';
+import fordData from '../registry/taxonomies/oecd-ford-2015.json' with { type: 'json' };
+import tagData from '../registry/taxonomies/research-tags-v1.json' with { type: 'json' };
 import type { FordDictionary, ResearchTagDictionary } from './taxonomy.js';
 import type { ResearchClassification } from './types.js';
 export const ford = fordData as FordDictionary;
