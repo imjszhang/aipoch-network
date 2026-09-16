@@ -73,3 +73,7 @@ v6 原件 [aipoch-network-concept-v6.html](references/aipoch-network-concept-v6.
 相关文档：[架构与决策](../docs/architecture.md)、[专项实施计划](../docs/v9-r2-implementation-plan.md)、[整体实施计划](../docs/implementation-plan.md)、[公开部署记录](../docs/deployment/public-pages.md)。
 
 2026-09-15 routing update: [Catalog requests and product issues](changes/issue-routing.md). Original references remain unchanged; see [implementation verification](../docs/verification/issue-routing/README.md).
+
+## Research classification — 2026-09-17
+
+The user-approved FORD discipline/tag separation is implemented locally as a [bounded directory addition](changes/ford-classification.md). It preserves the v9-r2 layout and original reference pair. [Verification](../docs/verification/ford-classification.md), designer sign-off and production publication are separate.

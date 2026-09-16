@@ -131,7 +131,7 @@ test('version and area refinements survive reload and clear unknown shared scope
   panel = await filterPanel(page);
   await expect(panel.getByRole('combobox', { name: 'Version & conditions', exact: true })).toHaveValue('pinned');
   await panel.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await panel.getByRole('combobox', { name: 'Research area', exact: true }).selectOption('Bioinformatics');
+  await panel.getByRole('combobox', { name: 'Legacy research area', exact: true }).selectOption('Bioinformatics');
   await applyFilters(page);
   await expect(page.locator('.results-list')).toContainText('Biopython');
   await expect(page.locator('.results-list')).not.toContainText('SciPy');
@@ -213,7 +213,7 @@ test('mobile refinement traps keyboard focus, keeps query and returns focus on d
     await page.keyboard.press('Tab');
     expect(await dialog.evaluate(element => element.contains(document.activeElement))).toBe(true);
   }
-  await dialog.getByRole('combobox', { name: 'Research area', exact: true }).selectOption('Bioinformatics');
+  await dialog.getByRole('combobox', { name: 'Legacy research area', exact: true }).selectOption('Bioinformatics');
   await expect(dialog.getByRole('button', { name: 'Show 0 entries', exact: true })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);

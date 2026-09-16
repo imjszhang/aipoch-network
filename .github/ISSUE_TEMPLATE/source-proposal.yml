@@ -29,7 +29,7 @@
       "id": "field_1",
       "attributes": {
         "label": "Research purpose and suggested scope",
-        "description": "Optional. An organization URL does not automatically include all its repositories."
+        "description": "Optional: suggest a research discipline, method/task/topic tags, or resource type if known. A URL alone is enough. An organization URL does not automatically include all its repositories."
       },
       "validations": {
         "required": false

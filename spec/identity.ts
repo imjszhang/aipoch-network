@@ -80,6 +80,6 @@ export function normalizeGitHubUrl(input: string): IntakeCandidate {
   return result;
 }
 export function resourceTypeLabel(value: ResourceType): string {
-  const labels: Record<string, string> = { tool: 'Tool', method: 'Method', workflow: 'Workflow', skill: 'Skill', dataset: 'Dataset', model: 'Model', reproduction: 'Reproduction', unknown: 'Unclassified' };
+  const labels: Record<string, string> = { tool: 'Tool', method: 'Method', workflow: 'Workflow', skill: 'Skill', dataset: 'Dataset', model: 'Model', reproduction: 'Reproduction', documentation: 'Documentation', unknown: 'Unclassified' };
   return labels[value] ?? 'Other resource';
 }

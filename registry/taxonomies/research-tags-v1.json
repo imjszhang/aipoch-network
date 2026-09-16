@@ -1,0 +1,127 @@
+{
+  "scheme": "aipoch-research-tags",
+  "version": "1",
+  "scope": "Initial migration vocabulary for existing legacy labels; not an exhaustive research vocabulary or automatic discipline mapping.",
+  "tags": [
+    {
+      "id": "astronomy",
+      "category": "topic",
+      "label_en": "Astronomy",
+      "label_zh": "天文学",
+      "aliases": [],
+      "description": "Research involving astronomical objects or observations."
+    },
+    {
+      "id": "bioinformatics",
+      "category": "topic",
+      "label_en": "Bioinformatics",
+      "label_zh": "生物信息学",
+      "aliases": [],
+      "description": "Computational analysis of biological data."
+    },
+    {
+      "id": "data-analysis",
+      "category": "task",
+      "label_en": "Data analysis",
+      "label_zh": "数据分析",
+      "aliases": [],
+      "description": "Organizing, transforming and exploring research data."
+    },
+    {
+      "id": "data-visualization",
+      "category": "method",
+      "label_en": "Data visualization",
+      "label_zh": "数据可视化",
+      "aliases": [],
+      "description": "Representing research data through graphical views."
+    },
+    {
+      "id": "image-analysis",
+      "category": "method",
+      "label_en": "Image analysis",
+      "label_zh": "图像分析",
+      "aliases": [],
+      "description": "Extracting measurements or information from images."
+    },
+    {
+      "id": "machine-learning",
+      "category": "method",
+      "label_en": "Machine learning",
+      "label_zh": "机器学习",
+      "aliases": [],
+      "description": "Learning patterns or predictive representations from data."
+    },
+    {
+      "id": "mathematics",
+      "category": "topic",
+      "label_en": "Mathematics",
+      "label_zh": "数学",
+      "aliases": [],
+      "description": "Mathematical objects and methods; not a FORD assignment by itself."
+    },
+    {
+      "id": "network-science",
+      "category": "topic",
+      "label_en": "Network science",
+      "label_zh": "网络科学",
+      "aliases": [],
+      "description": "Graphs and complex networks, not necessarily communications engineering."
+    },
+    {
+      "id": "neuroimaging",
+      "category": "method",
+      "label_en": "Neuroimaging",
+      "label_zh": "神经影像",
+      "aliases": [],
+      "description": "Imaging of nervous system structure or function; clinical use must be evidenced separately."
+    },
+    {
+      "id": "neuroscience",
+      "category": "topic",
+      "label_en": "Neuroscience",
+      "label_zh": "神经科学",
+      "aliases": [],
+      "description": "Nervous system structure, activity and mechanisms."
+    },
+    {
+      "id": "reproducibility",
+      "category": "task",
+      "label_en": "Reproducibility",
+      "label_zh": "研究可复现性",
+      "aliases": [],
+      "description": "Making research procedures repeatable and inspectable; not a claim of reproduced results."
+    },
+    {
+      "id": "research-computing",
+      "category": "task",
+      "label_en": "Research computing",
+      "label_zh": "科研计算环境与工具",
+      "aliases": [],
+      "description": "Computing environments and infrastructure for research work."
+    },
+    {
+      "id": "scientific-computing",
+      "category": "method",
+      "label_en": "Scientific computing",
+      "label_zh": "科学计算",
+      "aliases": [],
+      "description": "Numerical and computational methods for scientific problems."
+    },
+    {
+      "id": "single-cell-analysis",
+      "category": "task",
+      "label_en": "Single-cell analysis",
+      "label_zh": "单细胞分析",
+      "aliases": [],
+      "description": "Analysis of measurements at single-cell resolution."
+    },
+    {
+      "id": "statistics",
+      "category": "method",
+      "label_en": "Statistics",
+      "label_zh": "统计学",
+      "aliases": [],
+      "description": "Estimation, inference and uncertainty analysis."
+    }
+  ]
+}

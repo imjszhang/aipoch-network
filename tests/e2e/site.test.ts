@@ -34,7 +34,7 @@ test('search, filters, sort, query links and reset select real records', async (
   await page.getByRole('button', { name: 'Clear filters', exact: true }).click();
   const filters = page.getByRole('button', { name: 'Filters', exact: true });
   if (await filters.isVisible()) await filters.click();
-  await page.getByRole('combobox', { name: 'Research area', exact: true }).selectOption('Bioinformatics');
+  await page.getByRole('combobox', { name: 'Legacy research area', exact: true }).selectOption('Bioinformatics');
   const apply = page.getByRole('button', { name: /^Show \d+ entries$/ });
   if (await apply.isVisible()) await apply.click();
   await expect(page.locator('.results-list')).toContainText('Biopython');
@@ -42,7 +42,7 @@ test('search, filters, sort, query links and reset select real records', async (
   await page.getByLabel('Sort results').selectOption('title');
   await page.reload();
   if (await filters.isVisible()) await filters.click();
-  await expect(page.getByRole('combobox', { name: 'Research area', exact: true })).toHaveValue('Bioinformatics');
+  await expect(page.getByRole('combobox', { name: 'Legacy research area', exact: true })).toHaveValue('Bioinformatics');
 });
 
 test('project and capability have distinct static deep links, provenance and unknowns', async ({ page }) => {

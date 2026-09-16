@@ -1,3 +1,5 @@
+import { publicationTaxonomies } from './taxonomies.js';
+import { validateTaxonomyBindings } from '../spec/taxonomy-binding.js';
 import { mkdir, mkdtemp, writeFile, rename, rm, readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, join } from 'node:path';
@@ -19,8 +21,10 @@ export async function generate(registry: Registry, batch: SnapshotBatch, destina
   result.catalog.sources = result.catalog.sources.map(({ readme, ...source }) => source);
   result.catalog = applyCatalogDates(result.catalog, registry, options.publicationLedger);
   assertValidCatalog(result.catalog);
-  const snapshot_id = sha256(stableJson({ catalog: result.catalog, generated_at: result.generated_at, contract_version: CONTRACT_VERSION, shard_size: shardSize, max_shard_bytes: MAX_SHARD_BYTES })).slice(0, 24);
-  const manifest: CatalogManifest = { contract_version: CONTRACT_VERSION, snapshot_id, generated_at: result.generated_at,
+  const dictionaries = await publicationTaxonomies();
+  const taxonomies = dictionaries.map(item => item.descriptor);
+  const snapshot_id = sha256(stableJson({ taxonomies, catalog: result.catalog, generated_at: result.generated_at, contract_version: CONTRACT_VERSION, shard_size: shardSize, max_shard_bytes: MAX_SHARD_BYTES })).slice(0, 24);
+  const manifest: CatalogManifest = { taxonomies, contract_version: CONTRACT_VERSION, snapshot_id, generated_at: result.generated_at,
     collections: { sources: [], actors: [], organizations: [], projects: [], resources: [], collections: [], relations: [], claims: [], tombstones: [] } };
   await mkdir(dirname(destination), { recursive: true });
   const lock = `${destination}.build-lock`;
@@ -31,6 +35,11 @@ export async function generate(registry: Registry, batch: SnapshotBatch, destina
     await writeFile(join(lock, 'owner.json'), stableJson({ pid: process.pid, started_at: new Date().toISOString() }));
     staging = await mkdtemp(`${destination}.staging-`);
     await mkdir(join(staging, 'catalog/v1/snapshots', snapshot_id), { recursive: true });
+    validateTaxonomyBindings(result.catalog, manifest, dictionaries.map(item => item.value));
+    for (const base of ['catalog/v1', `catalog/v1/snapshots/${snapshot_id}`]) {
+      await mkdir(join(staging, base, 'taxonomies'), { recursive: true });
+      for (const item of dictionaries) await writeFile(join(staging, base, item.descriptor.href), item.bytes);
+    }
     const history = await retainHistory(options.historyDirectory ?? destination, staging, result.catalog, manifest);
     for (const name of COLLECTION_NAMES) {
       const records = result.catalog[name];

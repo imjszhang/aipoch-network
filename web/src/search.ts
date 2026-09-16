@@ -1,3 +1,4 @@
+import { classificationText } from '../../spec/classification.js';
 import MiniSearch from 'minisearch';
 import type { CatalogData } from '../../spec/types.js';
 
@@ -19,7 +20,7 @@ export const searchOptions = { fields: ['title', 'text'], storeFields: ['id', 't
   searchOptions: { boost: { title: 3 }, prefix: true, combineWith: 'AND' as const } };
 export function searchDocuments(catalog: CatalogData): SearchDocument[] {
   return [...catalog.sources, ...catalog.projects, ...catalog.resources, ...catalog.organizations, ...catalog.collections, ...catalog.actors.filter(actor => actor.account_type === 'user')].map(row => ({
-    id: row.id, title: row.title, text: [row.description ?? '', ...('domains' in row ? row.domains : []), ...('topics' in row ? row.topics ?? [] : [])].join(' '),
+    id: row.id, title: row.title, text: [('domains' in row ? classificationText(row) : ''), row.description ?? '', ...('domains' in row ? row.domains : []), ...('topics' in row ? row.topics ?? [] : [])].join(' '),
     kind: row.kind, domains: 'domains' in row ? row.domains : [],
   }));
 }

@@ -1,3 +1,4 @@
+import { validateTaxonomyBindings } from '../spec/taxonomy-binding.js';
 import { lstat, mkdir, readFile, readdir, realpath, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve, sep } from 'node:path';
 import { assertValidCatalog, isSafeRelativePath, validateManifest, validateShard } from '../spec/index.js';
@@ -52,6 +53,15 @@ export async function readHistoricalSnapshot(directory: string, expectedId: stri
     (catalog[name] as CatalogRecord[]).push(...shard.records);
     files.set(part.href, bytes); total += bytes.length;
   }
+  const dictionaries: unknown[] = [];
+  for (const part of manifest.taxonomies ?? []) {
+    if (total + part.bytes > MAX_HISTORY_BYTES) throw new Error('Historical taxonomy exceeds retention limits');
+    const bytes = await boundedFile(directory, part.href, part.bytes);
+    if (bytes.length !== part.bytes || sha256(bytes) !== part.sha256) throw new Error('Historical taxonomy hash or size differs');
+    dictionaries.push(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    files.set(part.href, bytes); total += bytes.length;
+  }
+  validateTaxonomyBindings(catalog, manifest, dictionaries);
   assertValidCatalog(catalog);
   return { manifest, catalog, files, bytes: total };
 }
@@ -119,11 +129,15 @@ export async function retainHistory(inputDirectory: string, stagingDirectory: st
       entries.set(name, { snapshot_id: name, status: 'withdrawn', generated_at: snapshot.manifest.generated_at, checked_at: at, reason });
       continue;
     }
-    retainedBytes += snapshot.bytes;
+    retainedBytes += snapshot.bytes + (snapshot.manifest.taxonomies ?? []).reduce((sum, part) => sum + part.bytes, 0);
     if (retainedBytes > MAX_HISTORY_BYTES) throw new Error('Validated snapshot history exceeds 64 MiB; review retention explicitly before rebuilding');
     for (const [relative, bytes] of snapshot.files) {
       const output = join(stagingDirectory, 'catalog/v1/snapshots', name, decodeURIComponent(relative));
       await mkdir(dirname(output), { recursive: true }); await writeFile(output, bytes);
+    }
+    for (const part of snapshot.manifest.taxonomies ?? []) {
+      const output = join(stagingDirectory, 'catalog/v1', part.href);
+      await mkdir(dirname(output), { recursive: true }); await writeFile(output, snapshot.files.get(part.href)!);
     }
     entries.set(name, { snapshot_id: name, status: 'available', generated_at: snapshot.manifest.generated_at, checked_at: at });
   }

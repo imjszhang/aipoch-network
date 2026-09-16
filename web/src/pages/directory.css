@@ -174,3 +174,7 @@
 .directory-scope { background:#f6efc8; padding:12px 14px; border-left:3px solid #111; }
 .directory-filter-errors { margin-bottom:18px; overflow-wrap:anywhere; }
 .directory-filter-errors ul { padding-left:20px; margin:12px 0; }
+
+.classification-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.classification-chips button { max-width:100%; border:1px solid var(--line); background:var(--paper); padding:6px 8px; font-size:12px; line-height:1.5; text-align:left; overflow-wrap:anywhere; cursor:pointer; }
+.directory-filters .filter-help { font-size:11px; line-height:1.6; color:#666; margin:10px 0; }

@@ -879,6 +879,75 @@
         "kind": {
           "const": "project"
         },
+        "classification": {
+          "type": "object",
+          "properties": {
+            "scheme": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "codes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 100,
+              "uniqueItems": true
+            },
+            "unclassified_reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "scheme",
+            "version",
+            "codes"
+          ],
+          "additionalProperties": true
+        },
+        "research_tags": {
+          "type": "object",
+          "properties": {
+            "scheme": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 100,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "scheme",
+            "version",
+            "ids"
+          ],
+          "additionalProperties": true
+        },
         "question": {
           "type": "string",
           "minLength": 1,
@@ -962,6 +1031,75 @@
         },
         "kind": {
           "const": "resource"
+        },
+        "classification": {
+          "type": "object",
+          "properties": {
+            "scheme": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "codes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 100,
+              "uniqueItems": true
+            },
+            "unclassified_reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "scheme",
+            "version",
+            "codes"
+          ],
+          "additionalProperties": true
+        },
+        "research_tags": {
+          "type": "object",
+          "properties": {
+            "scheme": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 100,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "scheme",
+            "version",
+            "ids"
+          ],
+          "additionalProperties": true
         },
         "resource_type": {
           "type": "string",

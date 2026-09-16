@@ -84,3 +84,7 @@
 关系必须有已审阅的公开证据，证据时间不得晚于该关系的记录时间。无效种类、重复 ID、自引用、缺失目录对象和不相容的关系端点会被拒绝。依赖 GitHub 数字身份的存在性在真实来源归一化后复核，不能只凭字符串认定有效。
 
 对象或证据来源撤回时，关系退出公开目录并留下最小 tombstone；不会留下只剩一个端点的关系。静态目录的 `relations` 分片与网页数据共用这些实际结果。关系不自动创建任何 claim，也不把社区整理升级成组织主动策展。
+
+## Standard classification foundation
+
+See [versioned vocabularies](taxonomies/README.md) and the [contract design](../docs/research-classification.md). The reviewed F2 mapping is applied to 43 entries. Optional `classification` and `research_tags` require their own reviewed `classification_provenance` and `research_tags_provenance` arrays. Old records may omit all four fields. Do not infer disciplines automatically from legacy `domains`, GitHub Topics or related entries.

@@ -281,3 +281,38 @@ test('rejects invalid JSON, invalid UTF-8 and interrupted body streams', async (
   for (const bytes of [Buffer.from('{bad'), Buffer.from([0xff, 0xfe])]) await assert.rejects(loadCatalog(base, { fetch: async () => new Response(bytes) }), /UTF-8 JSON/);
   await assert.rejects(loadCatalog(base, { fetch: async () => new Response(new ReadableStream({ start(controller) { controller.error(new Error('Disconnected')); } })) }), /interrupted/);
 });
+
+function taxonomySite({future=false}={}) {
+  const data=fixture();
+  const fields=[];[7,11,5,5,9,5].forEach((n,i)=>{fields.push({code:String(i+1),parent_code:null,level:1,label_en:`Broad ${i+1}`,label_zh:`大类${i+1}`});for(let j=1;j<=n;j++) fields.push({code:`${i+1}.${j}`,parent_code:String(i+1),level:2,label_en:i===2&&j===2?'Clinical medicine':`Field ${i+1}.${j}`,label_zh:i===2&&j===2?'临床医学':`学科${i+1}.${j}`});});
+  const dictionary=future?{scheme:'future',version:'9',notes:'An unknown vocabulary'}:{scheme:'oecd-ford',version:'2015',fields};
+  data.resources[0].classification={scheme:dictionary.scheme,version:dictionary.version,codes:future?['x']:['3.2']};data.resources[0].provenance.classification=[note];
+  const origin=site({data,version:'1.2.0'}),bytes=Buffer.from(JSON.stringify(dictionary)),hash=createHash('sha256').update(bytes).digest('hex');
+  const descriptor={scheme:dictionary.scheme,version:dictionary.version,href:`taxonomies/${hash}.json`,sha256:hash,bytes:bytes.length};
+  origin.manifest.taxonomies=[descriptor];origin.files.set(new URL(descriptor.href,origin.base).href,bytes);origin.publishManifest();
+  return {...origin,descriptor};
+}
+
+test('v1.2 consumes snapshot-bound disciplines and bilingual names; future schemes remain uninterpreted',async()=>{
+ const origin=taxonomySite(),result=await loadCatalog(origin.base,{fetch:origin.fetch});assert.equal(result.taxonomies.length,1);
+ assert.deepEqual(result.listResources('临床医学').map(row=>row.id),['resource:alpha']);assert.deepEqual(result.listResources('Clinical medicine').map(row=>row.id),['resource:alpha']);
+ const future=taxonomySite({future:true}),next=await loadCatalog(future.base,{fetch:future.fetch});assert.equal(next.get('resource:alpha').classification.scheme,'future');assert.equal(next.listResources('Clinical medicine').length,0);
+});
+test('taxonomy bytes, descriptors and binding failures reject the catalog instead of pretending zero coverage',async()=>{
+ for(const mode of ['tamper','missing','duplicate','oversize','path','identity','leaf','provenance']) {
+  const origin=taxonomySite(),url=new URL(origin.descriptor.href,origin.base).href;
+  if(mode==='tamper') origin.files.set(url,Buffer.from('{}'));
+  if(mode==='missing') delete origin.manifest.taxonomies;
+  if(mode==='duplicate') origin.manifest.taxonomies.push({...origin.descriptor});
+  if(mode==='oversize') origin.descriptor.bytes=1048577;
+  if(mode==='path') origin.descriptor.href='../dictionary.json';
+  if(mode==='identity') origin.descriptor.version='2014';
+  if(mode==='leaf'||mode==='provenance') {
+   const part=origin.manifest.collections.resources[0],shardUrl=new URL(part.href,origin.base).href,shard=JSON.parse(origin.files.get(shardUrl));
+   if(mode==='leaf') shard.records[0].classification.codes=['3'];else delete shard.records[0].provenance.classification;
+   const bytes=Buffer.from(JSON.stringify(shard));part.bytes=bytes.length;part.sha256=createHash('sha256').update(bytes).digest('hex');origin.files.set(shardUrl,bytes);
+  }
+  origin.publishManifest();await assert.rejects(loadCatalog(origin.base,{fetch:origin.fetch}),undefined,mode);
+ }
+ const origin=taxonomySite();await assert.rejects(loadCatalog(origin.base,{fetch:origin.fetch,limits:{totalBytes:origin.descriptor.bytes}}),/budget/);
+});

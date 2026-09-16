@@ -1,5 +1,5 @@
 /** AIPOCH's independent public catalog. Unknown optional fields may be ignored by v1 readers. */
-export const CONTRACT_VERSION = '1.1.0' as const;
+export const CONTRACT_VERSION = '1.2.0' as const;
 export const COLLECTION_NAMES = ['sources', 'actors', 'organizations', 'projects', 'resources', 'collections', 'relations', 'claims', 'tombstones'] as const;
 export type CollectionName = typeof COLLECTION_NAMES[number];
 export type CatalogStatus = 'candidate' | 'listed';
@@ -132,14 +132,18 @@ export interface Organization extends CatalogEntity {
   resource_ids: string[];
   participation: 'community_indexed' | 'maintainer_acknowledged' | 'actively_curated';
 }
-export interface Project extends CatalogEntity {
+export interface ResearchClassification {
+  classification?: { scheme: string; version: string; codes: string[]; unclassified_reason?: string };
+  research_tags?: { scheme: string; version: string; ids: string[] };
+}
+export interface Project extends CatalogEntity, ResearchClassification {
   kind: 'project';
   question?: string;
   domains: string[];
   source_refs: SourceRef[];
   resource_ids: string[];
 }
-export interface Resource extends CatalogEntity {
+export interface Resource extends CatalogEntity, ResearchClassification {
   kind: 'resource';
   resource_type: ResourceType;
   domains: string[];
@@ -213,7 +217,9 @@ export interface ShardDescriptor {
   bytes: number;
   count?: number;
 }
+export interface TaxonomyDescriptor extends ShardDescriptor { scheme: string; version: string; revision?: string }
 export interface CatalogManifest {
+  taxonomies?: TaxonomyDescriptor[];
   contract_version: string;
   snapshot_id: string;
   generated_at: string;
