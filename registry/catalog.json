@@ -115,6 +115,21 @@
       "url": "https://github.com/shannonpileggi/gtreg",
       "reviewed_at": "2026-09-17T08:56:31.572Z",
       "review_note": "Public repository ID 433181287; pinned README and DESCRIPTION reviewed at 5f63af412d18c3a94d553b281fffac9e025adb30. DESCRIPTION 声明 GPL (>= 3)，LICENSE.md 为 GPL v3；保留比 API GPL-3.0 更准确的版本范围。 Community indexing; no maintainer acknowledgement or scientific validation."
+    },
+    {
+      "url": "https://github.com/anastruct/anaStruct",
+      "reviewed_at": "2026-09-17T12:14:14.837Z",
+      "review_note": "Public repository ID 62470606; pinned maintainer documentation reviewed at 62a2800cbbeee8e7417423dd68fba70714b535ea. LICENSE.txt 为 LGPL v3；旧 ritchie46/anaStruct API 已核对重定向至相同 repository ID。 Community indexing; no maintainer acknowledgement or scientific validation."
+    },
+    {
+      "url": "https://github.com/ONSAS/ONSAS",
+      "reviewed_at": "2026-09-17T12:14:14.837Z",
+      "review_note": "Public repository ID 170120732; pinned maintainer documentation reviewed at 20ff7941dba283810d8b9dd035e18c07a2a81d23. DESCRIPTION 声明 GPLv3+；COPYING 为 GPL v3，README 简写 GPL 3.0。 Community indexing; no maintainer acknowledgement or scientific validation."
+    },
+    {
+      "url": "https://github.com/NHERI-SimCenter/EE-UQ",
+      "reviewed_at": "2026-09-17T12:14:14.837Z",
+      "review_note": "Public repository ID 133424405; pinned maintainer documentation reviewed at 67c7a9fabaf46d444d04d087635fd9ec058a8a00. 根 LICENSE 明确声明 BSD 2-Clause；GitHub 自动识别 NOASSERTION。仅覆盖该应用代码，不推定外部后端和数据许可。 Community indexing; no maintainer acknowledgement or scientific validation."
     }
   ],
   "projects": [
@@ -1391,6 +1406,179 @@
           "role": "editor",
           "review": "reviewed",
           "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ]
+    },
+    {
+      "key": "anastruct",
+      "title": "anaStruct",
+      "resources": [
+        "anastruct-tool"
+      ],
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/anastruct/anaStruct"
+      ],
+      "description": "Analyze two-dimensional frames and trusses with a Python library for internal forces and displacements.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+          "source_id": "source:github:62470606",
+          "path": "README.md",
+          "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "框架、桁架与塔桥示例支持土木结构分析 2.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": []
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+          "source_id": "source:github:62470606",
+          "path": "README.md",
+          "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ]
+    },
+    {
+      "key": "onsas",
+      "title": "ONSAS",
+      "resources": [
+        "onsas-tool"
+      ],
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/ONSAS/ONSAS"
+      ],
+      "description": "Perform static, dynamic, linear and nonlinear structural analysis with a GNU Octave/Matlab solver.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+          "source_id": "source:github:170120732",
+          "path": "README.md",
+          "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "结构分析用途和桁架塔示例支持 2.1；不把全部示例都归为土木。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": []
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+          "source_id": "source:github:170120732",
+          "path": "README.md",
+          "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ]
+    },
+    {
+      "key": "ee-uq",
+      "title": "EE-UQ",
+      "resources": [
+        "ee-uq-tool"
+      ],
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/NHERI-SimCenter/EE-UQ"
+      ],
+      "description": "Simulate earthquake structural response with uncertainty quantification through a desktop application with interchangeable analysis workflows.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+          "source_id": "source:github:133424405",
+          "path": "README.md",
+          "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "建筑结构地震响应明确支持 2.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+          "source_id": "source:github:133424405",
+          "path": "README.md",
+          "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
           "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
           "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
         }
@@ -2702,6 +2890,227 @@
       "runtime": {
         "status": "maintainer_described",
         "documentation_url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md"
+      }
+    },
+    {
+      "key": "anastruct-tool",
+      "title": "anaStruct tool",
+      "type": "tool",
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/anastruct/anaStruct"
+      ],
+      "description": "Analyze two-dimensional frames and trusses with a Python library for internal forces and displacements.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+          "source_id": "source:github:62470606",
+          "path": "README.md",
+          "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "框架、桁架与塔桥示例支持土木结构分析 2.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": []
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+          "source_id": "source:github:62470606",
+          "path": "README.md",
+          "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "documentation_url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+      "source_refs": [
+        {
+          "source_url": "https://github.com/anastruct/anaStruct",
+          "source_id": "source:github:62470606",
+          "role": "implementation",
+          "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "resolved_at": "2026-09-17T12:14:14.837Z"
+        }
+      ],
+      "conditions": [
+        "Pinned source declares LGPL v3 in LICENSE.txt; the former ritchie46/anaStruct identity redirects to the same repository.",
+        "Source documentation reviewed; installation, engineering results and suitability for real structures were not validated."
+      ],
+      "runtime": {
+        "status": "maintainer_described",
+        "documentation_url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md"
+      }
+    },
+    {
+      "key": "onsas-tool",
+      "title": "ONSAS tool",
+      "type": "tool",
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/ONSAS/ONSAS"
+      ],
+      "description": "Perform static, dynamic, linear and nonlinear structural analysis with a GNU Octave/Matlab solver.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+          "source_id": "source:github:170120732",
+          "path": "README.md",
+          "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "结构分析用途和桁架塔示例支持 2.1；不把全部示例都归为土木。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": []
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+          "source_id": "source:github:170120732",
+          "path": "README.md",
+          "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "documentation_url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md",
+      "source_refs": [
+        {
+          "source_url": "https://github.com/ONSAS/ONSAS",
+          "source_id": "source:github:170120732",
+          "role": "implementation",
+          "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "resolved_at": "2026-09-17T12:14:14.837Z"
+        }
+      ],
+      "conditions": [
+        "Reviewed DESCRIPTION version 0.4.1 declares GPLv3+; requires GNU Octave or Matlab.",
+        "Source documentation reviewed; installation, engineering results and suitability for real structures were not validated."
+      ],
+      "runtime": {
+        "status": "maintainer_described",
+        "documentation_url": "https://github.com/ONSAS/ONSAS/blob/20ff7941dba283810d8b9dd035e18c07a2a81d23/README.md"
+      }
+    },
+    {
+      "key": "ee-uq-tool",
+      "title": "EE-UQ tool",
+      "type": "tool",
+      "domains": [
+        "Civil engineering"
+      ],
+      "sources": [
+        "https://github.com/NHERI-SimCenter/EE-UQ"
+      ],
+      "description": "Simulate earthquake structural response with uncertainty quantification through a desktop application with interchangeable analysis workflows.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+        "observed_at": "2026-09-17T12:14:14.837Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "2.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+          "source_id": "source:github:133424405",
+          "path": "README.md",
+          "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "建筑结构地震响应明确支持 2.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+          "source_id": "source:github:133424405",
+          "path": "README.md",
+          "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T12:14:14.837Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "documentation_url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md",
+      "source_refs": [
+        {
+          "source_url": "https://github.com/NHERI-SimCenter/EE-UQ",
+          "source_id": "source:github:133424405",
+          "role": "implementation",
+          "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "resolved_at": "2026-09-17T12:14:14.837Z"
+        }
+      ],
+      "conditions": [
+        "LICENSE declares BSD 2-Clause; GitHub automatic license detection is NOASSERTION. External analysis backends, ground-motion data and remote-compute services have separate requirements and terms.",
+        "Source documentation reviewed; installation, engineering results and suitability for real structures were not validated."
+      ],
+      "runtime": {
+        "status": "maintainer_described",
+        "documentation_url": "https://github.com/NHERI-SimCenter/EE-UQ/blob/67c7a9fabaf46d444d04d087635fd9ec058a8a00/README.md"
       }
     }
   ],

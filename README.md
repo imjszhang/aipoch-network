@@ -17,7 +17,7 @@ Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**.
 - [General Research Tools — Classification Pending](#general-research-tools--classification-pending)
 - [Research Guides](#research-guides)
 
-As of September 17, 2026, the reviewed registry contains 23 projects and 24 reusable resources. Six subfields have classified entries; 36 await entries. Ten project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. The current selection includes many Python tools; research across all six broad fields is in scope.
+As of September 17, 2026, the reviewed registry contains 26 projects and 27 reusable resources. Seven subfields have classified entries; 35 await entries. Ten project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. The current selection includes many Python tools; research across all six broad fields is in scope.
 
 The links below open capabilities in each discipline; switch to Projects on the website to explore their associated projects. Each selected project is listed once here for readability. Its catalog record can have several reviewed disciplines, and a reusable resource can have a different classification. [Classification reference](registry/taxonomies/oecd-ford-2015.json).
 
@@ -53,7 +53,11 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 
 [2.1 Civil engineering](https://aipoch.network/capabilities/?field=2.1) · [2.2 Electrical engineering, electronic engineering, information engineering](https://aipoch.network/capabilities/?field=2.2) · [2.3 Mechanical engineering](https://aipoch.network/capabilities/?field=2.3) · [2.4 Chemical engineering](https://aipoch.network/capabilities/?field=2.4) · [2.5 Materials engineering](https://aipoch.network/capabilities/?field=2.5) · [2.6 Medical engineering](https://aipoch.network/capabilities/?field=2.6) · [2.7 Environmental engineering](https://aipoch.network/capabilities/?field=2.7) · [2.8 Environmental biotechnology](https://aipoch.network/capabilities/?field=2.8) · [2.9 Industrial biotechnology](https://aipoch.network/capabilities/?field=2.9) · [2.10 Nano-technology](https://aipoch.network/capabilities/?field=2.10) · [2.11 Other engineering and technologies](https://aipoch.network/capabilities/?field=2.11)
 
-No classified entries in this broad field as of September 17, 2026. [Recommend a project or resource](https://github.com/imjszhang/aipoch-network/issues/new/choose) with its public GitHub URL.
+### 2.1 Civil engineering
+
+- [anaStruct](https://github.com/anastruct/anaStruct) — Analyze two-dimensional frames and trusses, including internal forces and displacements. [Details](https://aipoch.network/projects/project~anastruct/)
+- [ONSAS](https://github.com/ONSAS/ONSAS) — Perform static, dynamic, linear and nonlinear structural analysis with GNU Octave/Matlab. [Details](https://aipoch.network/projects/project~onsas/)
+- [EE-UQ](https://github.com/NHERI-SimCenter/EE-UQ) — Simulate earthquake structural response with uncertainty quantification and interchangeable analysis workflows. External backends and data have separate requirements. [Details](https://aipoch.network/projects/project~ee-uq/)
 
 ## Medical and Health Sciences
 

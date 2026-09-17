@@ -15,3 +15,7 @@ The earlier 2026-09-12 observations and 2026-09-14 MuData-only addition remain i
 ## Clinical research intake — 2026-09-17
 
 rpact and gtreg add two independently observed sources and two accounts (RPACT organization, Shannon Pileggi personal account), bringing the fixed fixture to 23 sources and 21 accounts. Only their reviewed whitelist observations were appended; the previous 21 sources and 19 accounts retain their earlier times and values. Clinical use, classifications, experimental/development status and pinned license declarations were reviewed separately in the registry. GitHub does not automatically identify rpact’s license; the raw source observation remains unknown while the resource conditions cite its reviewed DESCRIPTION declaration. No upstream software was executed.
+
+## Civil engineering intake — 2026-09-17
+
+anaStruct, ONSAS and EE-UQ add three sources and three organization accounts. The fixture now holds 26 sources and 24 accounts; the previous 23 sources and 21 accounts retain their values and timestamps. Only trusted-collector whitelist observations were appended. EE-UQ API license remains NOASSERTION; its pinned LICENSE declaration and external dependency limits are recorded separately in resource conditions. No upstream software was executed.

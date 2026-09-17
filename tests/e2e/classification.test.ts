@@ -1,11 +1,11 @@
 import {test,expect,type Page} from '@playwright/test';
 async function controls(page:Page){const toggle=page.getByRole('button',{name:'Filters',exact:true});if(await toggle.isVisible()){await toggle.click();return page.getByRole('dialog');}return page.locator('.desktop-filters');}
 async function close(page:Page){const dialog=page.getByRole('dialog');if(await dialog.isVisible())await dialog.getByRole('button',{name:/^Show \d+ entries$/}).click();}
-test('complete standard, empty civil engineering field, multiple selections and shareable reload',async({page},testInfo)=>{
+test('complete standard, empty chemical engineering field, multiple selections and shareable reload',async({page},testInfo)=>{
  await page.goto('capabilities/');const panel=await controls(page),field=panel.getByLabel('Research discipline',{exact:true});await expect(field).toBeEnabled();
- await expect(field.locator('optgroup')).toHaveCount(6);await expect(field.locator('option[value="2.1"]')).toHaveText('2.1 Civil engineering (0)');
- await field.selectOption('2.1');await expect(page).toHaveURL(/field=2.1/);await close(page);await expect(page.getByText('No matching entries',{exact:false})).toBeVisible();
- await page.reload();await expect(page).toHaveURL(/field=2.1/);const again=await controls(page);await again.getByLabel('Research discipline',{exact:true}).selectOption('1.1');await expect(page).toHaveURL(/field=1.1%2C2.1/);await close(page);await expect(page.locator('.results-list')).toContainText('SciPy');
+ await expect(field.locator('optgroup')).toHaveCount(6);await expect(field.locator('option[value="2.4"]')).toHaveText('2.4 Chemical engineering (0)');
+ await field.selectOption('2.4');await expect(page).toHaveURL(/field=2.4/);await close(page);await expect(page.getByText('No matching entries',{exact:false})).toBeVisible();
+ await page.reload();await expect(page).toHaveURL(/field=2.4/);const again=await controls(page);await again.getByLabel('Research discipline',{exact:true}).selectOption('1.1');await expect(page).toHaveURL(/field=1.1%2C2.4/);await close(page);await expect(page.locator('.results-list')).toContainText('SciPy');
  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content',/noindex/);
  await page.screenshot({path:testInfo.outputPath('classification.png'),fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -30,4 +30,12 @@ test('clinical tools are discoverable with pinned sources and honest usage condi
  await expect(page.getByRole('link',{name:'Documentation',exact:true})).toHaveAttribute('href',/5f63af412d18c3a94d553b281fffac9e025adb30/);
  await page.goto('capabilities/?field=3.2&q=rpact');await page.locator('.results-list').getByRole('link',{name:'rpact R package',exact:true}).click();
  await expect(page.getByText(/this pinned commit is not a stable release/)).toBeVisible();
+});
+
+test('civil tools are discoverable with fixed documentation and backend conditions',async({page})=>{
+ await page.goto('capabilities/?field=2.1&resource_type=tool');
+ for(const name of ['anaStruct tool','ONSAS tool','EE-UQ tool'])await expect(page.locator('.results-list')).toContainText(name);
+ await page.locator('.results-list').getByRole('link',{name:'EE-UQ tool',exact:true}).click();
+ await expect(page.getByText(/External analysis backends, ground-motion data/)).toBeVisible();
+ await expect(page.getByRole('link',{name:'Documentation',exact:true})).toHaveAttribute('href',/67c7a9fabaf46d444d04d087635fd9ec058a8a00/);
 });
