@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-17T08:57:06.272Z",
+  "as_of": "2026-09-17T12:14:29.624Z",
   "sources": [
     {
       "requested_url": "https://github.com/scipy/scipy",
@@ -1731,6 +1731,224 @@
           "url": "https://github.com/shannonpileggi/gtreg"
         }
       }
+    },
+    {
+      "requested_url": "https://github.com/anastruct/anastruct",
+      "checked_at": "2026-09-17T12:14:25.888Z",
+      "observed_at": "2026-09-17T12:14:25.888Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:25.888Z",
+        "last_success_at": "2026-09-17T12:14:25.888Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 466,
+          "observed_at": "2026-09-17T12:14:25.888Z",
+          "last_attempt_at": "2026-09-17T12:14:25.888Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 117,
+          "observed_at": "2026-09-17T12:14:25.888Z",
+          "last_attempt_at": "2026-09-17T12:14:25.888Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+          "committed_at": "2026-08-01T09:20:58.000Z",
+          "observed_at": "2026-09-17T12:14:25.888Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-17T12:14:25.888Z",
+          "last_success_at": "2026-09-17T12:14:25.888Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 62470606,
+        "name": "anaStruct",
+        "full_name": "anastruct/anaStruct",
+        "html_url": "https://github.com/anastruct/anaStruct",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 254910803,
+          "login": "anastruct",
+          "type": "Organization",
+          "html_url": "https://github.com/anastruct"
+        },
+        "topics": [
+          "axial-forces",
+          "displacement",
+          "finite-element-analysis",
+          "shear-forces",
+          "stiffness",
+          "structural-analysis",
+          "structural-engineering",
+          "trusses"
+        ],
+        "updated_at": "2026-09-11T09:07:17Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "2D structural analysis in Python",
+        "language": "Python",
+        "pushed_at": "2026-09-11T05:05:39Z",
+        "commit": "62a2800cbbeee8e7417423dd68fba70714b535ea",
+        "license": {
+          "spdx_id": "LGPL-3.0",
+          "url": "https://github.com/anastruct/anaStruct"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/onsas/onsas",
+      "checked_at": "2026-09-17T12:14:26.909Z",
+      "observed_at": "2026-09-17T12:14:26.909Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:26.909Z",
+        "last_success_at": "2026-09-17T12:14:26.909Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 79,
+          "observed_at": "2026-09-17T12:14:26.909Z",
+          "last_attempt_at": "2026-09-17T12:14:26.909Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 22,
+          "observed_at": "2026-09-17T12:14:26.909Z",
+          "last_attempt_at": "2026-09-17T12:14:26.909Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+          "committed_at": "2026-08-13T01:45:23.000Z",
+          "observed_at": "2026-09-17T12:14:26.909Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-17T12:14:26.909Z",
+          "last_success_at": "2026-09-17T12:14:26.909Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 170120732,
+        "name": "ONSAS",
+        "full_name": "ONSAS/ONSAS",
+        "html_url": "https://github.com/ONSAS/ONSAS",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 52746479,
+          "login": "ONSAS",
+          "type": "Organization",
+          "html_url": "https://github.com/ONSAS"
+        },
+        "topics": [
+          "computational-mechanics",
+          "gmsh",
+          "gnu-octave",
+          "matlab",
+          "nonlinear-dynamics",
+          "paraview",
+          "structural-analysis",
+          "structural-engineering"
+        ],
+        "updated_at": "2026-09-09T21:32:52Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "An Open Nonlinear Structural Analysis Solver for GNU-Octave or Matlab",
+        "language": "MATLAB",
+        "pushed_at": "2026-08-13T01:50:18Z",
+        "commit": "20ff7941dba283810d8b9dd035e18c07a2a81d23",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/ONSAS/ONSAS"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/nheri-simcenter/ee-uq",
+      "checked_at": "2026-09-17T12:14:27.725Z",
+      "observed_at": "2026-09-17T12:14:27.725Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:27.725Z",
+        "last_success_at": "2026-09-17T12:14:27.725Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 23,
+          "observed_at": "2026-09-17T12:14:27.725Z",
+          "last_attempt_at": "2026-09-17T12:14:27.725Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 40,
+          "observed_at": "2026-09-17T12:14:27.725Z",
+          "last_attempt_at": "2026-09-17T12:14:27.725Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "67c7a9fabaf46d444d04d087635fd9ec058a8a00",
+          "committed_at": "2026-05-06T00:37:44.000Z",
+          "observed_at": "2026-09-17T12:14:27.725Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-17T12:14:27.725Z",
+          "last_success_at": "2026-09-17T12:14:27.725Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 133424405,
+        "name": "EE-UQ",
+        "full_name": "NHERI-SimCenter/EE-UQ",
+        "html_url": "https://github.com/NHERI-SimCenter/EE-UQ",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 9965185,
+          "login": "NHERI-SimCenter",
+          "type": "Organization",
+          "html_url": "https://github.com/NHERI-SimCenter"
+        },
+        "topics": [],
+        "updated_at": "2026-08-23T03:42:35Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Earthquake Engineering Application With Uncertainty Quantification",
+        "language": "C++",
+        "pushed_at": "2026-05-06T00:37:48Z",
+        "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00"
+      }
     }
   ],
   "accounts": [
@@ -2405,6 +2623,102 @@
           "value": 12,
           "observed_at": "2026-09-17T08:57:05.931Z",
           "last_attempt_at": "2026-09-17T08:57:05.931Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 9965185,
+      "login": "NHERI-SimCenter",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/NHERI-SimCenter",
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:28.525Z",
+        "last_success_at": "2026-09-17T12:14:28.525Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 142,
+          "observed_at": "2026-09-17T12:14:28.525Z",
+          "last_attempt_at": "2026-09-17T12:14:28.525Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-17T12:14:28.525Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 71,
+          "observed_at": "2026-09-17T12:14:28.525Z",
+          "last_attempt_at": "2026-09-17T12:14:28.525Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 52746479,
+      "login": "ONSAS",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/ONSAS",
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:28.893Z",
+        "last_success_at": "2026-09-17T12:14:28.893Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 16,
+          "observed_at": "2026-09-17T12:14:28.893Z",
+          "last_attempt_at": "2026-09-17T12:14:28.893Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-17T12:14:28.893Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 8,
+          "observed_at": "2026-09-17T12:14:28.893Z",
+          "last_attempt_at": "2026-09-17T12:14:28.893Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 254910803,
+      "login": "anastruct",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/anastruct",
+      "observation": {
+        "last_attempt_at": "2026-09-17T12:14:29.244Z",
+        "last_success_at": "2026-09-17T12:14:29.244Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 6,
+          "observed_at": "2026-09-17T12:14:29.244Z",
+          "last_attempt_at": "2026-09-17T12:14:29.244Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-17T12:14:29.244Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 1,
+          "observed_at": "2026-09-17T12:14:29.244Z",
+          "last_attempt_at": "2026-09-17T12:14:29.244Z",
           "result": "ok",
           "visibility": "public_api"
         }
