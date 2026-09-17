@@ -71,10 +71,14 @@ test('pagination preserves sort and restores the same records after detail, back
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
   await page.reload();
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
-  await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
-  await expect(results(page)).toHaveCount(total - 16);
+  const pages = Math.ceil(total / 8);
+  for (let current = 3; current <= pages; current++) {
+    await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
+    await expect.poll(() => searchParams(page).get('page')).toBe(String(current));
+    await expect(results(page)).toHaveCount(Math.min(8, total - (current - 1) * 8));
+    await expect(page.locator('.pagination')).toContainText(`Page ${current} of ${pages}`);
+  }
   await expect(page.getByRole('navigation', { name: 'Results pages' }).getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
-  await expect(page.locator('.pagination')).toContainText('Page 3 of 3');
 });
 
 test('invalid and out-of-range shared pages clamp to real results and canonical URLs', async ({ page, request }) => {
