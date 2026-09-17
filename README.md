@@ -17,7 +17,7 @@ Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**.
 - [General Research Tools — Classification Pending](#general-research-tools--classification-pending)
 - [Research Guides](#research-guides)
 
-As of September 17, 2026, the catalog contains 21 projects and 22 reusable resources. Five subfields have classified entries; 37 await entries. Ten project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. The current selection includes many Python tools; research across all six broad fields is in scope.
+As of September 17, 2026, the reviewed registry contains 23 projects and 24 reusable resources. Six subfields have classified entries; 36 await entries. Ten project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. The current selection includes many Python tools; research across all six broad fields is in scope.
 
 The links below open capabilities in each discipline; switch to Projects on the website to explore their associated projects. Each selected project is listed once here for readability. Its catalog record can have several reviewed disciplines, and a reusable resource can have a different classification. [Classification reference](registry/taxonomies/oecd-ford-2015.json).
 
@@ -65,7 +65,12 @@ No classified entries in this broad field as of September 17, 2026. [Recommend a
 - [NiBabel](https://github.com/nipy/nibabel) — Read and write neuroimaging file formats, accessing image arrays and metadata for use in downstream analysis tools. [Details](https://aipoch.network/projects/project~nibabel/)
 - [Nilearn](https://github.com/nilearn/nilearn) — Analyze neuroimaging data with statistical learning, including tools for extracting signals, fitting models, and visualizing results. [Details](https://aipoch.network/projects/project~nilearn/)
 
-**Clinical medicine (3.2) is included in the classification and currently has no entries.** Basic medicine entries above do not establish clinical coverage or clinical validity. Recommendations with a clear clinical research purpose are welcome.
+### 3.2 Clinical medicine
+
+- [rpact](https://github.com/rpact-com/rpact) — Design, simulate, and analyze confirmatory clinical trials with sample-size, power, and adaptive-design calculations in R. [Details](https://aipoch.network/projects/project~rpact/)
+- [gtreg](https://github.com/shannonpileggi/gtreg) — Prepare adverse-event summaries and clinical reporting tables in R; upstream labels the package experimental. [Details](https://aipoch.network/projects/project~gtreg/)
+
+These entries describe research software, not clinical validation or regulatory approval.
 
 ## Agricultural and Veterinary Sciences
 
@@ -106,7 +111,7 @@ These are resource guides, not tested end-to-end analysis tutorials. See the [gu
 
 We select resources for a clear research use, identifiable upstream sources, accessible documentation, and an open-source license reviewed at the source. Each entry should explain a distinct use or role; stars alone do not determine inclusion. Maintenance status and source changes inform subsequent reviews.
 
-This is an editorial selection, not a benchmark or a validated software environment. Inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Check each project's current documentation, license, and requirements before use. Source and license review: September 16, 2026.
+This is an editorial selection, not a benchmark or a validated software environment. Inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Check each project's current documentation, license, and requirements before use. Original selection source and license review: September 16, 2026; rpact and gtreg: September 17, 2026.
 
 ## Contribute
 

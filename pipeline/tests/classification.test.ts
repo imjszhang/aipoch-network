@@ -15,7 +15,7 @@ async function fixture() { return { registry: JSON.parse(await readFile('registr
 
 test('reviewed mappings retain legacy labels, independent field evidence and existing resource types', async () => {
   const {registry,batch} = await fixture(); const data = normalize(registry,batch).catalog;
-  assert.equal(data.projects.length,21); assert.equal(data.resources.length,22);
+  assert.equal(data.projects.length,registry.projects.length); assert.equal(data.resources.length,registry.resources.length);
   for (const row of [...data.projects,...data.resources]) {
     const input = (row.kind === 'project' ? registry.projects : registry.resources).find(item => `${row.kind}:${item.key}` === row.id)!;
     assert.deepEqual(row.classification,input.classification); assert.deepEqual(row.research_tags,input.research_tags);
