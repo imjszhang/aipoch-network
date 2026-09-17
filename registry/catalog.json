@@ -105,6 +105,16 @@
       "url": "https://github.com/scverse/mudata",
       "reviewed_at": "2026-09-14T07:45:01.246Z",
       "review_note": "Prepared for maintainer review: public GitHub ID 392836868; README and BSD-3-Clause license inspected at bb8bea5ac250361e549b070a9ba35ab4a396c029. Multimodal annotated data container. Community indexing proposal only; no maintainer acknowledgement or scientific validation."
+    },
+    {
+      "url": "https://github.com/rpact-com/rpact",
+      "reviewed_at": "2026-09-17T08:56:31.572Z",
+      "review_note": "Public repository ID 514229920; pinned README and DESCRIPTION reviewed at 7f2dc890b86bff774c8abc0a311c77002f9e1a96. DESCRIPTION 声明 LGPL-3，README 一致；GitHub 自动识别为 null，不能据此判为无许可。 Community indexing; no maintainer acknowledgement or scientific validation."
+    },
+    {
+      "url": "https://github.com/shannonpileggi/gtreg",
+      "reviewed_at": "2026-09-17T08:56:31.572Z",
+      "review_note": "Public repository ID 433181287; pinned README and DESCRIPTION reviewed at 5f63af412d18c3a94d553b281fffac9e025adb30. DESCRIPTION 声明 GPL (>= 3)，LICENSE.md 为 GPL v3；保留比 API GPL-3.0 更准确的版本范围。 Community indexing; no maintainer acknowledgement or scientific validation."
     }
   ],
   "projects": [
@@ -1264,6 +1274,127 @@
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
       ]
+    },
+    {
+      "key": "rpact",
+      "title": "rpact",
+      "resources": [
+        "rpact-tool"
+      ],
+      "domains": [
+        "Clinical research",
+        "Statistics"
+      ],
+      "sources": [
+        "https://github.com/rpact-com/rpact"
+      ],
+      "description": "Design, simulate, and analyze confirmatory clinical trials with an R package supporting sample-size, power, and adaptive-design calculations.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+        "observed_at": "2026-09-17T08:56:31.572Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.2",
+          "1.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+          "source_id": "source:github:514229920",
+          "path": "README.md",
+          "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "临床试验用途与统计方法明确，分别支持 3.2 与 1.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+          "source_id": "source:github:514229920",
+          "path": "README.md",
+          "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ]
+    },
+    {
+      "key": "gtreg",
+      "title": "gtreg",
+      "resources": [
+        "gtreg-tool"
+      ],
+      "domains": [
+        "Clinical research"
+      ],
+      "sources": [
+        "https://github.com/shannonpileggi/gtreg"
+      ],
+      "description": "Summarize clinical research data with an R package for adverse-event counts, patient-level summaries, and reporting tables. Upstream labels the package experimental.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+        "observed_at": "2026-09-17T08:56:31.572Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.2"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+          "source_id": "source:github:433181287",
+          "path": "README.md",
+          "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "不良事件、受试者与临床报告用途直接支持 3.2；不称监管批准。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics",
+          "data-analysis"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+          "source_id": "source:github:433181287",
+          "path": "README.md",
+          "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ]
     }
   ],
   "resources": [
@@ -2419,6 +2550,159 @@
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
       ]
+    },
+    {
+      "key": "rpact-tool",
+      "title": "rpact R package",
+      "type": "tool",
+      "domains": [
+        "Clinical research",
+        "Statistics"
+      ],
+      "sources": [
+        "https://github.com/rpact-com/rpact"
+      ],
+      "description": "Design, simulate, and analyze confirmatory clinical trials with an R package supporting sample-size, power, and adaptive-design calculations.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+        "observed_at": "2026-09-17T08:56:31.572Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.2",
+          "1.1"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+          "source_id": "source:github:514229920",
+          "path": "README.md",
+          "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "临床试验用途与统计方法明确，分别支持 3.2 与 1.1。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+          "source_id": "source:github:514229920",
+          "path": "README.md",
+          "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "documentation_url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+      "source_refs": [
+        {
+          "source_url": "https://github.com/rpact-com/rpact",
+          "source_id": "source:github:514229920",
+          "role": "implementation",
+          "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "resolved_at": "2026-09-17T08:56:31.572Z"
+        }
+      ],
+      "conditions": [
+        "Reviewed development DESCRIPTION version 4.5.0.9317; this pinned commit is not a stable release. License declared LGPL-3 in DESCRIPTION; GitHub automatic license metadata is unknown.",
+        "Source documentation and licensing were reviewed; installation, scientific results and regulatory suitability were not validated."
+      ],
+      "runtime": {
+        "status": "maintainer_described",
+        "documentation_url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md"
+      }
+    },
+    {
+      "key": "gtreg-tool",
+      "title": "gtreg R package",
+      "type": "tool",
+      "domains": [
+        "Clinical research"
+      ],
+      "sources": [
+        "https://github.com/shannonpileggi/gtreg"
+      ],
+      "description": "Summarize clinical research data with an R package for adverse-event counts, patient-level summaries, and reporting tables. Upstream labels the package experimental.",
+      "attribution": {
+        "role": "editor",
+        "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+        "observed_at": "2026-09-17T08:56:31.572Z"
+      },
+      "classification": {
+        "scheme": "oecd-ford",
+        "version": "2015",
+        "codes": [
+          "3.2"
+        ]
+      },
+      "classification_provenance": [
+        {
+          "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+          "source_id": "source:github:433181287",
+          "path": "README.md",
+          "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "不良事件、受试者与临床报告用途直接支持 3.2；不称监管批准。",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "research_tags": {
+        "scheme": "aipoch-research-tags",
+        "version": "1",
+        "ids": [
+          "statistics",
+          "data-analysis"
+        ]
+      },
+      "research_tags_provenance": [
+        {
+          "url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+          "source_id": "source:github:433181287",
+          "path": "README.md",
+          "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "role": "editor",
+          "review": "reviewed",
+          "observed_at": "2026-09-17T08:56:31.572Z",
+          "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
+          "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
+        }
+      ],
+      "documentation_url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md",
+      "source_refs": [
+        {
+          "source_url": "https://github.com/shannonpileggi/gtreg",
+          "source_id": "source:github:433181287",
+          "role": "implementation",
+          "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "resolved_at": "2026-09-17T08:56:31.572Z"
+        }
+      ],
+      "conditions": [
+        "Reviewed DESCRIPTION version 0.4.2 declares GPL (>= 3); README labels the package experimental.",
+        "Source documentation and licensing were reviewed; installation, scientific results and regulatory suitability were not validated."
+      ],
+      "runtime": {
+        "status": "maintainer_described",
+        "documentation_url": "https://github.com/shannonpileggi/gtreg/blob/5f63af412d18c3a94d553b281fffac9e025adb30/README.md"
+      }
     }
   ],
   "collections": [

@@ -87,4 +87,4 @@
 
 ## Standard classification foundation
 
-See [versioned vocabularies](taxonomies/README.md) and the [contract design](../docs/research-classification.md). The reviewed F2 mapping is applied to 43 entries. Optional `classification` and `research_tags` require their own reviewed `classification_provenance` and `research_tags_provenance` arrays. Old records may omit all four fields. Do not infer disciplines automatically from legacy `domains`, GitHub Topics or related entries.
+See [versioned vocabularies](taxonomies/README.md) and the [contract design](../docs/research-classification.md). The original reviewed F2 mapping covers 43 entries; subsequent additions carry their own per-entry evidence. Optional `classification` and `research_tags` require their own reviewed `classification_provenance` and `research_tags_provenance` arrays. Old records may omit all four fields. Do not infer disciplines automatically from legacy `domains`, GitHub Topics or related entries.

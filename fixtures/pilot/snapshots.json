@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-15T09:05:51.614Z",
+  "as_of": "2026-09-17T08:57:06.272Z",
   "sources": [
     {
       "requested_url": "https://github.com/scipy/scipy",
@@ -1583,6 +1583,154 @@
           "url": "https://github.com/scverse/mudata"
         }
       }
+    },
+    {
+      "requested_url": "https://github.com/rpact-com/rpact",
+      "checked_at": "2026-09-17T08:57:03.501Z",
+      "observed_at": "2026-09-17T08:57:03.501Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-17T08:57:03.501Z",
+        "last_success_at": "2026-09-17T08:57:03.501Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 40,
+          "observed_at": "2026-09-17T08:57:03.501Z",
+          "last_attempt_at": "2026-09-17T08:57:03.501Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 8,
+          "observed_at": "2026-09-17T08:57:03.501Z",
+          "last_attempt_at": "2026-09-17T08:57:03.501Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "7f2dc890b86bff774c8abc0a311c77002f9e1a96",
+          "committed_at": "2026-09-09T12:29:36.000Z",
+          "observed_at": "2026-09-17T08:57:03.501Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-17T08:57:03.501Z",
+          "last_success_at": "2026-09-17T08:57:03.501Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 514229920,
+        "name": "rpact",
+        "full_name": "rpact-com/rpact",
+        "html_url": "https://github.com/rpact-com/rpact",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 44603481,
+          "login": "rpact-com",
+          "type": "Organization",
+          "html_url": "https://github.com/rpact-com"
+        },
+        "topics": [
+          "adaptive-design",
+          "analysis",
+          "clinical-trials",
+          "count-data",
+          "group-sequential-designs",
+          "gxp",
+          "power-calculation",
+          "r",
+          "r-package",
+          "rstats",
+          "sample-size-calculation",
+          "simulation",
+          "validated"
+        ],
+        "updated_at": "2026-09-09T12:33:44Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "rpact: Confirmatory Adaptive Clinical Trial Design and Analysis",
+        "language": "R",
+        "homepage": "https://docs.rpact.org/",
+        "pushed_at": "2026-09-17T07:15:18Z",
+        "commit": "7f2dc890b86bff774c8abc0a311c77002f9e1a96"
+      }
+    },
+    {
+      "requested_url": "https://github.com/shannonpileggi/gtreg",
+      "checked_at": "2026-09-17T08:57:04.681Z",
+      "observed_at": "2026-09-17T08:57:04.681Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-17T08:57:04.681Z",
+        "last_success_at": "2026-09-17T08:57:04.681Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 42,
+          "observed_at": "2026-09-17T08:57:04.681Z",
+          "last_attempt_at": "2026-09-17T08:57:04.681Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 8,
+          "observed_at": "2026-09-17T08:57:04.681Z",
+          "last_attempt_at": "2026-09-17T08:57:04.681Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5f63af412d18c3a94d553b281fffac9e025adb30",
+          "committed_at": "2025-11-25T14:23:43.000Z",
+          "observed_at": "2026-09-17T08:57:04.681Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-17T08:57:04.681Z",
+          "last_success_at": "2026-09-17T08:57:04.681Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 433181287,
+        "name": "gtreg",
+        "full_name": "shannonpileggi/gtreg",
+        "html_url": "https://github.com/shannonpileggi/gtreg",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 17747575,
+          "login": "shannonpileggi",
+          "type": "User",
+          "html_url": "https://github.com/shannonpileggi"
+        },
+        "topics": [],
+        "updated_at": "2026-04-15T09:08:39Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Regulatory Tables for Clinical Research",
+        "language": "R",
+        "homepage": "https://shannonpileggi.github.io/gtreg/",
+        "pushed_at": "2025-12-01T17:58:42Z",
+        "commit": "5f63af412d18c3a94d553b281fffac9e025adb30",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/shannonpileggi/gtreg"
+        }
+      }
     }
   ],
   "accounts": [
@@ -2191,6 +2339,72 @@
           "value": 97,
           "observed_at": "2026-09-15T09:01:53.564Z",
           "last_attempt_at": "2026-09-15T09:01:53.564Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 17747575,
+      "login": "shannonpileggi",
+      "account_type": "user",
+      "canonical_url": "https://github.com/shannonpileggi",
+      "observation": {
+        "last_attempt_at": "2026-09-17T08:57:05.588Z",
+        "last_success_at": "2026-09-17T08:57:05.588Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 237,
+          "observed_at": "2026-09-17T08:57:05.588Z",
+          "last_attempt_at": "2026-09-17T08:57:05.588Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 2,
+          "observed_at": "2026-09-17T08:57:05.588Z",
+          "last_attempt_at": "2026-09-17T08:57:05.588Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 105,
+          "observed_at": "2026-09-17T08:57:05.588Z",
+          "last_attempt_at": "2026-09-17T08:57:05.588Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 44603481,
+      "login": "rpact-com",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/rpact-com",
+      "observation": {
+        "last_attempt_at": "2026-09-17T08:57:05.931Z",
+        "last_success_at": "2026-09-17T08:57:05.931Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 16,
+          "observed_at": "2026-09-17T08:57:05.931Z",
+          "last_attempt_at": "2026-09-17T08:57:05.931Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-17T08:57:05.931Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 12,
+          "observed_at": "2026-09-17T08:57:05.931Z",
+          "last_attempt_at": "2026-09-17T08:57:05.931Z",
           "result": "ok",
           "visibility": "public_api"
         }
