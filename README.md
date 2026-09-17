@@ -4,6 +4,23 @@ An open research network connecting research projects, reusable capabilities, an
 
 [Browse the website](https://aipoch.network/) · [Explore projects](https://aipoch.network/projects/) · [Explore capabilities](https://aipoch.network/capabilities/) · [Suggest a resource](https://github.com/imjszhang/aipoch-network/issues/new/choose)
 
+## Start with AIPOCH Open-Science and Connector
+
+To bring resources from Network into your research workspace, first check that you have **both AIPOCH Open-Science and AIPOCH Connector installed and ready**:
+
+| Component | What it does | Installation |
+| --- | --- | --- |
+| **AIPOCH Open-Science** | Your local AI research workbench for projects, analysis, and research outputs. | [Official GitHub repository and setup guide](https://github.com/aipoch/open-science#readme) · [Download releases](https://github.com/aipoch/open-science/releases/latest) |
+| **AIPOCH Connector** | Connects Network to a running Open-Science workbench and receives the resource references you review and send. | [Official GitHub repository and installation guide](https://github.com/imjszhang/aipoch-connector#install) · [Release packages](https://github.com/imjszhang/aipoch-connector/releases) |
+
+1. **Missing either component?** Follow its GitHub installation guide above. Install and configure Open-Science first; Connector does not install or start it for you. Use Connector's documented checkout or release-package installation, not an assumed npm registry package.
+2. **Already installed?** Open and configure Open-Science, follow the [Connector setup guide](https://github.com/imjszhang/aipoch-connector#connect-a-running-workbench), and confirm its tools are available in your Open-Science session.
+3. **Connect and continue.** Choose **Connect Open-Science** on Network, review the pending connection in Open-Science, and compare the website and code on the local approval page. After connecting, review the selected resource reference before sending it.
+
+A failed connection does not prove either component is missing. Check installation, running state, setup, and authorization separately; if installation cannot be checked, its status is unconfirmed. A received reference is not an executed research task. See [connection details and verified scope](docs/connector-adapter.md).
+
+You can browse Network, read upstream sources, and suggest resources without installing either component or signing in.
+
 ## Browse by Research Discipline
 
 Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**. Methods and task tags are separate from disciplines and resource types. The categories below link to the live catalog, including fields awaiting their first entries.

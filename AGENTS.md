@@ -2,9 +2,22 @@
 
 ## Scope and working baseline
 
-This is an independent GitHub-native research catalog project. Read `README.md` and the relevant design documents before implementation. The original planning baseline is 2026-09-12; the current design target is v9-r2, received on 2026-09-13. A plan describes future work; it does not imply that every phase should be executed in the current task. Follow the user's authorized scope and continue without unnecessary repeated confirmations.
+This is an open research network connecting research projects, reusable capabilities, and their original sources, with an independent GitHub-native catalog. Read `README.md` and the relevant design documents before implementation. The original planning baseline is 2026-09-12; the current design target is v9-r2, received on 2026-09-13. A plan describes future work; it does not imply that every phase should be executed in the current task. Follow the user's authorized scope and continue without unnecessary repeated confirmations.
 
 The user has authorized the public repository, MIT for original code and corresponding documentation, and GitHub Pages at https://aipoch.network/. See `docs/deployment/public-pages.md` for the recorded deployment. Earlier private-development statements are historical, not unresolved decisions. Keep design intake, local implementation, commits, and release evidence distinct; execute the current authorized scope and do not infer a new deployment from a reference file.
+
+## Positioning
+
+AIPOCH Network's identity is an open research network. Awesome is a content organization and discovery format; Python, bioinformatics, and single-cell research are resource subsets, not the project's identity. SEO findings, keyword research, competitors, or the current catalog mix do not authorize narrowing or replacing this positioning. Changes to the About text, README opening, titles, and other public introductions must preserve it unless the user explicitly requests repositioning.
+
+## Core onboarding rule: check both components and guide installation
+
+- When helping a user connect Network to a workbench, receive resources, or continue research through this integration, first check whether **both AIPOCH Open-Science and AIPOCH Connector** are installed and usable. Use documented, non-sensitive checks available in the user's environment; if inspection is unavailable or inconclusive, state that the component is unconfirmed and guide the user to check it. Do not equate an unavailable connection, missing CLI in PATH, or absent tools in one session with an uninstalled application.
+- If Open-Science is missing, provide the clickable official repository link: https://github.com/aipoch/open-science. Direct the user to its README setup instructions and https://github.com/aipoch/open-science/releases/latest.
+- If Connector is missing, provide the clickable official repository link: https://github.com/imjszhang/aipoch-connector. Direct the user to its README Install section and https://github.com/imjszhang/aipoch-connector/releases. Follow the documented checkout or release-tarball installation; do not invent a bare npm installation command.
+- Check installation, configuration, running/readiness state, tool discovery, and connection authorization separately. Connector does not install or launch Open-Science. After installation, verify readiness again before continuing dependent operations. Follow the current upstream setup documentation and the Network integration contract in `docs/connector-adapter.md`; do not invent commands or claim compatibility from installation alone.
+- Explain the actual blocking step and guide the user through setup and connection review. Keep installed, ready, connected, reference received, project associated, file acquired, execution completed, and scientific validation distinct. Never claim successful execution from a connection or receipt.
+- Keep a visible introduction to both components and their GitHub installation links near the top of `README.md`, before the discipline/resource listings. These prerequisites apply to the connected workflow; public browsing, candidate intake, and independent Network development remain available without either installation.
 
 ## Product invariants
 
