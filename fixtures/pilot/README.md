@@ -19,3 +19,7 @@ rpact and gtreg add two independently observed sources and two accounts (RPACT o
 ## Civil engineering intake — 2026-09-17
 
 anaStruct, ONSAS and EE-UQ add three sources and three organization accounts. The fixture now holds 26 sources and 24 accounts; the previous 23 sources and 21 accounts retain their values and timestamps. Only trusted-collector whitelist observations were appended. EE-UQ API license remains NOASSERTION; its pinned LICENSE declaration and external dependency limits are recorded separately in resource conditions. No upstream software was executed.
+
+## Cross-disciplinary intake — 2026-09-18
+
+Fifty individually reviewed sources add fifty projects and fifty resources (49 core software tools and one historical analysis workflow). The fixture now contains 76 sources and 72 accounts. New observations were collected at 2026-09-18T10:40:05.089Z using the reviewed main-branch GitHubReader and refreshState whitelist via an authenticated GitHub CLI transport. No credentials or full README content are included. Existing source and account observations retain their original times. Fixed documentation, classifications, component licenses and exclusions were reviewed separately; no upstream code was executed. Production requires its own trusted refresh and exact-artifact review.

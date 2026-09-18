@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-17T12:14:29.624Z",
+  "as_of": "2026-09-18T10:40:05.089Z",
   "sources": [
     {
       "requested_url": "https://github.com/scipy/scipy",
@@ -1949,6 +1949,3687 @@
         "pushed_at": "2026-05-06T00:37:48Z",
         "commit": "67c7a9fabaf46d444d04d087635fd9ec058a8a00"
       }
+    },
+    {
+      "requested_url": "https://github.com/Cantera/cantera",
+      "checked_at": "2026-09-18T10:37:01.356Z",
+      "observed_at": "2026-09-18T10:37:01.356Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:01.356Z",
+        "last_success_at": "2026-09-18T10:37:01.356Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 853,
+          "observed_at": "2026-09-18T10:37:01.356Z",
+          "last_attempt_at": "2026-09-18T10:37:01.356Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 426,
+          "observed_at": "2026-09-18T10:37:01.356Z",
+          "last_attempt_at": "2026-09-18T10:37:01.356Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "61433163abe81711a09cabebefff4a7002bd6d37",
+          "committed_at": "2026-09-15T02:31:34.000Z",
+          "observed_at": "2026-09-18T10:37:01.356Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:01.356Z",
+          "last_success_at": "2026-09-18T10:37:01.356Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 32940327,
+        "name": "cantera",
+        "full_name": "Cantera/cantera",
+        "html_url": "https://github.com/Cantera/cantera",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 817698,
+          "login": "Cantera",
+          "type": "Organization",
+          "html_url": "https://github.com/Cantera"
+        },
+        "topics": [],
+        "updated_at": "2026-09-18T03:47:21Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Chemical kinetics, thermodynamics, and transport tool suite",
+        "language": "C++",
+        "homepage": "https://cantera.org/",
+        "pushed_at": "2026-09-15T02:31:34Z",
+        "commit": "61433163abe81711a09cabebefff4a7002bd6d37"
+      }
+    },
+    {
+      "requested_url": "https://github.com/cltk/cltk",
+      "checked_at": "2026-09-18T10:37:04.087Z",
+      "observed_at": "2026-09-18T10:37:04.087Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:04.087Z",
+        "last_success_at": "2026-09-18T10:37:04.087Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 920,
+          "observed_at": "2026-09-18T10:37:04.087Z",
+          "last_attempt_at": "2026-09-18T10:37:04.087Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 342,
+          "observed_at": "2026-09-18T10:37:04.087Z",
+          "last_attempt_at": "2026-09-18T10:37:04.087Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "33e1653331fc2499e3f2f5da45237d87db0313cc",
+          "committed_at": "2026-08-01T22:16:44.000Z",
+          "observed_at": "2026-09-18T10:37:04.087Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:04.087Z",
+          "last_success_at": "2026-09-18T10:37:04.087Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 15833177,
+        "name": "cltk",
+        "full_name": "cltk/cltk",
+        "html_url": "https://github.com/cltk/cltk",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 6610748,
+          "login": "cltk",
+          "type": "Organization",
+          "html_url": "https://github.com/cltk"
+        },
+        "topics": [
+          "ai",
+          "greek",
+          "historical-linguistics",
+          "latin",
+          "ling",
+          "nlp",
+          "nltk",
+          "python",
+          "spacy",
+          "stanza"
+        ],
+        "updated_at": "2026-09-16T13:45:55Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "The Classical Language Toolkit",
+        "language": "Python",
+        "pushed_at": "2026-08-01T22:16:44Z",
+        "commit": "33e1653331fc2499e3f2f5da45237d87db0313cc",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/cltk/cltk"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/cogstack/cogstack-nlp",
+      "checked_at": "2026-09-18T10:37:06.771Z",
+      "observed_at": "2026-09-18T10:37:06.771Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:06.771Z",
+        "last_success_at": "2026-09-18T10:37:06.771Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 80,
+          "observed_at": "2026-09-18T10:37:06.771Z",
+          "last_attempt_at": "2026-09-18T10:37:06.771Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 15,
+          "observed_at": "2026-09-18T10:37:06.771Z",
+          "last_attempt_at": "2026-09-18T10:37:06.771Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "de3ffb6d51dfd3b3c9085e8c6914436cbdc01f96",
+          "committed_at": "2026-09-15T08:13:43.000Z",
+          "observed_at": "2026-09-18T10:37:06.771Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:06.771Z",
+          "last_success_at": "2026-09-18T10:37:06.771Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 1007011312,
+        "name": "cogstack-nlp",
+        "full_name": "CogStack/cogstack-nlp",
+        "html_url": "https://github.com/CogStack/cogstack-nlp",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 28688163,
+          "login": "CogStack",
+          "type": "Organization",
+          "html_url": "https://github.com/CogStack"
+        },
+        "topics": [],
+        "updated_at": "2026-09-15T08:13:48Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "CogStack NLP, including the Medical Concept Annotation Tool MedCAT",
+        "language": "HTML",
+        "pushed_at": "2026-09-17T18:05:34Z",
+        "commit": "de3ffb6d51dfd3b3c9085e8c6914436cbdc01f96",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/CogStack/cogstack-nlp"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/cp2k/cp2k",
+      "checked_at": "2026-09-18T10:37:09.132Z",
+      "observed_at": "2026-09-18T10:37:09.132Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:09.132Z",
+        "last_success_at": "2026-09-18T10:37:09.132Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1208,
+          "observed_at": "2026-09-18T10:37:09.132Z",
+          "last_attempt_at": "2026-09-18T10:37:09.132Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 500,
+          "observed_at": "2026-09-18T10:37:09.132Z",
+          "last_attempt_at": "2026-09-18T10:37:09.132Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "30494506eca90ea15588180810869f53807ff557",
+          "committed_at": "2026-09-18T10:09:34.000Z",
+          "observed_at": "2026-09-18T10:37:09.132Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:09.132Z",
+          "last_success_at": "2026-09-18T10:37:09.132Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 151238791,
+        "name": "cp2k",
+        "full_name": "cp2k/cp2k",
+        "html_url": "https://github.com/cp2k/cp2k",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1212942,
+          "login": "cp2k",
+          "type": "Organization",
+          "html_url": "https://github.com/cp2k"
+        },
+        "topics": [
+          "hpc",
+          "material-science",
+          "quantum-chemistry",
+          "simulation"
+        ],
+        "updated_at": "2026-09-18T10:09:40Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Quantum chemistry and solid state physics software package",
+        "language": "Fortran",
+        "homepage": "https://www.cp2k.org/",
+        "pushed_at": "2026-09-18T10:09:35Z",
+        "commit": "30494506eca90ea15588180810869f53807ff557",
+        "license": {
+          "spdx_id": "GPL-2.0",
+          "url": "https://github.com/cp2k/cp2k"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/deepchem/deepchem",
+      "checked_at": "2026-09-18T10:37:11.537Z",
+      "observed_at": "2026-09-18T10:37:11.537Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:11.537Z",
+        "last_success_at": "2026-09-18T10:37:11.537Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 7003,
+          "observed_at": "2026-09-18T10:37:11.537Z",
+          "last_attempt_at": "2026-09-18T10:37:11.537Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 2312,
+          "observed_at": "2026-09-18T10:37:11.537Z",
+          "last_attempt_at": "2026-09-18T10:37:11.537Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "455d07f3e17e880a4d980b5b0365e4a02b417e14",
+          "committed_at": "2026-08-20T19:01:34.000Z",
+          "observed_at": "2026-09-18T10:37:11.537Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:11.537Z",
+          "last_success_at": "2026-09-18T10:37:11.537Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 43098215,
+        "name": "deepchem",
+        "full_name": "deepchem/deepchem",
+        "html_url": "https://github.com/deepchem/deepchem",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 17170641,
+          "login": "deepchem",
+          "type": "Organization",
+          "html_url": "https://github.com/deepchem"
+        },
+        "topics": [
+          "biology",
+          "deep-learning",
+          "drug-discovery",
+          "hacktoberfest",
+          "materials-science",
+          "quantum-chemistry"
+        ],
+        "updated_at": "2026-09-17T17:00:27Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Democratizing Deep-Learning for Drug Discovery, Quantum Chemistry, Materials Science and Biology",
+        "language": "Python",
+        "homepage": "https://deepchem.io/",
+        "pushed_at": "2026-08-20T19:01:34Z",
+        "commit": "455d07f3e17e880a4d980b5b0365e4a02b417e14",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/deepchem/deepchem"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/FEniCS/dolfinx",
+      "checked_at": "2026-09-18T10:37:14.000Z",
+      "observed_at": "2026-09-18T10:37:14.000Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:14.000Z",
+        "last_success_at": "2026-09-18T10:37:14.000Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1203,
+          "observed_at": "2026-09-18T10:37:14.000Z",
+          "last_attempt_at": "2026-09-18T10:37:14.000Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 265,
+          "observed_at": "2026-09-18T10:37:14.000Z",
+          "last_attempt_at": "2026-09-18T10:37:14.000Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5efcb4a07ec6aada6b280c2f3b4270db22b5c03f",
+          "committed_at": "2026-09-18T09:07:46.000Z",
+          "observed_at": "2026-09-18T10:37:14.000Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:14.000Z",
+          "last_success_at": "2026-09-18T10:37:14.000Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 128214585,
+        "name": "dolfinx",
+        "full_name": "FEniCS/dolfinx",
+        "html_url": "https://github.com/FEniCS/dolfinx",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 3868708,
+          "login": "FEniCS",
+          "type": "Organization",
+          "html_url": "https://github.com/FEniCS"
+        },
+        "topics": [
+          "fenicsx",
+          "finite-element-methods",
+          "parallel-computing",
+          "partial-differential-equations"
+        ],
+        "updated_at": "2026-09-18T09:40:31Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Next generation FEniCS problem solving environment for solving finite element problems",
+        "language": "C++",
+        "homepage": "https://fenicsproject.org/",
+        "pushed_at": "2026-09-18T10:17:50Z",
+        "commit": "5efcb4a07ec6aada6b280c2f3b4270db22b5c03f",
+        "license": {
+          "spdx_id": "LGPL-3.0",
+          "url": "https://github.com/FEniCS/dolfinx"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/EconForge/dolo.py",
+      "checked_at": "2026-09-18T10:37:16.202Z",
+      "observed_at": "2026-09-18T10:37:16.202Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:16.202Z",
+        "last_success_at": "2026-09-18T10:37:16.202Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 110,
+          "observed_at": "2026-09-18T10:37:16.202Z",
+          "last_attempt_at": "2026-09-18T10:37:16.202Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 72,
+          "observed_at": "2026-09-18T10:37:16.202Z",
+          "last_attempt_at": "2026-09-18T10:37:16.202Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "d782336b92e510d2b025878159f852e08f3c96a5",
+          "committed_at": "2024-11-07T12:49:11.000Z",
+          "observed_at": "2026-09-18T10:37:16.202Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:16.202Z",
+          "last_success_at": "2026-09-18T10:37:16.202Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 5576891,
+        "name": "dolo.py",
+        "full_name": "EconForge/dolo.py",
+        "html_url": "https://github.com/EconForge/dolo.py",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 5486828,
+          "login": "EconForge",
+          "type": "Organization",
+          "html_url": "https://github.com/EconForge"
+        },
+        "topics": [],
+        "updated_at": "2026-08-22T06:23:36Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Economic modelling in python",
+        "language": "Python",
+        "pushed_at": "2024-11-07T12:56:16Z",
+        "commit": "d782336b92e510d2b025878159f852e08f3c96a5",
+        "license": {
+          "spdx_id": "BSD-2-Clause",
+          "url": "https://github.com/EconForge/dolo.py"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/DoubleML/doubleml-for-py",
+      "checked_at": "2026-09-18T10:37:18.605Z",
+      "observed_at": "2026-09-18T10:37:18.605Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:18.605Z",
+        "last_success_at": "2026-09-18T10:37:18.605Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 787,
+          "observed_at": "2026-09-18T10:37:18.605Z",
+          "last_attempt_at": "2026-09-18T10:37:18.605Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 128,
+          "observed_at": "2026-09-18T10:37:18.605Z",
+          "last_attempt_at": "2026-09-18T10:37:18.605Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "1808b07a13cc8c61f508c1ed6aec658ea32a2807",
+          "committed_at": "2026-08-18T08:15:11.000Z",
+          "observed_at": "2026-09-18T10:37:18.605Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:18.605Z",
+          "last_success_at": "2026-09-18T10:37:18.605Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 294121258,
+        "name": "doubleml-for-py",
+        "full_name": "DoubleML/doubleml-for-py",
+        "html_url": "https://github.com/DoubleML/doubleml-for-py",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 71015553,
+          "login": "DoubleML",
+          "type": "Organization",
+          "html_url": "https://github.com/DoubleML"
+        },
+        "topics": [
+          "causal-inference",
+          "data-science",
+          "double-machine-learning",
+          "econometrics",
+          "machine-learning",
+          "python",
+          "scikit-learn",
+          "statistics"
+        ],
+        "updated_at": "2026-09-15T18:14:09Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "DoubleML - Double Machine Learning in Python",
+        "language": "Python",
+        "homepage": "https://docs.doubleml.org/",
+        "pushed_at": "2026-08-18T08:15:12Z",
+        "commit": "1808b07a13cc8c61f508c1ed6aec658ea32a2807",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/DoubleML/doubleml-for-py"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/matthieugomez/EconPDEs.jl",
+      "checked_at": "2026-09-18T10:37:20.844Z",
+      "observed_at": "2026-09-18T10:37:20.844Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:20.844Z",
+        "last_success_at": "2026-09-18T10:37:20.844Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 143,
+          "observed_at": "2026-09-18T10:37:20.844Z",
+          "last_attempt_at": "2026-09-18T10:37:20.844Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 48,
+          "observed_at": "2026-09-18T10:37:20.844Z",
+          "last_attempt_at": "2026-09-18T10:37:20.844Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "810bbd820a351c65e50d65274775003db8ed61b4",
+          "committed_at": "2026-08-28T16:54:05.000Z",
+          "observed_at": "2026-09-18T10:37:20.844Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:20.844Z",
+          "last_success_at": "2026-09-18T10:37:20.844Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 66716284,
+        "name": "EconPDEs.jl",
+        "full_name": "matthieugomez/EconPDEs.jl",
+        "html_url": "https://github.com/matthieugomez/EconPDEs.jl",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 6223837,
+          "login": "matthieugomez",
+          "type": "User",
+          "html_url": "https://github.com/matthieugomez"
+        },
+        "topics": [
+          "economics",
+          "finance",
+          "finite-difference-schemes",
+          "pde"
+        ],
+        "updated_at": "2026-08-28T16:54:52Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Solve nonlinear PDEs arising from economic models",
+        "language": "Julia",
+        "pushed_at": "2026-08-28T16:54:06Z",
+        "commit": "810bbd820a351c65e50d65274775003db8ed61b4"
+      }
+    },
+    {
+      "requested_url": "https://github.com/duncanwp/esem",
+      "checked_at": "2026-09-18T10:37:23.164Z",
+      "observed_at": "2026-09-18T10:37:23.164Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:23.164Z",
+        "last_success_at": "2026-09-18T10:37:23.164Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 61,
+          "observed_at": "2026-09-18T10:37:23.164Z",
+          "last_attempt_at": "2026-09-18T10:37:23.164Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 12,
+          "observed_at": "2026-09-18T10:37:23.164Z",
+          "last_attempt_at": "2026-09-18T10:37:23.164Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "ed2660fbeb74b18c71a13da58b404559bb784545",
+          "committed_at": "2025-03-10T17:14:08.000Z",
+          "observed_at": "2026-09-18T10:37:23.164Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:23.164Z",
+          "last_success_at": "2026-09-18T10:37:23.164Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 216659677,
+        "name": "ESEm",
+        "full_name": "duncanwp/ESEm",
+        "html_url": "https://github.com/duncanwp/ESEm",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 3169620,
+          "login": "duncanwp",
+          "type": "User",
+          "html_url": "https://github.com/duncanwp"
+        },
+        "topics": [
+          "climate",
+          "emulation",
+          "machine-learning"
+        ],
+        "updated_at": "2026-03-06T15:51:02Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Easy emulating of geophysical models including (but not limited to!) Earth System Models.",
+        "language": "Python",
+        "pushed_at": "2025-03-10T17:14:08Z",
+        "commit": "ed2660fbeb74b18c71a13da58b404559bb784545",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/duncanwp/ESEm"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/fermiqc/fermi.jl",
+      "checked_at": "2026-09-18T10:37:26.692Z",
+      "observed_at": "2026-09-18T10:37:26.692Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:26.692Z",
+        "last_success_at": "2026-09-18T10:37:26.692Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 166,
+          "observed_at": "2026-09-18T10:37:26.692Z",
+          "last_attempt_at": "2026-09-18T10:37:26.692Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 28,
+          "observed_at": "2026-09-18T10:37:26.692Z",
+          "last_attempt_at": "2026-09-18T10:37:26.692Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "fe672efbe28654a1ab3788626e7be409a612b20c",
+          "committed_at": "2026-07-31T04:03:36.000Z",
+          "observed_at": "2026-09-18T10:37:26.692Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:26.692Z",
+          "last_success_at": "2026-09-18T10:37:26.692Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 274478733,
+        "name": "Fermi.jl",
+        "full_name": "FermiQC/Fermi.jl",
+        "html_url": "https://github.com/FermiQC/Fermi.jl",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 67336486,
+          "login": "FermiQC",
+          "type": "Organization",
+          "html_url": "https://github.com/FermiQC"
+        },
+        "topics": [
+          "chemistry",
+          "coupled-cluster",
+          "hartree-fock",
+          "julia",
+          "molecular-modeling",
+          "mp2",
+          "physics",
+          "quantum-chemistry"
+        ],
+        "updated_at": "2026-08-04T02:51:17Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Fermi quantum chemistry program",
+        "language": "Julia",
+        "pushed_at": "2026-07-31T04:07:05Z",
+        "commit": "fe672efbe28654a1ab3788626e7be409a612b20c",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/FermiQC/Fermi.jl"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/lrberge/fixest",
+      "checked_at": "2026-09-18T10:37:29.136Z",
+      "observed_at": "2026-09-18T10:37:29.136Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:29.136Z",
+        "last_success_at": "2026-09-18T10:37:29.136Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 453,
+          "observed_at": "2026-09-18T10:37:29.136Z",
+          "last_attempt_at": "2026-09-18T10:37:29.136Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 78,
+          "observed_at": "2026-09-18T10:37:29.136Z",
+          "last_attempt_at": "2026-09-18T10:37:29.136Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "789f888416e97673d154c840eec2d99101fc07b1",
+          "committed_at": "2026-06-26T12:14:19.000Z",
+          "observed_at": "2026-09-18T10:37:29.136Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:29.136Z",
+          "last_success_at": "2026-09-18T10:37:29.136Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 200205405,
+        "name": "fixest",
+        "full_name": "lrberge/fixest",
+        "html_url": "https://github.com/lrberge/fixest",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 43536394,
+          "login": "lrberge",
+          "type": "User",
+          "html_url": "https://github.com/lrberge"
+        },
+        "topics": [],
+        "updated_at": "2026-09-03T09:05:31Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Fixed-effects estimations",
+        "language": "R",
+        "homepage": "https://lrberge.github.io/fixest/",
+        "pushed_at": "2026-06-26T13:15:45Z",
+        "commit": "789f888416e97673d154c840eec2d99101fc07b1"
+      }
+    },
+    {
+      "requested_url": "https://github.com/gempy-project/gempy",
+      "checked_at": "2026-09-18T10:37:31.333Z",
+      "observed_at": "2026-09-18T10:37:31.333Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:31.333Z",
+        "last_success_at": "2026-09-18T10:37:31.333Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1343,
+          "observed_at": "2026-09-18T10:37:31.333Z",
+          "last_attempt_at": "2026-09-18T10:37:31.333Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 282,
+          "observed_at": "2026-09-18T10:37:31.333Z",
+          "last_attempt_at": "2026-09-18T10:37:31.333Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "61ad07342db140ae5e92d5fef2da95835eb6a3ec",
+          "committed_at": "2026-09-12T08:51:54.000Z",
+          "observed_at": "2026-09-18T10:37:31.333Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:31.333Z",
+          "last_success_at": "2026-09-18T10:37:31.333Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 96211155,
+        "name": "gempy",
+        "full_name": "gempy-project/gempy",
+        "html_url": "https://github.com/gempy-project/gempy",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 71825173,
+          "login": "gempy-project",
+          "type": "Organization",
+          "html_url": "https://github.com/gempy-project"
+        },
+        "topics": [
+          "bayesian",
+          "complex-geological-models",
+          "geological",
+          "geology",
+          "geoscience",
+          "implicit",
+          "interpolation",
+          "modeling",
+          "monte-carlo-simulation",
+          "python",
+          "torch",
+          "uncertainties",
+          "uncertainty-analysis",
+          "uq"
+        ],
+        "updated_at": "2026-09-17T18:42:21Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "GemPy is an open-source, Python-based 3-D structural geological modeling software, which allows the implicit (i.e. automatic) creation of complex geological models from interface and orientation data. It also offers support for stochastic modeling to address parameter and model uncertainties.",
+        "language": "Python",
+        "homepage": "https://gempy.org/",
+        "pushed_at": "2026-09-18T08:45:22Z",
+        "commit": "61ad07342db140ae5e92d5fef2da95835eb6a3ec",
+        "license": {
+          "spdx_id": "EUPL-1.2",
+          "url": "https://github.com/gempy-project/gempy"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/juliageodynamics/geophysicalmodelgenerator.jl",
+      "checked_at": "2026-09-18T10:37:33.599Z",
+      "observed_at": "2026-09-18T10:37:33.599Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:33.599Z",
+        "last_success_at": "2026-09-18T10:37:33.599Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 89,
+          "observed_at": "2026-09-18T10:37:33.599Z",
+          "last_attempt_at": "2026-09-18T10:37:33.599Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 38,
+          "observed_at": "2026-09-18T10:37:33.599Z",
+          "last_attempt_at": "2026-09-18T10:37:33.599Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "9e47c0fab315f793d8b4f7fc94ccdd8c195eca77",
+          "committed_at": "2026-08-10T08:52:55.000Z",
+          "observed_at": "2026-09-18T10:37:33.599Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:33.599Z",
+          "last_success_at": "2026-09-18T10:37:33.599Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 366377223,
+        "name": "GeophysicalModelGenerator.jl",
+        "full_name": "JuliaGeodynamics/GeophysicalModelGenerator.jl",
+        "html_url": "https://github.com/JuliaGeodynamics/GeophysicalModelGenerator.jl",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 84014489,
+          "login": "JuliaGeodynamics",
+          "type": "Organization",
+          "html_url": "https://github.com/JuliaGeodynamics"
+        },
+        "topics": [],
+        "updated_at": "2026-08-10T08:53:40Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Import, process and interpret geophysical data sets to be used in numerical models.",
+        "language": "Julia",
+        "pushed_at": "2026-09-01T13:42:07Z",
+        "commit": "9e47c0fab315f793d8b4f7fc94ccdd8c195eca77",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/JuliaGeodynamics/GeophysicalModelGenerator.jl"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/gephi/gephi",
+      "checked_at": "2026-09-18T10:37:36.864Z",
+      "observed_at": "2026-09-18T10:37:36.864Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:36.864Z",
+        "last_success_at": "2026-09-18T10:37:36.864Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 6651,
+          "observed_at": "2026-09-18T10:37:36.864Z",
+          "last_attempt_at": "2026-09-18T10:37:36.864Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1609,
+          "observed_at": "2026-09-18T10:37:36.864Z",
+          "last_attempt_at": "2026-09-18T10:37:36.864Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "15e54203a47ac1a3f7a2f6d6ace3a74238289290",
+          "committed_at": "2026-09-13T16:11:27.000Z",
+          "observed_at": "2026-09-18T10:37:36.864Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:36.864Z",
+          "last_success_at": "2026-09-18T10:37:36.864Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 2624521,
+        "name": "gephi",
+        "full_name": "gephi/gephi",
+        "html_url": "https://github.com/gephi/gephi",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1144411,
+          "login": "gephi",
+          "type": "Organization",
+          "html_url": "https://github.com/gephi"
+        },
+        "topics": [
+          "graph",
+          "graph-analytics",
+          "interactive",
+          "java",
+          "opengl",
+          "visualization"
+        ],
+        "updated_at": "2026-09-17T02:48:11Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Gephi - The Open Graph Viz Platform",
+        "language": "Java",
+        "pushed_at": "2026-09-13T16:11:27Z",
+        "commit": "15e54203a47ac1a3f7a2f6d6ace3a74238289290",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/gephi/gephi"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/econ-ark/HARK",
+      "checked_at": "2026-09-18T10:37:39.089Z",
+      "observed_at": "2026-09-18T10:37:39.089Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:39.089Z",
+        "last_success_at": "2026-09-18T10:37:39.089Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 399,
+          "observed_at": "2026-09-18T10:37:39.089Z",
+          "last_attempt_at": "2026-09-18T10:37:39.089Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 211,
+          "observed_at": "2026-09-18T10:37:39.089Z",
+          "last_attempt_at": "2026-09-18T10:37:39.089Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "d741d378135d5a5bd097a9f55a8ffd3ea3f142c3",
+          "committed_at": "2026-09-15T00:57:08.000Z",
+          "observed_at": "2026-09-18T10:37:39.089Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:39.089Z",
+          "last_success_at": "2026-09-18T10:37:39.089Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 50448254,
+        "name": "HARK",
+        "full_name": "econ-ark/HARK",
+        "html_url": "https://github.com/econ-ark/HARK",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 19330676,
+          "login": "econ-ark",
+          "type": "Organization",
+          "html_url": "https://github.com/econ-ark"
+        },
+        "topics": [
+          "economics"
+        ],
+        "updated_at": "2026-09-17T00:36:55Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Heterogenous Agents Resources & toolKit",
+        "language": "Python",
+        "homepage": "https://docs.econ-ark.org/",
+        "pushed_at": "2026-09-15T14:07:25Z",
+        "commit": "d741d378135d5a5bd097a9f55a8ffd3ea3f142c3",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/econ-ark/HARK"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/glotzerlab/hoomd-blue",
+      "checked_at": "2026-09-18T10:37:41.286Z",
+      "observed_at": "2026-09-18T10:37:41.286Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:41.286Z",
+        "last_success_at": "2026-09-18T10:37:41.286Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 446,
+          "observed_at": "2026-09-18T10:37:41.286Z",
+          "last_attempt_at": "2026-09-18T10:37:41.286Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 172,
+          "observed_at": "2026-09-18T10:37:41.286Z",
+          "last_attempt_at": "2026-09-18T10:37:41.286Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "f9faa56fdeaad5d9e963bba4f52e37fa07ac1574",
+          "committed_at": "2026-09-16T12:49:17.000Z",
+          "observed_at": "2026-09-18T10:37:41.286Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:41.286Z",
+          "last_success_at": "2026-09-18T10:37:41.286Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 147663007,
+        "name": "hoomd-blue",
+        "full_name": "glotzerlab/hoomd-blue",
+        "html_url": "https://github.com/glotzerlab/hoomd-blue",
+        "default_branch": "trunk",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 25832198,
+          "login": "glotzerlab",
+          "type": "Organization",
+          "html_url": "https://github.com/glotzerlab"
+        },
+        "topics": [
+          "conda-forge",
+          "cuda",
+          "docker",
+          "gpu",
+          "hard-particle",
+          "hoomd-blue",
+          "molecular-dynamics",
+          "monte-carlo-simulation",
+          "particle-system",
+          "python",
+          "simulation",
+          "singularity"
+        ],
+        "updated_at": "2026-09-16T12:49:24Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Molecular dynamics and Monte Carlo soft matter simulation on GPUs.",
+        "language": "C++",
+        "homepage": "https://hoomd-blue.readthedocs.io/",
+        "pushed_at": "2026-09-16T12:49:19Z",
+        "commit": "f9faa56fdeaad5d9e963bba4f52e37fa07ac1574",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/glotzerlab/hoomd-blue"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/epam/indigo",
+      "checked_at": "2026-09-18T10:37:44.297Z",
+      "observed_at": "2026-09-18T10:37:44.297Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:44.297Z",
+        "last_success_at": "2026-09-18T10:37:44.297Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 406,
+          "observed_at": "2026-09-18T10:37:44.297Z",
+          "last_attempt_at": "2026-09-18T10:37:44.297Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 134,
+          "observed_at": "2026-09-18T10:37:44.297Z",
+          "last_attempt_at": "2026-09-18T10:37:44.297Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "90ca152cf8febd4c7b4a1b54ae1e56c25bec0c81",
+          "committed_at": "2026-09-15T09:28:39.000Z",
+          "observed_at": "2026-09-18T10:37:44.297Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:44.297Z",
+          "last_success_at": "2026-09-18T10:37:44.297Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 37536320,
+        "name": "Indigo",
+        "full_name": "epam/Indigo",
+        "html_url": "https://github.com/epam/Indigo",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1589802,
+          "login": "epam",
+          "type": "Organization",
+          "html_url": "https://github.com/epam"
+        },
+        "topics": [
+          "bingo",
+          "cheminformatics",
+          "chemistry",
+          "dotnet",
+          "drug-discovery",
+          "inchi",
+          "indigo",
+          "java",
+          "molecule-visualization",
+          "molfile",
+          "postgresql",
+          "python",
+          "smarts",
+          "smiles",
+          "webassembly"
+        ],
+        "updated_at": "2026-09-15T09:28:45Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Universal cheminformatics toolkit, utilities and database search tools",
+        "language": "C++",
+        "pushed_at": "2026-09-18T09:13:32Z",
+        "commit": "90ca152cf8febd4c7b4a1b54ae1e56c25bec0c81",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/epam/Indigo"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/jspsych/jspsych",
+      "checked_at": "2026-09-18T10:37:46.672Z",
+      "observed_at": "2026-09-18T10:37:46.672Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:46.672Z",
+        "last_success_at": "2026-09-18T10:37:46.672Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1220,
+          "observed_at": "2026-09-18T10:37:46.672Z",
+          "last_attempt_at": "2026-09-18T10:37:46.672Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 731,
+          "observed_at": "2026-09-18T10:37:46.672Z",
+          "last_attempt_at": "2026-09-18T10:37:46.672Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "3e24c16c04dc3d2c6406c219126a9c9dc4737627",
+          "committed_at": "2026-09-16T20:29:03.000Z",
+          "observed_at": "2026-09-18T10:37:46.672Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:46.672Z",
+          "last_success_at": "2026-09-18T10:37:46.672Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 4340323,
+        "name": "jsPsych",
+        "full_name": "jspsych/jsPsych",
+        "html_url": "https://github.com/jspsych/jsPsych",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 16901698,
+          "login": "jspsych",
+          "type": "Organization",
+          "html_url": "https://github.com/jspsych"
+        },
+        "topics": [
+          "experimental-design",
+          "experiments",
+          "javascript",
+          "jspsych",
+          "psychology",
+          "psychology-experiments",
+          "research",
+          "science"
+        ],
+        "updated_at": "2026-09-18T10:07:32Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Create behavioral experiments in a browser using JavaScript",
+        "language": "TypeScript",
+        "pushed_at": "2026-09-17T18:57:48Z",
+        "commit": "3e24c16c04dc3d2c6406c219126a9c9dc4737627",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/jspsych/jsPsych"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/partridgejiang/kekule.js",
+      "checked_at": "2026-09-18T10:37:49.869Z",
+      "observed_at": "2026-09-18T10:37:49.869Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:49.869Z",
+        "last_success_at": "2026-09-18T10:37:49.869Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 279,
+          "observed_at": "2026-09-18T10:37:49.869Z",
+          "last_attempt_at": "2026-09-18T10:37:49.869Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 68,
+          "observed_at": "2026-09-18T10:37:49.869Z",
+          "last_attempt_at": "2026-09-18T10:37:49.869Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "a0f0be6c16135668272fe5084346ebd2582a1e11",
+          "committed_at": "2026-09-16T13:34:19.000Z",
+          "observed_at": "2026-09-18T10:37:49.869Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:49.869Z",
+          "last_success_at": "2026-09-18T10:37:49.869Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 30133192,
+        "name": "Kekule.js",
+        "full_name": "partridgejiang/Kekule.js",
+        "html_url": "https://github.com/partridgejiang/Kekule.js",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 10516825,
+          "login": "partridgejiang",
+          "type": "User",
+          "html_url": "https://github.com/partridgejiang"
+        },
+        "topics": [
+          "cheminformatics",
+          "chemistry",
+          "javascript",
+          "molecule"
+        ],
+        "updated_at": "2026-09-16T13:34:43Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "A Javascript cheminformatics toolkit.",
+        "language": "JavaScript",
+        "pushed_at": "2026-09-16T13:34:38Z",
+        "commit": "a0f0be6c16135668272fe5084346ebd2582a1e11",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/partridgejiang/Kekule.js"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/unimainzgeo/lamem",
+      "checked_at": "2026-09-18T10:37:52.263Z",
+      "observed_at": "2026-09-18T10:37:52.263Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:52.263Z",
+        "last_success_at": "2026-09-18T10:37:52.263Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 77,
+          "observed_at": "2026-09-18T10:37:52.263Z",
+          "last_attempt_at": "2026-09-18T10:37:52.263Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 31,
+          "observed_at": "2026-09-18T10:37:52.263Z",
+          "last_attempt_at": "2026-09-18T10:37:52.263Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "e8c5ef5abbef9716bb3ea2ddd8f3a075531c0bcf",
+          "committed_at": "2026-09-18T08:21:16.000Z",
+          "observed_at": "2026-09-18T10:37:52.263Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:52.263Z",
+          "last_success_at": "2026-09-18T10:37:52.263Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 641438500,
+        "name": "LaMEM",
+        "full_name": "UniMainzGeo/LaMEM",
+        "html_url": "https://github.com/UniMainzGeo/LaMEM",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 133772452,
+          "login": "UniMainzGeo",
+          "type": "Organization",
+          "html_url": "https://github.com/UniMainzGeo"
+        },
+        "topics": [
+          "3d",
+          "computational",
+          "geodynamics",
+          "geomechanics",
+          "parallel"
+        ],
+        "updated_at": "2026-09-18T08:21:22Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "LaMEM (Lithosphere and Mantle Evolution Model) - a 3D parallel code to simulate geodynamic and geomechanical processes",
+        "language": "C++",
+        "pushed_at": "2026-09-18T08:24:38Z",
+        "commit": "e8c5ef5abbef9716bb3ea2ddd8f3a075531c0bcf",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/UniMainzGeo/LaMEM"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/lammps/lammps",
+      "checked_at": "2026-09-18T10:37:54.840Z",
+      "observed_at": "2026-09-18T10:37:54.840Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:54.840Z",
+        "last_success_at": "2026-09-18T10:37:54.840Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 3058,
+          "observed_at": "2026-09-18T10:37:54.840Z",
+          "last_attempt_at": "2026-09-18T10:37:54.840Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 2047,
+          "observed_at": "2026-09-18T10:37:54.840Z",
+          "last_attempt_at": "2026-09-18T10:37:54.840Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "c8bd2ae5927ee236a8892dbd51c18a92cc9c33cf",
+          "committed_at": "2026-09-15T05:50:16.000Z",
+          "observed_at": "2026-09-18T10:37:54.840Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:54.840Z",
+          "last_success_at": "2026-09-18T10:37:54.840Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 12007030,
+        "name": "lammps",
+        "full_name": "lammps/lammps",
+        "html_url": "https://github.com/lammps/lammps",
+        "default_branch": "develop",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 5199009,
+          "login": "lammps",
+          "type": "Organization",
+          "html_url": "https://github.com/lammps"
+        },
+        "topics": [
+          "kokkos",
+          "lammps",
+          "molecular-dynamics",
+          "simulation"
+        ],
+        "updated_at": "2026-09-18T09:30:27Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Public development project of the LAMMPS MD software package  ",
+        "language": "C++",
+        "homepage": "https://www.lammps.org/",
+        "pushed_at": "2026-09-17T03:16:23Z",
+        "commit": "c8bd2ae5927ee236a8892dbd51c18a92cc9c33cf",
+        "license": {
+          "spdx_id": "GPL-2.0",
+          "url": "https://github.com/lammps/lammps"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/sunqm/libcint",
+      "checked_at": "2026-09-18T10:37:58.320Z",
+      "observed_at": "2026-09-18T10:37:58.320Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:37:58.320Z",
+        "last_success_at": "2026-09-18T10:37:58.320Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 251,
+          "observed_at": "2026-09-18T10:37:58.320Z",
+          "last_attempt_at": "2026-09-18T10:37:58.320Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 100,
+          "observed_at": "2026-09-18T10:37:58.320Z",
+          "last_attempt_at": "2026-09-18T10:37:58.320Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "3d36c4f4e24ca5aaf91be7299f93dd541db0f50b",
+          "committed_at": "2026-06-21T00:09:22.000Z",
+          "observed_at": "2026-09-18T10:37:58.320Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:37:58.320Z",
+          "last_success_at": "2026-09-18T10:37:58.320Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 7699247,
+        "name": "libcint",
+        "full_name": "sunqm/libcint",
+        "html_url": "https://github.com/sunqm/libcint",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1524636,
+          "login": "sunqm",
+          "type": "User",
+          "html_url": "https://github.com/sunqm"
+        },
+        "topics": [],
+        "updated_at": "2026-09-17T06:14:03Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "general GTO integrals for quantum chemistry",
+        "language": "C",
+        "pushed_at": "2026-06-21T00:09:22Z",
+        "commit": "3d36c4f4e24ca5aaf91be7299f93dd541db0f50b",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/sunqm/libcint"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/bashtage/linearmodels",
+      "checked_at": "2026-09-18T10:38:00.601Z",
+      "observed_at": "2026-09-18T10:38:00.601Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:00.601Z",
+        "last_success_at": "2026-09-18T10:38:00.601Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1070,
+          "observed_at": "2026-09-18T10:38:00.601Z",
+          "last_attempt_at": "2026-09-18T10:38:00.601Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 200,
+          "observed_at": "2026-09-18T10:38:00.601Z",
+          "last_attempt_at": "2026-09-18T10:38:00.601Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "d079828ed3e879bcb7bb3b2b000e555ee3d80be4",
+          "committed_at": "2026-09-15T15:41:16.000Z",
+          "observed_at": "2026-09-18T10:38:00.601Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:00.601Z",
+          "last_success_at": "2026-09-18T10:38:00.601Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 82291672,
+        "name": "linearmodels",
+        "full_name": "bashtage/linearmodels",
+        "html_url": "https://github.com/bashtage/linearmodels",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 5585221,
+          "login": "bashtage",
+          "type": "User",
+          "html_url": "https://github.com/bashtage"
+        },
+        "topics": [
+          "asset-pricing",
+          "between-estimator",
+          "clustered-standard-errors",
+          "fama-macbeth",
+          "first-difference",
+          "fixed-effects",
+          "gmm",
+          "instrumental-variable",
+          "iv",
+          "linear-models",
+          "ols",
+          "panel",
+          "panel-data",
+          "panel-models",
+          "panel-regression",
+          "pooled-ols",
+          "random-effects",
+          "regression",
+          "seemingly-unrelated-regression",
+          "statistical-model"
+        ],
+        "updated_at": "2026-09-15T15:41:21Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Additional linear models including instrumental variable and panel data models that are missing from statsmodels.",
+        "language": "Python",
+        "homepage": "https://bashtage.github.io/linearmodels/",
+        "pushed_at": "2026-09-15T15:44:26Z",
+        "commit": "d079828ed3e879bcb7bb3b2b000e555ee3d80be4",
+        "license": {
+          "spdx_id": "NCSA",
+          "url": "https://github.com/bashtage/linearmodels"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/mesa/mesa",
+      "checked_at": "2026-09-18T10:38:03.061Z",
+      "observed_at": "2026-09-18T10:38:03.061Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:03.061Z",
+        "last_success_at": "2026-09-18T10:38:03.061Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 3846,
+          "observed_at": "2026-09-18T10:38:03.061Z",
+          "last_attempt_at": "2026-09-18T10:38:03.061Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1313,
+          "observed_at": "2026-09-18T10:38:03.061Z",
+          "last_attempt_at": "2026-09-18T10:38:03.061Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "20841b12559ef920dd4c8263a09fe75ceac7250c",
+          "committed_at": "2026-09-17T12:50:22.000Z",
+          "observed_at": "2026-09-18T10:38:03.061Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:03.061Z",
+          "last_success_at": "2026-09-18T10:38:03.061Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 24245737,
+        "name": "mesa",
+        "full_name": "mesa/mesa",
+        "html_url": "https://github.com/mesa/mesa",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 8754505,
+          "login": "mesa",
+          "type": "Organization",
+          "html_url": "https://github.com/mesa"
+        },
+        "topics": [
+          "agent-based-modeling",
+          "agent-based-simulation",
+          "complex-systems",
+          "complexity-analysis",
+          "gis",
+          "mesa",
+          "modeling-agents",
+          "simulation",
+          "simulation-environment",
+          "simulation-framework",
+          "spatial-models"
+        ],
+        "updated_at": "2026-09-18T01:47:36Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.",
+        "language": "Python",
+        "homepage": "https://mesa.readthedocs.io/",
+        "pushed_at": "2026-09-17T12:50:23Z",
+        "commit": "20841b12559ef920dd4c8263a09fe75ceac7250c",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/mesa/mesa"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/mfem/mfem",
+      "checked_at": "2026-09-18T10:38:05.273Z",
+      "observed_at": "2026-09-18T10:38:05.273Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:05.273Z",
+        "last_success_at": "2026-09-18T10:38:05.273Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2241,
+          "observed_at": "2026-09-18T10:38:05.273Z",
+          "last_attempt_at": "2026-09-18T10:38:05.273Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 651,
+          "observed_at": "2026-09-18T10:38:05.273Z",
+          "last_attempt_at": "2026-09-18T10:38:05.273Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "10b0b596dbc26dca384b9f25f23026b1a6403592",
+          "committed_at": "2026-09-04T15:37:39.000Z",
+          "observed_at": "2026-09-18T10:38:05.273Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:05.273Z",
+          "last_success_at": "2026-09-18T10:38:05.273Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 37287688,
+        "name": "mfem",
+        "full_name": "mfem/mfem",
+        "html_url": "https://github.com/mfem/mfem",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 12879105,
+          "login": "mfem",
+          "type": "Organization",
+          "html_url": "https://github.com/mfem"
+        },
+        "topics": [
+          "amr",
+          "computational-science",
+          "fem",
+          "finite-elements",
+          "high-order",
+          "high-performance-computing",
+          "hpc",
+          "math-physics",
+          "parallel-computing",
+          "radiuss",
+          "scientific-computing"
+        ],
+        "updated_at": "2026-09-18T07:51:48Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Lightweight, general, scalable C++ library for finite element methods",
+        "language": "C++",
+        "pushed_at": "2026-09-18T04:51:09Z",
+        "commit": "10b0b596dbc26dca384b9f25f23026b1a6403592",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/mfem/mfem"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/mojaie/moleculargraph.jl",
+      "checked_at": "2026-09-18T10:38:07.556Z",
+      "observed_at": "2026-09-18T10:38:07.556Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:07.556Z",
+        "last_success_at": "2026-09-18T10:38:07.556Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 227,
+          "observed_at": "2026-09-18T10:38:07.556Z",
+          "last_attempt_at": "2026-09-18T10:38:07.556Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 26,
+          "observed_at": "2026-09-18T10:38:07.556Z",
+          "last_attempt_at": "2026-09-18T10:38:07.556Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5e015a8580a27897a05d80f8f72b517e2d0bb8db",
+          "committed_at": "2026-02-28T14:07:52.000Z",
+          "observed_at": "2026-09-18T10:38:07.556Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:07.556Z",
+          "last_success_at": "2026-09-18T10:38:07.556Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 151080560,
+        "name": "MolecularGraph.jl",
+        "full_name": "mojaie/MolecularGraph.jl",
+        "html_url": "https://github.com/mojaie/MolecularGraph.jl",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1174134,
+          "login": "mojaie",
+          "type": "User",
+          "html_url": "https://github.com/mojaie"
+        },
+        "topics": [
+          "cheminformatics",
+          "chemistry",
+          "graph",
+          "julia",
+          "julia-language",
+          "mcs",
+          "molecular-modeling",
+          "molecule",
+          "toolkit"
+        ],
+        "updated_at": "2026-08-14T02:37:41Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Graph-based molecule modeling toolkit for cheminformatics",
+        "language": "Julia",
+        "pushed_at": "2026-06-03T02:41:11Z",
+        "commit": "5e015a8580a27897a05d80f8f72b517e2d0bb8db",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/mojaie/MolecularGraph.jl"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/idaholab/moose",
+      "checked_at": "2026-09-18T10:38:09.866Z",
+      "observed_at": "2026-09-18T10:38:09.866Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:09.866Z",
+        "last_success_at": "2026-09-18T10:38:09.866Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2353,
+          "observed_at": "2026-09-18T10:38:09.866Z",
+          "last_attempt_at": "2026-09-18T10:38:09.866Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1261,
+          "observed_at": "2026-09-18T10:38:09.866Z",
+          "last_attempt_at": "2026-09-18T10:38:09.866Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "73770d3771332e985761e46dc7bea7f27aa0903f",
+          "committed_at": "2026-09-18T01:59:28.000Z",
+          "observed_at": "2026-09-18T10:38:09.866Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:09.866Z",
+          "last_success_at": "2026-09-18T10:38:09.866Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 16851223,
+        "name": "moose",
+        "full_name": "idaholab/moose",
+        "html_url": "https://github.com/idaholab/moose",
+        "default_branch": "next",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 3855370,
+          "login": "idaholab",
+          "type": "Organization",
+          "html_url": "https://github.com/idaholab"
+        },
+        "topics": [
+          "amr",
+          "fem",
+          "finite-elements",
+          "finite-volumes",
+          "multiphysics",
+          "object-oriented",
+          "parallel",
+          "simulation"
+        ],
+        "updated_at": "2026-09-18T08:38:05Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Multiphysics Object Oriented Simulation Environment",
+        "language": "C++",
+        "homepage": "https://mooseframework.inl.gov/",
+        "pushed_at": "2026-09-18T02:43:18Z",
+        "commit": "73770d3771332e985761e46dc7bea7f27aa0903f",
+        "license": {
+          "spdx_id": "LGPL-2.1",
+          "url": "https://github.com/idaholab/moose"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/NetLogo/NetLogo",
+      "checked_at": "2026-09-18T10:38:14.180Z",
+      "observed_at": "2026-09-18T10:38:14.180Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:14.180Z",
+        "last_success_at": "2026-09-18T10:38:14.180Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1185,
+          "observed_at": "2026-09-18T10:38:14.180Z",
+          "last_attempt_at": "2026-09-18T10:38:14.180Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 272,
+          "observed_at": "2026-09-18T10:38:14.180Z",
+          "last_attempt_at": "2026-09-18T10:38:14.180Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "c8b4aafdabd79ca0af13f718e0679b3158e2f7e1",
+          "committed_at": "2026-09-16T17:56:05.000Z",
+          "observed_at": "2026-09-18T10:38:14.180Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:14.180Z",
+          "last_success_at": "2026-09-18T10:38:14.180Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 2594187,
+        "name": "NetLogo",
+        "full_name": "NetLogo/NetLogo",
+        "html_url": "https://github.com/NetLogo/NetLogo",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 767367,
+          "login": "NetLogo",
+          "type": "Organization",
+          "html_url": "https://github.com/NetLogo"
+        },
+        "topics": [
+          "agent-based-modeling",
+          "logo",
+          "netlogo"
+        ],
+        "updated_at": "2026-09-18T09:30:27Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "turtles, patches, and links for kids, teachers, and scientists",
+        "language": "Scala",
+        "homepage": "https://netlogo.org/",
+        "pushed_at": "2026-09-18T00:42:35Z",
+        "commit": "c8b4aafdabd79ca0af13f718e0679b3158e2f7e1",
+        "license": {
+          "spdx_id": "GPL-2.0",
+          "url": "https://github.com/NetLogo/NetLogo"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/volkamerlab/opencadd",
+      "checked_at": "2026-09-18T10:38:17.909Z",
+      "observed_at": "2026-09-18T10:38:17.909Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:17.909Z",
+        "last_success_at": "2026-09-18T10:38:17.909Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 111,
+          "observed_at": "2026-09-18T10:38:17.909Z",
+          "last_attempt_at": "2026-09-18T10:38:17.909Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 25,
+          "observed_at": "2026-09-18T10:38:17.909Z",
+          "last_attempt_at": "2026-09-18T10:38:17.909Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "57eafc2d4bd1970742773fbd40764fc47dc480e0",
+          "committed_at": "2025-04-16T14:15:47.000Z",
+          "observed_at": "2026-09-18T10:38:17.909Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:17.909Z",
+          "last_success_at": "2026-09-18T10:38:17.909Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 237947037,
+        "name": "opencadd",
+        "full_name": "volkamerlab/opencadd",
+        "html_url": "https://github.com/volkamerlab/opencadd",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 44878588,
+          "login": "volkamerlab",
+          "type": "Organization",
+          "html_url": "https://github.com/volkamerlab"
+        },
+        "topics": [],
+        "updated_at": "2026-07-10T19:36:42Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "A Python library for structural cheminformatics",
+        "language": "Python",
+        "homepage": "https://opencadd.readthedocs.io/",
+        "pushed_at": "2025-11-18T12:19:38Z",
+        "commit": "57eafc2d4bd1970742773fbd40764fc47dc480e0",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/volkamerlab/opencadd"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/OpenFOAM/OpenFOAM-dev",
+      "checked_at": "2026-09-18T10:38:20.346Z",
+      "observed_at": "2026-09-18T10:38:20.346Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:20.346Z",
+        "last_success_at": "2026-09-18T10:38:20.346Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2240,
+          "observed_at": "2026-09-18T10:38:20.346Z",
+          "last_attempt_at": "2026-09-18T10:38:20.346Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 730,
+          "observed_at": "2026-09-18T10:38:20.346Z",
+          "last_attempt_at": "2026-09-18T10:38:20.346Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "31f2ebb844a030c20c88e33e6d8b729624b7fd66",
+          "committed_at": "2026-09-18T07:56:30.000Z",
+          "observed_at": "2026-09-18T10:38:20.346Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:20.346Z",
+          "last_success_at": "2026-09-18T10:38:20.346Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 27826728,
+        "name": "OpenFOAM-dev",
+        "full_name": "OpenFOAM/OpenFOAM-dev",
+        "html_url": "https://github.com/OpenFOAM/OpenFOAM-dev",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 189613,
+          "login": "OpenFOAM",
+          "type": "User",
+          "html_url": "https://github.com/OpenFOAM"
+        },
+        "topics": [],
+        "updated_at": "2026-09-18T07:58:20Z",
+        "has_issues": false,
+        "has_discussions": false,
+        "description": "OpenFOAM Foundation development repository",
+        "language": "C++",
+        "homepage": "https://openfoam.org/",
+        "pushed_at": "2026-09-18T07:58:12Z",
+        "commit": "31f2ebb844a030c20c88e33e6d8b729624b7fd66"
+      }
+    },
+    {
+      "requested_url": "https://github.com/openmm/openmm",
+      "checked_at": "2026-09-18T10:38:23.188Z",
+      "observed_at": "2026-09-18T10:38:23.188Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:23.188Z",
+        "last_success_at": "2026-09-18T10:38:23.188Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1976,
+          "observed_at": "2026-09-18T10:38:23.188Z",
+          "last_attempt_at": "2026-09-18T10:38:23.188Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 638,
+          "observed_at": "2026-09-18T10:38:23.188Z",
+          "last_attempt_at": "2026-09-18T10:38:23.188Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5a7a268616b55d6a85e1c804f1c38681a2756cde",
+          "committed_at": "2026-09-18T04:07:43.000Z",
+          "observed_at": "2026-09-18T10:38:23.188Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:23.188Z",
+          "last_success_at": "2026-09-18T10:38:23.188Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 10178188,
+        "name": "openmm",
+        "full_name": "openmm/openmm",
+        "html_url": "https://github.com/openmm/openmm",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 52428936,
+          "login": "openmm",
+          "type": "Organization",
+          "html_url": "https://github.com/openmm"
+        },
+        "topics": [
+          "molecular-dynamics",
+          "simulation"
+        ],
+        "updated_at": "2026-09-18T04:07:49Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "OpenMM is a toolkit for molecular simulation using high performance GPU code. ",
+        "language": "C++",
+        "pushed_at": "2026-09-18T04:07:43Z",
+        "commit": "5a7a268616b55d6a85e1c804f1c38681a2756cde"
+      }
+    },
+    {
+      "requested_url": "https://github.com/opensafely/risk-factors-research",
+      "checked_at": "2026-09-18T10:38:25.454Z",
+      "observed_at": "2026-09-18T10:38:25.454Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:25.454Z",
+        "last_success_at": "2026-09-18T10:38:25.454Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 33,
+          "observed_at": "2026-09-18T10:38:25.454Z",
+          "last_attempt_at": "2026-09-18T10:38:25.454Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 9,
+          "observed_at": "2026-09-18T10:38:25.454Z",
+          "last_attempt_at": "2026-09-18T10:38:25.454Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "38e2723fd2da19d8605d6ff7f48bf7a6ccd98957",
+          "committed_at": "2023-11-13T11:20:13.000Z",
+          "observed_at": "2026-09-18T10:38:25.454Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:25.454Z",
+          "last_success_at": "2026-09-18T10:38:25.454Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 254683724,
+        "name": "risk-factors-research",
+        "full_name": "opensafely/risk-factors-research",
+        "html_url": "https://github.com/opensafely/risk-factors-research",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 65667445,
+          "login": "opensafely",
+          "type": "Organization",
+          "html_url": "https://github.com/opensafely"
+        },
+        "topics": [],
+        "updated_at": "2026-04-22T09:50:33Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "This is the code and configuration for our paper, OpenSAFELY: factors associated with COVID-19-related hospital death in the linked electronic health records of 17 million adult NHS patients",
+        "language": "Stata",
+        "homepage": "https://opensafely.org/",
+        "pushed_at": "2024-06-06T11:19:11Z",
+        "commit": "38e2723fd2da19d8605d6ff7f48bf7a6ccd98957",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/opensafely/risk-factors-research"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/ajwdewit/pcse",
+      "checked_at": "2026-09-18T10:38:28.391Z",
+      "observed_at": "2026-09-18T10:38:28.391Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:28.391Z",
+        "last_success_at": "2026-09-18T10:38:28.391Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 286,
+          "observed_at": "2026-09-18T10:38:28.391Z",
+          "last_attempt_at": "2026-09-18T10:38:28.391Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 165,
+          "observed_at": "2026-09-18T10:38:28.391Z",
+          "last_attempt_at": "2026-09-18T10:38:28.391Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "67a28e56b0e34655f8d60b0b4a254a7c81efbb2f",
+          "committed_at": "2026-06-15T11:26:24.000Z",
+          "observed_at": "2026-09-18T10:38:28.391Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:28.391Z",
+          "last_success_at": "2026-09-18T10:38:28.391Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 12876493,
+        "name": "pcse",
+        "full_name": "ajwdewit/pcse",
+        "html_url": "https://github.com/ajwdewit/pcse",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 5472566,
+          "login": "ajwdewit",
+          "type": "User",
+          "html_url": "https://github.com/ajwdewit"
+        },
+        "topics": [],
+        "updated_at": "2026-09-18T08:30:31Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Repository for the Python Crop Simulation Environment",
+        "language": "Python",
+        "pushed_at": "2026-09-01T12:23:57Z",
+        "commit": "67a28e56b0e34655f8d60b0b4a254a7c81efbb2f"
+      }
+    },
+    {
+      "requested_url": "https://github.com/psi4/psi4",
+      "checked_at": "2026-09-18T10:38:30.805Z",
+      "observed_at": "2026-09-18T10:38:30.805Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:30.805Z",
+        "last_success_at": "2026-09-18T10:38:30.805Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1222,
+          "observed_at": "2026-09-18T10:38:30.805Z",
+          "last_attempt_at": "2026-09-18T10:38:30.805Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 512,
+          "observed_at": "2026-09-18T10:38:30.805Z",
+          "last_attempt_at": "2026-09-18T10:38:30.805Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "1cef8222bc5ed3c9a9ca80f180e438ab5c46c50f",
+          "committed_at": "2026-09-15T08:53:54.000Z",
+          "observed_at": "2026-09-18T10:38:30.805Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:30.805Z",
+          "last_success_at": "2026-09-18T10:38:30.805Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 9174469,
+        "name": "psi4",
+        "full_name": "psi4/psi4",
+        "html_url": "https://github.com/psi4/psi4",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 2636883,
+          "login": "psi4",
+          "type": "Organization",
+          "html_url": "https://github.com/psi4"
+        },
+        "topics": [
+          "c-plus-plus",
+          "chemistry",
+          "computational-chemistry",
+          "physics",
+          "python",
+          "quantum-chemistry"
+        ],
+        "updated_at": "2026-09-17T13:01:44Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
+        "language": "C++",
+        "pushed_at": "2026-09-15T10:10:31Z",
+        "commit": "1cef8222bc5ed3c9a9ca80f180e438ab5c46c50f",
+        "license": {
+          "spdx_id": "LGPL-3.0",
+          "url": "https://github.com/psi4/psi4"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/psychopy/psychojs",
+      "checked_at": "2026-09-18T10:38:32.977Z",
+      "observed_at": "2026-09-18T10:38:32.977Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:32.977Z",
+        "last_success_at": "2026-09-18T10:38:32.977Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 189,
+          "observed_at": "2026-09-18T10:38:32.977Z",
+          "last_attempt_at": "2026-09-18T10:38:32.977Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 80,
+          "observed_at": "2026-09-18T10:38:32.977Z",
+          "last_attempt_at": "2026-09-18T10:38:32.977Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "075160256e8ffcdcc7d2f350e96cfbffbdf4f358",
+          "committed_at": "2025-10-24T07:35:09.000Z",
+          "observed_at": "2026-09-18T10:38:32.977Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:32.977Z",
+          "last_success_at": "2026-09-18T10:38:32.977Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 87293439,
+        "name": "psychojs",
+        "full_name": "psychopy/psychojs",
+        "html_url": "https://github.com/psychopy/psychojs",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 381042,
+          "login": "psychopy",
+          "type": "Organization",
+          "html_url": "https://github.com/psychopy"
+        },
+        "topics": [],
+        "updated_at": "2026-08-20T20:53:39Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "PsychoJS is the online counterpart of the PsychoPy Python library",
+        "language": "JavaScript",
+        "pushed_at": "2026-08-03T16:05:49Z",
+        "commit": "075160256e8ffcdcc7d2f350e96cfbffbdf4f358",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/psychopy/psychojs"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/psychopy/psychopy",
+      "checked_at": "2026-09-18T10:38:35.258Z",
+      "observed_at": "2026-09-18T10:38:35.258Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:35.258Z",
+        "last_success_at": "2026-09-18T10:38:35.258Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2080,
+          "observed_at": "2026-09-18T10:38:35.258Z",
+          "last_attempt_at": "2026-09-18T10:38:35.258Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 987,
+          "observed_at": "2026-09-18T10:38:35.258Z",
+          "last_attempt_at": "2026-09-18T10:38:35.258Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "c2c108b91b0697a0455a2460547021498d7ed4f3",
+          "committed_at": "2026-09-17T18:50:21.000Z",
+          "observed_at": "2026-09-18T10:38:35.258Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:35.258Z",
+          "last_success_at": "2026-09-18T10:38:35.258Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 879116,
+        "name": "psychopy",
+        "full_name": "psychopy/psychopy",
+        "html_url": "https://github.com/psychopy/psychopy",
+        "default_branch": "dev",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 381042,
+          "login": "psychopy",
+          "type": "Organization",
+          "html_url": "https://github.com/psychopy"
+        },
+        "topics": [
+          "experiment",
+          "experiment-control",
+          "experimental-design",
+          "linguistics",
+          "neuroscience",
+          "psycholinguistics",
+          "psychology",
+          "psychophysics",
+          "psychopy",
+          "python",
+          "science"
+        ],
+        "updated_at": "2026-09-18T10:07:30Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "For running psychology and neuroscience experiments",
+        "language": "Python",
+        "pushed_at": "2026-09-17T18:50:22Z",
+        "commit": "c2c108b91b0697a0455a2460547021498d7ed4f3",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/psychopy/psychopy"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/pybamm-team/PyBaMM",
+      "checked_at": "2026-09-18T10:38:37.695Z",
+      "observed_at": "2026-09-18T10:38:37.695Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:37.695Z",
+        "last_success_at": "2026-09-18T10:38:37.695Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1663,
+          "observed_at": "2026-09-18T10:38:37.695Z",
+          "last_attempt_at": "2026-09-18T10:38:37.695Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 799,
+          "observed_at": "2026-09-18T10:38:37.695Z",
+          "last_attempt_at": "2026-09-18T10:38:37.695Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "6ceca11577231d3cb26f3f58ed80f6b04b6f2554",
+          "committed_at": "2026-09-18T09:29:46.000Z",
+          "observed_at": "2026-09-18T10:38:37.695Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:37.695Z",
+          "last_success_at": "2026-09-18T10:38:37.695Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 155538761,
+        "name": "PyBaMM",
+        "full_name": "pybamm-team/PyBaMM",
+        "html_url": "https://github.com/pybamm-team/PyBaMM",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 48961907,
+          "login": "pybamm-team",
+          "type": "Organization",
+          "html_url": "https://github.com/pybamm-team"
+        },
+        "topics": [
+          "batteries",
+          "battery-models",
+          "hacktoberfest",
+          "pybamm",
+          "python",
+          "simulation",
+          "solvers"
+        ],
+        "updated_at": "2026-09-18T09:29:53Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Fast and flexible physics-based battery models in Python",
+        "language": "Python",
+        "homepage": "https://www.pybamm.org/",
+        "pushed_at": "2026-09-18T09:29:46Z",
+        "commit": "6ceca11577231d3cb26f3f58ed80f6b04b6f2554",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/pybamm-team/PyBaMM"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/jeffgortmaker/pyblp",
+      "checked_at": "2026-09-18T10:38:40.147Z",
+      "observed_at": "2026-09-18T10:38:40.147Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:40.147Z",
+        "last_success_at": "2026-09-18T10:38:40.147Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 295,
+          "observed_at": "2026-09-18T10:38:40.147Z",
+          "last_attempt_at": "2026-09-18T10:38:40.147Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 101,
+          "observed_at": "2026-09-18T10:38:40.147Z",
+          "last_attempt_at": "2026-09-18T10:38:40.147Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "48abec05670f78e07e7956128bc0924419bff6ff",
+          "committed_at": "2026-09-15T15:15:05.000Z",
+          "observed_at": "2026-09-18T10:38:40.147Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:40.147Z",
+          "last_success_at": "2026-09-18T10:38:40.147Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 130608439,
+        "name": "pyblp",
+        "full_name": "jeffgortmaker/pyblp",
+        "html_url": "https://github.com/jeffgortmaker/pyblp",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 1767058,
+          "login": "jeffgortmaker",
+          "type": "User",
+          "html_url": "https://github.com/jeffgortmaker"
+        },
+        "topics": [],
+        "updated_at": "2026-09-15T15:15:11Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "BLP Demand Estimation with Python",
+        "language": "Python",
+        "homepage": "https://pyblp.readthedocs.io/",
+        "pushed_at": "2026-09-15T15:15:08Z",
+        "commit": "48abec05670f78e07e7956128bc0924419bff6ff",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/jeffgortmaker/pyblp"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/gimli-org/pygimli",
+      "checked_at": "2026-09-18T10:38:43.817Z",
+      "observed_at": "2026-09-18T10:38:43.817Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:43.817Z",
+        "last_success_at": "2026-09-18T10:38:43.817Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 506,
+          "observed_at": "2026-09-18T10:38:43.817Z",
+          "last_attempt_at": "2026-09-18T10:38:43.817Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 163,
+          "observed_at": "2026-09-18T10:38:43.817Z",
+          "last_attempt_at": "2026-09-18T10:38:43.817Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "5f2cf83386775c94c6a28bb331ed6c0bc60daa3f",
+          "committed_at": "2026-07-01T08:09:13.000Z",
+          "observed_at": "2026-09-18T10:38:43.817Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:43.817Z",
+          "last_success_at": "2026-09-18T10:38:43.817Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 12602199,
+        "name": "pyGIMLi",
+        "full_name": "gimli-org/pyGIMLi",
+        "html_url": "https://github.com/gimli-org/pyGIMLi",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 5385734,
+          "login": "gimli-org",
+          "type": "Organization",
+          "html_url": "https://github.com/gimli-org"
+        },
+        "topics": [
+          "c-plus-plus",
+          "finite-elements",
+          "finite-volume",
+          "geophysics",
+          "inversion",
+          "modeling",
+          "open-source",
+          "python"
+        ],
+        "updated_at": "2026-09-01T07:15:28Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Geophysical Inversion and Modeling Library :earth_africa:",
+        "language": "Python",
+        "homepage": "https://www.pygimli.org/",
+        "pushed_at": "2026-09-17T17:36:42Z",
+        "commit": "5f2cf83386775c94c6a28bb331ed6c0bc60daa3f"
+      }
+    },
+    {
+      "requested_url": "https://github.com/pyscf/pyscf",
+      "checked_at": "2026-09-18T10:38:46.151Z",
+      "observed_at": "2026-09-18T10:38:46.151Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:46.151Z",
+        "last_success_at": "2026-09-18T10:38:46.151Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1675,
+          "observed_at": "2026-09-18T10:38:46.151Z",
+          "last_attempt_at": "2026-09-18T10:38:46.151Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 741,
+          "observed_at": "2026-09-18T10:38:46.151Z",
+          "last_attempt_at": "2026-09-18T10:38:46.151Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "34e5aa023afaf42157932b2b0e35e716f7af0b14",
+          "committed_at": "2026-09-17T02:13:31.000Z",
+          "observed_at": "2026-09-18T10:38:46.151Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:46.151Z",
+          "last_success_at": "2026-09-18T10:38:46.151Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 19384819,
+        "name": "pyscf",
+        "full_name": "pyscf/pyscf",
+        "html_url": "https://github.com/pyscf/pyscf",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 38367334,
+          "login": "pyscf",
+          "type": "Organization",
+          "html_url": "https://github.com/pyscf"
+        },
+        "topics": [],
+        "updated_at": "2026-09-17T11:35:30Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Python module for quantum chemistry",
+        "language": "Python",
+        "pushed_at": "2026-09-17T02:13:31Z",
+        "commit": "34e5aa023afaf42157932b2b0e35e716f7af0b14",
+        "license": {
+          "spdx_id": "Apache-2.0",
+          "url": "https://github.com/pyscf/pyscf"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/molssi/qcelemental",
+      "checked_at": "2026-09-18T10:38:48.350Z",
+      "observed_at": "2026-09-18T10:38:48.350Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:48.350Z",
+        "last_success_at": "2026-09-18T10:38:48.350Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 201,
+          "observed_at": "2026-09-18T10:38:48.350Z",
+          "last_attempt_at": "2026-09-18T10:38:48.350Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 79,
+          "observed_at": "2026-09-18T10:38:48.350Z",
+          "last_attempt_at": "2026-09-18T10:38:48.350Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "7828af830a1fa8de78517bcaec750eee8a9468ca",
+          "committed_at": "2026-09-16T05:58:24.000Z",
+          "observed_at": "2026-09-18T10:38:48.350Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:48.350Z",
+          "last_success_at": "2026-09-18T10:38:48.350Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 146923862,
+        "name": "QCElemental",
+        "full_name": "MolSSI/QCElemental",
+        "html_url": "https://github.com/MolSSI/QCElemental",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 26232579,
+          "login": "MolSSI",
+          "type": "Organization",
+          "html_url": "https://github.com/MolSSI"
+        },
+        "topics": [
+          "chemistry",
+          "codata",
+          "computational-chemistry",
+          "nist",
+          "periodic-table",
+          "physical-constant",
+          "python",
+          "quantum-chemistry",
+          "standards"
+        ],
+        "updated_at": "2026-09-16T05:58:29Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Periodic table, physical constants, and molecule parsing for quantum chemistry.",
+        "language": "Python",
+        "homepage": "https://molssi.github.io/QCElemental/",
+        "pushed_at": "2026-09-16T06:09:54Z",
+        "commit": "7828af830a1fa8de78517bcaec750eee8a9468ca",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/MolSSI/QCElemental"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/molssi/qcengine",
+      "checked_at": "2026-09-18T10:38:50.601Z",
+      "observed_at": "2026-09-18T10:38:50.601Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:50.601Z",
+        "last_success_at": "2026-09-18T10:38:50.601Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 211,
+          "observed_at": "2026-09-18T10:38:50.601Z",
+          "last_attempt_at": "2026-09-18T10:38:50.601Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 92,
+          "observed_at": "2026-09-18T10:38:50.601Z",
+          "last_attempt_at": "2026-09-18T10:38:50.601Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "bf1b799c4a17010f679a4472bb1ec56492f2d0d9",
+          "committed_at": "2026-08-18T20:32:51.000Z",
+          "observed_at": "2026-09-18T10:38:50.601Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:50.601Z",
+          "last_success_at": "2026-09-18T10:38:50.601Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 123499436,
+        "name": "QCEngine",
+        "full_name": "MolSSI/QCEngine",
+        "html_url": "https://github.com/MolSSI/QCEngine",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 26232579,
+          "login": "MolSSI",
+          "type": "Organization",
+          "html_url": "https://github.com/MolSSI"
+        },
+        "topics": [
+          "chemistry",
+          "computational-chemistry",
+          "python3",
+          "quantum-chemistry",
+          "standards"
+        ],
+        "updated_at": "2026-09-03T17:42:38Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Quantum chemistry program executor and IO standardizer (QCSchema).",
+        "language": "Python",
+        "homepage": "https://molssi.github.io/QCEngine/",
+        "pushed_at": "2026-08-18T22:25:24Z",
+        "commit": "bf1b799c4a17010f679a4472bb1ec56492f2d0d9",
+        "license": {
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://github.com/MolSSI/QCEngine"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/QuantEcon/QuantEcon.py",
+      "checked_at": "2026-09-18T10:38:53.025Z",
+      "observed_at": "2026-09-18T10:38:53.025Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:53.025Z",
+        "last_success_at": "2026-09-18T10:38:53.025Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 2400,
+          "observed_at": "2026-09-18T10:38:53.025Z",
+          "last_attempt_at": "2026-09-18T10:38:53.025Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 2287,
+          "observed_at": "2026-09-18T10:38:53.025Z",
+          "last_attempt_at": "2026-09-18T10:38:53.025Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "10d73f0938b2ea83619783d993f84cf42bff38cd",
+          "committed_at": "2026-09-18T05:26:11.000Z",
+          "observed_at": "2026-09-18T10:38:53.025Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:53.025Z",
+          "last_success_at": "2026-09-18T10:38:53.025Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 8941695,
+        "name": "QuantEcon.py",
+        "full_name": "QuantEcon/QuantEcon.py",
+        "html_url": "https://github.com/QuantEcon/QuantEcon.py",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 8703060,
+          "login": "QuantEcon",
+          "type": "Organization",
+          "html_url": "https://github.com/QuantEcon"
+        },
+        "topics": [
+          "computational-economics",
+          "economics",
+          "python"
+        ],
+        "updated_at": "2026-09-18T05:26:28Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "A community based Python library for quantitative economics",
+        "language": "Python",
+        "homepage": "https://quanteconpy.readthedocs.io/en/latest/",
+        "pushed_at": "2026-09-18T05:26:13Z",
+        "commit": "10d73f0938b2ea83619783d993f84cf42bff38cd",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/QuantEcon/QuantEcon.py"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/hannorein/rebound",
+      "checked_at": "2026-09-18T10:38:55.300Z",
+      "observed_at": "2026-09-18T10:38:55.300Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:55.300Z",
+        "last_success_at": "2026-09-18T10:38:55.300Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1131,
+          "observed_at": "2026-09-18T10:38:55.300Z",
+          "last_attempt_at": "2026-09-18T10:38:55.300Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 269,
+          "observed_at": "2026-09-18T10:38:55.300Z",
+          "last_attempt_at": "2026-09-18T10:38:55.300Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "93021857a3b7dea042430b2a282488db5799ac20",
+          "committed_at": "2026-09-15T17:41:26.000Z",
+          "observed_at": "2026-09-18T10:38:55.300Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:55.300Z",
+          "last_success_at": "2026-09-18T10:38:55.300Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 1987576,
+        "name": "rebound",
+        "full_name": "hannorein/rebound",
+        "html_url": "https://github.com/hannorein/rebound",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 53376,
+          "login": "hannorein",
+          "type": "User",
+          "html_url": "https://github.com/hannorein"
+        },
+        "topics": [
+          "astrophysics",
+          "keplerian-elements",
+          "n-body",
+          "orbits",
+          "planetary-science",
+          "symplectic-integrator"
+        ],
+        "updated_at": "2026-09-17T13:24:30Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "💫 An open-source multi-purpose N-body code.",
+        "language": "C",
+        "homepage": "https://rebound.hanno-rein.de/",
+        "pushed_at": "2026-09-15T17:44:36Z",
+        "commit": "93021857a3b7dea042430b2a282488db5799ac20",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/hannorein/rebound"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/atomistic-machine-learning/schnetpack",
+      "checked_at": "2026-09-18T10:38:57.734Z",
+      "observed_at": "2026-09-18T10:38:57.734Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:57.734Z",
+        "last_success_at": "2026-09-18T10:38:57.734Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 940,
+          "observed_at": "2026-09-18T10:38:57.734Z",
+          "last_attempt_at": "2026-09-18T10:38:57.734Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 251,
+          "observed_at": "2026-09-18T10:38:57.734Z",
+          "last_attempt_at": "2026-09-18T10:38:57.734Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "068cea8e561b72b9d97cfa39289cd9dcb8bcb1df",
+          "committed_at": "2026-07-20T13:13:21.000Z",
+          "observed_at": "2026-09-18T10:38:57.734Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:57.734Z",
+          "last_success_at": "2026-09-18T10:38:57.734Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 147224878,
+        "name": "schnetpack",
+        "full_name": "atomistic-machine-learning/schnetpack",
+        "html_url": "https://github.com/atomistic-machine-learning/schnetpack",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 26488588,
+          "login": "atomistic-machine-learning",
+          "type": "Organization",
+          "html_url": "https://github.com/atomistic-machine-learning"
+        },
+        "topics": [
+          "condensed-matter",
+          "machine-learning",
+          "molecular-dynamics",
+          "neural-network",
+          "quantum-chemistry"
+        ],
+        "updated_at": "2026-09-08T21:14:43Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "SchNetPack - Deep Neural Networks for Atomistic Systems",
+        "language": "Python",
+        "pushed_at": "2026-09-18T06:50:09Z",
+        "commit": "068cea8e561b72b9d97cfa39289cd9dcb8bcb1df"
+      }
+    },
+    {
+      "requested_url": "https://github.com/stanfordnlp/stanza",
+      "checked_at": "2026-09-18T10:38:59.939Z",
+      "observed_at": "2026-09-18T10:38:59.939Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:38:59.939Z",
+        "last_success_at": "2026-09-18T10:38:59.939Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 7877,
+          "observed_at": "2026-09-18T10:38:59.939Z",
+          "last_attempt_at": "2026-09-18T10:38:59.939Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 959,
+          "observed_at": "2026-09-18T10:38:59.939Z",
+          "last_attempt_at": "2026-09-18T10:38:59.939Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "1f4bfdd2bff400969444cf9f290d402448c9d6d5",
+          "committed_at": "2026-07-15T00:40:18.000Z",
+          "observed_at": "2026-09-18T10:38:59.939Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:38:59.939Z",
+          "last_success_at": "2026-09-18T10:38:59.939Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 104854615,
+        "name": "stanza",
+        "full_name": "stanfordnlp/stanza",
+        "html_url": "https://github.com/stanfordnlp/stanza",
+        "default_branch": "main",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 3046006,
+          "login": "stanfordnlp",
+          "type": "Organization",
+          "html_url": "https://github.com/stanfordnlp"
+        },
+        "topics": [
+          "artificial-intelligence",
+          "corenlp",
+          "deep-learning",
+          "machine-learning",
+          "named-entity-recognition",
+          "natural-language-processing",
+          "nlp",
+          "python",
+          "pytorch",
+          "universal-dependencies"
+        ],
+        "updated_at": "2026-09-18T03:56:36Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "Stanford NLP Python library for tokenization, sentence segmentation, NER, and parsing of many human languages",
+        "language": "Python",
+        "homepage": "https://stanfordnlp.github.io/stanza/",
+        "pushed_at": "2026-09-18T07:31:08Z",
+        "commit": "1f4bfdd2bff400969444cf9f290d402448c9d6d5"
+      }
+    },
+    {
+      "requested_url": "https://github.com/su2code/SU2",
+      "checked_at": "2026-09-18T10:39:02.018Z",
+      "observed_at": "2026-09-18T10:39:02.018Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:02.018Z",
+        "last_success_at": "2026-09-18T10:39:02.018Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 1795,
+          "observed_at": "2026-09-18T10:39:02.018Z",
+          "last_attempt_at": "2026-09-18T10:39:02.018Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 1005,
+          "observed_at": "2026-09-18T10:39:02.018Z",
+          "last_attempt_at": "2026-09-18T10:39:02.018Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "bc15466602a687d6fb796d5df7a12ce3fde0949a",
+          "committed_at": "2026-04-28T06:05:27.000Z",
+          "observed_at": "2026-09-18T10:39:02.018Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:39:02.018Z",
+          "last_success_at": "2026-09-18T10:39:02.018Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 11036316,
+        "name": "SU2",
+        "full_name": "su2code/SU2",
+        "html_url": "https://github.com/su2code/SU2",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 4796189,
+          "login": "su2code",
+          "type": "Organization",
+          "html_url": "https://github.com/su2code"
+        },
+        "topics": [
+          "c-plus-plus",
+          "cfd",
+          "flow",
+          "fluid",
+          "fluid-dynamics",
+          "hpc",
+          "opensource",
+          "optimization",
+          "physics",
+          "python",
+          "simulation"
+        ],
+        "updated_at": "2026-09-13T21:54:29Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "description": "SU2: An Open-Source Suite for Multiphysics Simulation and Design",
+        "language": "C++",
+        "homepage": "https://su2code.github.io/",
+        "pushed_at": "2026-09-18T10:36:37Z",
+        "commit": "bc15466602a687d6fb796d5df7a12ce3fde0949a"
+      }
+    },
+    {
+      "requested_url": "https://github.com/FBlandfort/Subset-Simulation-Interpolation",
+      "checked_at": "2026-09-18T10:39:04.041Z",
+      "observed_at": "2026-09-18T10:39:04.041Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:04.041Z",
+        "last_success_at": "2026-09-18T10:39:04.041Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 17,
+          "observed_at": "2026-09-18T10:39:04.041Z",
+          "last_attempt_at": "2026-09-18T10:39:04.041Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 4,
+          "observed_at": "2026-09-18T10:39:04.041Z",
+          "last_attempt_at": "2026-09-18T10:39:04.041Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "e0c1433d6769c8a8c41943ed824007c2511a0c2e",
+          "committed_at": "2021-01-07T17:54:39.000Z",
+          "observed_at": "2026-09-18T10:39:04.041Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:39:04.041Z",
+          "last_success_at": "2026-09-18T10:39:04.041Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 323382961,
+        "name": "Subset-Simulation-Interpolation",
+        "full_name": "FBlandfort/Subset-Simulation-Interpolation",
+        "html_url": "https://github.com/FBlandfort/Subset-Simulation-Interpolation",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 73434119,
+          "login": "FBlandfort",
+          "type": "User",
+          "html_url": "https://github.com/FBlandfort"
+        },
+        "topics": [],
+        "updated_at": "2026-02-05T22:37:40Z",
+        "has_issues": true,
+        "has_discussions": false,
+        "description": "Sequential Monte Carlo Method for Reliability Estimation of Complex Civil Engineering Structures ",
+        "language": "Python",
+        "pushed_at": "2021-01-07T17:54:40Z",
+        "commit": "e0c1433d6769c8a8c41943ed824007c2511a0c2e",
+        "license": {
+          "spdx_id": "MIT",
+          "url": "https://github.com/FBlandfort/Subset-Simulation-Interpolation"
+        }
+      }
+    },
+    {
+      "requested_url": "https://github.com/voyanttools/Voyant",
+      "checked_at": "2026-09-18T10:39:06.705Z",
+      "observed_at": "2026-09-18T10:39:06.705Z",
+      "availability": "accessible",
+      "suppressed": false,
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:06.705Z",
+        "last_success_at": "2026-09-18T10:39:06.705Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "stars": {
+          "value": 136,
+          "observed_at": "2026-09-18T10:39:06.705Z",
+          "last_attempt_at": "2026-09-18T10:39:06.705Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "forks": {
+          "value": 13,
+          "observed_at": "2026-09-18T10:39:06.705Z",
+          "last_attempt_at": "2026-09-18T10:39:06.705Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      },
+      "source_activity": {
+        "default_branch_head": {
+          "sha": "bd87c7ee7523fd4871f6a4d62c61bb9aea13a09b",
+          "committed_at": "2026-09-04T21:30:10.000Z",
+          "observed_at": "2026-09-18T10:39:06.705Z",
+          "date_status": "valid"
+        },
+        "observation": {
+          "last_attempt_at": "2026-09-18T10:39:06.705Z",
+          "last_success_at": "2026-09-18T10:39:06.705Z",
+          "result": "ok"
+        }
+      },
+      "repository": {
+        "id": 351191966,
+        "name": "Voyant",
+        "full_name": "voyanttools/Voyant",
+        "html_url": "https://github.com/voyanttools/Voyant",
+        "default_branch": "master",
+        "archived": false,
+        "fork": false,
+        "owner": {
+          "id": 77847429,
+          "login": "voyanttools",
+          "type": "Organization",
+          "html_url": "https://github.com/voyanttools"
+        },
+        "topics": [],
+        "updated_at": "2026-09-14T21:14:40Z",
+        "has_issues": true,
+        "has_discussions": true,
+        "language": "JavaScript",
+        "pushed_at": "2026-09-04T21:30:11Z",
+        "commit": "bd87c7ee7523fd4871f6a4d62c61bb9aea13a09b",
+        "license": {
+          "spdx_id": "GPL-3.0",
+          "url": "https://github.com/voyanttools/Voyant"
+        }
+      }
     }
   ],
   "accounts": [
@@ -2719,6 +6400,1566 @@
           "value": 1,
           "observed_at": "2026-09-17T12:14:29.244Z",
           "last_attempt_at": "2026-09-17T12:14:29.244Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 817698,
+      "login": "Cantera",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/Cantera",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:08.942Z",
+        "last_success_at": "2026-09-18T10:39:08.942Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 133,
+          "observed_at": "2026-09-18T10:39:08.942Z",
+          "last_attempt_at": "2026-09-18T10:39:08.942Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:08.942Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 40,
+          "observed_at": "2026-09-18T10:39:08.942Z",
+          "last_attempt_at": "2026-09-18T10:39:08.942Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 6610748,
+      "login": "cltk",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/cltk",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:09.918Z",
+        "last_success_at": "2026-09-18T10:39:09.918Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 111,
+          "observed_at": "2026-09-18T10:39:09.918Z",
+          "last_attempt_at": "2026-09-18T10:39:09.918Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:09.918Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 116,
+          "observed_at": "2026-09-18T10:39:09.918Z",
+          "last_attempt_at": "2026-09-18T10:39:09.918Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 28688163,
+      "login": "CogStack",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/CogStack",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:10.900Z",
+        "last_success_at": "2026-09-18T10:39:10.900Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 169,
+          "observed_at": "2026-09-18T10:39:10.900Z",
+          "last_attempt_at": "2026-09-18T10:39:10.900Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:10.900Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 41,
+          "observed_at": "2026-09-18T10:39:10.900Z",
+          "last_attempt_at": "2026-09-18T10:39:10.900Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1212942,
+      "login": "cp2k",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/cp2k",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:12.638Z",
+        "last_success_at": "2026-09-18T10:39:12.638Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 180,
+          "observed_at": "2026-09-18T10:39:12.638Z",
+          "last_attempt_at": "2026-09-18T10:39:12.638Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:12.638Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 9,
+          "observed_at": "2026-09-18T10:39:12.638Z",
+          "last_attempt_at": "2026-09-18T10:39:12.638Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 17170641,
+      "login": "deepchem",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/deepchem",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:13.688Z",
+        "last_success_at": "2026-09-18T10:39:13.688Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 524,
+          "observed_at": "2026-09-18T10:39:13.688Z",
+          "last_attempt_at": "2026-09-18T10:39:13.688Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:13.688Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 19,
+          "observed_at": "2026-09-18T10:39:13.688Z",
+          "last_attempt_at": "2026-09-18T10:39:13.688Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 3868708,
+      "login": "FEniCS",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/FEniCS",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:14.735Z",
+        "last_success_at": "2026-09-18T10:39:14.735Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 845,
+          "observed_at": "2026-09-18T10:39:14.735Z",
+          "last_attempt_at": "2026-09-18T10:39:14.735Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:14.735Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 19,
+          "observed_at": "2026-09-18T10:39:14.735Z",
+          "last_attempt_at": "2026-09-18T10:39:14.735Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 5486828,
+      "login": "EconForge",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/EconForge",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:15.769Z",
+        "last_success_at": "2026-09-18T10:39:15.769Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 34,
+          "observed_at": "2026-09-18T10:39:15.769Z",
+          "last_attempt_at": "2026-09-18T10:39:15.769Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:15.769Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 28,
+          "observed_at": "2026-09-18T10:39:15.769Z",
+          "last_attempt_at": "2026-09-18T10:39:15.769Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 71015553,
+      "login": "DoubleML",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/DoubleML",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:16.837Z",
+        "last_success_at": "2026-09-18T10:39:16.837Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 157,
+          "observed_at": "2026-09-18T10:39:16.837Z",
+          "last_attempt_at": "2026-09-18T10:39:16.837Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:16.837Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 13,
+          "observed_at": "2026-09-18T10:39:16.837Z",
+          "last_attempt_at": "2026-09-18T10:39:16.837Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 6223837,
+      "login": "matthieugomez",
+      "account_type": "user",
+      "canonical_url": "https://github.com/matthieugomez",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:18.655Z",
+        "last_success_at": "2026-09-18T10:39:18.655Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 358,
+          "observed_at": "2026-09-18T10:39:18.655Z",
+          "last_attempt_at": "2026-09-18T10:39:18.655Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 88,
+          "observed_at": "2026-09-18T10:39:18.655Z",
+          "last_attempt_at": "2026-09-18T10:39:18.655Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 52,
+          "observed_at": "2026-09-18T10:39:18.655Z",
+          "last_attempt_at": "2026-09-18T10:39:18.655Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 3169620,
+      "login": "duncanwp",
+      "account_type": "user",
+      "canonical_url": "https://github.com/duncanwp",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:19.708Z",
+        "last_success_at": "2026-09-18T10:39:19.708Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 144,
+          "observed_at": "2026-09-18T10:39:19.708Z",
+          "last_attempt_at": "2026-09-18T10:39:19.708Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 17,
+          "observed_at": "2026-09-18T10:39:19.708Z",
+          "last_attempt_at": "2026-09-18T10:39:19.708Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 50,
+          "observed_at": "2026-09-18T10:39:19.708Z",
+          "last_attempt_at": "2026-09-18T10:39:19.708Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 67336486,
+      "login": "FermiQC",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/FermiQC",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:20.730Z",
+        "last_success_at": "2026-09-18T10:39:20.730Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 26,
+          "observed_at": "2026-09-18T10:39:20.730Z",
+          "last_attempt_at": "2026-09-18T10:39:20.730Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:20.730Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 5,
+          "observed_at": "2026-09-18T10:39:20.730Z",
+          "last_attempt_at": "2026-09-18T10:39:20.730Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 43536394,
+      "login": "lrberge",
+      "account_type": "user",
+      "canonical_url": "https://github.com/lrberge",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:22.940Z",
+        "last_success_at": "2026-09-18T10:39:22.940Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 158,
+          "observed_at": "2026-09-18T10:39:22.940Z",
+          "last_attempt_at": "2026-09-18T10:39:22.940Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:39:22.940Z",
+          "last_attempt_at": "2026-09-18T10:39:22.940Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 24,
+          "observed_at": "2026-09-18T10:39:22.940Z",
+          "last_attempt_at": "2026-09-18T10:39:22.940Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 71825173,
+      "login": "gempy-project",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/gempy-project",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:23.965Z",
+        "last_success_at": "2026-09-18T10:39:23.965Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 96,
+          "observed_at": "2026-09-18T10:39:23.965Z",
+          "last_attempt_at": "2026-09-18T10:39:23.965Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:23.965Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 14,
+          "observed_at": "2026-09-18T10:39:23.965Z",
+          "last_attempt_at": "2026-09-18T10:39:23.965Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 84014489,
+      "login": "JuliaGeodynamics",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/JuliaGeodynamics",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:25.031Z",
+        "last_success_at": "2026-09-18T10:39:25.031Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 66,
+          "observed_at": "2026-09-18T10:39:25.031Z",
+          "last_attempt_at": "2026-09-18T10:39:25.031Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:25.031Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 18,
+          "observed_at": "2026-09-18T10:39:25.031Z",
+          "last_attempt_at": "2026-09-18T10:39:25.031Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1144411,
+      "login": "gephi",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/gephi",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:26.048Z",
+        "last_success_at": "2026-09-18T10:39:26.048Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 363,
+          "observed_at": "2026-09-18T10:39:26.048Z",
+          "last_attempt_at": "2026-09-18T10:39:26.048Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:26.048Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 25,
+          "observed_at": "2026-09-18T10:39:26.048Z",
+          "last_attempt_at": "2026-09-18T10:39:26.048Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 19330676,
+      "login": "econ-ark",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/econ-ark",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:27.093Z",
+        "last_success_at": "2026-09-18T10:39:27.093Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 113,
+          "observed_at": "2026-09-18T10:39:27.093Z",
+          "last_attempt_at": "2026-09-18T10:39:27.093Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:27.093Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 59,
+          "observed_at": "2026-09-18T10:39:27.093Z",
+          "last_attempt_at": "2026-09-18T10:39:27.093Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 25832198,
+      "login": "glotzerlab",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/glotzerlab",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:29.340Z",
+        "last_success_at": "2026-09-18T10:39:29.340Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 122,
+          "observed_at": "2026-09-18T10:39:29.340Z",
+          "last_attempt_at": "2026-09-18T10:39:29.340Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:29.340Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 72,
+          "observed_at": "2026-09-18T10:39:29.340Z",
+          "last_attempt_at": "2026-09-18T10:39:29.340Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1589802,
+      "login": "epam",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/epam",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:30.399Z",
+        "last_success_at": "2026-09-18T10:39:30.399Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 1213,
+          "observed_at": "2026-09-18T10:39:30.399Z",
+          "last_attempt_at": "2026-09-18T10:39:30.399Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:30.399Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 545,
+          "observed_at": "2026-09-18T10:39:30.399Z",
+          "last_attempt_at": "2026-09-18T10:39:30.399Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 16901698,
+      "login": "jspsych",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/jspsych",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:31.687Z",
+        "last_success_at": "2026-09-18T10:39:31.687Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 96,
+          "observed_at": "2026-09-18T10:39:31.687Z",
+          "last_attempt_at": "2026-09-18T10:39:31.687Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:31.687Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 58,
+          "observed_at": "2026-09-18T10:39:31.687Z",
+          "last_attempt_at": "2026-09-18T10:39:31.687Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 10516825,
+      "login": "partridgejiang",
+      "account_type": "user",
+      "canonical_url": "https://github.com/partridgejiang",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:32.973Z",
+        "last_success_at": "2026-09-18T10:39:32.973Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 35,
+          "observed_at": "2026-09-18T10:39:32.973Z",
+          "last_attempt_at": "2026-09-18T10:39:32.973Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 1,
+          "observed_at": "2026-09-18T10:39:32.973Z",
+          "last_attempt_at": "2026-09-18T10:39:32.973Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 6,
+          "observed_at": "2026-09-18T10:39:32.973Z",
+          "last_attempt_at": "2026-09-18T10:39:32.973Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 133772452,
+      "login": "UniMainzGeo",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/UniMainzGeo",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:33.979Z",
+        "last_success_at": "2026-09-18T10:39:33.979Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 11,
+          "observed_at": "2026-09-18T10:39:33.979Z",
+          "last_attempt_at": "2026-09-18T10:39:33.979Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:33.979Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 6,
+          "observed_at": "2026-09-18T10:39:33.979Z",
+          "last_attempt_at": "2026-09-18T10:39:33.979Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 5199009,
+      "login": "lammps",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/lammps",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:35.014Z",
+        "last_success_at": "2026-09-18T10:39:35.014Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 320,
+          "observed_at": "2026-09-18T10:39:35.014Z",
+          "last_attempt_at": "2026-09-18T10:39:35.014Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:35.014Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 9,
+          "observed_at": "2026-09-18T10:39:35.014Z",
+          "last_attempt_at": "2026-09-18T10:39:35.014Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1524636,
+      "login": "sunqm",
+      "account_type": "user",
+      "canonical_url": "https://github.com/sunqm",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:36.015Z",
+        "last_success_at": "2026-09-18T10:39:36.015Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 364,
+          "observed_at": "2026-09-18T10:39:36.015Z",
+          "last_attempt_at": "2026-09-18T10:39:36.015Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 18,
+          "observed_at": "2026-09-18T10:39:36.015Z",
+          "last_attempt_at": "2026-09-18T10:39:36.015Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 62,
+          "observed_at": "2026-09-18T10:39:36.015Z",
+          "last_attempt_at": "2026-09-18T10:39:36.015Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 5585221,
+      "login": "bashtage",
+      "account_type": "user",
+      "canonical_url": "https://github.com/bashtage",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:37.085Z",
+        "last_success_at": "2026-09-18T10:39:37.085Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 1450,
+          "observed_at": "2026-09-18T10:39:37.085Z",
+          "last_attempt_at": "2026-09-18T10:39:37.085Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:39:37.085Z",
+          "last_attempt_at": "2026-09-18T10:39:37.085Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 40,
+          "observed_at": "2026-09-18T10:39:37.085Z",
+          "last_attempt_at": "2026-09-18T10:39:37.085Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 8754505,
+      "login": "mesa",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/mesa",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:38.111Z",
+        "last_success_at": "2026-09-18T10:39:38.111Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 372,
+          "observed_at": "2026-09-18T10:39:38.111Z",
+          "last_attempt_at": "2026-09-18T10:39:38.111Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:38.111Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 12,
+          "observed_at": "2026-09-18T10:39:38.111Z",
+          "last_attempt_at": "2026-09-18T10:39:38.111Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 12879105,
+      "login": "mfem",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/mfem",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:39.379Z",
+        "last_success_at": "2026-09-18T10:39:39.379Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 234,
+          "observed_at": "2026-09-18T10:39:39.379Z",
+          "last_attempt_at": "2026-09-18T10:39:39.379Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:39.379Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 12,
+          "observed_at": "2026-09-18T10:39:39.379Z",
+          "last_attempt_at": "2026-09-18T10:39:39.379Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1174134,
+      "login": "mojaie",
+      "account_type": "user",
+      "canonical_url": "https://github.com/mojaie",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:40.421Z",
+        "last_success_at": "2026-09-18T10:39:40.421Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 72,
+          "observed_at": "2026-09-18T10:39:40.421Z",
+          "last_attempt_at": "2026-09-18T10:39:40.421Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 55,
+          "observed_at": "2026-09-18T10:39:40.421Z",
+          "last_attempt_at": "2026-09-18T10:39:40.421Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 23,
+          "observed_at": "2026-09-18T10:39:40.421Z",
+          "last_attempt_at": "2026-09-18T10:39:40.421Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 3855370,
+      "login": "idaholab",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/idaholab",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:41.701Z",
+        "last_success_at": "2026-09-18T10:39:41.701Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 559,
+          "observed_at": "2026-09-18T10:39:41.701Z",
+          "last_attempt_at": "2026-09-18T10:39:41.701Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:41.701Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 161,
+          "observed_at": "2026-09-18T10:39:41.701Z",
+          "last_attempt_at": "2026-09-18T10:39:41.701Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 767367,
+      "login": "NetLogo",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/NetLogo",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:42.741Z",
+        "last_success_at": "2026-09-18T10:39:42.741Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 145,
+          "observed_at": "2026-09-18T10:39:42.741Z",
+          "last_attempt_at": "2026-09-18T10:39:42.741Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:42.741Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 134,
+          "observed_at": "2026-09-18T10:39:42.741Z",
+          "last_attempt_at": "2026-09-18T10:39:42.741Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 44878588,
+      "login": "volkamerlab",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/volkamerlab",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:43.766Z",
+        "last_success_at": "2026-09-18T10:39:43.766Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 190,
+          "observed_at": "2026-09-18T10:39:43.766Z",
+          "last_attempt_at": "2026-09-18T10:39:43.766Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:43.766Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 53,
+          "observed_at": "2026-09-18T10:39:43.766Z",
+          "last_attempt_at": "2026-09-18T10:39:43.766Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 189613,
+      "login": "OpenFOAM",
+      "account_type": "user",
+      "canonical_url": "https://github.com/OpenFOAM",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:44.822Z",
+        "last_success_at": "2026-09-18T10:39:44.822Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 2643,
+          "observed_at": "2026-09-18T10:39:44.822Z",
+          "last_attempt_at": "2026-09-18T10:39:44.822Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:39:44.822Z",
+          "last_attempt_at": "2026-09-18T10:39:44.822Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 40,
+          "observed_at": "2026-09-18T10:39:44.822Z",
+          "last_attempt_at": "2026-09-18T10:39:44.822Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 52428936,
+      "login": "openmm",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/openmm",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:45.834Z",
+        "last_success_at": "2026-09-18T10:39:45.834Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 446,
+          "observed_at": "2026-09-18T10:39:45.834Z",
+          "last_attempt_at": "2026-09-18T10:39:45.834Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:45.834Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 28,
+          "observed_at": "2026-09-18T10:39:45.834Z",
+          "last_attempt_at": "2026-09-18T10:39:45.834Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 65667445,
+      "login": "opensafely",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/opensafely",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:46.867Z",
+        "last_success_at": "2026-09-18T10:39:46.867Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 181,
+          "observed_at": "2026-09-18T10:39:46.867Z",
+          "last_attempt_at": "2026-09-18T10:39:46.867Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:46.867Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 327,
+          "observed_at": "2026-09-18T10:39:46.867Z",
+          "last_attempt_at": "2026-09-18T10:39:46.867Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 5472566,
+      "login": "ajwdewit",
+      "account_type": "user",
+      "canonical_url": "https://github.com/ajwdewit",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:47.920Z",
+        "last_success_at": "2026-09-18T10:39:47.920Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 235,
+          "observed_at": "2026-09-18T10:39:47.920Z",
+          "last_attempt_at": "2026-09-18T10:39:47.920Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:39:47.920Z",
+          "last_attempt_at": "2026-09-18T10:39:47.920Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 33,
+          "observed_at": "2026-09-18T10:39:47.920Z",
+          "last_attempt_at": "2026-09-18T10:39:47.920Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 2636883,
+      "login": "psi4",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/psi4",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:48.941Z",
+        "last_success_at": "2026-09-18T10:39:48.941Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 86,
+          "observed_at": "2026-09-18T10:39:48.941Z",
+          "last_attempt_at": "2026-09-18T10:39:48.941Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:48.941Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 28,
+          "observed_at": "2026-09-18T10:39:48.941Z",
+          "last_attempt_at": "2026-09-18T10:39:48.941Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 381042,
+      "login": "psychopy",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/psychopy",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:49.972Z",
+        "last_success_at": "2026-09-18T10:39:49.972Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 166,
+          "observed_at": "2026-09-18T10:39:49.972Z",
+          "last_attempt_at": "2026-09-18T10:39:49.972Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:49.972Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 51,
+          "observed_at": "2026-09-18T10:39:49.972Z",
+          "last_attempt_at": "2026-09-18T10:39:49.972Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 48961907,
+      "login": "pybamm-team",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/pybamm-team",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:51.033Z",
+        "last_success_at": "2026-09-18T10:39:51.033Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 237,
+          "observed_at": "2026-09-18T10:39:51.033Z",
+          "last_attempt_at": "2026-09-18T10:39:51.033Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:51.033Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 24,
+          "observed_at": "2026-09-18T10:39:51.033Z",
+          "last_attempt_at": "2026-09-18T10:39:51.033Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 1767058,
+      "login": "jeffgortmaker",
+      "account_type": "user",
+      "canonical_url": "https://github.com/jeffgortmaker",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:52.083Z",
+        "last_success_at": "2026-09-18T10:39:52.083Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 142,
+          "observed_at": "2026-09-18T10:39:52.083Z",
+          "last_attempt_at": "2026-09-18T10:39:52.083Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 22,
+          "observed_at": "2026-09-18T10:39:52.083Z",
+          "last_attempt_at": "2026-09-18T10:39:52.083Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 2,
+          "observed_at": "2026-09-18T10:39:52.083Z",
+          "last_attempt_at": "2026-09-18T10:39:52.083Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 5385734,
+      "login": "gimli-org",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/gimli-org",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:53.088Z",
+        "last_success_at": "2026-09-18T10:39:53.088Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 96,
+          "observed_at": "2026-09-18T10:39:53.088Z",
+          "last_attempt_at": "2026-09-18T10:39:53.088Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:53.088Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 13,
+          "observed_at": "2026-09-18T10:39:53.088Z",
+          "last_attempt_at": "2026-09-18T10:39:53.088Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 38367334,
+      "login": "pyscf",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/pyscf",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:54.165Z",
+        "last_success_at": "2026-09-18T10:39:54.165Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 208,
+          "observed_at": "2026-09-18T10:39:54.165Z",
+          "last_attempt_at": "2026-09-18T10:39:54.165Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:54.165Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 30,
+          "observed_at": "2026-09-18T10:39:54.165Z",
+          "last_attempt_at": "2026-09-18T10:39:54.165Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 26232579,
+      "login": "MolSSI",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/MolSSI",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:55.245Z",
+        "last_success_at": "2026-09-18T10:39:55.245Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 154,
+          "observed_at": "2026-09-18T10:39:55.245Z",
+          "last_attempt_at": "2026-09-18T10:39:55.245Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:55.245Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 59,
+          "observed_at": "2026-09-18T10:39:55.245Z",
+          "last_attempt_at": "2026-09-18T10:39:55.245Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 8703060,
+      "login": "QuantEcon",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/QuantEcon",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:56.304Z",
+        "last_success_at": "2026-09-18T10:39:56.304Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 1737,
+          "observed_at": "2026-09-18T10:39:56.304Z",
+          "last_attempt_at": "2026-09-18T10:39:56.304Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:56.304Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 217,
+          "observed_at": "2026-09-18T10:39:56.304Z",
+          "last_attempt_at": "2026-09-18T10:39:56.304Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 53376,
+      "login": "hannorein",
+      "account_type": "user",
+      "canonical_url": "https://github.com/hannorein",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:57.584Z",
+        "last_success_at": "2026-09-18T10:39:57.584Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 366,
+          "observed_at": "2026-09-18T10:39:57.584Z",
+          "last_attempt_at": "2026-09-18T10:39:57.584Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 167,
+          "observed_at": "2026-09-18T10:39:57.584Z",
+          "last_attempt_at": "2026-09-18T10:39:57.584Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 133,
+          "observed_at": "2026-09-18T10:39:57.584Z",
+          "last_attempt_at": "2026-09-18T10:39:57.584Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 26488588,
+      "login": "atomistic-machine-learning",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/atomistic-machine-learning",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:58.621Z",
+        "last_success_at": "2026-09-18T10:39:58.621Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 103,
+          "observed_at": "2026-09-18T10:39:58.621Z",
+          "last_attempt_at": "2026-09-18T10:39:58.621Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:58.621Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 8,
+          "observed_at": "2026-09-18T10:39:58.621Z",
+          "last_attempt_at": "2026-09-18T10:39:58.621Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 3046006,
+      "login": "stanfordnlp",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/stanfordnlp",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:39:59.644Z",
+        "last_success_at": "2026-09-18T10:39:59.644Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 2778,
+          "observed_at": "2026-09-18T10:39:59.644Z",
+          "last_attempt_at": "2026-09-18T10:39:59.644Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:39:59.644Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 55,
+          "observed_at": "2026-09-18T10:39:59.644Z",
+          "last_attempt_at": "2026-09-18T10:39:59.644Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 4796189,
+      "login": "su2code",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/su2code",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:40:01.683Z",
+        "last_success_at": "2026-09-18T10:40:01.683Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 304,
+          "observed_at": "2026-09-18T10:40:01.683Z",
+          "last_attempt_at": "2026-09-18T10:40:01.683Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:40:01.683Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 13,
+          "observed_at": "2026-09-18T10:40:01.683Z",
+          "last_attempt_at": "2026-09-18T10:40:01.683Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 73434119,
+      "login": "FBlandfort",
+      "account_type": "user",
+      "canonical_url": "https://github.com/FBlandfort",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:40:02.760Z",
+        "last_success_at": "2026-09-18T10:40:02.760Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:40:02.760Z",
+          "last_attempt_at": "2026-09-18T10:40:02.760Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "value": 0,
+          "observed_at": "2026-09-18T10:40:02.760Z",
+          "last_attempt_at": "2026-09-18T10:40:02.760Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 1,
+          "observed_at": "2026-09-18T10:40:02.760Z",
+          "last_attempt_at": "2026-09-18T10:40:02.760Z",
+          "result": "ok",
+          "visibility": "public_api"
+        }
+      }
+    },
+    {
+      "provider_id": 77847429,
+      "login": "voyanttools",
+      "account_type": "organization",
+      "canonical_url": "https://github.com/voyanttools",
+      "observation": {
+        "last_attempt_at": "2026-09-18T10:40:03.765Z",
+        "last_success_at": "2026-09-18T10:40:03.765Z",
+        "result": "ok"
+      },
+      "github_metrics": {
+        "followers": {
+          "value": 48,
+          "observed_at": "2026-09-18T10:40:03.765Z",
+          "last_attempt_at": "2026-09-18T10:40:03.765Z",
+          "result": "ok",
+          "visibility": "public_api"
+        },
+        "following": {
+          "last_attempt_at": "2026-09-18T10:40:03.765Z",
+          "result": "unsupported",
+          "visibility": "public_api"
+        },
+        "public_repositories": {
+          "value": 8,
+          "observed_at": "2026-09-18T10:40:03.765Z",
+          "last_attempt_at": "2026-09-18T10:40:03.765Z",
           "result": "ok",
           "visibility": "public_api"
         }
