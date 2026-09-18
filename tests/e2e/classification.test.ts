@@ -1,11 +1,13 @@
 import {test,expect,type Page} from '@playwright/test';
 async function controls(page:Page){const toggle=page.getByRole('button',{name:'Filters',exact:true});if(await toggle.isVisible()){await toggle.click();return page.getByRole('dialog');}return page.locator('.desktop-filters');}
 async function close(page:Page){const dialog=page.getByRole('dialog');if(await dialog.isVisible())await dialog.getByRole('button',{name:/^Show \d+ entries$/}).click();}
-test('complete standard, empty chemical engineering field, multiple selections and shareable reload',async({page},testInfo)=>{
+test('complete standard, an unpopulated field, multiple selections and shareable reload',async({page},testInfo)=>{
  await page.goto('capabilities/');const panel=await controls(page),field=panel.getByLabel('Research discipline',{exact:true});await expect(field).toBeEnabled();
- await expect(field.locator('optgroup')).toHaveCount(6);await expect(field.locator('option[value="2.4"]')).toHaveText('2.4 Chemical engineering (0)');
- await field.selectOption('2.4');await expect(page).toHaveURL(/field=2.4/);await close(page);await expect(page.getByText('No matching entries',{exact:false})).toBeVisible();
- await page.reload();await expect(page).toHaveURL(/field=2.4/);const again=await controls(page);await again.getByLabel('Research discipline',{exact:true}).selectOption('1.1');await expect(page).toHaveURL(/field=1.1%2C2.4/);await close(page);await expect(page.locator('.results-list')).toContainText('SciPy');
+ await expect(field.locator('optgroup')).toHaveCount(6);
+ const emptyCode=await field.locator('option').evaluateAll(options=>options.map(option=>({value:(option as HTMLOptionElement).value,label:option.textContent??''})).find(option=>/^\d+\.\d+$/.test(option.value)&&/\(0\)$/.test(option.label))?.value);
+ expect(emptyCode,'the live fixture has an unpopulated standard subfield').toBeTruthy();
+ await field.selectOption(emptyCode!);await expect.poll(()=>new URL(page.url()).searchParams.get('field')).toBe(emptyCode);await close(page);await expect(page.getByText('No matching entries',{exact:false})).toBeVisible();
+ await page.reload();expect(new URL(page.url()).searchParams.get('field')).toBe(emptyCode);const again=await controls(page);await again.getByLabel('Research discipline',{exact:true}).selectOption('1.1');await expect.poll(()=>new URL(page.url()).searchParams.get('field')?.split(',').sort()).toEqual(['1.1',emptyCode!].sort());await close(page);await expect(page.locator('.results-list')).toContainText('SciPy');
  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content',/noindex/);
  await page.screenshot({path:testInfo.outputPath('classification.png'),fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
