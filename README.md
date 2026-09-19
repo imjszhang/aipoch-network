@@ -17,7 +17,7 @@ Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**.
 - [General Research Tools — Classification Pending](#general-research-tools--classification-pending)
 - [Research Guides](#research-guides)
 
-As of September 18, 2026, the reviewed registry contains 76 projects and 77 reusable resources. 18 subfields have classified entries; 24 await entries. 10 project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. Research across all six broad fields is in scope.
+As of September 19, 2026, the reviewed registry contains 176 projects and 177 reusable resources. 21 subfields have classified entries; 21 await entries. 10 project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. Research across all six broad fields is in scope.
 
 The links below open capabilities in each discipline; switch to Projects on the website to explore their associated projects. Each selected project is listed once here for readability. Its catalog record can have several reviewed disciplines, and a reusable resource can have a different classification. [Classification reference](registry/taxonomies/oecd-ford-2015.json).
 
@@ -35,6 +35,26 @@ The links below open capabilities in each discipline; switch to Projects on the 
 - [NetworkX](https://github.com/networkx/networkx) — Create and analyze graphs, using network algorithms to study connectivity, paths, and structural properties of linked data. [Details](https://aipoch.network/projects/project~networkx/)
 - [DOLFINx](https://github.com/FEniCS/dolfinx) — Formulate and solve finite-element problems using the C++ and Python environment at the core of FEniCSx. [Details](https://aipoch.network/projects/project~dolfinx/)
 - [MFEM](https://github.com/mfem/mfem) — Develop finite-element discretizations and numerical solvers using a modular C++ library. [Details](https://aipoch.network/projects/project~mfem/)
+- [PyMC](https://github.com/pymc-devs/pymc) — Fit probabilistic models with MCMC and variational inference to estimate posterior distributions. [Details](https://aipoch.network/projects/project~pymc/)
+- [Stan](https://github.com/stan-dev/stan) — Estimate statistical models using Hamiltonian Monte Carlo, variational inference and optimization. [Details](https://aipoch.network/projects/project~stan/)
+- [ArviZ](https://github.com/arviz-devs/arviz) — Diagnose posterior samples, compare models and visualize Bayesian inference results. [Details](https://aipoch.network/projects/project~arviz/)
+- [emcee](https://github.com/dfm/emcee) — Sample probability distributions with an affine-invariant ensemble MCMC method. [Details](https://aipoch.network/projects/project~emcee/)
+- [dynesty](https://github.com/joshspeagle/dynesty) — Estimate posterior distributions and Bayesian evidence with dynamic nested sampling. [Details](https://aipoch.network/projects/project~dynesty/)
+- [CVXPY](https://github.com/cvxpy/cvxpy) — Express optimization objectives and constraints, canonicalize supported problems and invoke external solvers. [Details](https://aipoch.network/projects/project~cvxpy/)
+- [JuMP](https://github.com/jump-dev/JuMP.jl) — Describe mathematical optimization models in Julia and connect them to compatible solvers. [Details](https://aipoch.network/projects/project~jump-jl/)
+- [HiGHS](https://github.com/ERGO-Code/HiGHS) — Solve sparse linear, convex quadratic and mixed-integer optimization problems. [Details](https://aipoch.network/projects/project~highs/)
+- [Pyomo](https://github.com/Pyomo/pyomo) — Build algebraic optimization models and connect problem instances to external solvers. [Details](https://aipoch.network/projects/project~pyomo/)
+- [esda](https://github.com/pysal/esda) — Explore spatial autocorrelation, local statistics and permutation tests using observations and spatial weights. [Details](https://aipoch.network/projects/project~esda/)
+- [MGWR](https://github.com/pysal/mgwr) — Fit geographically weighted and multiscale geographically weighted regression models. [Details](https://aipoch.network/projects/project~mgwr/)
+- [lavaan](https://github.com/yrosseel/lavaan) — Fit latent-variable, confirmatory factor, structural equation and growth-curve models. [Details](https://aipoch.network/projects/project~lavaan/)
+- [OpenMx](https://github.com/OpenMx/OpenMx) — Estimate structural equation models from data and programmatic model specifications. [Details](https://aipoch.network/projects/project~openmx/)
+- [simstudy](https://github.com/kgoldfeld/simstudy) — Generate simulated study data from specified distributions, relationships and missingness mechanisms. [Details](https://aipoch.network/projects/project~simstudy/)
+- [srvyr](https://github.com/gergness/srvyr) — Summarize survey data with design-aware estimates and intervals through a pipeline interface. [Details](https://aipoch.network/projects/project~srvyr/)
+- [DeclareDesign](https://github.com/DeclareDesign/DeclareDesign) — Declare research designs and diagnose their statistical properties through simulation. [Details](https://aipoch.network/projects/project~declaredesign/)
+- [randomizr](https://github.com/DeclareDesign/randomizr) — Generate randomized assignments and samples under specified grouping and allocation constraints. [Details](https://aipoch.network/projects/project~randomizr/)
+- [estimatr](https://github.com/DeclareDesign/estimatr) — Estimate treatment contrasts and regression models with design-aware or robust uncertainty estimates. [Details](https://aipoch.network/projects/project~estimatr/)
+- [MatchIt](https://github.com/kosukeimai/MatchIt) — Construct matched samples and weights and assess observed-covariate balance. [Details](https://aipoch.network/projects/project~matchit/)
+- [WeightIt](https://github.com/ngreifer/WeightIt) — Estimate balancing or censoring weights and support weighted analyses of point or longitudinal treatments. [Details](https://aipoch.network/projects/project~weightit/)
 
 ### 1.2 Computer and information sciences
 
@@ -47,6 +67,18 @@ The links below open capabilities in each discipline; switch to Projects on the 
 - [Gephi](https://github.com/gephi/gephi) — Explore and analyze graph data across research fields, including social and biological networks, using interactive layouts and network statistics. [Details](https://aipoch.network/projects/project~gephi/)
 - [Mesa](https://github.com/mesa/mesa) — Build agent-based models across research fields in Python, collect simulation data and add optional browser visualizations. [Details](https://aipoch.network/projects/project~mesa/)
 - [NetLogo](https://github.com/NetLogo/NetLogo) — Explore complex systems across research fields using an agent-based modeling environment. Example models and documentation retain their separate licenses. [Details](https://aipoch.network/projects/project~netlogo/)
+- [PennyLane](https://github.com/PennyLaneAI/pennylane) — Build differentiable quantum circuits and compute expectation values and gradients through supported backends. [Details](https://aipoch.network/projects/project~pennylane/)
+- [Qiskit](https://github.com/Qiskit/qiskit) — Construct and transform quantum circuits and work with sampler and estimator interfaces. [Details](https://aipoch.network/projects/project~qiskit/)
+- [Cirq](https://github.com/quantumlib/Cirq) — Build, simulate and compile quantum circuits with noise and device models. [Details](https://aipoch.network/projects/project~cirq/)
+- [yt](https://github.com/yt-project/yt) — Analyze and visualize grid and particle datasets through derived fields, profiles and shared data interfaces. [Details](https://aipoch.network/projects/project~yt/)
+- [GeoPandas](https://github.com/geopandas/geopandas) — Combine tabular and geometric data for spatial operations and coordinate transformations. [Details](https://aipoch.network/projects/project~geopandas/)
+- [libpysal](https://github.com/pysal/libpysal) — Provide spatial weights, graphs, computational geometry and input-output foundations for spatial analysis. [Details](https://aipoch.network/projects/project~libpysal/)
+- [MovingPandas](https://github.com/movingpandas/movingpandas) — Clean, smooth, simplify and aggregate movement trajectories and identify stops. [Details](https://aipoch.network/projects/project~movingpandas/)
+- [sf](https://github.com/r-spatial/sf) — Represent and manipulate simple-feature spatial data and coordinate reference systems in R. [Details](https://aipoch.network/projects/project~sf/)
+- [textreuse](https://github.com/ropensci/textreuse) — Compare texts with similarity measures, minhash candidates and reused-passage alignment. [Details](https://aipoch.network/projects/project~textreuse/)
+- [spaCy](https://github.com/explosion/spaCy) — Process and annotate text with linguistic pipelines and train supported NLP components. [Details](https://aipoch.network/projects/project~spacy/)
+- [NLTK code](https://github.com/nltk/nltk) — Use natural-language processing modules for text and linguistic research; corpora have separate licenses. [Details](https://aipoch.network/projects/project~nltk/)
+- [Gensim](https://github.com/piskvorky/gensim) — Build topic models, vector representations and similarity indexes for text corpora. [Details](https://aipoch.network/projects/project~gensim/)
 
 ### 1.3 Physical sciences
 
@@ -57,6 +89,16 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [LAMMPS](https://github.com/lammps/lammps) — Run classical molecular-dynamics simulations of atomic and molecular systems with selected interaction potentials and optional packages. [Details](https://aipoch.network/projects/project~lammps/)
 - [OpenMM](https://github.com/openmm/openmm) — Build molecular simulations with configurable forces and integrators through an application or embedded toolkit. Core, accelerator and third-party components have distinct licenses. [Details](https://aipoch.network/projects/project~openmm/)
 - [REBOUND](https://github.com/hannorein/rebound) — Integrate gravitational N-body systems for research on planetary and other astronomical dynamics. [Details](https://aipoch.network/projects/project~rebound/)
+- [QuTiP](https://github.com/qutip/qutip) — Simulate quantum dynamics and observables from states, Hamiltonians and dissipation models. [Details](https://aipoch.network/projects/project~qutip/)
+- [QuSpin](https://github.com/QuSpin/QuSpin) — Study quantum many-body models through exact diagonalization and time evolution. [Details](https://aipoch.network/projects/project~quspin/)
+- [Meep](https://github.com/NanoComp/meep) — Simulate electromagnetic fields, fluxes and spectra with the finite-difference time-domain method. [Details](https://aipoch.network/projects/project~meep/)
+- [Smilei](https://github.com/SmileiPIC/Smilei) — Simulate plasma dynamics with particle-in-cell models and associated diagnostics. [Details](https://aipoch.network/projects/project~smilei/)
+- [WarpX](https://github.com/BLAST-WarpX/warpx) — Simulate electromagnetic or electrostatic particle-in-cell evolution for plasmas and particle beams. [Details](https://aipoch.network/projects/project~warpx/)
+- [SunPy](https://github.com/sunpy/sunpy) — Load, transform and analyze solar observations, time series and coordinate information. [Details](https://aipoch.network/projects/project~sunpy/)
+- [Lightkurve](https://github.com/lightkurve/lightkurve) — Analyze astronomical pixel data and light curves from missions such as Kepler and TESS. [Details](https://aipoch.network/projects/project~lightkurve/)
+- [galpy](https://github.com/jobovy/galpy) — Integrate orbits and evaluate Galactic dynamics using gravitational potentials and distribution functions. [Details](https://aipoch.network/projects/project~galpy/)
+- [EinsteinPy](https://github.com/einsteinpy/einsteinpy) — Compute symbolic general-relativity expressions and numerical geodesics from spacetime models. [Details](https://aipoch.network/projects/project~einsteinpy/)
+- [Gammapy](https://github.com/gammapy/gammapy) — Analyze gamma-ray observations for astrophysical research. [Details](https://aipoch.network/projects/project~gammapy/)
 
 ### 1.4 Chemical sciences
 
@@ -73,6 +115,8 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [QCElemental](https://github.com/molssi/qcelemental) — Parse and validate molecular data, convert units and query chemical constants through reusable quantum-chemistry data structures. [Details](https://aipoch.network/projects/project~qcelemental/)
 - [QCEngine](https://github.com/molssi/qcengine) — Dispatch QCSchema calculation requests to selected quantum-chemistry backends and collect structured results and computational provenance. Backends require separate installation and licenses. [Details](https://aipoch.network/projects/project~qcengine/)
 - [SchNetPack](https://github.com/atomistic-machine-learning/schnetpack) — Build and train atomistic neural networks to predict molecular or material potential-energy surfaces and related properties. [Details](https://aipoch.network/projects/project~schnetpack/)
+- [MDAnalysis](https://github.com/MDAnalysis/mdanalysis) — Analyze molecular dynamics trajectories, including alignment, distances, contacts and structural changes. [Details](https://aipoch.network/projects/project~mdanalysis/)
+- [MDTraj](https://github.com/mdtraj/mdtraj) — Analyze and convert molecular trajectories, including RMSD, solvent-accessible surface area and hydrogen bonds. [Details](https://aipoch.network/projects/project~mdtraj/)
 
 ### 1.5 Earth and related environmental sciences
 
@@ -81,6 +125,39 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [GeophysicalModelGenerator.jl](https://github.com/juliageodynamics/geophysicalmodelgenerator.jl) — Import geophysical observations, prepare geodynamic model inputs and construct consistent three-dimensional visualizations in Julia. [Details](https://aipoch.network/projects/project~geophysicalmodelgenerator/)
 - [LaMEM](https://github.com/unimainzgeo/lamem) — Simulate three-dimensional geodynamic and geomechanical processes using a PETSc-based parallel marker-in-cell and finite-difference implementation. [Details](https://aipoch.network/projects/project~lamem/)
 - [pyGIMLi](https://github.com/gimli-org/pygimli) — Build geophysical forward-modeling and inversion workflows with method-specific observations, models and numerical meshes. [Details](https://aipoch.network/projects/project~pygimli/)
+
+### 1.6 Biological sciences
+
+- [Biotite](https://github.com/biotite-dev/biotite) — Analyze biological sequences, molecular structures and database records with reusable computational biology interfaces. [Details](https://aipoch.network/projects/project~biotite/)
+- [scikit-bio](https://github.com/scikit-bio/scikit-bio) — Represent and analyze biological data with reusable bioinformatics data structures and statistical methods. [Details](https://aipoch.network/projects/project~scikit-bio/)
+- [pysam](https://github.com/pysam-developers/pysam) — Read and manipulate sequencing alignments and variant files through a Python interface to HTS tools. [Details](https://aipoch.network/projects/project~pysam/)
+- [HTSlib](https://github.com/samtools/htslib) — Read and write high-throughput sequencing formats through a shared C library. [Details](https://aipoch.network/projects/project~htslib/)
+- [SAMtools](https://github.com/samtools/samtools) — Sort, convert, index and summarize sequencing alignment files. [Details](https://aipoch.network/projects/project~samtools/)
+- [BCFtools](https://github.com/samtools/bcftools) — Call variants and manipulate VCF and BCF files, with licensing conditions that depend on optional build components. [Details](https://aipoch.network/projects/project~bcftools/)
+- [BEDTools](https://github.com/arq5x/bedtools2) — Intersect, merge and count genomic intervals to compare annotations and sequencing features. [Details](https://aipoch.network/projects/project~bedtools2/)
+- [SeqKit](https://github.com/shenwei356/seqkit) — Filter, summarize, extract and convert FASTA and FASTQ sequence files. [Details](https://aipoch.network/projects/project~seqkit/)
+- [fastp](https://github.com/OpenGene/fastp) — Filter and trim short-read FASTQ data and produce sequencing quality reports. [Details](https://aipoch.network/projects/project~fastp/)
+- [Cutadapt](https://github.com/marcelm/cutadapt) — Remove adapters and primers, trim reads and demultiplex sequencing data. [Details](https://aipoch.network/projects/project~cutadapt/)
+- [MultiQC](https://github.com/MultiQC/MultiQC) — Combine outputs from multiple bioinformatics analyses into a shared interactive report. [Details](https://aipoch.network/projects/project~multiqc/)
+- [FastQC](https://github.com/s-andrews/FastQC) — Inspect sequencing-read quality and flag patterns that require interpretation by the researcher. [Details](https://aipoch.network/projects/project~fastqc/)
+- [Salmon](https://github.com/COMBINE-lab/salmon) — Estimate transcript abundance from RNA-seq reads; the current Rust rewrite requires rebuilt indexes. [Details](https://aipoch.network/projects/project~salmon/)
+- [kallisto](https://github.com/pachterlab/kallisto) — Estimate transcript abundance from RNA-seq reads using pseudoalignment. [Details](https://aipoch.network/projects/project~kallisto/)
+- [STAR](https://github.com/alexdobin/STAR) — Align RNA-seq reads to a reference with splice-aware mapping. [Details](https://aipoch.network/projects/project~star/)
+- [HISAT2](https://github.com/DaehwanKimLab/hisat2) — Align DNA and RNA sequencing reads using graph-based reference indexes. [Details](https://aipoch.network/projects/project~hisat2/)
+- [Bowtie 2](https://github.com/BenLangmead/bowtie2) — Align sequencing reads with gapped, local and paired-end alignment support. [Details](https://aipoch.network/projects/project~bowtie2/)
+- [minimap2](https://github.com/lh3/minimap2) — Map DNA or RNA reads and assembled sequences to a reference using task-specific presets. [Details](https://aipoch.network/projects/project~minimap2/)
+- [SPAdes](https://github.com/ablab/spades) — Assemble sequencing reads into genome, metagenome or transcriptome sequences using the appropriate assembler mode. [Details](https://aipoch.network/projects/project~spades/)
+- [Flye](https://github.com/mikolmogorov/Flye) — Assemble PacBio or Oxford Nanopore long reads into contigs. [Details](https://aipoch.network/projects/project~flye/)
+- [Unicycler](https://github.com/rrwick/Unicycler) — Assemble bacterial isolate genomes from short reads and optional long reads. [Details](https://aipoch.network/projects/project~unicycler/)
+- [MEGAHIT](https://github.com/voutcn/megahit) — Assemble metagenomic sequencing reads de novo. [Details](https://aipoch.network/projects/project~megahit/)
+- [Trinity](https://github.com/trinityrnaseq/trinityrnaseq) — Reconstruct transcript sequences de novo from RNA-seq reads. [Details](https://aipoch.network/projects/project~trinityrnaseq/)
+- [OrthoFinder](https://github.com/OrthoFinder/OrthoFinder) — Infer orthogroups, gene and species trees, and orthology relationships across species. [Details](https://aipoch.network/projects/project~orthofinder/)
+- [IQ-TREE 2](https://github.com/iqtree/iqtree2) — Infer maximum-likelihood phylogenetic trees, select models and estimate branch support from sequence alignments. [Details](https://aipoch.network/projects/project~iqtree2/)
+- [HyPhy](https://github.com/veg/hyphy) — Test hypotheses about molecular evolution and selection using sequence data and evolutionary models. [Details](https://aipoch.network/projects/project~hyphy/)
+- [BEAST 2](https://github.com/CompEvol/beast2) — Estimate distributions of time-scaled phylogenetic trees using Bayesian evolutionary models. [Details](https://aipoch.network/projects/project~beast2/)
+- [msprime](https://github.com/tskit-dev/msprime) — Simulate ancestry and mutations under specified population histories and evolutionary models. [Details](https://aipoch.network/projects/project~msprime/)
+- [tskit](https://github.com/tskit-dev/tskit) — Store, manipulate and analyze genetic tree sequences and related ancestry representations. [Details](https://aipoch.network/projects/project~tskit/)
+- [SLiM](https://github.com/MesserLab/SLiM) — Simulate forward-time evolution of individuals, genomes and populations; development commits are not stable releases. [Details](https://aipoch.network/projects/project~slim/)
 
 
 ## Engineering and Technology
@@ -94,20 +171,36 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [EE-UQ](https://github.com/NHERI-SimCenter/EE-UQ) — Simulate earthquake structural response with uncertainty quantification and interchangeable analysis workflows. External backends and data have separate requirements. [Details](https://aipoch.network/projects/project~ee-uq/)
 - [Subset-Simulation-Interpolation (SuSI)](https://github.com/FBlandfort/Subset-Simulation-Interpolation) — A beta research implementation of subset simulation interpolation for studying structural reliability; upstream advises against real-world reliability estimation. [Details](https://aipoch.network/projects/project~susi/)
 
-### 2.4 Chemical engineering
+### 2.2 Electrical engineering, electronic engineering, information engineering
 
-- [Cantera](https://github.com/Cantera/cantera) — Compute chemical kinetics, thermodynamic properties and transport processes, including reactor and flame simulations with user-selected mechanisms. [Details](https://aipoch.network/projects/project~cantera/)
-- [PyBaMM](https://github.com/pybamm-team/PyBaMM) — Simulate battery behavior by combining mathematical models, parameter sets and experimental operating conditions. [Details](https://aipoch.network/projects/project~pybamm/)
+- [SymForce](https://github.com/symforce-org/symforce) — Generate geometry and Jacobian code and solve nonlinear optimization problems for robotics. [Details](https://aipoch.network/projects/project~symforce/)
+- [Drake](https://github.com/RobotLocomotion/drake) — Model robotics systems for contact simulation, optimization, planning and control. [Details](https://aipoch.network/projects/project~drake/)
 
-### 2.11 Other engineering and technologies
-
-- [MOOSE](https://github.com/idaholab/moose) — Develop coupled multiphysics applications using a finite-element and nonlinear-solver framework. External applications and modules retain their own access and license conditions. [Details](https://aipoch.network/projects/project~moose/)
 
 ### 2.3 Mechanical engineering
 
 - [OpenFOAM Foundation development](https://github.com/OpenFOAM/OpenFOAM-dev) — Model fluid flow, heat transfer and related continuum processes using the OpenFOAM Foundation development source. This entry is distinct from other OpenFOAM distributions. [Details](https://aipoch.network/projects/project~openfoam/)
 - [SU2](https://github.com/su2code/SU2) — Solve PDEs and PDE-constrained optimization problems, primarily for computational fluid dynamics and aerodynamic design research. [Details](https://aipoch.network/projects/project~su2/)
+- [PyDy](https://github.com/pydy/pydy) — Derive equations of motion and simulate multibody systems from symbolic models. [Details](https://aipoch.network/projects/project~pydy/)
+- [Pinocchio](https://github.com/stack-of-tasks/pinocchio) — Compute rigid-body robot dynamics, Jacobians and derivatives from models and states. [Details](https://aipoch.network/projects/project~pinocchio/)
 
+### 2.4 Chemical engineering
+
+- [Cantera](https://github.com/Cantera/cantera) — Compute chemical kinetics, thermodynamic properties and transport processes, including reactor and flame simulations with user-selected mechanisms. [Details](https://aipoch.network/projects/project~cantera/)
+- [PyBaMM](https://github.com/pybamm-team/PyBaMM) — Simulate battery behavior by combining mathematical models, parameter sets and experimental operating conditions. [Details](https://aipoch.network/projects/project~pybamm/)
+
+### 2.5 Materials engineering
+
+- [Phonopy](https://github.com/phonopy/phonopy) — Compute harmonic and quasi-harmonic phonon properties from crystal structures and forces. [Details](https://aipoch.network/projects/project~phonopy/)
+- [Phono3py](https://github.com/phonopy/phono3py) — Compute phonon interactions, lifetimes and lattice thermal conductivity. [Details](https://aipoch.network/projects/project~phono3py/)
+- [spglib](https://github.com/spglib/spglib) — Identify crystal symmetry operations and space groups from lattice and atomic-position data. [Details](https://aipoch.network/projects/project~spglib/)
+- [DScribe](https://github.com/SINGROUP/dscribe) — Generate atomistic descriptors and derivatives for materials modeling and machine learning. [Details](https://aipoch.network/projects/project~dscribe/)
+- [matscipy](https://github.com/libAtoms/matscipy) — Analyze atomistic configurations, defects, strain and fracture-related material behavior. [Details](https://aipoch.network/projects/project~matscipy/)
+- [DAMASK](https://github.com/damask-multiphysics/DAMASK) — Model crystal plasticity and coupled material responses; this repository is an official read-only mirror. [Details](https://aipoch.network/projects/project~damask/)
+
+### 2.11 Other engineering and technologies
+
+- [MOOSE](https://github.com/idaholab/moose) — Develop coupled multiphysics applications using a finite-element and nonlinear-solver framework. External applications and modules retain their own access and license conditions. [Details](https://aipoch.network/projects/project~moose/)
 
 ## Medical and Health Sciences
 
@@ -118,6 +211,8 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [MNE-Python](https://github.com/mne-tools/mne-python) — Analyze electrophysiology recordings such as EEG and MEG, with tools for preprocessing, visualization, and source estimation. [Details](https://aipoch.network/projects/project~mne-python/)
 - [NiBabel](https://github.com/nipy/nibabel) — Read and write neuroimaging file formats, accessing image arrays and metadata for use in downstream analysis tools. [Details](https://aipoch.network/projects/project~nibabel/)
 - [Nilearn](https://github.com/nilearn/nilearn) — Analyze neuroimaging data with statistical learning, including tools for extracting signals, fitting models, and visualizing results. [Details](https://aipoch.network/projects/project~nilearn/)
+- [Brian 2](https://github.com/brian-team/brian2) — Simulate spiking neural networks from neuron equations and connectivity rules. [Details](https://aipoch.network/projects/project~brian2/)
+- [NEST](https://github.com/nest/nest-simulator) — Simulate the dynamics of spiking neural networks with specified connectivity and plasticity models. [Details](https://aipoch.network/projects/project~nest-simulator/)
 
 ### 3.2 Clinical medicine
 
@@ -145,6 +240,13 @@ These entries describe research software, not clinical validation or regulatory 
 
 [5.1 Psychology and cognitive sciences](https://aipoch.network/capabilities/?field=5.1) · [5.2 Economics and business](https://aipoch.network/capabilities/?field=5.2) · [5.3 Education](https://aipoch.network/capabilities/?field=5.3) · [5.4 Sociology](https://aipoch.network/capabilities/?field=5.4) · [5.5 Law](https://aipoch.network/capabilities/?field=5.5) · [5.6 Political science](https://aipoch.network/capabilities/?field=5.6) · [5.7 Social and economic geography](https://aipoch.network/capabilities/?field=5.7) · [5.8 Media and communications](https://aipoch.network/capabilities/?field=5.8) · [5.9 Other social sciences](https://aipoch.network/capabilities/?field=5.9)
 
+### 5.1 Psychology and cognitive sciences
+
+- [jsPsych](https://github.com/jspsych/jspsych) — Build browser-based behavioral experiments using plugins and timelines for stimulus presentation, responses and reaction-time records. Persistent data storage requires explicit configuration. [Details](https://aipoch.network/projects/project~jspsych/)
+- [PsychoJS](https://github.com/psychopy/psychojs) — Implement browser-based psychology and psychophysics experiments with a JavaScript runtime for stimulus presentation and response recording. [Details](https://aipoch.network/projects/project~psychojs/)
+- [PsychoPy core library](https://github.com/psychopy/psychopy) — Define behavioral experiments with the PsychoPy Python core library. The separately maintained graphical application is outside this source entry. [Details](https://aipoch.network/projects/project~psychopy/)
+- [psychonetrics](https://github.com/SachaEpskamp/psychonetrics) — Fit network psychometric and structural equation models to cross-sectional, time-series and panel data. [Details](https://aipoch.network/projects/project~psychonetrics/)
+
 ### 5.2 Economics and business
 
 - [Dolo](https://github.com/EconForge/dolo.py) — Describe and numerically solve rational-expectations economic models, including models with occasionally binding constraints. [Details](https://aipoch.network/projects/project~dolo/)
@@ -155,13 +257,25 @@ These entries describe research software, not clinical validation or regulatory 
 - [linearmodels](https://github.com/bashtage/linearmodels) — Estimate panel, instrumental-variable, system and asset-pricing models with configurable covariance and inference methods. [Details](https://aipoch.network/projects/project~linearmodels/)
 - [PyBLP](https://github.com/jeffgortmaker/pyblp) — Estimate differentiated-product demand and related supply models using BLP random-coefficients logit methods. [Details](https://aipoch.network/projects/project~pyblp/)
 - [QuantEcon.py](https://github.com/QuantEcon/QuantEcon.py) — Study quantitative economic models with numerical tools for Markov chains, games and dynamic programming. [Details](https://aipoch.network/projects/project~quantecon/)
+- [spreg](https://github.com/pysal/spreg) — Estimate spatial econometric regression models from observations, covariates and spatial structure. [Details](https://aipoch.network/projects/project~spreg/)
 
-### 5.1 Psychology and cognitive sciences
+### 5.4 Sociology
 
-- [jsPsych](https://github.com/jspsych/jspsych) — Build browser-based behavioral experiments using plugins and timelines for stimulus presentation, responses and reaction-time records. Persistent data storage requires explicit configuration. [Details](https://aipoch.network/projects/project~jspsych/)
-- [PsychoJS](https://github.com/psychopy/psychojs) — Implement browser-based psychology and psychophysics experiments with a JavaScript runtime for stimulus presentation and response recording. [Details](https://aipoch.network/projects/project~psychojs/)
-- [PsychoPy core library](https://github.com/psychopy/psychopy) — Define behavioral experiments with the PsychoPy Python core library. The separately maintained graphical application is outside this source entry. [Details](https://aipoch.network/projects/project~psychopy/)
+- [segregation](https://github.com/pysal/segregation) — Measure and decompose residential segregation using population groups and spatial units. [Details](https://aipoch.network/projects/project~segregation/)
 
+
+### 5.7 Social and economic geography
+
+- [OSMnx](https://github.com/gboeing/osmnx) — Build and analyze street networks and routes from OpenStreetMap data. [Details](https://aipoch.network/projects/project~osmnx/)
+- [giddy](https://github.com/pysal/giddy) — Analyze spatial distribution dynamics and mobility in regional values and rankings over time. [Details](https://aipoch.network/projects/project~giddy/)
+- [spopt](https://github.com/pysal/spopt) — Solve regionalization and facility-location problems under spatial demand, cost and constraint models. [Details](https://aipoch.network/projects/project~spopt/)
+- [tobler](https://github.com/pysal/tobler) — Interpolate attributes between spatial units and support small-area estimation. [Details](https://aipoch.network/projects/project~tobler/)
+- [momepy](https://github.com/pysal/momepy) — Measure urban form, density, diversity and connectivity from buildings and street networks. [Details](https://aipoch.network/projects/project~momepy/)
+- [scikit-mobility](https://github.com/scikit-mobility/scikit-mobility) — Analyze human mobility patterns and generate synthetic trajectories from mobility models. [Details](https://aipoch.network/projects/project~scikit-mobility/)
+- [trackintel](https://github.com/mie-lab/trackintel) — Transform tracking points and check-ins into staypoints, activity locations and trips. [Details](https://aipoch.network/projects/project~trackintel/)
+- [r5r R package](https://github.com/ipeaGIT/r5r) — Compute multimodal routes, travel-time matrices and accessibility with the R package interface to R5. [Details](https://aipoch.network/projects/project~r5r/)
+- [stplanr](https://github.com/ropensci/stplanr) — Prepare origin-destination flows, routes and network data for sustainable transport planning research. [Details](https://aipoch.network/projects/project~stplanr/)
+- [UrbanAccess](https://github.com/UDST/urbanaccess) — Integrate transit and pedestrian networks from GTFS and OpenStreetMap data for accessibility analysis. [Details](https://aipoch.network/projects/project~urbanaccess/)
 
 ## Humanities and the Arts
 
@@ -172,6 +286,7 @@ These entries describe research software, not clinical validation or regulatory 
 - [Classical Language Toolkit](https://github.com/cltk/cltk) — Analyze classical and premodern language texts with configurable pipelines for linguistic annotation. Language models and optional services have separate requirements. [Details](https://aipoch.network/projects/project~cltk/)
 - [Stanza](https://github.com/stanfordnlp/stanza) — Annotate multilingual texts with linguistic structures such as sentence boundaries, parts of speech, dependencies and named entities using selected language models. [Details](https://aipoch.network/projects/project~stanza/)
 - [Voyant Tools](https://github.com/voyanttools/Voyant) — Read and analyze text corpora through browser-based frequency, distribution and visualization tools for digital-humanities research. Public hosting terms are separate from the software license. [Details](https://aipoch.network/projects/project~voyant/)
+- [stylo](https://github.com/computationalstylistics/stylo) — Analyze textual style and investigate authorship attribution with computational stylometry. [Details](https://aipoch.network/projects/project~stylo/)
 
 
 ## General Research Tools — Classification Pending
@@ -195,7 +310,7 @@ These are resource guides, not tested end-to-end analysis tutorials. See the [gu
 
 We select resources for a clear research use, identifiable upstream sources, accessible documentation, and an open-source license reviewed at the source. Each entry should explain a distinct use or role; stars alone do not determine inclusion. Maintenance status and source changes inform subsequent reviews.
 
-This is an editorial selection, not a benchmark or a validated software environment. Inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Check each project's current documentation, license, and requirements before use. Source and license reviews: baseline September 16, 2026; clinical and civil additions September 17; reviewed cross-disciplinary additions September 18. Software licenses do not automatically cover models, research data or hosted services.
+This is an editorial selection, not a benchmark or a validated software environment. Inclusion does not imply maintainer approval, organizational endorsement, or scientific validation. Check each project's current documentation, license, and requirements before use. Source and license reviews: baseline September 16, 2026; clinical and civil additions September 17; reviewed cross-disciplinary additions September 18 and 19. Software licenses do not automatically cover models, research data or hosted services.
 
 ## Contribute
 

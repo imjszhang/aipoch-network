@@ -102,7 +102,8 @@ test('cross-run state excludes upstream response extras, README and HTTP validat
   source.repository!.readme = 'DO_NOT_ARCHIVE_README';
   Object.assign(source, { authorization: 'DO_NOT_ARCHIVE_TOKEN' });
   Object.assign(source.repository!, { private_field: 'DO_NOT_ARCHIVE_EXTRA' });
-  assert.doesNotMatch(JSON.stringify(refreshState(batch)), /DO_NOT_ARCHIVE|etag|last_modified/);
+  // Match validator property names, not public text such as "metagenomics".
+  assert.doesNotMatch(JSON.stringify(refreshState(batch)), /DO_NOT_ARCHIVE|"(?:etag|last_modified)"\s*:/);
   const file = join(directory, 'state.json');
   await writeFile(file, JSON.stringify(batch));
   const loaded = await readRefreshState(file, registry, new Date(NOW));
