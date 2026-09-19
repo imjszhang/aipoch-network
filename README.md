@@ -19,7 +19,7 @@ Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**.
 - [General Research Tools — Classification Pending](#general-research-tools--classification-pending)
 - [Research Guides](#research-guides)
 
-As of September 19, 2026, the reviewed registry contains 176 projects and 177 reusable resources. 21 subfields have classified entries; 21 await entries. 10 project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. Research across all six broad fields is in scope.
+As of September 19, 2026, the reviewed registry contains 226 projects and 227 reusable resources. 28 subfields have classified entries; 14 await entries. 10 project/resource records have classification pending. Coverage describes this catalog, not the availability of research resources in a field. Research across all six broad fields is in scope.
 
 The links below open capabilities in each discipline; switch to Projects on the website to explore their associated projects. Each selected project is listed once here for readability. Its catalog record can have several reviewed disciplines, and a reusable resource can have a different classification. [Classification reference](registry/taxonomies/oecd-ford-2015.json).
 
@@ -57,6 +57,8 @@ The links below open capabilities in each discipline; switch to Projects on the 
 - [estimatr](https://github.com/DeclareDesign/estimatr) — Estimate treatment contrasts and regression models with design-aware or robust uncertainty estimates. [Details](https://aipoch.network/projects/project~estimatr/)
 - [MatchIt](https://github.com/kosukeimai/MatchIt) — Construct matched samples and weights and assess observed-covariate balance. [Details](https://aipoch.network/projects/project~matchit/)
 - [WeightIt](https://github.com/ngreifer/WeightIt) — Estimate balancing or censoring weights and support weighted analyses of point or longitudinal treatments. [Details](https://aipoch.network/projects/project~weightit/)
+- [sdmTMB](https://github.com/sdmTMB/sdmTMB) — Fit spatial and spatiotemporal generalized linear mixed models and predict species distributions. [Details](https://aipoch.network/projects/project~sdmtmb/)
+- [SfePy](https://github.com/sfepy/sfepy) — Solve coupled partial differential equations using finite-element methods. [Details](https://aipoch.network/projects/project~sfepy/)
 
 ### 1.2 Computer and information sciences
 
@@ -81,6 +83,8 @@ The links below open capabilities in each discipline; switch to Projects on the 
 - [spaCy](https://github.com/explosion/spaCy) — Process and annotate text with linguistic pipelines and train supported NLP components. [Details](https://aipoch.network/projects/project~spacy/)
 - [NLTK code](https://github.com/nltk/nltk) — Use natural-language processing modules for text and linguistic research; corpora have separate licenses. [Details](https://aipoch.network/projects/project~nltk/)
 - [Gensim](https://github.com/piskvorky/gensim) — Build topic models, vector representations and similarity indexes for text corpora. [Details](https://aipoch.network/projects/project~gensim/)
+- [quanteda](https://github.com/quanteda/quanteda) — Manage text corpora, tokenize documents and construct features for quantitative text analysis. [Details](https://aipoch.network/projects/project~quanteda/)
+- [stm](https://github.com/bstewart/stm) — Estimate structural topic models using document-level covariates. [Details](https://aipoch.network/projects/project~stm/)
 
 ### 1.3 Physical sciences
 
@@ -101,6 +105,7 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [galpy](https://github.com/jobovy/galpy) — Integrate orbits and evaluate Galactic dynamics using gravitational potentials and distribution functions. [Details](https://aipoch.network/projects/project~galpy/)
 - [EinsteinPy](https://github.com/einsteinpy/einsteinpy) — Compute symbolic general-relativity expressions and numerical geodesics from spacetime models. [Details](https://aipoch.network/projects/project~einsteinpy/)
 - [Gammapy](https://github.com/gammapy/gammapy) — Analyze gamma-ray observations for astrophysical research. [Details](https://aipoch.network/projects/project~gammapy/)
+- [k-Wave](https://github.com/ucl-bug/k-wave) — Simulate acoustic wave propagation for ultrasound and photoacoustic research. [Details](https://aipoch.network/projects/project~k-wave/)
 
 ### 1.4 Chemical sciences
 
@@ -127,6 +132,10 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [GeophysicalModelGenerator.jl](https://github.com/juliageodynamics/geophysicalmodelgenerator.jl) — Import geophysical observations, prepare geodynamic model inputs and construct consistent three-dimensional visualizations in Julia. [Details](https://aipoch.network/projects/project~geophysicalmodelgenerator/)
 - [LaMEM](https://github.com/unimainzgeo/lamem) — Simulate three-dimensional geodynamic and geomechanical processes using a PETSc-based parallel marker-in-cell and finite-difference implementation. [Details](https://aipoch.network/projects/project~lamem/)
 - [pyGIMLi](https://github.com/gimli-org/pygimli) — Build geophysical forward-modeling and inversion workflows with method-specific observations, models and numerical meshes. [Details](https://aipoch.network/projects/project~pygimli/)
+- [FloPy](https://github.com/modflowpy/flopy) — Build groundwater model inputs and process outputs for MODFLOW and related engines. [Details](https://aipoch.network/projects/project~flopy/)
+- [InVEST](https://github.com/natcap/invest) — Model spatial ecosystem services and compare natural-capital scenarios. [Details](https://aipoch.network/projects/project~invest/)
+- [Landlab](https://github.com/landlab/landlab) — Combine grids and process components to model landscape dynamics. [Details](https://aipoch.network/projects/project~landlab/)
+- [OpenDrift](https://github.com/OpenDrift/opendrift) — Model particle trajectories and transport in oceanic and atmospheric environments. [Details](https://aipoch.network/projects/project~opendrift/)
 
 ### 1.6 Biological sciences
 
@@ -160,6 +169,9 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [msprime](https://github.com/tskit-dev/msprime) — Simulate ancestry and mutations under specified population histories and evolutionary models. [Details](https://aipoch.network/projects/project~msprime/)
 - [tskit](https://github.com/tskit-dev/tskit) — Store, manipulate and analyze genetic tree sequences and related ancestry representations. [Details](https://aipoch.network/projects/project~tskit/)
 - [SLiM](https://github.com/MesserLab/SLiM) — Simulate forward-time evolution of individuals, genomes and populations; development commits are not stable releases. [Details](https://aipoch.network/projects/project~slim/)
+- [biomod2](https://github.com/biomodhub/biomod2) — Calibrate, evaluate and combine species distribution models. [Details](https://aipoch.network/projects/project~biomod2/)
+- [PlantCV](https://github.com/danforthcenter/plantcv) — Build modular image-analysis workflows for plant phenotyping. [Details](https://aipoch.network/projects/project~plantcv/)
+- [vegan](https://github.com/vegandevs/vegan) — Analyze community ecology with ordination, diversity measures and null models. [Details](https://aipoch.network/projects/project~vegan/)
 
 
 ## Engineering and Technology
@@ -177,7 +189,10 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 
 - [SymForce](https://github.com/symforce-org/symforce) — Generate geometry and Jacobian code and solve nonlinear optimization problems for robotics. [Details](https://aipoch.network/projects/project~symforce/)
 - [Drake](https://github.com/RobotLocomotion/drake) — Model robotics systems for contact simulation, optimization, planning and control. [Details](https://aipoch.network/projects/project~drake/)
-
+- [openEMS](https://github.com/thliebig/openEMS) — Simulate electromagnetic fields and radio-frequency structures with FDTD methods. [Details](https://aipoch.network/projects/project~openems/)
+- [pandapower](https://github.com/e2nIEE/pandapower) — Model and analyze electrical networks, power flows and optimization problems. [Details](https://aipoch.network/projects/project~pandapower/)
+- [PySpice](https://github.com/PySpice-org/PySpice) — Construct circuit models in Python and interface with SPICE simulators. [Details](https://aipoch.network/projects/project~pyspice/)
+- [scikit-rf](https://github.com/scikit-rf/scikit-rf) — Analyze and calibrate radio-frequency and microwave networks and measurements. [Details](https://aipoch.network/projects/project~scikit-rf/)
 
 ### 2.3 Mechanical engineering
 
@@ -185,6 +200,7 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [SU2](https://github.com/su2code/SU2) — Solve PDEs and PDE-constrained optimization problems, primarily for computational fluid dynamics and aerodynamic design research. [Details](https://aipoch.network/projects/project~su2/)
 - [PyDy](https://github.com/pydy/pydy) — Derive equations of motion and simulate multibody systems from symbolic models. [Details](https://aipoch.network/projects/project~pydy/)
 - [Pinocchio](https://github.com/stack-of-tasks/pinocchio) — Compute rigid-body robot dynamics, Jacobians and derivatives from models and states. [Details](https://aipoch.network/projects/project~pinocchio/)
+- [Project Chrono](https://github.com/projectchrono/chrono) — Simulate multibody dynamics, deformable bodies, granular systems and coupled physics. [Details](https://aipoch.network/projects/project~chrono/)
 
 ### 2.4 Chemical engineering
 
@@ -199,10 +215,28 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 - [DScribe](https://github.com/SINGROUP/dscribe) — Generate atomistic descriptors and derivatives for materials modeling and machine learning. [Details](https://aipoch.network/projects/project~dscribe/)
 - [matscipy](https://github.com/libAtoms/matscipy) — Analyze atomistic configurations, defects, strain and fracture-related material behavior. [Details](https://aipoch.network/projects/project~matscipy/)
 - [DAMASK](https://github.com/damask-multiphysics/DAMASK) — Model crystal plasticity and coupled material responses; this repository is an official read-only mirror. [Details](https://aipoch.network/projects/project~damask/)
+- [atomman](https://github.com/usnistgov/atomman) — Create and analyze atomic configurations and crystal defects. [Details](https://aipoch.network/projects/project~atomman/)
+- [matminer](https://github.com/hackingmaterials/matminer) — Generate materials descriptors and organize data for materials informatics. [Details](https://aipoch.network/projects/project~matminer/)
+- [pycalphad](https://github.com/pycalphad/pycalphad) — Calculate phase equilibria and thermodynamic properties using CALPHAD models. [Details](https://aipoch.network/projects/project~pycalphad/)
+- [pymatgen](https://github.com/materialsproject/pymatgen) — Perform advanced analysis of materials structures, properties and computational results. [Details](https://aipoch.network/projects/project~pymatgen/)
 
 ### 2.11 Other engineering and technologies
 
 - [MOOSE](https://github.com/idaholab/moose) — Develop coupled multiphysics applications using a finite-element and nonlinear-solver framework. External applications and modules retain their own access and license conditions. [Details](https://aipoch.network/projects/project~moose/)
+- [Elmer FEM](https://github.com/ElmerCSC/elmerfem) — Solve coupled finite-element problems in mechanics, heat, fluids and electromagnetics. [Details](https://aipoch.network/projects/project~elmerfem/)
+- [Kratos Multiphysics](https://github.com/KratosMultiphysics/Kratos) — Develop modular multiphysics simulations across engineering disciplines. [Details](https://aipoch.network/projects/project~kratos/)
+
+### 2.6 Medical engineering
+
+- [OpenSim core](https://github.com/opensim-org/opensim-core) — Model musculoskeletal systems and simulate movement and dynamics with the OpenSim API. [Details](https://aipoch.network/projects/project~opensim-core/)
+- [SimNIBS](https://github.com/simnibs/simnibs) — Build individual head models and simulate electric fields for non-invasive brain-stimulation research. [Details](https://aipoch.network/projects/project~simnibs/)
+- [SimVascular](https://github.com/SimVascular/SimVascular) — Build vascular models from medical images and simulate patient-specific blood flow. [Details](https://aipoch.network/projects/project~simvascular/)
+
+### 2.7 Environmental engineering
+
+- [PySWMM](https://github.com/pyswmm/pyswmm) — Control and inspect stormwater simulations through a Python interface to SWMM. [Details](https://aipoch.network/projects/project~pyswmm/)
+- [WNTR](https://github.com/USEPA/WNTR) — Model water-distribution hydraulics, water quality and infrastructure resilience. [Details](https://aipoch.network/projects/project~wntr/)
+
 
 ## Medical and Health Sciences
 
@@ -236,6 +270,13 @@ These entries describe research software, not clinical validation or regulatory 
 ### 4.1 Agriculture, forestry, and fisheries
 
 - [Python Crop Simulation Environment (PCSE)](https://github.com/ajwdewit/pcse) — Develop and run crop-growth simulations in Python, including WOFOST, LINTUL and LINGRA model implementations. [Details](https://aipoch.network/projects/project~pcse/)
+- [AquaCrop-OSPy](https://github.com/aquacropos/aquacrop) — Simulate crop growth, soil water and irrigation strategies with AquaCrop-OSPy. [Details](https://aipoch.network/projects/project~aquacrop/)
+- [DSSAT CSM](https://github.com/DSSAT/dssat-csm-os) — Model crop growth, yield and soil–plant–atmosphere processes with the DSSAT cropping system model. [Details](https://aipoch.network/projects/project~dssat-csm-os/)
+- [FLCore](https://github.com/flr/FLCore) — Represent fisheries data and models using the core FLR classes and methods. [Details](https://aipoch.network/projects/project~flcore/)
+- [FSA](https://github.com/fishR-Core-Team/FSA) — Apply statistical methods to fish populations and fisheries stock assessments. [Details](https://aipoch.network/projects/project~fsa/)
+- [lidR](https://github.com/r-lidar/lidR) — Process airborne LiDAR point clouds for forest and individual-tree analysis. [Details](https://aipoch.network/projects/project~lidr/)
+- [medfate](https://github.com/emf-creaf/medfate) — Simulate forest water balance, plant hydraulics, carbon balance and growth. [Details](https://aipoch.network/projects/project~medfate/)
+- [r3PG](https://github.com/trotsiuk/r3PG) — Simulate forest growth using the process-based 3-PG model and its R interface. [Details](https://aipoch.network/projects/project~r3pg/)
 
 
 ## Social Sciences
@@ -248,6 +289,7 @@ These entries describe research software, not clinical validation or regulatory 
 - [PsychoJS](https://github.com/psychopy/psychojs) — Implement browser-based psychology and psychophysics experiments with a JavaScript runtime for stimulus presentation and response recording. [Details](https://aipoch.network/projects/project~psychojs/)
 - [PsychoPy core library](https://github.com/psychopy/psychopy) — Define behavioral experiments with the PsychoPy Python core library. The separately maintained graphical application is outside this source entry. [Details](https://aipoch.network/projects/project~psychopy/)
 - [psychonetrics](https://github.com/SachaEpskamp/psychonetrics) — Fit network psychometric and structural equation models to cross-sectional, time-series and panel data. [Details](https://aipoch.network/projects/project~psychonetrics/)
+- [mirt](https://github.com/philchalmers/mirt) — Estimate multidimensional item-response and factor models for psychometric research. [Details](https://aipoch.network/projects/project~mirt/)
 
 ### 5.2 Economics and business
 
@@ -264,7 +306,7 @@ These entries describe research software, not clinical validation or regulatory 
 ### 5.4 Sociology
 
 - [segregation](https://github.com/pysal/segregation) — Measure and decompose residential segregation using population groups and spatial units. [Details](https://aipoch.network/projects/project~segregation/)
-
+- [RSiena](https://github.com/stocnet/rsiena) — Estimate the coevolution of longitudinal social networks and behavior. [Details](https://aipoch.network/projects/project~rsiena/)
 
 ### 5.7 Social and economic geography
 
@@ -279,6 +321,21 @@ These entries describe research software, not clinical validation or regulatory 
 - [stplanr](https://github.com/ropensci/stplanr) — Prepare origin-destination flows, routes and network data for sustainable transport planning research. [Details](https://aipoch.network/projects/project~stplanr/)
 - [UrbanAccess](https://github.com/UDST/urbanaccess) — Integrate transit and pedestrian networks from GTFS and OpenStreetMap data for accessibility analysis. [Details](https://aipoch.network/projects/project~urbanaccess/)
 
+### 5.5 Law
+
+- [eyecite](https://github.com/freelawproject/eyecite) — Extract, parse and annotate citations in United States legal text. [Details](https://aipoch.network/projects/project~eyecite/)
+
+### 5.6 Political science
+
+- [GerryChain](https://github.com/mggg/GerryChain) — Sample and compare electoral district plans using Markov chains. [Details](https://aipoch.network/projects/project~gerrychain/)
+- [redist](https://github.com/alarm-redist/redist) — Generate and compare electoral district plans under explicit sampling constraints. [Details](https://aipoch.network/projects/project~redist/)
+
+### 5.3 Education
+
+- [pyBKT](https://github.com/CAHLR/pyBKT) — Estimate knowledge states from student response sequences using Bayesian knowledge tracing. [Details](https://aipoch.network/projects/project~pybkt/)
+- [TAM](https://github.com/alexanderrobitzsch/TAM) — Analyze educational assessments using item-response, Rasch and latent-regression models. [Details](https://aipoch.network/projects/project~tam/)
+
+
 ## Humanities and the Arts
 
 [6.1 History and archaeology](https://aipoch.network/capabilities/?field=6.1) · [6.2 Languages and literature](https://aipoch.network/capabilities/?field=6.2) · [6.3 Philosophy, ethics and religion](https://aipoch.network/capabilities/?field=6.3) · [6.4 Arts (arts, history of arts, performing arts, music)](https://aipoch.network/capabilities/?field=6.4) · [6.5 Other humanities](https://aipoch.network/capabilities/?field=6.5)
@@ -289,6 +346,20 @@ These entries describe research software, not clinical validation or regulatory 
 - [Stanza](https://github.com/stanfordnlp/stanza) — Annotate multilingual texts with linguistic structures such as sentence boundaries, parts of speech, dependencies and named entities using selected language models. [Details](https://aipoch.network/projects/project~stanza/)
 - [Voyant Tools](https://github.com/voyanttools/Voyant) — Read and analyze text corpora through browser-based frequency, distribution and visualization tools for digital-humanities research. Public hosting terms are separate from the software license. [Details](https://aipoch.network/projects/project~voyant/)
 - [stylo](https://github.com/computationalstylistics/stylo) — Analyze textual style and investigate authorship attribution with computational stylometry. [Details](https://aipoch.network/projects/project~stylo/)
+
+### 6.1 History and archaeology
+
+- [c14bazAAR](https://github.com/ropensci/c14bazAAR) — Retrieve and harmonize radiocarbon records from independently licensed databases. [Details](https://aipoch.network/projects/project~c14bazaar/)
+- [mortAAR](https://github.com/ISAAKiel/mortAAR) — Construct and compare life tables from archaeological age-at-death data. [Details](https://aipoch.network/projects/project~mortaar/)
+- [rcarbon](https://github.com/ahb108/rcarbon) — Calibrate and statistically analyze radiocarbon dates for archaeological research. [Details](https://aipoch.network/projects/project~rcarbon/)
+- [stratigraphr](https://github.com/joeroe/stratigraphr) — Represent archaeological stratigraphy, Harris matrices and chronological model inputs. [Details](https://aipoch.network/projects/project~stratigraphr/)
+
+### 6.4 Arts (arts, history of arts, performing arts, music)
+
+- [humlib](https://github.com/craigsapp/humlib) — Parse and analyze Humdrum symbolic music with C++ tools. [Details](https://aipoch.network/projects/project~humlib/)
+- [madmom](https://github.com/CPJKU/madmom) — Analyze musical audio for rhythm, onsets and related music-information-retrieval tasks. [Details](https://aipoch.network/projects/project~madmom/)
+- [music21](https://github.com/cuthbertLab/music21) — Represent and analyze scores and symbolic music for computational musicology. [Details](https://aipoch.network/projects/project~music21/)
+- [Partitura](https://github.com/CPJKU/partitura) — Read, represent and transform digital scores and symbolic performance data. [Details](https://aipoch.network/projects/project~partitura/)
 
 
 ## General Research Tools — Classification Pending
