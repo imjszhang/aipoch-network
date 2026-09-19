@@ -2,7 +2,7 @@
 
 2026-09-13：用户明确授权公开仓库、启用 GitHub Pages，并通过 Cloudflare 配置 aipoch.network。本记录取代此前文档中“等待公开授权 / 仅私有开发”的当前状态描述；此前验收记录保留为历史事实。
 
-当前发布：2026-09-19，源码 `22b96184eb899fab617685ae68be30d2a1f6b85e`，snapshot `be6b86f3343c2abb7a3c425e`；176 个来源、176 个项目、177 个资源。CI、受信刷新与部署证据见 [项目当前状态](../current-status.md)。
+最近固定核验记录（新增50项入库前）：2026-09-19，源码 `22b96184eb899fab617685ae68be30d2a1f6b85e`，snapshot `be6b86f3343c2abb7a3c425e`；176 个来源、176 个项目、177 个资源。CI、受信刷新与部署证据见 [项目当前状态](../current-status.md)。
 
 历史发布：2026-09-15（北京时间）已发布长期授权支持的网站版本，源码 `aa9db4065a0f269de83bdb5cbd1c155bab0d11e6`，snapshot `ba987efd824c392f3b89d3f1`，沿用显式 `real` 模式。主分支 CI、候选校验、部署和线上检查通过；详见 [长期授权网站发布记录](persistent-authorization-release.md)。本次未发布 Connector 安装包，未重新执行正式域名配对验收。下面的记录保留为历史发布。
 
