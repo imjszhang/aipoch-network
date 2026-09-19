@@ -4,6 +4,8 @@ An open research network connecting research projects, reusable capabilities, an
 
 [Browse the website](https://aipoch.network/) · [Explore projects](https://aipoch.network/projects/) · [Explore capabilities](https://aipoch.network/capabilities/) · [Suggest a resource](https://github.com/imjszhang/aipoch-network/issues/new/choose)
 
+[Current project status and release evidence](docs/current-status.md)
+
 ## Browse by Research Discipline
 
 Research disciplines follow **OECD FORD 2015: 6 broad fields and 42 subfields**. Methods and task tags are separate from disciplines and resource types. The categories below link to the live catalog, including fields awaiting their first entries.
