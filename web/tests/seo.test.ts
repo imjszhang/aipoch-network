@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createFixtureCatalog, FIXTURE_TIME } from '../../spec/fixtures/catalog.js';
 import { verificationData } from '../../scripts/verification-site.js';
-import { routeFor, type SiteData } from '../src/model.js';
+import { pageDataForRoute, routeFor, type SiteData } from '../src/model.js';
 import { directoryHref, directoryPageCount, parseDirectoryPath, prerenderPaths } from '../src/directory-routes.js';
-import { HOME_DESCRIPTION, HOME_TITLE, robotsText, seoForPath, sitemapEntries, sitemapXml } from '../src/seo.js';
+import { HOME_DESCRIPTION, HOME_TITLE, robotsText, seoForPath, seoHeadMarkup, sitemapEntries, sitemapXml } from '../src/seo.js';
 import { OFFICIAL_ORIGIN, parseSiteOrigin, siteConfigFromEnv } from '../src/site-url.js';
 
 const fixture = (): SiteData => ({ snapshot_id: 'seo-fixture', generated_at: FIXTURE_TIME, catalog: createFixtureCatalog() });
@@ -35,7 +35,7 @@ test('URL matrix matches index, canonical and sitemap policy', () => {
   assert.equal(projects.jsonLd[0]?.['@type'], 'CollectionPage');
 
   const page2 = seoForPath('/capabilities/?page=2', data, official);
-  assert.equal(page2.canonicalUrl, 'https://aipoch.network/capabilities/page/2/');
+  assert.equal(page2.canonicalUrl, 'https://aipoch.network/capabilities/');
   assert.equal(page2.sitemap, false);
   assert.equal(page2.robots, 'index, follow');
 
@@ -49,8 +49,8 @@ test('URL matrix matches index, canonical and sitemap policy', () => {
   assert.equal(clamped.robots, 'index, follow');
 
   const search = seoForPath('/explore/?q=scanpy', data, official);
-  assert.equal(search.robots, 'noindex, follow');
-  assert.equal(search.canonicalUrl, 'https://aipoch.network/explore/?q=scanpy');
+  assert.equal(search.robots, 'index, follow');
+  assert.equal(search.canonicalUrl, 'https://aipoch.network/explore/');
   assert.equal(search.sitemap, false);
 
   const sortTitle = seoForPath('/projects/?sort=title', data, official);
@@ -59,12 +59,12 @@ test('URL matrix matches index, canonical and sitemap policy', () => {
   assert.equal(sortTitle.sitemap, false);
 
   const stars = seoForPath('/projects/?sort=stars', data, official);
-  assert.equal(stars.robots, 'noindex, follow');
-  assert.equal(stars.canonicalUrl, 'https://aipoch.network/projects/?sort=stars');
+  assert.equal(stars.robots, 'index, follow');
+  assert.equal(stars.canonicalUrl, 'https://aipoch.network/projects/');
   assert.equal(stars.sitemap, false);
 
   const tracking = seoForPath('/capabilities/?utm_source=newsletter&page=2', data, official);
-  assert.equal(tracking.canonicalUrl, 'https://aipoch.network/capabilities/page/2/');
+  assert.equal(tracking.canonicalUrl, 'https://aipoch.network/capabilities/');
   assert.equal(tracking.sitemap, false);
 
   const submit = seoForPath('/submit/', data, official);
@@ -103,7 +103,7 @@ test('path parser and hrefs keep query share links and reject unsafe page segmen
   assert.equal(parseDirectoryPath('/projects/page/NaN/'), undefined);
   assert.equal(parseDirectoryPath('/projects/project~scanpy/'), undefined);
   assert.equal(directoryHref('projects', 2, new URLSearchParams()), '/projects/page/2/');
-  assert.equal(directoryHref('projects', 2, new URLSearchParams('sort=title')), '/projects/?sort=title&page=2');
+  assert.equal(directoryHref('projects', 2, new URLSearchParams('sort=title')), '/projects/page/2/');
   assert.equal(directoryHref('projects', 1, new URLSearchParams('page=1')), '/projects/');
   const data = verificationData(80);
   assert.ok(directoryPageCount(data, 'resource') > 2);
@@ -122,6 +122,7 @@ test('sitemap contains only rendered indexable canonical URLs and escapes XML', 
   assert.ok(!urls.some(url => url.includes('/page/')));
   assert.ok(!urls.includes('https://aipoch.network/submit/'));
   assert.ok(!urls.includes('https://aipoch.network/explore/?q=scanpy'));
+  assert.ok(!urls.some(url => url.includes('/browse/')));
   const xml = sitemapXml(['https://aipoch.network/x?a=1&b=<y>']);
   assert.ok(xml.includes('&amp;'));
   assert.ok(xml.includes('&lt;y&gt;'));
@@ -136,4 +137,52 @@ test('unbuilt pagination paths do not become indexable after hydration', () => {
   const decision = seoForPath('/projects/page/999/', fixture(), official);
   assert.equal(decision.indexable, false);
   assert.deepEqual(decision.jsonLd, []);
+});
+
+test('operation entrances are noindex without canonical in both initial and interactive states', () => {
+  const data = fixture();
+  for (const section of ['explore', 'projects', 'capabilities', 'organizations', 'collections', 'sources', 'researchers']) {
+    assert.ok(prerenderPaths(data).includes(`/browse/${section}/`));
+    for (const query of ['', '?field=3.2', '?q=unknown&page=4', '?field=bad&field=3.2', '?utm_source=readme']) {
+      const decision = seoForPath(`/browse/${section}/${query}`, data, official);
+      assert.equal(decision.robots, 'noindex, follow');
+      assert.equal(decision.canonicalPath, null);
+      assert.equal(decision.canonicalUrl, null);
+      assert.equal(decision.sitemap, false);
+      assert.deepEqual(decision.jsonLd, []);
+      const head = seoHeadMarkup(decision);
+      assert.ok(head.includes('content="noindex, follow"'));
+      assert.ok(!head.includes('canonical'));
+    }
+  }
+});
+
+test('legacy query head stays identical to the static path until URL migration', () => {
+  const data = verificationData(80);
+  for (const path of ['/projects/', '/capabilities/page/2/']) {
+    const clean = seoForPath(path, data, official);
+    for (const query of ['?q=scanpy', '?page=999', '?field=3.2', '?sort=stars', '?unknown=value', '?utm_source=readme']) {
+      const legacy = seoForPath(`${path}${query}`, data, official);
+      assert.equal(seoHeadMarkup(legacy), seoHeadMarkup(clean));
+      assert.equal(legacy.title, clean.title);
+      assert.equal(legacy.description, clean.description);
+    }
+  }
+});
+
+test('browse metadata stays noindex under a GitHub Pages subpath', () => {
+  const decision = seoForPath('/browse/projects/?q=scanpy', fixture(), { ...official, base: '/aipoch-network/' });
+  assert.equal(decision.robots, 'noindex, follow');
+  assert.equal(decision.canonicalUrl, null);
+  const home = seoForPath('/', fixture(), { ...official, base: '/aipoch-network/' });
+  assert.equal((home.jsonLd[0]?.potentialAction as { target: { urlTemplate: string } }).target.urlTemplate, 'https://aipoch.network/aipoch-network/browse/explore/?q={search_term_string}');
+});
+
+test('partial page hydration retains the exact static ItemList and full pagination bounds', () => {
+  const data = verificationData(80);
+  for (const path of ['/explore/', '/capabilities/page/2/', '/capabilities/page/9/', '/projects/']) {
+    const page = pageDataForRoute(data, path);
+    assert.equal(page.data_kind, 'page');
+    assert.deepEqual(seoForPath(path, page, official), seoForPath(path, data, official), path);
+  }
 });

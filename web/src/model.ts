@@ -1,5 +1,13 @@
 import { emptyCatalog, type CatalogData, type CatalogEntity, type Project, type Resource, type SourceRepository, type Organization, type Collection, type Actor, type Tombstone } from '../../spec/types.js';
-export interface SiteData { snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number>; researcher_total?: number; membership_counts?: Record<string, { projects: number; resources: number }> }
+import type { UiManifestReference } from '../../shared/browser-projection.js';
+import { fieldMatches, ford } from '../../spec/classification.js';
+import { defaultDirectoryEntries, PAGE_SIZE, parseDirectoryPath } from './directory-routes.js';
+export interface DirectoryBootstrap {
+  kind: string; total: number; page: number; ids: string[]; field_counts: Record<string, number>;
+  domains: string[]; resource_types: string[];
+  organizations: { id: string; title: string }[]; collections: { id: string; title: string }[];
+}
+export interface SiteData { data_kind?: 'full' | 'page' | 'browse'; ui_manifest?: UiManifestReference; directory_bootstrap?: DirectoryBootstrap; snapshot_id: string; generated_at: string; catalog: CatalogData; totals?: Record<keyof CatalogData, number>; related_totals?: Record<string, number>; researcher_total?: number; membership_counts?: Record<string, { projects: number; resources: number }> }
 export type Entry = SourceRepository | Project | Resource | Organization | Collection | Actor;
 export function routeFor(entry: Entry): string {
   const section = { source_repository: 'sources', project: 'projects', resource: 'capabilities', organization: 'organizations', collection: 'collections', actor: 'researchers' }[entry.kind];
@@ -17,7 +25,7 @@ export const SHARED_CATALOG_ROUTES = ['/explore/','/projects/','/capabilities/',
 export function isSharedCatalogRoute(path: string): boolean {
   const raw = path.split('?')[0] ?? '/';
   const pathname = raw.endsWith('/') || raw === '/' ? raw : `${raw}/`;
-  if (SHARED_CATALOG_ROUTES.includes(pathname)) return true;
+  if (SHARED_CATALOG_ROUTES.includes(pathname) || /^\/browse\/(?:explore|projects|capabilities|organizations|researchers|collections|sources)\/$/.test(pathname)) return true;
   const paged = pathname.match(/^\/(?:explore|projects|capabilities|organizations|researchers|collections|sources)\/page\/([1-9]\d{0,6})\/$/);
   return Boolean(paged && Number(paged[1]) > 1);
 }
@@ -39,13 +47,31 @@ export function tombstoneRoutesFor(record: Tombstone): string[] {
 }
 /** Detail HTML carries its display subgraph, never a duplicate of the complete directory. */
 export function pageDataForRoute(data: SiteData, path: string): SiteData {
-  if (isSharedCatalogRoute(path)) return data;
+  const pathname = path.split('?')[0] ?? '/';
+  const directoryRoute = parseDirectoryPath(pathname);
   const all = allEntries(data.catalog);
-  const focus = all.find(entry => routeFor(entry) === path);
+  const focus = all.find(entry => routeFor(entry) === pathname);
   const selected = new Set<string>();
   let preview: Entry[] | undefined;
   const relatedTotals: Record<string, number> = {};
   const membershipCounts: Record<string, {projects: number; resources: number}> = {};
+  let directoryBootstrap: DirectoryBootstrap | undefined;
+  if (directoryRoute) {
+    const rows = defaultDirectoryEntries(data, directoryRoute.kind);
+    const page = directoryRoute.page ?? 1;
+    const ids = rows.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map(row => row.id);
+    ids.forEach(id => selected.add(id));
+    const classified = [...data.catalog.projects, ...data.catalog.resources].filter(row => directoryRoute.kind === 'all' || row.kind === directoryRoute.kind);
+    directoryBootstrap = {
+      kind: directoryRoute.kind, total: rows.length, page, ids,
+      field_counts: Object.fromEntries([...ford.fields.map(field => field.code), 'unclassified', 'unrecorded'].map(code => [code, new Set(classified.filter(row => fieldMatches(row, code)).map(row => row.id)).size])),
+      domains: [...new Set([...data.catalog.projects, ...data.catalog.resources].flatMap(row => row.domains))].sort(),
+      resource_types: [...new Set(data.catalog.resources.map(row => row.resource_type))].sort(),
+      organizations: data.catalog.organizations.map(({id,title}) => ({id,title})),
+      collections: data.catalog.collections.map(({id,title}) => ({id,title})),
+    };
+  }
+  if (pathname === '/community/') data.catalog.collections.forEach(row => selected.add(row.id));
   if (focus?.kind === 'actor' || focus?.kind === 'organization') {
     const actorId = focus.kind === 'actor' ? focus.id : focus.actor_id;
     const sourceIds = new Set(data.catalog.sources.filter(source => source.owner_id === actorId).map(source => source.id));
@@ -67,7 +93,7 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
       preview.forEach(row => selected.add(row.id));
     }
   }
-  const relations = focus ? data.catalog.relations.filter(row => row.from_id === focus.id || row.to_id === focus.id) : path === '/' ? data.catalog.relations.slice(0,2) : [];
+  const relations = focus ? data.catalog.relations.filter(row => row.from_id === focus.id || row.to_id === focus.id) : pathname === '/' ? data.catalog.relations.slice(0,2) : pathname === '/community/' ? data.catalog.relations : [];
   for (const relation of relations) { selected.add(relation.from_id); selected.add(relation.to_id); }
   const catalog = emptyCatalog();
   const sourceIds = new Set<string>();
@@ -96,7 +122,7 @@ export function pageDataForRoute(data: SiteData, path: string): SiteData {
     }
   }
   const totals = Object.fromEntries(Object.entries(data.catalog).map(([key,rows]) => [key,rows.length])) as Record<keyof CatalogData,number>;
-  return { ...data, catalog, totals, membership_counts: membershipCounts, researcher_total: data.catalog.actors.filter(row => row.account_type === 'user').length, ...(preview ? { related_totals: relatedTotals } : {}) };
+  return { ...data, data_kind: 'page', ...(directoryBootstrap ? { directory_bootstrap: directoryBootstrap } : {}), catalog, totals, membership_counts: membershipCounts, researcher_total: data.catalog.actors.filter(row => row.account_type === 'user').length, ...(preview ? { related_totals: relatedTotals } : {}) };
 }
 export function displayDate(value: string): string { return new Date(value).toISOString().slice(0, 10); }
 export function provenanceLabel(entry: CatalogEntity, field = 'description'): string {

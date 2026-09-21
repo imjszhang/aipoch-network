@@ -9,8 +9,9 @@ export function internalHref(to: string, base: string): string {
   return `${base}${to.replace(/^\//, '')}`;
 }
 
-export function NavigationProvider({ initialPath, base, prepare, children }: {
-  initialPath: string; base: string; prepare(): Promise<void>; children: React.ReactNode;
+export function NavigationProvider({ initialPath, base, canNavigate, prepareNavigation, children }: {
+  initialPath: string; base: string; canNavigate?(to: string): boolean;
+  prepareNavigation?(): Promise<'ready' | 'native' | 'blocked'>; children: React.ReactNode;
 }) {
   const [path, setPath] = useState(initialPath);
   const generation = useRef(0);
@@ -30,7 +31,17 @@ export function NavigationProvider({ initialPath, base, prepare, children }: {
     const url = new URL(href(to), location.origin);
     if (url.origin !== location.origin || !url.pathname.startsWith(base)) throw new Error('Not a site navigation');
     const attempt = ++generation.current;
-    if (url.pathname !== location.pathname) await prepare();
+    if (url.pathname !== location.pathname && !canNavigate?.(`/${url.pathname.slice(base.length)}${url.search}`)) {
+      // A live workbench/isolated review owns in-memory state that a full document
+      // navigation would discard. Only that context may prepare missing data.
+      const preparation = prepareNavigation ? await prepareNavigation() : 'native';
+      if (generation.current !== attempt || preparation === 'blocked') return;
+      if (preparation !== 'ready') {
+        remember();
+        if (options.replace) location.replace(url.href); else location.assign(url.href);
+        return;
+      }
+    }
     if (generation.current !== attempt) return;
     const oldPosition: [number, number] = [scrollX, scrollY];
     remember();
@@ -38,19 +49,18 @@ export function NavigationProvider({ initialPath, base, prepare, children }: {
     history[method]({ ...(options.replace ? history.state : {}), aipochScroll: options.preserveScroll ? oldPosition : [0, 0] }, '', url);
     setPath(`/${url.pathname.slice(base.length)}${url.search}`);
     finish(url, options.preserveScroll ? oldPosition : undefined, !options.preserveScroll);
-  }, [base, href, prepare]);
+  }, [base, href, canNavigate, prepareNavigation]);
   useEffect(() => {
-    const previousRestoration = history.scrollRestoration;
-    history.scrollRestoration = 'manual';
     setPath(`/${location.pathname.slice(base.length)}${location.search}`);
     // Back changes history before popstate; keep the departing entry current on each scroll.
     const onScroll = () => remember();
     const onPop = async (event: PopStateEvent) => {
       const attempt = ++generation.current;
       try {
-        await prepare();
         if (attempt !== generation.current) return;
         const url = new URL(location.href);
+        const nextPath = `/${url.pathname.slice(base.length)}${url.search}`;
+        if (url.pathname !== new URL(href(path), location.origin).pathname && !canNavigate?.(nextPath)) { location.reload(); return; }
         setPath(`/${url.pathname.slice(base.length)}${url.search}`);
         const saved: unknown = event.state?.aipochScroll;
         finish(url, Array.isArray(saved) && saved.length === 2 && saved.every(value => typeof value === 'number' && Number.isFinite(value)) ? saved as [number, number] : undefined);
@@ -58,8 +68,8 @@ export function NavigationProvider({ initialPath, base, prepare, children }: {
     };
     addEventListener('popstate', onPop);
     addEventListener('scroll', onScroll, { passive: true });
-    return () => { removeEventListener('popstate', onPop); removeEventListener('scroll', onScroll); history.scrollRestoration = previousRestoration; };
-  }, [base, prepare]);
+    return () => { removeEventListener('popstate', onPop); removeEventListener('scroll', onScroll); };
+  }, [base, canNavigate, href, path]);
   return <Context.Provider value={{ path, base, href, navigate }}>{children}</Context.Provider>;
 }
 

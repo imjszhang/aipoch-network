@@ -113,14 +113,15 @@ test.describe('independent synthetic catalog states', () => {
     }
   });
 
-  test('shared catalog failures keep SSR readable and retry only a matching, bounded snapshot', async ({ page, request }) => {
-    const catalogResponse = await request.get(address('internal/catalog.json'));
-    const valid = await catalogResponse.json();
+  test('browse data failures keep SSR readable and retry only matching, bounded bytes', async ({ page, request }) => {
+    const reference = await (await request.get(address('internal/ui-manifest.json'))).json();
+    const browseUrl = new URL('browse.json', address(reference.href)).href;
+    const valid = await (await request.get(browseUrl)).body();
     let mode: 'failed' | 'mismatched' | 'oversized' | 'valid' = 'failed';
-    await page.route('**/internal/catalog.json', route => mode === 'failed' ? route.abort()
-      : mode === 'mismatched' ? route.fulfill({ json: { ...valid, snapshot_id: 'different-snapshot' } })
-      : mode === 'oversized' ? route.fulfill({ headers: { 'content-type': 'application/json', 'content-length': '32000001' }, body: '{}' })
-      : route.fulfill({ json: valid }));
+    await page.route('**/internal/ui/v1/**/browse.json', route => mode === 'failed' ? route.abort()
+      : mode === 'mismatched' ? route.fulfill({ json: { ...JSON.parse(valid.toString()), snapshot_id: 'different-snapshot' } })
+      : mode === 'oversized' ? route.fulfill({ headers: { 'content-type': 'application/json', 'content-length': '8388609' }, body: '{}' })
+      : route.fulfill({ contentType: 'application/json', body: valid }));
     await page.goto(address('explore/'));
     await expect(page.getByRole('heading', { name: 'Catalog controls unavailable', exact: true })).toBeVisible();
     await expect(page.locator('.results-list > *')).toHaveCount(8);

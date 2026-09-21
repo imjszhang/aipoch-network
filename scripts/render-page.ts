@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { App } from '../web/src/App.js';
-import { isSharedCatalogRoute, pageDataForRoute, type SiteData } from '../web/src/model.js';
+import { pageDataForRoute, type SiteData } from '../web/src/model.js';
 import { seoForPath, seoHeadMarkup, HOME_DESCRIPTION, HOME_TITLE } from '../web/src/seo.js';
 import { siteConfigFromEnv, type SiteConfig } from '../web/src/site-url.js';
 
@@ -13,10 +13,8 @@ export function renderPage(template: string, data: SiteData, path: string, base:
   const seo = seoForPath(path, data, { ...config, base });
   const markup = renderToString(React.createElement(App, { data: pageData, path, base }));
   const serialize = (value: unknown) => JSON.stringify(value).replaceAll('<', '\\u003c').replaceAll('\u2028', '\\u2028').replaceAll('\u2029', '\\u2029');
-  // Directory HTML stays readable before JavaScript. One shared catalog is loaded before hydration.
-  const script = isSharedCatalogRoute(path)
-    ? `<script>window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__=${serialize({ snapshot_id: data.snapshot_id })}</script>`
-    : `<script>window.__AIPOCH__=${serialize(pageData)}</script>`;
+  // Hydrate the exact static page immediately; global discovery data is independent.
+  const script = `<script>window.__AIPOCH__=${serialize(pageData)}</script>`;
   const title = path === '/' || path.split('?')[0] === '/' ? HOME_TITLE : seo.title;
   const description = path === '/' || path.split('?')[0] === '/' ? HOME_DESCRIPTION : seo.description;
   // Callback replacements preserve literal $&, $', and $` in upstream content.

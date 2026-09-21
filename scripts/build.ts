@@ -1,8 +1,11 @@
+import { prepareSiteAssets, readSiteAssets } from '../pipeline/site-assets.js';
+import type { SnapshotHistory } from '../pipeline/history.js';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { lstat, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { validateDiscoveryOutput } from './validate-discovery.js';
 
 const notFound = (error: unknown) => (error as NodeJS.ErrnoException).code === 'ENOENT';
 function assert(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
@@ -97,6 +100,14 @@ export async function validateOutput(directory: string, base = '/', budgetBytes 
   for (const lastmod of sitemap.matchAll(/<lastmod>([^<]*)<\/lastmod>/g)) {
     assert(Number.isFinite(Date.parse(lastmod[1])) && Date.parse(lastmod[1]) <= Date.now() + 60_000, 'Sitemap lastmod is missing or in the future');
   }
+  if (fileSet.has(join(root, 'internal/site-assets.json'))) {
+    const history = await readJson('catalog/v1/history.json') as unknown as SnapshotHistory;
+    const inventory = await readSiteAssets(root, history);
+    assert(inventory, 'Missing site asset inventory');
+    for (const file of files) if (/^assets\/.*\.(?:js|css)$/.test(relative(root, file).split(sep).join('/'))) {
+      assert(inventory.files.has(relative(root, file).split(sep).join('/')), 'Executable or stylesheet asset is not in the reviewed inventory');
+    }
+  }
   const manifest = await readJson('catalog/v1/manifest.json');
   assert(typeof manifest.snapshot_id === 'string' && manifest.snapshot_id === routes.snapshot_id, 'Routes and catalog snapshots differ');
   for (const path of ['internal/catalog.json', 'internal/search.json']) assert((await readJson(path)).snapshot_id === manifest.snapshot_id, `${path} snapshot differs from public catalog`);
@@ -154,6 +165,7 @@ export async function validateOutput(directory: string, base = '/', budgetBytes 
       for (const match of code.matchAll(/\b(?:from\s*|import\s*\(\s*|import\s*)(?:"([./][^"]+)"|'([./][^']+)')/g)) checkReference(match[1] ?? match[2], file, 'asset');
     }
   }
+  await validateDiscoveryOutput(root, { base, origin: officialOrigin, indexing: process.env.SITE_INDEXING === '0' ? false : process.env.SITE_INDEXING === '1' ? true : base === '/' });
   return { pages: htmlFiles.length, files: files.length, snapshot_id: manifest.snapshot_id, bytes };
 }
 
@@ -173,6 +185,8 @@ export async function runBuildSteps(staging: string, base = process.env.SITE_BAS
   const env = { ...process.env, BUILD_OUTPUT: staging, SITE_BASE: base, HISTORY_DIRECTORY: historyDirectory };
   await execute(['--import', 'tsx', 'pipeline/cli.ts', 'build'], env);
   await execute(['node_modules/vite/bin/vite.js', 'build'], env);
+  const history = JSON.parse(await readFile(join(staging, 'catalog/v1/history.json'), 'utf8')) as SnapshotHistory;
+  await prepareSiteAssets(staging, historyDirectory, history);
   await execute(['--import', 'tsx', 'scripts/prerender.ts'], env);
 }
 export async function buildRelease(options: { destination?: string; base?: string; steps?: (staging: string) => Promise<void> } = {}): Promise<{ pages: number; files: number; snapshot_id: string; bytes: number }> {

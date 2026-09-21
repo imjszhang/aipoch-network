@@ -2,13 +2,18 @@ import test, { type TestContext } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { mkdtemp, readFile, rm, writeFile, readdir } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile, readdir, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
+import { prepareSiteAssets } from '../site-assets.js';
 import { generate, stableJson, sha256 } from '../build.js';
 import type { SnapshotBatch } from '../normalize.js';
 import type { Registry } from '../registry.js';
 import { candidateFileTree, validateCandidateMetadata, verifyPagesCandidate, type PagesMetadata, type PagesSelection } from '../../scripts/prepare-pages-candidate.js';
+import { renderPage } from '../../scripts/render-page.js';
+import { prerenderPaths } from '../../web/src/directory-routes.js';
+import { sitemapEntries, sitemapXml } from '../../web/src/seo.js';
+import type { SiteData } from '../../web/src/model.js';
 
 const T = '2026-09-12T12:00:00.000Z', NOW = Date.parse(T) + 60_000, SHA = 'a'.repeat(40), DIGEST = `sha256:${'b'.repeat(64)}`;
 const execute = promisify(execFile);
@@ -32,12 +37,26 @@ async function fixture(t: TestContext, history = false, sourceObservedAt = '2026
   if (history) { batch.as_of = '2026-09-12T11:59:00Z'; await generate(registry, batch, root, 200, { candidateKind: 'refresh' }); }
   batch.as_of = T;
   const manifest = await generate(registry, batch, root, 200, { candidateKind: 'refresh' });
-  for (const file of ['index.html', '404.html']) await writeFile(join(root, file), '<!doctype html><html><body>Skip to content<script>window.__AIPOCH__={}</script></body></html>');
+  const data = JSON.parse(await readFile(join(root, 'internal/catalog.json'), 'utf8')) as SiteData;
+  data.ui_manifest = JSON.parse(await readFile(join(root, 'internal/ui-manifest.json'), 'utf8'));
+  const config = { base: '/', origin: 'https://aipoch.network', indexing: true };
+  const paths = prerenderPaths(data, false);
+  const template = '<!doctype html><html><head><title>Fixture</title><meta name="description" content="Fixture" /></head><body><div id="root"><!--app-html--></div><!--app-data--></body></html>';
+  for (const path of paths) {
+    const file = join(root, path === '/404/' ? '404.html' : `${path.slice(1)}index.html`);
+    await mkdir(dirname(file), { recursive: true });
+    await writeFile(file, renderPage(template, data, path, '/', config));
+  }
+  await mkdir(join(root, 'assets'), { recursive: true });
+  // This is a verifier fixture; asset existence is sufficient here, not a visual test.
+  await writeFile(join(root, 'assets/open-science-product-v9-r2.jpg'), 'Synthetic image fixture');
+  await writeFile(join(root, 'assets/open-science-product-notice.txt'), 'Synthetic image notice');
   await writeFile(join(root, '.nojekyll'), '');
-  await writeFile(join(root, 'routes.json'), stableJson({ base: '/', paths: ['/'], snapshot_id: manifest.snapshot_id }));
+  await writeFile(join(root, 'routes.json'), stableJson({ base: '/', paths: paths.filter(path => path !== '/404/'), snapshot_id: manifest.snapshot_id }));
   await writeFile(join(root, 'robots.txt'), 'User-agent: *\nAllow: /\n');
-  await writeFile(join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://aipoch.network/</loc></url></urlset>');
+  await writeFile(join(root, 'sitemap.xml'), sitemapXml(sitemapEntries(data, config, paths.filter(path => path !== '/404/'))));
   await writeFile(join(root, 'third-party-notices.txt'), 'Synthetic verifier fixture only; this file does not prove real license review.');
+  await prepareSiteAssets(root, undefined, JSON.parse(await readFile(join(root, 'catalog/v1/history.json'), 'utf8')));
   return { root, selection: { ...metadata().selection, snapshot_id: manifest.snapshot_id, file_tree_sha256: (await candidateFileTree(root)).file_tree_sha256 } };
 }
 

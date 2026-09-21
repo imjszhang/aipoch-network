@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import React from 'react';
 import { createFixtureCatalog } from '../../spec/fixtures/catalog.js';
 import type { CatalogData, MetricObservation, Project } from '../../spec/types.js';
-import { DAY, changeDiscovery, compareDiscovery, eligibleSources, freshness, matchesDiscovery, metricValue, parseDiscovery, presetDates, representativeSource, sourceCommit } from '../src/discovery.js';
+import { DAY, changeDiscovery, compareDiscovery, makeDiscoveryComparator, eligibleSources, freshness, matchesDiscovery, metricValue, parseDiscovery, presetDates, representativeSource, sourceCommit } from '../src/discovery.js';
 import { CatalogDateFacts, EntryFacts, ObservationClock } from '../src/catalog-observations.js';
 import type { Entry } from '../src/model.js';
 const NOW = '2026-09-15T12:00:00Z', time = Date.parse(NOW);
@@ -139,4 +139,54 @@ test('public cards qualify historical bounds, identify source metrics and never 
   assert.match(facts,/GitHub/); assert.match(facts,/publicly reported/); assert.match(facts,/100 stars/);
   entry.source_refs=[];
   assert.match(renderToStaticMarkup(React.createElement(ObservationClock,{generatedAt:NOW,children:React.createElement(EntryFacts,{entry,catalog})})),/source metrics unknown/);
+});
+
+
+test('cached comparator preserves all legacy sort orders across missing, stale, multi-source and tied entries', () => {
+  const catalog = fixture(), original = catalog.projects[0];
+  catalog.sources[0].github_metrics!.stars = metric(1000,3*DAY);
+  const rows: Entry[] = [
+    { ...original, id:'project:a', title:'Same', source_refs:[{source_id:catalog.sources[0].id,role:'primary'},{source_id:catalog.sources[1].id,role:'implementation'}], catalog_dates:{first_published:{basis:'exact',value:'2026-01-01T00:00:00Z'},content_updated:{basis:'unknown'}} },
+    { ...original, id:'project:z', title:'Same', source_refs:[{source_id:catalog.sources[1].id,role:'documentation'}], catalog_dates:{first_published:{basis:'observed_bound',value:NOW},content_updated:{basis:'exact',value:NOW}} },
+    { ...original, id:'project:m', title:'Missing', source_refs:[] },
+    ...catalog.sources, ...catalog.organizations, ...catalog.actors,
+  ];
+  const matches = new Map([[rows[1].id,0],[rows[0].id,1]]);
+  for (const sort of ['relevance','title','added','catalog_updated','source_activity','stars','followers','updated']) for (const extra of ['', '&include_stale_metrics=1', '&min_forks=40']) {
+    const parsed = filters(`sort=${sort}${extra}`), selectedRows = rows.filter(row => matchesDiscovery(row,catalog,parsed));
+    for (const search of [undefined,matches]) assert.deepEqual([...selectedRows].sort(makeDiscoveryComparator(catalog,parsed,search)).map(row=>row.id), [...selectedRows].sort((a,b)=>compareDiscovery(a,b,catalog,parsed,search)).map(row=>row.id), `${sort}${extra}`);
+  }
+  assert.deepEqual(rows.slice(0,3).sort(makeDiscoveryComparator(catalog,filters('sort=added'))).map(row=>row.id), ['project:a','project:z','project:m']);
+  assert.deepEqual(rows.slice(0,3).sort(makeDiscoveryComparator(catalog,filters('sort=relevance'),matches)).map(row=>row.id), ['project:z','project:a','project:m']);
+});
+
+test('one sorting round derives source ranking once per row, and the next round sees new metric observations', () => {
+  const catalog = fixture(), original = catalog.projects[0]; let reads = 0;
+  const rows: Project[] = Array.from({length:128},(_,i) => {
+    const row = { ...original, id:`project:${i}`, title:`Project ${i}` }, refs = [{source_id:catalog.sources[i%2].id,role:'primary' as const}];
+    Object.defineProperty(row,'source_refs',{get(){reads++;return refs;},enumerable:true}); return row;
+  });
+  const comparator = makeDiscoveryComparator(catalog,filters('sort=stars'));
+  const first = [...rows].reverse().sort(comparator); assert.equal(reads,rows.length,'sorting must not rederive source facts for every comparison');
+  [...first].reverse().sort(comparator); assert.equal(reads,rows.length,'the same filter round reuses row keys');
+  assert.equal(first[0].source_refs[0].source_id,catalog.sources[1].id);
+  catalog.sources[0].github_metrics!.stars = metric(5000);
+  const next = [...rows].sort(makeDiscoveryComparator(catalog,filters('sort=stars')));
+  assert.equal(next[0].source_refs[0].source_id,catalog.sources[0].id,'new query rounds must not reuse old metric keys');
+});
+
+test('warm source lookup does not rescan unrelated repositories and a replacement graph gets a fresh index', () => {
+  const catalog = fixture(), project = { ...catalog.projects[0], source_refs:[{source_id:catalog.sources[0].id,role:'primary' as const}] };
+  let unrelatedReads = 0;
+  const unrelated = Array.from({length:1000},(_,i) => {
+    const row = { ...catalog.sources[1] }, id = `source:unrelated:${i}`;
+    Object.defineProperty(row,'id',{get(){unrelatedReads++;return id;},enumerable:true}); return row;
+  });
+  catalog.sources.push(...unrelated); eligibleSources(project,catalog); unrelatedReads = 0;
+  for (let i=0;i<100;i++) assert.equal(eligibleSources(project,catalog)[0],catalog.sources[0]);
+  assert.equal(unrelatedReads,0,'referenced-source lookup should be proportional to reference count after index creation');
+  const replacement = { ...catalog.sources[0], title:'Replacement snapshot source' };
+  const next = { ...catalog, sources:[replacement] };
+  assert.equal(eligibleSources(project,next)[0],replacement);
+  catalog.sources = [replacement]; assert.equal(eligibleSources(project,catalog)[0],replacement,'replaced arrays invalidate a local index');
 });

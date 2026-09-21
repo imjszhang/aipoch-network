@@ -103,7 +103,7 @@ export function PublicHome({ data }: { data: SiteData }) {
     </section>
 
     <section className="ph-wrap ph-browse" aria-label="Browse the network">
-      <form className="ph-search" role="search" action={href('/explore/')} method="get" onSubmit={event => { event.preventDefault(); void navigate(`/explore/?q=${encodeURIComponent(query.trim())}`).catch(() => { location.assign(href(`/explore/?q=${encodeURIComponent(query.trim())}`)); }); }}>
+      <form className="ph-search" role="search" action={href('/browse/explore/')} method="get" onSubmit={event => { event.preventDefault(); void navigate(`/browse/explore/?q=${encodeURIComponent(query.trim())}`).catch(() => { location.assign(href(`/browse/explore/?q=${encodeURIComponent(query.trim())}`)); }); }}>
         <Search size={23} aria-hidden="true" />
         <input type="search" name="q" aria-label="Search AIPOCH Network" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search projects, capabilities, organizations…" />
         <button type="submit" className="ph-button ph-dark" aria-label="Explore search results"><span>Explore results</span><ArrowRight size={17} aria-hidden="true" /></button>

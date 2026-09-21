@@ -25,7 +25,7 @@ The links below open capabilities in each discipline; switch to Projects on the 
 
 ## Natural Sciences
 
-[1.1 Mathematics](https://aipoch.network/capabilities/?field=1.1) · [1.2 Computer and information sciences](https://aipoch.network/capabilities/?field=1.2) · [1.3 Physical sciences](https://aipoch.network/capabilities/?field=1.3) · [1.4 Chemical sciences](https://aipoch.network/capabilities/?field=1.4) · [1.5 Earth and related environmental sciences](https://aipoch.network/capabilities/?field=1.5) · [1.6 Biological sciences](https://aipoch.network/capabilities/?field=1.6) · [1.7 Other natural sciences](https://aipoch.network/capabilities/?field=1.7)
+[1.1 Mathematics](https://aipoch.network/browse/capabilities/?field=1.1) · [1.2 Computer and information sciences](https://aipoch.network/browse/capabilities/?field=1.2) · [1.3 Physical sciences](https://aipoch.network/browse/capabilities/?field=1.3) · [1.4 Chemical sciences](https://aipoch.network/browse/capabilities/?field=1.4) · [1.5 Earth and related environmental sciences](https://aipoch.network/browse/capabilities/?field=1.5) · [1.6 Biological sciences](https://aipoch.network/browse/capabilities/?field=1.6) · [1.7 Other natural sciences](https://aipoch.network/browse/capabilities/?field=1.7)
 
 ### 1.1 Mathematics
 
@@ -176,7 +176,7 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 
 ## Engineering and Technology
 
-[2.1 Civil engineering](https://aipoch.network/capabilities/?field=2.1) · [2.2 Electrical engineering, electronic engineering, information engineering](https://aipoch.network/capabilities/?field=2.2) · [2.3 Mechanical engineering](https://aipoch.network/capabilities/?field=2.3) · [2.4 Chemical engineering](https://aipoch.network/capabilities/?field=2.4) · [2.5 Materials engineering](https://aipoch.network/capabilities/?field=2.5) · [2.6 Medical engineering](https://aipoch.network/capabilities/?field=2.6) · [2.7 Environmental engineering](https://aipoch.network/capabilities/?field=2.7) · [2.8 Environmental biotechnology](https://aipoch.network/capabilities/?field=2.8) · [2.9 Industrial biotechnology](https://aipoch.network/capabilities/?field=2.9) · [2.10 Nano-technology](https://aipoch.network/capabilities/?field=2.10) · [2.11 Other engineering and technologies](https://aipoch.network/capabilities/?field=2.11)
+[2.1 Civil engineering](https://aipoch.network/browse/capabilities/?field=2.1) · [2.2 Electrical engineering, electronic engineering, information engineering](https://aipoch.network/browse/capabilities/?field=2.2) · [2.3 Mechanical engineering](https://aipoch.network/browse/capabilities/?field=2.3) · [2.4 Chemical engineering](https://aipoch.network/browse/capabilities/?field=2.4) · [2.5 Materials engineering](https://aipoch.network/browse/capabilities/?field=2.5) · [2.6 Medical engineering](https://aipoch.network/browse/capabilities/?field=2.6) · [2.7 Environmental engineering](https://aipoch.network/browse/capabilities/?field=2.7) · [2.8 Environmental biotechnology](https://aipoch.network/browse/capabilities/?field=2.8) · [2.9 Industrial biotechnology](https://aipoch.network/browse/capabilities/?field=2.9) · [2.10 Nano-technology](https://aipoch.network/browse/capabilities/?field=2.10) · [2.11 Other engineering and technologies](https://aipoch.network/browse/capabilities/?field=2.11)
 
 ### 2.1 Civil engineering
 
@@ -240,7 +240,7 @@ Biopython and Scanpy also have reviewed Biological sciences (1.6) classification
 
 ## Medical and Health Sciences
 
-[3.1 Basic medicine](https://aipoch.network/capabilities/?field=3.1) · [3.2 Clinical medicine](https://aipoch.network/capabilities/?field=3.2) · [3.3 Health sciences](https://aipoch.network/capabilities/?field=3.3) · [3.4 Medical biotechnology](https://aipoch.network/capabilities/?field=3.4) · [3.5 Other medical science](https://aipoch.network/capabilities/?field=3.5)
+[3.1 Basic medicine](https://aipoch.network/browse/capabilities/?field=3.1) · [3.2 Clinical medicine](https://aipoch.network/browse/capabilities/?field=3.2) · [3.3 Health sciences](https://aipoch.network/browse/capabilities/?field=3.3) · [3.4 Medical biotechnology](https://aipoch.network/browse/capabilities/?field=3.4) · [3.5 Other medical science](https://aipoch.network/browse/capabilities/?field=3.5)
 
 ### 3.1 Basic medicine
 
@@ -265,7 +265,7 @@ These entries describe research software, not clinical validation or regulatory 
 
 ## Agricultural and Veterinary Sciences
 
-[4.1 Agriculture, forestry, and fisheries](https://aipoch.network/capabilities/?field=4.1) · [4.2 Animal and dairy science](https://aipoch.network/capabilities/?field=4.2) · [4.3 Veterinary science](https://aipoch.network/capabilities/?field=4.3) · [4.4 Agricultural biotechnology](https://aipoch.network/capabilities/?field=4.4) · [4.5 Other agricultural sciences](https://aipoch.network/capabilities/?field=4.5)
+[4.1 Agriculture, forestry, and fisheries](https://aipoch.network/browse/capabilities/?field=4.1) · [4.2 Animal and dairy science](https://aipoch.network/browse/capabilities/?field=4.2) · [4.3 Veterinary science](https://aipoch.network/browse/capabilities/?field=4.3) · [4.4 Agricultural biotechnology](https://aipoch.network/browse/capabilities/?field=4.4) · [4.5 Other agricultural sciences](https://aipoch.network/browse/capabilities/?field=4.5)
 
 ### 4.1 Agriculture, forestry, and fisheries
 
@@ -281,7 +281,7 @@ These entries describe research software, not clinical validation or regulatory 
 
 ## Social Sciences
 
-[5.1 Psychology and cognitive sciences](https://aipoch.network/capabilities/?field=5.1) · [5.2 Economics and business](https://aipoch.network/capabilities/?field=5.2) · [5.3 Education](https://aipoch.network/capabilities/?field=5.3) · [5.4 Sociology](https://aipoch.network/capabilities/?field=5.4) · [5.5 Law](https://aipoch.network/capabilities/?field=5.5) · [5.6 Political science](https://aipoch.network/capabilities/?field=5.6) · [5.7 Social and economic geography](https://aipoch.network/capabilities/?field=5.7) · [5.8 Media and communications](https://aipoch.network/capabilities/?field=5.8) · [5.9 Other social sciences](https://aipoch.network/capabilities/?field=5.9)
+[5.1 Psychology and cognitive sciences](https://aipoch.network/browse/capabilities/?field=5.1) · [5.2 Economics and business](https://aipoch.network/browse/capabilities/?field=5.2) · [5.3 Education](https://aipoch.network/browse/capabilities/?field=5.3) · [5.4 Sociology](https://aipoch.network/browse/capabilities/?field=5.4) · [5.5 Law](https://aipoch.network/browse/capabilities/?field=5.5) · [5.6 Political science](https://aipoch.network/browse/capabilities/?field=5.6) · [5.7 Social and economic geography](https://aipoch.network/browse/capabilities/?field=5.7) · [5.8 Media and communications](https://aipoch.network/browse/capabilities/?field=5.8) · [5.9 Other social sciences](https://aipoch.network/browse/capabilities/?field=5.9)
 
 ### 5.1 Psychology and cognitive sciences
 
@@ -338,7 +338,7 @@ These entries describe research software, not clinical validation or regulatory 
 
 ## Humanities and the Arts
 
-[6.1 History and archaeology](https://aipoch.network/capabilities/?field=6.1) · [6.2 Languages and literature](https://aipoch.network/capabilities/?field=6.2) · [6.3 Philosophy, ethics and religion](https://aipoch.network/capabilities/?field=6.3) · [6.4 Arts (arts, history of arts, performing arts, music)](https://aipoch.network/capabilities/?field=6.4) · [6.5 Other humanities](https://aipoch.network/capabilities/?field=6.5)
+[6.1 History and archaeology](https://aipoch.network/browse/capabilities/?field=6.1) · [6.2 Languages and literature](https://aipoch.network/browse/capabilities/?field=6.2) · [6.3 Philosophy, ethics and religion](https://aipoch.network/browse/capabilities/?field=6.3) · [6.4 Arts (arts, history of arts, performing arts, music)](https://aipoch.network/browse/capabilities/?field=6.4) · [6.5 Other humanities](https://aipoch.network/browse/capabilities/?field=6.5)
 
 ### 6.2 Languages and literature
 
@@ -364,7 +364,7 @@ These entries describe research software, not clinical validation or regulatory 
 
 ## General Research Tools — Classification Pending
 
-These tools support research across disciplines. Their current evidence does not establish a specific FORD classification, so they remain visible with method/task tags while classification is reviewed. This is a separate queue, not a seventh broad field. [Browse pending capabilities](https://aipoch.network/capabilities/?field=unclassified).
+These tools support research across disciplines. Their current evidence does not establish a specific FORD classification, so they remain visible with method/task tags while classification is reviewed. This is a separate queue, not a seventh broad field. [Browse pending capabilities](https://aipoch.network/browse/capabilities/?field=unclassified).
 
 - [Jupyter Notebook](https://github.com/jupyter/notebook) — Explore research interactively in a browser-based notebook that combines executable code, explanatory text, visualizations, and computational output. [Details](https://aipoch.network/projects/project~jupyter-notebook/)
 - [Matplotlib](https://github.com/matplotlib/matplotlib) — Create and customize scientific plots in Python, with control over axes, annotations, and publication-oriented figure layouts. [Details](https://aipoch.network/projects/project~matplotlib/)

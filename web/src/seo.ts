@@ -1,6 +1,6 @@
 import { resourceTypeLabel } from '../../spec/identity.js';
 import { allEntries, routeFor, tombstoneRoutesFor, type Entry, type SiteData } from './model.js';
-import { DIRECTORY_LABELS, TRACKING_PARAMS, directoryHref, directoryPageCount, directoryPageItems, isDefaultDirectoryParams, parseDirectoryPath } from './directory-routes.js';
+import { DIRECTORY_LABELS, directoryPageCount, directoryPageItems, parseDirectoryPath } from './directory-routes.js';
 import { absoluteUrl, type SiteConfig } from './site-url.js';
 
 export const HOME_TITLE = 'Science Open to All | AIPOCH Network';
@@ -36,8 +36,8 @@ const PAGE_DESCRIPTIONS: Record<string, string> = {
 export interface SeoDecision {
   title: string;
   description: string;
-  canonicalUrl: string;
-  canonicalPath: string;
+  canonicalUrl: string | null;
+  canonicalPath: string | null;
   robots: 'index, follow' | 'noindex, follow';
   indexable: boolean;
   sitemap: boolean;
@@ -51,17 +51,6 @@ function escapeAttribute(value: string): string {
 function splitPath(path: string): { pathname: string; params: URLSearchParams } {
   const [pathname = '/', search = ''] = path.split('?');
   return { pathname: pathname.endsWith('/') || pathname === '/' ? pathname : `${pathname}/`, params: new URLSearchParams(search) };
-}
-
-function cleanParams(params: URLSearchParams): URLSearchParams {
-  const next = new URLSearchParams();
-  for (const [key, value] of params) {
-    if ((TRACKING_PARAMS as readonly string[]).includes(key)) continue;
-    if (key === 'sort' && (value === 'relevance' || value === 'title')) continue;
-    if (key === 'page' && (value === '1' || value === '')) continue;
-    next.append(key, value);
-  }
-  return next;
 }
 
 function entryDescription(entry: Entry): string {
@@ -78,25 +67,15 @@ export function seoForPath(path: string, data: SiteData, config: SiteConfig): Se
   const entry = entries.find(item => routeFor(item) === pathname);
   const tombstone = data.catalog.tombstones.find(row => tombstoneRoutesFor(row).includes(pathname));
   const directory = parseDirectoryPath(pathname);
-  const cleaned = cleanParams(params);
-  const defaultListing = Boolean(directory) && isDefaultDirectoryParams(params, true);
-  const requestedPage = directory?.page ?? (params.has('page') ? Number(params.get('page')) : 1);
-  const pageNumber = Number.isFinite(requestedPage) && requestedPage > 0 ? Math.floor(requestedPage) : 1;
+  // GitHub Pages serves one HTML document per path regardless of query. Keep its
+  // head stable; legacy queries migrate to browse before fetching directory data.
+  const defaultListing = Boolean(directory && !directory.browse);
+  const pageNumber = directory?.page ?? 1;
   const action = ['/submit/', '/join/', '/me/', '/review/'].includes(pathname);
   const notFound = Boolean(directory?.page && directory.page > directoryPageCount(data, directory.kind)) || pathname === '/404/' || (!entry && !directory && !PAGE_TITLES[pathname] && !tombstone);
-  const searchOrFilter = Boolean(directory) && !defaultListing && [...cleaned.keys()].some(key => key !== 'page');
-  const trackingOnly = Boolean(directory) && isDefaultDirectoryParams(params, true) && [...params.keys()].some(key => (TRACKING_PARAMS as readonly string[]).includes(key));
+  const canonicalPath = directory?.browse ? null : pathname;
 
-  let canonicalPath = pathname;
-  if (directory && (defaultListing || trackingOnly)) {
-    const pages = directoryPageCount(data, directory.kind);
-    const page = Math.min(pages, Math.max(1, pageNumber));
-    canonicalPath = directoryHref(directory.section, page, new URLSearchParams());
-  } else if (directory) {
-    canonicalPath = directoryHref(directory.section, pageNumber, cleaned);
-  }
-
-  const robots: SeoDecision['robots'] = !config.indexing || action || Boolean(tombstone) || notFound || searchOrFilter ? 'noindex, follow' : 'index, follow';
+  const robots: SeoDecision['robots'] = !config.indexing || action || Boolean(tombstone) || notFound || directory?.browse ? 'noindex, follow' : 'index, follow';
   const indexable = robots === 'index, follow';
 
   let title = HOME_TITLE;
@@ -106,7 +85,7 @@ export function seoForPath(path: string, data: SiteData, config: SiteConfig): Se
   else if (tombstone) { title = withTitle('Catalog record withdrawn'); description = 'This record is no longer available in the catalog.'; }
   else if (directory) {
     const labels = DIRECTORY_LABELS[directory.kind] ?? DIRECTORY_LABELS.all;
-    const page = directory.page && directory.page > 1 ? directory.page : pageNumber > 1 && defaultListing ? pageNumber : undefined;
+    const page = directory.page && directory.page > 1 ? directory.page : undefined;
     title = withTitle(page && page > 1 ? `${labels.title}, page ${page}` : labels.title);
     description = labels.description;
   } else if (PAGE_TITLES[pathname]) {
@@ -117,13 +96,13 @@ export function seoForPath(path: string, data: SiteData, config: SiteConfig): Se
     description = PAGE_DESCRIPTIONS['/404/']!;
   }
 
-  const canonicalUrl = absoluteUrl(canonicalPath, config);
+  const canonicalUrl = canonicalPath === null ? null : absoluteUrl(canonicalPath, config);
   const barePath = [...params.keys()].length === 0;
-  const firstDirectoryPage = Boolean(directory && !directory.page && barePath && canonicalPath === `/${directory.section}/`);
+  const firstDirectoryPage = Boolean(directory && !directory.browse && !directory.page && barePath && canonicalPath === `/${directory.section}/`);
   return {
     title, description, canonicalUrl, canonicalPath, robots, indexable,
     sitemap: Boolean(config.indexing && indexable && barePath && canonicalPath === pathname && (pathname === '/' || pathname === '/community/' || pathname === '/contribute/' || Boolean(entry) || firstDirectoryPage)),
-    jsonLd: structuredData({ pathname, canonicalUrl, title, description, data, entry, directory, indexable, defaultListing, pageNumber, config }),
+    jsonLd: canonicalUrl === null ? [] : structuredData({ pathname, canonicalUrl, title, description, data, entry, directory, indexable, defaultListing, pageNumber, config }),
   };
 }
 
@@ -141,7 +120,7 @@ function structuredData(input: {
       description: HOME_DESCRIPTION,
       potentialAction: {
         '@type': 'SearchAction',
-        target: { '@type': 'EntryPoint', urlTemplate: `${absoluteUrl('/explore/', input.config)}?q={search_term_string}` },
+        target: { '@type': 'EntryPoint', urlTemplate: `${absoluteUrl('/browse/explore/', input.config)}?q={search_term_string}` },
         'query-input': 'required name=search_term_string',
       },
     }];
@@ -187,7 +166,7 @@ export function sitemapEntries(data: SiteData, config: SiteConfig, renderedPaths
   for (const path of renderedPaths) {
     if (path === '/404/') continue;
     const seo = seoForPath(path, data, config);
-    if (seo.sitemap) urls.push(seo.canonicalUrl);
+    if (seo.sitemap && seo.canonicalUrl) urls.push(seo.canonicalUrl);
   }
   return [...new Set(urls)];
 }
@@ -205,7 +184,8 @@ export function sitemapXml(urls: string[]): string {
 
 export function seoHeadMarkup(decision: SeoDecision): string {
   const jsonLd = decision.jsonLd.map(item => `<script type="application/ld+json" data-aipoch-seo="true">${JSON.stringify(item).replaceAll('<', '\\u003c')}</script>`).join('');
-  return `<link rel="canonical" href="${escapeAttribute(decision.canonicalUrl)}" /><meta name="robots" content="${decision.robots}" />${jsonLd}`;
+  const canonical = decision.canonicalUrl === null ? '' : `<link rel="canonical" href="${escapeAttribute(decision.canonicalUrl)}" />`;
+  return `${canonical}<meta name="robots" content="${decision.robots}" />${jsonLd}`;
 }
 
 export function applySeoToDocument(doc: Document, decision: SeoDecision, preserveHomeMetadata = false): void {
@@ -215,8 +195,12 @@ export function applySeoToDocument(doc: Document, decision: SeoDecision, preserv
   const description = doc.querySelector('meta[name="description"]');
   if (description) description.setAttribute('content', decision.description);
   let canonical = doc.querySelector('link[rel="canonical"]');
-  if (!canonical) { canonical = doc.createElement('link'); canonical.setAttribute('rel', 'canonical'); doc.head.appendChild(canonical); }
-  canonical.setAttribute('href', decision.canonicalUrl);
+  if (decision.canonicalUrl === null) {
+    for (const node of doc.querySelectorAll('link[rel="canonical"]')) node.remove();
+  } else {
+    if (!canonical) { canonical = doc.createElement('link'); canonical.setAttribute('rel', 'canonical'); doc.head.appendChild(canonical); }
+    canonical.setAttribute('href', decision.canonicalUrl);
+  }
   let robots = doc.querySelector('meta[name="robots"]');
   if (!robots) { robots = doc.createElement('meta'); robots.setAttribute('name', 'robots'); doc.head.appendChild(robots); }
   robots.setAttribute('content', decision.robots);

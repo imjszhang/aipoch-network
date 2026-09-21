@@ -11,6 +11,7 @@ import { once } from 'node:events';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { stableJson, sha256 } from '../pipeline/build.js';
+import { createUiArtifact, writeUiArtifact } from '../pipeline/browser-projection.js';
 import { makeSearchIndex, searchDocuments } from '../web/src/search.js';
 import { allEntries, type SiteData } from '../web/src/model.js';
 import { prerenderPaths } from '../web/src/directory-routes.js';
@@ -112,6 +113,12 @@ async function emitData(data: SiteData, directory: string) {
   await mkdir(join(directory, 'internal'), { recursive: true });
   await writeFile(join(directory, 'internal/catalog.json'), stableJson(data));
   await writeFile(join(directory, 'internal/search.json'), stableJson({ snapshot_id: data.snapshot_id, index: makeSearchIndex(searchDocuments(data.catalog)).toJSON() }));
+  const ui = createUiArtifact(data.catalog, data.snapshot_id, data.generated_at);
+  await writeUiArtifact(directory, ui);
+  await writeFile(join(directory, 'catalog/v1/history.json'), stableJson({ version: 1, current_snapshot_id: data.snapshot_id, checked_at: data.generated_at,
+    snapshots: [{ snapshot_id: data.snapshot_id, status: 'available', checked_at: data.generated_at, generated_at: data.generated_at }] }));
+  data.ui_manifest = ui.reference;
+  data.data_kind = 'full';
 }
 
 export async function buildVerificationSite(directory: string, data: SiteData, base = '/', progress?: (message: string) => void) {

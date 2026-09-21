@@ -3,6 +3,7 @@ import { test, expect, type Page } from '@playwright/test';
 const search = (page: Page) => page.getByRole('searchbox', { name: 'Search directory', exact: true });
 const results = (page: Page) => page.locator('.results-list > *');
 const searchParams = (page: Page) => new URL(page.url()).searchParams;
+const searchArtifact = /\/internal\/(?:ui\/v1\/[^/]+\/[^/]+\/)?search\.json$/;
 
 async function filterPanel(page: Page) {
   const toggle = page.getByRole('button', { name: 'Filters', exact: true });
@@ -50,7 +51,7 @@ test('pagination preserves sort and restores the same records after detail, back
   const { catalog } = await (await request.get('./internal/catalog.json')).json();
   const total = catalog.projects.length;
   expect(total).toBeGreaterThan(16);
-  await page.goto('./projects/?sort=title');
+  await page.goto('./projects/?sort=added');
   await expect(search(page)).toBeEnabled();
   const firstPage = await page.locator('.results-list .row-title a').allTextContents();
   await page.getByRole('navigation', { name: 'Results pages' }).getByRole('link', { name: 'Next', exact: true }).click();
@@ -63,7 +64,7 @@ test('pagination preserves sort and restores the same records after detail, back
   await page.goBack();
   await expect.poll(() => searchParams(page).get('page')).toBe('2');
   await expect(page.locator('.results-list .row-title a')).toHaveText(secondPage);
-  await expect(page.getByRole('combobox', { name: 'Sort results' })).toHaveValue('title');
+  await expect(page.getByRole('combobox', { name: 'Sort results' })).toHaveValue('added');
   await page.goBack();
   await expect.poll(() => searchParams(page).get('page')).toBe(null);
   await expect(page.locator('.results-list .row-title a')).toHaveText(firstPage);
@@ -87,9 +88,10 @@ test('invalid and out-of-range shared pages clamp to real results and canonical 
   for (const [query, canonical, count] of [['999', String(Math.ceil(total / 8)), total % 8 || 8], ['0', null, 8], ['-2', null, 8], ['NaN', null, 8], ['2.7', '2', 8]] as const) {
     await page.goto(`./projects/?sort=title&page=${query}`);
     await expect(search(page)).toBeEnabled();
-    await expect.poll(() => searchParams(page).get('page')).toBe(canonical);
+    await expect.poll(() => new URL(page.url()).pathname.match(/\/page\/(\d+)\/$/)?.[1] ?? null).toBe(canonical);
     await expect(results(page)).toHaveCount(count);
-    expect(searchParams(page).get('sort')).toBe('title');
+    expect(searchParams(page).size).toBe(0);
+    await expect(page.getByRole('combobox', { name: 'Sort results' })).toHaveValue('relevance');
     await expect(page.getByRole('heading', { name: 'No matching entries', exact: true })).toHaveCount(0);
   }
 });
@@ -97,7 +99,7 @@ test('invalid and out-of-range shared pages clamp to real results and canonical 
 test('late search results clamp the shared page without stealing search focus', async ({ page }) => {
   let release!: () => void;
   const held = new Promise<void>(resolve => { release = resolve; });
-  await page.route('**/internal/search.json', async route => {
+  await page.route(searchArtifact, async route => {
     const response = await route.fetch();
     await held;
     await route.fulfill({ response });
@@ -188,13 +190,13 @@ test('organization and collection selectors intersect real memberships and prese
 test('search failure keeps browsable pages and retry applies the actual query', async ({ page, request }) => {
   const { catalog } = await (await request.get('./internal/catalog.json')).json();
   const total = catalog.projects.length;
-  await page.route('**/internal/search.json', route => route.abort());
+  await page.route(searchArtifact, route => route.abort());
   await page.goto('./projects/?q=scipy&page=999');
   await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toBeVisible();
   await expect(results(page)).toHaveCount(total % 8 || 8);
   await expect.poll(() => searchParams(page).get('page')).toBe(String(Math.ceil(total / 8)));
   await expect(page.locator('.results-heading h2')).toContainText(`${total} entries`);
-  await page.unroute('**/internal/search.json');
+  await page.unroute(searchArtifact);
   await page.getByRole('button', { name: 'Retry search', exact: true }).click();
   await expect(results(page)).toHaveCount(1);
   await expect(page.locator('.results-list .row-title a')).toHaveText(['SciPy']);

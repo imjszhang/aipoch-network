@@ -17,6 +17,11 @@ export function Submit({ data }: { data: SiteData }) {
   useEffect(() => setReady(true), []);
   const [step, setStep] = useState(1);
   const [url, setUrl] = useState(initialSource?.canonical_url ?? (entry?.kind === 'actor' ? entry.canonical_url : ''));
+  const sourceEdited = useRef(false);
+  const suggestedSource = initialSource?.canonical_url ?? (entry?.kind === 'actor' ? entry.canonical_url : undefined);
+  useEffect(() => {
+    if (!sourceEdited.current && suggestedSource !== undefined) setUrl(suggestedSource);
+  }, [suggestedSource]);
   const [note, setNote] = useState(''), [error, setError] = useState('');
   const [reviewed, setReviewed] = useState(false), [copied, setCopied] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -32,15 +37,16 @@ export function Submit({ data }: { data: SiteData }) {
     } catch (e) { setError((e as Error).message); }
   }
   const unknownTarget = correction && !entry;
+  const waitingForTarget = unknownTarget && (data.data_kind === 'page' || data.data_kind === 'browse');
   return <><PageHeaderContent correction={correction}/><main className="wrap submit-layout"><form className="submission panel" onSubmit={next}>
     <div className="card-top"><span className="square-icon yellow"><GitBranch/></span><Link to="/explore/" aria-label="Close submission"><X size={20}/></Link></div>
     <h2 ref={heading} tabIndex={-1}>{correction ? 'Correct catalog content' : 'Propose a research source'} · Step {step} of 3</h2>
     <div className="steps">{['Select','Review sharing','Confirm'].map((label,i) => <span key={label} className={step >= i + 1 ? 'active' : ''}>{label}</span>)}</div>
     {step === 1 ? <div className="form-fields">
       {correction && <p><b>Catalog target:</b> <code>{target || 'Not specified'}</code></p>}
-      {unknownTarget && <p className="form-error" role="alert">This catalog entry is unavailable. <Link to="/explore/">Return to the directory</Link> or <a href={issueTemplateUrl('correction')}>use the correction form on GitHub</a>.</p>}
+      {waitingForTarget ? <p className="notice" role="status">The complete catalog is needed to check this correction target. Your draft stays on this page.</p> : unknownTarget && <p className="form-error" role="alert">This catalog entry is unavailable. <Link to="/explore/">Return to the directory</Link> or <a href={issueTemplateUrl('correction')}>use the correction form on GitHub</a>.</p>}
       <label htmlFor="source-url">Public GitHub repository or organization URL{correction && <span className="muted"> (optional)</span>}</label>
-      <input disabled={!ready || unknownTarget} id="source-url" type="url" required={!correction} placeholder="https://github.com/organization/project" value={url} onChange={event => { setUrl(event.target.value); setReviewed(false); setCopied(false); }}/>
+      <input disabled={!ready || unknownTarget} id="source-url" type="url" required={!correction} placeholder="https://github.com/organization/project" value={url} onChange={event => { sourceEdited.current = true; setUrl(event.target.value); setReviewed(false); setCopied(false); }}/>
       <p>{correction ? 'The catalog ID identifies the entry. A source URL is optional.' : 'AIPOCH does not require a special manifest or changes to the original repository.'}</p>
       {error && <p className="form-error" role="alert">{error}</p>}
       <label htmlFor="source-note">{correction ? 'Requested correction' : 'Research context'} <span className="muted">(optional)</span></label>

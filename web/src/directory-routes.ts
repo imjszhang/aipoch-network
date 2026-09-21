@@ -1,17 +1,9 @@
 import { compareDiscovery, parseDiscovery } from './discovery.js';
 import { allEntries, isSharedCatalogRoute, routeFor, tombstoneRoutesFor, type Entry, type SiteData } from './model.js';
+import { DIRECTORY_SECTIONS, type DirectorySection } from './directory-url.js';
+export { DIRECTORY_SECTIONS, TRACKING_PARAMS, directoryHref, isDefaultDirectoryParams, legacyDirectoryRedirect, normalizeDirectoryParams, parseDirectoryPath, sectionForKind, type DirectoryRoute, type DirectorySection } from './directory-url.js';
 
 export const PAGE_SIZE = 8;
-export const DIRECTORY_SECTIONS = {
-  explore: 'all',
-  projects: 'project',
-  capabilities: 'resource',
-  organizations: 'organization',
-  collections: 'collection',
-  sources: 'source_repository',
-  researchers: 'actor',
-} as const;
-export type DirectorySection = keyof typeof DIRECTORY_SECTIONS;
 export const DIRECTORY_LABELS: Record<string, { title: string; heading: string; description: string }> = {
   all: { title: 'Explore', heading: 'Explore the network', description: 'Discover research projects, reusable capabilities, and the people behind them.' },
   project: { title: 'Research projects', heading: 'Research projects', description: 'Find a direction, understand the work, and discover what you can build on.' },
@@ -21,57 +13,13 @@ export const DIRECTORY_LABELS: Record<string, { title: string; heading: string; 
   collection: { title: 'Collections', heading: 'Research collections', description: 'Curated starting points for a research question or field.' },
   source_repository: { title: 'Sources', heading: 'Source repositories', description: 'Original repositories behind the projects and capabilities in this network.' },
 };
-export const TRACKING_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'] as const;
-
-export interface DirectoryRoute {
-  section: DirectorySection;
-  kind: string;
-  page: number | null;
-}
-
-export function sectionForKind(kind: string): DirectorySection {
-  const found = (Object.entries(DIRECTORY_SECTIONS) as [DirectorySection, string][]).find(([, value]) => value === kind);
-  return found?.[0] ?? 'explore';
-}
-
-export function parseDirectoryPath(pathname: string): DirectoryRoute | undefined {
-  const parts = pathname.replace(/\/$/, '').split('/').filter(Boolean);
-  const section = parts[0];
-  if (!section || !Object.hasOwn(DIRECTORY_SECTIONS, section)) return;
-  const kind = DIRECTORY_SECTIONS[section as DirectorySection];
-  if (parts.length === 1) return { section: section as DirectorySection, kind, page: null };
-  if (parts.length === 3 && parts[1] === 'page') {
-    if (!/^[1-9]\d{0,6}$/.test(parts[2]!)) return;
-    const page = Number(parts[2]);
-    if (page === 1) return;
-    return { section: section as DirectorySection, kind, page };
-  }
-  return;
-}
-
-export function isDefaultDirectoryParams(params: URLSearchParams, equivalentSorts = false): boolean {
-  for (const key of params.keys()) {
-    if (key === 'page') continue;
-    if ((TRACKING_PARAMS as readonly string[]).includes(key)) continue;
-    if (key === 'sort' && (params.get(key) === 'relevance' || equivalentSorts && params.get(key) === 'title')) continue;
-    return false;
-  }
-  return true;
-}
-
-export function directoryHref(section: DirectorySection, page: number, params: URLSearchParams): string {
-  const next = new URLSearchParams();
-  for (const [key, value] of params) {
-    if (key === 'page') continue;
-    next.append(key, value);
-  }
-  if (isDefaultDirectoryParams(next)) return page <= 1 ? `/${section}/` : `/${section}/page/${page}/`;
-  if (page > 1) next.set('page', String(page));
-  const query = next.toString();
-  return `/${section}/${query ? `?${query}` : ''}`;
-}
 
 export function defaultDirectoryEntries(data: SiteData, kind: string): Entry[] {
+  const bootstrap = data.data_kind === 'page' && data.directory_bootstrap?.kind === kind ? data.directory_bootstrap : undefined;
+  if (bootstrap) {
+    const entries = new Map(allEntries(data.catalog).map(entry => [entry.id, entry]));
+    return bootstrap.ids.map(id => entries.get(id)).filter((entry): entry is Entry => Boolean(entry));
+  }
   const discovery = parseDiscovery(new URLSearchParams(), kind, data.generated_at);
   return allEntries(data.catalog)
     .filter(entry => kind === 'all' || entry.kind === kind)
@@ -79,10 +27,12 @@ export function defaultDirectoryEntries(data: SiteData, kind: string): Entry[] {
 }
 
 export function directoryPageCount(data: SiteData, kind: string): number {
+  if (data.data_kind === 'page' && data.directory_bootstrap?.kind === kind) return Math.max(1, Math.ceil(data.directory_bootstrap.total / PAGE_SIZE));
   return Math.max(1, Math.ceil(defaultDirectoryEntries(data, kind).length / PAGE_SIZE));
 }
 
 export function directoryPageItems(data: SiteData, kind: string, page: number): Entry[] {
+  if (data.data_kind === 'page' && data.directory_bootstrap?.kind === kind && data.directory_bootstrap.page === page) return defaultDirectoryEntries(data, kind);
   return defaultDirectoryEntries(data, kind).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 }
 
@@ -90,6 +40,7 @@ export function prerenderPaths(data: SiteData, demo = false): string[] {
   const paths = ['/', '/explore/', '/projects/', '/capabilities/', '/organizations/', '/researchers/', '/collections/', '/sources/', '/community/', '/submit/', '/join/', '/me/', '/contribute/'];
   if (demo) paths.push('/review/');
   for (const [section, kind] of Object.entries(DIRECTORY_SECTIONS) as [DirectorySection, string][]) {
+    paths.push(`/browse/${section}/`);
     const pages = directoryPageCount(data, kind);
     for (let page = 2; page <= pages; page++) paths.push(`/${section}/page/${page}/`);
   }
