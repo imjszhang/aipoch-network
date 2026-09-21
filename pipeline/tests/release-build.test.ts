@@ -15,7 +15,11 @@ async function write(root: string, name: string, text: string): Promise<void> {
 }
 async function candidate(root: string, base = '/', snapshot = 'new-snapshot'): Promise<void> {
   const html = `<!doctype html><html><head><script type="module" src="${base}assets/app.js"></script><link rel="stylesheet" href="${base}assets/app.css"></head><body><a href="#content">Skip to content</a><main id="content"><a href="${base}docs/?query=one&amp;next=two#section">Docs</a><a href="https://github.com/example/research">Third-party source</a><section id="section">Content</section><a href="${base}catalog/v1/manifest.json">Catalog</a></main><script>window.__AIPOCH__={"example":"href=missing-but-not-an-attribute"}</script></body></html>`;
-  for (const page of ['index.html', 'docs/index.html', '404.html']) await write(root, page, html);
+  for (const page of ['index.html', 'docs/index.html', '404.html']) {
+    const path = page === '404.html' ? '404/' : page.replace(/index\.html$/, '');
+    const robots = base === '/' && page !== '404.html' ? 'index, follow' : 'noindex, follow';
+    await write(root, page, html.replace('<head>', `<head><meta name="robots" content="${robots}"><link rel="canonical" href="https://aipoch.network${base}${path}">`));
+  }
   await write(root, '.nojekyll', '');
   await write(root, 'routes.json', JSON.stringify({ base, paths: ['/', '/docs/'], snapshot_id: snapshot }));
   for (const file of ['catalog/v1/manifest.json', 'internal/catalog.json', 'internal/search.json']) await write(root, file, JSON.stringify({ snapshot_id: snapshot }));
@@ -26,7 +30,8 @@ async function candidate(root: string, base = '/', snapshot = 'new-snapshot'): P
   await write(root, 'assets/background.svg', '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
   await write(root, 'robots.txt', 'User-agent: *\nAllow: /\n');
   const origin = 'https://aipoch.network';
-  await write(root, 'sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}${base}</loc></url><url><loc>${origin}${base}docs/</loc></url></urlset>`);
+  const urls = base === '/' ? `<url><loc>${origin}${base}</loc></url><url><loc>${origin}${base}docs/</loc></url>` : '';
+  await write(root, 'sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`);
 }
 
 test('commits complete sibling output and removes old output only after replacement', async t => {

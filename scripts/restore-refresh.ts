@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
@@ -7,7 +7,10 @@ import { readRefreshState, refreshState } from '../pipeline/refresh.js';
 import { stableJson } from '../pipeline/build.js';
 import type { Registry } from '../pipeline/registry.js';
 import { readSuppressions, saveSuppressions } from '../pipeline/suppressions.js';
-import { readHistoricalSnapshot } from '../pipeline/history.js';
+import { readHistoricalSnapshot, type SnapshotHistory } from '../pipeline/history.js';
+import { readSiteAssets } from '../pipeline/site-assets.js';
+import { verifyUiHistoryPublication } from '../pipeline/browser-projection.js';
+import type { CatalogManifest } from '../spec/types.js';
 
 const execute = promisify(execFile);
 export type Run = { id: number; run_attempt: number; status: string; conclusion: string; event: string; head_branch: string; path: string; head_repository?: { full_name: string } };
@@ -92,7 +95,7 @@ async function singleFile(directory: string, name: string): Promise<string> {
   if (files.length !== 1 || files[0].name !== name || !files[0].isFile() || files[0].isSymbolicLink()) throw new Error('Unexpected trusted state artifact layout');
   return join(directory, name);
 }
-async function restoreHistory(directory: string): Promise<void> {
+export async function restoreHistory(directory: string, destination = '.cache/restored-history'): Promise<void> {
   const root = join(directory, 'catalog/v1/snapshots');
   const entries = await readdir(root, { withFileTypes: true });
   if (entries.length > 4096) throw new Error('Historical candidate exceeds snapshot limit');
@@ -103,8 +106,24 @@ async function restoreHistory(directory: string): Promise<void> {
     bytes += result.bytes;
     if (bytes > 96 * 1024 * 1024) throw new Error('Historical candidate exceeds total byte limit');
   }
-  // Copy manifested snapshots and the retirement ledger, never old HTML or raw caches.
-  const destination = '.cache/restored-history';
+  // The first migration accepts old candidates without a UI projection. Partial or unknown new UI artifacts fail closed.
+  let hasUi = false;
+  for (const path of ['internal/ui', 'internal/ui-manifest.json', 'internal/site-assets.json']) {
+    try { await lstat(join(directory, path)); hasUi = true; }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  }
+  let uiFiles: string[] = [];
+  let siteAssetFiles = new Map<string, Buffer>();
+  if (hasUi) {
+    const manifestBytes = await readFile(join(directory, 'catalog/v1/manifest.json')), historyBytes = await readFile(join(directory, 'catalog/v1/history.json'));
+    if (manifestBytes.length > 1024 * 1024 || historyBytes.length > 1024 * 1024) throw new Error('Historical UI metadata exceeds limit');
+    const manifest = JSON.parse(manifestBytes.toString()) as CatalogManifest;
+    const history = JSON.parse(historyBytes.toString()) as SnapshotHistory;
+    const current = await readHistoricalSnapshot(join(root, manifest.snapshot_id), manifest.snapshot_id);
+    uiFiles = (await verifyUiHistoryPublication(directory, history, current.catalog, manifest.snapshot_id, manifest.generated_at)).files;
+    siteAssetFiles = (await readSiteAssets(directory, history))?.files ?? new Map();
+  }
+  // Copy validated snapshots and projection bytes, never old HTML or raw caches.
   await rm(destination, { recursive: true, force: true });
   await mkdir(join(destination, 'catalog/v1/snapshots'), { recursive: true });
   for (const entry of entries) {
@@ -112,6 +131,12 @@ async function restoreHistory(directory: string): Promise<void> {
     const output = join(destination, 'catalog/v1/snapshots', entry.name);
     await mkdir(output, { recursive: true });
     for (const [file, content] of snapshot.files) { await mkdir(join(output, file, '..'), { recursive: true }); await writeFile(join(output, file), content); }
+  }
+  for (const [file, content] of siteAssetFiles) {
+    const output = join(destination, file); await mkdir(join(output, '..'), { recursive: true }); await writeFile(output, content);
+  }
+  for (const file of uiFiles) {
+    const output = join(destination, file); await mkdir(join(output, '..'), { recursive: true }); await writeFile(output, await readFile(join(directory, file)));
   }
   for (const file of ['manifest.json', 'history.json']) {
     const content = await readFile(join(directory, 'catalog/v1', file));

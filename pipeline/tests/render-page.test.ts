@@ -4,6 +4,7 @@ import { renderPage } from '../../scripts/render-page.js';
 import { createFixtureCatalog, FIXTURE_TIME } from '../../spec/fixtures/catalog.js';
 import { allEntries, isSharedCatalogRoute, pageDataForRoute, relatedEntriesFor, routeFor, SHARED_CATALOG_ROUTES, tombstoneRouteFor, type SiteData } from '../../web/src/model.js';
 import { HOME_DESCRIPTION, HOME_TITLE } from '../../web/src/seo.js';
+import { parseDirectoryPath, directoryPageItems } from '../../web/src/directory-routes.js';
 import { verificationData } from '../../scripts/verification-site.js';
 
 const template = '<!doctype html><html><head><title>Original title</title><meta name="description" content="Original description" /></head><body><div id="root"><!--app-html--></div><!--app-data--><script type="module" src="/assets/app.js"></script></body></html>';
@@ -109,20 +110,30 @@ test('all current fixture routes render and route-local detail payloads preserve
     const html = renderPage(template, data, path, '/');
     assert.ok(html.includes('Skip to content'), path);
     assert.match(html, /<h1(?:\s[^>]*)?>/, path);
-    if (isSharedCatalogRoute(path)) assert.ok(html.includes(`window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__={"snapshot_id":"${data.snapshot_id}"}`));
-    else checkRetainedSources(payload(html));
+    const embedded = payload(html);
+    assert.equal(embedded.snapshot_id, data.snapshot_id);
+    assert.equal(embedded.data_kind, 'page');
+    checkRetainedSources(embedded);
   }
 });
 
-test('shared directories and submission retain actual SSR while embedding only a safe snapshot bootstrap', () => {
+test('directories and action pages retain SSR and safely embed bounded page data for immediate hydration', () => {
   const data = verificationData(1000);
   data.snapshot_id = 'literal $& </script> snapshot';
   for (const path of SHARED_CATALOG_ROUTES) {
     const html = renderPage(template, data, path, '/aipoch-network/');
-    const script = html.match(/<script>window\.__AIPOCH__=null;window\.__AIPOCH_BOOTSTRAP__=([\s\S]*?)<\/script>/)?.[1];
+    const script = html.match(/<script>window\.__AIPOCH__=([\s\S]*?)<\/script>/)?.[1];
     assert.ok(script);
-    assert.deepEqual(JSON.parse(script), { snapshot_id: data.snapshot_id });
-    assert.ok(Buffer.byteLength(script) < 256, 'Shared bootstrap does not duplicate the catalog');
+    const embedded = JSON.parse(script) as SiteData;
+    assert.equal(embedded.snapshot_id, data.snapshot_id);
+    assert.equal(embedded.data_kind, 'page');
+    assert.ok(Buffer.byteLength(script) < Buffer.byteLength(JSON.stringify(data)) / 5, 'Page payload does not duplicate the catalog');
+    const directory = parseDirectoryPath(path);
+    if (directory) {
+      const expected = directoryPageItems(data, directory.kind, 1).map(row => row.id);
+      assert.deepEqual(embedded.directory_bootstrap?.ids, expected);
+      assert.ok(expected.length <= 8);
+    } else assert.equal(embedded.directory_bootstrap, undefined);
     assert.ok(!script.includes('<'));
     assert.ok(html.includes('Skip to content'));
     if (path === '/explore/' || path === '/capabilities/') {
@@ -146,7 +157,7 @@ test('large organization and collection previews retain exactly twenty entries, 
     assert.deepEqual(relatedEntriesFor(retained, selected.catalog).map(row => row.id), complete.slice(0, 20).map(row => row.id));
     checkRetainedSources(selected);
     assert.ok(html.replace(/<!--[\s\S]*?-->/g, '').includes(`Showing 20 of ${complete.length} related entries.`));
-    assert.ok(html.includes(`/aipoch-network/explore/?${entry.kind === 'organization' ? 'organization' : 'collection'}=${encodeURIComponent(entry.id)}`));
+    assert.ok(html.includes(`/aipoch-network/browse/explore/?${entry.kind === 'organization' ? 'organization' : 'collection'}=${encodeURIComponent(entry.id)}`));
     assert.ok(Buffer.byteLength(JSON.stringify(selected)) < 40_000, 'Preview payload stays bounded for this fixture');
   }
   assert.deepEqual(data, before, 'Preview trimming never mutates the authoritative catalog');
@@ -171,15 +182,28 @@ test('build-time directory pages expose distinct raw HTML and pagination hrefs',
   const second = renderPage(template, data, '/capabilities/page/2/', '/');
   const query = renderPage(template, data, '/capabilities/?page=2', '/');
   assert.ok(isSharedCatalogRoute('/capabilities/page/2/'));
-  assert.ok(first.includes('window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__'));
-  assert.ok(second.includes('window.__AIPOCH__=null;window.__AIPOCH_BOOTSTRAP__'));
+  assert.equal(payload(first).directory_bootstrap?.page, 1);
+  assert.equal(payload(second).directory_bootstrap?.page, 2);
+  assert.notDeepEqual(payload(first).directory_bootstrap?.ids, payload(second).directory_bootstrap?.ids);
   assert.ok(first.includes('href="/capabilities/page/2/"'));
   assert.ok(second.includes('href="/capabilities/"') || second.includes('href="/capabilities/page/3/"'));
   assert.notEqual(first, second);
-  assert.ok(query.includes('Reusable capabilities, page 2'));
-  assert.ok(query.includes('href="https://aipoch.network/capabilities/page/2/"'));
+  assert.ok(!query.includes('<title>Reusable capabilities, page 2'));
+  assert.ok(query.includes('href="https://aipoch.network/capabilities/"'));
   assert.match(first, /<title>Reusable capabilities \| AIPOCH Network<\/title>/);
   assert.match(second, /<title>Reusable capabilities, page 2 \| AIPOCH Network<\/title>/);
   assert.ok(first.includes('rel="canonical"'));
   assert.ok(second.includes('href="https://aipoch.network/capabilities/page/2/"'));
+});
+
+test('all operation entrances expose noindex and ordinary directory links before JavaScript', () => {
+  const data = siteData();
+  for (const section of ['explore', 'projects', 'capabilities', 'organizations', 'researchers', 'collections', 'sources']) {
+    const html = renderPage(template, data, `/browse/${section}/`, '/aipoch-network/');
+    assert.ok(html.includes('<meta name="robots" content="noindex, follow"'));
+    assert.ok(!html.includes('rel="canonical"'));
+    assert.ok(html.includes(`href="/aipoch-network/${section}/"`));
+    assert.equal(payload(html).directory_bootstrap?.page, 1);
+    assert.ok(!html.includes('Entry not found'));
+  }
 });

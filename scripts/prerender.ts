@@ -12,6 +12,8 @@ const output = process.env.BUILD_OUTPUT ?? 'dist';
 const config = siteConfigFromEnv({ ...process.env, SITE_BASE: base });
 if (!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(base)) throw new Error('SITE_BASE must be / or a slash-terminated static path');
 const data = JSON.parse(await readFile('generated/internal/catalog.json', 'utf8')) as SiteData;
+data.ui_manifest = JSON.parse(await readFile('generated/internal/ui-manifest.json', 'utf8'));
+data.data_kind = 'full';
 const template = await readFile(join(output, 'index.html'), 'utf8');
 const paths = prerenderPaths(data, DEMO_MODE);
 for (const path of paths) {

@@ -5,6 +5,8 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { validateOutput } from './build.js';
 import { readHistoricalSnapshot, retainHistory, type SnapshotHistory } from '../pipeline/history.js';
+import { readSiteAssets } from '../pipeline/site-assets.js';
+import { verifyUiPublication } from '../pipeline/browser-projection.js';
 import { sha256, stableJson } from '../pipeline/json.js';
 import { makeSearchIndex, searchDocuments } from '../web/src/search.js';
 import { COLLECTION_NAMES, type CatalogManifest } from '../spec/types.js';
@@ -124,6 +126,10 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
   assert(report.snapshot_id === manifest.snapshot_id && report.generated_at === manifest.generated_at && ['refresh', 'withdrawal_only'].includes(report.candidate_kind), 'An offline or inconsistent build cannot be released');
   assert(report.history_sha256 === sha256(stableJson(ledger)), 'History ledger differs from build report');
   assert.deepEqual(report.counts, Object.fromEntries(COLLECTION_NAMES.map(name => [name, current.catalog[name].length])), 'Build counts differ');
+  const siteAssets = await readSiteAssets(directory, ledger);
+  assert(siteAssets, 'Missing reviewed site asset inventory');
+  const ui = await verifyUiPublication(directory, ledger, current.catalog, manifest.snapshot_id, manifest.generated_at);
+  assert.deepEqual((report as typeof report & { ui: unknown }).ui, { ...ui.reference, browse_gzip_bytes: ui.browse_gzip_bytes, retained_bytes: ui.bytes }, 'Browser projection report differs');
   let validUntil = Math.min(time(manifest.generated_at) + HOUR, ...current.catalog.sources.map(source => time(source.observed_at) + 7 * 24 * HOUR));
   const scratch = await mkdtemp(join(tmpdir(), 'aipoch-pages-verify-'));
   try {
@@ -136,7 +142,7 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
     assert.deepEqual(currentPolicy.snapshots.map(row => [row.snapshot_id, row.status]), policy.snapshots.map(row => [row.snapshot_id, row.status]), 'Historical permissions or claims expired since candidate generation');
     const available = policy.snapshots.filter(row => row.status === 'available').map(row => row.snapshot_id).sort();
     const routes = await json(directory, 'routes.json') as { paths: string[] };
-    const expectedFiles = new Set(['index.html', '404.html', '.nojekyll', 'routes.json', 'robots.txt', 'sitemap.xml', 'build-report.json', 'build-info.json', 'third-party-notices.txt', 'assets/open-science-product-notice.txt', 'internal/catalog.json', 'internal/search.json', 'catalog/v1/manifest.json', 'catalog/v1/history.json', ...routes.paths.map(path => `${path.slice(1)}index.html`)]);
+    const expectedFiles = new Set(['index.html', '404.html', '.nojekyll', 'routes.json', 'robots.txt', 'sitemap.xml', 'build-report.json', 'build-info.json', 'third-party-notices.txt', 'assets/open-science-product-notice.txt', 'internal/catalog.json', 'internal/search.json', 'catalog/v1/manifest.json', 'catalog/v1/history.json', ...routes.paths.map(path => `${path.slice(1)}index.html`), ...ui.files, ...siteAssets.files.keys()]);
     for (const part of manifest.taxonomies ?? []) {
       const path = `catalog/v1/${part.href}`, file = tree.manifest.files.find(file => file.path === path);
       assert(file && file.bytes === part.bytes && file.sha256 === part.sha256, 'Current taxonomy bytes differ from manifest');
@@ -160,7 +166,7 @@ export async function verifyPagesCandidate(directory: string, selection: PagesSe
         const file = path ? `${path}/${entry.name}` : entry.name;
         assert(!entry.isSymbolicLink(), 'Symlink in publishable output');
         if (entry.isDirectory()) await visit(file);
-        else assert(entry.isFile() && (expectedFiles.has(file) || /^assets\/[a-zA-Z0-9_.-]+\.(?:js|css|woff2?|svg|png|webp|jpe?g|ico)$/.test(file)), 'Unexpected file would be published');
+        else assert(entry.isFile() && (expectedFiles.has(file) || /^assets\/[a-zA-Z0-9_.-]+\.(?:woff2?|svg|png|webp|jpe?g|ico)$/.test(file)), 'Unexpected file would be published');
       }
     }
     await visit();

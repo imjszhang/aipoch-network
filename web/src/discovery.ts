@@ -1,5 +1,5 @@
 import { ford, researchTags, fieldMatches, knownTags } from '../../spec/classification.js';
-import type { Actor, CatalogData, CatalogDate, MetricObservation, Observation, SourceRepository } from '../../spec/types.js';
+import type { Actor, CatalogData, CatalogDate, MetricObservation, Observation, Organization, SourceRepository } from '../../spec/types.js';
 import type { Entry } from './model.js';
 
 export const DAY = 86_400_000;
@@ -95,12 +95,39 @@ export function metricValue(metric: MetricObservation | undefined, referenceTime
   const status = freshness(metric?.observed_at, referenceTime);
   return metric?.value !== undefined && Number.isSafeInteger(metric.value) && metric.value >= 0 && (status === 'fresh' || includeStale && status === 'stale') ? metric.value : undefined;
 }
-export function actorFor(entry: Entry, catalog: CatalogData): Actor | undefined { return entry.kind === 'actor' ? entry : entry.kind === 'organization' ? catalog.actors.find(row => row.id === entry.actor_id) : undefined; }
+interface CatalogIndex {
+  sourceRows: CatalogData['sources']; actorRows: CatalogData['actors']; organizationRows: CatalogData['organizations'];
+  sourceCount: number; actorCount: number; organizationCount: number;
+  sources: Map<string, SourceRepository>; actors: Map<string, Actor>; organizations: Map<string, Organization>;
+}
+const catalogIndexes = new WeakMap<CatalogData, CatalogIndex>();
+/** Published catalog objects are immutable snapshots. Array replacement/append also invalidates local fixture indexes. */
+function indexFor(catalog: CatalogData): CatalogIndex {
+  const cached = catalogIndexes.get(catalog);
+  if (cached && cached.sourceRows === catalog.sources && cached.actorRows === catalog.actors && cached.organizationRows === catalog.organizations
+    && cached.sourceCount === catalog.sources.length && cached.actorCount === catalog.actors.length && cached.organizationCount === catalog.organizations.length) return cached;
+  const index: CatalogIndex = { sourceRows: catalog.sources, actorRows: catalog.actors, organizationRows: catalog.organizations,
+    sourceCount: catalog.sources.length, actorCount: catalog.actors.length, organizationCount: catalog.organizations.length,
+    sources: new Map(catalog.sources.map(row => [row.id,row])), actors: new Map(catalog.actors.map(row => [row.id,row])), organizations: new Map(catalog.organizations.map(row => [row.id,row])) };
+  catalogIndexes.set(catalog,index); return index;
+}
+const membershipIndexes = new WeakMap<Organization, { rows: string[]; count: number; ids: Set<string> }>();
+function organizationHasSource(organization: Organization | undefined, id: string): boolean {
+  if (!organization) return false;
+  let cached = membershipIndexes.get(organization);
+  if (!cached || cached.rows !== organization.source_ids || cached.count !== organization.source_ids.length) {
+    cached = { rows: organization.source_ids, count: organization.source_ids.length, ids: new Set(organization.source_ids) };
+    membershipIndexes.set(organization,cached);
+  }
+  return cached.ids.has(id);
+}
+export function actorFor(entry: Entry, catalog: CatalogData): Actor | undefined { return entry.kind === 'actor' ? entry : entry.kind === 'organization' ? indexFor(catalog).actors.get(entry.actor_id) : undefined; }
 export function eligibleSources(entry: Entry, catalog: CatalogData, includeAllReferences = false): SourceRepository[] {
   if (entry.kind === 'source_repository') return [entry];
   if (entry.kind !== 'project' && entry.kind !== 'resource') return [];
   const ids = new Set(entry.source_refs.filter(ref => includeAllReferences || ref.role === 'primary' || ref.role === 'implementation').map(ref => ref.source_id));
-  return catalog.sources.filter(source => ids.has(source.id)).sort((a,b) => a.id.localeCompare(b.id));
+  const sources = indexFor(catalog).sources;
+  return [...ids].map(id => sources.get(id)).filter((source): source is SourceRepository => Boolean(source)).sort((a,b) => a.id.localeCompare(b.id));
 }
 function dayRange(value: string | undefined, params: URLSearchParams, prefix: string): boolean {
   if (!params.has(`${prefix}_after`) && !params.has(`${prefix}_before`)) return true;
@@ -121,7 +148,7 @@ export function matchingSources(entry: Entry, catalog: CatalogData, filters: Dis
   const { params, referenceTime, includeStale } = filters;
   return eligibleSources(entry,catalog,includeAllReferences).filter(source => {
     const organization = params.get('organization');
-    if (organization && !catalog.organizations.find(row => row.id === organization)?.source_ids.includes(source.id)) return false;
+    if (organization && !organizationHasSource(indexFor(catalog).organizations.get(organization),source.id)) return false;
     const access = params.get('access');
     if (access === 'pinned' || access === 'unpinned') {
       if (entry.kind !== 'project' && entry.kind !== 'resource') return false;
@@ -158,9 +185,41 @@ export function matchesDiscovery(entry: Entry, catalog: CatalogData, filters: Di
   if (params.has('observation')) return actor ? observationStatus(actor.observation,referenceTime) === params.get('observation') : matchingSources(entry,catalog,filters).length > 0;
   return true;
 }
+function rankedRepresentative(entry: Entry, catalog: CatalogData, filters: DiscoveryFilters): { source: SourceRepository; value: number | undefined } | undefined {
+  let best: { source: SourceRepository; value: number | undefined } | undefined;
+  for (const source of matchingSources(entry,catalog,filters)) {
+    const commit = filters.sort === 'source_activity' ? sourceCommit(source,filters.referenceTime) : undefined;
+    const value = filters.sort === 'source_activity' ? commit ? Date.parse(commit) : undefined : metricValue(source.github_metrics?.stars,filters.referenceTime,filters.includeStale);
+    if (!best || (compareOptional(value,best.value) || source.id.localeCompare(best.source.id)) < 0) best = { source, value };
+  }
+  return best;
+}
 export function representativeSource(entry: Entry, catalog: CatalogData, filters: DiscoveryFilters): SourceRepository | undefined {
-  const sources = matchingSources(entry,catalog,filters), value = (source: SourceRepository) => filters.sort === 'source_activity' ? sourceCommit(source,filters.referenceTime) ? Date.parse(sourceCommit(source,filters.referenceTime)!) : undefined : metricValue(source.github_metrics?.stars,filters.referenceTime,filters.includeStale);
-  return sources.sort((a,b) => compareOptional(value(a),value(b)) || a.id.localeCompare(b.id))[0];
+  return rankedRepresentative(entry,catalog,filters)?.source;
+}
+/** A comparator belongs to one filter/search round: each row's expensive ranking facts are derived once. */
+export function makeDiscoveryComparator(catalog: CatalogData, filters: DiscoveryFilters, matches?: Map<string,number>): (a: Entry,b: Entry) => number {
+  const keys = new WeakMap<Entry, { tier: number; value?: number; text?: string }>();
+  const { sort, referenceTime, includeStale } = filters;
+  const key = (entry: Entry) => {
+    const cached = keys.get(entry); if (cached) return cached;
+    let result: { tier: number; value?: number; text?: string };
+    if (sort === 'added' || sort === 'catalog_updated') {
+      const date = entry.catalog_dates?.[sort === 'added' ? 'first_published' : 'content_updated'];
+      result = { tier: date?.value && date.basis === 'exact' ? 0 : date?.value && date.basis === 'observed_bound' ? 1 : 2, value: date?.value ? Date.parse(date.value) : undefined };
+    } else if (sort === 'stars' || sort === 'source_activity') result = { tier: 0, value: rankedRepresentative(entry,catalog,filters)?.value };
+    else if (sort === 'followers') result = { tier: 0, value: metricValue(actorFor(entry,catalog)?.github_metrics?.followers,referenceTime,includeStale) };
+    else if (sort === 'updated') result = { tier: 0, text: entry.updated_at };
+    else if (sort === 'title' || !matches) result = { tier: 0, text: entry.title };
+    else result = { tier: 0, value: matches.get(entry.id) ?? Infinity };
+    keys.set(entry,result); return result;
+  };
+  return (a,b) => {
+    const left = key(a), right = key(b);
+    const rank = left.tier - right.tier || (left.text !== undefined && right.text !== undefined ? sort === 'updated' ? right.text.localeCompare(left.text) : left.text.localeCompare(right.text)
+      : sort === 'relevance' && matches ? left.value! - right.value! : compareOptional(left.value,right.value));
+    return rank || a.id.localeCompare(b.id);
+  };
 }
 function compareOptional(a: number | undefined, b: number | undefined) { return a === undefined ? b === undefined ? 0 : 1 : b === undefined ? -1 : b - a; }
 export function compareDiscovery(a: Entry, b: Entry, catalog: CatalogData, filters: DiscoveryFilters, matches?: Map<string,number>): number {

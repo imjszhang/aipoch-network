@@ -10,6 +10,7 @@ import { normalize, type SnapshotBatch } from './normalize.js';
 import type { Registry } from './registry.js';
 import { stableJson, sha256 } from './json.js';
 import { retainHistory } from './history.js';
+import { createUiArtifact, retainUiHistory, writeUiArtifact, MAX_UI_HISTORY_BYTES } from './browser-projection.js';
 import { applyCatalogDates, type PublicationLedger } from './catalog-dates.js';
 export { stableJson, sha256 } from './json.js';
 export const MAX_SHARD_BYTES = 4_000_000;
@@ -76,11 +77,18 @@ export async function generate(registry: Registry, batch: SnapshotBatch, destina
     await mkdir(join(staging, 'internal'), { recursive: true });
     await writeFile(join(staging, 'internal/catalog.json'), stableJson({ snapshot_id, generated_at: result.generated_at, catalog: webCatalog }));
     await writeFile(join(staging, 'internal/search.json'), stableJson({ snapshot_id, index: makeSearchIndex(documents).toJSON() }));
+    const ui = createUiArtifact(webCatalog, snapshot_id, result.generated_at);
+    const retainedUi = await retainUiHistory(options.historyDirectory ?? destination, staging, history);
+    const uiPrefix = ui.reference.href.slice(0, -'manifest.json'.length);
+    const newUiBytes = [...ui.files].reduce((sum, [name, bytes]) => sum + (retainedUi.files.includes(uiPrefix + name) ? 0 : bytes.length), 0);
+    if (retainedUi.bytes + newUiBytes > MAX_UI_HISTORY_BYTES) throw new Error('Browser projection history exceeds 32 MiB; review retention explicitly');
+    await writeUiArtifact(staging, ui);
     await writeFile(join(staging, 'build-report.json'), stableJson({ snapshot_id, generated_at: result.generated_at, candidate_kind: options.candidateKind ?? 'offline', diagnostics: result.diagnostics.map(item => ({
       id: /^https?:/i.test(item.id) ? `candidate:${sha256(item.id).slice(0, 24)}` : item.id,
       message: item.message,
     })),
       counts: Object.fromEntries(COLLECTION_NAMES.map(name => [name, result.catalog[name].length])), inputs_sha256: sha256(stableJson({ registry, batch })),
+      ui: { ...ui.reference, browse_gzip_bytes: ui.browse_gzip_bytes, retained_bytes: retainedUi.bytes + newUiBytes },
       publication_ledger_sha256: options.publicationLedger ? sha256(stableJson(options.publicationLedger)) : null,
       history_sha256: sha256(stableJson(history)), history: { available: history.snapshots.filter(item => item.status === 'available').length, retired: history.snapshots.filter(item => item.status !== 'available').length } }));
     // Swap only after every shard validates; an interrupted build cannot replace the last good output.

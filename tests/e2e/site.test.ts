@@ -102,7 +102,7 @@ test('keyboard navigation and search failure remain usable', async ({ page }) =>
   await page.goto('./');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
-  await page.route('**/internal/search.json', route => route.abort());
+  await page.route(/\/internal\/(?:ui\/v1\/[^/]+\/[^/]+\/)?search\.json$/, route => route.abort());
   await page.goto('./explore/');
   await expect(page.getByRole('status').filter({ hasText: 'Search is unavailable' })).toContainText('Search is unavailable');
   await expect(page.locator('.results-list > *').first()).toBeVisible();
@@ -221,6 +221,7 @@ test('robots and sitemap are official-origin artifacts and omit pagination', asy
   expect(robotsBody).toContain('Allow: /');
   expect(sitemapBody).toContain('<urlset');
   expect(sitemapBody).not.toContain('/page/');
+  expect(sitemapBody).not.toContain('/browse/');
   expect(sitemapBody).not.toContain('?q=');
   const root = new URL(testInfo.project.use.baseURL!).pathname === '/';
   if (root) {

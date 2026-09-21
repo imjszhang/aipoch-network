@@ -103,6 +103,30 @@ async function sendScipyReference(page: Page) {
   await panel(page).getByRole('button', { name: 'Send reference', exact: true }).click();
 }
 
+test('a real session survives immediate navigation while its full catalog is still loading', async ({ page }) => {
+  const state = await bridge(page);
+  state.approved = true;
+  let release!: () => void, documentRequests = 0;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  page.on('request', request => { if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documentRequests++; });
+  await page.route('**/internal/catalog.json', async route => { const response = await route.fetch(); await gate; await route.fulfill({ response }); });
+  await page.goto('./join/');
+  const requested = page.waitForRequest('**/internal/catalog.json');
+  await header(page).click();
+  await panel(page).getByRole('button', { name: 'Connect Open-Science', exact: true }).click();
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  await requested;
+  await panel(page).getByRole('link', { name: 'Your research home', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Loading catalog data to keep your current workbench session' })).toBeVisible();
+  await expect(page).toHaveURL(/\/join\/$/);
+  release();
+  await expect(page.getByRole('heading', { name: 'Welcome back', exact: true })).toBeVisible();
+  await expect(header(page)).toHaveAccessibleName('Open-Science — Connected');
+  expect(documentRequests).toBe(1);
+  expect(state.pairingRequests).toHaveLength(1);
+  expect(state.references).toHaveLength(0);
+});
+
 test('pairing approval preserves the original object and exact review; disconnect keeps browser data', async ({ page, request }) => {
   expect(await (await request.get('./build-info.json')).json()).toMatchObject({ workbench_mode: 'real', real_connector: true, connector_protocol: '1.0' });
   const state = await bridge(page);

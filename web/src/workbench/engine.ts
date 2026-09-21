@@ -41,24 +41,37 @@ export class WorkbenchEngine {
   private lastFocusRestore = -Infinity;
   private memoryAction = 0;
   private forgetting = false;
+  private catalogUnavailable = false;
   constructor(private data: SiteData, private catalogReady: boolean, readonly adapter: WorkbenchAdapter, private library: LibraryStore, private timeouts: { connect: number; send: number; pairing?: number } = { connect: 8000, send: 15000, pairing: 180000 }, private now = () => Date.now()) {
     this.state = { connection: 'disconnected', reason: '', session: null, attempt: null, pairing: null, memory: adapter.getMemory?.() ?? emptyMemory, selected: null, resolution: null, referenceStatus: 'selected', approval: null, request: null, receipts: [], replacement: null, overlay: null, library: library.value, storageWarning: library.warning, notice: '' };
-    if (library.value.selection) this.state = { ...this.state, selected: library.value.selection.id, resolution: resolveReference(data, library.value.selection.id, catalogReady) };
+    if (library.value.selection) this.state = { ...this.state, selected: library.value.selection.id, resolution: this.resolve(library.value.selection.id) };
   }
   getSnapshot = () => this.state;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => this.listeners.delete(listener); };
   private set(change: Partial<WorkbenchState>) { if (this.disposed) return; this.state = { ...this.state, ...change }; this.listeners.forEach(listener => listener()); }
   private refreshLibrary() { this.set({ library: this.library.value, storageWarning: this.library.warning }); }
+  private resolve(id: string): ReferenceResolution {
+    if (this.catalogUnavailable) return { status: 'withdrawn', message: 'This page snapshot is no longer available. Refresh the page before reviewing or sending a research reference. Your selection is kept.' };
+    return resolveReference(this.data, id, this.catalogReady);
+  }
+  /** Terminal for this page session, including complete embedded subgraphs. */
+  retireCatalog() {
+    if (this.catalogUnavailable) return;
+    this.catalogUnavailable = true;
+    const hadRequest = Boolean(this.state.request);
+    this.endSend();
+    this.set({ resolution: this.state.selected ? this.resolve(this.state.selected) : null, approval: null, request: null, referenceStatus: 'needs-review', notice: `This page snapshot is no longer available. Refresh to check the current catalog.${hadRequest ? ` ${stopped}` : ''}` });
+  }
   hydrateLibrary(library: LibraryStore) {
     this.library = library;
     const id = library.value.selection?.id ?? this.state.selected;
-    this.set({ library: library.value, storageWarning: library.warning, selected: id, resolution: id ? resolveReference(this.data, id, this.catalogReady) : null });
+    this.set({ library: library.value, storageWarning: library.warning, selected: id, resolution: id ? this.resolve(id) : null });
   }
   storageEvent(raw: string | null) { this.library.receive(raw); this.refreshLibrary(); }
   updateData(data: SiteData, ready: boolean) {
     this.data = data; this.catalogReady = ready;
     if (!this.state.selected) return;
-    const resolution = resolveReference(data, this.state.selected, ready);
+    const resolution = this.resolve(this.state.selected);
     const previous = this.state.resolution;
     if (JSON.stringify(resolution) === JSON.stringify(previous)) return;
     this.endSend();
@@ -158,7 +171,7 @@ export class WorkbenchEngine {
     this.checkSession();
     this.replacementReturnTo = null;
     this.library.update({ selection: { id, returnTo } });
-    this.set({ selected: id, resolution: resolveReference(this.data, id, this.catalogReady), approval: null, referenceStatus: 'selected', request: null, replacement: null, overlay: this.isConnected() ? 'review' : 'connection', notice: '', library: this.library.value, storageWarning: this.library.warning });
+    this.set({ selected: id, resolution: this.resolve(id), approval: null, referenceStatus: 'selected', request: null, replacement: null, overlay: this.isConnected() ? 'review' : 'connection', notice: '', library: this.library.value, storageWarning: this.library.warning });
   }
   replace = () => {
     const replacement = this.state.replacement;
@@ -246,6 +259,7 @@ export class WorkbenchEngine {
     }
   };
   approve = (checked: boolean) => {
+    if (this.catalogUnavailable) return;
     const resolution = this.state.resolution;
     if (this.state.request) return;
     if (!checked) { this.set({ approval: null, referenceStatus: 'reviewing' }); return; }
@@ -253,6 +267,7 @@ export class WorkbenchEngine {
     this.set({ approval: { sessionId: this.state.session!.id, content: resolution.content }, referenceStatus: 'ready' });
   };
   send = () => {
+    if (this.catalogUnavailable) return;
     if (this.state.request || !this.checkSession()) return;
     const { resolution, approval, session } = this.state;
     if (resolution?.status !== 'ready' || !approval || !session || approval.sessionId !== session.id || approval.content !== resolution.content) return;

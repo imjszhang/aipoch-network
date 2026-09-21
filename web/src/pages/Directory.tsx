@@ -2,12 +2,13 @@ import { ford, researchTags, fieldMatches } from '../../../spec/classification.j
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, Search, SlidersHorizontal, X } from 'lucide-react';
 import MiniSearch from 'minisearch';
-import { searchOptions, type SearchDocument } from '../search.js';
+import { type SearchDocument } from '../search.js';
+import { BrowserDataError, loadSearchIndex } from '../browser-data-loader.js';
 import { allEntries, displayDate, relatedEntriesFor, routeFor, type Entry, type SiteData } from '../model.js';
 import { Link, useNavigation } from '../navigation.js';
 import { ArrowLink, PageHeader, ProjectRows, CapabilityCard, OrganizationCard } from '../catalog-components.js';
 import { EntryFacts, useObservationTime } from '../catalog-observations.js';
-import { changeDiscovery, compareDiscovery, discoveryKeys, isAccountKind, isRepositoryKind, matchesDiscovery, parseDiscovery, presetDates, sorts } from '../discovery.js';
+import { changeDiscovery, makeDiscoveryComparator, discoveryKeys, isAccountKind, isRepositoryKind, matchesDiscovery, parseDiscovery, presetDates, sorts } from '../discovery.js';
 import { DIRECTORY_LABELS, PAGE_SIZE, directoryHref, parseDirectoryPath, sectionForKind } from '../directory-routes.js';
 
 const sections: Record<string, { title: string; description: string; tab: string }> = {
@@ -28,12 +29,14 @@ const accessOptions: Record<string, string> = {
 const filterLabels: Record<string,string> = { field: 'Research discipline', tag: 'Research tags', resource_type: 'Resource type', added_after:'Added from', added_before:'Added through', added_date:'Added date', updated_after:'Catalog updated from', updated_before:'Catalog updated through', updated_date:'Catalog update date', source_after:'Source commit from', source_before:'Source commit through', source_date:'Source commit date', min_stars:'Minimum stars', min_forks:'Minimum forks', min_followers:'Minimum followers', observation:'Observation', include_stale_metrics:'Allow stale metrics' };
 type FilterChanges = Record<string, string>;
 
-export function Directory({ data, kind, base }: { data: SiteData; kind: string; base: string }) {
+export function Directory({ data, kind, base, browseState = 'ready', browseError = '', retryBrowse = () => {}, onDataUnavailable }: { data: SiteData; kind: string; base: string; browseState?: 'loading' | 'ready' | 'failed'; browseError?: string; retryBrowse?: () => void; onDataUnavailable?(error: BrowserDataError): void }) {
   const { path, navigate } = useNavigation();
   const catalog = data.catalog;
   const config = sections[kind] ?? sections.all;
-  const [controlsReady, setControlsReady] = useState(false);
-  useEffect(() => setControlsReady(true), []);
+  const [interactive, setInteractive] = useState(false);
+  useEffect(() => setInteractive(true), []);
+  const controlsReady = interactive && browseState === 'ready';
+  const bootstrap = data.data_kind === 'page' ? data.directory_bootstrap : undefined;
   const params = useMemo(() => new URLSearchParams(path.split('?')[1] ?? ''), [path]);
   const query = params.get('q') ?? '';
   const domain = params.get('domain') ?? '';
@@ -48,7 +51,9 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   const repositoryControls = filter === 'all' || isRepositoryKind(filter);
   const accountControls = filter === 'all' || isAccountKind(filter);
   const entries = useMemo(() => allEntries(catalog), [catalog]);
-  const domains = useMemo(() => [...new Set([...catalog.projects, ...catalog.resources].flatMap(row => row.domains))].sort(), [catalog]);
+  const domains = useMemo(() => bootstrap?.domains ?? [...new Set([...catalog.projects, ...catalog.resources].flatMap(row => row.domains))].sort(), [catalog, bootstrap]);
+  const organizationOptions = bootstrap?.organizations ?? catalog.organizations;
+  const collectionOptions = bootstrap?.collections ?? catalog.collections;
   const organization = catalog.organizations.find(row => row.id === organizationId);
   const collection = catalog.collections.find(row => row.id === collectionId);
   const organizationMembers = useMemo(() => organizationId ? new Set(organization ? relatedEntriesFor(organization, catalog).map(row => row.id) : []) : undefined, [organizationId, organization, catalog]);
@@ -58,21 +63,18 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   const [searchState, setSearchState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [retry, setRetry] = useState(0);
   useEffect(() => {
-    let active = true;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15_000);
-    setSearchState('loading');
-    setIndex(undefined);
-    fetch(`${base}internal/search.json`, { signal: controller.signal }).then(response => {
-      if (!response.ok) throw new Error('Search index unavailable');
-      return response.json();
-    }).then(payload => {
-      if (payload.snapshot_id !== data.snapshot_id) throw new Error('Search snapshot changed');
-      const nextIndex = MiniSearch.loadJSON<SearchDocument>(JSON.stringify(payload.index), searchOptions);
-      if (active) { setIndex(nextIndex); setSearchState('ready'); }
-    }).catch(() => { if (active) setSearchState('failed'); }).finally(() => clearTimeout(timeout));
-    return () => { active = false; clearTimeout(timeout); controller.abort(); };
-  }, [base, data.snapshot_id, retry]);
+    setSearchState('loading'); setIndex(undefined);
+    if (!data.ui_manifest) { setSearchState('failed'); return; }
+    loadSearchIndex(base, data.ui_manifest, { signal: controller.signal }).then(nextIndex => {
+      if (!controller.signal.aborted) { setIndex(nextIndex); setSearchState('ready'); }
+    }).catch((error: unknown) => {
+      if (controller.signal.aborted) return;
+      setSearchState('failed');
+      if (error instanceof BrowserDataError && error.code === 'retired') onDataUnavailable?.(error);
+    });
+    return () => controller.abort();
+  }, [base, data.ui_manifest, retry, onDataUnavailable]);
 
   function update(next: FilterChanges, push = false) {
     const changed = changeDiscovery(params, next, kind);
@@ -83,6 +85,7 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
   const repair = () => update(Object.fromEntries(discovery.invalidKeys.map(key => [key, ''])));
   const matches = useMemo(() => query.trim() && index ? new Map(index.search(query).map((row, position) => [String(row.id), position])) : undefined, [query, index]);
   const results = useMemo(() => {
+    if (bootstrap) { const byId = new Map(entries.map(row => [row.id, row])); return bootstrap.ids.map(id => byId.get(id)).filter((row): row is Entry => Boolean(row)); }
     const filtered = entries.filter(entry =>
       (!organizationMembers || organizationMembers.has(entry.id)) &&
       (!collectionMembers || collectionMembers.has(entry.id)) &&
@@ -91,12 +94,13 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
       matchesDiscovery(entry, catalog, discovery) &&
       (!query.trim() || searchState !== 'ready' || matches?.has(entry.id)),
     );
-    return filtered.sort((a, b) => compareDiscovery(a,b,catalog,discovery,searchState === 'ready' ? matches : undefined));
-  }, [entries, organizationMembers, collectionMembers, filter, domain, access, query, searchState, matches, catalog, discovery]);
-  const pages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+    return filtered.sort(makeDiscoveryComparator(catalog,discovery,searchState === 'ready' ? matches : undefined));
+  }, [entries, organizationMembers, collectionMembers, filter, domain, access, query, searchState, matches, catalog, discovery, bootstrap]);
+  const resultCount = bootstrap?.total ?? results.length;
+  const pages = Math.max(1, Math.ceil(resultCount / PAGE_SIZE));
   const directoryRoute = parseDirectoryPath(path.split('?')[0] ?? '');
   const section = directoryRoute?.section ?? sectionForKind(kind);
-  const requestedPage = directoryRoute?.page ?? Number(params.get('page') ?? '1');
+  const requestedPage = bootstrap?.page ?? directoryRoute?.page ?? Number(params.get('page') ?? '1');
   const pageNumber = Math.min(pages, Math.max(1, Number.isFinite(requestedPage) ? Math.floor(requestedPage) : 1));
   const pageHref = (page: number) => directoryHref(section, page, params);
   // Render the clamped page immediately, then repair shared URLs without a navigation/focus reset.
@@ -135,8 +139,12 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     {(params.has(`${field}_after`) || params.has(`${field}_before`)) && <div className="directory-date-range"><label htmlFor={`${prefix}-${field}-after`}>{label}: from (UTC)</label><input id={`${prefix}-${field}-after`} disabled={!controlsReady} type="date" value={params.get(`${field}_after`) ?? ''} onChange={event => update({ [`${field}_after`]: event.target.value })}/><label htmlFor={`${prefix}-${field}-before`}>{label}: through (UTC)</label><input id={`${prefix}-${field}-before`} disabled={!controlsReady} type="date" value={params.get(`${field}_before`) ?? ''} onChange={event => update({ [`${field}_before`]: event.target.value })}/></div>}
   </>;
   const minimumControl = (prefix: string, key: string, label: string) => <><label htmlFor={`${prefix}-${key}`}>{label}</label><input id={`${prefix}-${key}`} disabled={!controlsReady} inputMode="numeric" type="text" placeholder="Any count" value={params.get(key) ?? ''} aria-invalid={discovery.invalidKeys.includes(key)} onChange={event => update({ [key]: event.target.value })}/></>;
-  const classificationRows = [...catalog.projects, ...catalog.resources].filter(row => filter === 'all' || row.kind === filter);
-  const fieldCount = (code: string) => new Set(classificationRows.filter(row => fieldMatches(row,code)).map(row => row.id)).size;
+  const fieldCounts = useMemo(() => {
+    if (bootstrap) return bootstrap.field_counts;
+    const rows = [...catalog.projects, ...catalog.resources].filter(row => filter === 'all' || row.kind === filter);
+    return Object.fromEntries([...ford.fields.map(field => field.code), 'unclassified', 'unrecorded'].map(code => [code, new Set(rows.filter(row => fieldMatches(row, code)).map(row => row.id)).size]));
+  }, [catalog, filter, bootstrap]);
+  const fieldCount = (code: string) => fieldCounts[code] ?? 0;
   const selectedValues = (key: string) => params.get(key)?.split(',') ?? [];
   const toggleValue = (key: string, value: string) => { const values = new Set(selectedValues(key)); values.has(value) ? values.delete(value) : values.add(value); update({ [key]: [...values].sort().join(',') }); };
   const taxonomyLabel = (key: string) => selectedValues(key).map(value => key === 'field' ? ford.fields.find(field => field.code === value)?.label_en ?? (value === 'unclassified' ? 'Awaiting classification' : value === 'unrecorded' ? 'Classification not recorded' : value) : key === 'tag' ? researchTags.tags.find(tag => tag.id === value)?.label_en ?? value : value).join(', ');
@@ -154,7 +162,7 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
       <div className="classification-chips">{selectedValues('tag').map(id => <button type="button" key={id} onClick={() => toggleValue('tag',id)} aria-label={`Remove tag ${id}`}>{researchTags.tags.find(tag => tag.id === id)?.label_en ?? id} ×</button>)}</div>
       <p className="filter-help">Choose one or more. Matches any selection within each group and all groups together. Discipline counts cover this directory before other filters.</p>
     </>}
-    {(filter === 'all' || filter === 'resource') && <><label htmlFor={`${prefix}-resource-type`}>Resource type</label><select id={`${prefix}-resource-type`} disabled={!controlsReady} value={params.get('resource_type') ?? ''} onChange={event => update({ resource_type: event.target.value })}><option value="">All resource types</option>{selectedValues('resource_type').length > 1 && <option value={params.get('resource_type')!}>{selectedValues('resource_type').join(', ')}</option>}{[...new Set(['tool','method','workflow','skill','dataset','model','reproduction','documentation','unknown',...catalog.resources.map(row => row.resource_type),...selectedValues('resource_type')])].sort().map(value => <option key={value} value={value}>{value}</option>)}</select></>}
+    {(filter === 'all' || filter === 'resource') && <><label htmlFor={`${prefix}-resource-type`}>Resource type</label><select id={`${prefix}-resource-type`} disabled={!controlsReady} value={params.get('resource_type') ?? ''} onChange={event => update({ resource_type: event.target.value })}><option value="">All resource types</option>{selectedValues('resource_type').length > 1 && <option value={params.get('resource_type')!}>{selectedValues('resource_type').join(', ')}</option>}{[...new Set(['tool','method','workflow','skill','dataset','model','reproduction','documentation','unknown',...(bootstrap?.resource_types ?? catalog.resources.map(row => row.resource_type)),...selectedValues('resource_type')])].sort().map(value => <option key={value} value={value}>{value}</option>)}</select></>}
 
     {(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-domain`}>Legacy research area</label>
     <select id={`${prefix}-domain`} disabled={!controlsReady} value={domain} onChange={event => update({ domain: event.target.value })}>
@@ -165,13 +173,13 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     </>}{(filter === 'all' || filter === 'project' || filter === 'resource') && <><label htmlFor={`${prefix}-organization`}>Organization</label>
     <select id={`${prefix}-organization`} disabled={!controlsReady} value={organizationId} onChange={event => update({ organization: event.target.value })}>
       <option value="">All organizations</option>
-      {catalog.organizations.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
+      {organizationOptions.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
       {organizationId && !organization && <option value={organizationId}>Unknown organization</option>}
     </select>
     </>}<label htmlFor={`${prefix}-collection`}>Collection</label>
     <select id={`${prefix}-collection`} disabled={!controlsReady} value={collectionId} onChange={event => update({ collection: event.target.value })}>
       <option value="">All collections</option>
-      {catalog.collections.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
+      {collectionOptions.map(row => <option key={row.id} value={row.id}>{row.title}</option>)}
       {collectionId && !collection && <option value={collectionId}>Unknown collection</option>}
     </select>
     {repositoryControls && <><label htmlFor={`${prefix}-access`}>Version &amp; conditions</label>
@@ -198,10 +206,10 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
     {discovery.errors.length > 0 && <div className="notice directory-filter-errors" role="alert"><b>Check this filter link</b><ul>{discovery.errors.map((error,index) => <li key={index}>{error}</li>)}</ul><button disabled={!controlsReady} className="text-button" onClick={repair}>Clear incompatible filters</button></div>}
   </>;
   const activeFilters = [domain, organizationId && (organization?.title ?? 'Unknown organization'), collectionId && (collection?.title ?? 'Unknown collection'), access && (accessOptions[access] ?? 'Unknown status'), ...discoveryKeys.filter(key => key !== 'sort' && params.has(key)).map(key => `${filterLabels[key]}: ${key === 'include_stale_metrics' ? 'yes' : ['field','tag','resource_type'].includes(key) ? taxonomyLabel(key) : params.get(key)}`)].filter(Boolean);
-  const hasSearchResults = Boolean(query.trim()) && searchState === 'ready';
+  const hasSearchResults = !bootstrap && Boolean(query.trim()) && searchState === 'ready';
   return <>
     <div className="directory-page-heading"><PageHeader title={config.title} description={config.description} action={<ArrowLink to="/submit/" primary>Share research</ArrowLink>}/></div>
-    <main className={`wrap directory directory-v9 ${kind}-directory`}>
+    <main className={`wrap directory directory-v9 ${kind}-directory`} data-browse-ready={controlsReady} data-search-ready={searchState === 'ready'}>
       <form className="search-box directory-search" role="search" onSubmit={event => event.preventDefault()}>
         <Search size={21}/>
         <input disabled={!controlsReady} type="search" aria-label="Search directory" placeholder="Search the network…" value={query} onChange={event => update({ q: event.target.value })}/>
@@ -214,12 +222,15 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
         </> : <><span className="active">{config.title}</span><Link to="/explore/">All of the network <ArrowUpRight size={14}/></Link></>}
       </nav>
       <noscript><p className="notice">Search and filters require JavaScript. The entries below and their detail links remain readable.</p></noscript>
+      {directoryRoute?.browse && <p className="directory-observation"><Link to={`/${section}/`}>Browse the unfiltered directory</Link></p>}
+      {interactive && browseState === 'loading' && <p className="notice" role="status">Loading catalog controls… The entries below remain readable.</p>}
+      {browseState === 'failed' && <section className="notice" role="status"><h2>Catalog controls unavailable</h2><p>{browseError} The static entries and links remain readable.</p><button onClick={retryBrowse}>Retry catalog</button> <button onClick={() => location.reload()}>Refresh page</button></section>}
       <div className="directory-columns">
         <aside className="panel directory-filters desktop-filters" aria-label="Directory filters"><h3>Refine results</h3>{filterContent('desktop')}</aside>
         <div className="directory-results">
           {discoveryFeedback()}
           <div className="results-heading">
-            <h2 aria-label={`${hasSearchResults ? 'Search results' : config.title} (${results.length})`}><b>{results.length}</b> {hasSearchResults ? 'matching entries' : 'entries'} <span>· {filter === 'all' ? 'All types' : sections[filter]?.tab ?? 'Unknown type'}</span></h2>
+            <h2 aria-label={`${hasSearchResults ? 'Search results' : config.title} (${resultCount})`}><b>{resultCount}</b> {hasSearchResults ? 'matching entries' : 'entries'} <span>· {filter === 'all' ? 'All types' : sections[filter]?.tab ?? 'Unknown type'}</span></h2>
             <div className="directory-result-controls">
               <button className="mobile-filter-toggle" disabled={!controlsReady} onClick={() => setFiltersOpen(true)}><SlidersHorizontal size={15}/>Filters</button>
               <select disabled={!controlsReady} aria-label="Sort results" value={sort} onChange={event => update({ sort: event.target.value })}>
@@ -230,9 +241,9 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
           {activeFilters.length > 0 && <div className="directory-active-filters" aria-label="Active filters">{activeFilters.map((label, i) => <span className="badge" key={`${i}-${label}`}>{label}</span>)}<button className="text-button" disabled={!controlsReady} onClick={reset}>Clear all</button></div>}
           {searchState === 'loading' && query.trim() && <p className="directory-search-status" role="status">Loading search index… You can browse the directory while it loads.</p>}
           {searchState === 'failed' && <div className="notice" role="status">Search is unavailable. You can still browse the directory.<button disabled={!controlsReady} className="text-button" onClick={() => setRetry(value => value + 1)}>Retry search</button></div>}
-          {!discovery.errors.length && !results.length && (searchState !== 'loading' || !query.trim()) && <div className="empty panel"><Search size={28}/><h3>No matching entries</h3><p>Try a different phrase or clear the filters.</p><button disabled={!controlsReady} onClick={reset}>Clear filters</button></div>}
+          {!bootstrap && browseState === 'ready' && !discovery.errors.length && !results.length && (searchState !== 'loading' || !query.trim()) && <div className="empty panel"><Search size={28}/><h3>No matching entries</h3><p>Try a different phrase or clear the filters.</p><button disabled={!controlsReady} onClick={reset}>Clear filters</button></div>}
           <div className="results-list">
-            {results.slice((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE).map(entry => entry.kind === 'project' ? <ProjectRows key={entry.id} projects={[entry]} catalog={catalog} filters={discovery}/> : entry.kind === 'resource' ? <CapabilityCard key={entry.id} resource={entry} catalog={catalog} filters={discovery}/> : entry.kind === 'organization' ? <OrganizationCard key={entry.id} organization={entry} catalog={catalog} filters={discovery}/> : <Link to={routeFor(entry)} className="panel simple-card" key={entry.id}><p className="eyebrow">{entry.kind === 'collection' ? 'Collection' : entry.kind === 'actor' ? 'GitHub profile' : 'GitHub source'}</p><h3>{entry.title}<ArrowUpRight size={17}/></h3><p>{entry.description ?? 'Description not supplied.'}</p><EntryFacts entry={entry} catalog={catalog} filters={discovery}/></Link>)}
+            {(bootstrap ? results : results.slice((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE)).map(entry => entry.kind === 'project' ? <ProjectRows key={entry.id} projects={[entry]} catalog={catalog} filters={discovery}/> : entry.kind === 'resource' ? <CapabilityCard key={entry.id} resource={entry} catalog={catalog} filters={discovery}/> : entry.kind === 'organization' ? <OrganizationCard key={entry.id} organization={entry} catalog={catalog} filters={discovery}/> : <Link to={routeFor(entry)} className="panel simple-card" key={entry.id}><p className="eyebrow">{entry.kind === 'collection' ? 'Collection' : entry.kind === 'actor' ? 'GitHub profile' : 'GitHub source'}</p><h3>{entry.title}<ArrowUpRight size={17}/></h3><p>{entry.description ?? 'Description not supplied.'}</p><EntryFacts entry={entry} catalog={catalog} filters={discovery}/></Link>)}
           </div>
           {pages > 1 && <nav className="pagination" aria-label="Results pages">{pageNumber === 1 ? <button disabled>Previous</button> : <Link className="button" to={pageHref(pageNumber - 1)}>Previous</Link>}<span>Page {pageNumber} of {pages}</span>{pageNumber === pages ? <button disabled>Next</button> : <Link className="button" to={pageHref(pageNumber + 1)}>Next</Link>}</nav>}
           <p className="directory-observation">Catalog snapshot {displayDate(data.generated_at)}. Date ranges use UTC. Filters use the captured page time; results can change with a new catalog snapshot. Research stays at its original source.</p>
@@ -251,7 +262,7 @@ export function Directory({ data, kind, base }: { data: SiteData; kind: string; 
         <p id="directory-filter-description">Narrow the directory by research area, catalog dates, GitHub metrics, or source conditions.</p>
         {discoveryFeedback()}
         <div className="directory-filters mobile-filters">{filterContent('mobile')}</div>
-        <button className="primary directory-show-results" onClick={closeFilters}>Show {results.length} entries</button>
+        <button className="primary directory-show-results" onClick={closeFilters}>Show {resultCount} entries</button>
       </div>
     </dialog>}
   </>;

@@ -20,10 +20,14 @@ type WorkbenchContextValue = {
 const WorkbenchContext = createContext<WorkbenchContextValue | null>(null);
 export function useWorkbench() { const value = useContext(WorkbenchContext); if (!value) throw new Error('WorkbenchProvider is required'); return value; }
 const libraryKey = () => `aipoch-network.browser-library.v1.${DEMO_MODE ? 'demo' : 'public'}`;
-const createEngine = (data: SiteData, catalogReady: boolean, review = false) => new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : WORKBENCH_MODE === 'real' ? new RealAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()), { connect: 8000, pairing: 180000, send: WORKBENCH_MODE === 'real' ? REAL_REFERENCE_WAIT_MS : 15000 });
+const createEngine = (data: SiteData, catalogReady: boolean, review = false, catalogUnavailable = false) => {
+  const engine = new WorkbenchEngine(data, catalogReady, DEMO_MODE ? new DemoAdapter() : WORKBENCH_MODE === 'real' ? new RealAdapter() : new UnavailableAdapter(), new LibraryStore(review ? 'aipoch-network.review.temporary' : libraryKey()), { connect: 8000, pairing: 180000, send: WORKBENCH_MODE === 'real' ? REAL_REFERENCE_WAIT_MS : 15000 });
+  if (catalogUnavailable) engine.retireCatalog();
+  return engine;
+};
 
-export function WorkbenchProvider({ data, catalogReady, children }: { data: SiteData; catalogReady: boolean; children: ReactNode }) {
-  const [ordinary] = useState(() => createEngine(data, catalogReady));
+export function WorkbenchProvider({ data, catalogReady, catalogUnavailable = false, children }: { data: SiteData; catalogReady: boolean; catalogUnavailable?: boolean; children: ReactNode }) {
+  const [ordinary] = useState(() => createEngine(data, catalogReady, false, catalogUnavailable));
   const [engine, setEngine] = useState(ordinary);
   const activeRef = useRef(engine); activeRef.current = engine;
   const state = useSyncExternalStore(engine.subscribe, engine.getSnapshot, engine.getSnapshot);
@@ -40,10 +44,13 @@ export function WorkbenchProvider({ data, catalogReady, children }: { data: Site
     const interval = setInterval(check, 1000);
     return () => { clearInterval(interval); window.removeEventListener('storage', onStorage); window.removeEventListener('focus', onFocus); ordinary.dispose(); if (activeRef.current !== ordinary) activeRef.current.dispose(); };
   }, [ordinary]);
-  useEffect(() => { ordinary.updateData(data, catalogReady); if (engine !== ordinary) engine.updateData(data, catalogReady); }, [data, catalogReady, ordinary, engine]);
-  const enterReview = useCallback(() => { if (!DEMO_MODE || activeRef.current !== ordinary) return; ordinary.suspend(); setEngine(createEngine(data, catalogReady, true)); }, [ordinary, data, catalogReady]);
+  useEffect(() => {
+    if (catalogUnavailable) { ordinary.retireCatalog(); if (engine !== ordinary) engine.retireCatalog(); }
+    ordinary.updateData(data, catalogReady); if (engine !== ordinary) engine.updateData(data, catalogReady);
+  }, [data, catalogReady, catalogUnavailable, ordinary, engine]);
+  const enterReview = useCallback(() => { if (!DEMO_MODE || activeRef.current !== ordinary) return; ordinary.suspend(); setEngine(createEngine(data, catalogReady, true, catalogUnavailable)); }, [ordinary, data, catalogReady, catalogUnavailable]);
   const exitReview = useCallback(() => { if (activeRef.current === ordinary) return; activeRef.current.dispose(); ordinary.checkSession(); setEngine(ordinary); }, [ordinary]);
-  const resetReview = useCallback(() => { if (activeRef.current === ordinary || !DEMO_MODE) return; activeRef.current.dispose(); setEngine(createEngine(data, catalogReady, true)); }, [ordinary, data, catalogReady]);
+  const resetReview = useCallback(() => { if (activeRef.current === ordinary || !DEMO_MODE) return; activeRef.current.dispose(); setEngine(createEngine(data, catalogReady, true, catalogUnavailable)); }, [ordinary, data, catalogReady, catalogUnavailable]);
   const recordView = useCallback((entry: Entry) => engine.recordView(entry), [engine]);
   const value = { engine, state, data, catalogReady, connected: engine.isConnected(), demo: DEMO_MODE, review, recordView, enterReview, exitReview, resetReview };
   return <WorkbenchContext.Provider value={value}>
