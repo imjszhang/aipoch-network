@@ -1,0 +1,135 @@
+{
+  "source_commit": "412465ecc26db03c4910fe0804d93d7611570afa",
+  "base_commit": "3e5ecea40a8af2c31ea09c90763877790bddf03e",
+  "node": "v24.18.1",
+  "unit": {
+    "command": "npm run typecheck && npm test",
+    "passed": 516,
+    "failed": 0
+  },
+  "matrix": [
+    {
+      "mode": "public-root",
+      "startTime": "2026-09-21T06:04:16.047Z",
+      "duration": 29614.033,
+      "expected": 142,
+      "skipped": 86,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Complete browser suite; unrelated modes skipped"
+    },
+    {
+      "mode": "public-subpath",
+      "startTime": "2026-09-21T06:06:13.189Z",
+      "duration": 34316.728,
+      "expected": 142,
+      "skipped": 86,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Complete browser suite; unrelated modes skipped"
+    },
+    {
+      "mode": "demo-root",
+      "startTime": "2026-09-21T06:06:13.183Z",
+      "duration": 64652.483,
+      "expected": 166,
+      "skipped": 62,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Complete browser suite; unrelated modes skipped"
+    },
+    {
+      "mode": "demo-subpath",
+      "startTime": "2026-09-21T06:06:13.194Z",
+      "duration": 64440.632000000005,
+      "expected": 166,
+      "skipped": 62,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Complete browser suite; unrelated modes skipped"
+    },
+    {
+      "mode": "real-root",
+      "startTime": "2026-09-21T06:06:39.269Z",
+      "duration": 84662.462,
+      "expected": 57,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Protocol fixtures and persistent-session browser tests; no live client required"
+    },
+    {
+      "mode": "real-subpath",
+      "startTime": "2026-09-21T06:07:09.536Z",
+      "duration": 83711.218,
+      "expected": 57,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0,
+      "scope": "Protocol fixtures and persistent-session browser tests; no live client required"
+    }
+  ],
+  "static_discovery": {
+    "pages": 1125,
+    "sitemap_urls": 896,
+    "reachable_details": 886
+  },
+  "local_candidate": {
+    "source_commit": "412465ecc26db03c4910fe0804d93d7611570afa",
+    "scope": "Local offline verification build; not a trusted publishable refresh candidate",
+    "file_tree_sha256": "sha256:09248a641c3bc775afed77c810e31059f9d9efaf75bf5ec8b84e4aab8c3defc5",
+    "files": 1166,
+    "bytes": 54384547,
+    "snapshot_id": "092b80db747a0e458b0d076a",
+    "base": "/",
+    "workbench_mode": "unavailable"
+  },
+  "publication": {
+    "merged": false,
+    "trusted_refresh": false,
+    "deployed": false,
+    "production_verified": false
+  },
+  "recorded_at": "2026-09-21T06:13:00.344Z",
+  "performance": {
+    "evidence": "performance.json",
+    "gates": {
+      "sample_count": true,
+      "readiness": true,
+      "ready_sort": true,
+      "no_full_catalog_request": true,
+      "homepage_text_unchanged": true
+    },
+    "projection_bytes": {
+      "browse_decoded_bytes": 978968,
+      "browse_local_gzip_bytes": 98581,
+      "full_decoded_bytes": 2784673,
+      "full_local_gzip_bytes": 240328,
+      "generated_at": "2026-09-19T11:44:27.932Z",
+      "observed_at": "2026-09-21T05:32:35.121Z",
+      "projection_hash": "76c6ff071f92df1a0cd4550469238226c42f8e32be0f887f6b8a34c35bf58dd8",
+      "projects": 226,
+      "resources": 227,
+      "search_decoded_bytes": 306324,
+      "search_local_gzip_bytes": 63693,
+      "snapshot_id": "ed9456e59610b3cefd59c7bd",
+      "source_sha256": "fa94928d9e28f56019e5f9d45cea5ab2db5c93e1315b9016b78e00eaf0b586be",
+      "source_url": "https://aipoch.network/internal/catalog.json"
+    },
+    "homepage_visual_comparison": {
+      "dimensions_before": [
+        1082,
+        17574
+      ],
+      "dimensions_after": [
+        1082,
+        17574
+      ],
+      "identical_pixels": true,
+      "different_pixels": 0,
+      "diff_bbox": null,
+      "before_sha256": "b793d6c4c6ec5da758b459af0204740ee05fbac6a09a22dff48faab8694388a6",
+      "after_sha256": "b793d6c4c6ec5da758b459af0204740ee05fbac6a09a22dff48faab8694388a6"
+    }
+  }
+}
