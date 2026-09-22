@@ -1180,6 +1180,43 @@
         "license": {
           "$ref": "#/$defs/license"
         },
+        "audience": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "getting_started": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "\\S"
+              },
+              "url": {
+                "type": "string",
+                "format": "safe-https-url",
+                "maxLength": 4096
+              }
+            },
+            "required": [
+              "text",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
         "documentation_url": {
           "type": "string",
           "format": "safe-https-url",

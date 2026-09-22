@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { normalize, type SnapshotBatch } from '../normalize.js';
 import type { SourceSnapshot } from '../github.js';
 import type { Registry } from '../registry.js';
-import { applyRegistryEnhancement } from '../registry.js';
+import { applyRegistryEnhancement, validateRegistry } from '../registry.js';
 import { validateCatalog } from '../../spec/index.js';
 import type { Actor, Claim } from '../../spec/types.js';
 
@@ -609,4 +609,45 @@ test('unregistered references and invalid batch dates are rejected before normal
   assert.throws(() => normalize(registry, { ...batch, as_of: 'not-a-date' }), /Invalid snapshot batch time/);
   registry.resources[0]!.sources.push('https://github.com/other/unreviewed');
   assert.throws(() => normalize(registry, batch), /Unregistered source/);
+});
+
+test('reviewed usage survives source refresh without promoting source or community authority', () => {
+  const { registry, batch } = fixture();
+  const usage = registry.resources[0];
+  usage.audience = ['Researchers preparing cohorts'];
+  usage.getting_started = [{ text: 'Prepare a cohort', url: 'https://example.org/guide' }];
+  usage.content_provenance = Object.fromEntries(['audience','getting_started','description'].map(field => [field, [{ role: 'editor' as const, url: 'https://example.org/guide', observed_at: NOW, review: 'reviewed' as const, scope: `${field}: reviewed document, no execution` }]]));
+  assert.deepEqual(validateRegistry(registry), []);
+  const before = normalize(registry, batch).catalog;
+  batch.as_of = '2026-09-13T08:00:00.000Z';
+  batch.sources[0].repository!.description = 'Changed upstream summary';
+  const after = normalize(registry, batch).catalog;
+  assert.equal(after.resources.find(row => row.id === 'resource:workflow')!.description, usage.description);
+  assert.deepEqual(after.resources.find(row => row.id === 'resource:workflow')!.getting_started, usage.getting_started);
+  assert.deepEqual(after.resources.find(row => row.id === 'resource:workflow')!.provenance.audience, before.resources.find(row => row.id === 'resource:workflow')!.provenance.audience);
+  assert.deepEqual(validateCatalog(after).errors, []);
+  assert.equal(after.claims.length, 0);
+  const missing = structuredClone(registry); delete missing.resources[0].content_provenance;
+  assert.ok(validateRegistry(missing).some(message => message.includes('requires content evidence')));
+  for (const url of ['javascript:alert(1)', 'https://user:secret@example.org/guide']) {
+    const unsafe = structuredClone(registry); unsafe.resources[0].getting_started![0].url = url;
+    assert.ok(validateRegistry(unsafe).length);
+    const invalidPublic = structuredClone(after); invalidPublic.resources.find(row => row.id === 'resource:workflow')!.getting_started![0].url = url;
+    assert.ok(validateCatalog(invalidPublic).errors.length);
+  }
+  const mismatch = structuredClone(registry); delete mismatch.resources[0].description;
+  assert.ok(validateRegistry(mismatch).some(message => message.includes('explicit description')));
+  for (const audience of [[], ['   '], ['x'.repeat(2001)], Array(21).fill('Researcher')]) {
+    const invalid = structuredClone(registry); invalid.resources[0].audience = audience;
+    assert.ok(validateRegistry(invalid).length);
+    const publicInvalid = structuredClone(after); publicInvalid.resources.find(row => row.id === 'resource:workflow')!.audience = audience;
+    assert.ok(validateCatalog(publicInvalid).errors.length);
+  }
+  const noPublicEvidence = structuredClone(after); delete noPublicEvidence.resources.find(row => row.id === 'resource:workflow')!.provenance.audience;
+  assert.ok(validateCatalog(noPublicEvidence).errors.some(message => message.includes('audience must have provenance')));
+  const communityResource = structuredClone(usage); communityResource.key = 'community-guide';
+  const merged = applyRegistryEnhancement(registry, { version: 1, source_url: A, reviewed_at: NOW, review_note: 'Synthetic contribution', resources: [communityResource] });
+  assert.equal(merged.applied, true);
+  const community = normalize(merged.registry, batch).catalog.resources.find(row => row.id === 'resource:community-guide')!;
+  assert.equal(community.provenance.audience[0].role, 'community');
 });

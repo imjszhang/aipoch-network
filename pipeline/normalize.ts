@@ -133,11 +133,12 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     catalog.resources.push({ kind: 'resource', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
       ...classificationValues(entry), resource_type: entry.type, domains: entry.domains, source_refs, project_ids: [], license,
       ...(documentation_url ? { documentation_url } : {}), ...(entry.download_url ? { download_url: entry.download_url } : {}),
+      ...(entry.audience ? { audience: structuredClone(entry.audience) } : {}), ...(entry.getting_started ? { getting_started: structuredClone(entry.getting_started) } : {}),
       ...(entry.inputs ? { inputs: entry.inputs } : {}), ...(entry.outputs ? { outputs: entry.outputs } : {}),
       ...(entry.conditions ? { conditions: entry.conditions } : {}), runtime: entry.runtime ? structuredClone(entry.runtime) : { status: 'not_described' },
       provenance: { ...classificationEvidence(entry), title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), resource_type: editor(source_refs, entry.attribution), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution),
         ...(entry.inputs ? { inputs: editor(source_refs, entry.attribution) } : {}), ...(entry.outputs ? { outputs: editor(source_refs, entry.attribution) } : {}), ...(entry.conditions ? { conditions: editor(source_refs, entry.attribution) } : {}), ...(entry.runtime ? { runtime: editor(source_refs, entry.attribution) } : {}),
-        ...(entry.download_url ? { download_url: editor(source_refs, entry.attribution) } : {}), ...(entry.documentation_url ? { documentation_url: editor(source_refs, entry.attribution) } : {}), ...(!fixed ? { license: first.provenance.license } : {}) } });
+        ...(entry.download_url ? { download_url: editor(source_refs, entry.attribution) } : {}), ...(entry.documentation_url ? { documentation_url: editor(source_refs, entry.attribution) } : {}), ...(!fixed ? { license: first.provenance.license } : {}), ...structuredClone(entry.content_provenance ?? {}) } });
   }
   for (const entry of registry.projects) {
     const id = entityId('project', entry.key);
@@ -147,7 +148,7 @@ export function normalize(registry: Registry, batch: SnapshotBatch): NormalizedC
     const first = catalog.sources.find(source => source.id === source_refs[0].source_id)!;
     const description = entry.description ?? (!entry.source_refs?.some(ref => ref.commit) ? first.description : undefined);
     catalog.projects.push({ kind: 'project', id, title: entry.title, ...(description ? { description } : {}), status: 'listed', updated_at: at,
-      ...classificationValues(entry), domains: entry.domains, source_refs, resource_ids, provenance: { ...classificationEvidence(entry), title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution) } });
+      ...classificationValues(entry), domains: entry.domains, source_refs, resource_ids, provenance: { ...classificationEvidence(entry), title: editor(source_refs, entry.attribution), ...(description ? { description: entry.description ? editor(source_refs, entry.attribution) : first.provenance.description ?? editor(source_refs, entry.attribution) } : {}), domains: editor(source_refs, entry.attribution), source_refs: referenceProvenance(source_refs, entry.source_refs, entry.attribution), ...structuredClone(entry.content_provenance ?? {}) } });
     for (const resource of catalog.resources) if (resource_ids.includes(resource.id)) resource.project_ids.push(id);
   }
   for (const actor of catalog.actors.filter(actor => actor.account_type === 'organization')) {

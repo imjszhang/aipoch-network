@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-09-22T07:52:17.099Z",
+  "checks": 483,
+  "projects": 12,
+  "details": 24,
+  "unchanged_entities_preserved": true,
+  "scope": "Bounded registry diff and raw static target HTML; not production validation"
+}

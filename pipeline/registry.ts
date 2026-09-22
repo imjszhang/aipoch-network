@@ -11,9 +11,9 @@ import type { Actor, Claim, Relation, Resource, ResourceType, SourceRef } from '
 export interface RegistrySource { url: string; reviewed_at: string; review_note: string }
 export interface RegistrySourceRef extends Omit<SourceRef, 'source_id' | 'url'> { source_url: string; source_id?: string }
 export interface RegistryAttribution { role: 'editor' | 'community'; url: string; observed_at: string }
-export interface RegistryClassification extends ResearchClassification { classification_provenance?: Provenance[]; research_tags_provenance?: Provenance[] }
+export interface RegistryClassification extends ResearchClassification { content_provenance?: Partial<Record<'description' | 'audience' | 'getting_started' | 'inputs' | 'outputs' | 'conditions' | 'documentation_url', Provenance[]>>; classification_provenance?: Provenance[]; research_tags_provenance?: Provenance[] }
 export interface RegistryProject extends RegistryClassification { key: string; title: string; description?: string; domains: string[]; sources: string[]; resources: string[]; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
-export interface RegistryResource extends RegistryClassification { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; download_url?: string; inputs?: string[]; outputs?: string[]; conditions?: string[]; runtime?: Resource['runtime']; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
+export interface RegistryResource extends RegistryClassification { key: string; title: string; description?: string; type: ResourceType; domains: string[]; sources: string[]; documentation_url?: string; download_url?: string; audience?: string[]; getting_started?: Resource['getting_started']; inputs?: string[]; outputs?: string[]; conditions?: string[]; runtime?: Resource['runtime']; source_refs?: RegistrySourceRef[]; attribution?: RegistryAttribution }
 export interface RegistryCollection { key: string; title: string; description?: string; selection_basis: string; item_ids: string[] }
 export interface Registry {
   version: 1;
@@ -39,8 +39,9 @@ const object = (properties: Record<string, unknown>, required = Object.keys(prop
 const metadata = { key, title: text(300), description: text(20000) };
 const declaredRef = object({ source_url: sourceUrl, source_id: { type: 'string', pattern: '^source:github:[1-9][0-9]*$' }, role: { enum: ['primary', 'documentation', 'implementation', 'data', 'evidence', 'related'] }, path: { type: 'string', format: 'safe-repository-path' }, commit: { type: 'string', pattern: FULL_COMMIT_PATTERN }, ref: text(500), sha256: { type: 'string', pattern: SHA256_PATTERN }, resolved_at: date }, ['source_url', 'role']);
 const attributed = { ...classificationProperties, classification_provenance: array({ $ref: '#/$defs/provenance' }, 1, 100), research_tags_provenance: array({ $ref: '#/$defs/provenance' }, 1, 100), source_refs: array(declaredRef, 1, 100), attribution: object({ role: { enum: ['editor', 'community'] }, url: safeUrl, observed_at: date }) };
-const projectSchema = object({ ...metadata, ...attributed, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources']);
-const resourceSchema = object({ ...metadata, ...attributed, type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, download_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100), conditions: array(text(2000), 0, 100), runtime: object({ status: { enum: ['not_described', 'maintainer_described', 'community_described'] }, documentation_url: safeUrl }, ['status']) }, ['key', 'title', 'type', 'domains', 'sources']);
+const contentEvidence = (fields: string[]) => object(Object.fromEntries(fields.map(field => [field, array({ $ref: '#/$defs/provenance' }, 1, 20)])), []);
+const projectSchema = object({ ...metadata, ...attributed, content_provenance: contentEvidence(['description']), domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), resources: array(key, 0, 10000) }, ['key', 'title', 'domains', 'sources', 'resources']);
+const resourceSchema = object({ ...metadata, ...attributed, content_provenance: contentEvidence(['description','audience','getting_started','inputs','outputs','conditions','documentation_url']), audience: array(text(2000), 1, 20), getting_started: array(object({ text: text(2000), url: safeUrl }), 1, 10), type: { type: 'string', pattern: '^[a-z][a-z0-9_-]{0,99}$' }, domains: array(text(100), 0, 100), sources: array(sourceUrl, 1, 100), documentation_url: safeUrl, download_url: safeUrl, inputs: array(text(2000), 0, 100), outputs: array(text(2000), 0, 100), conditions: array(text(2000), 0, 100), runtime: object({ status: { enum: ['not_described', 'maintainer_described', 'community_described'] }, documentation_url: safeUrl }, ['status']) }, ['key', 'title', 'type', 'domains', 'sources']);
 const strictClaim = { ...structuredClone(definitions.claim), additionalProperties: false };
 // Generated publication dates and public API observations never come from curation input.
 const strictActor = { ...structuredClone(definitions.actor), properties: Object.fromEntries(Object.entries(definitions.actor.properties).filter(([key]) => !['catalog_dates', 'github_metrics', 'observation'].includes(key))), additionalProperties: false };
@@ -155,6 +156,11 @@ export function validateRegistry(input: unknown): string[] {
       ids.add(recordId);
       if (kind === 'resource' && 'runtime' in record && record.runtime && record.runtime.status !== 'not_described' && !record.runtime.documentation_url) errors.push(`Described resource runtime requires a public documentation URL: ${recordId}`);
       if ('sources' in record) {
+        for (const [field, evidence] of Object.entries(record.content_provenance ?? {})) {
+          if (!(field in record)) errors.push(`${recordId}: content evidence requires an explicit ${field} value`);
+          for (const item of evidence ?? []) if (item.review !== 'reviewed' || !['editor','community'].includes(item.role) || !item.scope) errors.push(`${recordId}: content evidence must be reviewed editorial evidence with a scope`);
+        }
+        if ('type' in record) for (const field of ['audience','getting_started'] as const) if (record[field] && !record.content_provenance?.[field]?.length) errors.push(`${recordId}: ${field} requires content evidence`);
         const draft = { ...(record.classification ? { classification: record.classification } : {}), ...(record.research_tags ? { research_tags: record.research_tags } : {}) };
         errors.push(...validateClassificationDraft(draft, ford, researchTags).errors.map(error => `${recordId}: ${error}`));
         for (const field of ['classification', 'research_tags'] as const) {
@@ -329,8 +335,8 @@ export function applyRegistryEnhancement(registry: Registry, input: unknown): { 
   const attribution: RegistryAttribution = { role: 'community', url: canonical, observed_at: input.reviewed_at };
   const candidate: Registry = {
     ...structuredClone(registry),
-    projects: [...registry.projects.map(record => structuredClone(record)), ...(input.projects ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution } }))],
-    resources: [...registry.resources.map(record => structuredClone(record)), ...(input.resources ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution }, ...(record.runtime ? { runtime: { ...structuredClone(record.runtime), status: record.runtime.status === 'not_described' ? 'not_described' as const : 'community_described' as const } } : {}) }))],
+    projects: [...registry.projects.map(record => structuredClone(record)), ...(input.projects ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution }, ...(record.content_provenance ? { content_provenance: Object.fromEntries(Object.entries(record.content_provenance).map(([field, items]) => [field, items!.map(item => ({ ...item, role: 'community' as const }))])) } : {}) }))],
+    resources: [...registry.resources.map(record => structuredClone(record)), ...(input.resources ?? []).map(record => ({ ...structuredClone(record), attribution: { ...attribution }, ...(record.content_provenance ? { content_provenance: Object.fromEntries(Object.entries(record.content_provenance).map(([field, items]) => [field, items!.map(item => ({ ...item, role: 'community' as const }))])) } : {}), ...(record.runtime ? { runtime: { ...structuredClone(record.runtime), status: record.runtime.status === 'not_described' ? 'not_described' as const : 'community_described' as const } } : {}) }))],
     ...(input.relations ? { relations: [...(registry.relations ?? []).map(record => structuredClone(record)), ...input.relations.map(record => ({ ...structuredClone(record), evidence: record.evidence.map(item => ({ ...structuredClone(item), role: 'community' as const })) }))] } : {}),
   };
   const errors = validateRegistry(candidate);

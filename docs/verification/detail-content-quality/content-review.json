@@ -1,0 +1,378 @@
+{
+  "reviewed_at": "2026-09-22T07:49:05.497Z",
+  "upstream_execution": false,
+  "records": [
+    {
+      "project_id": "project:anndata",
+      "resource_id": "resource:anndata-library",
+      "source_url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee",
+      "field_support": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 0,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:psychojs",
+      "resource_id": "resource:psychojs-tool",
+      "source_url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling master README retrieved 2026-09-22",
+      "field_support": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:anastruct",
+      "resource_id": "resource:anastruct-tool",
+      "source_url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin",
+      "field_support": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 2,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:xarray",
+      "resource_id": "resource:xarray-library",
+      "source_url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Pinned README 8de862c29544c2fb1957ce20985745952bc81de7",
+      "field_support": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 0,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:spglib",
+      "resource_id": "resource:spglib-tool",
+      "source_url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling stable documentation, v2.7.0",
+      "field_support": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:astropy",
+      "resource_id": "resource:astropy-library",
+      "source_url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling stable documentation, v8.0.1",
+      "field_support": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 0,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:biopython",
+      "resource_id": "resource:biopython-library",
+      "source_url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling latest tutorial, Biopython 1.88",
+      "field_support": "Quick Start sequence parsing examples; broader scope supported by Tutorial index.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 0,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:cantera",
+      "resource_id": "resource:cantera-tool",
+      "source_url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling stable documentation, Cantera 3.2.0",
+      "field_support": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:cltk",
+      "resource_id": "resource:cltk-tool",
+      "source_url": "https://docs.cltk.org/quickstart/",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling Quickstart, requirements observed 2026-09-22",
+      "field_support": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:deepchem",
+      "resource_id": "resource:deepchem-tool",
+      "source_url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling latest tutorials, 2.8.1.dev",
+      "field_support": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:aquacrop",
+      "resource_id": "resource:aquacrop-tool",
+      "source_url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Pinned README 36cc20e44644ed1704398889312435c85e04a2f3",
+      "field_support": "Pinned README example, About limitations and Quickstart.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 3,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    },
+    {
+      "project_id": "project:rpact",
+      "resource_id": "resource:rpact-tool",
+      "source_url": "https://www.rpact.org/",
+      "observed_at": "2026-09-22T07:49:05.497Z",
+      "version": "Rolling official overview; catalog implementation remains a separate pinned development revision",
+      "field_support": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry.",
+      "fields": [
+        "description",
+        "audience",
+        "inputs",
+        "outputs",
+        "conditions",
+        "getting_started",
+        "documentation_url"
+      ],
+      "review": "reviewed",
+      "reviewer_role": "Codex editorial review against retrieved primary documentation",
+      "limitations": [
+        "Audience is editorial suitability guidance, not maintainer endorsement.",
+        "No upstream execution or scientific validation.",
+        "Rolling documentation does not establish compatibility with the separately pinned implementation."
+      ],
+      "retained_conditions": 2,
+      "source_license": "Original paraphrase; no copied tutorial, code or image; existing software license fields unchanged.",
+      "recheck_on": [
+        "Documentation version or source change",
+        "Correction or dispute",
+        "90-day evidence review"
+      ]
+    }
+  ]
+}

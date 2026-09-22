@@ -51,7 +51,7 @@ test('project and capability have distinct static deep links, provenance and unk
   await expect(page.getByRole('heading', { name: 'Biopython', exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Sources & versions', exact: true })).toBeVisible();
-  await expect(page.getByText('From the source repository', { exact: true })).toBeVisible();
+  await expect(page.getByText('Catalog editorial description', { exact: true })).toBeVisible();
   await expect(page.locator('.source-record')).toContainText('Unknown — check the source terms');
   await page.goto('./capabilities/resource~biopython-library/');
   await expect(page.getByRole('heading', { name: 'Inputs', exact: true })).toBeVisible();
