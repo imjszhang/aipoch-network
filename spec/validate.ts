@@ -133,6 +133,7 @@ export function validateCatalog(input: unknown): ValidationResult {
     refs(resource.source_refs, `${resource.id}.source_refs`);
     for (const id of resource.project_ids) requireRef(id, ['project'], `${resource.id}.project_ids`);
     license(resource.license, `${resource.id}.license`);
+    for (const field of ['audience','getting_started'] as const) if (resource[field] && !resource.provenance[field]?.length) errors.push(`${resource.id}: ${field} must have provenance`);
     if (resource.runtime.status !== 'not_described' && !resource.runtime.documentation_url) errors.push(`${resource.id}: described runtime requires documentation evidence`);
   }
   for (const collection of data.collections) {

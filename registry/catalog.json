@@ -1346,7 +1346,20 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Biopython offers Python components for computational biology, including sequence representations and interfaces to biological file formats and databases. Its tutorial provides entry points into these separate capabilities.",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ]
+      }
     },
     {
       "key": "snakemake",
@@ -1664,7 +1677,20 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Xarray adds dimension names, coordinates and metadata to NumPy-like arrays. Its domain-independent data model supports labelled multidimensional analysis and integrates with netCDF and Dask.",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "Project overview: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ]
+      }
     },
     {
       "key": "scanpy",
@@ -1800,7 +1826,20 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "AnnData provides a Python data container for annotated matrices, keeping observations, variables and associated metadata together for downstream research workflows.",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ]
+      }
     },
     {
       "key": "astropy",
@@ -1853,7 +1892,20 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Astropy supplies shared Python infrastructure for astronomy. Its subpackages cover units, coordinates, time, tables and astronomical file handling within a wider community ecosystem.",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ]
+      }
     },
     {
       "key": "nilearn",
@@ -2303,7 +2355,7 @@
       "sources": [
         "https://github.com/rpact-com/rpact"
       ],
-      "description": "Design, simulate, and analyze confirmatory clinical trials with an R package supporting sample-size, power, and adaptive-design calculations.",
+      "description": "rpact is an R package for confirmatory clinical-trial design, simulation and analysis. Its workflow connects design assumptions, sample-size calculations and staged data analysis.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
@@ -2349,7 +2401,19 @@
           "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
           "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "Project overview: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ]
+      }
     },
     {
       "key": "gtreg",
@@ -2423,7 +2487,7 @@
       "sources": [
         "https://github.com/anastruct/anaStruct"
       ],
-      "description": "Analyze two-dimensional frames and trusses with a Python library for internal forces and displacements.",
+      "description": "anaStruct is a Python structural-analysis project for two-dimensional models. Its SystemElements interface brings elements, stiffness, supports and loads into one model for inspecting forces and displacements.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
@@ -2466,7 +2530,19 @@
           "scope": "Reviewed method/task tags; independent of discipline and upstream GitHub topics.",
           "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ]
+      }
     },
     {
       "key": "onsas",
@@ -2597,7 +2673,7 @@
       "sources": [
         "https://github.com/Cantera/cantera"
       ],
-      "description": "Compute chemical kinetics, thermodynamic properties and transport processes, including reactor and flame simulations with user-selected mechanisms.",
+      "description": "Cantera provides interfaces for chemical thermodynamics and reaction calculations. Its Python user guide connects phase definitions and thermodynamic states with properties used in reacting-system studies.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/Cantera/cantera/blob/61433163abe81711a09cabebefff4a7002bd6d37/README.rst",
@@ -2623,7 +2699,19 @@
           "path": "README.rst",
           "commit": "61433163abe81711a09cabebefff4a7002bd6d37"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ]
+      }
     },
     {
       "key": "cltk",
@@ -2637,7 +2725,7 @@
       "sources": [
         "https://github.com/cltk/cltk"
       ],
-      "description": "Analyze classical and premodern language texts with configurable pipelines for linguistic annotation. Language models and optional services have separate requirements.",
+      "description": "The Classical Language Toolkit provides Python natural-language processing for premodern languages. Configurable backends connect language-specific models with text annotation pipelines.",
       "attribution": {
         "role": "editor",
         "url": "https://docs.cltk.org/",
@@ -2662,7 +2750,19 @@
           "path": "README.md",
           "commit": "33e1653331fc2499e3f2f5da45237d87db0313cc"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "Project overview: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ]
+      }
     },
     {
       "key": "cogstack-nlp",
@@ -2756,7 +2856,7 @@
       "sources": [
         "https://github.com/deepchem/deepchem"
       ],
-      "description": "Build molecular machine-learning workflows with task-specific data processing, model training and prediction tools.",
+      "description": "DeepChem is a scientific machine-learning library with utilities for datasets, feature processing, splitting and model evaluation. Molecular learning is one documented application within its broader scientific scope.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/deepchem/deepchem/blob/455d07f3e17e880a4d980b5b0365e4a02b417e14/README.md",
@@ -2781,7 +2881,19 @@
           "path": "README.md",
           "commit": "455d07f3e17e880a4d980b5b0365e4a02b417e14"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ]
+      }
     },
     {
       "key": "dolfinx",
@@ -3971,7 +4083,7 @@
       "sources": [
         "https://github.com/psychopy/psychojs"
       ],
-      "description": "Implement browser-based psychology and psychophysics experiments with a JavaScript runtime for stimulus presentation and response recording.",
+      "description": "PsychoJS is the browser counterpart of PsychoPy. It connects experiment authoring in Builder or JavaScript with browser-based stimulus presentation and response collection.",
       "attribution": {
         "role": "editor",
         "url": "https://psychopy.org/online/",
@@ -3996,7 +4108,19 @@
           "path": "README.md",
           "commit": "075160256e8ffcdcc7d2f350e96cfbffbdf4f358"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "Project overview: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ]
+      }
     },
     {
       "key": "psychopy",
@@ -6859,7 +6983,7 @@
       "sources": [
         "https://github.com/spglib/spglib"
       ],
-      "description": "Identify crystal symmetry operations and space groups from lattice and atomic-position data.",
+      "description": "spglib provides crystal-symmetry routines with a Python interface. It supports symmetry searches and cell standardization from lattice geometry and atomic positions.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/spglib/spglib/blob/a6b561fb60cdd021a1ac90852c3c2ae14405b2c8/README.md",
@@ -6884,7 +7008,19 @@
           "path": "README.md",
           "commit": "a6b561fb60cdd021a1ac90852c3c2ae14405b2c8"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "Project overview: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ]
+      }
     },
     {
       "key": "dscribe",
@@ -8460,7 +8596,7 @@
       "sources": [
         "https://github.com/aquacropos/aquacrop"
       ],
-      "description": "Simulate crop growth, soil water and irrigation strategies with AquaCrop-OSPy.",
+      "description": "AquaCrop-OSPy is a Python crop-water modelling project based on AquaCrop-OS. It provides examples for crop simulations and irrigation studies, while remaining separate from the official FAO implementation.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
@@ -8485,7 +8621,19 @@
           "path": "README.md",
           "commit": "36cc20e44644ed1704398889312435c85e04a2f3"
         }
-      ]
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "Project overview: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ]
+      }
     },
     {
       "key": "atomman",
@@ -10608,7 +10756,103 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Read biological sequence files into Biopython records and inspect their sequences and annotations.",
+      "audience": [
+        "Researchers comfortable with Python who need to process biological sequence records."
+      ],
+      "inputs": [
+        "Sequence files such as FASTA or GenBank, with the format specified."
+      ],
+      "outputs": [
+        "Sequence records exposing identifiers, sequences and available annotations."
+      ],
+      "conditions": [
+        "Available annotations depend on the input format; choose a parser matching the file."
+      ],
+      "getting_started": [
+        {
+          "text": "Follow Quick Start to parse a small sequence file.",
+          "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html"
+        },
+        {
+          "text": "Continue to sequence input/output documentation for supported formats and writing records.",
+          "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html"
+        }
+      ],
+      "documentation_url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "description: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "audience: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling latest tutorial, Biopython 1.88. Not execution or scientific validation.",
+            "method": "Quick Start sequence parsing examples; broader scope supported by Tutorial index."
+          }
+        ]
+      }
     },
     {
       "key": "snakemake-workflows",
@@ -10914,7 +11158,103 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Select, align and aggregate multidimensional arrays by coordinate labels and dimension names with Xarray.",
+      "audience": [
+        "Python researchers whose multidimensional measurements need meaningful coordinate labels."
+      ],
+      "inputs": [
+        "NumPy-like arrays with dimension names, coordinates and optional metadata."
+      ],
+      "outputs": [
+        "Labelled arrays and datasets produced by selection, alignment or aggregation."
+      ],
+      "conditions": [
+        "Coordinate labels affect alignment; inspect missing values when joining datasets."
+      ],
+      "getting_started": [
+        {
+          "text": "Identify dimensions and coordinates using the README examples.",
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md"
+        },
+        {
+          "text": "Follow the linked official documentation for your analysis and storage workflow.",
+          "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md"
+        }
+      ],
+      "documentation_url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "description: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "audience: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "inputs: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "outputs: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "conditions: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "getting_started: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/pydata/xarray/blob/8de862c29544c2fb1957ce20985745952bc81de7/README.md",
+            "scope": "documentation_url: editorial summary of public documentation. Pinned README 8de862c29544c2fb1957ce20985745952bc81de7. Not execution or scientific validation.",
+            "method": "Pinned README: introduction, Why xarray, Documentation; missing values explicitly discussed in alignment example."
+          }
+        ]
+      }
     },
     {
       "key": "scanpy-library",
@@ -11021,7 +11361,103 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Organize, subset and save a data matrix together with aligned observation and variable annotations using AnnData.",
+      "audience": [
+        "Python researchers managing matrix-shaped data, including cell-by-gene measurements."
+      ],
+      "inputs": [
+        "A dense or sparse observation-by-variable matrix and aligned metadata."
+      ],
+      "outputs": [
+        "AnnData objects, annotated subsets, and saved h5ad or Zarr data."
+      ],
+      "conditions": [
+        "Keep annotations aligned with matrix axes; review views and copies before modifying subsets."
+      ],
+      "getting_started": [
+        {
+          "text": "Create an AnnData object from a matrix.",
+          "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html"
+        },
+        {
+          "text": "Add aligned annotations, then subset and save using the tutorial.",
+          "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html"
+        }
+      ],
+      "documentation_url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "description: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "audience: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling stable documentation, 0.13.3.post0 header; not a pinned implementation guarantee. Not execution or scientific validation.",
+            "method": "Tutorial sections: Initializing AnnData, Adding aligned metadata, Writing results to disk, Views and copies."
+          }
+        ]
+      }
     },
     {
       "key": "astropy-library",
@@ -11072,7 +11508,103 @@
           "scope": "Editorial method/task/topic tags for this entry; not a discipline or a maintainer endorsement.",
           "method": "F2 per-entry editorial review, 2026-09-16; pinned source evidence."
         }
-      ]
+      ],
+      "description": "Use Astropy subpackages to work with astronomical quantities, coordinates, times and data files in Python.",
+      "audience": [
+        "Astronomy researchers using Python and needing common data representations."
+      ],
+      "inputs": [
+        "Quantities, coordinate or time values, or files appropriate to the chosen subpackage."
+      ],
+      "outputs": [
+        "Converted quantities, coordinate/time objects or loaded tables and images, depending on the task."
+      ],
+      "conditions": [
+        "Inputs and conventions are subpackage-specific; consult that subpackage's documentation."
+      ],
+      "getting_started": [
+        {
+          "text": "Select the subpackage matching your task in the getting-started guide.",
+          "url": "https://docs.astropy.org/en/stable/importing_astropy.html"
+        },
+        {
+          "text": "Follow its linked introduction before adapting the example to your data.",
+          "url": "https://docs.astropy.org/en/stable/importing_astropy.html"
+        }
+      ],
+      "documentation_url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "description: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "audience: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.astropy.org/en/stable/importing_astropy.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling stable documentation, v8.0.1. Not execution or scientific validation.",
+            "method": "Importing astropy and Sub-packages, linked subpackage introductions; project scope also supported by official documentation index."
+          }
+        ]
+      }
     },
     {
       "key": "nilearn-library",
@@ -11568,7 +12100,7 @@
       "sources": [
         "https://github.com/rpact-com/rpact"
       ],
-      "description": "Design, simulate, and analyze confirmatory clinical trials with an R package supporting sample-size, power, and adaptive-design calculations.",
+      "description": "Specify a trial design and explore sample size, power or design characteristics with rpact in R.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
@@ -11615,7 +12147,7 @@
           "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
         }
       ],
-      "documentation_url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+      "documentation_url": "https://www.rpact.org/",
       "source_refs": [
         {
           "source_url": "https://github.com/rpact-com/rpact",
@@ -11627,11 +12159,111 @@
       ],
       "conditions": [
         "Reviewed development DESCRIPTION version 4.5.0.9317; this pinned commit is not a stable release. License declared LGPL-3 in DESCRIPTION; GitHub automatic license metadata is unknown.",
-        "Source documentation and licensing were reviewed; installation, scientific results and regulatory suitability were not validated."
+        "Source documentation and licensing were reviewed; installation, scientific results and regulatory suitability were not validated.",
+        "The catalog pin is a development revision, not a stable release; consult matching documentation.",
+        "AIPOCH has not validated clinical results or regulatory suitability."
       ],
       "runtime": {
         "status": "maintainer_described",
         "documentation_url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md"
+      },
+      "audience": [
+        "Trial statisticians able to assess endpoint and design assumptions."
+      ],
+      "inputs": [
+        "Design parameters, endpoint assumptions and, for analysis, a suitable trial dataset."
+      ],
+      "outputs": [
+        "Design summaries, power or sample-size calculations, simulation or analysis results."
+      ],
+      "getting_started": [
+        {
+          "text": "Start with the official design example and inspect its assumptions.",
+          "url": "https://www.rpact.org/"
+        },
+        {
+          "text": "Choose the endpoint-specific sample-size or simulation guide before adapting it.",
+          "url": "https://www.rpact.org/"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "description: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "audience: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "inputs: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "outputs: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "conditions: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/rpact-com/rpact/blob/7f2dc890b86bff774c8abc0a311c77002f9e1a96/README.md",
+            "observed_at": "2026-09-17T08:56:31.572Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "getting_started: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.rpact.org/",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling official overview; catalog implementation remains a separate pinned development revision. Not execution or scientific validation.",
+            "method": "Official overview: Functional Range, Getting Started, User Concept Workflow; development-pin limit preserved from existing reviewed registry."
+          }
+        ]
       }
     },
     {
@@ -11764,7 +12396,7 @@
           "method": "Per-entry editorial review of pinned maintainer documentation; no execution or scientific validation."
         }
       ],
-      "documentation_url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+      "documentation_url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
       "source_refs": [
         {
           "source_url": "https://github.com/anastruct/anaStruct",
@@ -11776,11 +12408,110 @@
       ],
       "conditions": [
         "Pinned source declares LGPL v3 in LICENSE.txt; the former ritchie46/anaStruct identity redirects to the same repository.",
-        "Source documentation reviewed; installation, engineering results and suitability for real structures were not validated."
+        "Source documentation reviewed; installation, engineering results and suitability for real structures were not validated.",
+        "Check model assumptions and units independently; suitability for real structures has not been validated by AIPOCH."
       ],
       "runtime": {
         "status": "maintainer_described",
         "documentation_url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md"
+      },
+      "audience": [
+        "Researchers and students defining two-dimensional structural models in Python."
+      ],
+      "inputs": [
+        "Element geometry, axial and bending stiffness, supports and loads."
+      ],
+      "outputs": [
+        "Reaction and internal forces, bending moments, displacements and plots."
+      ],
+      "getting_started": [
+        {
+          "text": "Define a SystemElements model with elements and support conditions.",
+          "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html"
+        },
+        {
+          "text": "Apply loads, solve and inspect the example result plots.",
+          "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "description: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "audience: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/anastruct/anaStruct/blob/62a2800cbbeee8e7417423dd68fba70714b535ea/README.md",
+            "observed_at": "2026-09-17T12:14:14.837Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://anastruct.readthedocs.io/en/latest/getting_started.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling latest documentation, anaStruct 1.0 header; separate from catalog pin. Not execution or scientific validation.",
+            "method": "Getting started: Structure object parameters and Example; editorial usage limitation retained from existing catalog."
+          }
+        ]
       }
     },
     {
@@ -11942,7 +12673,7 @@
       "sources": [
         "https://github.com/Cantera/cantera"
       ],
-      "description": "Compute chemical kinetics, thermodynamic properties and transport processes, including reactor and flame simulations with user-selected mechanisms.",
+      "description": "Load a chemical phase, set its state and inspect thermodynamic properties with Cantera's Python interface.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/Cantera/cantera/blob/61433163abe81711a09cabebefff4a7002bd6d37/README.rst",
@@ -11969,7 +12700,7 @@
           "commit": "61433163abe81711a09cabebefff4a7002bd6d37"
         }
       ],
-      "documentation_url": "https://github.com/Cantera/cantera/blob/61433163abe81711a09cabebefff4a7002bd6d37/README.rst",
+      "documentation_url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
       "source_refs": [
         {
           "source_url": "https://github.com/Cantera/cantera",
@@ -11980,20 +12711,113 @@
         }
       ],
       "conditions": [
-        "固定License.txt为保留通知、二进制通知、不得背书的BSD3条款。",
-        "Python/Matlab/C++等接口依环境；反应机理数据的来源许可和适用性独立核查，不承诺所有化学体系准确。",
-        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "The pinned License.txt includes BSD-3-Clause source/binary notice and non-endorsement terms.",
+        "Python, MATLAB and C++ interfaces depend on the environment. Mechanism data licensing and applicability require separate review; accuracy for every chemical system is not established.",
+        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "Check mechanism applicability and the documented SI-unit conventions; catalog inclusion does not validate a mechanism."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://github.com/Cantera/cantera/blob/61433163abe81711a09cabebefff4a7002bd6d37/README.rst"
       },
       "inputs": [
-        "物种/反应机理、状态、反应器或火焰模型设定。"
+        "A YAML phase or mechanism definition, composition and thermodynamic state values."
       ],
       "outputs": [
-        "热力学/输运性质、反应速率、平衡或反应器模拟结果。"
-      ]
+        "Phase properties and species information for the specified state."
+      ],
+      "audience": [
+        "Researchers with Python and thermodynamics knowledge preparing reacting-system calculations."
+      ],
+      "getting_started": [
+        {
+          "text": "Load a phase following the Python tutorial.",
+          "url": "https://www.cantera.org/stable/userguide/python-tutorial.html"
+        },
+        {
+          "text": "Set temperature, pressure and composition, then inspect properties.",
+          "url": "https://www.cantera.org/stable/userguide/python-tutorial.html"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "description: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "audience: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/Cantera/cantera/blob/61433163abe81711a09cabebefff4a7002bd6d37/README.rst",
+            "observed_at": "2026-09-18T10:39:55.755Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://www.cantera.org/stable/userguide/python-tutorial.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling stable documentation, Cantera 3.2.0. Not execution or scientific validation.",
+            "method": "Python Tutorial: Getting Started, Setting the State, Working With Mechanism Files."
+          }
+        ]
+      }
     },
     {
       "key": "cltk-tool",
@@ -12005,7 +12829,7 @@
       "sources": [
         "https://github.com/cltk/cltk"
       ],
-      "description": "Analyze classical and premodern language texts with configurable pipelines for linguistic annotation. Language models and optional services have separate requirements.",
+      "description": "Annotate premodern-language text with a selected CLTK language pipeline and backend.",
       "attribution": {
         "role": "editor",
         "url": "https://docs.cltk.org/",
@@ -12031,7 +12855,7 @@
           "commit": "33e1653331fc2499e3f2f5da45237d87db0313cc"
         }
       ],
-      "documentation_url": "https://docs.cltk.org/",
+      "documentation_url": "https://docs.cltk.org/quickstart/",
       "source_refs": [
         {
           "source_url": "https://github.com/cltk/cltk",
@@ -12042,20 +12866,114 @@
         }
       ],
       "conditions": [
-        "固定LICENSE为MIT；不扩展到下载模型和语料。",
-        "Quickstart要求Python3.13+；默认Stanza需模型，可选模型服务有独立条件，本轮未连接或下载。",
-        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "The pinned LICENSE is MIT; this does not extend to downloaded models or corpora.",
+        "The reviewed Quickstart requires Python 3.13+. The default Stanza backend needs language models; optional model services have separate conditions. No service connection or model download was tested.",
+        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "The reviewed Quickstart requires Python 3.13+; supported languages and annotations depend on the backend.",
+        "Models and optional remote services have separate terms and access requirements."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://docs.cltk.org/"
       },
       "inputs": [
-        "语言文本、语言标识及所选分析后端。"
+        "Text, a supported language identifier and a chosen backend."
       ],
       "outputs": [
-        "分词、词元、词性、形态或依存标注。"
-      ]
+        "Word records with available lemmas, morphology and dependency annotations."
+      ],
+      "audience": [
+        "Text researchers who can configure Python packages and language models."
+      ],
+      "getting_started": [
+        {
+          "text": "Check Quickstart requirements and install the chosen backend extra.",
+          "url": "https://docs.cltk.org/quickstart/"
+        },
+        {
+          "text": "Use a supported language identifier and inspect a minimal example's word records.",
+          "url": "https://docs.cltk.org/quickstart/"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "description: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "audience: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "inputs: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "outputs: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "conditions: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://docs.cltk.org/",
+            "observed_at": "2026-09-18T10:39:55.755Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "getting_started: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://docs.cltk.org/quickstart/",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling Quickstart, requirements observed 2026-09-22. Not execution or scientific validation.",
+            "method": "Quickstart: Requirements, Install, Stanza minimal example and Choosing Language Identifiers."
+          }
+        ]
+      }
     },
     {
       "key": "medcat-tool",
@@ -12187,7 +13105,7 @@
       "sources": [
         "https://github.com/deepchem/deepchem"
       ],
-      "description": "Build molecular machine-learning workflows with task-specific data processing, model training and prediction tools.",
+      "description": "Build a molecular machine-learning workflow from featurization through data splitting, training and evaluation with DeepChem.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/deepchem/deepchem/blob/455d07f3e17e880a4d980b5b0365e4a02b417e14/README.md",
@@ -12213,7 +13131,7 @@
           "commit": "455d07f3e17e880a4d980b5b0365e4a02b417e14"
         }
       ],
-      "documentation_url": "https://github.com/deepchem/deepchem/blob/455d07f3e17e880a4d980b5b0365e4a02b417e14/README.md",
+      "documentation_url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
       "source_refs": [
         {
           "source_url": "https://github.com/deepchem/deepchem",
@@ -12224,20 +13142,114 @@
         }
       ],
       "conditions": [
-        "固定LICENSE为MIT；训练数据、预训练模型和第三方深度学习框架另行核查。",
-        "基础依赖包括RDKit及科学计算库；TensorFlow、PyTorch、JAX为按模型选择的额外依赖，GPU还需对应环境。数据集/模型未审核，不附带或下载；未验证泛化效果。",
-        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "The pinned LICENSE is MIT; training data, pretrained models and third-party frameworks need separate review.",
+        "Dependencies include RDKit and scientific libraries; TensorFlow, PyTorch and JAX are model-dependent extras, and GPU use needs a suitable environment. No dataset or model was downloaded or validated, and generalization was not assessed.",
+        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "Random splitting may overestimate performance; select an evaluation strategy appropriate to the task.",
+        "Model frameworks and datasets have separate dependencies and terms."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://github.com/deepchem/deepchem/blob/455d07f3e17e880a4d980b5b0365e4a02b417e14/README.md"
       },
       "inputs": [
-        "所选教程/模型要求的分子表示、特征及训练标签；并无全框架统一输入。"
+        "Task-specific features or molecular representations, labels and a compatible model."
       ],
       "outputs": [
-        "模型训练、预测或评估结果，具体取决于任务。"
-      ]
+        "Processed datasets, fitted models, predictions and evaluation metrics."
+      ],
+      "audience": [
+        "Researchers familiar with Python and supervised-learning evaluation."
+      ],
+      "getting_started": [
+        {
+          "text": "Follow the tutorial's data-handling and feature-engineering examples.",
+          "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html"
+        },
+        {
+          "text": "Choose a split, train a model and inspect held-out evaluation results.",
+          "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "description: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "audience: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/deepchem/deepchem/blob/455d07f3e17e880a4d980b5b0365e4a02b417e14/README.md",
+            "observed_at": "2026-09-18T10:39:55.755Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://deepchem.readthedocs.io/en/latest/get_started/tutorials.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling latest tutorials, 2.8.1.dev. Not execution or scientific validation.",
+            "method": "Tutorials: Data Handling, Feature Engineering, Data Splitting, Model Training and Evaluating."
+          }
+        ]
+      }
     },
     {
       "key": "dolfinx-tool",
@@ -14126,7 +15138,7 @@
           "commit": "075160256e8ffcdcc7d2f350e96cfbffbdf4f358"
         }
       ],
-      "documentation_url": "https://psychopy.org/online/",
+      "documentation_url": "https://github.com/psychopy/psychojs/blob/master/README.md",
       "source_refs": [
         {
           "source_url": "https://github.com/psychopy/psychojs",
@@ -14137,20 +15149,114 @@
         }
       ],
       "conditions": [
-        "固定LICENSE.md为MIT授权正文；托管和刺激材料条件独立。",
-        "浏览器/键盘/显示器影响时序；Builder导出不是任意Python逐行转换，Pavlovia服务条款独立。",
-        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "The pinned LICENSE.md contains MIT terms; hosting and stimulus materials have separate conditions.",
+        "Browser, keyboard and display affect timing. Builder export is not an arbitrary line-by-line Python conversion; Pavlovia has separate service terms.",
+        "Community indexing of this software or analysis workflow only. External models, datasets, services and third-party components have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "Builder compatibility is component-specific; browser behaviour differs from desktop PsychoPy.",
+        "Hosting services and participant data handling require their own arrangements."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://psychopy.org/online/"
       },
       "inputs": [
-        "实验逻辑、刺激和条件设置。"
+        "An experiment definition, stimulus resources and trial configuration."
       ],
       "outputs": [
-        "刺激呈现及响应/时间记录。"
-      ]
+        "Browser-presented trials and recorded participant responses."
+      ],
+      "audience": [
+        "Behavioural researchers using PsychoPy Builder or writing JavaScript experiments."
+      ],
+      "getting_started": [
+        {
+          "text": "Choose Builder export or JavaScript authoring using Getting Started.",
+          "url": "https://github.com/psychopy/psychojs/blob/master/README.md"
+        },
+        {
+          "text": "Check supported components and hosting requirements before piloting.",
+          "url": "https://github.com/psychopy/psychojs/blob/master/README.md"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "description: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "audience: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "inputs: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "outputs: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "conditions: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://psychopy.org/online/",
+            "observed_at": "2026-09-18T10:39:55.755Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "getting_started: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/psychopy/psychojs/blob/master/README.md",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling master README retrieved 2026-09-22. Not execution or scientific validation.",
+            "method": "README: Getting Started, PsychoPy Builder, JavaScript Code, Hosting Experiments; suitability is editorial interpretation of documented authoring paths."
+          }
+        ]
+      }
     },
     {
       "key": "psychopy-tool",
@@ -18683,7 +19789,7 @@
       "sources": [
         "https://github.com/spglib/spglib"
       ],
-      "description": "Identify crystal symmetry operations and space groups from lattice and atomic-position data.",
+      "description": "Find crystal symmetry operations and space-group information from a supplied unit cell using spglib.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/spglib/spglib/blob/a6b561fb60cdd021a1ac90852c3c2ae14405b2c8/README.md",
@@ -18709,7 +19815,7 @@
           "commit": "a6b561fb60cdd021a1ac90852c3c2ae14405b2c8"
         }
       ],
-      "documentation_url": "https://github.com/spglib/spglib/blob/a6b561fb60cdd021a1ac90852c3c2ae14405b2c8/README.md",
+      "documentation_url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
       "source_refs": [
         {
           "source_url": "https://github.com/spglib/spglib",
@@ -18721,19 +19827,112 @@
       ],
       "conditions": [
         "BSD-3-Clause",
-        "容差影响判断；不预测材料性质",
-        "Community indexing of core software only. External components, models, datasets and services have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "Tolerance affects symmetry determination; this capability does not predict material properties.",
+        "Community indexing of core software only. External components, models, datasets and services have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "Symmetry searches use distance tolerances; check symprec and coordinate conventions for your structure."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://github.com/spglib/spglib/blob/a6b561fb60cdd021a1ac90852c3c2ae14405b2c8/README.md"
       },
       "inputs": [
-        "晶格、原子位置类型、容差"
+        "Lattice vectors, fractional atomic positions and integer species labels; selected symmetry tolerances."
       ],
       "outputs": [
-        "空间群和对称操作"
-      ]
+        "Symmetry datasets or standardized cells, depending on the selected routine."
+      ],
+      "audience": [
+        "Researchers analysing periodic crystal structures through Python."
+      ],
+      "getting_started": [
+        {
+          "text": "Prepare the documented cell tuple and check coordinate conventions.",
+          "url": "https://spglib.readthedocs.io/en/stable/python-interface.html"
+        },
+        {
+          "text": "Choose a symmetry or standardization routine from the API summary.",
+          "url": "https://spglib.readthedocs.io/en/stable/python-interface.html"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "description: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "audience: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "inputs: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "outputs: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "conditions: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/spglib/spglib/blob/a6b561fb60cdd021a1ac90852c3c2ae14405b2c8/README.md",
+            "observed_at": "2026-09-19T09:27:42.586Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "getting_started: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://spglib.readthedocs.io/en/stable/python-interface.html",
+            "scope": "documentation_url: editorial summary of public documentation. Rolling stable documentation, v2.7.0. Not execution or scientific validation.",
+            "method": "Spglib for Python: Crystal structure, Symmetry tolerance and API summary."
+          }
+        ]
+      }
     },
     {
       "key": "dscribe-tool",
@@ -21228,7 +22427,7 @@
       "sources": [
         "https://github.com/aquacropos/aquacrop"
       ],
-      "description": "Simulate crop growth, soil water and irrigation strategies with AquaCrop-OSPy.",
+      "description": "Configure a crop-water simulation with weather, soil, crop and initial-water conditions using AquaCrop-OSPy.",
       "attribution": {
         "role": "editor",
         "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
@@ -21266,19 +22465,112 @@
       ],
       "conditions": [
         "Apache-2.0",
-        "不是FAO官方实现；盐分、肥力胁迫、杂草和多年生部分功能未覆盖。",
-        "Community indexing of core software only. External components, models, datasets and services have separate terms. Installation, scientific accuracy and suitability were not validated."
+        "This is not an official FAO implementation; salinity and fertility stress, weed management and some perennial-crop functionality are not covered.",
+        "Community indexing of core software only. External components, models, datasets and services have separate terms. Installation, scientific accuracy and suitability were not validated.",
+        "Not an official FAO implementation. The reviewed version excludes salinity and fertility stress, weed management and perennial herbaceous crop routines."
       ],
       "runtime": {
         "status": "community_described",
         "documentation_url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md"
       },
       "inputs": [
-        "天气、土壤、作物与管理参数"
+        "Weather data, soil and crop parameters, simulation dates and initial water content."
       ],
       "outputs": [
-        "作物生长、水分和产量模拟"
-      ]
+        "Crop-water simulation results for the configured scenario."
+      ],
+      "audience": [
+        "Agricultural researchers preparing crop and irrigation scenarios in Python."
+      ],
+      "getting_started": [
+        {
+          "text": "Follow the README model example to prepare weather and parameters.",
+          "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md"
+        },
+        {
+          "text": "Use the linked Quickstart tutorials to explore an irrigation scenario.",
+          "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md"
+        }
+      ],
+      "content_provenance": {
+        "description": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "description: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ],
+        "audience": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "audience: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ],
+        "inputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "inputs: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ],
+        "outputs": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "outputs: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ],
+        "conditions": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "conditions: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          },
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "observed_at": "2026-09-19T11:19:58.302Z",
+            "scope": "Previously reviewed catalog conditions retained, with English translation where needed; original review date preserved. Not a new license or runtime validation."
+          }
+        ],
+        "getting_started": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "getting_started: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ],
+        "documentation_url": [
+          {
+            "role": "editor",
+            "review": "reviewed",
+            "observed_at": "2026-09-22T07:49:05.497Z",
+            "url": "https://github.com/aquacropos/aquacrop/blob/36cc20e44644ed1704398889312435c85e04a2f3/README.md",
+            "scope": "documentation_url: editorial summary of public documentation. Pinned README 36cc20e44644ed1704398889312435c85e04a2f3. Not execution or scientific validation.",
+            "method": "Pinned README example, About limitations and Quickstart."
+          }
+        ]
+      }
     },
     {
       "key": "atomman-tool",

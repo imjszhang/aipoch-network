@@ -88,3 +88,7 @@
 ## Standard classification foundation
 
 See [versioned vocabularies](taxonomies/README.md) and the [contract design](../docs/research-classification.md). The original reviewed F2 mapping covers 43 entries; subsequent additions carry their own per-entry evidence. Optional `classification` and `research_tags` require their own reviewed `classification_provenance` and `research_tags_provenance` arrays. Old records may omit all four fields. Do not infer disciplines automatically from legacy `domains`, GitHub Topics or related entries.
+
+## Reviewed usage content
+
+Optional resource `audience` and ordered `getting_started: [{text, url}]` provide documented suitability and starting paths; they require reviewed editor/community `content_provenance` entries. The map can also provide evidence for explicit description, inputs, outputs, conditions and documentation_url fields. Projects permit only description in that map. Evidence cannot override license, runtime, taxonomy, identity or claims. Community enhancements remain community-attributed. See [field mapping](../docs/detail-content-quality.md). Existing fields and records remain compatible; omit unsupported facts rather than infer them.

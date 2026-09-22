@@ -1,5 +1,5 @@
 /** AIPOCH's independent public catalog. Unknown optional fields may be ignored by v1 readers. */
-export const CONTRACT_VERSION = '1.2.0' as const;
+export const CONTRACT_VERSION = '1.3.0' as const;
 export const COLLECTION_NAMES = ['sources', 'actors', 'organizations', 'projects', 'resources', 'collections', 'relations', 'claims', 'tombstones'] as const;
 export type CollectionName = typeof COLLECTION_NAMES[number];
 export type CatalogStatus = 'candidate' | 'listed';
@@ -152,6 +152,8 @@ export interface Resource extends CatalogEntity, ResearchClassification {
   license: License;
   documentation_url?: string;
   download_url?: string;
+  audience?: string[];
+  getting_started?: { text: string; url: string }[];
   inputs?: string[];
   outputs?: string[];
   conditions?: string[];

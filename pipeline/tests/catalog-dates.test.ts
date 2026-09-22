@@ -152,3 +152,18 @@ test('ledger reads are bounded, strict, and repeat applications are a filesystem
     await writeFile(path, ' '.repeat(8_000_001)); await assert.rejects(readPublicationLedger(path), /file/);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
+
+test('usage additions and step order change content fingerprints but observation time does not', () => {
+  const { catalog, registry } = fixture();
+  const resource = catalog.resources[0];
+  const original = contentFingerprint(resource, catalog, registry);
+  resource.audience = ['Researchers'];
+  assert.notEqual(contentFingerprint(resource, catalog, registry), original);
+  resource.getting_started = [{text:'Prepare',url:'https://example.org/a'},{text:'Inspect',url:'https://example.org/b'}];
+  const forward = contentFingerprint(resource, catalog, registry);
+  resource.getting_started.reverse();
+  assert.notEqual(contentFingerprint(resource, catalog, registry), forward);
+  resource.getting_started.reverse();
+  resource.updated_at = T2;
+  assert.equal(contentFingerprint(resource, catalog, registry), forward);
+});

@@ -245,9 +245,12 @@ test('changing sort from a static second page starts at the first result page', 
   expect(new URL(page.url()).pathname).not.toContain('/page/2/');
 });
 
-test('returning home restores its original description', async ({ page }) => {
+test('returning home restores its original description', async ({ page, request }) => {
+  const raw = await (await request.get('./projects/project~anndata/')).text();
+  const initialDescription = raw.match(/<meta name="description" content="([^"]+)"/)![1];
+  expect(initialDescription).toContain('AnnData');
   await page.goto('./projects/project~anndata/');
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Annotated data.');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', initialDescription);
   await page.getByRole('link', { name: 'AIPOCH Network home', exact: true }).click();
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Discover research projects and reusable capabilities, connected to their original GitHub sources.');
 });

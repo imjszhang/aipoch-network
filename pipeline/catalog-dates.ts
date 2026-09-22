@@ -121,8 +121,10 @@ function fixedReferences(entry: PublicEntity, registry: Registry, catalog: Catal
 }
 export function contentFingerprint(entry: PublicEntity, catalog: CatalogData, registry: Registry): string {
   const selected: Record<string, unknown> = { version: FINGERPRINT_VERSION, kind: entry.kind, id: entry.id, title: entry.title, description: entry.description, status: entry.status };
-  const fields = ['question', 'classification', 'research_tags', 'domains', 'resource_type', 'documentation_url', 'download_url', 'inputs', 'outputs', 'conditions', 'runtime', 'resource_ids', 'project_ids', 'actor_ids', 'item_ids', 'selection_basis', 'source_ids', 'actor_id', 'participation', 'provider', 'provider_id', 'canonical_url', 'owner_id', 'account_type', 'login', 'default_branch', 'archived', 'topics', 'language', 'homepage', 'collaboration', 'fork_of'];
+  const fields = ['question', 'classification', 'research_tags', 'domains', 'resource_type', 'documentation_url', 'download_url', 'inputs', 'outputs', 'audience', 'getting_started', 'conditions', 'runtime', 'resource_ids', 'project_ids', 'actor_ids', 'item_ids', 'selection_basis', 'source_ids', 'actor_id', 'participation', 'provider', 'provider_id', 'canonical_url', 'owner_id', 'account_type', 'login', 'default_branch', 'archived', 'topics', 'language', 'homepage', 'collaboration', 'fork_of'];
   for (const field of fields) if (field in entry) selected[field] = (entry as unknown as Record<string, unknown>)[field];
+  // Instruction order is meaningful, unlike the unordered entity membership sets.
+  if (entry.kind === 'resource' && entry.getting_started) selected.getting_started = entry.getting_started.map((step, position) => ({ position, ...step }));
   if ('license' in entry) {
     // A license URL may itself contain an automatically observed commit. Its legal
     // meaning, path and curated conditions matter; automatic revision churn does not.

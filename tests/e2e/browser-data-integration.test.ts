@@ -79,7 +79,9 @@ test('canonical, browse and query edits within a section share one availability 
   await expect(page.locator('.results-list .row-title a')).toHaveText(['SciPy']);
   await expect(search(page)).toBeFocused();
   await search(page).fill('NumPy');
-  await expect(page.locator('.results-list .row-title a')).toHaveText(['NumPy']);
+  // Descriptions also participate in search (Xarray now explains its NumPy relationship).
+  await expect(page.locator('.results-list .row-title a').filter({ hasText: /^NumPy$/ })).toHaveCount(1);
+  await expect(search(page)).toBeFocused();
   await search(page).fill('');
   await expect(page).toHaveURL(/\/projects\/$/);
   await expect(search(page)).toBeFocused();

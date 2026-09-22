@@ -83,6 +83,8 @@ export const definitions = {
     ...classificationProperties,
     resource_type: { type: 'string', minLength: 1, maxLength: 100, pattern: '^[a-z][a-z0-9_-]*$' },
     domains: arrayOf(text(100)), source_refs: arrayOf(ref('source_ref'), 1), project_ids: ids, license: ref('license'),
+    audience: { ...arrayOf({ ...text(2000), pattern: '\\S' }), minItems: 1, maxItems: 20 },
+    getting_started: { ...arrayOf(object({ text: { ...text(2000), pattern: '\\S' }, url }, ['text', 'url'], false)), minItems: 1, maxItems: 10 },
     documentation_url: url, download_url: url, inputs: arrayOf(text(2000)), outputs: arrayOf(text(2000)), conditions: arrayOf(text(2000)),
     runtime: object({ status: enumOf('not_described', 'maintainer_described', 'community_described'), documentation_url: url }, ['status']),
   }, ['resource_type', 'domains', 'source_refs', 'project_ids', 'license', 'runtime']),

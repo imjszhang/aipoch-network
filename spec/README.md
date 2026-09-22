@@ -7,7 +7,7 @@
 - TypeScript 入口：[index.ts](index.ts)，字段类型：[types.ts](types.ts)。
 - 可移植 JSON Schema：[catalog](schema/catalog.schema.json)、[manifest](schema/manifest.schema.json)、[shard](schema/shard.schema.json)、[enhancement](schema/enhancement.schema.json)。JSON Schema 的 `$id` 是逻辑标识，不需要通过该域名下载才能验证。
 - 独立合成目录：[fixtures/catalog.json](fixtures/catalog.json)。
-- Format version: `1.1.0` (additive dates and metrics; see [field dictionary](../docs/catalog-dates-metrics.md)). v1 新增可选字段可忽略，资源分类可扩展。状态、权限、撤回和运行状态枚举不能自行推断未知值含义；未知值必须拒绝。
+- Format version: `1.3.0` (additive reviewed resource usage; see [field dictionary](../docs/detail-content-quality.md); earlier dates/metrics and classification remain supported). v1 新增可选字段可忽略，资源分类可扩展。状态、权限、撤回和运行状态枚举不能自行推断未知值含义；未知值必须拒绝。
 
 公开入口为站点根下 `catalog/v1/manifest.json`，与网站搜索索引分开。manifest 形状为：
 
@@ -89,3 +89,5 @@ node --import tsx spec/export-schema.ts
 第二条仅在有意修改契约时重导出 JSON Schema 和固定 JSON 夹具；测试检查公开 schema 与实际实现一致。破坏性变更应创建新契约版本，不得通过重导出悄悄修改 v1 已发布语义。
 
 发布边界：当前生成器不输出来源完整 `readme`（该可选字段仅为兼容保留），只输出目录所需元数据与证据链接。分片默认最多 200 条且最多 4 MB，固定快照身份包含分片参数；改变分片不会覆写原固定地址。
+
+Optional resource `audience` and ordered `getting_started` fields require per-field provenance. Older v1 records may omit them. See [reviewed usage](../docs/detail-content-quality.md).
